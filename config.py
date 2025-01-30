@@ -19,7 +19,7 @@ class Config:
     PREFERRED_URL_SCHEME = getenv("PREFERRED_URL_SCHEME", "https")
     API_KEY = getenv("API_KEY", "you-will-never-guess")
     SECURITY_PASSWORD_SALT = getenv("SECURITY_PASSWORD_SALT", "you-will-never-guess")
-    DEBUG = getenv("FLASK_DEBUG")
+    DEBUG = int(getenv("FLASK_DEBUG", 0))
     BASE_URL = getenv("DEV_BASE_URL") if DEBUG == 1 else getenv("PRODUCTION_BASE_URL")
 
     # Flask session configuration

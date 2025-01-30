@@ -1,6 +1,4 @@
 *
-!*.py
-!**/*.py
 !/*.py
 !/.gitignore
 !/README.md

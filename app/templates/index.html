@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}home{% endblock %}
+{% block content %}
+<h1>Hello {{user}}</h1>
+<button hx-get='/' hx-trigger='click' hx-target='#response'>
+    Click me
+</button>
+<div id='response'></div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    console.log('this is home')
+</script>
+{% endblock %}

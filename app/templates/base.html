@@ -65,14 +65,17 @@
     <script src="{{ url_for('static', filename='js/htmx.min.js') }}"></script>
   </head>
   <body class="bg-white flex flex-col">
+      <header>
+          header content
+      </header>
     <main class="w-full flex-1 font-primary">
       {% block content %} {% endblock %}
     </main>
 	<footer class='font-primary full-bleed-footer container mx-auto relative mt-auto px-8
 		flex flex-col flex-wrap justify-center gap-4 py-10 bg-gray-100 lg:flex-row  lg:px-32'
 	>
+    footer
 	</footer>
     {% block extra_scripts %} {% endblock %}
   </body>
 </html>
-

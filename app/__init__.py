@@ -8,8 +8,9 @@ from flask_minify import Minify
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 from api.v1.views import bp as app_view
-from app.extensions import init_cache, init_session
+from app.extensions import init_cache, init_session, get_locale
 from config import Config
+from flask_babel import Babel, gettext as _
 
 
 def create_app(config_class=Config):
@@ -23,6 +24,9 @@ def create_app(config_class=Config):
     app.url_map.strict_slashes = False
     app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1, x_port=1, x_prefix=1)
 
+    # Initialize Flask-Babel (i18n)
+    babel = Babel(app, locale_selector=get_locale)
+
     # Initialize Flask-Session
     init_session(app)
 
@@ -33,7 +37,6 @@ def create_app(config_class=Config):
     app.register_blueprint(app_view)
 
     # Enable CORS for only the base URL
-    print('---------->', Config.BASE_URL)
     CORS(
         app,
         origins=Config.BASE_URL,
@@ -45,6 +48,11 @@ def create_app(config_class=Config):
 
     # initializing minify for html, js and cssless
     Minify(app=app, html=True, js=True, cssless=True)
+
+    @app.context_processor
+    def inject_locale():
+        '''Inject the locale into each rendered template'''
+        return dict(locale=get_locale())
 
     @app.route("/robots.txt")
     def static_from_root():
@@ -60,4 +68,3 @@ def create_app(config_class=Config):
         return render_template("not_found.html", is_authenticated=is_authenticated), 404
 
     return app
-

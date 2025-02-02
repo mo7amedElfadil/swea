@@ -2,6 +2,7 @@
 like database connections, session, caching, etc.
 """
 
+from flask import request, session as flask_session
 from pymongo import MongoClient
 from flask_caching import Cache
 from flask_session import Session
@@ -43,3 +44,9 @@ def get_mongo_uri_options():
 def init_cache(app):
     """Initialize Flask-Caching with the provided Flask app."""
     cache.init_app(app)
+
+
+def get_locale() -> str:
+    """Get the best language for the user from the session."""
+    lang = flask_session.get("lang", Config.BABEL_DEFAULT_LOCALE)
+    return lang

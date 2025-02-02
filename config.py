@@ -14,6 +14,11 @@ load_dotenv()
 class Config:
     """Configuration class for the Flask application."""
 
+    # Translation configuration
+    BABEL_DEFAULT_LOCALE = "en"
+    BABEL_DEFAULT_TIMEZONE = "UTC"
+    BABEL_SUPPORTED_LOCALES = ["en", "ar"]
+
     # General App configuration
     SECRET_KEY = getenv("SECRET_KEY", "you-will-never-guess")
     PREFERRED_URL_SCHEME = getenv("PREFERRED_URL_SCHEME", "https")

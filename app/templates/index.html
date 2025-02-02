@@ -2,14 +2,27 @@
 {% block title %}home{% endblock %}
 {% block content %}
 <h1>Hello {{user}}</h1>
-<button hx-get='/' hx-trigger='click' hx-target='#response'>
-    Click me
-</button>
-<div id='response'></div>
+<ul>
+	<li>
+		<button hx-get="/set_language?lang=ar" hx-target='body' hx-trigger='click'>
+			ar
+		</button>
+	</li>
+	<li>
+		<button hx-get="/set_language?lang=en" hx-target='body' hx-trigger='click'>
+			en
+		</button>
+	</li>
+</ul>
 {% endblock %}
 
 {% block extra_scripts %}
 <script>
-    console.log('this is home')
+	document.addEventListener('htmx:afterRequest', function(evt) {
+		const path = evt.detail.pathInfo.requestPath;
+		if (path.match('set_language') && evt.detail.successful) {
+			document.documentElement.lang =  path.match('(?<=lang=)[a-z]{2}')[0];
+		}
+	})
 </script>
 {% endblock %}

@@ -19,7 +19,7 @@
 		<link
 				rel="icon"
 				type="image/svg+xml"
-				href="{{ url_for('static', filename='icons/dolphin.svg') }}"
+				href="{{ url_for('static', filename='imgs/logo.png') }}"
 				/>
 
 		<!-- Social Media Preview (Open Graph) -->
@@ -64,16 +64,14 @@
 		<!-- JS Libraries (HTMX)  -->
 		<script src="{{ url_for('static', filename='js/htmx.min.js') }}"></script>
 	</head>
-	<body class="bg-white flex flex-col">
+	<body class="flex flex-col">
 		{% include "partials/header.html" %}
-		<main class="w-full flex-1 font-primary bg-red-100">
+		<main class="w-full flex-1">
 			{% block content %} {% endblock %}
 		</main>
-		<footer class='font-primary full-bleed-footer container mx-auto relative mt-auto px-8
-		flex flex-col flex-wrap justify-center gap-4 py-10 bg-gray-100 lg:flex-row  lg:px-32'
-				>
-				footer
-		</footer>
-			{% block extra_scripts %} {% endblock %}
+		<footer class=''>footer</footer>
+
+		<!-- js script -->
+		{% block extra_scripts %} {% endblock %}
 	</body>
 </html>

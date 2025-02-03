@@ -1,19 +1,20 @@
 {% extends "base.html" %}
 {% block title %}home{% endblock %}
 {% block content %}
-<h1>Hello {{user}}</h1>
-<ul>
-	<li>
-		<button hx-get="/set_language?lang=ar" hx-target='body' hx-trigger='click'>
-			ar
-		</button>
-	</li>
-	<li>
-		<button hx-get="/set_language?lang=en" hx-target='body' hx-trigger='click'>
-			en
-		</button>
-	</li>
-</ul>
+<div class='w-full h-full bg-primary-50'>
+	<ul>
+		<li>
+			<button hx-get="/set_language?lang=ar" hx-target='body' hx-trigger='click'>
+				ar
+			</button>
+		</li>
+		<li>
+			<button hx-get="/set_language?lang=en" hx-target='body' hx-trigger='click'>
+				en
+			</button>
+		</li>
+	</ul>
+</div>
 {% endblock %}
 
 {% block extra_scripts %}
@@ -28,6 +29,16 @@
 			} else {
 				document.dir = 'ltr';
 			}
+		}
+	})
+
+	// initial page load
+	document.addEventListener('DOMContentLoaded', function() {
+		const locale = document.documentElement.lang;
+		if (locale === 'ar') {
+			document.dir = 'rtl';
+		} else {
+			document.dir = 'ltr';
 		}
 	})
 </script>

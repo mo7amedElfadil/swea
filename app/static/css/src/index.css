@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "Noto Kufi Arabic";
+    src: url('../../fonts/NotoKufiArabic-Regular.ttf') format('truetype');
+}
+
+html, body {
+    font-family: "Noto Kufi Arabic", sans-serif;
+    height: 100%;
+}

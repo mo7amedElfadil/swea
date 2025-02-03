@@ -7,7 +7,6 @@
 # Commands
 TMUX := $(shell which tmux 2> /dev/null)
 NPM := $(shell which npm 2> /dev/null)
-TW := $(shell npm info tailwindcss version 2> /dev/null)
 
 # Colors
 RED := \e[31m
@@ -53,14 +52,6 @@ ifndef TMUX
 	@echo "-------Installing tmux...---------"
 	sudo apt-get update
 	sudo apt-get install -y tmux
-endif
-
-ifndef NPM
-	@echo "---------Installing npm...----------"
-endif
-
-ifndef TW
-	@echo "---------Installing tailwindcss...----------"
 	npm install tailwindcss
 endif
 

@@ -1,11 +1,12 @@
-<header>
-	<h1>Language is: {{locale}}</h1>
-	<nav>
-		<ul>
-			<li>{{_('team')}}</li>
-			<li>{{_('projects')}}</li>
-			<li>{{_('join us')}}</li>
-		</ul>
-	</nav>
+<header class='w-full p-4'>
+    <nav class='flex justify-between'>
+        <div>
+            <img src="{{url_for('static',filename='imgs/logo.png')}}" alt="swea logo"/>
+        </div>
+        <ul class='flex gap-4'>
+            <li>{{_('team')}}</li>
+            <li>{{_('projects')}}</li>
+            <li>{{_('join us')}}</li>
+        </ul>
+    </nav>
 </header>
-

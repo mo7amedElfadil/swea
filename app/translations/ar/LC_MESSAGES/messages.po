@@ -7,27 +7,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-03 07:19+0300\n"
+"POT-Creation-Date: 2025-02-04 00:25+0300\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
 "Language-Team: ar <LL@li.org>\n"
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : "
-"n%100>=3 && n%100<=10 ? 3 : n%100>=0 && n%100<=2 ? 4 : 5);\n"
+"n%100>=3 && n%100<=10 ? 3 : n%100>=0 && n%100<=2 ? 4 : 5)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.16.0\n"
+"Generated-By: Babel 2.8.0\n"
 
-#: app/templates/partials/header.html:5
+#: app/templates/partials/header.html:13
 msgid "team"
 msgstr "الفريق"
 
-#: app/templates/partials/header.html:6
+#: app/templates/partials/header.html:14
 msgid "projects"
 msgstr "المشاريع"
 
-#: app/templates/partials/header.html:7
+#: app/templates/partials/header.html:15
 msgid "join us"
 msgstr "إنضم لنا"
+
+#: app/templates/partials/header.html:23
+msgid "switch language"
+msgstr "english"
 

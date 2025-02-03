@@ -2,23 +2,27 @@
 {% block title %}home{% endblock %}
 {% block content %}
 <div class='w-full h-full bg-primary-50'>
-	<ul>
-		<li>
-			<button hx-get="/set_language?lang=ar" hx-target='body' hx-trigger='click'>
-				ar
-			</button>
-		</li>
-		<li>
-			<button hx-get="/set_language?lang=en" hx-target='body' hx-trigger='click'>
-				en
-			</button>
-		</li>
-	</ul>
 </div>
 {% endblock %}
 
 {% block extra_scripts %}
 <script>
+	var burgerMenu = document.getElementById('menu-burger');
+	var isActive = false;
+	burgerMenu.addEventListener('click', function() {
+		isActive = !isActive;
+		burgerMenu.children[0].classList.toggle('opacity-0');
+		burgerMenu.children[1].classList.toggle('rotate-45');
+		burgerMenu.children[2].classList.toggle('-rotate-45');
+		burgerMenu.children[2].classList.toggle('-translate-y-[150%]');
+		document.getElementById('menu-container').classList.toggle('-translate-y-full');
+
+		for (const elem of burgerMenu.children){
+			elem.classList.toggle('bg-white');
+		}
+
+	});
+
 	document.addEventListener('htmx:afterRequest', function(evt) {
 		const path = evt.detail.pathInfo.requestPath;
 		if (path.match('set_language') && evt.detail.successful) {
@@ -30,6 +34,7 @@
 				document.dir = 'ltr';
 			}
 		}
+		isActive = false;
 	})
 
 	// initial page load

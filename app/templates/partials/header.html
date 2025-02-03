@@ -1,12 +1,27 @@
-<header class='w-full p-4'>
-    <nav class='flex justify-between'>
-        <div>
-            <img src="{{url_for('static',filename='imgs/logo.png')}}" alt="swea logo"/>
+<header class='relative w-full p-4'>
+    <nav class='flex justify-between items-center'>
+        <div class='w-32'>
+            <img class='w-full' src="{{url_for('static',filename='imgs/logo.png')}}" alt="swea logo"/>
         </div>
-        <ul class='flex gap-4'>
-            <li>{{_('team')}}</li>
-            <li>{{_('projects')}}</li>
-            <li>{{_('join us')}}</li>
-        </ul>
+        <button role='menu-btn' class='relative z-10 flex flex-col justify-center gap-1 w-8 h-8' id='menu-burger'>
+            <span class='transition-all block w-8 h-1 bg-black'></span>
+            <span class='transition-all block w-8 h-1 bg-black'></span>
+            <span class='transition-all block w-8 h-1 bg-black'></span>
+        </button>
+        <div id='menu-container' class='flex flex-col transition-all bg-black text-white absolute left-0 right-0 top-0 -translate-y-full pt-14'>
+            <ul class='flex flex-col'>
+                <li class='p-4 text-center'>{{_('team')}}</li>
+                <li class='p-4 text-center'>{{_('projects')}}</li>
+                <li class='p-4 text-center'>{{_('join us')}}</li>
+            </ul>
+            <button
+                    class='p-4 capitalize mx-auto'
+                    hx-get="/set_language?lang={% if locale == 'ar'%}en{% else %}ar{%endif%}"
+                    hx-target='body'
+                    hx-trigger='click'
+                    >
+                    {{_('switch language')}}
+            </button>
+        </div>
     </nav>
 </header>

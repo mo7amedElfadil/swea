@@ -116,6 +116,12 @@ test: ## Run backend tests
 version: ## Display project version
 	@echo "Project Version: 1.0.0"
 
+update-translation: ## Update translations
+	@echo "Updating translations..."
+	@pybabel extract -F babel.cfg -o messages.pot .
+	@pybabel update -i messages.pot -d app/translations
+	@pybabel compile -d app/translations
+
 # Help message
 help: ## Show this help message
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \

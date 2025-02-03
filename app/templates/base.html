@@ -1,81 +1,79 @@
 <!doctype html>
 <html lang="{{locale}}">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %} {% endblock %} | swea</title>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{% block title %} {% endblock %} | swea</title>
 
-	<!-- Basic SEO -->
-	<meta
-		name="description"
-  		content="TruthTotal empowers you to uncover the truth by highlighting users who share misleading or false content. Build trust in your social network again by tracking flagged posts and making informed decisions online."
-	/>
-	<meta
-  		name="keywords"
-  		content="misinformation, fake news, social media trust, flagged posts, accountability, truth verification, social media responsibility, combating misinformation, trusted networks"
-	/>
+		<!-- Basic SEO -->
+		<meta
+				name="description"
+				content="TruthTotal empowers you to uncover the truth by highlighting users who share misleading or false content. Build trust in your social network again by tracking flagged posts and making informed decisions online."
+				/>
+		<meta
+				name="keywords"
+				content="misinformation, fake news, social media trust, flagged posts, accountability, truth verification, social media responsibility, combating misinformation, trusted networks"
+				/>
 
-	<!-- Favicons -->
-	<link
-  		rel="icon"
-  		type="image/svg+xml"
-  		href="{{ url_for('static', filename='icons/dolphin.svg') }}"
-	/>
+		<!-- Favicons -->
+		<link
+				rel="icon"
+				type="image/svg+xml"
+				href="{{ url_for('static', filename='icons/dolphin.svg') }}"
+				/>
 
-	<!-- Social Media Preview (Open Graph) -->
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content="TruthTotal: The truth will set you free" />
-	<meta
-  		property="og:description"
-  		content="TruthTotal helps you rebuild trust in social media by identifying users spreading false or misleading content."
-	/>
-	<meta
-		property="og:image"
-  		content="https://truthtotal.com/static/imgs/logo_og_email_1.webp"
-	/>
-	<meta property="og:image:alt" content="TruthTotal logo and tagline" />
-	<meta property="og:image:width" content="1200" />
-	<meta property="og:image:height" content="630" />
-	<meta property="og:url" content="https://truthtotal.com" />
-	<meta property="og:site_name" content="TruthTotal" />
+		<!-- Social Media Preview (Open Graph) -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="TruthTotal: The truth will set you free" />
+		<meta
+				property="og:description"
+				content="TruthTotal helps you rebuild trust in social media by identifying users spreading false or misleading content."
+				/>
+		<meta
+				property="og:image"
+				content="https://truthtotal.com/static/imgs/logo_og_email_1.webp"
+				/>
+		<meta property="og:image:alt" content="TruthTotal logo and tagline" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:url" content="https://truthtotal.com" />
+		<meta property="og:site_name" content="TruthTotal" />
 
-	<!-- Twitter Meta Tags -->
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta property="twitter:domain" content="truthtotal.com" />
-	<meta property="twitter:url" content="https://truthtotal.com" />
-	<meta name="twitter:title" content="TruthTotal: The truth will set you free" />
-	<meta
-  		name="twitter:description"
-  		content="TruthTotal helps you rebuild trust in social media by identifying users spreading false or misleading content."
-	/>
-	<meta
-	  name="twitter:image"
-	  content="https://truthtotal.com/static/imgs/logo_og_email_1.webp"
-	/>
-	<meta name="twitter:image:alt" content="TruthTotal logo and tagline" />
+		<!-- Twitter Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta property="twitter:domain" content="truthtotal.com" />
+		<meta property="twitter:url" content="https://truthtotal.com" />
+		<meta name="twitter:title" content="TruthTotal: The truth will set you free" />
+		<meta
+				name="twitter:description"
+				content="TruthTotal helps you rebuild trust in social media by identifying users spreading false or misleading content."
+				/>
+		<meta
+				name="twitter:image"
+				content="https://truthtotal.com/static/imgs/logo_og_email_1.webp"
+				/>
+		<meta name="twitter:image:alt" content="TruthTotal logo and tagline" />
 
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/dist/output.css') }}"
-    />
-    <!-- Canonical URL for avoiding duplicate content issues -->
-    <link rel="canonical" href="https://truthtotal.com" />
+		<link
+				rel="stylesheet"
+				href="{{ url_for('static', filename='css/dist/output.css') }}"
+				/>
+		<!-- Canonical URL for avoiding duplicate content issues -->
+		<link rel="canonical" href="https://truthtotal.com" />
 
-    <!-- JS Libraries (HTMX)  -->
-    <script src="{{ url_for('static', filename='js/htmx.min.js') }}"></script>
-  </head>
-  <body class="bg-white flex flex-col">
-      <header>
-          header content
-      </header>
-    <main class="w-full flex-1 font-primary bg-red-100">
-      {% block content %} {% endblock %}
-    </main>
-	<footer class='font-primary full-bleed-footer container mx-auto relative mt-auto px-8
+		<!-- JS Libraries (HTMX)  -->
+		<script src="{{ url_for('static', filename='js/htmx.min.js') }}"></script>
+	</head>
+	<body class="bg-white flex flex-col">
+		{% include "partials/header.html" %}
+		<main class="w-full flex-1 font-primary bg-red-100">
+			{% block content %} {% endblock %}
+		</main>
+		<footer class='font-primary full-bleed-footer container mx-auto relative mt-auto px-8
 		flex flex-col flex-wrap justify-center gap-4 py-10 bg-gray-100 lg:flex-row  lg:px-32'
-	>
-    footer
-	</footer>
-    {% block extra_scripts %} {% endblock %}
-  </body>
+				>
+				footer
+		</footer>
+			{% block extra_scripts %} {% endblock %}
+	</body>
 </html>

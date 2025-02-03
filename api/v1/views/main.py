@@ -1,16 +1,14 @@
-from flask import make_response, render_template, request, session
+from flask import make_response, redirect, render_template, request, session
 from api.v1.views import bp
 from config import Config
 from utils.view_modifiers import response
+from flask_babel import gettext as _
 
 @bp.route("/")
 @response(template_file="index.html")
 def index():
     '''home page'''
-    if request.headers.get("hx-request"):
-        html = '<h2> this markup from backend, open network tab</h2>'
-        return make_response(html)
-    return {"user" : "John Doe"}
+    return dict(user="Mohamed Elfadil")
 
 @bp.route("/projects")
 @response(template_file="projects.html")
@@ -27,5 +25,5 @@ def set_language():
         session["lang"] = lang
 
     # TODO: should render the template conrresponding to the current page
-
-    return make_response(render_template("index.html"))
+    #return make_response(render_template("index.html"))
+    return redirect(request.referrer)

@@ -2,6 +2,7 @@
 """
 
 from os import getenv, path
+import os
 
 import redis
 from dotenv import load_dotenv
@@ -18,6 +19,7 @@ class Config:
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
     BABEL_SUPPORTED_LOCALES = ["en", "ar"]
+    BABEL_TRANSLATION_DIRECTORIES = os.path.join(basedir, "app/translations")
 
     # General App configuration
     SECRET_KEY = getenv("SECRET_KEY", "you-will-never-guess")

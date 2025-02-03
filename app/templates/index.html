@@ -21,7 +21,13 @@
 	document.addEventListener('htmx:afterRequest', function(evt) {
 		const path = evt.detail.pathInfo.requestPath;
 		if (path.match('set_language') && evt.detail.successful) {
-			document.documentElement.lang =  path.match('(?<=lang=)[a-z]{2}')[0];
+			const locale =path.match('(?<=lang=)[a-z]{2}')[0]; 
+			document.documentElement.lang =  locale;
+			if (locale === 'ar') {
+				document.dir = 'rtl';
+			} else {
+				document.dir = 'ltr';
+			}
 		}
 	})
 </script>

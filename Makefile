@@ -1,4 +1,5 @@
 # Makefile for the Application (Frontend & Backend)
+.PHONY: help setup check-dependencies clean check_venv run_flask watch_tw watch_static stop_flask stop_tailwind stop_static restart_tw restart_static list status restart test version update-translation
 
 # Default target
 .DEFAULT_GOAL := help
@@ -6,6 +7,7 @@
 # Commands
 TMUX := $(shell which tmux 2> /dev/null)
 NPM := $(shell which npm 2> /dev/null)
+TW := $(shell npm info tailwindcss version 2> /dev/null)
 
 # Colors
 RED := \e[31m
@@ -55,6 +57,11 @@ endif
 
 ifndef NPM
 	@echo "---------Installing npm...----------"
+endif
+
+ifndef TW
+	@echo "---------Installing tailwindcss...----------"
+	npm install tailwindcss
 endif
 
 # Clean project dependencies

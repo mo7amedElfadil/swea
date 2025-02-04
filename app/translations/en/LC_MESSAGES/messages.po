@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-04 00:25+0300\n"
+"POT-Creation-Date: 2025-02-04 10:37+0300\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -18,19 +18,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: app/templates/partials/header.html:13
-msgid "team"
-msgstr "team"
+#: app/templates/index.html:7
+msgid "hero title"
+msgstr "empowering sudanese women econnomics"
 
-#: app/templates/partials/header.html:14
-msgid "projects"
-msgstr "projects"
+#: app/templates/index.html:9
+msgid "hero description"
+msgstr ""
+"our aim is to create a space for Sudanese women econmists to grow "
+"professionally, through networking, skills enhancing and opportunities "
+"mobilizing."
 
-#: app/templates/partials/header.html:15
+#: app/templates/index.html:10 app/templates/partials/header.html:17
 msgid "join us"
 msgstr "join us"
 
-#: app/templates/partials/header.html:23
+#: app/templates/partials/header.html:15
+msgid "team"
+msgstr "team"
+
+#: app/templates/partials/header.html:16
+msgid "projects"
+msgstr "projects"
+
+#: app/templates/partials/header.html:25
 msgid "switch language"
 msgstr "العربية"
 

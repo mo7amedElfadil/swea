@@ -1,14 +1,16 @@
-<header class='relative w-full p-4'>
+<header class='relative w-full p-4 bg-primary-50'>
     <nav class='flex justify-between items-center'>
         <div class='w-32'>
             <img class='w-full' src="{{url_for('static',filename='imgs/logo.png')}}" alt="swea logo"/>
         </div>
         <button role='menu-btn' class='relative z-10 flex flex-col justify-center gap-1 w-8 h-8' id='menu-burger'>
-            <span class='transition-all block w-8 h-1 bg-black'></span>
-            <span class='transition-all block w-8 h-1 bg-black'></span>
-            <span class='transition-all block w-8 h-1 bg-black'></span>
+            <span class='transition-all block w-8 h-1 bg-primary-700'></span>
+            <span class='transition-all block w-8 h-1 bg-primary-700'></span>
+            <span class='transition-all block w-8 h-1 bg-primary-700'></span>
         </button>
-        <div id='menu-container' class='flex flex-col transition-all bg-black text-white absolute left-0 right-0 top-0 -translate-y-full pt-14'>
+        <div
+            id='menu-container'
+            class='flex flex-col transition-all bg-primary-600 text-white absolute left-0 right-0 top-0 -translate-y-full pt-14'>
             <ul class='flex flex-col'>
                 <li class='p-4 text-center'>{{_('team')}}</li>
                 <li class='p-4 text-center'>{{_('projects')}}</li>

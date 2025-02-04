@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-04 00:25+0300\n"
+"POT-Creation-Date: 2025-02-04 10:37+0300\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -19,19 +19,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: app/templates/partials/header.html:13
-msgid "team"
-msgstr "الفريق"
+#: app/templates/index.html:7
+msgid "hero title"
+msgstr "تمكين النساء السودانيات العاملات في مجال الاقتصاد"
 
-#: app/templates/partials/header.html:14
-msgid "projects"
-msgstr "المشاريع"
+#: app/templates/index.html:9
+msgid "hero description"
+msgstr ""
+"هدفنا هو إنشاء مساحة للنساء السودانيات العاملات في مجال الاقتصاد للنمو "
+"المهني، من خلال بناء العلاقات، وتعزيز المهارات، وتعبئة الفرص."
 
-#: app/templates/partials/header.html:15
+#: app/templates/index.html:10 app/templates/partials/header.html:17
 msgid "join us"
 msgstr "إنضم لنا"
 
-#: app/templates/partials/header.html:23
+#: app/templates/partials/header.html:15
+msgid "team"
+msgstr "الفريق"
+
+#: app/templates/partials/header.html:16
+msgid "projects"
+msgstr "المشاريع"
+
+#: app/templates/partials/header.html:25
 msgid "switch language"
 msgstr "english"
 

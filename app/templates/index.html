@@ -1,28 +1,38 @@
 {% extends "base.html" %}
 {% block title %}home{% endblock %}
 {% block content %}
-<div class='w-full h-full bg-primary-50'>
+<div class='container mx-auto w-full h-full'>
+	<section id='hero' class='mt-8 px-4 space-y-4'>
+		<h1 class='text-3xl text-primary-700 capitalize font-extrabold'>
+			{{_('hero title')}}
+		</h1>
+		<p>{{_('hero description')}}</p>
+		<button class='py-2 px-4 text-white font-bold bg-primary-700 capitalize rounded-lg'>{{_('join us')}}</button>
+		<img src="{{url_for('static',filename='imgs/hero.jpeg')}}" alt="hero image"/>
+	</section>
 </div>
 {% endblock %}
 
 {% block extra_scripts %}
 <script>
 	var burgerMenu = document.getElementById('menu-burger');
-	var isActive = false;
+
+	// menu toggle
 	burgerMenu.addEventListener('click', function() {
-		isActive = !isActive;
 		burgerMenu.children[0].classList.toggle('opacity-0');
 		burgerMenu.children[1].classList.toggle('rotate-45');
 		burgerMenu.children[2].classList.toggle('-rotate-45');
-		burgerMenu.children[2].classList.toggle('-translate-y-[150%]');
+		burgerMenu.children[2].classList.toggle('-translate-y-[195%]');
 		document.getElementById('menu-container').classList.toggle('-translate-y-full');
 
 		for (const elem of burgerMenu.children){
+			elem.classList.toggle('bg-primary-700');
 			elem.classList.toggle('bg-white');
 		}
 
 	});
 
+	// language switcher
 	document.addEventListener('htmx:afterRequest', function(evt) {
 		const path = evt.detail.pathInfo.requestPath;
 		if (path.match('set_language') && evt.detail.successful) {
@@ -34,7 +44,6 @@
 				document.dir = 'ltr';
 			}
 		}
-		isActive = false;
 	})
 
 	// initial page load

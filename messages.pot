@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-04 00:25+0300\n"
+"POT-Creation-Date: 2025-02-04 10:37+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: app/templates/partials/header.html:13
-msgid "team"
+#: app/templates/index.html:7
+msgid "hero title"
 msgstr ""
 
-#: app/templates/partials/header.html:14
-msgid "projects"
+#: app/templates/index.html:9
+msgid "hero description"
 msgstr ""
 
-#: app/templates/partials/header.html:15
+#: app/templates/index.html:10 app/templates/partials/header.html:17
 msgid "join us"
 msgstr ""
 
-#: app/templates/partials/header.html:23
+#: app/templates/partials/header.html:15
+msgid "team"
+msgstr ""
+
+#: app/templates/partials/header.html:16
+msgid "projects"
+msgstr ""
+
+#: app/templates/partials/header.html:25
 msgid "switch language"
 msgstr ""
 

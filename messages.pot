@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-04 10:37+0300\n"
+"POT-Creation-Date: 2025-02-05 05:00+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,16 +17,52 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: app/templates/index.html:7
+#: app/templates/index.html:8
 msgid "hero title"
 msgstr ""
 
-#: app/templates/index.html:9
+#: app/templates/index.html:10
 msgid "hero description"
 msgstr ""
 
-#: app/templates/index.html:10 app/templates/partials/header.html:17
+#: app/templates/index.html:11 app/templates/partials/header.html:17
 msgid "join us"
+msgstr ""
+
+#: app/templates/index.html:16
+msgid "mission title"
+msgstr ""
+
+#: app/templates/index.html:20
+msgid "mission 1 title"
+msgstr ""
+
+#: app/templates/index.html:21
+msgid "mission 1 desc"
+msgstr ""
+
+#: app/templates/index.html:26
+msgid "mission 2 title"
+msgstr ""
+
+#: app/templates/index.html:27
+msgid "mission 2 desc"
+msgstr ""
+
+#: app/templates/index.html:35
+msgid "mission 3 title"
+msgstr ""
+
+#: app/templates/index.html:36
+msgid "mission 3 desc"
+msgstr ""
+
+#: app/templates/index.html:42
+msgid "mission 4 title"
+msgstr ""
+
+#: app/templates/index.html:43
+msgid "mission 4 desc"
 msgstr ""
 
 #: app/templates/partials/header.html:15

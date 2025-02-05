@@ -11,3 +11,10 @@ html, body {
     font-family: "Noto Kufi Arabic", sans-serif;
     height: 100%;
 }
+
+section#mission {
+    background-image: url('../../imgs/mission.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

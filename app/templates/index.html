@@ -1,7 +1,8 @@
+{% import "macros/mission-card.html" as macros %}
 {% extends "base.html" %}
 {% block title %}home{% endblock %}
 {% block content %}
-<div class='container mx-auto w-full h-full'>
+<div class='grid gap-8 container mx-auto w-full h-full'>
 	<section id='hero' class='mt-8 px-4 space-y-4'>
 		<h1 class='text-3xl text-primary-700 capitalize font-extrabold'>
 			{{_('hero title')}}
@@ -10,11 +11,49 @@
 		<button class='py-2 px-4 text-white font-bold bg-primary-700 capitalize rounded-lg'>{{_('join us')}}</button>
 		<img src="{{url_for('static',filename='imgs/hero.jpeg')}}" alt="hero image"/>
 	</section>
+	<section id='mission' class='mt-8 px-4 py-8 flex flex-col items-center overflow-hidden'>
+		<h2 class='me-auto mb-6 text-3xl text-primary-700 capitalize font-extrabold'>
+			{{_('mission title')}}
+		</h2>
+		<div class='w-full flex flex-col md:flex-row md:justify-between'>
+			{{macros.mission_card(
+				title=_("mission 1 title"),
+				desc=_("mission 1 desc"),
+				from='from-red-950',
+				to='to-red-400/80'
+			)}}
+			{{macros.mission_card(
+				title=_("mission 2 title"),
+				desc=_("mission 2 desc"),
+				gradient_dir='bg-gradient-to-br',
+				from='from-primary-300/80',
+				to='to-red-700/80'
+			)}}
+		</div>
+		<div class='w-full flex flex-col md:flex-row md:justify-around'>
+			{{macros.mission_card(
+				title=_("mission 3 title"),
+				desc=_("mission 3 desc"),
+				gradient_dir='bg-gradient-to-t',
+				from='from-primary-100/80',
+				to='to-red-500/80'
+			)}}
+			{{macros.mission_card(
+				title=_("mission 4 title"),
+				desc=_("mission 4 desc"),
+				gradient_dir='bg-gradient-to-t',
+				from='from-primary-300/80',
+				to='to-red-700/80'
+			)}}
+		</div>
+	</section>
 </div>
 {% endblock %}
 
 {% block extra_scripts %}
 <script>
+	// WARNING: if you try declare the variable as (let/const)
+	// bugs will occur, reason is unknown
 	var burgerMenu = document.getElementById('menu-burger');
 
 	// menu toggle

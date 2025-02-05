@@ -45,6 +45,8 @@ endef
 # Target to set up the project
 setup: ## Setup project and install core tools and dependencies
 	@$(MAKE) -s check-dependencies || exit 1
+	@$(MAKE) -s check_venv || exit 1
+
 
 # Check and install dependencies
 check-dependencies:
@@ -52,8 +54,9 @@ ifndef TMUX
 	@echo "-------Installing tmux...---------"
 	sudo apt-get update
 	sudo apt-get install -y tmux
-	npm install tailwindcss
 endif
+	npm install tailwindcss
+	pip install -r requirements.txt
 
 # Clean project dependencies
 clean: ## Clean project dependencies

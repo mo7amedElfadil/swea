@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-05 05:00+0300\n"
+"POmission descriptionT-Creation-Date: 2025-02-05 08:24+0400\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
 "Language-Team: ar <LL@li.org>\n"
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : "
-"n%100>=3 && n%100<=10 ? 3 : n%100>=0 && n%100<=2 ? 4 : 5)\n"
+"n%100>=3 && n%100<=10 ? 3 : n%100>=0 && n%100<=2 ? 4 : 5);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.8.0\n"
+"Generated-By: Babel 2.10.3\n"
 
 #: app/templates/index.html:8
 msgid "hero title"
@@ -76,6 +76,13 @@ msgstr "التواصل مع الشركاء"
 #: app/templates/index.html:43
 msgid "mission 4 desc"
 msgstr "تبادل المعرفة والخبرات بين الأجيال داخل مجال الاقتصاد"
+
+#: app/templates/index.html:49
+#, fuzzy
+msgid "mission description"
+msgstr ""
+"هدفنا هو إنشاء مساحة للنساء السودانيات العاملات في مجال الاقتصاد للنمو "
+"المهني، من خلال بناء العلاقات، وتعزيز المهارات، وتعبئة الفرص."
 
 #: app/templates/partials/header.html:15
 msgid "team"

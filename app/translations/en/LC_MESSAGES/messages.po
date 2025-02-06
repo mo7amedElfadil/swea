@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-05 08:24+0400\n"
+"POT-Creation-Date: 2025-02-07 01:12+0300\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
 "Language-Team: en <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.3\n"
+"Generated-By: Babel 2.8.0\n"
 
 #: app/templates/index.html:8
 msgid "hero title"
@@ -33,59 +33,68 @@ msgstr ""
 msgid "join us"
 msgstr "join us"
 
-#: app/templates/index.html:16
+#: app/templates/index.html:17
 msgid "mission title"
 msgstr "our mission"
 
-#: app/templates/index.html:20
+#: app/templates/index.html:21
 msgid "mission 1 title"
 msgstr "Empower Sudanese economists"
 
-#: app/templates/index.html:21
+#: app/templates/index.html:22
 msgid "mission 1 desc"
 msgstr ""
 "showcase sudanese women economists work alongside ensuring women's voices"
 " are amplified in the fields of economics and economic-related "
 "disciplines, in both academia and practice."
 
-#: app/templates/index.html:26
+#: app/templates/index.html:28
 msgid "mission 2 title"
 msgstr "career advancement"
 
-#: app/templates/index.html:27
+#: app/templates/index.html:29
 msgid "mission 2 desc"
 msgstr ""
 "career development and capacity building of young women economists in "
 "Sudan; alongside providing a professional bi-directional relationship "
 "between experts in the field, and prospective women economists."
 
-#: app/templates/index.html:35
+#: app/templates/index.html:38
 msgid "mission 3 title"
 msgstr "Solidarity Amongst Economists"
 
-#: app/templates/index.html:36
+#: app/templates/index.html:39
 msgid "mission 3 desc"
 msgstr ""
 "Support research and publication opportunities of Sudanese women "
 "economists; within an inclusive and supportive network."
 
-#: app/templates/index.html:42
+#: app/templates/index.html:46
 msgid "mission 4 title"
 msgstr "connect with partners"
 
-#: app/templates/index.html:43
+#: app/templates/index.html:47
 msgid "mission 4 desc"
 msgstr ""
 "inter-generatinal exchange of knowledge and experiences within the "
 "economics dicipline"
 
-#: app/templates/index.html:49
-#, fuzzy
-msgid "mission description"
+#: app/templates/index.html:61
+msgid "our story"
 msgstr ""
-"our aim is to create a space for Sudanese women econmists to grow "
-"professionally, through networking, skills enhancing and opportunities "
-"mobilizing."
+
+#: app/templates/index.html:62
+msgid "our story desc"
+msgstr ""
+"Sudanese women economists association (SWEA) was founded in June 2020, on"
+" the ground of redeeming the prevalent gap of women economists "
+"participation in the policy and academic spheres in sudan. fuelled by the"
+" enthusiasm of its founders and members; SWEA aims at building "
+"capacities, encouraging and amplifying the contributions of women "
+"economists, and young women pursuing degrees in economics. SWEA strives "
+"to achieve this by providing a platform to convene sudanese women "
+"economists, offering networking opportunities and enriching the economic "
+"research space by contributions from its membres."
 
 #: app/templates/partials/header.html:15
 msgid "team"
@@ -98,4 +107,11 @@ msgstr "projects"
 #: app/templates/partials/header.html:25
 msgid "switch language"
 msgstr "العربية"
+
+#~ msgid "mission description"
+#~ msgstr ""
+#~ "our aim is to create a space "
+#~ "for Sudanese women econmists to grow "
+#~ "professionally, through networking, skills "
+#~ "enhancing and opportunities mobilizing."
 

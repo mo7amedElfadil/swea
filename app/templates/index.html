@@ -2,8 +2,8 @@
 {% extends "base.html" %}
 {% block title %}home{% endblock %}
 {% block content %}
-<div class='grid gap-8 container mx-auto w-full h-full'>
-	<section id='hero' class='mt-8 px-4 space-y-4'>
+<div class='w-full h-full'>
+	<section id='hero' class='container mx-auto mt-8 px-4 space-y-4'>
 		<h1 class='text-3xl text-primary-700 capitalize font-extrabold'>
 			{{_('hero title')}}
 		</h1>
@@ -11,62 +11,75 @@
 		<button class='py-2 px-4 text-white font-bold bg-primary-700 capitalize rounded-lg'>{{_('join us')}}</button>
 		<img src="{{url_for('static',filename='imgs/hero.jpeg')}}" alt="hero image"/>
 	</section>
-	<section id='mission' class='mt-8 px-4 py-8 flex flex-col items-center overflow-hidden'>
-		<h2 class='me-auto mb-6 text-3xl text-primary-700 capitalize font-extrabold'>
-			{{_('mission title')}}
-		</h2>
-		<div class='w-full flex flex-col md:flex-row md:justify-between'>
-			{{macros.mission_card(
+	<section id='mission' class='mt-8 px-4 py-8 overflow-hidden'>
+		<div class='container mx-auto flex flex-col justify-center items-center gap-2 '>
+			<h2 class='me-auto mb-6 text-3xl text-primary-700 capitalize font-extrabold'>
+				{{_('mission title')}}
+			</h2>
+			<div class='w-full flex flex-col gap-2 items-center md:flex-row md:justify-between'>
+				{{macros.mission_card(
 				title=_("mission 1 title"),
 				desc=_("mission 1 desc"),
 				from='from-red-950',
 				to='to-red-400/80',
-				cls='static sm:absolute sm:top-0 sm:left-0 sm:transform sm:-translate-x-[40%]
-               md:-translate-x-[50%] lg:-translate-x-[95%] sm:z-[1]
-               flex flex-col justify-center items-center rounded-full shadow-md
-               transition-all duration-300 ease-in-out p-[10px] box-border overflow-hidden break-words
-               w-60 h-60 md:w-72 md:h-72 lg:w-[25rem] lg:h-[25rem]'
+				cls=''
 				)}}
-			{{macros.mission_card(
+				{{macros.mission_card(
 				title=_("mission 2 title"),
 				desc=_("mission 2 desc"),
 				gradient_dir='bg-gradient-to-br',
 				from='from-primary-300/80',
 				to='to-red-700/80',
-				cls='static sm:absolute sm:top-0 sm:left-0 sm:transform sm:-translate-x-[40%]
-				md:-translate-x-[50%] lg:-translate-x-[95%] sm:z-[1]
-				flex flex-col justify-center items-center rounded-full shadow-md
-				transition-all duration-300 ease-in-out p-[10px] box-border overflow-hidden break-words
-				w-60 h-60 md:w-72 md:h-72 lg:w-[25rem] lg:h-[25rem]'
-			)}}
-		</div>
-		<div class='w-full flex flex-col md:flex-row md:justify-around'>
-			{{macros.mission_card(
+				cls=''
+				)}}
+			</div>
+			<div class='w-full flex flex-col gap-2 items-center md:flex-row md:justify-around'>
+				{{macros.mission_card(
 				title=_("mission 3 title"),
 				desc=_("mission 3 desc"),
 				gradient_dir='bg-gradient-to-t',
 				from='from-primary-100/80',
 				to='to-red-500/80',
-				cls='static sm:absolute sm:bottom-0 sm:right-[20%] sm:transform sm:translate-x-[40%]
-               md:translate-x-[50%] lg:translate-x-[70%]
-               flex flex-col justify-center items-center rounded-full shadow-md
-               transition-all duration-300 ease-in-out p-[10px] box-border overflow-hidden break-words
-               w-60 h-60 md:w-72 md:h-72 lg:w-[25rem] lg:h-[25rem]'
-			)}}
-			{{macros.mission_card(
+				cls=''
+				)}}
+				{{macros.mission_card(
 				title=_("mission 4 title"),
 				desc=_("mission 4 desc"),
 				gradient_dir='bg-gradient-to-t',
 				from='from-primary-300/80',
 				to='to-red-700/80',
-				cls='static sm:absolute sm:bottom-0 sm:left-[20%] sm:transform sm:-translate-x-[40%]
-               md:-translate-x-[50%] lg:-translate-x-[70%]
-               flex flex-col justify-center items-center rounded-full shadow-md
-               transition-all duration-300 ease-in-out p-[10px] box-border overflow-hidden break-words
-               w-60 h-60 md:w-72 md:h-72 lg:w-[25rem] lg:h-[25rem]'
-			)}}
+				cls=''
+				)}}
+			</div>
 		</div>
-		<p>{{_('mission description')}}</p>
+	</section>
+	<section
+		id='our_story'
+		class='px-4 py-8 bg-cover bg-center bg-no-repeat'
+		>
+		<div class='container mx-auto'>
+			<h2 class='mb-6 text-3xl text-white capitalize font-extrabold'>{{_("our story")}}</h2>
+			<p class='text-white'>{{_("our story desc")}}</p>
+		</div>
+	</section>
+	<section id='our_vision' class='container mx-auto flex flex-wrap px-4 py-8'>
+		<h2 class='basis-full mb-6 text-3xl font-extrabold'>{{_("our vission")}}</h2>
+		<div class='basis-1/4'>
+			<img src="" alt=""/>
+			<p>{{_("vision 1")}}</p>
+		</div>
+		<div class='basis-1/4'>
+			<img src="" alt=""/>
+			<p>{{_("vision 2")}}</p>
+		</div>
+		<div class='basis-1/4'>
+			<img src="" alt=""/>
+			<p>{{_("vision 3")}}</p>
+		</div>
+		<div class='basis-1/4'>
+			<img src="" alt=""/>
+			<p>{{_("vision 4")}}</p>
+		</div>
 	</section>
 </div>
 {% endblock %}

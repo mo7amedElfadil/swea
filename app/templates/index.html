@@ -22,7 +22,7 @@
 				desc=_("mission 1 desc"),
 				from='from-red-950',
 				to='to-red-400/80',
-				cls='-translate-x-4 sm:translate-x-0'
+				cls='-translate-x-9 sm:translate-x-0'
 				)}}
 				{{macros.mission_card(
 				title=_("mission 2 title"),
@@ -30,7 +30,7 @@
 				gradient_dir='bg-gradient-to-br',
 				from='from-primary-300/80',
 				to='to-red-700/80',
-				cls='translate-x-4 -translate-y-12 sm:translate-y-0 sm:translate-x-0'
+				cls='translate-x-6 -translate-y-12 sm:translate-y-0 sm:translate-x-0'
 				)}}
 			</div>
 			<div class='w-full flex flex-col gap-2 items-center md:flex-row md:justify-around'>
@@ -40,7 +40,7 @@
 				gradient_dir='bg-gradient-to-t',
 				from='from-primary-100/80',
 				to='to-red-500/80',
-				cls='-translate-x-4 -translate-y-24 sm:translate-y-0 sm:translate-x-0'
+				cls='-translate-x-6 -translate-y-24 sm:translate-y-0 sm:translate-x-0'
 				)}}
 				{{macros.mission_card(
 				title=_("mission 4 title"),
@@ -48,15 +48,15 @@
 				gradient_dir='bg-gradient-to-t',
 				from='from-primary-300/80',
 				to='to-red-700/80',
-				cls='translate-x-4 -translate-y-36 sm:translate-y-0 sm:translate-x-0'
+				cls='translate-x-9 -translate-y-36 sm:translate-y-0 sm:translate-x-0'
 				)}}
 			</div>
 		</div>
 	</section>
-	<section id='our_story' class='flex items-center px-4 py-8 bg-cover bg-center bg-no-repeat sm:min-h-[700px]'>
+	<section id='our_story' class='flex items-center px-4 py-8 bg-cover bg-center bg-no-repeat sm:bg-[50%_20%] sm:min-h-[500px]'>
 			<div class='container mx-auto'>
 				<h2 class='mb-6 text-3xl text-white capitalize font-extrabold'>{{_("our story")}}</h2>
-				<p class='text-white'>{{_("our story desc")}}</p>
+				<p class='text-white sm:max-w-[70%]'>{{_("our story desc")}}</p>
 			</div>
 	</section>
 	<section id='our_vision' class='container mx-auto flex flex-wrap px-4 py-8'>
@@ -98,7 +98,11 @@
 				</span>
 			</div>
 		</div>
-		<div id='carousel' class='relative'>
+		<div id='carousel' class='relative flex gap-6 overflow-hidden'>
+			<div class='shrink-0 w-[200px] h-[300px] bg-black'></div>
+			<div class='shrink-0 w-[200px] h-[300px] bg-white'></div>
+			<div class='shrink-0 w-[200px] h-[300px] bg-red-300'></div>
+			<div class='shrink-0 w-[200px] h-[300px] bg-blue-300'></div>
 		</div>
 	</section>
 </div>

@@ -11,7 +11,7 @@
 		<button class='py-2 px-4 text-white font-bold bg-primary-700 capitalize rounded-lg'>{{_('join us')}}</button>
 		<img src="{{url_for('static',filename='imgs/hero.jpeg')}}" alt="hero image"/>
 	</section>
-	<section id='mission' class='mt-8 px-4 py-8 overflow-hidden'>
+	<section id='mission' class='mt-8 px-4 py-8'>
 		<div class='container mx-auto flex flex-col justify-center items-center gap-2 '>
 			<h2 class='me-auto mb-6 text-3xl text-primary-700 capitalize font-extrabold'>
 				{{_('mission title')}}
@@ -22,7 +22,7 @@
 				desc=_("mission 1 desc"),
 				from='from-red-950',
 				to='to-red-400/80',
-				cls=''
+				cls='-translate-x-4 sm:translate-x-0'
 				)}}
 				{{macros.mission_card(
 				title=_("mission 2 title"),
@@ -30,7 +30,7 @@
 				gradient_dir='bg-gradient-to-br',
 				from='from-primary-300/80',
 				to='to-red-700/80',
-				cls=''
+				cls='translate-x-4 -translate-y-12 sm:translate-y-0 sm:translate-x-0'
 				)}}
 			</div>
 			<div class='w-full flex flex-col gap-2 items-center md:flex-row md:justify-around'>
@@ -40,7 +40,7 @@
 				gradient_dir='bg-gradient-to-t',
 				from='from-primary-100/80',
 				to='to-red-500/80',
-				cls=''
+				cls='-translate-x-4 -translate-y-24 sm:translate-y-0 sm:translate-x-0'
 				)}}
 				{{macros.mission_card(
 				title=_("mission 4 title"),
@@ -48,37 +48,60 @@
 				gradient_dir='bg-gradient-to-t',
 				from='from-primary-300/80',
 				to='to-red-700/80',
-				cls=''
+				cls='translate-x-4 -translate-y-36 sm:translate-y-0 sm:translate-x-0'
 				)}}
 			</div>
 		</div>
 	</section>
 	<section
-		id='our_story'
-		class='px-4 py-8 bg-cover bg-center bg-no-repeat'
-		>
-		<div class='container mx-auto'>
-			<h2 class='mb-6 text-3xl text-white capitalize font-extrabold'>{{_("our story")}}</h2>
-			<p class='text-white'>{{_("our story desc")}}</p>
-		</div>
+			id='our_story'
+			class='px-4 py-8 bg-cover bg-center bg-no-repeat'
+			>
+			<div class='container mx-auto'>
+				<h2 class='mb-6 text-3xl text-white capitalize font-extrabold'>{{_("our story")}}</h2>
+				<p class='text-white'>{{_("our story desc")}}</p>
+			</div>
 	</section>
 	<section id='our_vision' class='container mx-auto flex flex-wrap px-4 py-8'>
-		<h2 class='basis-full mb-6 text-3xl font-extrabold'>{{_("our vission")}}</h2>
-		<div class='basis-1/4'>
-			<img src="" alt=""/>
-			<p>{{_("vision 1")}}</p>
+		<h2 class='basis-full mb-6 text-3xl font-extrabold capitalize'>{{_("our vission")}}</h2>
+		<div class='basis-full sm:basis-1/4'>
+			<img class='max-w-[50%] mx-auto sm:max-w-[auto]' src="{{url_for('static',filename='icons/advance.svg')}}" alt="advance icon"/>
+			<p class='max-w-[90%] mx-auto text-center'>{{_("vision 1")}}</p>
 		</div>
-		<div class='basis-1/4'>
-			<img src="" alt=""/>
-			<p>{{_("vision 2")}}</p>
+		<div class='basis-full text-center sm:basis-1/4'>
+			<img class='max-w-[50%] mx-auto sm:max-w-[auto]' src="{{url_for('static',filename='icons/build_capacity.svg')}}" alt="build capacity icon"/>
+			<p class='max-w-[90%] mx-auto text-center'>{{_("vision 2")}}</p>
 		</div>
-		<div class='basis-1/4'>
-			<img src="" alt=""/>
-			<p>{{_("vision 3")}}</p>
+		<div class='basis-full text-center sm:basis-1/4'>
+			<img class='max-w-[50%] mx-auto sm:max-w-[auto]' src="{{url_for('static',filename='icons/Amplify.svg')}}" alt="amplify icon"/>
+			<p class='max-w-[90%] mx-auto text-center'>{{_("vision 3")}}</p>
 		</div>
-		<div class='basis-1/4'>
-			<img src="" alt=""/>
-			<p>{{_("vision 4")}}</p>
+		<div class='basis-full text-center sm:basis-1/4'>
+			<img class='max-w-[50%] mx-auto sm:max-w-[auto]' src="{{url_for('static',filename='icons/Solidarity.svg')}}" alt="solidarity icon"/>
+			<p class='max-w-[90%] mx-auto text-center'>{{_("vision 4")}}</p>
+		</div>
+	</section>
+	<section id='news' class='container mx-auto px-4 py-8'>
+		<div class='w-full flex justify-between'>
+			<h2 class='mb-6 text-3xl font-extrabold capitalize'>{{_("news")}}</h2>
+			<div class='flex gap-4'>
+				<span id='left-arrow' class='size-10 p-2 bg-black rounded-full'>
+					<img
+							class='size-6 {% if locale == 'ar' %}rotate-180{% endif %}'
+							src="{{url_for('static',filename='icons/left-arrow.svg')}}"
+							alt="left arrow"
+							/>
+				</span>
+				<span id='right-arrow' class='size-10 p-2 bg-black rounded-full'>
+					<img
+							class='size-6 {% if locale == 'ar' %}rotate-180{% endif %}'
+							src="{{url_for('static',filename='icons/right-arrow.svg')}}"
+							alt="rightarrow"
+							/>
+				</span>
+			</div>
+		</div>
+		<div id='carousel' class='relative'>
 		</div>
 	</section>
 </div>
@@ -87,7 +110,7 @@
 {% block extra_scripts %}
 <script>
 	// WARNING: if you try declare the variable as (let/const)
-	// bugs will occur, reason is unknown
+	// an error will occur, reason is unknown
 	var burgerMenu = document.getElementById('menu-burger');
 
 	// menu toggle

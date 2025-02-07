@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-07 01:12+0300\n"
+"POT-Creation-Date: 2025-02-07 11:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -92,6 +92,34 @@ msgstr ""
 "درجات علمية في الاقتصاد. تسعى SWEA إلى تحقيق ذلك من خلال توفير منصة تجمع "
 "النساء السودانيات العاملات في مجال الاقتصاد، وتقديم فرص للتواصل، وإثراء "
 "مجال البحوث الاقتصادية بمساهمات أعضائها."
+
+#: app/templates/index.html:66
+msgid "our vission"
+msgstr "رؤيتنا"
+
+#: app/templates/index.html:69
+msgid "vision 1"
+msgstr ""
+"<b>تعزيز</b> مشاركة النساء السودانيات العاملات في مجال الاقتصاد في "
+"المجالات الأكاديمية والسياسات العامة في السودان"
+
+#: app/templates/index.html:73
+msgid "vision 2"
+msgstr "<b>بناء قدرات</b> النساء الشابات في مجال الاقتصاد"
+
+#: app/templates/index.html:77
+msgid "vision 3"
+msgstr "<b>تعزيز</b> أصوات النساء السودانيات في البحث والممارسة الاقتصادية."
+
+#: app/templates/index.html:81
+msgid "vision 4"
+msgstr ""
+"<b>تعزيز التضامن</b> بين النساء السودانيات العاملات في مجال الاقتصاد عبر "
+"الأجيال."
+
+#: app/templates/index.html:86
+msgid "news"
+msgstr "الأخبار"
 
 #: app/templates/partials/header.html:15
 msgid "team"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-07 01:12+0300\n"
+"POT-Creation-Date: 2025-02-07 11:47+0300\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -95,6 +95,36 @@ msgstr ""
 "to achieve this by providing a platform to convene sudanese women "
 "economists, offering networking opportunities and enriching the economic "
 "research space by contributions from its membres."
+
+#: app/templates/index.html:66
+msgid "our vission"
+msgstr ""
+
+#: app/templates/index.html:69
+msgid "vision 1"
+msgstr ""
+"<b>Advance</b> Sudanese women Economists' participation in Academic And "
+"public policy spheres in sudan."
+
+#: app/templates/index.html:73
+msgid "vision 2"
+msgstr "<b>build capacity</b> of young women in economics."
+
+#: app/templates/index.html:77
+msgid "vision 3"
+msgstr ""
+"<b>amplify</b> the voices of sudanese women in economic research and "
+"practice."
+
+#: app/templates/index.html:81
+msgid "vision 4"
+msgstr ""
+"<b>promote solidarity</b> between sudanese women economists across "
+"generations."
+
+#: app/templates/index.html:86
+msgid "news"
+msgstr ""
 
 #: app/templates/partials/header.html:15
 msgid "team"

@@ -82,23 +82,23 @@
 		<div class='w-full flex justify-between'>
 			<h2 class='mb-6 text-3xl font-extrabold capitalize'>{{_("news")}}</h2>
 			<div class='flex gap-4'>
-				<span id='left-arrow' class='size-10 p-2 bg-black rounded-full'>
+				<button id='left-arrow' class='size-10 p-2 bg-black rounded-full'>
 					<img
 							class='size-6 {% if locale == 'ar' %}rotate-180{% endif %}'
 							src="{{url_for('static',filename='icons/left-arrow.svg')}}"
 							alt="left arrow"
 							/>
-				</span>
-				<span id='right-arrow' class='size-10 p-2 bg-black rounded-full'>
+				</button>
+				<button id='right-arrow' class='size-10 p-2 bg-black rounded-full'>
 					<img
 							class='size-6 {% if locale == 'ar' %}rotate-180{% endif %}'
 							src="{{url_for('static',filename='icons/right-arrow.svg')}}"
 							alt="rightarrow"
 							/>
-				</span>
+				</button>
 			</div>
 		</div>
-		<div id='carousel' class='relative flex gap-6 overflow-hidden'>
+		<div id='carousel' class='transition-all relative flex gap-6 overflow-x-hidden'>
 			<div class='shrink-0 w-[200px] h-[300px] bg-black'></div>
 			<div class='shrink-0 w-[200px] h-[300px] bg-white'></div>
 			<div class='shrink-0 w-[200px] h-[300px] bg-red-300'></div>
@@ -110,47 +110,22 @@
 
 {% block extra_scripts %}
 <script>
-	// WARNING: if you try declare the variable as (let/const)
-	// an error will occur, reason is unknown
-	var burgerMenu = document.getElementById('menu-burger');
+	const next = document.getElementById('right-arrow');
+	const prev = document.getElementById('left-arrow');
+	const carousel = document.getElementById('carousel');
+	const slides = carousel.children;
+	const totalSlides = slides.length;
+	const slideWidth = slides[0].clientWidth;
+	console.log({slideWidth});
 
-	// menu toggle
-	burgerMenu.addEventListener('click', function() {
-		burgerMenu.children[0].classList.toggle('opacity-0');
-		burgerMenu.children[1].classList.toggle('rotate-45');
-		burgerMenu.children[2].classList.toggle('-rotate-45');
-		burgerMenu.children[2].classList.toggle('-translate-y-[195%]');
-		document.getElementById('menu-container').classList.toggle('-translate-y-full');
-
-		for (const elem of burgerMenu.children){
-			elem.classList.toggle('bg-primary-700');
-			elem.classList.toggle('bg-white');
-		}
-
+	let currentSlide = 0;
+	next.addEventListener('click', () => {
+		currentSlide = (currentSlide + 1) % totalSlides;
+		carousel.scrollBy({left: slideWidth, behavior: 'smooth'});
 	});
-
-	// language switcher
-	document.addEventListener('htmx:afterRequest', function(evt) {
-		const path = evt.detail.pathInfo.requestPath;
-		if (path.match('set_language') && evt.detail.successful) {
-			const locale =path.match('(?<=lang=)[a-z]{2}')[0];
-			document.documentElement.lang =  locale;
-			if (locale === 'ar') {
-				document.dir = 'rtl';
-			} else {
-				document.dir = 'ltr';
-			}
-		}
-	})
-
-	// initial page load
-	document.addEventListener('DOMContentLoaded', function() {
-		const locale = document.documentElement.lang;
-		if (locale === 'ar') {
-			document.dir = 'rtl';
-		} else {
-			document.dir = 'ltr';
-		}
-	})
+	prev.addEventListener('click', () => {
+		currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+		carousel.scrollBy({left: -(slideWidth), behavior: 'smooth'});
+	});
 </script>
 {% endblock %}

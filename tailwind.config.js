@@ -2,7 +2,7 @@
 const plugin = require('tailwindcss/plugin');
 
 module.exports = {
-  content: ["./app/templates/**/*.html"],
+  content: ["./app/templates/**/*.html", "./app/templates/**/*.js"],
   theme: {
     extend: {
       gridTemplateColumns: {

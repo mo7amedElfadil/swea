@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-07 11:47+0300\n"
+"POT-Creation-Date: 2025-02-08 07:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,84 +17,88 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: app/templates/index.html:8
+#: app/templates/index.html:9
 msgid "hero title"
 msgstr ""
 
-#: app/templates/index.html:10
+#: app/templates/index.html:11
 msgid "hero description"
 msgstr ""
 
-#: app/templates/index.html:11 app/templates/partials/header.html:17
+#: app/templates/index.html:12 app/templates/partials/header.html:17
 msgid "join us"
 msgstr ""
 
-#: app/templates/index.html:17
+#: app/templates/index.html:18
 msgid "mission title"
 msgstr ""
 
-#: app/templates/index.html:21
+#: app/templates/index.html:22
 msgid "mission 1 title"
 msgstr ""
 
-#: app/templates/index.html:22
+#: app/templates/index.html:23
 msgid "mission 1 desc"
 msgstr ""
 
-#: app/templates/index.html:28
+#: app/templates/index.html:29
 msgid "mission 2 title"
 msgstr ""
 
-#: app/templates/index.html:29
+#: app/templates/index.html:30
 msgid "mission 2 desc"
 msgstr ""
 
-#: app/templates/index.html:38
+#: app/templates/index.html:39
 msgid "mission 3 title"
 msgstr ""
 
-#: app/templates/index.html:39
+#: app/templates/index.html:40
 msgid "mission 3 desc"
 msgstr ""
 
-#: app/templates/index.html:46
+#: app/templates/index.html:47
 msgid "mission 4 title"
 msgstr ""
 
-#: app/templates/index.html:47
+#: app/templates/index.html:48
 msgid "mission 4 desc"
 msgstr ""
 
-#: app/templates/index.html:61
+#: app/templates/index.html:59
 msgid "our story"
 msgstr ""
 
-#: app/templates/index.html:62
+#: app/templates/index.html:60
 msgid "our story desc"
 msgstr ""
 
-#: app/templates/index.html:66
+#: app/templates/index.html:64
 msgid "our vission"
 msgstr ""
 
-#: app/templates/index.html:69
+#: app/templates/index.html:67
 msgid "vision 1"
 msgstr ""
 
-#: app/templates/index.html:73
+#: app/templates/index.html:71
 msgid "vision 2"
 msgstr ""
 
-#: app/templates/index.html:77
+#: app/templates/index.html:75
 msgid "vision 3"
 msgstr ""
 
-#: app/templates/index.html:81
+#: app/templates/index.html:79
 msgid "vision 4"
 msgstr ""
 
-#: app/templates/index.html:86
+#: app/templates/index.html:84
 msgid "news"
+msgstr ""
+
+#: app/templates/index.html:125
+msgid "learn more"
 msgstr ""
 
 #: app/templates/partials/header.html:15

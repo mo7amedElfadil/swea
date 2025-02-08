@@ -1,4 +1,5 @@
 {% import "macros/mission-card.html" as macros %}
+{% import "macros/icons.html" as icons %}
 {% extends "base.html" %}
 {% block title %}home{% endblock %}
 {% block content %}
@@ -54,10 +55,10 @@
 		</div>
 	</section>
 	<section id='our_story' class='flex items-center px-4 py-8 bg-cover bg-center bg-no-repeat sm:bg-[50%_20%] sm:min-h-[500px]'>
-			<div class='container mx-auto'>
-				<h2 class='mb-6 text-3xl text-white capitalize font-extrabold'>{{_("our story")}}</h2>
-				<p class='text-white sm:max-w-[70%]'>{{_("our story desc")}}</p>
-			</div>
+		<div class='container mx-auto'>
+			<h2 class='mb-6 text-3xl text-white capitalize font-extrabold'>{{_("our story")}}</h2>
+			<p class='text-white sm:max-w-[70%]'>{{_("our story desc")}}</p>
+		</div>
 	</section>
 	<section id='our_vision' class='container mx-auto flex flex-wrap px-4 py-8'>
 		<h2 class='basis-full mb-6 text-3xl font-extrabold capitalize'>{{_("our vission")}}</h2>
@@ -99,10 +100,40 @@
 			</div>
 		</div>
 		<div id='carousel' class='transition-all relative flex gap-6 overflow-x-hidden'>
-			<div class='shrink-0 w-[200px] h-[300px] bg-black'></div>
-			<div class='shrink-0 w-[200px] h-[300px] bg-white'></div>
-			<div class='shrink-0 w-[200px] h-[300px] bg-red-300'></div>
-			<div class='shrink-0 w-[200px] h-[300px] bg-blue-300'></div>
+			{% for i in range(4) %}
+			<div class='shrink-0 w-[200px] h-[330px] grid grid-rows-[30%_auto] shadow-md'>
+				<img
+						class='size-full object-cover'
+						src="{{url_for('static',filename='imgs/discussion.jpg')}}"
+						alt="discussion"
+						/>
+				<div class='p-2 flex flex-col gap-2 bg-white'>
+					<span class='text-xs text-slate-500'>august 2 2023</span>
+					<h3 class='font-extrabold'>Empowered voices</h3>
+					<p class='text-sm'>
+					three of our members <b>Moneera</b>, <Jawhara</b> and <Sawasn</b>
+					discussed structural transformation in the first all-women episode of the
+					<b>Hiwarat Podcast</b>
+					</p>
+					<button class='flex gap-2 items-center text-sm'>
+						<span class='p-1.5 border border-red-700 rounded-full'>
+							{% if locale == 'en' %}
+								{{icons.arrow_right(
+								clr="rgb(185 28 28)",
+								cls="size-3"
+								)}}
+							{% else %}
+								{{icons.arrow_left(
+								clr="rgb(185 28 28)",
+								cls="size-3"
+								)}}
+							{% endif %}
+						</span>
+						<span class='text-red-700 capitalize'>{{_('learn more')}}</span>
+					</button>
+				</div>
+			</div>
+			{% endfor %}
 		</div>
 	</section>
 </div>
@@ -110,22 +141,29 @@
 
 {% block extra_scripts %}
 <script>
-	const next = document.getElementById('right-arrow');
-	const prev = document.getElementById('left-arrow');
-	const carousel = document.getElementById('carousel');
-	const slides = carousel.children;
-	const totalSlides = slides.length;
-	const slideWidth = slides[0].clientWidth;
-	console.log({slideWidth});
+	var next = document.getElementById('right-arrow');
+	var prev = document.getElementById('left-arrow');
+	var carousel = document.getElementById('carousel');
+	var slides = carousel.children;
+	var totalSlides = slides.length;
+	var GAP = 24;
+	var slideWidth = slides[0].clientWidth + GAP;
+	var locale = document.documentElement.lang;
 
-	let currentSlide = 0;
+	var currentSlide = 0;
 	next.addEventListener('click', () => {
 		currentSlide = (currentSlide + 1) % totalSlides;
-		carousel.scrollBy({left: slideWidth, behavior: 'smooth'});
+		carousel.scrollBy({
+			left: locale === 'en' ? slideWidth: -slideWidth,
+			behavior: 'smooth'
+		});
 	});
 	prev.addEventListener('click', () => {
 		currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-		carousel.scrollBy({left: -(slideWidth), behavior: 'smooth'});
+		carousel.scrollBy({
+			left: locale === 'en' ? -slideWidth : slideWidth,
+			behavior: 'smooth'
+		});
 	});
 </script>
 {% endblock %}

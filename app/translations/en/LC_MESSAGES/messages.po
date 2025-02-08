@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-07 11:47+0300\n"
+"POT-Creation-Date: 2025-02-08 07:44+0300\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -18,72 +18,72 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: app/templates/index.html:8
+#: app/templates/index.html:9
 msgid "hero title"
 msgstr "empowering sudanese women econnomics"
 
-#: app/templates/index.html:10
+#: app/templates/index.html:11
 msgid "hero description"
 msgstr ""
 "our aim is to create a space for Sudanese women econmists to grow "
 "professionally, through networking, skills enhancing and opportunities "
 "mobilizing."
 
-#: app/templates/index.html:11 app/templates/partials/header.html:17
+#: app/templates/index.html:12 app/templates/partials/header.html:17
 msgid "join us"
 msgstr "join us"
 
-#: app/templates/index.html:17
+#: app/templates/index.html:18
 msgid "mission title"
 msgstr "our mission"
 
-#: app/templates/index.html:21
+#: app/templates/index.html:22
 msgid "mission 1 title"
 msgstr "Empower Sudanese economists"
 
-#: app/templates/index.html:22
+#: app/templates/index.html:23
 msgid "mission 1 desc"
 msgstr ""
 "showcase sudanese women economists work alongside ensuring women's voices"
 " are amplified in the fields of economics and economic-related "
 "disciplines, in both academia and practice."
 
-#: app/templates/index.html:28
+#: app/templates/index.html:29
 msgid "mission 2 title"
 msgstr "career advancement"
 
-#: app/templates/index.html:29
+#: app/templates/index.html:30
 msgid "mission 2 desc"
 msgstr ""
 "career development and capacity building of young women economists in "
 "Sudan; alongside providing a professional bi-directional relationship "
 "between experts in the field, and prospective women economists."
 
-#: app/templates/index.html:38
+#: app/templates/index.html:39
 msgid "mission 3 title"
 msgstr "Solidarity Amongst Economists"
 
-#: app/templates/index.html:39
+#: app/templates/index.html:40
 msgid "mission 3 desc"
 msgstr ""
 "Support research and publication opportunities of Sudanese women "
 "economists; within an inclusive and supportive network."
 
-#: app/templates/index.html:46
+#: app/templates/index.html:47
 msgid "mission 4 title"
 msgstr "connect with partners"
 
-#: app/templates/index.html:47
+#: app/templates/index.html:48
 msgid "mission 4 desc"
 msgstr ""
 "inter-generatinal exchange of knowledge and experiences within the "
 "economics dicipline"
 
-#: app/templates/index.html:61
+#: app/templates/index.html:59
 msgid "our story"
 msgstr ""
 
-#: app/templates/index.html:62
+#: app/templates/index.html:60
 msgid "our story desc"
 msgstr ""
 "Sudanese women economists association (SWEA) was founded in June 2020, on"
@@ -96,35 +96,39 @@ msgstr ""
 "economists, offering networking opportunities and enriching the economic "
 "research space by contributions from its membres."
 
-#: app/templates/index.html:66
+#: app/templates/index.html:64
 msgid "our vission"
 msgstr ""
 
-#: app/templates/index.html:69
+#: app/templates/index.html:67
 msgid "vision 1"
 msgstr ""
 "<b>Advance</b> Sudanese women Economists' participation in Academic And "
 "public policy spheres in sudan."
 
-#: app/templates/index.html:73
+#: app/templates/index.html:71
 msgid "vision 2"
 msgstr "<b>build capacity</b> of young women in economics."
 
-#: app/templates/index.html:77
+#: app/templates/index.html:75
 msgid "vision 3"
 msgstr ""
 "<b>amplify</b> the voices of sudanese women in economic research and "
 "practice."
 
-#: app/templates/index.html:81
+#: app/templates/index.html:79
 msgid "vision 4"
 msgstr ""
 "<b>promote solidarity</b> between sudanese women economists across "
 "generations."
 
-#: app/templates/index.html:86
+#: app/templates/index.html:84
 msgid "news"
 msgstr ""
+
+#: app/templates/index.html:125
+msgid "learn more"
+msgstr "learn more"
 
 #: app/templates/partials/header.html:15
 msgid "team"

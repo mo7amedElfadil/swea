@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-09 03:11+0300\n"
+"POT-Creation-Date: 2025-02-09 04:07+0300\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -142,7 +142,7 @@ msgstr "Have any inquiries or want to ask us something?"
 msgid "form name"
 msgstr "Name"
 
-#: app/templates/index.html:154
+#: app/templates/index.html:154 app/templates/partials/footer.html:10
 msgid "form email"
 msgstr "Email"
 
@@ -153,6 +153,14 @@ msgstr "Comment or Message"
 #: app/templates/index.html:166
 msgid "submit"
 msgstr "submit"
+
+#: app/templates/partials/footer.html:6
+msgid "footer caption"
+msgstr "Stay informed by <b>subscribing</b> to our newsletter!"
+
+#: app/templates/partials/footer.html:15
+msgid "subscribe"
+msgstr "subscribe"
 
 #: app/templates/partials/header.html:15
 msgid "team"

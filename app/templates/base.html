@@ -69,7 +69,7 @@
 		<main class="w-full flex-1 bg-primary-50">
 			{% block content %} {% endblock %}
 		</main>
-		<footer class=''>footer</footer>
+		{% include "partials/footer.html" %}
 
 		<!-- js script -->
 		<script src="{{url_for('static',filename='js/base.js')}}"></script>

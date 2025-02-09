@@ -1,0 +1,19 @@
+<footer class='min-h-60 px-4 py-8'>
+    <div class='container mx-auto grid gap-3'>
+        <div class='w-[150px]'>
+            <img class='w-full' src="{{url_for('static',filename='imgs/logo.png')}}" alt="logo"/>
+        </div>
+        <p class='text-white'>{{_("footer caption")}}</p>
+        <form class='flex gap-2'>
+            <input
+                    class='w-3/4 px-3 py-2 bg-slate-300 bg-opacity-90 rounded-full sm:w-auto'
+                    placeholder='{{_("form email")}}'
+                    type="text"
+                    name="subscribe"
+                    value=""
+                    />
+            <button class='py-3 px-4 bg-white rounded-full'>{{_("subscribe")}}</button>
+
+        </form>
+    </div>
+</footer>

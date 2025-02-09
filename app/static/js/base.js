@@ -32,6 +32,7 @@ document.addEventListener('htmx:afterRequest', function(evt) {
 })
 
 // initial page load
+document.querySelector('main').style.paddingTop = document.querySelector('header').offsetHeight + 'px';
 document.addEventListener('DOMContentLoaded', function() {
   const locale = document.documentElement.lang;
   if (locale === 'ar') {
@@ -40,4 +41,3 @@ document.addEventListener('DOMContentLoaded', function() {
     document.dir = 'ltr';
   }
 })
-  document.querySelector('main').style.paddingTop = document.querySelector('header').offsetHeight + 'px';

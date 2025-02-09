@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-08 07:44+0300\n"
+"POT-Creation-Date: 2025-02-09 03:11+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,8 +97,32 @@ msgstr ""
 msgid "news"
 msgstr ""
 
-#: app/templates/index.html:125
+#: app/templates/index.html:132
 msgid "learn more"
+msgstr ""
+
+#: app/templates/index.html:141
+msgid "contact us"
+msgstr ""
+
+#: app/templates/index.html:142
+msgid "contact enquiry"
+msgstr ""
+
+#: app/templates/index.html:146
+msgid "form name"
+msgstr ""
+
+#: app/templates/index.html:154
+msgid "form email"
+msgstr ""
+
+#: app/templates/index.html:161
+msgid "form textarea"
+msgstr ""
+
+#: app/templates/index.html:166
+msgid "submit"
 msgstr ""
 
 #: app/templates/partials/header.html:15

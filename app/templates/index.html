@@ -79,7 +79,7 @@
 			<p class='max-w-[90%] mx-auto text-center'>{{_("vision 4")}}</p>
 		</div>
 	</section>
-	<section id='news' class='container mx-auto px-4 py-8'>
+	<section id='news' class='container mx-auto px-4 py-8 overflow-x-hidden'>
 		<div class='w-full flex justify-between'>
 			<h2 class='mb-6 text-3xl font-extrabold capitalize'>{{_("news")}}</h2>
 			<div class='flex gap-4'>
@@ -99,9 +99,9 @@
 				</button>
 			</div>
 		</div>
-		<div id='carousel' class='transition-all relative flex gap-6 overflow-x-hidden'>
+		<div id='carousel' class='transition-all relative flex gap-6'>
 			{% for i in range(4) %}
-			<div class='shrink-0 w-[200px] h-[330px] grid grid-rows-[30%_auto] shadow-md'>
+			<div class='shrink-0 w-[200px] h-[330px] grid grid-rows-[30%_auto]'>
 				<img
 						class='size-full object-cover'
 						src="{{url_for('static',filename='imgs/discussion.jpg')}}"
@@ -112,21 +112,21 @@
 					<h3 class='font-extrabold'>Empowered voices</h3>
 					<p class='text-sm'>
 					three of our members <b>Moneera</b>, <Jawhara</b> and <Sawasn</b>
-					discussed structural transformation in the first all-women episode of the
-					<b>Hiwarat Podcast</b>
+			discussed structural transformation in the first all-women episode of the
+			<b>Hiwarat Podcast</b>
 					</p>
 					<button class='flex gap-2 items-center text-sm'>
 						<span class='p-1.5 border border-red-700 rounded-full'>
 							{% if locale == 'en' %}
-								{{icons.arrow_right(
-								clr="rgb(185 28 28)",
-								cls="size-3"
-								)}}
+							{{icons.arrow_right(
+							clr="rgb(185 28 28)",
+							cls="size-3"
+							)}}
 							{% else %}
-								{{icons.arrow_left(
-								clr="rgb(185 28 28)",
-								cls="size-3"
-								)}}
+							{{icons.arrow_left(
+							clr="rgb(185 28 28)",
+							cls="size-3"
+							)}}
 							{% endif %}
 						</span>
 						<span class='text-red-700 capitalize'>{{_('learn more')}}</span>
@@ -134,6 +134,37 @@
 				</div>
 			</div>
 			{% endfor %}
+		</div>
+	</section>
+	<section id='contact' class='container mx-auto px-4 py-8'>
+		<div class='grid gap-4 bg-white px-2 py-4'>
+			<h2 class='text-3xl capitalize font-extrabold'>{{_('contact us')}}</h2>
+			<p>{{_('contact enquiry')}}</p>
+			<form class='flex flex-col gap-3'>
+				<input
+						required
+						placeholder='{{_("form name")}}'
+						type="text"
+						value=""
+						name="name"
+						class='bg-slate-200 py-1 px-2 rounded-md'
+						/>
+				<input
+						required
+						placeholder='{{_("form email")}}'
+						type="email"
+						value=""
+						name="email"
+						class='bg-slate-200 py-1 px-2 rounded-md'
+						/>
+				<textarea
+						placeholder='{{_("form textarea")}}'
+						name="msg"
+						value=""
+						class='bg-slate-200 py-1 px-2 rounded-md'
+						></textarea>
+					<button type='submit' class='bg-black py-2 text-white uppercase rounded-md font-extrabold'>{{_('submit')}}</button>
+			</form>
 		</div>
 	</section>
 </div>
@@ -153,17 +184,13 @@
 	var currentSlide = 0;
 	next.addEventListener('click', () => {
 		currentSlide = (currentSlide + 1) % totalSlides;
-		carousel.scrollBy({
-			left: locale === 'en' ? slideWidth: -slideWidth,
-			behavior: 'smooth'
-		});
+		carousel.style.transform =
+			`translateX(${locale === 'en' ? -currentSlide * slideWidth : currentSlide * slideWidth}px)`;
 	});
 	prev.addEventListener('click', () => {
 		currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-		carousel.scrollBy({
-			left: locale === 'en' ? -slideWidth : slideWidth,
-			behavior: 'smooth'
-		});
+		carousel.style.transform =
+			`translateX(${locale === 'en' ? -currentSlide * slideWidth : currentSlide * slideWidth}px)`;
 	});
 </script>
 {% endblock %}

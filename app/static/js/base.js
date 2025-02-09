@@ -40,3 +40,4 @@ document.addEventListener('DOMContentLoaded', function() {
     document.dir = 'ltr';
   }
 })
+  document.querySelector('main').style.paddingTop = document.querySelector('header').offsetHeight + 'px';

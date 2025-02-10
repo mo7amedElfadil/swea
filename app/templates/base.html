@@ -66,7 +66,7 @@
 	</head>
 	<body class="flex flex-col">
 		{% include "partials/header.html" %}
-		<main class="w-full flex-1 bg-primary-50">
+		<main class="w-full flex-1 bg-primary-50 {% if locale == 'ar' %}font-primary{%else%}font-secondary{%endif%}">
 			{% block content %} {% endblock %}
 		</main>
 		{% include "partials/footer.html" %}

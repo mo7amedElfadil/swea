@@ -29,7 +29,7 @@ document.addEventListener('htmx:afterRequest', function(evt) {
       document.dir = 'ltr';
     }
   }
-})
+});
 
 // initial page load
 document.querySelector('main').style.paddingTop = document.querySelector('header').offsetHeight + 'px';
@@ -40,4 +40,10 @@ document.addEventListener('DOMContentLoaded', function() {
   } else {
     document.dir = 'ltr';
   }
-})
+});
+
+window.addEventListener('scroll', function() {
+  document.querySelector('header')
+    .classList
+    .toggle('header-shadow', document.documentElement.scrollTop > 50);
+});

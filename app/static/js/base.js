@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+// header shadow on scroll
 window.addEventListener('scroll', function() {
   document.querySelector('header')
     .classList

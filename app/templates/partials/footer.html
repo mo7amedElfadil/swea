@@ -3,9 +3,9 @@
         <img class='w-[150px]' src="{{url_for('static',filename='imgs/logo.png')}}" alt="logo"/>
         <div class='space-y-2'>
             <p class='text-white'>{{_("footer caption")}}</p>
-            <form class='flex gap-2'>
+            <form class='flex gap-2 sm:max-w-[50%]'>
                 <input
-                        class='w-3/4 px-3 py-2 bg-slate-300 bg-opacity-90 rounded-full sm:w-auto'
+                        class='flex-1 w-3/4 px-6 py-2 bg-slate-300 bg-opacity-90 rounded-full sm:w-auto'
                         placeholder='{{_("form email")}}'
                         type="text"
                         name="subscribe"

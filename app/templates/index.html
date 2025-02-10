@@ -4,20 +4,26 @@
 {% block title %}home{% endblock %}
 {% block content %}
 <div class='w-full h-full'>
-	<section id='hero' class='container mx-auto mt-8 px-4 space-y-4'>
-		<h1 class='text-3xl text-primary-700 capitalize font-extrabold'>
-			{{_('hero title')}}
-		</h1>
-		<p>{{_('hero description')}}</p>
-		<button class='py-2 px-4 text-white font-bold bg-primary-700 capitalize rounded-lg'>{{_('join us')}}</button>
+	<section id='hero' class='container mx-auto py-8 px-4 sm:py-28'>
+		<div class='relative grid place-items-center gap-6 sm:-mb-[10%]'>
+			<h1 class='text-3xl text-primary-700 capitalize font-extrabold
+				 sm:max-w-[80%] sm:text-5xl sm:text-center sm:leading-snug xl:max-w-[50%]'>
+				{{_('hero title')}}
+			</h1>
+			<p class='sm:text-xl sm:text-center sm:max-w-[80%] xl:max-w-[50%]'>{{_('hero description')}}</p>
+			<button class='w-max py-2 px-4 text-white font-bold bg-primary-700 capitalize rounded-xl
+				sm:py-3 sm:px-5 sm:text-lg'>
+				{{_('join us')}}
+			</button>
+		</div>
 		<img src="{{url_for('static',filename='imgs/hero.jpeg')}}" alt="hero image"/>
 	</section>
-	<section id='mission' class='mt-8 px-4 py-8'>
-		<div class='container mx-auto flex flex-col justify-center items-center gap-2 '>
-			<h2 class='me-auto mb-6 text-3xl text-primary-700 capitalize font-extrabold'>
+	<section id='mission' class='mt-8 px-4 py-8 sm:py-28'>
+		<div class='container mx-auto flex flex-col justify-center items-center gap-2'>
+			<h2 class='me-auto mb-6 text-3xl text-primary-700 capitalize font-extrabold sm:mx-auto sm:text-5xl'>
 				{{_('mission title')}}
 			</h2>
-			<div class='w-full flex flex-col gap-2 items-center md:flex-row md:justify-between'>
+			<div class='w-full flex flex-col gap-2 items-center sm:flex-row sm:justify-between'>
 				{{macros.mission_card(
 				title=_("mission 1 title"),
 				desc=_("mission 1 desc"),
@@ -34,7 +40,7 @@
 				cls='translate-x-6 -translate-y-12 sm:translate-y-0 sm:translate-x-0'
 				)}}
 			</div>
-			<div class='w-full flex flex-col gap-2 items-center md:flex-row md:justify-around'>
+			<div class='w-full flex flex-col gap-2 items-center sm:flex-row sm:justify-around'>
 				{{macros.mission_card(
 				title=_("mission 3 title"),
 				desc=_("mission 3 desc"),
@@ -54,14 +60,14 @@
 			</div>
 		</div>
 	</section>
-	<section id='our_story' class='flex items-center px-4 py-8 bg-cover bg-center bg-no-repeat sm:bg-[50%_20%] sm:min-h-[500px]'>
+	<section id='our_story' class='flex items-center px-4 py-8 bg-cover bg-center bg-no-repeat sm:bg-[50%_20%] sm:min-h-[700px]'>
 		<div class='container mx-auto'>
-			<h2 class='mb-6 text-3xl text-white capitalize font-extrabold'>{{_("our story")}}</h2>
-			<p class='text-white sm:max-w-[70%]'>{{_("our story desc")}}</p>
+			<h2 class='mb-6 text-3xl text-white capitalize font-extrabold sm:text-5xl'>{{_("our story")}}</h2>
+			<p class='text-white sm:max-w-[70%] sm:text-xl'>{{_("our story desc")}}</p>
 		</div>
 	</section>
-	<section id='our_vision' class='container mx-auto flex flex-wrap px-4 py-8'>
-		<h2 class='basis-full mb-6 text-3xl font-extrabold capitalize'>{{_("our vission")}}</h2>
+	<section id='our_vision' class='container mx-auto flex flex-wrap px-4 py-8 sm:py-28'>
+		<h2 class='basis-full mb-6 text-3xl font-extrabold capitalize sm:text-center sm:text-5xl'>{{_("our vission")}}</h2>
 		<div class='basis-full sm:basis-1/4'>
 			<img class='max-w-[50%] mx-auto sm:max-w-[auto]' src="{{url_for('static',filename='icons/advance.svg')}}" alt="advance icon"/>
 			<p class='max-w-[90%] mx-auto text-center'>{{_("vision 1")}}</p>
@@ -79,9 +85,9 @@
 			<p class='max-w-[90%] mx-auto text-center'>{{_("vision 4")}}</p>
 		</div>
 	</section>
-	<section id='news' class='container mx-auto px-4 py-8 overflow-x-hidden'>
+	<section id='news' class='container mx-auto px-4 py-8 overflow-x-hidden sm:py-28'>
 		<div class='w-full flex justify-between'>
-			<h2 class='mb-6 text-3xl font-extrabold capitalize'>{{_("news")}}</h2>
+			<h2 class='mb-6 text-3xl font-extrabold capitalize sm:text-5xl'>{{_("news")}}</h2>
 			<div class='flex gap-4'>
 				<button id='left-arrow' class='size-10 p-2 bg-black rounded-full'>
 					<img
@@ -101,21 +107,22 @@
 		</div>
 		<div id='carousel' class='transition-all relative flex gap-6'>
 			{% for i in range(4) %}
-			<div class='shrink-0 w-[200px] h-[330px] grid grid-rows-[30%_auto] shadow-[0_8px_10px_5px_rgba(0,_0,_0,_0.3)]'>
+			<div class='shrink-0 w-[200px] h-[330px] grid grid-rows-[30%_auto] shadow-[0_8px_10px_5px_rgba(0,_0,_0,_0.3)]
+				sm:w-[300px] sm:h-[400px]'>
 				<img
 						class='size-full object-cover'
 						src="{{url_for('static',filename='imgs/discussion.jpg')}}"
 						alt="discussion"
 						/>
-				<div class='p-2 flex flex-col gap-2 bg-white'>
+				<div class='p-2 flex flex-col gap-2 bg-white sm:p-5'>
 					<span class='text-xs text-slate-500'>august 2 2023</span>
 					<h3 class='font-extrabold'>Empowered voices</h3>
 					<p class='text-sm'>
-					three of our members <b>Moneera</b>, <Jawhara</b> and <Sawasn</b>
-			discussed structural transformation in the first all-women episode of the
-			<b>Hiwarat Podcast</b>
+						three of our members <b>Moneera</b>, <Jawhara</b> and <Sawasn</b>
+						discussed structural transformation in the first all-women episode of the
+						<b>Hiwarat Podcast</b>
 					</p>
-					<button class='flex gap-2 items-center text-sm'>
+					<button class='flex gap-2 items-center text-sm mt-auto'>
 						<span class='p-1.5 border border-red-700 rounded-full'>
 							{% if locale == 'en' %}
 							{{icons.arrow_right(
@@ -136,11 +143,13 @@
 			{% endfor %}
 		</div>
 	</section>
-	<section id='contact' class='container mx-auto px-4 py-8'>
-		<div class='grid gap-4 bg-white px-2 py-4'>
-			<h2 class='text-3xl capitalize font-extrabold'>{{_('contact us')}}</h2>
+	<section id='contact' class='container mx-auto px-4 py-8 sm:py-28'>
+		<div class='relative grid gap-4 bg-white px-2 py-4
+			sm:px-8 sm:py-12 sm:after:w-1/2 sm:after:h-full
+			after:bg-red-600 after:absolute after:text-center after:text-5xl after:right-0 sm:after:content-["Idid_not_find_the_Envelop"]'>
+			<h2 class='text-3xl capitalize font-extrabold sm:text-5xl'>{{_('contact us')}}</h2>
 			<p>{{_('contact enquiry')}}</p>
-			<form class='flex flex-col gap-3'>
+			<form class='flex flex-col gap-3 sm:max-w-[50%]'>
 				<input
 						required
 						placeholder='{{_("form name")}}'
@@ -163,7 +172,7 @@
 						value=""
 						class='bg-slate-200 py-1 px-2 rounded-md'
 						></textarea>
-					<button type='submit' class='bg-black py-2 text-white uppercase rounded-md font-extrabold'>{{_('submit')}}</button>
+				<button type='submit' class='bg-black py-2 text-white uppercase rounded-md font-extrabold'>{{_('submit')}}</button>
 			</form>
 		</div>
 	</section>

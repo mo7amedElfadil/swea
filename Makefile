@@ -1,5 +1,5 @@
 # Makefile for the Application (Frontend & Backend)
-.PHONY: help setup check-dependencies clean check_venv run_flask watch_tw stop_flask stop_tailwind stop_static restart_tw restart_static list status restart test version update-translation
+.PHONY: help setup check-dependencies clean check_venv run_flask watch_tw watch_static up_db down_db stop_flask stop_tailwind stop_static restart restart_tw stop_static list status test version update-translation
 
 # Default target
 .DEFAULT_GOAL := help
@@ -7,6 +7,7 @@
 # Commands
 TMUX := $(shell which tmux 2> /dev/null)
 NPM := $(shell which npm 2> /dev/null)
+PYTHON := $(shell which python3 2> /dev/null)
 
 # Colors
 RED := \e[31m
@@ -20,9 +21,12 @@ TAILWIND_SESSION := tailwind
 STATIC_FILE_SESSION := static
 
 # scripts
-TW_WATCH := npx tailwindcss -i ./app/static/css/src/index.css -o ./app/static/css/dist/output.css --minify --watch
+TW_WATCH := npm run dev:wt_css
+STATIC_WATCH := npm run dev:static
 FLASK_RUN := python -m app.run # flask run
 VEN_ACTIVATE := . .venv/bin/activate
+UP_DB := docker-compose up -d
+DOWN_DB := docker-compose down
 
 # Define run session
 define run_session
@@ -45,6 +49,7 @@ endef
 setup: ## Setup project and install core tools and dependencies
 	@$(MAKE) -s check-dependencies || exit 1
 	@$(MAKE) -s check_venv || exit 1
+	@$(MAKE) -s check_npm || exit 1
 
 
 # Check and install dependencies
@@ -54,8 +59,6 @@ ifndef TMUX
 	sudo apt-get update
 	sudo apt-get install -y tmux
 endif
-	npm install tailwindcss
-	pip install -r requirements.txt
 
 # Clean project dependencies
 clean: ## Clean project dependencies
@@ -65,29 +68,60 @@ clean: ## Clean project dependencies
 check_venv:
 	@if [ ! -d ".venv" ]; then \
 		echo ".venv does not exist. Creating virtual environment..."; \
-		python3 -m venv .venv; \
-	else \
+		$(PYTHON) -m venv .venv && \
 		$(VEN_ACTIVATE) && \
-		$(TMUX) new-session -d -s "$(SWEA_SESSION)" "$(FLASK_RUN)"; \
+		echo "Installing requirements..."; \
+		pip install --quiet -r requirements.txt; \
+		echo "Virtual environment is ready."; \
+	else \
+		$(VEN_ACTIVATE); \
+	fi
+	
+
+check_npm:
+	@if [ ! -d "node_modules" ]; then \
+		echo "node_modules does not exist. Installing npm packages..."; \
+		$(NPM) install --silent; \
 	fi
 
 
 # Run sessions
-run_flask: check_venv ## Run flask application
-	@echo 'flask running on session "swea"'
+run_flask: clean check_venv ## Run flask application
+	@$(call run_session,$(SWEA_SESSION),$(VEN_ACTIVATE) && $(FLASK_RUN))
 
-watch_tw: clean ## Run tailwindcss watch
-	@echo 'Watching for changes in tailwindcss...'
-	@$(TMUX) new-session -d -s "$(TAILWIND_SESSION)" "$(TW_WATCH)"
+watch_tw: check_npm clean ## Run tailwindcss watch
+	@$(call run_session,$(TAILWIND_SESSION),$(TW_WATCH))
 
+watch_static: check_npm clean ## Watch for changes in css, html files
+	@echo 'Watching for changes in static files {html,css}...'
+	@$(call run_session,$(STATIC_FILE_SESSION),$(STATIC_WATCH))
+
+up_db: ## Start the database (docker-compose: MongoDB & Redis)
+	@$(UP_DB)
+
+down_db: ## Stop the database (docker-compose: MongoDB & Redis)
+	@$(DOWN_DB)
+
+# Stop sessions
 stop_flask: ## Stop flask application
 	@$(call kill_session,$(SWEA_SESSION))
 
 stop_tailwind: ## Stop tailwindcss watch
 	@$(call kill_session,$(TAILWIND_SESSION))
 
+stop_static: ## Stop watching static files 
+	@$(call kill_session,$(STATIC_FILE_SESSION))
+
+# Restart application
+restart: ## Restart flask server
+	@$(MAKE) -s stop_flask run_flask && \
+	echo "$(BOLD)Restarted$(RESET)"
+
 restart_tw: stop_tailwind  ## Restart tailwindcss watch
 	@$(MAKE) -s watch_tw
+
+restart_static: stop_static ## Restart watching static files
+	@$(MAKE) -s watch_static
 
 list: ## List all running tmux sessions
 	@$(TMUX) ls
@@ -95,11 +129,6 @@ list: ## List all running tmux sessions
 # Check status
 status: ## Check the status of tmux sessions
 	@$(TMUX) ls || echo "No tmux sessions running."
-
-# Restart application
-restart: ## Restart flask server
-	@$(MAKE) -s stop_flask run_flask && \
-	echo "$(BOLD)Restarted$(RESET)"
 
 test: ## Run backend tests
 	@echo 'no tests yet'

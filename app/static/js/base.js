@@ -55,7 +55,8 @@ window.addEventListener('scroll', function() {
 
   socket.onmessage = function(e) {
     const data = JSON.parse(e.data);
-    document.querySelector(data.selector).outerHTML = data.fragment;
+    //document.querySelector(data.selector).outerHTML = data.fragment;
+    window.location.reload();
     console.log(data);
   };
 

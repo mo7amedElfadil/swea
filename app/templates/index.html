@@ -1,0 +1,205 @@
+{% import "macros/mission-card.html" as macros %}
+{% import "macros/icons.html" as icons %}
+{% extends "base.html" %}
+{% block title %}home{% endblock %}
+{% block content %}
+<div class='w-full h-full'>
+	<section id='hero' class='container mx-auto py-8 px-4 sm:py-28'>
+		<div class='relative grid place-items-center gap-6 sm:-mb-[10%]'>
+			<h1 class='text-3xl text-primary-700 capitalize font-extrabold
+				 sm:max-w-[80%] sm:text-5xl sm:text-center sm:leading-snug xl:max-w-[50%]'>
+				{{_('hero title')}}
+			</h1>
+			<p class='sm:text-xl sm:text-center sm:max-w-[80%] xl:max-w-[50%]'>{{_('hero description')}}</p>
+			<button class='w-max py-2 px-4 text-white font-bold bg-primary-700 capitalize rounded-xl
+				sm:py-3 sm:px-5 sm:text-lg'>
+				{{_('join us')}}
+			</button>
+		</div>
+		<img src="{{url_for('static',filename='imgs/hero.jpeg')}}" alt="hero image"/>
+	</section>
+	<section id='mission' class='mt-8 px-4 py-8 sm:py-28'>
+		<div class='container mx-auto flex flex-col justify-center items-center gap-2'>
+			<h2 class='me-auto mb-6 text-3xl text-primary-700 capitalize font-extrabold sm:mx-auto sm:text-5xl'>
+				{{_('mission title')}}
+			</h2>
+			<div class='w-full flex flex-col gap-2 items-center sm:flex-row sm:justify-between'>
+				{{macros.mission_card(
+				title=_("mission 1 title"),
+				desc=_("mission 1 desc"),
+				from='from-red-950',
+				to='to-red-400/80',
+				cls='-translate-x-9 sm:translate-x-0'
+				)}}
+				{{macros.mission_card(
+				title=_("mission 2 title"),
+				desc=_("mission 2 desc"),
+				gradient_dir='bg-gradient-to-br',
+				from='from-primary-300/80',
+				to='to-red-700/80',
+				cls='translate-x-6 -translate-y-12 sm:translate-y-0 sm:translate-x-0'
+				)}}
+			</div>
+			<div class='w-full flex flex-col gap-2 items-center sm:flex-row sm:justify-around'>
+				{{macros.mission_card(
+				title=_("mission 3 title"),
+				desc=_("mission 3 desc"),
+				gradient_dir='bg-gradient-to-t',
+				from='from-primary-100/80',
+				to='to-red-500/80',
+				cls='-translate-x-6 -translate-y-24 sm:translate-y-0 sm:translate-x-0'
+				)}}
+				{{macros.mission_card(
+				title=_("mission 4 title"),
+				desc=_("mission 4 desc"),
+				gradient_dir='bg-gradient-to-t',
+				from='from-primary-300/80',
+				to='to-red-700/80',
+				cls='translate-x-9 -translate-y-36 sm:translate-y-0 sm:translate-x-0'
+				)}}
+			</div>
+		</div>
+	</section>
+	<section id='our_story' class='flex items-center px-4 py-8 bg-cover bg-center bg-no-repeat sm:bg-[50%_20%] sm:min-h-[700px]'>
+		<div class='container mx-auto'>
+			<h2 class='mb-6 text-3xl text-white capitalize font-extrabold sm:text-5xl'>{{_("our story")}}</h2>
+			<p class='text-white sm:max-w-[70%] sm:text-xl'>{{_("our story desc")}}</p>
+		</div>
+	</section>
+	<section id='our_vision' class='container mx-auto flex flex-wrap px-4 py-8 sm:py-28'>
+		<h2 class='basis-full mb-6 text-3xl font-extrabold capitalize sm:text-center sm:text-5xl'>{{_("our vission")}}</h2>
+		<div class='basis-full sm:basis-1/4'>
+			<img class='max-w-[50%] mx-auto sm:max-w-[auto]' src="{{url_for('static',filename='icons/advance.svg')}}" alt="advance icon"/>
+			<p class='max-w-[90%] mx-auto text-center'>{{_("vision 1")}}</p>
+		</div>
+		<div class='basis-full text-center sm:basis-1/4'>
+			<img class='max-w-[50%] mx-auto sm:max-w-[auto]' src="{{url_for('static',filename='icons/build_capacity.svg')}}" alt="build capacity icon"/>
+			<p class='max-w-[90%] mx-auto text-center'>{{_("vision 2")}}</p>
+		</div>
+		<div class='basis-full text-center sm:basis-1/4'>
+			<img class='max-w-[50%] mx-auto sm:max-w-[auto]' src="{{url_for('static',filename='icons/Amplify.svg')}}" alt="amplify icon"/>
+			<p class='max-w-[90%] mx-auto text-center'>{{_("vision 3")}}</p>
+		</div>
+		<div class='basis-full text-center sm:basis-1/4'>
+			<img class='max-w-[50%] mx-auto sm:max-w-[auto]' src="{{url_for('static',filename='icons/Solidarity.svg')}}" alt="solidarity icon"/>
+			<p class='max-w-[90%] mx-auto text-center'>{{_("vision 4")}}</p>
+		</div>
+	</section>
+	<section id='news' class='container mx-auto px-4 py-8 overflow-x-hidden sm:py-28'>
+		<div class='w-full flex justify-between'>
+			<h2 class='mb-6 text-3xl font-extrabold capitalize sm:text-5xl'>{{_("news")}}</h2>
+			<div class='flex gap-4'>
+				<button id='left-arrow' class='size-10 p-2 bg-black rounded-full'>
+					<img
+							class='size-6 {% if locale == 'ar' %}rotate-180{% endif %}'
+							src="{{url_for('static',filename='icons/left-arrow.svg')}}"
+							alt="left arrow"
+							/>
+				</button>
+				<button id='right-arrow' class='size-10 p-2 bg-black rounded-full'>
+					<img
+							class='size-6 {% if locale == 'ar' %}rotate-180{% endif %}'
+							src="{{url_for('static',filename='icons/right-arrow.svg')}}"
+							alt="rightarrow"
+							/>
+				</button>
+			</div>
+		</div>
+		<div id='carousel' class='transition-all relative flex gap-6'>
+			{% for i in range(4) %}
+			<div class='shrink-0 w-[200px] h-[330px] grid grid-rows-[30%_auto] shadow-[0_8px_10px_5px_rgba(0,_0,_0,_0.3)]
+				sm:w-[300px] sm:h-[400px]'>
+				<img
+						class='size-full object-cover'
+						src="{{url_for('static',filename='imgs/discussion.jpg')}}"
+						alt="discussion"
+						/>
+				<div class='p-2 flex flex-col gap-2 bg-white sm:p-5'>
+					<span class='text-xs text-slate-500'>august 2 2023</span>
+					<h3 class='font-extrabold'>Empowered voices</h3>
+					<p class='text-sm'>
+						three of our members <b>Moneera</b>, <Jawhara</b> and <Sawasn</b>
+						discussed structural transformation in the first all-women episode of the
+						<b>Hiwarat Podcast</b>
+					</p>
+					<button class='flex gap-2 items-center text-sm mt-auto'>
+						<span class='p-1.5 border border-red-700 rounded-full'>
+							{% if locale == 'en' %}
+							{{icons.arrow_right(
+							clr="rgb(185 28 28)",
+							cls="size-3"
+							)}}
+							{% else %}
+							{{icons.arrow_left(
+							clr="rgb(185 28 28)",
+							cls="size-3"
+							)}}
+							{% endif %}
+						</span>
+						<span class='text-red-700 capitalize'>{{_('learn more')}}</span>
+					</button>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</section>
+	<section id='contact' class='container mx-auto px-4 py-8 sm:py-28'>
+		<div class='relative grid gap-4 bg-white px-2 py-4
+			sm:px-8 sm:py-12 sm:after:w-1/2 sm:after:h-full
+			after:bg-red-600 after:absolute after:text-center after:text-5xl after:right-0 sm:after:content-["Idid_not_find_the_Envelop"]'>
+			<h2 class='text-3xl capitalize font-extrabold sm:text-5xl'>{{_('contact us')}}</h2>
+			<p>{{_('contact enquiry')}}</p>
+			<form class='flex flex-col gap-3 sm:max-w-[50%]'>
+				<input
+						required
+						placeholder='{{_("form name")}}'
+						type="text"
+						value=""
+						name="name"
+						class='bg-slate-200 py-1 px-2 rounded-md'
+						/>
+				<input
+						required
+						placeholder='{{_("form email")}}'
+						type="email"
+						value=""
+						name="email"
+						class='bg-slate-200 py-1 px-2 rounded-md'
+						/>
+				<textarea
+						placeholder='{{_("form textarea")}}'
+						name="msg"
+						value=""
+						class='bg-slate-200 py-1 px-2 rounded-md'
+						></textarea>
+				<button type='submit' class='bg-black py-2 text-white uppercase rounded-md font-extrabold'>{{_('submit')}}</button>
+			</form>
+		</div>
+	</section>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+	var next = document.getElementById('right-arrow');
+	var prev = document.getElementById('left-arrow');
+	var carousel = document.getElementById('carousel');
+	var slides = carousel.children;
+	var totalSlides = slides.length;
+	var GAP = 24;
+	var slideWidth = slides[0].clientWidth + GAP;
+	var locale = document.documentElement.lang;
+
+	var currentSlide = 0;
+	next.addEventListener('click', () => {
+		currentSlide = (currentSlide + 1) % totalSlides;
+		carousel.style.transform =
+			`translateX(${locale === 'en' ? -currentSlide * slideWidth : currentSlide * slideWidth}px)`;
+	});
+	prev.addEventListener('click', () => {
+		currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+		carousel.style.transform =
+			`translateX(${locale === 'en' ? -currentSlide * slideWidth : currentSlide * slideWidth}px)`;
+	});
+</script>
+{% endblock %}

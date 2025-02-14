@@ -1,7 +1,4 @@
-*
-!/*.py
-!/.gitignore
-!/README.md
-!/LICENSE
-*main.py
-colorScheme.js
+**/__pycache__/
+.env
+.venv
+branch_manager.log

@@ -48,3 +48,15 @@ window.addEventListener('scroll', function() {
     .classList
     .toggle('header-shadow', document.documentElement.scrollTop > 50);
 });
+
+// ws
+(function() {
+  const socket = new WebSocket("ws://localhost:8080/ws");
+
+  socket.onmessage = function(e) {
+    const data = JSON.parse(e.data);
+    document.querySelector(data.selector).outerHTML = data.fragment;
+    console.log(data);
+  };
+
+})();

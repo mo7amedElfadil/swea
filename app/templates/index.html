@@ -18,7 +18,7 @@
 		</div>
 		<img src="{{url_for('static',filename='imgs/hero.jpeg')}}" alt="hero image"/>
 	</section>
-	<section id='mission' class='mt-8 px-4 py-8 sm:py-28'>
+	<section id='mission' class='mt-8 px-4 py-8 sm:py-28 overflow-x-hidden'>
 		<div class='container mx-auto flex flex-col justify-center items-center gap-2'>
 			<h2 class='me-auto mb-6 text-3xl text-primary-700 capitalize font-extrabold sm:mx-auto sm:text-5xl'>
 				{{_('mission title')}}
@@ -144,7 +144,7 @@
 		</div>
 	</section>
 	<section id='contact' class='container mx-auto px-4 py-8 sm:py-28'>
-		<div class='relative grid gap-4 bg-white px-2 py-4
+		<div class='relative flex flex-col gap-4 bg-white px-2 py-4
 			sm:px-8 sm:py-12 sm:after:w-1/2 sm:after:h-full
 			after:bg-red-600 after:absolute after:text-center after:text-5xl after:right-0 sm:after:content-["Idid_not_find_the_Envelop"]'>
 			<h2 class='text-3xl capitalize font-extrabold sm:text-5xl'>{{_('contact us')}}</h2>

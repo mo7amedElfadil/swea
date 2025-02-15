@@ -19,6 +19,7 @@ RESET := \e[0m
 SWEA_SESSION := swea
 TAILWIND_SESSION := tailwind
 STATIC_FILE_SESSION := static
+HMR_SESSION := hmr
 
 # scripts
 TW_WATCH := npm run dev:wt_css
@@ -102,6 +103,10 @@ up_db: ## Start the database (docker-compose: MongoDB & Redis)
 down_db: ## Stop the database (docker-compose: MongoDB & Redis)
 	@$(DOWN_DB)
 
+hmr: ## Run hot module replacement
+	@echo '[HMR] Running...'
+	@$(call run_session,$(HMR_SESSION),hhmr app)
+
 # Stop sessions
 stop_flask: ## Stop flask application
 	@$(call kill_session,$(SWEA_SESSION))
@@ -111,6 +116,9 @@ stop_tailwind: ## Stop tailwindcss watch
 
 stop_static: ## Stop watching static files 
 	@$(call kill_session,$(STATIC_FILE_SESSION))
+
+stop_hmr: ## Stop HMR 
+	@$(call kill_session,$(HMR_SESSION))
 
 # Restart application
 restart: ## Restart flask server

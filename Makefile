@@ -85,6 +85,11 @@ check_npm:
 	fi
 
 
+#run everything
+run: run_flask watch_tw watch_static ## Run the application
+
+
+
 # Run sessions
 run_flask: clean check_venv ## Run flask application
 	@$(call run_session,$(SWEA_SESSION),$(VEN_ACTIVATE) && $(FLASK_RUN))
@@ -102,6 +107,9 @@ up_db: ## Start the database (docker-compose: MongoDB & Redis)
 down_db: ## Stop the database (docker-compose: MongoDB & Redis)
 	@$(DOWN_DB)
 
+# Stop everything
+stop: stop_flask stop_tailwind stop_static ## Stop the application
+
 # Stop sessions
 stop_flask: ## Stop flask application
 	@$(call kill_session,$(SWEA_SESSION))
@@ -111,6 +119,7 @@ stop_tailwind: ## Stop tailwindcss watch
 
 stop_static: ## Stop watching static files 
 	@$(call kill_session,$(STATIC_FILE_SESSION))
+
 
 # Restart application
 restart: ## Restart flask server

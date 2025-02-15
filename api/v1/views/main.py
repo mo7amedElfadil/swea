@@ -14,7 +14,7 @@ def index():
 @response(template_file="projects.html")
 def projects():
     '''projects page'''
-    return {"user" : "John Doe"}
+    return dict()
 
 @bp.route("/set_language")
 def set_language():
@@ -24,6 +24,4 @@ def set_language():
     if lang and lang in Config.BABEL_SUPPORTED_LOCALES:
         session["lang"] = lang
 
-    # TODO: should render the template conrresponding to the current page
-    #return make_response(render_template("index.html"))
     return redirect(request.referrer)

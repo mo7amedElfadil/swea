@@ -105,7 +105,7 @@ down_db: ## Stop the database (docker-compose: MongoDB & Redis)
 
 hmr: ## Run hot module replacement
 	@echo '[HMR] Running...'
-	@$(call run_session,$(HMR_SESSION),hhmr app)
+	@$(call run_session,$(HMR_SESSION),hmr app)
 
 # Stop sessions
 stop_flask: ## Stop flask application

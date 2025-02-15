@@ -3,38 +3,40 @@
         >
         <nav class='container mx-auto flex justify-between items-center'>
             <div class='w-32'>
-                <img class='w-full' src="{{url_for('static',filename='imgs/logo.png')}}" alt="swea logo"/>
+                <a href="/" target="_self">
+                    <img class='w-full' src="{{url_for('static',filename='imgs/logo.png')}}" alt="swea logo"/>
+                </a>
             </div>
-    <button role='menu-btn' class='relative z-10 flex flex-col justify-center gap-1 w-8 h-8 sm:hidden' id='menu-burger'>
-        <span class='transition-all block w-8 h-1 bg-primary-700'></span>
-        <span class='transition-all block w-8 h-1 bg-primary-700'></span>
-        <span class='transition-all block w-8 h-1 bg-primary-700'></span>
-    </button>
-    <div
-            id='menu-container'
-            class='transition-all bg-primary-600 text-white absolute left-0 right-0 top-0 -translate-y-full pt-14
-            sm:static sm:bg-transparent sm:translate-y-0 sm:text-black sm:p-0'>
-        <ul class='flex flex-col sm:flex-row'>
-            <li class='text-center'>
-                <a class='block p-4 capitalize' href="#" target="_blank">{{_('team')}}</a>
-            </li>
-            <li class='text-center capitalize'>
-                <a class='block p-4' href="#" target="_blank">{{_('projects')}}</a>
-            </li>
-            <li class='text-center'>
-                <a class='block p-4 capitalize' href="#" target="_blank">{{_('join us')}}</a>
-            </li>
-            <li class='p-4 text-center'>
-                <button
-                        class='capitalize mx-auto'
-                        hx-get="/set_language?lang={% if locale == 'ar'%}en{% else %}ar{%endif%}"
-                        hx-target='body'
-                        hx-trigger='click'
-                        >
-                        {{_('switch language')}}
-                </button>
-            </li>
-        </ul>
-    </div>
+            <button role='menu-btn' class='relative z-10 flex flex-col justify-center gap-1 w-8 h-8 sm:hidden' id='menu-burger'>
+                <span class='transition-all block w-8 h-1 bg-primary-700'></span>
+                <span class='transition-all block w-8 h-1 bg-primary-700'></span>
+                <span class='transition-all block w-8 h-1 bg-primary-700'></span>
+            </button>
+            <div
+                    id='menu-container'
+                    class='transition-all bg-primary-600 text-white absolute left-0 right-0 top-0 -translate-y-full pt-14
+                    sm:static sm:bg-transparent sm:translate-y-0 sm:text-black sm:p-0'>
+                <ul class='flex flex-col sm:flex-row'>
+                    <li class='text-center'>
+                        <a class='block p-4 capitalize' href="/team" target="_self">{{_('team')}}</a>
+                    </li>
+                    <li class='text-center capitalize'>
+                        <a class='block p-4' href="/projects">{{_('projects')}}</a>
+                    </li>
+                    <li class='text-center'>
+                        <a class='block p-4 capitalize' href="/knowledge-hup" target="_self">{{_('knowledge hub')}}</a>
+                    </li>
+                    <li class='p-4 text-center'>
+                        <button
+                                class='capitalize mx-auto'
+                                hx-get="/set_language?lang={% if locale == 'ar'%}en{% else %}ar{%endif%}"
+                                hx-target='body'
+                                hx-trigger='click'
+                                >
+                                {{_('switch language')}}
+                        </button>
+                    </li>
+                </ul>
+            </div>
         </nav>
 </header>

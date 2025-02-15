@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}projects{% endblock %}
+{% block content %}
+<div>
+    <section class='h-[calc(100vh-81px)] grid grid-cols-1 px-4 items-end' id='projects-hero'>
+        <div class='container mx-auto max-w-[900px] px-4 py-6 mb-56 bg-white bg-opacity-60 rounded-lg border'>
+            <h1 class='mb-4 text-4xl font-bold text-primary-700 capitalize md:text-6xl'>{{_("projects")}}</h1>
+            <p class='font-medium md:text-lg'>{{_("project hero desc")}}</p>
+        </div>
+    </section>
+    <section class='container mx-auto px-4 py-32 grid grid-cols-fluid gap-8' id='project-list'>
+        {% for i in range(7) %}
+        <div class='p-4 flex flex-col gap-4 shadow-[0_8px_10px_-3px_rgba(0,_0,_0,_0.3)]'>
+            <h3 class='text-2xl font-bold'>introdcution to economic research</h3>
+            <div class='text-slate-500'>
+                <span>author</span>-
+                <span>date</span>
+            </div>
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <button class='me-auto flex gap-2'>
+                <span>{{_("learn more")}}</span>
+                <span>
+                    {%if locale == 'en'%}
+                    <img class='size-6' src="{{url_for('static',filename='icons/arrow.svg')}}" alt="arrow right"/>
+                    {%else%}
+                    <img class='size-6' src="{{url_for('static',filename='icons/arrow-left.svg')}}" alt="arrow left"/>
+                    {%endif%}
+                </span>
+            </button>
+        </div>
+        {% endfor %}
+
+    </section>
+</div>
+{% endblock %}

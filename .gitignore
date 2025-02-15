@@ -2,3 +2,5 @@
 .env
 .venv
 branch_manager.log
+node_modules
+package-lock.json

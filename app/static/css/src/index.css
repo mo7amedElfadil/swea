@@ -11,6 +11,9 @@
 .header-shadow {
     box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.3);
 }
+ul li a.active {
+    @apply sm:before:absolute sm:before:-bottom-[2px] sm:before:left-0 sm:before:w-full sm:before:h-[2px] sm:before:bg-red-500;
+}
 /*------------------------------------*/
 
 html, body {

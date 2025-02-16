@@ -16,6 +16,12 @@ def projects():
     '''projects page'''
     return dict()
 
+@bp.route("/knowledge-hup")
+@response(template_file="knowledge-hup.html")
+def knowledge_hup():
+    '''projects page'''
+    return dict()
+
 @bp.route("/set_language")
 def set_language():
     '''set language'''

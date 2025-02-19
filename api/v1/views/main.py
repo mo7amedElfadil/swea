@@ -14,7 +14,7 @@ def index():
 @response(template_file="projects.html")
 def projects():
     '''projects page'''
-    return {"user" : "John Doe"}
+    return {}
 
 
 
@@ -28,16 +28,24 @@ def login():
     # Handle POST request (login attempt)
     username = request.form.get("username")
     password = request.form.get("password")
-    print(username, password)
     # Dummy validation (replace with real auth logic)
+    if not username or not password:
+        return make_response("<p class='text-red-500'>Please enter both username and password to login.</p>", 400)
+
     if username != "a" or password != "a":
-        return "<p class='text-red-500'>Invalid credentials. Please try again.</p>", 400
+        return make_response("<p class='text-red-500'>Invalid credentials. Please try again.</p>", 400)
 
     # Successful login - Use HX-Redirect header for redirection
     response = make_response()
     response.headers["HX-Redirect"] = url_for('app_views.dashboard')
     return response
 
+
+@bp.route("/dashboard")
+@response(template_file="dashboard.html")
+def dashboard():
+    """Dashboard page"""
+    return {}
 
 @bp.route("/set_language")
 def set_language():

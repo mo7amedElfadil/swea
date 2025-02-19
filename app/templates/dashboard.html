@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ _('dashboard') }}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto py-8 px-4">
+    <h1 class="text-3xl font-bold mb-6">Dashboard</h1>
+
+    <!-- Tabs -->
+    <div class="flex space-x-4 border-b pb-2">
+        <button class="tab-link" hx-get="/dashboard/projects" hx-target="#tab-content" hx-swap="innerHTML">Projects</button>
+        <button class="tab-link" hx-get="/dashboard/team" hx-target="#tab-content" hx-swap="innerHTML">Team Members</button>
+        <button class="tab-link" hx-get="/dashboard/knowledge-hub" hx-target="#tab-content" hx-swap="innerHTML">Knowledge Hub</button>
+    </div>
+
+    <!-- Tab Content -->
+    <div id="tab-content" class="mt-6">
+        {% include "partials/dashboard/projects.html" %}
+    </div>
+</div>
+
+<style>
+    .tab-link {
+        @apply px-4 py-2 font-semibold text-gray-700 bg-gray-200 rounded-md cursor-pointer;
+    }
+    .tab-link:hover {
+        @apply bg-gray-300;
+    }
+</style>
+{% endblock %}

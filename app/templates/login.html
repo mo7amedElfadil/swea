@@ -6,20 +6,17 @@
     <h1 class='text-3xl text-primary-700 capitalize font-extrabold mb-8'>{{ _('login') }}</h1>
 
     <form
-        action="{{ url_for('app_views.login') }}"
-        method='POST'
-        class='flex flex-col gap-6 items-center w-full max-w-md px-6'
-        hx-post="{{ url_for('app_views.login') }}"
-        hx-target="#error-message"
-        hx-swap="innerHTML"
-    >
-        <!-- HTMX Target for Showing Error Messages -->
-
-        <span id="error-message" class="text-red-500 min-h-[1.5rem] text-center font-medium"></span>
-        <input type='text' name='username' placeholder='Username' class='w-full py-3 px-4 border border-gray-300 rounded-xl'/>
-        <input type='password' name='password' placeholder='Password' class='w-full py-3 px-4 border border-gray-300 rounded-xl'/>
-        <button type='submit' class='w-max py-3 px-8 text-white font-bold bg-primary-700 capitalize rounded-xl hover:bg-primary-800 transition-colors'>{{ _('login') }}</button>
-    </form>
+			class='flex flex-col gap-6 items-center w-full max-w-md px-6'
+			hx-post="{{ url_for('app_views.login') }}"
+			hx-trigger="submit"
+			hx-target="#error-message"
+			>
+		<span id="error-message" class="text-red-500 min-h-[1.5rem] text-center font-medium">This is error</span>
+		<input type='text' name='username' placeholder='Username' class='w-full py-3 px-4 border border-gray-300 rounded-xl' required/>
+		<input type='password' name='password' placeholder='Password' class='w-full py-3 px-4 border border-gray-300 rounded-xl' required/>
+		<button type='submit' class='w-max py-3 px-8 text-white font-bold bg-primary-700 capitalize rounded-xl hover:bg-primary-800 transition-colors'
+				>{{ _('login') }}</button>
+	</form>
 </div>
 {% endblock %}
 

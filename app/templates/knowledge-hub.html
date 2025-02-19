@@ -1,0 +1,106 @@
+{% import "macros/icons.html" as icons %}
+{% extends "base.html" %}
+{% block title %}knowledge-hub{% endblock %}
+{% block content %}
+<div>
+	<section
+			class='h-[calc(100vh-81px)] grid grid-cols-1 items-center px-4'
+			id='kh-hero'
+			>
+			<h1 class='w-max mx-auto self-end flex flex-col gap-1 justify-center mb-4 text-4xl text-center font-bold capitalize md:text-6xl
+			{% if locale == 'ar' %} flex-col-reverse {%endif%}
+			'>
+				<span class=' text-primary-700'>
+					{{_("kh hero title 1")}}
+				</span>
+		<span class='{% if locale == 'en' %} ms-auto {%else%} me-auto {%endif%}'>{{_("kh hero title 2")}}</span>
+			</h1>
+			<div class='w-full h-full bg-center bg-contain'></div>
+	</section>
+	<section class='flex flex-col gap-4 container mx-auto px-4 py-32'>
+		<!-- Tab list -->
+		<div class="grid grid-cols-3 mx-auto max-w-[900px] sm:text-xl" role="tablist" aria-label="Content Tabs">
+			<button
+					class="flex items-center justify-center gap-1 px-4 py-2 capitalize bg-white
+						   {% if locale == 'en' %} rounded-l-3xl {%else%} rounded-r-2xl {%endif%}"
+					id="tab-research"
+					role="tab"
+					aria-controls="panel-research"
+					aria-selected="true"
+					tabindex="0"
+					hx-get='/knowledge-hub?q=research'
+					hx-trigger='click'
+					hx-target="#tab-panels"
+                    hx-headers='{"hx-tab": "true"}'
+					>
+					<span class="inline-block">
+						{{icons.research(cls='size-6',clr='#000')}}
+					</span>
+				<span>{{_("research")}}</span>
+			</button>
+			<button
+					class="flex items-center justify-center gap-1 bg-white px-4 py-2 capitalize sm:py-4"
+					id="tab-courses"
+					role="tab"
+					aria-controls="panel-courses"
+					aria-selected="false"
+					tabindex="-1"
+					hx-get='/knowledge-hub?q=courses'
+					hx-trigger='click'
+					hx-target="#tab-panels"
+                    hx-headers='{"hx-tab": "true"}'
+					>
+					<span class="inline-block">
+						{{icons.video(cls='size-6 fill-black')}}
+					</span>
+				<span>{{_("courses")}}</span>
+			</button>
+			<button
+					class="flex items-center justify-center gap-1 bg-white px-4 py-2 capitalize"
+					id="tab-podcasts"
+					role="tab"
+					aria-controls="panel-podcasts"
+					aria-selected="false"
+					tabindex="-1"
+					hx-get='/knowledge-hub?q=podcasts'
+					hx-trigger='click'
+					hx-target="#tab-panels"
+                    hx-headers='{"hx-tab": "true"}'
+					>
+					<span class="inline-block">
+						{{icons.music(cls='size-6 fill-black')}}
+					</span>
+				<span>{{_("podcasts")}}</span>
+			</button>
+		</div>
+
+		<!-- Tab panels -->
+		<div
+				class='mx-auto max-w-[900px] sm:text-xl'
+				id="tab-panels"
+				role="tabpanels"
+				aria-labelledby="tab-pannels"
+				>
+				{#TODO: INCLUDE DEFAULT PARTIAL FOR ACTIVE TAB #}
+				{% include "partials/research.html" %}
+		</div>
+	</section>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script charset="utf-8">
+	for (const tab of document.querySelectorAll('[role="tab"]')){
+		tab.addEventListener('click', (evt) => {
+		for (const sibling of document.querySelectorAll('[role="tab"]')){
+			sibling.setAttribute('aria-selected', 'false');
+			sibling.classList.remove('active-tab');
+		}
+			evt.currentTarget.classList.add('active-tab');
+			evt.currentTarget.setAttribute('aria-selected', 'true');
+		});
+	}
+	// initial active tab
+	document.getElementById('tab-research').classList.add('active-tab');
+</script>
+{% endblock %}

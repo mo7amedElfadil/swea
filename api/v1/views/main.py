@@ -8,13 +8,13 @@ from flask_babel import gettext as _
 @response(template_file="index.html")
 def index():
     '''home page'''
-    return dict(user="Mohamed Elfadil")
+    return dict()
 
 @bp.route("/projects")
 @response(template_file="projects.html")
 def projects():
     '''projects page'''
-    return {}
+    return dict()
 
 
 
@@ -45,7 +45,19 @@ def login():
 @response(template_file="dashboard.html")
 def dashboard():
     """Dashboard page"""
-    return {}
+    return dict()
+
+@bp.route("/knowledge-hub")
+@response(template_file="knowledge-hub.html")
+def knowledge_hup():
+    '''knowledge-hub page'''
+    if request.headers.get("hx-tab"):
+        return make_response(
+                render_template(
+                    "partials/research.html",
+                    tab=request.args.get('q', 'research'))
+                )
+    return dict(tab='research')
 
 @bp.route("/set_language")
 def set_language():
@@ -55,6 +67,4 @@ def set_language():
     if lang and lang in Config.BABEL_SUPPORTED_LOCALES:
         session["lang"] = lang
 
-    # TODO: should render the template conrresponding to the current page
-    #return make_response(render_template("index.html"))
     return redirect(request.referrer)

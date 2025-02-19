@@ -14,6 +14,16 @@
 ul li a.active {
     @apply sm:before:absolute sm:before:-bottom-[2px] sm:before:left-0 sm:before:w-full sm:before:h-[2px] sm:before:bg-red-500;
 }
+
+.active-tab {
+    @apply bg-red-700 text-white;
+}
+.active-tab svg {
+    @apply text-white fill-white stroke-white;
+}
+.active-tab svg path {
+    @apply stroke-white;
+}
 /*------------------------------------*/
 
 html, body {
@@ -38,6 +48,12 @@ section#projects-hero {
     background-image: url('../../imgs/projects.png');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+}
+
+section#kh-hero > div {
+    background-image: url('../../imgs/kh-sudo.png');
+    background-size: contain;
     background-repeat: no-repeat;
 }
 

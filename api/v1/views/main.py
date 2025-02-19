@@ -8,7 +8,7 @@ from flask_babel import gettext as _
 @response(template_file="index.html")
 def index():
     '''home page'''
-    return dict(user="Mohamed Elfadil")
+    return dict()
 
 @bp.route("/projects")
 @response(template_file="projects.html")
@@ -16,11 +16,17 @@ def projects():
     '''projects page'''
     return dict()
 
-@bp.route("/knowledge-hup")
-@response(template_file="knowledge-hup.html")
+@bp.route("/knowledge-hub")
+@response(template_file="knowledge-hub.html")
 def knowledge_hup():
-    '''projects page'''
-    return dict()
+    '''knowledge-hub page'''
+    if request.headers.get("hx-tab"):
+        return make_response(
+                render_template(
+                    "partials/research.html",
+                    tab=request.args.get('q', 'research'))
+                )
+    return dict(tab='research')
 
 @bp.route("/set_language")
 def set_language():

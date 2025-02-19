@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-15 21:24+0300\n"
+"POT-Creation-Date: 2025-02-19 03:10+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -121,7 +121,7 @@ msgstr ""
 msgid "news"
 msgstr "الأخبار"
 
-#: app/templates/index.html:139
+#: app/templates/index.html:139 app/templates/projects.html:23
 msgid "learn more"
 msgstr "المزيد"
 
@@ -149,7 +149,27 @@ msgstr "تعليق أو رسالة"
 msgid "submit"
 msgstr "إرسال"
 
-#: app/templates/partials/header.html:24 app/templates/projects.html:7
+#: app/templates/knowledge-hub.html:14
+msgid "kh hero title 1"
+msgstr "المعرفة"
+
+#: app/templates/knowledge-hub.html:16
+msgid "kh hero title 2"
+msgstr "مركز"
+
+#: app/templates/knowledge-hub.html:39
+msgid "research"
+msgstr "بحوث"
+
+#: app/templates/knowledge-hub.html:56
+msgid "courses"
+msgstr "دورات"
+
+#: app/templates/knowledge-hub.html:73
+msgid "podcasts"
+msgstr "بودكاست"
+
+#: app/templates/partials/header.html:32 app/templates/projects.html:7
 msgid "projects"
 msgstr "المشاريع"
 
@@ -167,15 +187,15 @@ msgstr "ابقَ على اطلاع من خلال <b>الاشتراك</b> في ن
 msgid "subscribe"
 msgstr "اشترك"
 
-#: app/templates/partials/header.html:21
+#: app/templates/partials/header.html:25
 msgid "team"
 msgstr "الفريق"
 
-#: app/templates/partials/header.html:27
+#: app/templates/partials/header.html:40
 msgid "knowledge hub"
 msgstr "مركز المعرفة"
 
-#: app/templates/partials/header.html:36
+#: app/templates/partials/header.html:49
 msgid "switch language"
 msgstr "english"
 

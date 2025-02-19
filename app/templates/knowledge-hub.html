@@ -3,11 +3,12 @@
 {% block title %}knowledge-hub{% endblock %}
 {% block content %}
 <div>
+	<!-- Hero -->
 	<section
-			class='h-[calc(100vh-81px)] grid grid-cols-1 items-center px-4'
+			class='h-[60vh] grid grid-cols-1 items-start mx-8 py-32 md:h-screen'
 			id='kh-hero'
 			>
-			<h1 class='w-max mx-auto self-end flex flex-col gap-1 justify-center mb-4 text-4xl text-center font-bold capitalize md:text-6xl
+			<h1 class='w-max -mt-20 mx-auto flex flex-col gap-1 justify-center mb-4 text-4xl text-center font-bold capitalize md:text-6xl md:mt-0 lg:pt-40 xl:pt-0
 			{% if locale == 'ar' %} flex-col-reverse {%endif%}
 			'>
 				<span class=' text-primary-700'>
@@ -15,11 +16,11 @@
 				</span>
 		<span class='{% if locale == 'en' %} ms-auto {%else%} me-auto {%endif%}'>{{_("kh hero title 2")}}</span>
 			</h1>
-			<div class='w-full h-full bg-center bg-contain'></div>
 	</section>
-	<section class='flex flex-col gap-4 container mx-auto px-4 py-32'>
+	<!-- Tabs -->
+	<section class='flex flex-col gap-4 container mx-auto px-8'>
 		<!-- Tab list -->
-		<div class="grid grid-cols-3 mx-auto max-w-[900px] sm:text-xl" role="tablist" aria-label="Content Tabs">
+		<div class="grid grid-cols-3 mx-auto w-[min(100%,900px)] sm:text-xl" role="tablist" aria-label="Content Tabs">
 			<button
 					class="flex items-center justify-center gap-1 px-4 py-2 capitalize bg-white
 						   {% if locale == 'en' %} rounded-l-3xl {%else%} rounded-r-2xl {%endif%}"
@@ -31,7 +32,7 @@
 					hx-get='/knowledge-hub?q=research'
 					hx-trigger='click'
 					hx-target="#tab-panels"
-                    hx-headers='{"hx-tab": "true"}'
+					hx-headers='{"hx-tab": "true"}'
 					>
 					<span class="inline-block">
 						{{icons.research(cls='size-6',clr='#000')}}
@@ -48,7 +49,7 @@
 					hx-get='/knowledge-hub?q=courses'
 					hx-trigger='click'
 					hx-target="#tab-panels"
-                    hx-headers='{"hx-tab": "true"}'
+					hx-headers='{"hx-tab": "true"}'
 					>
 					<span class="inline-block">
 						{{icons.video(cls='size-6 fill-black')}}
@@ -65,7 +66,7 @@
 					hx-get='/knowledge-hub?q=podcasts'
 					hx-trigger='click'
 					hx-target="#tab-panels"
-                    hx-headers='{"hx-tab": "true"}'
+					hx-headers='{"hx-tab": "true"}'
 					>
 					<span class="inline-block">
 						{{icons.music(cls='size-6 fill-black')}}
@@ -76,12 +77,12 @@
 
 		<!-- Tab panels -->
 		<div
-				class='mx-auto max-w-[900px] sm:text-xl'
+				class='w-[min(100%,900px)] mx-auto sm:text-xl'
 				id="tab-panels"
 				role="tabpanels"
 				aria-labelledby="tab-pannels"
 				>
-				{#TODO: INCLUDE DEFAULT PARTIAL FOR ACTIVE TAB #}
+				{# INCLUDE DEFAULT PARTIAL FOR ACTIVE TAB #}
 				{% include "partials/research.html" %}
 		</div>
 	</section>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-19 03:10+0300\n"
+"POT-Creation-Date: 2025-02-19 11:25+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -18,6 +18,10 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
+
+#: app/templates/dashboard.html:3
+msgid "dashboard"
+msgstr ""
 
 #: app/templates/index.html:11
 msgid "hero title"
@@ -125,49 +129,54 @@ msgstr "الأخبار"
 msgid "learn more"
 msgstr "المزيد"
 
-#: app/templates/index.html:150
+#: app/templates/index.html:152
 msgid "contact us"
 msgstr "تواصل معنا"
 
-#: app/templates/index.html:151
+#: app/templates/index.html:153
 msgid "contact enquiry"
 msgstr "لديك سؤال أو إستفسار؟"
 
-#: app/templates/index.html:155
+#: app/templates/index.html:157
 msgid "form name"
 msgstr "أدخل اسمك"
 
-#: app/templates/index.html:163 app/templates/partials/footer.html:9
+#: app/templates/index.html:165 app/templates/partials/footer.html:9
 msgid "form email"
 msgstr "أدخل بريدك الإلكتروني"
 
-#: app/templates/index.html:170
+#: app/templates/index.html:172
 msgid "form textarea"
 msgstr "تعليق أو رسالة"
 
-#: app/templates/index.html:175
+#: app/templates/index.html:177
 msgid "submit"
 msgstr "إرسال"
 
-#: app/templates/knowledge-hub.html:14
+#: app/templates/knowledge-hub.html:15
 msgid "kh hero title 1"
 msgstr "المعرفة"
 
-#: app/templates/knowledge-hub.html:16
+#: app/templates/knowledge-hub.html:17
 msgid "kh hero title 2"
 msgstr "مركز"
 
-#: app/templates/knowledge-hub.html:39
+#: app/templates/knowledge-hub.html:40
 msgid "research"
 msgstr "بحوث"
 
-#: app/templates/knowledge-hub.html:56
+#: app/templates/knowledge-hub.html:57
 msgid "courses"
 msgstr "دورات"
 
-#: app/templates/knowledge-hub.html:73
+#: app/templates/knowledge-hub.html:74
 msgid "podcasts"
 msgstr "بودكاست"
+
+#: app/templates/login.html:2 app/templates/login.html:6
+#: app/templates/login.html:18
+msgid "login"
+msgstr ""
 
 #: app/templates/partials/header.html:32 app/templates/projects.html:7
 msgid "projects"
@@ -178,6 +187,10 @@ msgid "project hero desc"
 msgstr ""
 "استكشِف مشاريعنا المؤثرة التي تهدف إلى تمكين النساء السودانيات العاملات "
 "في مجال الاقتصاد، وتعزيز التعاون، ودفع عجلة التنمية الاقتصادية المستدامة."
+
+#: app/templates/partials/courses.html:8
+msgid "empty courses"
+msgstr "ﻻ توجد دورات حاليً"
 
 #: app/templates/partials/footer.html:5
 msgid "footer caption"
@@ -198,6 +211,14 @@ msgstr "مركز المعرفة"
 #: app/templates/partials/header.html:49
 msgid "switch language"
 msgstr "english"
+
+#: app/templates/partials/podcasts.html:8
+msgid "empty podcast"
+msgstr "ﻻ توجد بودكاست حاليً"
+
+#: app/templates/partials/research.html:8
+msgid "empty research"
+msgstr "ﻻ توجد بحوث حاليً"
 
 #~ msgid "mission description"
 #~ msgstr ""

@@ -6,6 +6,9 @@ module.exports = {
       gridTemplateColumns: {
         fluid: "repeat(auto-fit, minmax(350px, 1fr))",
       },
+      backgroundSize: {
+        '900': '900px', // Add your custom size here
+      },
       colors: {
         primary: {
           50: "#f6e5d3",

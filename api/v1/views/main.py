@@ -51,11 +51,18 @@ def dashboard():
 @response(template_file="knowledge-hub.html")
 def knowledge_hup():
     '''knowledge-hub page'''
+    tab_query = request.args.get('q', 'research')
+    tab_mapper = {
+        'research': 'partials/research.html',
+        'courses': 'partials/courses.html',
+        'podcasts': 'partials/podcasts.html'
+    }
+
     if request.headers.get("hx-tab"):
         return make_response(
                 render_template(
-                    "partials/research.html",
-                    tab=request.args.get('q', 'research'))
+                    tab_mapper.get(tab_query, 'partials/research.html'),
+                    data=dict())
                 )
     return dict(tab='research')
 

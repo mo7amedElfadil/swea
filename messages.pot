@@ -8,17 +8,62 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-19 11:25+0300\n"
+"POT-Creation-Date: 2025-02-20 08:28+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.8.0\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: api/v1/views/main.py:116 api/v1/views/main.py:143
+msgid "project_name_and_description_required"
+msgstr ""
+
+#: api/v1/views/main.py:120
+msgid "project_added_successfully"
+msgstr ""
+
+#: api/v1/views/main.py:129 api/v1/views/main.py:158
+msgid "project_not_found"
+msgstr ""
+
+#: api/v1/views/main.py:149
+msgid "project_updated_successfully"
+msgstr ""
+
+#: api/v1/views/main.py:161
+msgid "project_deleted_successfully"
+msgstr ""
 
 #: app/templates/dashboard.html:3
 msgid "dashboard"
+msgstr ""
+
+#: app/templates/dashboard.html:9
+msgid "swea_dashboard"
+msgstr ""
+
+#: app/templates/dashboard.html:10
+msgid "welcome"
+msgstr ""
+
+#: app/templates/dashboard.html:36
+#: app/templates/partials/dashboard/projects.html:6
+msgid "swea_projects"
+msgstr ""
+
+#: app/templates/dashboard.html:55
+msgid "swea_team"
+msgstr ""
+
+#: app/templates/dashboard.html:74
+msgid "swea_knowledge_hub"
+msgstr ""
+
+#: app/templates/dashboard.html:93
+msgid "swea_subscribers"
 msgstr ""
 
 #: app/templates/index.html:11
@@ -192,5 +237,66 @@ msgstr ""
 
 #: app/templates/partials/research.html:8
 msgid "empty research"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:10
+msgid "project_name"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:16
+msgid "project_description"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:21
+msgid "active"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:22
+msgid "completed"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:28
+#: app/templates/partials/dashboard/projects.html:17
+msgid "add_project"
+msgstr ""
+
+#: app/templates/partials/dashboard/projects.html:25
+msgid "search_project"
+msgstr ""
+
+#: app/templates/partials/dashboard/projects.html:39
+msgid "all_projects"
+msgstr ""
+
+#: app/templates/partials/dashboard/projects.html:40
+msgid "active_projects"
+msgstr ""
+
+#: app/templates/partials/dashboard/projects.html:41
+msgid "completed_projects"
+msgstr ""
+
+#: app/templates/partials/dashboard/projects.html:66
+msgid "edit"
+msgstr ""
+
+#: app/templates/partials/dashboard/projects.html:72
+msgid "confirm_delete_project"
+msgstr ""
+
+#: app/templates/partials/dashboard/projects.html:76
+msgid "delete"
+msgstr ""
+
+#: app/templates/partials/dashboard/projects.html:84
+msgid "no_projects_found"
+msgstr ""
+
+#: app/templates/partials/dashboard/projects.html:99
+msgid "previous"
+msgstr ""
+
+#: app/templates/partials/dashboard/projects.html:113
+msgid "next"
 msgstr ""
 

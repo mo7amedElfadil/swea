@@ -1,0 +1,27 @@
+<form hx-post="/dashboard/add-project" hx-swap="innerHTML">
+  <div class="space-y-4">
+    <input
+      type="text"
+      name="name"
+      placeholder="{{ _('project_name') }}"
+      class="w-full px-4 py-2 border rounded-lg"
+      required
+    />
+    <textarea
+      name="description"
+      placeholder="{{ _('project_description') }}"
+      class="w-full px-4 py-2 border rounded-lg"
+      required
+    ></textarea>
+    <select name="status" class="w-full px-4 py-2 border rounded-lg">
+      <option value="active">{{ _("active") }}</option>
+      <option value="completed">{{ _("completed") }}</option>
+    </select>
+    <button
+      type="submit"
+      class="px-4 py-2 bg-primary-600 text-white rounded-lg"
+    >
+      {{ _("add_project") }}
+    </button>
+  </div>
+</form>

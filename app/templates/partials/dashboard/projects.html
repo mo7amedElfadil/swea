@@ -1,114 +1,122 @@
 <!-- Projects Tab -->
 {% macro render_project_table(projects, page=1, total_pages=1) %}
-<div id="modal-container" class="bg-primary-50 rounded-xl shadow-sm transition-all duration-200">
-    <!-- Header Section -->
-    <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl font-bold text-gray-900">{{ _("swea_projects") }}</h2>
-        <button 
-            class="flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200
-                   bg-primary-600 text-white hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:outline-none"
-            hx-get="/dashboard/new-project" 
-            hx-target="#modal-container" 
-            hx-swap="innerHTML"
-        >
-			<img class="w-5 h-5 mr-2" src="{{url_for('static', filename='icons/add.svg')}}" alt="Add Icon">
-            {{ _("add_project") }}
-        </button>
-    </div>
+<div
+  id="modal-container"
+  class="bg-primary-50 rounded-xl shadow-sm transition-all duration-200"
+>
+  <!-- Header Section -->
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-2xl font-bold text-gray-900">{{ _("swea_projects") }}</h2>
+    <button
+      class="flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-600 text-white hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:outline-none"
+      hx-get="/dashboard/new-project"
+      hx-target="#modal-container"
+      hx-swap="innerHTML"
+    >
+      <img
+        class="w-5 h-5 mr-2"
+        src="{{url_for('static', filename='icons/add.svg')}}"
+        alt="Add Icon"
+      />
+      {{ _("add_project") }}
+    </button>
+  </div>
 
-    <!-- Filter Section -->
-    <div class="mb-6 flex space-x-4">
-        <input 
-            type="text" 
-            placeholder="{{ _('search_project') }}" 
-            class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            hx-get="/dashboard?q=projects&search=" 
-            hx-trigger="keyup changed delay:300ms" 
-            hx-target="#project-list" 
-            hx-swap="innerHTML"
-        />
-        <select 
-            class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            hx-get="/dashboard?q=projects&filter=" 
-            hx-trigger="change" 
-            hx-target="#project-list" 
-            hx-swap="innerHTML"
-        >
-            <option value="all">{{ _("all_projects") }}</option>
-            <option value="active">{{ _("active_projects") }}</option>
-            <option value="completed">{{ _("completed_projects") }}</option>
-        </select>
-    </div>
+  <!-- Filter Section -->
+  <div
+    class="mb-6 flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0"
+  >
+    <input
+      type="text"
+      placeholder="{{ _('search_project') }}"
+      class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+      hx-get="/dashboard?q=projects&search="
+      hx-trigger="keyup changed delay:300ms"
+      hx-target="#project-list"
+      hx-swap="innerHTML"
+    />
+    <select
+      class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+      hx-get="/dashboard?q=projects&filter="
+      hx-trigger="change"
+      hx-target="#project-list"
+      hx-swap="innerHTML"
+    >
+      <option value="all">{{ _("all_projects") }}</option>
+      <option value="active">{{ _("active_projects") }}</option>
+      <option value="completed">{{ _("completed_projects") }}</option>
+    </select>
+  </div>
 
-    <!-- Project List -->
-    <div id="project-list">
-        {% if projects %}
-        <div class="space-y-4">
-            {% for project in projects %}
-            <div class="flex justify-between items-center p-4 bg-white rounded-lg shadow-sm">
-                <div>
-                    <h3 class="text-lg font-semibold text-gray-900">{{ project.name }}</h3>
-                    <p class="text-sm text-gray-600">{{ project.description | truncate(50) }}</p>
-                </div>
-                <div class="flex space-x-2">
-                    <button 
-                        class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200
-                               bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none"
-                        hx-get="/dashboard/edit-project/{{ project.id }}" 
-                        hx-target="#modal-container" 
-                        hx-swap="innerHTML"
-                    >
-                        {{ _("edit") }}
-                    </button>
-                    <button 
-                        class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200
-                               bg-red-100 text-red-700 hover:bg-red-200 focus:ring-2 focus:ring-red-500 focus:outline-none"
-                        hx-delete="/dashboard/delete-project/{{ project.id }}" 
-                        hx-confirm="{{ _('confirm_delete_project') }}"
-                        hx-target="#project-list" 
-                        hx-swap="innerHTML"
-                    >
-                        {{ _("delete") }}
-                    </button>
-                </div>
-            </div>
-            {% endfor %}
+  <!-- Project List -->
+  <div id="project-list">
+    {% if projects %}
+    <div class="space-y-4">
+      {% for project in projects %}
+      <div
+        class="flex justify-between items-center p-4 bg-white rounded-lg shadow-sm"
+      >
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900">
+            {{ project.name }}
+          </h3>
+          <p class="text-sm text-gray-600">
+            {{ project.description | truncate(50) }}
+          </p>
         </div>
-        {% else %}
-        <div class="text-center text-gray-600">
-            {{ _("no_projects_found") }}
+        <div class="flex space-x-2">
+          <button
+            class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none"
+            hx-get="/dashboard/edit-project/{{ project.id }}"
+            hx-target="#modal-container"
+            hx-swap="innerHTML"
+          >
+            {{ _("edit") }}
+          </button>
+          <button
+            class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-red-100 text-red-700 hover:bg-red-200 focus:ring-2 focus:ring-red-500 focus:outline-none"
+            hx-delete="/dashboard/delete-project/{{ project.id }}"
+            hx-confirm="{{ _('confirm_delete_project') }}"
+            hx-target="#project-list"
+            hx-swap="innerHTML"
+          >
+            {{ _("delete") }}
+          </button>
         </div>
-        {% endif %}
+      </div>
+      {% endfor %}
     </div>
+    {% else %}
+    <div class="text-center text-gray-600">{{ _("no_projects_found") }}</div>
+    {% endif %}
+  </div>
 
-    <!-- Pagination -->
-    <div class="mt-6 flex justify-center space-x-2">
-        {% if page and page > 1 %}
-        <button 
-            class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200
-                   bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none"
-            hx-get="/dashboard?q=projects&page={{ page - 1 }}" 
-            hx-target="#project-list" 
-            hx-swap="innerHTML"
-        >
-            {{ _("previous") }}
-        </button>
-        {% endif %}
-        <span class="px-4 py-2 text-sm font-medium text-gray-700">
-            {{ page }} / {{ total_pages }}
-        </span>
-        {% if page and page < total_pages %}
-        <button 
-            class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200
-                   bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none"
-            hx-get="/dashboard?q=projects&page={{ page + 1 }}" 
-            hx-target="#project-list" 
-            hx-swap="innerHTML"
-        >
-            {{ _("next") }}
-        </button>
-        {% endif %}
-    </div>
+  <!-- Pagination -->
+  <div class="mt-6 flex justify-center space-x-2">
+    {% if page and page > 1 %}
+    <button
+      class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none"
+      hx-get="/dashboard?q=projects&page={{ page - 1 }}"
+      hx-target="#project-list"
+      hx-swap="innerHTML"
+    >
+      {{ _("previous") }}
+    </button>
+    {% endif %}
+    <span class="px-4 py-2 text-sm font-medium text-gray-700">
+      {{ page }} / {{ total_pages }}
+    </span>
+    {% if page and page < total_pages %}
+    <button
+      class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none"
+      hx-get="/dashboard?q=projects&page={{ page + 1 }}"
+      hx-target="#project-list"
+      hx-swap="innerHTML"
+    >
+      {{ _("next") }}
+    </button>
+    {% endif %}
+  </div>
 </div>
 {% endmacro %}
 

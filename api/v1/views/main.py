@@ -1,4 +1,4 @@
-from flask import make_response, redirect, render_template, request, session, url_for, flash, render_template_string
+from flask import make_response, redirect, render_template, request, session, url_for
 from api.v1.views import bp
 from config import Config
 from utils.view_modifiers import response

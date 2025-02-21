@@ -1,6 +1,6 @@
 """Module that defines `create_app` function to create the Flask app instance"""
 
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request, send_from_directory, session
 from flask import session as flask_session
 from flask_babel import Babel
 from flask_babel import gettext as _
@@ -74,6 +74,10 @@ def create_app(config_class=Config):
     @app.context_processor
     def inject_locale():
         """Inject the locale into each rendered template"""
+        lang = request.args.get("lang", None)
+        if lang and lang in Config.BABEL_SUPPORTED_LOCALES:
+            session["lang"] = lang
+            return dict(locale=lang)
         return dict(locale=get_locale())
 
     @app.route("/robots.txt")

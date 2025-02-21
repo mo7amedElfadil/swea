@@ -13,6 +13,7 @@ from flask_babel import gettext as _
 from api.v1.views import bp
 from app.services.project_service import ProjectService
 from config import Config
+from utils.referrer_modifier import modify_referrer_lang
 from utils.view_modifiers import response
 
 # Initialize the service with static dummy data
@@ -125,4 +126,4 @@ def set_language():
     if lang and lang in Config.BABEL_SUPPORTED_LOCALES:
         session["lang"] = lang
 
-    return redirect(request.referrer)
+    return redirect(modify_referrer_lang(request.referrer, lang))

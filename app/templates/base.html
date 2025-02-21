@@ -72,7 +72,19 @@
 		{% include "partials/footer.html" %}
 
 		<!-- js script -->
+		<script>
+			var locale = {{ locale | tojson }};
+			var url = new URL(window.location.href);
+
+			// Use URLSearchParams to modify the 'lang' parameter
+			var searchParams = new URLSearchParams(url.search);
+			searchParams.set('lang', locale);  // Set or update the 'lang' parameter
+
+			// Update the URL without reloading the page
+			window.history.replaceState(null, null, `${url.pathname}?${searchParams.toString()}`);
+		</script>
 		<script src="{{url_for('static',filename='js/base.js')}}"></script>
-		{% block extra_scripts %} {% endblock %}
+		{% block extra_scripts %}
+		{% endblock %}
 	</body>
 </html>

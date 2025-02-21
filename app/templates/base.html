@@ -64,9 +64,9 @@
 		<!-- JS Libraries (HTMX)  -->
 		<script src="{{ url_for('static', filename='js/htmx.min.js') }}"></script>
 	</head>
-	<body class="flex flex-col">
+	<body class="flex flex-col bg-secondary-100">
 		{% include "partials/header.html" %}
-		<main class="w-full flex-1 bg-primary-50 {% if locale == 'ar' %}font-primary{%else%}font-secondary{%endif%}">
+		<main class="w-full flex-1 {% if locale == 'ar' %}font-primary{%else%}font-secondary{%endif%}">
 			{% block content %} {% endblock %}
 		</main>
 		{% include "partials/footer.html" %}

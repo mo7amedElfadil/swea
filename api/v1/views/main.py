@@ -19,11 +19,12 @@ def projects():
 
 
 @bp.route("/login", methods=["GET", "POST"])
+@response(template_file="login.html")
 def login():
     """Login page with HTMX"""
-    # If it's a GET request, render the login page
-    if request.method == "GET":
-        return render_template("login.html")
+
+    if request.method == 'GET':
+        return dict()
 
     # Handle POST request (login attempt)
     username = request.form.get("username")

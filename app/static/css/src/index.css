@@ -16,7 +16,7 @@ ul li a.active {
 }
 
 .active-tab {
-    @apply bg-red-700 text-white;
+    @apply bg-red-800 text-white;
 }
 .active-tab svg {
     @apply text-white fill-white stroke-white;

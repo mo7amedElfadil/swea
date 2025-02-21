@@ -6,13 +6,13 @@
 <div class='w-full h-full'>
 	<section id='hero' class='container mx-auto py-8 px-4 sm:py-28'>
 		<div class='relative grid place-items-center gap-6 sm:-mb-[10%]'>
-			<h1 class='text-3xl text-primary-700 capitalize font-extrabold
-				 sm:max-w-[80%] sm:text-5xl sm:text-center sm:leading-snug xl:max-w-[50%]'>
+			<h1 class='text-3xl text-primary-800 capitalize font-extrabold
+			sm:max-w-[80%] sm:text-5xl sm:text-center sm:leading-snug xl:max-w-[50%]'>
 				{{_('hero title')}}
 			</h1>
 			<p class='sm:text-xl sm:text-center sm:max-w-[80%] xl:max-w-[50%]'>{{_('hero description')}}</p>
-			<button class='w-max py-2 px-4 text-white font-bold bg-primary-700 capitalize rounded-xl
-				sm:py-3 sm:px-5 sm:text-lg'>
+			<button class='w-max py-2 px-4 text-white font-bold bg-primary-800 capitalize rounded-xl
+			sm:py-3 sm:px-5 sm:text-lg'>
 				{{_('join us')}}
 			</button>
 		</div>
@@ -20,7 +20,7 @@
 	</section>
 	<section id='mission' class='mt-8 px-4 py-8 sm:py-28 overflow-x-hidden'>
 		<div class='container mx-auto flex flex-col justify-center items-center gap-2'>
-			<h2 class='me-auto mb-6 text-3xl text-primary-700 capitalize font-extrabold sm:mx-auto sm:text-5xl'>
+			<h2 class='me-auto mb-6 text-3xl text-primary-800 capitalize font-extrabold sm:mx-auto sm:text-5xl'>
 				{{_('mission title')}}
 			</h2>
 			<div class='w-full flex flex-col gap-2 items-center sm:flex-row sm:justify-between'>
@@ -108,7 +108,7 @@
 		<div id='carousel' class='transition-all relative flex gap-6'>
 			{% for i in range(4) %}
 			<div class='shrink-0 w-[200px] h-[330px] grid grid-rows-[30%_auto] shadow-[0_8px_10px_5px_rgba(0,_0,_0,_0.3)]
-				sm:w-[300px] sm:h-[400px]'>
+			sm:w-[300px] sm:h-[400px]'>
 				<img
 						class='size-full object-cover'
 						src="{{url_for('static',filename='imgs/discussion.jpg')}}"
@@ -118,9 +118,9 @@
 					<span class='text-xs text-slate-500'>august 2 2023</span>
 					<h3 class='font-extrabold'>Empowered voices</h3>
 					<p class='text-sm'>
-						three of our members <b>Moneera</b>, <Jawhara</b> and <Sawasn</b>
-						discussed structural transformation in the first all-women episode of the
-						<b>Hiwarat Podcast</b>
+					three of our members <b>Moneera</b>, <Jawhara</b> and <Sawasn</b>
+			discussed structural transformation in the first all-women episode of the
+			<b>Hiwarat Podcast</b>
 					</p>
 					<button class='flex gap-2 items-center text-sm mt-auto'>
 						<span class='p-1.5 border border-red-700 rounded-full'>
@@ -143,39 +143,42 @@
 			{% endfor %}
 		</div>
 	</section>
-	<section id='contact' class='container mx-auto px-4 py-8 sm:py-28'>
+	<section id='contact' class='container mx-auto px-4 py-8 sm:py-28 lg:grid lg:grid-cols-2'>
 		<div class='relative flex flex-col gap-4 bg-white px-3 py-4
-			sm:px-8 sm:py-12 sm:after:w-[47%] sm:after:h-full
-			after:bg-red-600 after:absolute  sm:after:top-0 after:text-center after:text-5xl  sm:after:content-["Idid_not_find_the_Envelop"]
-			{% if locale == 'ar' %} sm:after:left-0 {%else%} sm:after:right-0 {% endif %}'
-		>
-			<h2 class='text-3xl capitalize font-extrabold sm:text-5xl'>{{_('contact us')}}</h2>
-			<p>{{_('contact enquiry')}}</p>
-			<form class='flex flex-col gap-3 sm:max-w-[50%]'>
-				<input
-						required
-						placeholder='{{_("form name")}}'
-						type="text"
-						value=""
-						name="name"
-						class='bg-slate-200 p-3 rounded-lg'
-						/>
-				<input
-						required
-						placeholder='{{_("form email")}}'
-						type="email"
-						value=""
-						name="email"
-						class='bg-slate-200 p-3 rounded-md'
-						/>
-				<textarea
-						placeholder='{{_("form textarea")}}'
-						name="msg"
-						value=""
-						class='bg-slate-200 p-3 rounded-md'
-						></textarea>
-				<button type='submit' class='bg-black py-2 text-white uppercase rounded-md font-extrabold'>{{_('submit')}}</button>
-			</form>
+		sm:px-8 sm:py-12'
+			 >
+			 <h2 class='text-3xl capitalize font-extrabold sm:text-5xl'>{{_('contact us')}}</h2>
+			 <p>{{_('contact enquiry')}}</p>
+			 <form class='flex flex-col gap-3'>
+				 <input
+						 required
+						 placeholder='{{_("form name")}}'
+						 type="text"
+						 value=""
+						 name="name"
+						 class='bg-[#CCCCCC] p-3 rounded-lg'
+						 />
+				 <input
+						 required
+						 placeholder='{{_("form email")}}'
+						 type="email"
+						 value=""
+						 name="email"
+						 class='bg-[#ccc] p-3 rounded-md'
+						 />
+				 <textarea
+						 placeholder='{{_("form textarea")}}'
+						 name="msg"
+						 value=""
+						 class='bg-[#ccc] p-3 rounded-md'
+						 ></textarea>
+				 <button type='submit' class='bg-black py-2 text-white uppercase rounded-md font-extrabold'>{{_('submit')}}</button>
+			 </form>
+		</div>
+		<div
+				class='bg-[url(../../imgs/envelop.svg)] bg-no-repeat bg-contain
+				{% if locale == "ar" %}rotate-180 -ms-1{%else%}-ms-1{%endif%}'
+				>
 		</div>
 	</section>
 </div>

@@ -1,78 +1,277 @@
-"""Service class for managing projects"""
+"""
+Project Service Module
+
+This module provides the business logic for project-related operations.
+"""
+
+import os
+from datetime import date
+from typing import Any, Dict, List, Optional
+
+from flask import current_app
+from marshmallow import ValidationError
+from werkzeug.utils import secure_filename
+
+from app.extensions import db
+from app.models import Project
+from app.schemas.project_schema import ProjectSchema
 
 
 class ProjectService:
-    """Service class for managing projects"""
+    """Project service class."""
 
-    def __init__(self):
-        # Static dummy data for projects
-        self.projects = [
-            {
-                "id": 1,
-                "name": "Project Alpha",
-                "description": "A groundbreaking project.",
-                "status": "active",
-            },
-            {
-                "id": 2,
-                "name": "Project Beta",
-                "description": "An innovative solution.",
-                "status": "completed",
-            },
-            {
-                "id": 3,
-                "name": "Project Gamma",
-                "description": "Under development.",
-                "status": "active",
-            },
-        ]
-        self.next_id = 4  # Auto-increment ID for new projects
+    def __init__(self, page_size: int = 10):
+        """Initialize project service."""
+        self.page_size = page_size
+        self.project_schema = ProjectSchema()
 
-    def get_projects(self, search="", status="all", page=1, per_page=5):
-        """Fetch paginated and filtered projects"""
-        filtered_projects = self.projects
-        if search:
-            filtered_projects = [
-                p
-                for p in filtered_projects
-                if search.lower() in p["name"].lower()
-                or search.lower() in p["description"].lower()
-            ]
-        if status != "all":
-            filtered_projects = [p for p in filtered_projects if p["status"] == status]
+    def create_project(
+        self, form_data: Dict[str, Any], files: Dict[str, Any]
+    ) -> Project | Dict[str, Any]:
+        """
+        Create a new project.
+        Args:
+            form_data (Dict[str, Any]): The project data to create.
+            files (Dict[str, Any]): The uploaded files.
+        Returns:
+            Project: The created project instance.
+        """
+        try:
+            # Process and validate form data
+            form_data = self.validate_form_data(form_data, files)
 
-        total_pages = (len(filtered_projects) + per_page - 1) // per_page
-        start = (page - 1) * per_page
-        end = start + per_page
-        return filtered_projects[start:end], total_pages
+            # Validate the data using the schema
+            errors = ProjectSchema().validate(form_data)
+            if errors:
+                raise ValidationError(errors)
 
-    def get_project_by_id(self, project_id):
-        """Fetch a project by its ID"""
-        return next((p for p in self.projects if p["id"] == project_id), None)
+            project = Project()
+            project.create(**form_data)
+            return project
+        except ValidationError as error:
+            raise ValidationError(error.messages) from error
 
-    def add_project(self, name, description, status):
-        """Add a new project"""
-        new_project = {
-            "id": self.next_id,
-            "name": name,
-            "description": description,
-            "status": status,
-        }
-        self.projects.append(new_project)
-        self.next_id += 1
+    def update_project(
+        self, uuid: str, form_data: Dict[str, Any], files: Dict[str, Any]
+    ) -> Project:
+        """
+        Update an existing project.
 
-    def update_project(self, project_id, name, description, status):
-        """Update an existing project"""
-        project = self.get_project_by_id(project_id)
+        Args:
+            uuid (str): The UUID of the project to update.
+            form_data (Dict[str, Any]): The project data to update.
+            files (Dict[str, Any]): The uploaded files.
+
+        Returns:
+            Optional[Project]: The updated project instance if found, otherwise None.
+        """
+        try:
+            # Process and validate form data
+            form_data = self.validate_form_data(form_data, files)
+
+            # Validate project data
+            errors = self.project_schema.validate(form_data)
+            if errors:
+                raise ValidationError(errors)
+
+            project = Project.get_byuuid(uuid)
+            if project:
+                project.update(**form_data)
+            return project
+        except ValidationError as error:
+            raise ValidationError(error.messages) from error
+
+    def delete_project(self, uuid: str, permanent: bool = False) -> bool:
+        """
+        Delete a project.
+
+        Args:
+            uuid (str): The UUID of the project to delete.
+            permanent (bool): If True, permanently delete the project. Otherwise, soft delete.
+
+        Returns:
+            bool: True if the project was deleted, False if the project was not found.
+        """
+        project = Project.get_byuuid(uuid)
         if project:
-            project["name"] = name
-            project["description"] = description
-            project["status"] = status
-
-    def delete_project(self, project_id):
-        """Delete a project"""
-        project = self.get_project_by_id(project_id)
-        if project:
-            self.projects.remove(project)
+            project.delete(permanent=permanent)
             return True
         return False
+
+    def get_project_by_uuid(self, uuid: str) -> Optional[Project]:
+        """
+        Retrieve a project by its UUID.
+
+        Args:
+            uuid (str): The UUID of the project to retrieve.
+
+        Returns:
+            Optional[Project]: The project instance if found, otherwise None.
+        """
+        project = Project.get_byuuid(uuid)
+
+        # Prepare the project data for rendering
+        if project:
+            project_data = project.__dict__
+            project_data["tags"]["en"] = ", ".join(project_data["tags"]["en"])
+            project_data["tags"]["ar"] = ", ".join(project_data["tags"]["ar"])
+
+            if isinstance(project_data["testimonials"], dict):
+                project_data["testimonials"]["en"] = ", ".join(
+                    project_data["testimonials"].get("en", [])
+                )
+                project_data["testimonials"]["ar"] = ", ".join(
+                    project_data["testimonials"].get("ar", [])
+                )
+
+            print("=====PROJECT DATA=====", project_data)
+
+            return project_data
+
+        return None
+
+    def get_projects_by_author(self, author: Dict[str, Any]) -> List[Project]:
+        """
+        Retrieve all projects by a specific author.
+
+        Args:
+            author (Dict[str, Any]): The author details to filter by.
+
+        Returns:
+            List[Project]: A list of projects authored by the specified author.
+        """
+        return Project.get_all_by(author=author)
+
+    def get_all_projects(self, page: int = 1) -> List[Project]:
+        """
+        Retrieve all projects with pagination.
+
+        Args:
+            page (int): The page number to retrieve (default is 1).
+
+        Returns:
+            List[Project]: A list of projects for the specified page.
+        """
+        return (
+            Project.query.filter_by(deleted_at=None)
+            .paginate(page=page, per_page=self.page_size)
+            .items
+        )
+
+    def get_projects_by_completion_date(
+        self, date_of_completion: date
+    ) -> List[Project]:
+        """
+        Retrieve all projects with a specific completion date.
+
+        Args:
+            date_of_completion (date): The completion date to filter by.
+
+        Returns:
+            List[Project]: A list of projects with the specified completion date.
+        """
+        return Project.get_all_by(date_of_completion=date_of_completion)
+
+    def search_projects_by_title(self, title: str) -> List[Project]:
+        """
+        Search for projects by title.
+
+        Args:
+            title (str): The title to search for.
+
+        Returns:
+            List[Project]: A list of projects matching the title.
+        """
+        return Project.query.filter(
+            Project.title.contains(title), Project.deleted_at.is_(None)
+        ).all()
+
+    def restore_project(self, uuid: str) -> Optional[Project]:
+        """
+        Restore a soft-deleted project.
+
+        Args:
+            uuid (str): The UUID of the project to restore.
+
+        Returns:
+            Optional[Project]: The restored project instance if found, otherwise None.
+        """
+        project = Project.get_byuuid(uuid)
+        if project and project.deleted_at:
+            project.deleted_at = None
+            db.session.commit()
+            return project
+        return None
+
+    def validate_form_data(
+        self, form_data: Dict[str, Any], files: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        """Process and validate form data for creating/updating a project."""
+
+        processed_data = {
+            "title": {
+                "en": form_data.get("title[en]"),
+                "ar": form_data.get("title[ar]"),
+            },
+            "author": {
+                "name": {
+                    "en": form_data.get("author[name][en]"),
+                    "ar": form_data.get("author[name][ar]"),
+                },
+                "email": form_data.get("author[email]"),
+            },
+            "status": form_data.get("status", "ongoing"),
+            "date_of_completion": form_data.get("date_of_completion"),
+            "tags": {
+                "en": (
+                    form_data.get("tags[en]", "").split(",")
+                    if form_data.get("tags[en]")
+                    else []
+                ),
+                "ar": (
+                    form_data.get("tags[ar]", "").split(",")
+                    if form_data.get("tags[ar]")
+                    else []
+                ),
+            },
+            "testimonials": {
+                "en": (
+                    [
+                        t.strip()
+                        for t in form_data.get("testimonials[en]", "").split(",")
+                        if t.strip()
+                    ]
+                    if form_data.get("testimonials[en]")
+                    else []
+                ),
+                "ar": (
+                    [
+                        t.strip()
+                        for t in form_data.get("testimonials[ar]", "").split(",")
+                        if t.strip()
+                    ]
+                    if form_data.get("testimonials[ar]")
+                    else []
+                ),
+            },
+        }
+
+        # Handle hero_image upload
+        hero_image = files.get("hero_image")
+        if hero_image and hero_image.filename:
+            filename = secure_filename(hero_image.filename)
+            filepath = os.path.join(current_app.config["UPLOAD_FOLDER"], filename)
+            hero_image.save(filepath)
+            processed_data["hero_image"] = filepath  # Save file path
+
+        # Handle multiple images upload
+        images = files.get("images", [])  # Use getlist() for multiple files
+        image_paths = []
+        for image in images:
+            if image.filename:
+                filename = secure_filename(image.filename)
+                filepath = os.path.join(current_app.config["UPLOAD_FOLDER"], filename)
+                image.save(filepath)
+                image_paths.append(filepath)
+        processed_data["images"] = image_paths  # Save file paths list
+        return processed_data

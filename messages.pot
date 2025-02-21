@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-20 08:28+0400\n"
+"POT-Creation-Date: 2025-02-21 11:11+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,26 +16,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
-
-#: api/v1/views/main.py:116 api/v1/views/main.py:143
-msgid "project_name_and_description_required"
-msgstr ""
-
-#: api/v1/views/main.py:120
-msgid "project_added_successfully"
-msgstr ""
-
-#: api/v1/views/main.py:129 api/v1/views/main.py:158
-msgid "project_not_found"
-msgstr ""
-
-#: api/v1/views/main.py:149
-msgid "project_updated_successfully"
-msgstr ""
-
-#: api/v1/views/main.py:161
-msgid "project_deleted_successfully"
-msgstr ""
 
 #: app/templates/dashboard.html:3
 msgid "dashboard"
@@ -49,20 +29,20 @@ msgstr ""
 msgid "welcome"
 msgstr ""
 
-#: app/templates/dashboard.html:36
-#: app/templates/partials/dashboard/projects.html:6
+#: app/templates/dashboard.html:35
+#: app/templates/partials/dashboard/projects.html:9
 msgid "swea_projects"
 msgstr ""
 
-#: app/templates/dashboard.html:55
+#: app/templates/dashboard.html:54
 msgid "swea_team"
 msgstr ""
 
-#: app/templates/dashboard.html:74
+#: app/templates/dashboard.html:73
 msgid "swea_knowledge_hub"
 msgstr ""
 
-#: app/templates/dashboard.html:93
+#: app/templates/dashboard.html:92
 msgid "swea_subscribers"
 msgstr ""
 
@@ -239,64 +219,168 @@ msgstr ""
 msgid "empty research"
 msgstr ""
 
-#: app/templates/partials/dashboard/new_project_form.html:10
-msgid "project_name"
+#: app/templates/partials/dashboard/edit_project_form.html:10
+#: app/templates/partials/dashboard/new_project_form.html:5
+msgid "title_english"
 msgstr ""
 
-#: app/templates/partials/dashboard/new_project_form.html:16
-msgid "project_description"
+#: app/templates/partials/dashboard/edit_project_form.html:23
+#: app/templates/partials/dashboard/new_project_form.html:18
+msgid "title_arabic"
 msgstr ""
 
-#: app/templates/partials/dashboard/new_project_form.html:21
-msgid "active"
+#: app/templates/partials/dashboard/edit_project_form.html:38
+msgid "author_name"
 msgstr ""
 
-#: app/templates/partials/dashboard/new_project_form.html:22
+#: app/templates/partials/dashboard/edit_project_form.html:51
+#: app/templates/partials/dashboard/new_project_form.html:59
+msgid "author_email"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_project_form.html:65
+#: app/templates/partials/dashboard/new_project_form.html:74
+msgid "status"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_project_form.html:72
+#: app/templates/partials/dashboard/new_project_form.html:82
+#: app/templates/partials/dashboard/projects.html:46
+msgid "ongoing"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_project_form.html:73
+#: app/templates/partials/dashboard/new_project_form.html:83
 msgid "completed"
 msgstr ""
 
-#: app/templates/partials/dashboard/new_project_form.html:28
-#: app/templates/partials/dashboard/projects.html:17
+#: app/templates/partials/dashboard/edit_project_form.html:82
+#: app/templates/partials/dashboard/new_project_form.html:92
+msgid "date_of_completion"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_project_form.html:96
+#: app/templates/partials/dashboard/new_project_form.html:105
+msgid "tags_english"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_project_form.html:108
+#: app/templates/partials/dashboard/new_project_form.html:117
+msgid "tags_arabic"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_project_form.html:122
+#: app/templates/partials/dashboard/new_project_form.html:131
+msgid "hero_image"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_project_form.html:135
+#: app/templates/partials/dashboard/new_project_form.html:144
+msgid "additional_images"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_project_form.html:149
+msgid "testimonials"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_project_form.html:167
+msgid "update_project"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:11
+msgid "project_title_english"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:24
+msgid "project_title_arabic"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:33
+msgid "author_name_en"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:39
+msgid "author_name_en_placeholder"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:46
+msgid "author_name_ar"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:52
+msgid "author_name_ar_placeholder"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:65
+msgid "author_email_placeholder"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:111
+msgid "tags_english_placeholder"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:123
+msgid "tags_arabic_placeholder"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:159
+msgid "en_testimonials"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:164
+msgid "testimonials_english_placeholder"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:172
+msgid "ar_testimonials"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:177
+msgid "testimonials_arabic_placeholder"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:189
+#: app/templates/partials/dashboard/projects.html:21
 msgid "add_project"
 msgstr ""
 
-#: app/templates/partials/dashboard/projects.html:25
+#: app/templates/partials/dashboard/projects.html:31
 msgid "search_project"
 msgstr ""
 
-#: app/templates/partials/dashboard/projects.html:39
+#: app/templates/partials/dashboard/projects.html:45
 msgid "all_projects"
 msgstr ""
 
-#: app/templates/partials/dashboard/projects.html:40
-msgid "active_projects"
-msgstr ""
-
-#: app/templates/partials/dashboard/projects.html:41
+#: app/templates/partials/dashboard/projects.html:47
 msgid "completed_projects"
 msgstr ""
 
-#: app/templates/partials/dashboard/projects.html:66
-msgid "edit"
-msgstr ""
-
-#: app/templates/partials/dashboard/projects.html:72
-msgid "confirm_delete_project"
-msgstr ""
-
-#: app/templates/partials/dashboard/projects.html:76
-msgid "delete"
-msgstr ""
-
-#: app/templates/partials/dashboard/projects.html:84
-msgid "no_projects_found"
+#: app/templates/partials/dashboard/projects.html:68
+msgid "by"
 msgstr ""
 
 #: app/templates/partials/dashboard/projects.html:99
+msgid "edit"
+msgstr ""
+
+#: app/templates/partials/dashboard/projects.html:104
+msgid "confirm_delete_project"
+msgstr ""
+
+#: app/templates/partials/dashboard/projects.html:108
+msgid "delete"
+msgstr ""
+
+#: app/templates/partials/dashboard/projects.html:115
+msgid "no_projects_found"
+msgstr ""
+
+#: app/templates/partials/dashboard/projects.html:128
 msgid "previous"
 msgstr ""
 
-#: app/templates/partials/dashboard/projects.html:113
+#: app/templates/partials/dashboard/projects.html:141
 msgid "next"
 msgstr ""
 

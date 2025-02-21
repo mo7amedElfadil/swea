@@ -1,16 +1,16 @@
-"""Module that defines `create_app` function to create the Flask app instance
-"""
+"""Module that defines `create_app` function to create the Flask app instance"""
 
 from flask import Flask, render_template, request, send_from_directory
 from flask import session as flask_session
+from flask_babel import Babel
+from flask_babel import gettext as _
 from flask_cors import CORS
 from flask_minify import Minify
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 from api.v1.views import bp as app_view
-from app.extensions import init_cache, init_session, get_locale
+from app.extensions import db, get_locale, init_cache, init_session, migrate
 from config import Config
-from flask_babel import Babel, gettext as _
 
 
 def create_app(config_class=Config):
@@ -21,6 +21,28 @@ def create_app(config_class=Config):
     """
     app = Flask(__name__, static_folder="static")
     app.config.from_object(config_class)
+
+    # Initialize Flask-SQLAlchemy
+    db.init_app(app)
+
+    # Initialize Flask-Migrate
+    migrate.init_app(app, db)
+
+    # Import models to create tables
+    from app.models import (
+        Contact,
+        Course,
+        CourseMember,
+        Member,
+        News,
+        Podcast,
+        PodcastMember,
+        Project,
+        Research,
+        Team,
+        User,
+    )
+
     app.url_map.strict_slashes = False
     app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1, x_port=1, x_prefix=1)
 
@@ -51,7 +73,7 @@ def create_app(config_class=Config):
 
     @app.context_processor
     def inject_locale():
-        '''Inject the locale into each rendered template'''
+        """Inject the locale into each rendered template"""
         return dict(locale=get_locale())
 
     @app.route("/robots.txt")

@@ -1,5 +1,5 @@
 # Makefile for the Application (Frontend & Backend)
-.PHONY: help setup check-dependencies clean check_venv run_flask watch_tw watch_static up_db down_db stop_flask stop_tailwind stop_static restart restart_tw stop_static list status test version update-translation
+.PHONY: help setup check-dependencies clean check_venv run_flask watch_tw watch_static up_db down_db stop_flask stop_tailwind stop_static restart restart_tw stop_static list status test version update-translation db_init db_migrate db_upgrade db_reset
 
 # Default target
 .DEFAULT_GOAL := help
@@ -8,6 +8,7 @@
 TMUX := $(shell which tmux 2> /dev/null)
 NPM := $(shell which npm 2> /dev/null)
 PYTHON := $(shell which python3 2> /dev/null)
+FLASK := $(shell which flask 2> /dev/null)
 
 # Colors
 RED := \e[31m
@@ -51,6 +52,9 @@ setup: ## Setup project and install core tools and dependencies
 	@$(MAKE) -s check-dependencies || exit 1
 	@$(MAKE) -s check_venv || exit 1
 	@$(MAKE) -s check_npm || exit 1
+	@$(MAKE) -s db_init || exit 1
+	@$(MAKE) -s db_migrate || exit 1 
+	@$(MAKE) -s db_upgrade || exit 1
 
 
 # Check and install dependencies
@@ -158,6 +162,24 @@ update-translation: ## Update translations
 	@pybabel update -i messages.pot -d app/translations
 	@pybabel compile -d app/translations
 	@$(MAKE) -s restart
+
+# Database management
+db_init: ## Initialize the database with Flask-Migrate
+	@echo "Initializing database with Flask-Migrate..."
+	@$(FLASK) db init
+
+db_migrate: ## Generate a new migration script
+	@echo "Generating migration script..."
+	@$(FLASK) db migrate -m "Initial setup"
+
+db_upgrade: ## Apply the latest migration to the database
+	@echo "Applying the latest migration..."
+	@$(FLASK) db upgrade
+
+db_reset: ## Reset the database (drop all tables and reapply migrations)
+	@echo "Resetting the database..."
+	@$(FLASK) db downgrade base
+	@$(FLASK) db upgrade
 
 # Help message
 help: ## Show this help message

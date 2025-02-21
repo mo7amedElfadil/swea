@@ -65,6 +65,7 @@ def login():
 @response(template_file="dashboard.html")
 def dashboard():
     """Dashboard page"""
+    locale = session.get("lang", Config.BABEL_DEFAULT_LOCALE)
     tab_query = request.args.get("q", "projects")
     tab_mapper = {
         "team": "partials/dashboard/team.html",
@@ -76,18 +77,14 @@ def dashboard():
         # Fetch projects for the 'projects' tab
         if tab_query == "projects":
             page = int(request.args.get("page", 1))
-            search = request.args.get("search", "")
-            filter_status = request.args.get("filter", "all")
-
-            projects, total_pages = project_service.get_projects(
-                search=search, status=filter_status, page=page
-            )
+            all_projects = project_service.get_all_projects()
             return make_response(
                 render_template(
                     "partials/dashboard/projects.html",
-                    projects=projects,
+                    locale=locale,
+                    projects=all_projects,
                     page=page,
-                    total_pages=total_pages,
+                    total_pages=len(all_projects) // 5 + 1,
                 )
             )
 

@@ -1,4 +1,4 @@
-from flask import flash, make_response, redirect, render_template, request, url_for
+from flask import make_response, redirect, render_template, request
 from flask_babel import gettext as _
 
 from api.v1.views import bp
@@ -17,55 +17,60 @@ def new_project():
 @bp.route("/dashboard/add-project", methods=["POST"])
 def add_project():
     """Add a new project"""
-    name = request.form.get("name")
-    description = request.form.get("description")
-    status = request.form.get("status", "active")
+    try:
+        form_data = request.form.to_dict()
+        files = request.files
+        project_service.create_project(form_data, files)
+    except Exception as e:
+        print(e)
+        return redirect("/dashboard?q=projects")
 
-    if not name or not description:
-        flash(_("project_name_and_description_required"), "error")
-        return redirect(url_for("dashboard"))
+    return make_response(
+        render_template(
+            "partials/dashboard/projects.html",
+            projects=project_service.get_all_projects(),
+        )
+    )
 
-    project_service.add_project(name=name, description=description, status=status)
-    flash(_("project_added_successfully"), "success")
-    return make_response(render_template("partials/dashboard/projects.html"))
 
-
-@bp.route("/dashboard/edit-project/<int:project_id>", methods=["GET"])
+@bp.route("/dashboard/edit-project/<project_id>", methods=["GET"])
 def edit_project(project_id):
     """Render the form to edit an existing project"""
-    project = project_service.get_project_by_id(project_id)
+    project = project_service.get_project_by_uuid(project_id)
     if not project:
-        flash(_("project_not_found"), "error")
-        return redirect(url_for("dashboard"))
+        return redirect("/dashboard?q=projects")
 
     return render_template("partials/dashboard/edit_project_form.html", project=project)
 
 
-@bp.route("/dashboard/update-project/<int:project_id>", methods=["POST"])
+@bp.route("/dashboard/update-project/<project_id>", methods=["POST"])
 def update_project(project_id):
     """Update an existing project"""
-    name = request.form.get("name")
-    description = request.form.get("description")
-    status = request.form.get("status", "active")
+    try:
+        form_data = request.form.to_dict()
 
-    if not name or not description:
-        flash(_("project_name_and_description_required"), "error")
-        return redirect(url_for("dashboard"))
+        files = request.files
+        project_service.update_project(project_id, form_data, files)
+        return make_response(
+            render_template(
+                "partials/dashboard/projects.html",
+                projects=project_service.get_all_projects(),
+            )
+        )
+    except Exception as e:
+        return redirect("/dashboard?q=projects")
 
-    project_service.update_project(
-        project_id=project_id, name=name, description=description, status=status
-    )
-    flash(_("project_updated_successfully"), "success")
-    return make_response(render_template("partials/dashboard/projects.html"))
 
-
-@bp.route("/dashboard/delete-project/<int:project_id>", methods=["DELETE"])
+@bp.route("/dashboard/delete-project/<project_id>", methods=["DELETE"])
 def delete_project(project_id):
     """Delete a project"""
     success = project_service.delete_project(project_id)
     if not success:
-        flash(_("project_not_found"), "error")
         return make_response("", 404)
 
-    flash(_("project_deleted_successfully"), "success")
-    return make_response("", 200)
+    return make_response(
+        render_template(
+            "partials/dashboard/projects.html",
+            projects=project_service.get_all_projects(),
+        )
+    )

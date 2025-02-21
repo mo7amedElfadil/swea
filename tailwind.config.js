@@ -7,7 +7,7 @@ module.exports = {
         fluid: "repeat(auto-fit, minmax(350px, 1fr))",
       },
       backgroundSize: {
-        '900': '900px', // Add your custom size here
+        900: "900px", // Add your custom size here
       },
       colors: {
         primary: {
@@ -38,8 +38,11 @@ module.exports = {
         },
       },
       fontFamily: {
-        primary: ['"Noto Kufi Arabic"', 'serif'],
-        secondary: ['sans-serif'],
+        primary: ['"Noto Kufi Arabic"', "serif"],
+        secondary: ["sans-serif"],
+      },
+      animation: {
+        "spin-slow": "spin 1.5s linear infinite",
       },
     },
   },

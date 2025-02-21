@@ -1,8 +1,7 @@
-"""configuration file for your Flask application.
-"""
+"""configuration file for your Flask application."""
 
-from os import getenv, path
 import os
+from os import getenv, path
 
 import redis
 from dotenv import load_dotenv
@@ -22,6 +21,7 @@ class Config:
     BABEL_TRANSLATION_DIRECTORIES = os.path.join(basedir, "app/translations")
 
     # General App configuration
+    UPLOAD_FOLDER = getenv("UPLOAD_FOLDER", os.path.join(basedir, "uploads"))
     SECRET_KEY = getenv("SECRET_KEY", "you-will-never-guess")
     PREFERRED_URL_SCHEME = getenv("PREFERRED_URL_SCHEME", "https")
     API_KEY = getenv("API_KEY", "you-will-never-guess")
@@ -39,9 +39,11 @@ class Config:
     REDIS_URL = getenv("REDIS_URL")
     TOKEN_REDIS_URL = getenv("TOKEN_REDIS_URL")
 
-    # MongoDB configuration
-    MONGO_URI = getenv("MONGO_URI")
-    MONGO_DB_NAME = getenv("MONGO_DB_NAME")
+    # Database configuration (PostgreSQL)
+    SQLALCHEMY_DATABASE_URI = getenv(
+        "POSTGRES_URL", "postgresql://swea_user:swea_pass@localhost/swea_db"
+    )
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Flask cache Configuration
     if DEBUG == 1:

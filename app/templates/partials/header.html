@@ -45,6 +45,7 @@
                                 hx-get="/set_language?lang={% if locale == 'ar'%}en{% else %}ar{%endif%}"
                                 hx-target='body'
                                 hx-trigger='click'
+                                hx-push-url="{{request.path}}?lang={% if locale == 'ar'%}en{% else %}ar{%endif%}"
                                 >
                                 {{_('switch language')}}
                         </button>

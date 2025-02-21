@@ -1,0 +1,208 @@
+<form
+  hx-post="/dashboard/update-project/{{ project.uuid }}"
+  hx-target="this"
+  hx-swap="innerHTML"
+  class="space-y-4"
+>
+  <!-- Title (Multi-language Support) -->
+  <div>
+    <label for="title-en" class="block text-sm font-medium text-gray-700"
+      >{{ _("title_english") }}</label
+    >
+    <input
+      type="text"
+      id="title-en"
+      name="title[en]"
+      value="{{ project.title.en }}"
+      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+      required
+    />
+  </div>
+  <div>
+    <label for="title-ar" class="block text-sm font-medium text-gray-700"
+      >{{ _("title_arabic") }}</label
+    >
+    <input
+      type="text"
+      id="title-ar"
+      name="title[ar]"
+      value="{{ project.title.ar }}"
+      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+      required
+    />
+  </div>
+
+  <!-- Author (Name and Email) -->
+  <div>
+    <label for="author-name-en" class="block text-sm font-medium text-gray-700"
+      >{{ _("author_name_en") }}</label
+    >
+    <input
+      type="text"
+      id="author-name-en"
+      name="author[name][en]"
+      value="{{ project.author.name.en }}"
+      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+      required
+    />
+  </div>
+  <div>
+    <label for="author-name-ar" class="block text-sm font-medium text-gray-700"
+      >{{ _("author_name_ar") }}</label
+    >
+    <input
+      type="text"
+      id="author-name-ar"
+      name="author[name][ar]"
+      value="{{ project.author.name.ar }}"
+      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+      required
+    />
+  </div>
+  <div>
+    <label for="author-email" class="block text-sm font-medium text-gray-700"
+      >{{ _("author_email") }}</label
+    >
+    <input
+      type="email"
+      id="author-email"
+      name="author[email]"
+      value="{{ project.author.email }}"
+      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+      required
+    />
+  </div>
+
+  <!-- Status -->
+  <div>
+    <label for="status" class="block text-sm font-medium text-gray-700"
+      >{{ _("status") }}</label
+    >
+    <select
+      id="status"
+      name="status"
+      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+      required
+    >
+      <option
+        value="ongoing"
+        {% if project.status=="ongoing" %}selected{% endif %}
+      >
+        {{ _("ongoing") }}
+      </option>
+      <option
+        value="completed"
+        {% if project.status=="completed" %}selected{% endif %}
+      >
+        {{ _("completed") }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Date of Completion -->
+  <div>
+    <label
+      for="date-of-completion"
+      class="block text-sm font-medium text-gray-700"
+      >{{ _("date_of_completion") }}</label
+    >
+    <input
+      type="date"
+      id="date-of-completion"
+      name="date_of_completion"
+      value="{{ project.date_of_completion }}"
+      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+    />
+  </div>
+
+  <!-- Tags (Multi-language Support) -->
+  <div>
+    <label for="tags-en" class="block text-sm font-medium text-gray-700"
+      >{{ _("tags_english") }}</label
+    >
+    <input
+      type="text"
+      id="tags-en"
+      name="tags[en]"
+      value="{{ project.tags.en }}"
+      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+    />
+  </div>
+  <div>
+    <label for="tags-ar" class="block text-sm font-medium text-gray-700"
+      >{{ _("tags_arabic") }}</label
+    >
+    <input
+      type="text"
+      id="tags-ar"
+      name="tags[ar]"
+      value="{{ project.tags.ar }}"
+      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+    />
+  </div>
+
+  <!-- Hero Image -->
+  <div>
+    <label for="hero-image" class="block text-sm font-medium text-gray-700"
+      >{{ _("hero_image") }}</label
+    >
+    <input
+      type="file"
+      id="hero-image"
+      name="hero_image"
+      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+    />
+  </div>
+
+  <!-- Additional Images -->
+  <div>
+    <label for="images" class="block text-sm font-medium text-gray-700"
+      >{{ _("additional_images") }}</label
+    >
+    <input
+      type="file"
+      id="images"
+      name="images"
+      multiple
+      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+    />
+  </div>
+
+  <!-- Testimonials -->
+  <div>
+    <div>
+      <label for="testimonials-en" class="block text-sm font-medium text-gray-700"
+        >{{ _("en_testimonials") }}</label
+      >
+      <textarea
+        id="testimonials-en"
+        name="testimonials[en]"
+        placeholder="{{ _('testimonials_english_placeholder') }}"
+        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+      ></textarea>
+    </div>
+    <div>
+      <label
+        for="testimonials-ar"
+        class="block text-sm font-medium text-gray-700"
+        >{{ _("ar_testimonials") }}</label
+      >
+      <textarea
+        id="testimonials-ar"
+        name="testimonials[ar]"
+        placeholder="{{ _('testimonials_arabic_placeholder') }}"
+        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+      ></textarea>
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <div>
+    <button
+      type="submit"
+      class="w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
+    >
+      {{ _("update_project") }}
+    </button>
+  </div>
+</form>

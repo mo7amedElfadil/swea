@@ -1,0 +1,17 @@
+<!-- Projects Tab -->
+{% block projects %}
+<div>
+  <h2 class="text-2xl font-semibold">Manage Subscribers</h2>
+  <form hx-post="/update/projects" hx-target="#tab-content">
+    <label>Title:</label>
+    <input type="text" name="title" class="border rounded p-2 w-full" />
+    <label>Author:</label>
+    <input type="text" name="author" class="border rounded p-2 w-full" />
+    <label>Content:</label>
+    <textarea name="content" class="border rounded p-2 w-full"></textarea>
+    <button type="submit" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+      Save
+    </button>
+  </form>
+</div>
+{% endblock %}

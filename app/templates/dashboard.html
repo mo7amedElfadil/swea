@@ -3,28 +3,119 @@
 {% block title %}{{ _('dashboard') }}{% endblock %}
 
 {% block content %}
-<div class="container mx-auto py-8 px-4">
-    <h1 class="text-3xl font-bold mb-6">Dashboard</h1>
-
-    <!-- Tabs -->
-    <div class="flex space-x-4 border-b pb-2">
-        <button class="tab-link" hx-get="/dashboard/projects" hx-target="#tab-content" hx-swap="innerHTML">Projects</button>
-        <button class="tab-link" hx-get="/dashboard/team" hx-target="#tab-content" hx-swap="innerHTML">Team Members</button>
-        <button class="tab-link" hx-get="/dashboard/knowledge-hub" hx-target="#tab-content" hx-swap="innerHTML">Knowledge Hub</button>
+<div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
+    <!-- Header Section -->
+    <div class="mb-8">
+		<h1 class="text-4xl font-bold font-primary text-gray-900 mb-2">{{ _("swea_dashboard")}}</h1>
+		<p class="text-primary-600">{{ _("welcome") }}</p>
     </div>
-
-    <!-- Tab Content -->
-    <div id="tab-content" class="mt-6">
-        {% include "partials/dashboard/projects.html" %}
+    <!-- Dashboard Grid -->
+    <div class="grid md:grid-cols-4 gap-6">
+        <!-- Navigation Tabs -->
+        <!-- Navigation Tabs -->
+        <div class="md:col-span-1">
+            <nav class="flex flex-col space-y-2">
+                <button 
+                    class="flex items-center px-4 py-3 text-sm font-primary font-medium rounded-lg transition-all duration-200
+                           hover:bg-primary-100 
+                           focus:ring-2 focus:ring-primary-500 focus:outline-none
+                           text-primary-700 
+                           bg-primary-50 
+                           hover:text-primary-900 
+                           aria-selected:bg-primary-200 aria-selected:text-primary-900
+                           "
+                    hx-get="/dashboard?q=projects" 
+                    hx-target="#tab-content" 
+                    hx-swap="innerHTML"
+                    hx-headers='{"hx-tab": "true"}'
+                    role="tab"
+                    aria-selected="true"
+                >
+                <img class="w-5 h-5 m-2" src="{{url_for('static', filename='icons/projects.svg')}}" alt="Projects Icon">
+                    {{ _("swea_projects") }}
+                </button>
+                <button 
+                    class="flex items-center px-4 py-3 text-sm font-primary font-medium rounded-lg transition-all duration-200
+                           hover:bg-primary-100 
+                           focus:ring-2 focus:ring-primary-500 focus:outline-none
+                           text-primary-700 
+                           bg-primary-50 
+                           hover:text-primary-900 
+                           aria-selected:bg-primary-200 aria-selected:text-primary-900
+                           "
+                    hx-get="/dashboard?q=team" 
+                    hx-target="#tab-content" 
+                    hx-swap="innerHTML"
+                    hx-headers='{"hx-tab": "true"}'
+                    role="tab"
+                    aria-selected="false"
+                >
+                <img class="w-5 h-5 m-2" src="{{url_for('static', filename='icons/team.svg')}}" alt="Team Icon">
+                    {{ _("swea_team") }}
+                </button>
+                <button 
+                    class="flex items-center px-4 py-3 text-sm font-primary font-medium rounded-lg transition-all duration-200
+                           hover:bg-primary-100 
+                           focus:ring-2 focus:ring-primary-500 focus:outline-none
+                           text-primary-700 
+                           bg-primary-50
+                           hover:text-primary-900
+                           aria-selected:bg-primary-200 aria-selected:text-primary-900
+                           "
+                    hx-get="/dashboard?q=knowledge-hub" 
+                    hx-target="#tab-content" 
+                    hx-swap="innerHTML"
+                    hx-headers='{"hx-tab": "true"}'
+                    role="tab"
+                    aria-selected="false"
+                >
+                    <img class="w-5 h-5 m-2" src="{{url_for('static', filename='icons/knowledge_hub.svg')}}" alt="Knowledge Hub Icon">
+                    {{ _("swea_knowledge_hub") }}
+                </button>
+                <button 
+                    class="flex items-center px-4 py-3 text-sm font-primary font-medium rounded-lg transition-all duration-200
+                           hover:bg-primary-100 
+                           focus:ring-2 focus:ring-primary-500 focus:outline-none
+                           text-primary-700 
+                           bg-primary-50 
+                           hover:text-primary-900 
+                           aria-selected:bg-primary-200 aria-selected:text-primary-900
+                           "
+                    hx-get="/dashboard?q=subscribers" 
+                    hx-target="#tab-content" 
+                    hx-swap="innerHTML"
+                    hx-headers='{"hx-tab": "true"}'
+                    role="tab"
+                    aria-selected="false"
+                >
+                    <img class="w-5 h-5 m-2" src="{{url_for('static', filename='icons/subscribers.svg')}}" alt="Subscribers Icon">
+                    {{ _("swea_subscribers") }}
+                </button>
+            </nav>
+        </div>
+        <!-- Content Area -->
+        <div class="md:col-span-3">
+            <div class="p-6 bg-primary-50 rounded-xl shadow-sm transition-all duration-200"
+                 id="tab-content">
+				 {% include 'partials/dashboard/projects.html' %}
+            </div>
+        </div>
     </div>
 </div>
 
+<!-- Loading Indicator (for HTMX requests) -->
+<div id="loading-indicator" class="htmx-indicator fixed top-4 right-4">
+    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500"></div>
+</div>
+
 <style>
-    .tab-link {
-        @apply px-4 py-2 font-semibold text-gray-700 bg-gray-200 rounded-md cursor-pointer;
+    .htmx-indicator {
+        opacity: 0;
+        transition: opacity 200ms ease-in;
     }
-    .tab-link:hover {
-        @apply bg-gray-300;
+    .htmx-request .htmx-indicator {
+        opacity: 1;
     }
 </style>
+<script charset="utf-8" src="{{ url_for('static', filename='js/dashboard.js') }}" defer></script>
 {% endblock %}

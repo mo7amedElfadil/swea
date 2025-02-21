@@ -2,15 +2,20 @@
 like database connections, session, caching, etc.
 """
 
-from flask import request, session as flask_session
-from pymongo import MongoClient
+from flask import session as flask_session
 from flask_caching import Cache
+from flask_migrate import Migrate
 from flask_session import Session
+from flask_sqlalchemy import SQLAlchemy
+
 from config import Config
 
+# Initialize Flask-SQLAlchemy globally
+db = SQLAlchemy()
 
-# Initialize PyMongo globally
-db = MongoClient(Config.MONGO_URI)['swea']
+# Initialize Flask-Migrate globally
+migrate = Migrate()
+
 
 # Initialize Flask-Session globally
 session = Session()
@@ -24,21 +29,6 @@ API_KEY = Config.API_KEY
 def init_session(app):
     """Initialize Flask-Session with the provided Flask app."""
     session.init_app(app)
-
-
-def get_mongo_uri_options():
-    """Get MongoDB URI options."""
-    options = [
-        "retryWrites=true",
-        "w=majority",
-        "maxPoolSize=50",
-        "minPoolSize=5",
-        "maxIdleTimeMS=10000",
-        "connectTimeoutMS=2000",
-        "socketTimeoutMS=5000",
-        "readPreference=primaryPreferred",
-    ]
-    return "&".join(options)
 
 
 def init_cache(app):

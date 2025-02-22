@@ -91,7 +91,7 @@ check_npm:
 
 
 #run everything
-run: run_flask watch_tw watch_static ## Run the application
+run: run_flask watch_tw hmr ## Run the application
 
 
 
@@ -113,7 +113,7 @@ down_db: ## Stop the database (docker-compose: MongoDB & Redis)
 	@$(DOWN_DB)
 
 # Stop everything
-stop: stop_flask stop_tailwind stop_static ## Stop the application
+stop: stop_flask stop_tailwind stop_hmr ## Stop the application
 
 hmr: ## Run hot module replacement
 	@echo '[HMR] Running...'

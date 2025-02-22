@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        fluid: "repeat(auto-fit, minmax(350px, 400px))",
+        fluid: "repeat(auto-fit, minmax(300px, 450px))",
       },
       backgroundSize: {
         900: "900px", // Add your custom size here

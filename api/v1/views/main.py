@@ -1,9 +1,7 @@
 from flask import (
-    flash,
     make_response,
     redirect,
     render_template,
-    render_template_string,
     request,
     session,
     url_for,

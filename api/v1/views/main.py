@@ -35,7 +35,9 @@ def index():
 def projects():
     """projects page"""
     all_projects = ProjectService().get_all_projects()
-    return dict(projects=all_projects, locale=request.args.get("lang",'en'))
+    # locale must be included in the dict in order to be normalized
+    # DONT' use rqeuest.args.get('lang') as it will return None
+    return dict(projects=all_projects, locale=get_locale())
 
 
 @bp.route("/login", methods=["GET", "POST"])

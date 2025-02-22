@@ -20,7 +20,7 @@
 	<!-- Tabs -->
 	<section class='flex flex-col gap-4 container mx-auto px-8'>
 		<!-- Tab list -->
-		<div class="grid grid-cols-3 mx-auto w-[min(100%,900px)] sm:text-xl" role="tablist" aria-label="Content Tabs">
+		<div class="grid grid-cols-3 mx-auto w-[min(100%,900px)] text-xs sm:text-xl" role="tablist" aria-label="Content Tabs">
 			<button
 					class="flex items-center justify-center gap-1 px-4 py-2 capitalize bg-white
 						   {% if locale == 'en' %} rounded-l-3xl {%else%} rounded-r-2xl {%endif%}"
@@ -35,7 +35,7 @@
 					hx-headers='{"hx-tab": "true"}'
 					>
 					<span class="inline-block">
-						{{icons.research(cls='size-6',clr='#000')}}
+						{{icons.research(cls='size-5 sm:size-7',clr='#000')}}
 					</span>
 				<span>{{_("research")}}</span>
 			</button>
@@ -52,7 +52,7 @@
 					hx-headers='{"hx-tab": "true"}'
 					>
 					<span class="inline-block">
-						{{icons.video(cls='size-6 fill-black')}}
+						{{icons.video(cls='size-5 fill-black sm:size-7')}}
 					</span>
 				<span>{{_("courses")}}</span>
 			</button>
@@ -69,7 +69,7 @@
 					hx-headers='{"hx-tab": "true"}'
 					>
 					<span class="inline-block">
-						{{icons.music(cls='size-6 fill-black')}}
+						{{icons.music(cls='size-5 fill-black sm:size-7')}}
 					</span>
 				<span>{{_("podcasts")}}</span>
 			</button>

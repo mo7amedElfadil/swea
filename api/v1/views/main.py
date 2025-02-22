@@ -11,10 +11,12 @@ from flask import (
 from flask_babel import gettext as _
 
 from api.v1.views import bp
+from app.extensions import get_locale
 from app.services.project_service import ProjectService
 from config import Config
 from utils.referrer_modifier import modify_referrer_lang
 from utils.view_modifiers import response
+from utils.map_i18n import normailze_i18n
 
 # Initialize the service with static dummy data
 project_service = ProjectService()
@@ -29,9 +31,11 @@ def index():
 
 @bp.route("/projects")
 @response(template_file="projects.html")
+@normailze_i18n
 def projects():
     """projects page"""
-    return dict()
+    all_projects = ProjectService().get_all_projects()
+    return dict(projects=all_projects, locale=request.args.get("lang",'en'))
 
 
 @bp.route("/login", methods=["GET", "POST"])

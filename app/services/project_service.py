@@ -152,11 +152,11 @@ class ProjectService:
         Returns:
             List[Project]: A list of projects for the specified page.
         """
-        return (
+        return [p.to_dict() for p  in (
             Project.query.filter_by(deleted_at=None)
             .paginate(page=page, per_page=self.page_size)
             .items
-        )
+        )]
 
     def get_projects_by_completion_date(
         self, date_of_completion: date

@@ -61,6 +61,10 @@ class BaseModel(db.Model):
         """Get all records from the database by a given attribute."""
         return cls.query.filter_by(**kwargs, deleted_at=None).all()
 
+    def to_dict(self):
+        """Convert the model to a dictionary."""
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+
     def __repr__(self):
         """Return a string representation of the model."""
         return f"<{self.__class__.__name__} {self.uuid}>"

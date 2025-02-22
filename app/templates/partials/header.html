@@ -1,8 +1,10 @@
-<header class='w-full p-4 bg-secondary-100 fixed top-0 left-0 right-0 z-50
+<header class='translate-x-0 w-full p-4 bg-secondary-100 fixed top-0 left-0 right-0 z-50
+        after:absolute after:inset-0 after:bg-secondary-100
+        sm:after:hidden
         {% if locale == 'ar' %} font-primary {%else%} font-secondary {%endif%}'
         >
         <nav class='container mx-auto flex justify-between items-center'>
-            <div class='w-32'>
+            <div class='relative z-10 w-32'>
                 <a href="/" target="_self">
                     <img class='w-full' src="{{url_for('static',filename='imgs/logo.png')}}" alt="swea logo"/>
                 </a>
@@ -14,7 +16,7 @@
             </button>
             <div
                     id='menu-container'
-                    class='transition-all bg-primary-600 text-white absolute left-0 right-0 top-0 -translate-y-full pt-14
+                    class='transition-all duration-500 pb-4 bg-secondary-400 text-white absolute left-0 right-0 top-0 -translate-y-full pt-14
                     sm:static sm:bg-transparent sm:translate-y-0 sm:text-black sm:p-0'>
                 <ul class='flex flex-col sm:flex-row'>
                     <li class='text-center'>

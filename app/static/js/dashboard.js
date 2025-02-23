@@ -3,62 +3,80 @@ if (!window.dashboardInitialized) {
   const nodes = [];
   const add = (template) => (evt) => {
     const clone = template.content.cloneNode(true);
-    const container = document.getElementById('contents');
+    const container = document.getElementById("contents");
 
     nodes.push(clone);
-    clone.querySelector('#add-template').addEventListener('click', add(template));
-    clone.querySelector('#remove-template').addEventListener('click', remove);
+    clone
+      .querySelector("#add-template")
+      .addEventListener("click", add(template));
+    clone.querySelector("#remove-template").addEventListener("click", remove);
 
     for (let i = 0; i < nodes.length; i++) {
-      const elem = nodes[i].querySelector('div');
+      const elem = nodes[i].querySelector("div");
 
-      if (elem && !elem.hasAttribute('id')) {
-        elem.setAttribute('id', i);
-        elem.querySelector('textarea[name="content[ar]"]').setAttribute('name', `content[${i}][ar]`);
-        elem.querySelector('textarea[name="content[en]"]').setAttribute('name', `content[${i}][en]`);
+      if (elem && !elem.hasAttribute("id")) {
+        elem.setAttribute("id", i);
+        elem
+          .querySelector('textarea[name="content[ar]"]')
+          .setAttribute("name", `content[${i + 1}][ar]`);
+        elem
+          .querySelector('textarea[name="content[en]"]')
+          .setAttribute("name", `content[${i + 1}][en]`);
         elem.prepend(generate_title(i + 1));
       }
     }
     container.appendChild(clone);
     const secondToLast = container.children[container.children.length - 2];
-    secondToLast.querySelector('#add-template').classList.add('hidden')
+    secondToLast.querySelector("#add-template").classList.add("hidden");
   };
 
   const remove = (evt) => {
-    const id = evt.currentTarget.parentElement.parentElement.getAttribute('id');
-    const container = document.getElementById('contents');
+    const id = evt.currentTarget.parentElement.parentElement.getAttribute("id");
+    const container = document.getElementById("contents");
     nodes.splice(parseInt(id), 1);
     evt.currentTarget.parentElement.parentElement.remove();
     if (nodes.length == 1) {
-      container.children[2].querySelector('#add-template').classList.remove('hidden')
+      container.children[2]
+        .querySelector("#add-template")
+        .classList.remove("hidden");
     } else if (nodes.length == 0) {
-      container.children[0].querySelector('#add-more').classList.remove('hidden')
+      container.children[0]
+        .querySelector("#add-more")
+        .classList.remove("hidden");
     }
   };
 
   function generate_title(id) {
-    const label = document.createElement('label');
+    const label = document.createElement("label");
     label.textContent = `Content ${id}`;
-    label.setAttribute('class', 'text-sm font-medium text-gray-700 capitalize')
+    label.setAttribute("class", "text-sm font-medium text-gray-700 capitalize");
     return label;
   }
 
-  const observer = new MutationObserver(function(mutationsList, observer) {
-    if (document.getElementById('contents')) {
-      const addMore = document.getElementById('add-more');
+  const observer = new MutationObserver(function (mutationsList, observer) {
+    if (document.getElementById("contents")) {
+      const addMore = document.getElementById("add-more");
 
-      addMore.addEventListener('click', () => {
-        const template = document.getElementById('content-template');
-        const container = document.getElementById('contents');
+      addMore.addEventListener("click", () => {
+        const template = document.getElementById("content-template");
+        const container = document.getElementById("contents");
         const clone = template.content.cloneNode(true);
 
-        clone.querySelector('#add-template').addEventListener('click', add(template));
-        clone.querySelector('#remove-template').addEventListener('click', remove);
-        clone.querySelector('div').setAttribute('id', 0);
-        clone.querySelector('textarea[name="content[ar]"]').setAttribute('name', 'content[0][ar]');
-        clone.querySelector('textarea[name="content[en]"]').setAttribute('name', 'content[0][en]');
-        clone.querySelector('div').prepend(generate_title(1));
-        addMore.classList.add('hidden');
+        clone
+          .querySelector("#add-template")
+          .addEventListener("click", add(template));
+        clone
+          .querySelector("#remove-template")
+          .addEventListener("click", remove);
+        clone.querySelector("div").setAttribute("id", 0);
+        clone
+          .querySelector('textarea[name="content[ar]"]')
+          .setAttribute("name", "content[1][ar]");
+        clone
+          .querySelector('textarea[name="content[en]"]')
+          .setAttribute("name", "content[1][en]");
+        clone.querySelector("div").prepend(generate_title(1));
+        addMore.classList.add("hidden");
         nodes.push(clone);
         container.appendChild(clone);
       });

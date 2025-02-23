@@ -5,6 +5,7 @@ This module provides the business logic for project-related operations.
 """
 
 import os
+import re
 from datetime import date
 from typing import Any, Dict, List, Optional
 
@@ -152,11 +153,14 @@ class ProjectService:
         Returns:
             List[Project]: A list of projects for the specified page.
         """
-        return [p.to_dict() for p  in (
-            Project.query.filter_by(deleted_at=None)
-            .paginate(page=page, per_page=self.page_size)
-            .items
-        )]
+        return [
+            p.to_dict()
+            for p in (
+                Project.query.filter_by(deleted_at=None)
+                .paginate(page=page, per_page=self.page_size)
+                .items
+            )
+        ]
 
     def get_projects_by_completion_date(
         self, date_of_completion: date
@@ -274,4 +278,22 @@ class ProjectService:
                 image.save(filepath)
                 image_paths.append(filepath)
         processed_data["images"] = image_paths  # Save file paths list
+
+        # Process content field
+        content = []
+        content_keys = [key for key in form_data.keys() if key.startswith("content")]
+
+        index_values = set([key.split("[")[1].split("]")[0] for key in content_keys])
+        # Build content list
+        for index in index_values:
+            en_key = f"content[{index}][en]"
+            ar_key = f"content[{index}][ar]"
+            content_entry = {
+                "en": form_data.get(en_key),
+                "ar": form_data.get(ar_key),
+            }
+            content.append(content_entry)
+
+        processed_data["content"] = content
+
         return processed_data

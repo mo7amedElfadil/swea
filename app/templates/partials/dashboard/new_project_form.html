@@ -1,248 +1,333 @@
 <form hx-post="/dashboard/add-project" class="space-y-4">
-  <!-- Title (Multi-language Support) -->
-  <div>
-    <label for="title-en" class="block text-sm font-medium text-gray-700"
-      >{{ _("title_english") }}</label
-    >
-    <input
-      type="text"
-      id="title-en"
-      name="title[en]"
-      placeholder="{{ _('project_title_english') }}"
-      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-      required
-    />
-  </div>
-  <div>
-    <label for="title-ar" class="block text-sm font-medium text-gray-700"
-      >{{ _("title_arabic") }}</label
-    >
-    <input
-      type="text"
-      id="title-ar"
-      name="title[ar]"
-      placeholder="{{ _('project_title_arabic') }}"
-      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-      required
-    />
-  </div>
-
-  <!-- Author (Name and Email) -->
-  <div>
-    <label for="author-name-en" class="block text-sm font-medium text-gray-700"
-      >{{ _("author_name_en") }}</label
-    >
-    <input
-      type="text"
-      id="author-name-en"
-      name="author[name][en]"
-      placeholder="{{ _('author_name_en_placeholder') }}"
-      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-      required
-    />
-  </div>
-  <div>
-    <label for="author-name-ar" class="block text-sm font-medium text-gray-700"
-      >{{ _("author_name_ar") }}</label
-    >
-    <input
-      type="text"
-      id="author-name-ar"
-      name="author[name][ar]"
-      placeholder="{{ _('author_name_ar_placeholder') }}"
-      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-      required
-    />
-  </div>
-  <div>
-    <label for="author-email" class="block text-sm font-medium text-gray-700"
-      >{{ _("author_email") }}</label
-    >
-    <input
-      type="email"
-      id="author-email"
-      name="author[email]"
-      placeholder="{{ _('author_email_placeholder') }}"
-      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-      required
-    />
-  </div>
-
-  <!-- Status -->
-  <div>
-    <label for="status" class="block text-sm font-medium text-gray-700"
-      >{{ _("status") }}</label
-    >
-    <select
-      id="status"
-      name="status"
-      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-      required
-    >
-      <option value="ongoing">{{ _("ongoing") }}</option>
-      <option value="completed">{{ _("completed") }}</option>
-    </select>
-  </div>
-
-  <!-- Date of Completion -->
-  <div>
-    <label
-      for="date-of-completion"
-      class="block text-sm font-medium text-gray-700"
-      >{{ _("date_of_completion") }}</label
-    >
-    <input
-      type="date"
-      id="date-of-completion"
-      name="date_of_completion"
-      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-    />
-  </div>
-
-  <!-- Tags (Multi-language Support) -->
-  <div>
-    <label for="tags-en" class="block text-sm font-medium text-gray-700"
-      >{{ _("tags_english") }}</label
-    >
-    <input
-      type="text"
-      id="tags-en"
-      name="tags[en]"
-      placeholder="{{ _('tags_english_placeholder') }}"
-      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-    />
-  </div>
-  <div>
-    <label for="tags-ar" class="block text-sm font-medium text-gray-700"
-      >{{ _("tags_arabic") }}</label
-    >
-    <input
-      type="text"
-      id="tags-ar"
-      name="tags[ar]"
-      placeholder="{{ _('tags_arabic_placeholder') }}"
-      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-    />
-  </div>
-
-  <!-- Hero Image -->
-  <div>
-    <label for="hero-image" class="block text-sm font-medium text-gray-700"
-      >{{ _("hero_image") }}</label
-    >
-    <input
-      type="file"
-      id="hero-image"
-      name="hero_image"
-      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-    />
-  </div>
-
-  <!-- contents -->
-  <div id="contents" class="flex flex-col gap-2">
-    <div class="flex flex-col gap-2">
-      <label for="content" class="text-sm font-medium text-gray-700 capitalize"
-        >{{ _("content") }}</label
-      >
-      <textarea
-        id="content-en"
-        name="content[0][en]"
-        placeholder="{{ _('content_english_placeholder') }}"
-        class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-      ></textarea>
-      <textarea
-        id="content-ar"
-        name="content[0][ar]"
-        placeholder="{{ _('content_arabic_placeholder') }}"
-        class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-      ></textarea>
-      <button
-        id="add-more"
-        type="button"
-        class="ms-auto p-2 bg-green-700 rounded-full"
-      >
-        <img
-          class="size-6"
-          src="{{url_for('static',filename='icons/add.svg')}}"
-          alt="plus icon"
-        />
-      </button>
-    </div>
-    <template id="content-template">
-      <div class="flex flex-col gap-2">
-        <textarea
-          name="content[en]"
-          placeholder="{{ _('content_english_placeholder') }}"
-          class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-        ></textarea>
-        <textarea
-          name="content[ar]"
-          placeholder="{{ _('content_arabic_placeholder') }}"
-          class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-        ></textarea>
-        <div class="ms-auto flex gap-2">
-          <button
-            id="add-template"
-            type="button"
-            class="p-2 bg-green-700 rounded-full"
-          >
-            <img
-              class="size-6"
-              src="{{url_for('static',filename='icons/add.svg')}}"
-              alt="plus icon"
-            />
-          </button>
-          <button
-            id="remove-template"
-            type="button"
-            class="p-2 bg-red-700 rounded-full"
-          >
-            <img
-              class="size-6"
-              src="{{url_for('static',filename='icons/remove.svg')}}"
-              alt="remove icon"
-            />
-          </button>
-        </div>
-      </div>
-    </template>
-  </div>
-
-  <!-- Testimonials -->
-  <div>
+    <!-- Title (Multi-language Support) -->
     <div>
-      <label for="testimonials" class="block text-sm font-medium text-gray-700"
-        >{{ _("en_testimonials") }}</label
-      >
-      <textarea
-        id="testimonials-en"
-        name="testimonials[en]"
-        placeholder="{{ _('testimonials_english_placeholder') }}"
-        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-      ></textarea>
+        <label for="title-en" class="block text-sm font-medium text-gray-700"
+                              >{{ _("title_english") }}</label
+                          >
+                          <input
+                                  type="text"
+                                  id="title-en"
+                                  name="title[en]"
+                                  placeholder="{{ _('project_title_english') }}"
+                                  class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                                  required
+                                  />
     </div>
-    <div>
-      <label
-        for="testimonials-ar"
-        class="block text-sm font-medium text-gray-700"
-        >{{ _("ar_testimonials") }}</label
-      >
-      <textarea
-        id="testimonials-ar"
-        name="testimonials[ar]"
-        placeholder="{{ _('testimonials_arabic_placeholder') }}"
-        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-      ></textarea>
-    </div>
-  </div>
+            <div>
+                <label for="title-ar" class="block text-sm font-medium text-gray-700"
+                                      >{{ _("title_arabic") }}</label
+                                  >
+                                  <input
+                                          type="text"
+                                          id="title-ar"
+                                          name="title[ar]"
+                                          placeholder="{{ _('project_title_arabic') }}"
+                                          class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                                          required
+                                          />
+            </div>
 
-  <!-- Submit Button -->
-  <div>
-    <button
-      type="submit"
-      class="w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
-    >
-      {{ _("add_project") }}
-    </button>
-  </div>
+                    <!-- Author (Name and Email) -->
+                    <div>
+                        <label for="author-name-en" class="block text-sm font-medium text-gray-700"
+                                                    >{{ _("author_name_en") }}</label
+                                                >
+                                                <input
+                                                        type="text"
+                                                        id="author-name-en"
+                                                        name="author[name][en]"
+                                                        placeholder="{{ _('author_name_en_placeholder') }}"
+                                                        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                                                        required
+                                                        />
+                    </div>
+                            <div>
+                                <label for="author-name-ar" class="block text-sm font-medium text-gray-700"
+                                                            >{{ _("author_name_ar") }}</label
+                                                        >
+                                                        <input
+                                                                type="text"
+                                                                id="author-name-ar"
+                                                                name="author[name][ar]"
+                                                                placeholder="{{ _('author_name_ar_placeholder') }}"
+                                                                class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                                                                required
+                                                                />
+                            </div>
+                                    <div>
+                                        <label for="author-email" class="block text-sm font-medium text-gray-700"
+                                                                  >{{ _("author_email") }}</label
+                                                              >
+                                                              <input
+                                                                      type="email"
+                                                                      id="author-email"
+                                                                      name="author[email]"
+                                                                      placeholder="{{ _('author_email_placeholder') }}"
+                                                                      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                                                                      required
+                                                                      />
+                                    </div>
+
+                                            <!-- Status -->
+                                            <div>
+                                                <label for="status" class="block text-sm font-medium text-gray-700"
+                                                                    >{{ _("status") }}</label
+                                                                >
+                                                                <select
+                                                                        id="status"
+                                                                        name="status"
+                                                                        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                                                                        required
+                                                                        >
+                                                                        <option value="ongoing">{{ _("ongoing") }}</option>
+                                                                        <option value="completed">{{ _("completed") }}</option>
+                                                                </select>
+                                            </div>
+
+                                            <!-- Date of Completion -->
+                                            <div>
+                                                <label
+                                                        for="date-of-completion"
+                                                        class="block text-sm font-medium text-gray-700"
+                                                        >{{ _("date_of_completion") }}</label
+                                                    >
+                                                    <input
+                                                            type="date"
+                                                            id="date-of-completion"
+                                                            name="date_of_completion"
+                                                            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                                                            />
+                                            </div>
+
+                                                    <!-- Tags (Multi-language Support) -->
+                                                    <div>
+                                                        <label for="tags-en" class="block text-sm font-medium text-gray-700"
+                                                                             >{{ _("tags_english") }}</label
+                                                                         >
+                                                                         <input
+                                                                                 type="text"
+                                                                                 id="tags-en"
+                                                                                 name="tags[en]"
+                                                                                 placeholder="{{ _('tags_english_placeholder') }}"
+                                                                                 class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                                                                                 />
+                                                    </div>
+                                                            <div>
+                                                                <label for="tags-ar" class="block text-sm font-medium text-gray-700"
+                                                                                     >{{ _("tags_arabic") }}</label
+                                                                                 >
+                                                                                 <input
+                                                                                         type="text"
+                                                                                         id="tags-ar"
+                                                                                         name="tags[ar]"
+                                                                                         placeholder="{{ _('tags_arabic_placeholder') }}"
+                                                                                         class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                                                                                         />
+                                                            </div>
+
+                                                                    <!-- Hero Image -->
+                                                                    <div>
+                                                                        <label for="hero-image" class="block text-sm font-medium text-gray-700"
+                                                                                                >{{ _("hero_image") }}</label
+                                                                                            >
+                                                                                            <input
+                                                                                                    type="file"
+                                                                                                    id="hero-image"
+                                                                                                    name="hero_image"
+                                                                                                    class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                                                                                                    />
+                                                                    </div>
+
+                                                                            <!-- contents -->
+                                                                            <div id="contents" class="flex flex-col gap-2">
+                                                                                <div class="flex flex-col gap-2">
+                                                                                    <label for="content" class="text-sm font-medium text-gray-700 capitalize"
+                                                                                                         >{{ _("content") }}</label
+                                                                                                     >
+                                                                                                     <textarea
+                                                                                                             id="content-en"
+                                                                                                             name="content[0][en]"
+                                                                                                             placeholder="{{ _('content_english_placeholder') }}"
+                                                                                                             class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                                                                                                             ></textarea>
+                                                                                                     <textarea
+                                                                                                             id="content-ar"
+                                                                                                             name="content[0][ar]"
+                                                                                                             placeholder="{{ _('content_arabic_placeholder') }}"
+                                                                                                             class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                                                                                                             ></textarea>
+                                                                                                     <button
+                                                                                                             id="add-more"
+                                                                                                             type="button"
+                                                                                                             class="ms-auto p-2 bg-green-700 rounded-full"
+                                                                                                             >
+                                                                                                             <img
+                                                                                                                     class="size-6"
+                                                                                                                     src="{{url_for('static',filename='icons/add.svg')}}"
+                                                                                                                     alt="plus icon"
+                                                                                                                     />
+                                                                                                     </button>
+                                                                                </div>
+                                                                                        <template id="content-template">
+                                                                                            <div class="flex flex-col gap-2">
+                                                                                                <textarea
+                                                                                                        name="content[en]"
+                                                                                                        placeholder="{{ _('content_english_placeholder') }}"
+                                                                                                        class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                                                                                                        ></textarea>
+                                                                                                <textarea
+                                                                                                        name="content[ar]"
+                                                                                                        placeholder="{{ _('content_arabic_placeholder') }}"
+                                                                                                        class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                                                                                                        ></textarea>
+                                                                                                <div class="ms-auto flex gap-2">
+                                                                                                    <button
+                                                                                                            id="add-template"
+                                                                                                            type="button"
+                                                                                                            class="p-2 bg-green-700 rounded-full"
+                                                                                                            >
+                                                                                                            <img
+                                                                                                                    class="size-6"
+                                                                                                                    src="{{url_for('static',filename='icons/add.svg')}}"
+                                                                                                                    alt="plus icon"
+                                                                                                                    />
+                                                                                                    </button>
+                                                                                                        <button
+                                                                                                                id="remove-template"
+                                                                                                                type="button"
+                                                                                                                class="p-2 bg-red-700 rounded-full"
+                                                                                                                >
+                                                                                                                <img
+                                                                                                                        class="size-6"
+                                                                                                                        src="{{url_for('static',filename='icons/remove.svg')}}"
+                                                                                                                        alt="remove icon"
+                                                                                                                        />
+                                                                                                        </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </template>
+                                                                            </div>
+
+                                                                            <!-- Testimonials -->
+                                                                            <div>
+                                                                                <div>
+                                                                                    <label for="testimonials" class="block text-sm font-medium text-gray-700"
+                                                                                                              >{{ _("en_testimonials") }}</label
+                                                                                                          >
+                                                                                                          <textarea
+                                                                                                                  id="testimonials-en"
+                                                                                                                  name="testimonials[en]"
+                                                                                                                  placeholder="{{ _('testimonials_english_placeholder') }}"
+                                                                                                                  class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                                                                                                                  ></textarea>
+                                                                                </div>
+                                                                                        <div>
+                                                                                            <label
+                                                                                                    for="testimonials-ar"
+                                                                                                    class="block text-sm font-medium text-gray-700"
+                                                                                                    >{{ _("ar_testimonials") }}</label
+                                                                                                >
+                                                                                                <textarea
+                                                                                                        id="testimonials-ar"
+                                                                                                        name="testimonials[ar]"
+                                                                                                        placeholder="{{ _('testimonials_arabic_placeholder') }}"
+                                                                                                        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+                                                                                                        ></textarea>
+                                                                                        </div>
+                                                                            </div>
+
+                                                                            <!-- Submit Button -->
+                                                                            <div>
+                                                                                <button
+                                                                                        type="submit"
+                                                                                        class="w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                                                                                        >
+                                                                                        {{ _("add_project") }}
+                                                                                </button>
+                                                                            </div>
 </form>
+
+{% block extra_scripts %}
+<script>
+    let nodes = [];
+    let nodeCount = 0;
+    let container = document.getElementById("contents");
+    let addMore = container.querySelector("#add-more");
+    const add = (template) => (evt) => {
+        nodeCount++;
+        const clone = template.content.cloneNode(true);
+        const container = document.getElementById("contents");
+
+        nodes.push(clone);
+        clone
+            .querySelector("#add-template")
+            .addEventListener("click", add(template));
+        clone.querySelector("#remove-template").addEventListener("click", remove);
+
+        for (let i = 0; i < nodes.length; i++) {
+            const elem = nodes[i].querySelector("div");
+
+            if (elem && !elem.hasAttribute("id")) {
+                elem.setAttribute("id", i);
+                elem
+                    .querySelector('textarea[name="content[ar]"]')
+                    .setAttribute("name", `content[${i + 1}][ar]`);
+                elem
+                    .querySelector('textarea[name="content[en]"]')
+                    .setAttribute("name", `content[${i + 1}][en]`);
+                elem.prepend(generate_title(i + 1));
+            }
+        }
+        container.appendChild(clone);
+        const secondToLast = container.children[container.children.length - 2];
+        secondToLast.querySelector("#add-template").classList.add("hidden");
+    };
+    const remove = (evt) => {
+        nodeCount--;
+        const id = parseInt(evt.currentTarget.parentElement.parentElement.getAttribute("id"));
+        const container = document.getElementById("contents");
+        nodes[id] = null;
+        evt.currentTarget.parentElement.parentElement.remove();
+        if (nodeCount == 1) {
+            container.children[2]
+                .querySelector("#add-template")
+                .classList.remove("hidden");
+        } else if (nodeCount == 0) {
+            nodes = [];
+            container.children[0]
+                .querySelector("#add-more")
+                .classList.remove("hidden");
+        }
+    };
+    const generate_title = (id) => {
+        const label = document.createElement("label");
+        label.textContent = `Content ${id}`;
+        label.setAttribute("class", "text-sm font-medium text-gray-700 capitalize");
+        return label;
+    }
+
+    addMore.addEventListener("click", () => {
+        const template = document.getElementById("content-template");
+        const clone = template.content.cloneNode(true);
+
+        nodeCount++;
+        clone
+            .querySelector("#add-template")
+            .addEventListener("click", add(template));
+        clone
+            .querySelector("#remove-template")
+            .addEventListener("click", remove);
+        clone.querySelector("div").setAttribute("id", 0);
+        clone
+            .querySelector('textarea[name="content[ar]"]')
+            .setAttribute("name", "content[1][ar]");
+        clone
+            .querySelector('textarea[name="content[en]"]')
+            .setAttribute("name", "content[1][en]");
+        clone.querySelector("div").prepend(generate_title(1));
+        addMore.classList.add("hidden");
+        nodes.push(clone);
+        container.appendChild(clone);
+    });
+</script>
+{% endblock %}

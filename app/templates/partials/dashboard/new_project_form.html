@@ -1,4 +1,4 @@
-<form hx-post="/dashboard/add-project" hx-swap="innerHTML" class="space-y-4">
+<form hx-post="/dashboard/add-project" class="space-y-4">
   <!-- Title (Multi-language Support) -->
   <div>
     <label for="title-en" class="block text-sm font-medium text-gray-700"
@@ -138,18 +138,50 @@
     />
   </div>
 
-  <!-- Additional Images -->
-  <div>
-    <label for="images" class="block text-sm font-medium text-gray-700"
-      >{{ _("additional_images") }}</label
-    >
-    <input
-      type="file"
-      id="images"
-      name="images"
-      multiple
-      class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-    />
+  <!-- contents -->
+  <div id='contents' class='flex flex-col gap-2'>
+      <div class='flex flex-col gap-2'>
+        <label for="content" class="text-sm font-medium text-gray-700 capitalize"
+          >{{ _("content") }}</label
+        >
+        <textarea
+          id="content-en"
+          name="content[en]"
+          placeholder="{{ _('content_english_placeholder') }}"
+          class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+        ></textarea>
+        <textarea
+          id="content-ar"
+          name="content[ar]"
+          placeholder="{{ _('content_arabic_placeholder') }}"
+          class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+        ></textarea>
+        <button id='add-more' type='button' class='ms-auto p-2 bg-green-700 rounded-full'>
+          <img class='size-6' src="{{url_for('static',filename='icons/add.svg')}}" alt="plus icon"/>
+        </button>
+      </div>
+      <template id="content-template">
+          <div class='flex flex-col gap-2'>
+            <textarea
+              name="content[en]"
+              placeholder="{{ _('content_english_placeholder') }}"
+              class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+            ></textarea>
+            <textarea
+              name="content[ar]"
+              placeholder="{{ _('content_arabic_placeholder') }}"
+              class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+            ></textarea>
+            <div class='ms-auto flex gap-2'>
+              <button id='add-template' type='button' class='p-2 bg-green-700 rounded-full'>
+                <img class='size-6' src="{{url_for('static',filename='icons/add.svg')}}" alt="plus icon"/>
+              </button>
+              <button id='remove-template' type='button' class='p-2 bg-red-700 rounded-full'>
+                <img class='size-6' src="{{url_for('static',filename='icons/remove.svg')}}" alt="remove icon"/>
+              </button>
+            </div>
+          </div>
+      </template>
   </div>
 
   <!-- Testimonials -->
@@ -184,7 +216,8 @@
   <div>
     <button
       type="submit"
-      class="w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
+      class="w-full px-4 py-2 bg-primary-600 text-white rounded-lg
+      hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
     >
       {{ _("add_project") }}
     </button>

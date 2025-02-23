@@ -27,8 +27,8 @@ TW_WATCH := npm run dev:wt_css
 STATIC_WATCH := npm run dev:static
 FLASK_RUN := python -m app.run # flask run
 VEN_ACTIVATE := . .venv/bin/activate
-UP_DB := docker-compose up -d
-DOWN_DB := docker-compose down
+UP_DB := docker compose up -d
+DOWN_DB := docker compose down
 
 # Define run session
 define run_session

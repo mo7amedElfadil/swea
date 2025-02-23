@@ -19,6 +19,7 @@ def add_project():
     """Add a new project"""
     try:
         form_data = request.form.to_dict()
+        print('=====>',form_data)
         files = request.files
         project_service.create_project(form_data, files)
     except Exception as e:

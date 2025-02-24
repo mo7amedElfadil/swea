@@ -19,7 +19,7 @@ def add_project():
     """Add a new project"""
     try:
         form_data = request.form.to_dict()
-        print('=====>',form_data)
+        print("=====>", form_data)
         files = request.files
         project_service.create_project(form_data, files)
     except Exception as e:
@@ -40,6 +40,8 @@ def edit_project(project_id):
     project = project_service.get_project_by_uuid(project_id)
     if not project:
         return redirect("/dashboard?q=projects")
+
+    print("==TO-UPDATE===>", project)
 
     return render_template("partials/dashboard/edit_project_form.html", project=project)
 

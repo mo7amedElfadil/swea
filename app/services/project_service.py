@@ -212,6 +212,8 @@ class ProjectService:
     ) -> Dict[str, Any]:
         """Process and validate form data for creating/updating a project."""
 
+        print("==TESTIMONIALS===>", form_data.get("testimonials"))
+
         processed_data = {
             "title": {
                 "en": form_data.get("title[en]"),

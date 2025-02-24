@@ -39,15 +39,13 @@ class ProjectService:
         """
         try:
             # Process and validate form data
-            form_data = self.validate_form_data(form_data, files)
-
+            processed_data = self.validate_form_data(form_data, files)
             # Validate the data using the schema
-            errors = ProjectSchema().validate(form_data)
+            errors = ProjectSchema().validate(processed_data)
             if errors:
                 raise ValidationError(errors)
-
             project = Project()
-            project.create(**form_data)
+            project.create(**processed_data)
             return project
         except ValidationError as error:
             raise ValidationError(error.messages) from error
@@ -211,54 +209,21 @@ class ProjectService:
         self, form_data: Dict[str, Any], files: Dict[str, Any]
     ) -> Dict[str, Any]:
         """Process and validate form data for creating/updating a project."""
-
-        print("==TESTIMONIALS===>", form_data.get("testimonials"))
-
         processed_data = {
-            "title": {
-                "en": form_data.get("title[en]"),
-                "ar": form_data.get("title[ar]"),
-            },
+            "title": self._parse_nested_field(form_data, "title"),
             "author": {
-                "name": {
-                    "en": form_data.get("author[name][en]"),
-                    "ar": form_data.get("author[name][ar]"),
-                },
-                "email": form_data.get("author[email]"),
+                "name": self._parse_nested_field(form_data, "author[name]"),
+                "email": (
+                    form_data.get("author[email]").strip()
+                    if form_data.get("author[email]")
+                    else None
+                ),
             },
-            "status": form_data.get("status", "ongoing"),
+            "status": form_data.get("status", "ongoing").strip(),
             "date_of_completion": form_data.get("date_of_completion"),
             "tags": {
-                "en": (
-                    form_data.get("tags[en]", "").split(",")
-                    if form_data.get("tags[en]")
-                    else []
-                ),
-                "ar": (
-                    form_data.get("tags[ar]", "").split(",")
-                    if form_data.get("tags[ar]")
-                    else []
-                ),
-            },
-            "testimonials": {
-                "en": (
-                    [
-                        t.strip()
-                        for t in form_data.get("testimonials[en]", "").split(",")
-                        if t.strip()
-                    ]
-                    if form_data.get("testimonials[en]")
-                    else []
-                ),
-                "ar": (
-                    [
-                        t.strip()
-                        for t in form_data.get("testimonials[ar]", "").split(",")
-                        if t.strip()
-                    ]
-                    if form_data.get("testimonials[ar]")
-                    else []
-                ),
+                "en": self._parse_tags(form_data.get("tags[en]")),
+                "ar": self._parse_tags(form_data.get("tags[ar]")),
             },
         }
 
@@ -270,32 +235,89 @@ class ProjectService:
             hero_image.save(filepath)
             processed_data["hero_image"] = filepath  # Save file path
 
-        # Handle multiple images upload
-        images = files.get("images", [])  # Use getlist() for multiple files
-        image_paths = []
-        for image in images:
-            if image.filename:
-                filename = secure_filename(image.filename)
-                filepath = os.path.join(current_app.config["UPLOAD_FOLDER"], filename)
-                image.save(filepath)
-                image_paths.append(filepath)
-        processed_data["images"] = image_paths  # Save file paths list
-
         # Process content field
-        content = []
-        content_keys = [key for key in form_data.keys() if key.startswith("content")]
+        processed_data["content"] = self._parse_indexed_fields(form_data, "content")
 
-        index_values = set([key.split("[")[1].split("]")[0] for key in content_keys])
-        # Build content list
-        for index in index_values:
-            en_key = f"content[{index}][en]"
-            ar_key = f"content[{index}][ar]"
-            content_entry = {
-                "en": form_data.get(en_key),
-                "ar": form_data.get(ar_key),
-            }
-            content.append(content_entry)
-
-        processed_data["content"] = content
+        # Process testimonials field
+        processed_data["testimonials"] = self._parse_testimonials(form_data)
 
         return processed_data
+
+    def _parse_nested_field(
+        self, form_data: Dict[str, Any], field_prefix: str
+    ) -> Dict[str, str]:
+        """Parse nested fields like title[en], title[ar]."""
+        return {
+            "en": (
+                form_data.get(f"{field_prefix}[en]").strip()
+                if form_data.get(f"{field_prefix}[en]")
+                else ""
+            ),
+            "ar": (
+                form_data.get(f"{field_prefix}[ar]").strip()
+                if form_data.get(f"{field_prefix}[ar]")
+                else ""
+            ),
+        }
+
+    def _parse_tags(self, tags_str: Optional[str]) -> List[str]:
+        """Parse tags string into a list of trimmed tags."""
+        if not tags_str:
+            return []
+        return [tag.strip() for tag in tags_str.split(",") if tag.strip()]
+
+    def _parse_indexed_fields(
+        self, form_data: Dict[str, Any], field_prefix: str
+    ) -> List[Dict[str, str]]:
+        """Parse indexed fields like content[0][en], content[0][ar]."""
+        indexed_keys = [key for key in form_data.keys() if key.startswith(field_prefix)]
+        index_values = set([key.split("[")[1].split("]")[0] for key in indexed_keys])
+        result = []
+        for index in sorted(index_values, key=int):
+            entry = {
+                "en": (
+                    form_data.get(f"{field_prefix}[{index}][en]").strip()
+                    if form_data.get(f"{field_prefix}[{index}][en]")
+                    else ""
+                ),
+                "ar": (
+                    form_data.get(f"{field_prefix}[{index}][ar]").strip()
+                    if form_data.get(f"{field_prefix}[{index}][ar]")
+                    else ""
+                ),
+            }
+            result.append(entry)
+        return result
+
+    def _parse_testimonials(self, form_data: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """Parse testimonials fields like testimonials[0][en], testimonials[0][author]."""
+        indexed_keys = [
+            key for key in form_data.keys() if key.startswith("testimonials")
+        ]
+        index_values = set([key.split("[")[1].split("]")[0] for key in indexed_keys])
+        result = []
+        for index in sorted(index_values, key=int):
+            entry = {
+                "en": (
+                    form_data.get(f"testimonials[{index}][en]").strip()
+                    if form_data.get(f"testimonials[{index}][en]")
+                    else ""
+                ),
+                "ar": (
+                    form_data.get(f"testimonials[{index}][ar]").strip()
+                    if form_data.get(f"testimonials[{index}][ar]")
+                    else ""
+                ),
+                "author": (
+                    form_data.get(f"testimonials[{index}][author]").strip()
+                    if form_data.get(f"testimonials[{index}][author]")
+                    else ""
+                ),
+                "qualification": (
+                    form_data.get(f"testimonials[{index}][qualification]").strip()
+                    if form_data.get(f"testimonials[{index}][qualification]")
+                    else ""
+                ),
+            }
+            result.append(entry)
+        return result

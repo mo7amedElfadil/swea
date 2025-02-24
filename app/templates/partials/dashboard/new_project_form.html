@@ -1,4 +1,4 @@
-<form hx-post="/dashboard/add-project" class="space-y-4">
+<form hx-post="/dashboard/new-project" class="space-y-4">
   <!-- Title (Multi-language Support) -->
   <div>
     <label for="title-en" class="block text-sm font-medium text-gray-700"
@@ -225,7 +225,7 @@
               >{{ _("English Content") }}</label
             >
             <textarea
-              name="content[en]"
+              name="content[0][en]"
               rows="3"
               placeholder="{{ _('content_english_placeholder') }}"
               class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
@@ -240,7 +240,7 @@
               >{{ _("Arabic Content") }}</label
             >
             <textarea
-              name="content[ar]"
+              name="content[0][ar]"
               rows="3"
               placeholder="{{ _('content_arabic_placeholder') }}"
               class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
@@ -256,7 +256,7 @@
             >
             <input
               type="file"
-              name="content_image"
+              name="content_image[0]"
               class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
             />
           </div>
@@ -292,31 +292,205 @@
   </div>
 
   <!-- Testimonials -->
-  <div>
-    <div>
-      <label for="testimonials" class="block text-sm font-medium text-gray-700"
-        >{{ _("en_testimonials") }}</label
+  <div id="testimonials" class="space-y-6">
+    <!-- Initial Testimonial Block -->
+    <div class="bg-white shadow-sm rounded-lg p-6 border border-gray-200">
+      <h3 class="text-lg font-medium text-gray-900 mb-4">
+        {{ _("Testimonial") }} 1
+      </h3>
+      <div class="space-y-4">
+        <!-- English Testimonial -->
+        <div>
+          <label
+            for="testimonial-en-0"
+            class="block text-sm font-medium text-gray-700"
+            >{{ _("English Testimonial") }}</label
+          >
+          <textarea
+            id="testimonial-en-0"
+            name="testimonials[0][en]"
+            rows="3"
+            placeholder="{{ _('testimonial_english_placeholder') }}"
+            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+          ></textarea>
+        </div>
+        <!-- Arabic Testimonial -->
+        <div>
+          <label
+            for="testimonial-ar-0"
+            class="block text-sm font-medium text-gray-700"
+            >{{ _("Arabic Testimonial") }}</label
+          >
+          <textarea
+            id="testimonial-ar-0"
+            name="testimonials[0][ar]"
+            rows="3"
+            placeholder="{{ _('testimonial_arabic_placeholder') }}"
+            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+          ></textarea>
+        </div>
+        <!-- Testimonial Author -->
+        <div>
+          <label
+            for="testimonial-author-0"
+            class="block text-sm font-medium text-gray-700"
+            >{{ _("Testimonial Author") }}</label
+          >
+          <input
+            type="text"
+            id="testimonial-author-0"
+            name="testimonials[0][author]"
+            placeholder="{{ _('testimonial_author_placeholder') }}"
+            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+          />
+        </div>
+        <!-- Testimonial Author Qualification -->
+        <div>
+          <label
+            for="testimonial-author-qualification-0"
+            class="block text-sm font-medium text-gray-700"
+            >{{ _("Testimonial Author Qualification") }}</label
+          >
+          <input
+            type="text"
+            id="testimonial-author-qualification-0"
+            name="testimonials[0][qualification]"
+            placeholder="{{ _('testimonial_author_qualification_placeholder') }}"
+            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+          />
+        </div>
+        <!-- Author Photo -->
+        <div>
+          <label
+            for="testimonial-author-photo-0"
+            class="block text-sm font-medium text-gray-700"
+            >{{ _("Testimonial Author Photo") }}</label
+          >
+          <input
+            type="file"
+            id="testimonial-author-photo-0"
+            name="testimonials[0][photo]"
+            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+          />
+        </div>
+      </div>
+      <!-- Add More Button -->
+      <button
+        id="add-more-testimonials"
+        type="button"
+        class="mt-4 ms-auto p-2 bg-green-700 rounded-full hover:bg-green-800 transition-colors"
       >
-      <textarea
-        id="testimonials-en"
-        name="testimonials[en]"
-        placeholder="{{ _('testimonials_english_placeholder') }}"
-        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-      ></textarea>
+        <img
+          class="size-6"
+          src="{{ url_for('static', filename='icons/add.svg') }}"
+          alt="{{ _('Add more testimonials') }}"
+        />
+      </button>
     </div>
-    <div>
-      <label
-        for="testimonials-ar"
-        class="block text-sm font-medium text-gray-700"
-        >{{ _("ar_testimonials") }}</label
-      >
-      <textarea
-        id="testimonials-ar"
-        name="testimonials[ar]"
-        placeholder="{{ _('testimonials_arabic_placeholder') }}"
-        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-      ></textarea>
-    </div>
+    <!-- Template for Additional Testimonial Blocks -->
+    <template id="testimonial-template">
+      <div class="bg-white shadow-sm rounded-lg p-6 border border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">
+          {{ _("Testimonial") }} <span class="testimonial-index"></span>
+        </h3>
+        <div class="space-y-4">
+          <!-- English Testimonial -->
+          <div>
+            <label
+              for="testimonial-en"
+              class="block text-sm font-medium text-gray-700"
+              >{{ _("English Testimonial") }}</label
+            >
+            <textarea
+              name="testimonials[0][en]"
+              rows="3"
+              placeholder="{{ _('testimonial_english_placeholder') }}"
+              class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+            ></textarea>
+          </div>
+          <!-- Arabic Testimonial -->
+          <div>
+            <label
+              for="testimonial-ar"
+              class="block text-sm font-medium text-gray-700"
+              >{{ _("Arabic Testimonial") }}</label
+            >
+            <textarea
+              name="testimonials[0][ar]"
+              rows="3"
+              placeholder="{{ _('testimonial_arabic_placeholder') }}"
+              class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+            ></textarea>
+          </div>
+          <!-- Testimonial Author -->
+          <div>
+            <label
+              for="testimonial-author"
+              class="block text-sm font-medium text-gray-700"
+              >{{ _("Testimonial Author") }}</label
+            >
+            <input
+              type="text"
+              name="testimonials[0][author]"
+              placeholder="{{ _('testimonial_author_placeholder') }}"
+              class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+            />
+          </div>
+          <!-- Testimonial Author Qualification -->
+          <div>
+            <label
+              for="testimonial-author-qualification"
+              class="block text-sm font-medium text-gray-700"
+              >{{ _("Testimonial Author Qualification") }}</label
+            >
+            <input
+              type="text"
+              name="testimonials[0][qualification]"
+              placeholder="{{ _('testimonial_author_qualification_placeholder') }}"
+              class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+            />
+          </div>
+          <!-- Author Photo -->
+          <div>
+            <label
+              for="testimonial-author-photo"
+              class="block text-sm font-medium text-gray-700"
+              >{{ _("Testimonial Author Photo") }}</label
+            >
+            <input
+              type="file"
+              name="testimonials[0][photo]"
+              class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+            />
+          </div>
+        </div>
+        <!-- Action Buttons -->
+        <div class="mt-4 flex justify-end gap-2">
+          <button
+            id="add-testimonial-template"
+            type="button"
+            class="p-2 bg-green-700 rounded-full hover:bg-green-800 transition-colors"
+          >
+            <img
+              class="size-6"
+              src="{{ url_for('static', filename='icons/add.svg') }}"
+              alt="{{ _('Add another testimonial block') }}"
+            />
+          </button>
+          <button
+            id="remove-testimonial-template"
+            type="button"
+            class="p-2 bg-red-700 rounded-full hover:bg-red-800 transition-colors"
+          >
+            <img
+              class="size-6"
+              src="{{ url_for('static', filename='icons/remove.svg') }}"
+              alt="{{ _('Remove this testimonial block') }}"
+            />
+          </button>
+        </div>
+      </div>
+    </template>
   </div>
 
   <!-- Submit Button -->
@@ -333,89 +507,159 @@
 {% block extra_scripts %}
 <script>
   (function () {
-    let nodes = [];
-    let nodeCount = 0;
-    let container = document.getElementById("contents");
-    let addMore = container.querySelector("#add-more");
-    const add = (template) => (evt) => {
-      nodeCount++;
-      const clone = template.content.cloneNode(true);
-      const container = document.getElementById("contents");
+    /**
+     * Generic function to handle dynamic addition/removal of blocks.
+     * @param {string} containerId - ID of the container element.
+     * @param {string} templateId - ID of the template element.
+     * @param {string} addMoreButtonId - ID of the "Add More" button.
+     * @param {string} addTemplateButtonSelector - Selector for the "Add" button in the template.
+     * @param {string} removeTemplateButtonSelector - Selector for the "Remove" button in the template.
+     * @param {string} titlePrefix - Prefix for the block title (e.g., "Content", "Testimonial").
+     * @param {string} fieldPrefix - Prefix for the `name` attribute (e.g., "content", "testimonials").
+     */
+    const initializeDynamicBlocks = (
+      containerId,
+      templateId,
+      addMoreButtonId,
+      addTemplateButtonSelector,
+      removeTemplateButtonSelector,
+      titlePrefix,
+      fieldPrefix,
+    ) => {
+      let nodes = [];
+      let nodeCount = 0;
+      const container = document.getElementById(containerId);
+      const addMoreButton = container.querySelector(`#${addMoreButtonId}`);
+      const template = document.getElementById(templateId);
 
-      nodes.push(clone);
-      clone
-        .querySelector("#add-template")
-        .addEventListener("click", add(template));
-      clone.querySelector("#remove-template").addEventListener("click", remove);
+      // Function to generate a title for the block
+      const generateTitle = (id) => {
+        const label = document.createElement("label");
+        label.textContent = `${titlePrefix} ${id}`;
+        label.setAttribute(
+          "class",
+          "text-sm font-medium text-gray-700 capitalize",
+        );
+        return label;
+      };
 
-      for (let i = 0; i < nodes.length; i++) {
-        const elem = nodes[i].querySelector("div");
+      // Function to add a new block
+      const addBlock = () => {
+        nodeCount++;
+        const clone = template.content.cloneNode(true);
+        nodes.push(clone);
 
-        if (elem && !elem.hasAttribute("id")) {
-          elem.setAttribute("id", i);
-          elem
-            .querySelector('textarea[name="content[ar]"]')
-            .setAttribute("name", `content[${i + 1}][ar]`);
-          elem
-            .querySelector('textarea[name="content[en]"]')
-            .setAttribute("name", `content[${i + 1}][en]`);
-          elem.prepend(generate_title(i + 1));
+        // Add event listeners to the cloned block's buttons
+        clone
+          .querySelector(addTemplateButtonSelector)
+          .addEventListener("click", addBlock);
+        clone
+          .querySelector(removeTemplateButtonSelector)
+          .addEventListener("click", removeBlock);
+
+        // Update IDs and names for the cloned block
+        const blockElement = clone.querySelector("div");
+        blockElement.setAttribute("id", nodeCount - 1);
+        blockElement.prepend(generateTitle(nodeCount));
+
+        // Update all fields (textarea and input) with the correct index
+        const fields = blockElement.querySelectorAll("textarea, input");
+        fields.forEach((field) => {
+          const name = field.getAttribute("name");
+          if (name) {
+            const newName = name.replace(/\[\d+\]/, `[${nodeCount}]`);
+            field.setAttribute("name", newName);
+          }
+        });
+
+        // Append the cloned block to the container
+        container.appendChild(clone);
+
+        // Hide the "Add" button in the second-to-last block
+        const secondToLast = container.children[container.children.length - 2];
+        if (secondToLast) {
+          secondToLast
+            .querySelector(addTemplateButtonSelector)
+            .classList.add("hidden");
         }
-      }
-      container.appendChild(clone);
-      const secondToLast = container.children[container.children.length - 2];
-      secondToLast.querySelector("#add-template").classList.add("hidden");
-    };
-    const remove = (evt) => {
-      nodeCount--;
-      const id = parseInt(
-        evt.currentTarget.parentElement.parentElement.getAttribute("id"),
-      );
-      const container = document.getElementById("contents");
-      nodes[id] = null;
-      evt.currentTarget.parentElement.parentElement.remove();
-      if (nodeCount == 1) {
-        container.children[2]
-          .querySelector("#add-template")
-          .classList.remove("hidden");
-      } else if (nodeCount == 0) {
-        nodes = [];
-        container.children[0]
-          .querySelector("#add-more")
-          .classList.remove("hidden");
-      }
-    };
-    const generate_title = (id) => {
-      const label = document.createElement("label");
-      label.textContent = `Content ${id}`;
-      label.setAttribute(
-        "class",
-        "text-sm font-medium text-gray-700 capitalize",
-      );
-      return label;
+      };
+
+      // Function to remove a block
+      const removeBlock = (evt) => {
+        nodeCount--;
+        const id = parseInt(
+          evt.currentTarget.parentElement.parentElement.getAttribute("id"),
+        );
+        nodes[id] = null;
+        evt.currentTarget.parentElement.parentElement.remove();
+
+        // Show the "Add" button in the last remaining block
+        if (nodeCount === 1) {
+          container.children[2]
+            .querySelector(addTemplateButtonSelector)
+            .classList.remove("hidden");
+        } else if (nodeCount === 0) {
+          nodes = [];
+          addMoreButton.classList.remove("hidden");
+        }
+      };
+
+      // Add event listener to the "Add More" button
+      addMoreButton.addEventListener("click", () => {
+        const clone = template.content.cloneNode(true);
+        nodeCount++;
+
+        // Add event listeners to the cloned block's buttons
+        clone
+          .querySelector(addTemplateButtonSelector)
+          .addEventListener("click", addBlock);
+        clone
+          .querySelector(removeTemplateButtonSelector)
+          .addEventListener("click", removeBlock);
+
+        // Update IDs and names for the cloned block
+        const blockElement = clone.querySelector("div");
+        blockElement.setAttribute("id", 0);
+        blockElement.prepend(generateTitle(1));
+
+        // Update all fields (textarea and input) with the correct index
+        const fields = blockElement.querySelectorAll("textarea, input");
+        fields.forEach((field) => {
+          const name = field.getAttribute("name");
+          if (name) {
+            const newName = name.replace(/\[\d+\]/, `[1]`);
+            field.setAttribute("name", newName);
+          }
+        });
+
+        // Append the cloned block to the container
+        addMoreButton.classList.add("hidden");
+        nodes.push(clone);
+        container.appendChild(clone);
+      });
     };
 
-    addMore.addEventListener("click", () => {
-      const template = document.getElementById("content-template");
-      const clone = template.content.cloneNode(true);
+    // Initialize "Contents" section
+    initializeDynamicBlocks(
+      "contents", // Container ID
+      "content-template", // Template ID
+      "add-more", // Add More Button ID
+      "#add-template", // Add Button Selector
+      "#remove-template", // Remove Button Selector
+      "Content", // Title Prefix
+      "content", // Field Prefix
+    );
 
-      nodeCount++;
-      clone
-        .querySelector("#add-template")
-        .addEventListener("click", add(template));
-      clone.querySelector("#remove-template").addEventListener("click", remove);
-      clone.querySelector("div").setAttribute("id", 0);
-      clone
-        .querySelector('textarea[name="content[ar]"]')
-        .setAttribute("name", "content[1][ar]");
-      clone
-        .querySelector('textarea[name="content[en]"]')
-        .setAttribute("name", "content[1][en]");
-      clone.querySelector("div").prepend(generate_title(1));
-      addMore.classList.add("hidden");
-      nodes.push(clone);
-      container.appendChild(clone);
-    });
+    // Initialize "Testimonials" section
+    initializeDynamicBlocks(
+      "testimonials", // Container ID
+      "testimonial-template", // Template ID
+      "add-more-testimonials", // Add More Button ID
+      "#add-testimonial-template", // Add Button Selector
+      "#remove-testimonial-template", // Remove Button Selector
+      "Testimonial", // Title Prefix
+      "testimonials", // Field Prefix
+    );
   })();
 </script>
 {% endblock %}

@@ -85,14 +85,12 @@
       required
     >
       <option
-        value="ongoing"
-        {% if project.status=="ongoing" %}selected{% endif %}
+        value="ongoing" {% if project.status=="ongoing" %}selected{% endif %}
       >
         {{ _("ongoing") }}
       </option>
       <option
-        value="completed"
-        {% if project.status=="completed" %}selected{% endif %}
+        value="completed" {% if project.status=="completed" %}selected{% endif %}
       >
         {{ _("completed") }}
       </option>
@@ -156,21 +154,8 @@
 
   <!-- Content -->
   <div id="contents" class="space-y-6">
-    {% if project.content|length == 0 %}
-    <div class="flex justify-end gap-2">
-      <button
-        type="button"
-        class="p-2 bg-green-700 rounded-full hover:bg-green-800 transition-colors add-template"
-      >
-        <img
-          class="size-6"
-          src="{{ url_for('static', filename='icons/add.svg') }}"
-          alt="{{ _('Add another content block') }}"
-        />
-      </button>
-      <span>{{ _("Add Content") }}</span>
-    </div>
-    {% endif %} {% for content in project.content %}
+    <!-- Existing Content Blocks -->
+    {% for content in project.content %}
     <div class="bg-white shadow-sm rounded-lg p-6 border border-gray-200">
       <h3 class="text-lg font-medium text-gray-900 mb-4">
         {{ _("Content") }} {{ loop.index }}
@@ -189,9 +174,10 @@
             rows="3"
             class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
           >
-            {{ content.get('en', '') }}
-          </textarea>
+{{ content.en }}</textarea
+          >
         </div>
+
         <!-- Arabic Content -->
         <div>
           <label
@@ -205,9 +191,10 @@
             rows="3"
             class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
           >
-            {{ content.get('ar', '') }}
-          </textarea>
+{{ content.ar }}</textarea
+          >
         </div>
+
         <!-- Image Upload -->
         <div>
           <label
@@ -223,6 +210,7 @@
           />
         </div>
       </div>
+
       <!-- Action Buttons -->
       <div class="mt-4 flex justify-end gap-2">
         <button
@@ -248,57 +236,178 @@
       </div>
     </div>
     {% endfor %}
+
+    <!-- Template for Additional Content Blocks -->
+    <template id="content-template">
+      <div class="bg-white shadow-sm rounded-lg p-6 border border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">
+          {{ _("Content") }} <span class="content-index"></span>
+        </h3>
+        <div class="space-y-4">
+          <!-- English Content -->
+          <div>
+            <label
+              for="content-en"
+              class="block text-sm font-medium text-gray-700"
+              >{{ _("English Content") }}</label
+            >
+            <textarea
+              name="content[0][en]"
+              rows="3"
+              placeholder="{{ _('content_english_placeholder') }}"
+              class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+            ></textarea>
+          </div>
+
+          <!-- Arabic Content -->
+          <div>
+            <label
+              for="content-ar"
+              class="block text-sm font-medium text-gray-700"
+              >{{ _("Arabic Content") }}</label
+            >
+            <textarea
+              name="content[0][ar]"
+              rows="3"
+              placeholder="{{ _('content_arabic_placeholder') }}"
+              class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+            ></textarea>
+          </div>
+
+          <!-- Image Upload -->
+          <div>
+            <label
+              for="content-image"
+              class="block text-sm font-medium text-gray-700"
+              >{{ _("content_image") }}</label
+            >
+            <input
+              type="file"
+              name="content_image[0]"
+              class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+            />
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="mt-4 flex justify-end gap-2">
+          <button
+            id="add-content"
+            type="button"
+            class="p-2 bg-green-700 rounded-full hover:bg-green-800 transition-colors"
+          >
+            <img
+              class="size-6"
+              src="{{ url_for('static', filename='icons/add.svg') }}"
+              alt="{{ _('Add another content block') }}"
+            />
+          </button>
+          <button
+            id="remove-content"
+            type="button"
+            class="p-2 bg-red-700 rounded-full hover:bg-red-800 transition-colors"
+          >
+            <img
+              class="size-6"
+              src="{{ url_for('static', filename='icons/remove.svg') }}"
+              alt="{{ _('Remove this content block') }}"
+            />
+          </button>
+        </div>
+      </div>
+    </template>
   </div>
 
-  <!-- Template for Additional Content Blocks -->
-  <template id="content-template">
+  <!-- Testimonials -->
+  <div id="testimonials" class="space-y-6">
+    {% for testimonial in project.testimonials %}
     <div class="bg-white shadow-sm rounded-lg p-6 border border-gray-200">
       <h3 class="text-lg font-medium text-gray-900 mb-4">
-        {{ _("Content") }} <span class="content-index"></span>
+        {{ _("Testimonial") }} {{ loop.index }}
       </h3>
       <div class="space-y-4">
-        <!-- English Content -->
+        <!-- English Testimonial -->
         <div>
           <label
-            for="content-en"
+            for="testimonial-en-{{ loop.index }}"
             class="block text-sm font-medium text-gray-700"
-            >{{ _("English Content") }}</label
+            >{{ _("English Testimonial") }}</label
           >
           <textarea
-            name="content[en]"
+            id="testimonial-en-{{ loop.index }}"
+            name="testimonials[{{ loop.index }}][en]"
             rows="3"
-            placeholder="{{ _('content_english_placeholder') }}"
             class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-          ></textarea>
+          >
+{{ testimonial.en }}</textarea
+          >
         </div>
-        <!-- Arabic Content -->
+
+        <!-- Arabic Testimonial -->
         <div>
           <label
-            for="content-ar"
+            for="testimonial-ar-{{ loop.index }}"
             class="block text-sm font-medium text-gray-700"
-            >{{ _("Arabic Content") }}</label
+            >{{ _("Arabic Testimonial") }}</label
           >
           <textarea
-            name="content[ar]"
+            id="testimonial-ar-{{ loop.index }}"
+            name="testimonials[{{ loop.index }}][ar]"
             rows="3"
-            placeholder="{{ _('content_arabic_placeholder') }}"
             class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-          ></textarea>
+          >
+{{ testimonial.ar }}</textarea
+          >
         </div>
-        <!-- Image Upload -->
+
+        <!-- Testimonial Author -->
         <div>
           <label
-            for="content-image"
+            for="testimonial-author-{{ loop.index }}"
             class="block text-sm font-medium text-gray-700"
-            >{{ _("content_image") }}</label
+            >{{ _("Testimonial Author") }}</label
+          >
+          <input
+            type="text"
+            id="testimonial-author-{{ loop.index }}"
+            name="testimonials[{{ loop.index }}][author]"
+            value="{{ testimonial.author }}"
+            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+          />
+        </div>
+
+        <!-- Testimonial Author Qualification -->
+        <div>
+          <label
+            for="testimonial-author-qualification-{{ loop.index }}"
+            class="block text-sm font-medium text-gray-700"
+            >{{ _("Testimonial Author Qualification") }}</label
+          >
+          <input
+            type="text"
+            id="testimonial-author-qualification-{{ loop.index }}"
+            name="testimonials[{{ loop.index }}][qualification]"
+            value="{{ testimonial.qualification }}"
+            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+          />
+        </div>
+
+        <!-- Author Photo -->
+        <div>
+          <label
+            for="testimonial-author-photo-{{ loop.index }}"
+            class="block text-sm font-medium text-gray-700"
+            >{{ _("Testimonial Author Photo") }}</label
           >
           <input
             type="file"
-            name="content_image"
+            id="testimonial-author-photo-{{ loop.index }}"
+            name="testimonials[{{ loop.index }}][photo]"
             class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
           />
         </div>
       </div>
+
       <!-- Action Buttons -->
       <div class="mt-4 flex justify-end gap-2">
         <button
@@ -308,7 +417,7 @@
           <img
             class="size-6"
             src="{{ url_for('static', filename='icons/add.svg') }}"
-            alt="{{ _('Add another content block') }}"
+            alt="{{ _('Add another testimonial block') }}"
           />
         </button>
         <button
@@ -318,104 +427,118 @@
           <img
             class="size-6"
             src="{{ url_for('static', filename='icons/remove.svg') }}"
-            alt="{{ _('Remove this content block') }}"
+            alt="{{ _('Remove this testimonial block') }}"
           />
         </button>
       </div>
     </div>
-  </template>
+    {% endfor %}
 
-<!-- Testimonials -->
-<div class="space-y-6">
-  {% if project.testimonials|length == 0 %}
-  <div class="bg-white shadow-sm rounded-lg p-6 border border-gray-200 text-center">
-    <p class="text-gray-700">{{ _("No testimonials added yet.") }}</p>
-    <button
-      id="add-testimonial"
-      type="button"
-      class="mt-4 w-full p-4 bg-green-700 text-white rounded-lg hover:bg-green-800 transition-colors"
-      onclick="addTestimonialBlock()"
-    >
-      <span class="flex items-center justify-center gap-2">
-        <img
-          class="size-6"
-          src="{{ url_for('static', filename='icons/add.svg') }}"
-          alt="{{ _('Add a testimonial') }}"
-        />
-        {{ _("Add Testimonial") }}
-      </span>
-    </button>
+    <!-- Template for Additional Testimonial Blocks -->
+    <template id="testimonial-template">
+      <div class="bg-white shadow-sm rounded-lg p-6 border border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">
+          {{ _("Testimonial") }} <span class="testimonial-index"></span>
+        </h3>
+        <div class="space-y-4">
+          <!-- English Testimonial -->
+          <div>
+            <label
+              for="testimonial-en"
+              class="block text-sm font-medium text-gray-700"
+              >{{ _("English Testimonial") }}</label
+            >
+            <textarea
+              name="testimonials[0][en]"
+              rows="3"
+              placeholder="{{ _('testimonial_english_placeholder') }}"
+              class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+            ></textarea>
+          </div>
+          <!-- Arabic Testimonial -->
+          <div>
+            <label
+              for="testimonial-ar"
+              class="block text-sm font-medium text-gray-700"
+              >{{ _("Arabic Testimonial") }}</label
+            >
+            <textarea
+              name="testimonials[0][ar]"
+              rows="3"
+              placeholder="{{ _('testimonial_arabic_placeholder') }}"
+              class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+            ></textarea>
+          </div>
+          <!-- Testimonial Author -->
+          <div>
+            <label
+              for="testimonial-author"
+              class="block text-sm font-medium text-gray-700"
+              >{{ _("Testimonial Author") }}</label
+            >
+            <input
+              type="text"
+              name="testimonials[0][author]"
+              placeholder="{{ _('testimonial_author_placeholder') }}"
+              class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+            />
+          </div>
+          <!-- Testimonial Author Qualification -->
+          <div>
+            <label
+              for="testimonial-author-qualification"
+              class="block text-sm font-medium text-gray-700"
+              >{{ _("Testimonial Author Qualification") }}</label
+            >
+            <input
+              type="text"
+              name="testimonials[0][qualification]"
+              placeholder="{{ _('testimonial_author_qualification_placeholder') }}"
+              class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+            />
+          </div>
+          <!-- Author Photo -->
+          <div>
+            <label
+              for="testimonial-author-photo"
+              class="block text-sm font-medium text-gray-700"
+              >{{ _("Testimonial Author Photo") }}</label
+            >
+            <input
+              type="file"
+              name="testimonials[0][photo]"
+              class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+            />
+          </div>
+        </div>
+        <!-- Action Buttons -->
+        <div class="mt-4 flex justify-end gap-2">
+          <button
+            id="add-testimonial-template"
+            type="button"
+            class="p-2 bg-green-700 rounded-full hover:bg-green-800 transition-colors"
+          >
+            <img
+              class="size-6"
+              src="{{ url_for('static', filename='icons/add.svg') }}"
+              alt="{{ _('Add another testimonial block') }}"
+            />
+          </button>
+          <button
+            id="remove-testimonial-template"
+            type="button"
+            class="p-2 bg-red-700 rounded-full hover:bg-red-800 transition-colors"
+          >
+            <img
+              class="size-6"
+              src="{{ url_for('static', filename='icons/remove.svg') }}"
+              alt="{{ _('Remove this testimonial block') }}"
+            />
+          </button>
+        </div>
+      </div>
+    </template>
   </div>
-  {% else %}
-  {% for testimonial in project.testimonials %}
-  <div class="bg-white shadow-sm rounded-lg p-6 border border-gray-200 relative">
-    <!-- Remove Button -->
-    <button
-      type="button"
-      class="absolute top-4 right-4 p-2 bg-red-700 text-white rounded-full hover:bg-red-800 transition-colors"
-      onclick="removeTestimonialBlock(this)"
-    >
-      <img
-        class="size-4"
-        src="{{ url_for('static', filename='icons/remove.svg') }}"
-        alt="{{ _('Remove this testimonial') }}"
-      />
-    </button>
-
-    <h3 class="text-lg font-medium text-gray-900 mb-4">{{ _("Testimonial") }} {{ loop.index }}</h3>
-
-    <!-- English Testimonial -->
-    <div class="mb-4">
-      <label
-        for="testimonial-en-{{ loop.index }}"
-        class="block text-sm font-medium text-gray-700"
-        >{{ _("English Testimonial") }}</label
-      >
-      <textarea
-        id="testimonial-en-{{ loop.index }}"
-        name="testimonials[{{ loop.index }}][en]"
-        rows="3"
-        placeholder="{{ _('Enter English testimonial here...') }}"
-        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-      >{{ testimonial.get('en', '') }}</textarea>
-    </div>
-
-    <!-- Arabic Testimonial -->
-    <div class="mb-4">
-      <label
-        for="testimonial-ar-{{ loop.index }}"
-        class="block text-sm font-medium text-gray-700"
-        >{{ _("Arabic Testimonial") }}</label
-      >
-      <textarea
-        id="testimonial-ar-{{ loop.index }}"
-        name="testimonials[{{ loop.index }}][ar]"
-        rows="3"
-        placeholder="{{ _('Enter Arabic testimonial here...') }}"
-        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-      >{{ testimonial.get('ar', '') }}</textarea>
-    </div>
-  </div>
-  {% endfor %}
-  {% endif %}
-
-  <!-- Add More Button -->
-  <button
-    id="add-more-testimonial"
-    type="button"
-    class="w-full p-4 bg-green-700 text-white rounded-lg hover:bg-green-800 transition-colors"
-    onclick="addTestimonialBlock()"
-  >
-    <span class="flex items-center justify-center gap-2">
-      <img
-        class="size-6"
-        src="{{ url_for('static', filename='icons/add.svg') }}"
-        alt="{{ _('Add another testimonial') }}"
-      />
-      {{ _("Add Another Testimonial") }}
-    </span>
-  </button>
-</div>
 
   <!-- Submit Button -->
   <div>
@@ -427,103 +550,123 @@
     </button>
   </div>
 </form>
+
 {% block scripts %}
 <script>
   (function () {
-    let nodes = [];
-    let nodeCount = "{{ project.content|length }}";
-    let container = document.getElementById("contents");
-    const template = document.getElementById("content-template");
+    const initializeDynamicBlocks = (
+      containerId,
+      templateId,
+      addTemplateButtonSelector,
+      removeTemplateButtonSelector,
+      titlePrefix,
+    ) => {
+      let nodes = [];
+      let nodeCount = 0;
+      const container = document.getElementById(containerId);
+      const template = document.getElementById(templateId);
 
-    const add = (template) => (evt) => {
-      nodeCount++;
-      const clone = template.content.cloneNode(true);
-      nodes.push(clone);
-      clone
-        .querySelector(".add-template")
-        .addEventListener("click", add(template));
-      clone.querySelector(".remove-template").addEventListener("click", remove);
-      for (let i = 0; i < nodes.length; i++) {
-        const elem = nodes[i].querySelector("div");
-        if (elem && !elem.hasAttribute("id")) {
-          elem.setAttribute("id", i);
-          elem
-            .querySelector('textarea[name="content[ar]"]')
-            .setAttribute("name", `content[${i}][ar]`);
-          elem
-            .querySelector('textarea[name="content[en]"]')
-            .setAttribute("name", `content[${i}][en]`);
-          elem
-            .querySelector('input[name="content_image"]')
-            .setAttribute("name", `content_image[${i}]`);
-          elem.querySelector(".content-index").textContent = i + 1;
+      // Function to generate a title for the block
+      const generateTitle = (id) => {
+        const label = document.createElement("label");
+        label.textContent = `${titlePrefix} ${id}`;
+        label.setAttribute(
+          "class",
+          "text-sm font-medium text-gray-700 capitalize",
+        );
+        return label;
+      };
+
+      // Function to add a new block
+      const addBlock = () => {
+        nodeCount++;
+        const clone = template.content.cloneNode(true);
+        nodes.push(clone);
+
+        // Add event listeners to the cloned block's buttons
+        clone
+          .querySelector(addTemplateButtonSelector)
+          .addEventListener("click", addBlock);
+        clone
+          .querySelector(removeTemplateButtonSelector)
+          .addEventListener("click", removeBlock);
+
+        // Update IDs and names for the cloned block
+        const blockElement = clone.querySelector("div");
+        blockElement.setAttribute("id", nodeCount - 1);
+        blockElement.prepend(generateTitle(nodeCount));
+
+        // Update all fields (textarea and input) with the correct index
+        const fields = blockElement.querySelectorAll("textarea, input");
+        fields.forEach((field) => {
+          const name = field.getAttribute("name");
+          if (name) {
+            const newName = name.replace(/\[\d+\]/, `[${nodeCount - 1}]`);
+            field.setAttribute("name", newName);
+          }
+        });
+
+        // Append the cloned block to the container
+        container.appendChild(clone);
+
+        // Hide the "Add" button in the second-to-last block
+        const secondToLast = container.children[container.children.length - 2];
+        if (secondToLast) {
+          secondToLast
+            .querySelector(addTemplateButtonSelector)
+            .classList.add("hidden");
         }
-      }
-      container.appendChild(clone);
-      const secondToLast = container.children[container.children.length - 2];
-      secondToLast.querySelector(".add-template").classList.add("hidden");
-    };
+      };
 
-    const remove = (evt) => {
-      nodeCount--;
-      const id = parseInt(
-        evt.currentTarget.parentElement.parentElement.getAttribute("id"),
-      );
-      const container = document.getElementById("contents");
-      nodes[id] = null;
-      evt.currentTarget.parentElement.parentElement.remove();
-      if (nodeCount == 1) {
-        if (container.children[2]) {
+      // Function to remove a block
+      const removeBlock = (evt) => {
+        nodeCount--;
+        const id = parseInt(
+          evt.currentTarget.parentElement.parentElement.getAttribute("id"),
+        );
+        nodes[id] = null;
+        evt.currentTarget.parentElement.parentElement.remove();
+
+        // Show the "Add" button in the last remaining block
+        if (nodeCount === 1) {
           container.children[2]
-            .querySelector(".add-template")
+            .querySelector(addTemplateButtonSelector)
             .classList.remove("hidden");
+        } else if (nodeCount === 0) {
+          nodes = [];
         }
-      } else if (nodeCount == 0) {
-        nodes = [];
-        container.children[0]
-          .querySelector(".add-template")
-          .classList.remove("hidden");
-      }
+      };
+
+      // Add event listener to the "Add More" button
+      const addMoreButtons = container.querySelectorAll(".add-template");
+      addMoreButtons.forEach((button) => {
+        button.addEventListener("click", addBlock);
+      });
+
+      // Add event listener to the "Remove" button
+      const removeButtons = container.querySelectorAll(".remove-template");
+      removeButtons.forEach((button) => {
+        button.addEventListener("click", removeBlock);
+      });
     };
 
-    document.querySelectorAll(".add-template").forEach((button) => {
-      button.addEventListener("click", add(template));
-    });
+    // Initialize "Contents" section
+    initializeDynamicBlocks(
+      "contents", // Container ID
+      "content-template", // Template ID
+      ".add-template", // Add Button Selector
+      ".remove-template", // Remove Button Selector
+      "Content", // Title Prefix
+    );
 
-    document.querySelectorAll(".remove-template").forEach((button) => {
-      button.addEventListener("click", remove);
-    });
-
-
-
+    // Initialize "Testimonials" section
+    initializeDynamicBlocks(
+      "testimonials", // Container ID
+      "testimonial-template", // Template ID
+      "#add-testimonial", // Add Button Selector
+      ".remove-testimonial", // Remove Button Selector
+      "Testimonial", // Title Prefix
+    );
   })();
-
-    // Function to add a new testimonial block
-    function addTestimonialBlock() {
-    const container = document.querySelector("#testimonials");
-    const template = document.getElementById("testimonial-template").content.cloneNode(true);
-    const index = container.children.length + 1;
-
-    // Update the index in the title
-    template.querySelector("h3").textContent = `Testimonial ${index}`;
-
-    // Update the textarea names
-    template.querySelector('textarea[name="testimonials[en]"]').name = `testimonials[${index}][en]`;
-    template.querySelector('textarea[name="testimonials[ar]"]').name = `testimonials[${index}][ar]`;
-
-    // Add event listener to the remove button
-    template.querySelector("button[onclick='removeTestimonialBlock(this)']").addEventListener("click", () => {
-      removeTestimonialBlock(template);
-    });
-
-    container.appendChild(template);
-  }
-
-  // Function to remove a testimonial block
-  function removeTestimonialBlock(button) {
-    const block = button.closest(".bg-white");
-    block.remove();
-  }
 </script>
 {% endblock %}
-

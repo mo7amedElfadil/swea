@@ -18,5 +18,4 @@ class Project(BaseModel):
     content = db.Column(db.ARRAY(db.JSON), nullable=True)  # ARRAY of JSON objects
     tags = db.Column(db.JSON, nullable=False)
     hero_image = db.Column(db.String(255), nullable=True)
-    images = db.Column(db.JSON, nullable=True)
     testimonials = db.Column(db.ARRAY(db.JSON), nullable=True)

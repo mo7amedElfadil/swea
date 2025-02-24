@@ -38,8 +38,7 @@ class ProjectSchema(Schema):
     date_of_completion = fields.Date(allow_none=True)
     content = fields.List(fields.Dict(), allow_none=True)
     hero_image = fields.Str(allow_none=True)
-    images = fields.List(fields.Str(), allow_none=True)
-    testimonials = fields.Dict(fields.Str(), fields.List(fields.Str()), allow_none=True)
+    testimonials = fields.List(fields.Dict(), allow_none=True)
 
     @validates("title")
     def validate_title(self, value):

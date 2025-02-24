@@ -4,26 +4,20 @@ from flask_babel import gettext as _
 from api.v1.views import bp
 from app.services.project_service import ProjectService
 
-# Initialize the service with static dummy data
 project_service = ProjectService()
 
 
-@bp.route("/dashboard/new-project", methods=["GET"])
-def new_project():
-    """Render the form to add a new project"""
-    return render_template("partials/dashboard/new_project_form.html")
-
-
-@bp.route("/dashboard/add-project", methods=["POST"])
+@bp.route("/dashboard/new-project", methods=["GET", "POST"])
 def add_project():
     """Add a new project"""
+    if request.method == "GET":
+        return render_template("partials/dashboard/new_project_form.html")
+
     try:
         form_data = request.form.to_dict()
-        print("=====>", form_data)
         files = request.files
         project_service.create_project(form_data, files)
     except Exception as e:
-        print(e)
         return redirect("/dashboard?q=projects")
 
     return make_response(
@@ -34,21 +28,19 @@ def add_project():
     )
 
 
-@bp.route("/dashboard/edit-project/<project_id>", methods=["GET"])
-def edit_project(project_id):
-    """Render the form to edit an existing project"""
-    project = project_service.get_project_by_uuid(project_id)
-    if not project:
-        return redirect("/dashboard?q=projects")
-
-    print("==TO-UPDATE===>", project)
-
-    return render_template("partials/dashboard/edit_project_form.html", project=project)
-
-
-@bp.route("/dashboard/update-project/<project_id>", methods=["POST"])
+@bp.route("/dashboard/update-project/<project_id>", methods=["GET", "POST"])
 def update_project(project_id):
     """Update an existing project"""
+    if request.method == "GET":
+        project_data = project_service.get_project_by_uuid(project_id)
+
+        if not project_data:
+            return redirect("/dashboard?q=projects")
+
+        return render_template(
+            "partials/dashboard/edit_project_form.html", project=project_data
+        )
+
     try:
         form_data = request.form.to_dict()
 

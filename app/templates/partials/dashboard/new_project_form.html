@@ -249,11 +249,11 @@
 
 {% block extra_scripts %}
 <script>
-    let nodes = [];
-    let nodeCount = 0;
-    let container = document.getElementById("contents");
-    let addMore = container.querySelector("#add-more");
-    const add = (template) => (evt) => {
+    var nodes = [];
+    var nodeCount = 0;
+    var container = document.getElementById("contents");
+    var addMore = container.querySelector("#add-more");
+    var add = (template) => (evt) => {
         nodeCount++;
         const clone = template.content.cloneNode(true);
         const container = document.getElementById("contents");
@@ -282,7 +282,7 @@
         const secondToLast = container.children[container.children.length - 2];
         secondToLast.querySelector("#add-template").classList.add("hidden");
     };
-    const remove = (evt) => {
+    var remove = (evt) => {
         nodeCount--;
         const id = parseInt(evt.currentTarget.parentElement.parentElement.getAttribute("id"));
         const container = document.getElementById("contents");
@@ -299,7 +299,7 @@
                 .classList.remove("hidden");
         }
     };
-    const generate_title = (id) => {
+    var generate_title = (id) => {
         const label = document.createElement("label");
         label.textContent = `Content ${id}`;
         label.setAttribute("class", "text-sm font-medium text-gray-700 capitalize");

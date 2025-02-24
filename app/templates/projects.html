@@ -17,10 +17,10 @@
 				<span>{{p.date_of_completion}}</span>
             </div>
 			<p>
-			{% if p.content and p.content|length > 100 %}
-        		{{ p.content[:100] }}...
+			{% if p.content and p.content[0]|length > 100 %}
+        		{{ p.content[0][:100] }}...
     		{% else %}
-        		{{ p.content or "" }}
+        		{{ p.content[0] or "" }}
     		{% endif %}
 			</p>
             <button class='me-auto flex gap-2'>

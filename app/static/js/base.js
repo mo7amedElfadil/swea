@@ -58,7 +58,6 @@ window.addEventListener('scroll', function() {
     const data = JSON.parse(e.data);
     //document.querySelector(data.selector).outerHTML = data.fragment;
     window.location.reload();
-    console.log(data);
+    //console.log(data);
   };
-
 })();

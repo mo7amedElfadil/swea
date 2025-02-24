@@ -249,8 +249,8 @@
 
 {% block extra_scripts %}
 <script>
-    var nodes = [];
     var nodeCount = 0;
+    var delNode = 0;
     var container = document.getElementById("contents");
     var addMore = container.querySelector("#add-more");
     var add = (template) => (evt) => {
@@ -258,42 +258,30 @@
         const clone = template.content.cloneNode(true);
         const container = document.getElementById("contents");
 
-        nodes.push(clone);
         clone
             .querySelector("#add-template")
             .addEventListener("click", add(template));
         clone.querySelector("#remove-template").addEventListener("click", remove);
-
-        for (let i = 0; i < nodes.length; i++) {
-            const elem = nodes[i].querySelector("div");
-
-            if (elem && !elem.hasAttribute("id")) {
-                elem.setAttribute("id", i);
-                elem
-                    .querySelector('textarea[name="content[ar]"]')
-                    .setAttribute("name", `content[${i + 1}][ar]`);
-                elem
-                    .querySelector('textarea[name="content[en]"]')
-                    .setAttribute("name", `content[${i + 1}][en]`);
-                elem.prepend(generate_title(i + 1));
-            }
-        }
+        clone.querySelector("div").setAttribute("id", nodeCount+delNode);
+        clone.querySelector('textarea[name="content[en]"]').setAttribute("name", `content[${nodeCount+delNode}][en]`);
+        clone.querySelector('textarea[name="content[ar]"]').setAttribute("name", `content[${nodeCount+delNode}][ar]`);
+        clone.querySelector("div").prepend(generate_title(nodeCount+delNode));
         container.appendChild(clone);
         const secondToLast = container.children[container.children.length - 2];
         secondToLast.querySelector("#add-template").classList.add("hidden");
     };
     var remove = (evt) => {
+        delNode++;
         nodeCount--;
         const id = parseInt(evt.currentTarget.parentElement.parentElement.getAttribute("id"));
         const container = document.getElementById("contents");
-        nodes[id] = null;
         evt.currentTarget.parentElement.parentElement.remove();
-        if (nodeCount == 1) {
-            container.children[2]
+        if (nodeCount > 0 && nodeCount === container.children.length - 2) {
+            container.children[nodeCount+1]
                 .querySelector("#add-template")
                 .classList.remove("hidden");
-        } else if (nodeCount == 0) {
-            nodes = [];
+        } else if (nodeCount === 0) {
+            delNode = 0;
             container.children[0]
                 .querySelector("#add-more")
                 .classList.remove("hidden");
@@ -317,7 +305,7 @@
         clone
             .querySelector("#remove-template")
             .addEventListener("click", remove);
-        clone.querySelector("div").setAttribute("id", 0);
+        clone.querySelector("div").setAttribute("id", nodeCount);
         clone
             .querySelector('textarea[name="content[ar]"]')
             .setAttribute("name", "content[1][ar]");
@@ -326,7 +314,6 @@
             .setAttribute("name", "content[1][en]");
         clone.querySelector("div").prepend(generate_title(1));
         addMore.classList.add("hidden");
-        nodes.push(clone);
         container.appendChild(clone);
     });
 </script>

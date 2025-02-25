@@ -5,12 +5,12 @@ This module provides the business logic for project-related operations.
 """
 
 import os
-import re
 from datetime import date
 from typing import Any, Dict, List, Optional
 
 from flask import current_app
 from marshmallow import ValidationError
+from sqlalchemy import cast, or_
 from werkzeug.utils import secure_filename
 
 from app.extensions import db
@@ -141,23 +141,38 @@ class ProjectService:
         """
         return Project.get_all_by(author=author)
 
-    def get_all_projects(self, page: int = 1) -> List[Project]:
+    def get_all_projects(
+        self, status: str = "all", search_str: str = "", page: int = 1
+    ) -> List[Project]:
         """
         Retrieve all projects with pagination.
 
         Args:
             page (int): The page number to retrieve (default is 1).
+            status (str): The status of the projects to filter by (default is 'all').
+            search_str (str): The search string to filter projects by title.
 
         Returns:
             List[Project]: A list of projects for the specified page.
         """
+        if search_str:
+            return self.search_projects_by_title(search_str)
+
+        if status != "all":
+            return [
+                p.to_dict()
+                for p in (
+                    Project.query.filter_by(status=status, deleted_at=None)
+                    .paginate(page=page, per_page=self.page_size)
+                    .items
+                )
+            ]
+
         return [
             p.to_dict()
-            for p in (
-                Project.query.filter_by(deleted_at=None)
-                .paginate(page=page, per_page=self.page_size)
-                .items
-            )
+            for p in Project.query.filter_by(deleted_at=None)
+            .paginate(page=page, per_page=self.page_size)
+            .items
         ]
 
     def get_projects_by_completion_date(
@@ -185,7 +200,11 @@ class ProjectService:
             List[Project]: A list of projects matching the title.
         """
         return Project.query.filter(
-            Project.title.contains(title), Project.deleted_at.is_(None)
+            Project.deleted_at.is_(None),
+            or_(
+                cast(Project.title["en"], db.String).ilike(f"%{title}%"),
+                cast(Project.title["ar"], db.String).ilike(f"%{title}%"),
+            ),
         ).all()
 
     def restore_project(self, uuid: str) -> Optional[Project]:

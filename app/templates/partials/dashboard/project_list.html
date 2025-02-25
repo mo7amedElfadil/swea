@@ -1,0 +1,65 @@
+<!-- Project List -->
+{% if projects %}
+<div class="space-y-4">
+  {% for project in projects %}
+  <div
+    class="flex justify-between items-center p-4 bg-white rounded-lg shadow-sm"
+  >
+    <!-- Project Details -->
+    <div>
+      <!-- Title -->
+      <h3 class="text-lg font-semibold text-gray-900">
+        {{ project.title[locale] | default(project.title['en']) }}
+      </h3>
+
+      <!-- Author -->
+      <p class="text-sm text-gray-600">
+        {{ _("by") }} {{ project.author['name'][locale] |
+        default(project.author['name']['en']) }}
+      </p>
+
+      <!-- Status -->
+      <span
+        class="inline-block px-2 py-1 text-xs font-medium rounded-full {% if project.status == 'ongoing' %}bg-yellow-100 text-yellow-700{% else %}bg-green-100 text-green-700{% endif %}"
+      >
+        {{ project.status | capitalize }}
+      </span>
+
+      <!-- Tags -->
+      <div class="mt-2 space-x-2">
+        {% for tag in project.tags[locale] | default(project.tags['en']) %}
+        <span
+          class="inline-block px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-700"
+        >
+          {{ tag }}
+        </span>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex space-x-2">
+      <button
+        class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none"
+        hx-get="/dashboard/update-project/{{ project.uuid }}"
+        hx-target="#modal-container"
+        hx-swap="innerHTML"
+      >
+        {{ _("edit") }}
+      </button>
+      <button
+        class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-red-100 text-red-700 hover:bg-red-200 focus:ring-2 focus:ring-red-500 focus:outline-none"
+        hx-delete="/dashboard/delete-project/{{ project.uuid }}"
+        hx-confirm="{{ _('confirm_delete_project') }}"
+        hx-target="#project-list"
+        hx-swap="innerHTML"
+      >
+        {{ _("delete") }}
+      </button>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="text-center text-gray-600">{{ _("no_projects_found") }}</div>
+{% endif %}

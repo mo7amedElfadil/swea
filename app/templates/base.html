@@ -63,8 +63,14 @@
 
 		<!-- JS Libraries (HTMX)  -->
 		<script src="{{ url_for('static', filename='js/htmx.min.js') }}"></script>
+
+		<!-- Toast Manager -->
+		<script src="{{ url_for('static', filename='js/toast-manager.js') }}"></script>
 	</head>
 	<body class="flex flex-col bg-secondary-100">
+		<!-- Toast container will be created dynamically if not present -->
+		<div id="toast-container" class="fixed top-4 {% if locale == 'ar' %}left-4{% else %}right-4{% endif %} flex flex-col gap-2 z-50"></div>
+
 		{% include "partials/header.html" %}
 		<main class="w-full flex-1 {% if locale == 'ar' %}font-primary{%else%}font-secondary{%endif%}">
 			{% block content %} {% endblock %}

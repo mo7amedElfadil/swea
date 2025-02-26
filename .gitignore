@@ -4,3 +4,4 @@
 branch_manager.log
 node_modules/
 package-lock.json
+migrations/

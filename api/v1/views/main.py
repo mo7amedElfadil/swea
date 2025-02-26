@@ -1,20 +1,13 @@
-from flask import (
-    make_response,
-    redirect,
-    render_template,
-    request,
-    session,
-    url_for,
-)
+from flask import make_response, redirect, render_template, request, session, url_for
 from flask_babel import gettext as _
 
 from api.v1.views import bp
 from app.extensions import get_locale
 from app.services.project_service import ProjectService
 from config import Config
+from utils.map_i18n import normailze_i18n
 from utils.referrer_modifier import modify_referrer_lang
 from utils.view_modifiers import response
-from utils.map_i18n import normailze_i18n
 
 # Initialize the service with static dummy data
 project_service = ProjectService()
@@ -43,7 +36,7 @@ def projects():
 def login():
     """Login page with HTMX"""
 
-    if request.method == 'GET':
+    if request.method == "GET":
         return dict()
 
     # Handle POST request (login attempt)
@@ -83,7 +76,7 @@ def dashboard():
         # Fetch projects for the 'projects' tab
         if tab_query == "projects":
             page = int(request.args.get("page", 1))
-            all_projects = project_service.get_all_projects()
+            all_projects = project_service.get_all_projects(page=page)
             return make_response(
                 render_template(
                     "partials/dashboard/projects.html",
@@ -131,3 +124,12 @@ def set_language():
         session["lang"] = lang
 
     return redirect(modify_referrer_lang(request.referrer, lang))
+
+
+@bp.route("/toast/<toast_type>")
+def get_toast(toast_type):
+    """Serve a specific toast template"""
+    if toast_type not in ["success", "error", "info", "warning"]:
+        return "Toast type not found", 404
+
+    return render_template(f"partials/toast/{toast_type}.html")

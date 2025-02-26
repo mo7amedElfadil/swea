@@ -1,0 +1,7 @@
+# .prettierrc or .prettierrc.yaml
+trailingComma: "es5"
+tabWidth: 4
+semi: false
+singleQuote: true
+printWidth: 80           # Set a maximum line width (80 characters is the standard)
+htmlWhitespaceSensitivity: ignore  # Control how Prettier handles HTML whitespace

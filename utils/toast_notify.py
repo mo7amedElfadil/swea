@@ -18,12 +18,13 @@ def with_toast(toast_type: ToastType, message: str) -> Callable[[F], F]:
         message: Message to display in the toast
 
     Example usage:
-
+    ```
     @bp.route('/create-item', methods=['POST'])
     @with_toast('success', 'Item created successfully')
     def create_item():
         # Your logic here
         return render_template('partials/item.html', item=new_item)
+    ```
     """
 
     def decorator(f: F) -> F:
@@ -66,12 +67,13 @@ def add_toast(response: Response, toast_type: ToastType, message: str) -> Respon
         Modified Flask response with toast trigger added
 
     Example usage:
-
+    ```
     @bp.route('/delete-item/<int:id>', methods=['DELETE'])
     def delete_item(id):
         # Delete logic here
         response = make_response("", 200)
         return add_toast(response, 'success', f'Item {id} deleted successfully')
+    ```
     """
     if request.headers.get("HX-Request") == "true":
         trigger_header = response.headers.get("HX-Trigger", "{}")

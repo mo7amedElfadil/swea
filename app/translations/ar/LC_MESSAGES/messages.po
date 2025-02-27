@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-27 10:46+0400\n"
+"POT-Creation-Date: 2025-02-27 12:20+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -28,9 +28,8 @@ msgid "Project created successfully"
 msgstr "تم إنشاء المشروع بنجاح"
 
 #: api/v1/views/projects.py:69 api/v1/views/projects.py:98
-#, fuzzy
 msgid "Project not found"
-msgstr "لا توجد مشاريع حالياً"
+msgstr "لم يتم العثور على المشروع"
 
 #: api/v1/views/projects.py:86
 msgid "Project updated successfully"
@@ -60,7 +59,7 @@ msgstr "تم تحديث عضو الفريق بنجاح"
 msgid "Team member deleted successfully"
 msgstr "تم حذف عضو الفريق بنجاح"
 
-#: app/templates/dashboard.html:3
+#: app/templates/dashboard.html:7
 msgid "dashboard"
 msgstr "لوحة التحكم"
 
@@ -274,10 +273,12 @@ msgid "completed_projects"
 msgstr "المشاريع المكتملة"
 
 #: app/templates/macros/tab_content.html:80
+#: app/templates/partials/dashboard/team.html:60
 msgid "previous"
 msgstr "السابق"
 
 #: app/templates/macros/tab_content.html:93
+#: app/templates/partials/dashboard/team.html:73
 msgid "next"
 msgstr "التالي"
 
@@ -595,7 +596,7 @@ msgstr "الصورة الحالية"
 msgid "update_team_member"
 msgstr "تحديث العضو"
 
-#: app/templates/partials/dashboard/new_project_form.html:11
+#: app/templates/partials/dashboard/new_project_form.html:5
 msgid "project_title_english"
 msgstr "عنوان المشروع بالإنجليزية"
 
@@ -632,6 +633,7 @@ msgid "Add more testimonials"
 msgstr "إضافة المزيد من التوصيات"
 
 #: app/templates/partials/dashboard/new_project_form.html:432
+#: app/templates/partials/dashboard/projects.html:5
 msgid "add_project"
 msgstr "إضافة مشروع"
 
@@ -640,11 +642,49 @@ msgstr "إضافة مشروع"
 msgid "add_team_member"
 msgstr "إضافة عضو"
 
+#: app/templates/partials/dashboard/news-form.html:9
+#: app/templates/partials/dashboard/news-form.html:10
+msgid "news_title_english"
+msgstr "عنوان الخبر بالإنجليزية"
+
+#: app/templates/partials/dashboard/news-form.html:11
+#: app/templates/partials/dashboard/news-form.html:12
+msgid "news_title_arabic"
+msgstr "عنوان الخبر بالعربية"
+
+#: app/templates/partials/dashboard/news-form.html:15
+msgid "news_date"
+msgstr "تاريخ الخبر"
+
+#: app/templates/partials/dashboard/news-form.html:16
+msgid "news date"
+msgstr "تاريخ الخبر"
+
+#: app/templates/partials/dashboard/news-form.html:19
+msgid "news_image"
+msgstr "صورة الخبر"
+
+#: app/templates/partials/dashboard/news-form.html:20
+msgid "news image"
+msgstr "صورة الخبر"
+
+#: app/templates/partials/dashboard/news-form.html:28
+msgid "content"
+msgstr "المحتوى"
+
+#: app/templates/partials/dashboard/news-form.html:37
+msgid "create"
+msgstr "إنشاء"
+
+#: app/templates/partials/dashboard/news.html:5
+msgid "add_news"
+msgstr "إضافة خبر"
+
 #: app/templates/partials/dashboard/project_list.html:17
 msgid "by"
 msgstr "بواسطة"
 
-#: app/templates/partials/dashboard/project_list.html:48
+#: app/templates/partials/dashboard/project_list.html:49
 #: app/templates/partials/dashboard/team_list.html:44
 msgid "edit"
 msgstr "تعديل"
@@ -653,7 +693,7 @@ msgstr "تعديل"
 msgid "confirm_delete_project"
 msgstr "هل أنت متأكد من حذف المشروع؟"
 
-#: app/templates/partials/dashboard/project_list.html:57
+#: app/templates/partials/dashboard/project_list.html:58
 #: app/templates/partials/dashboard/team_list.html:53
 msgid "delete"
 msgstr "حذف"
@@ -661,28 +701,6 @@ msgstr "حذف"
 #: app/templates/partials/dashboard/project_list.html:65
 msgid "no_projects_found"
 msgstr "لا توجد مشاريع حالياً"
-
-#: app/templates/partials/dashboard/projects.html:39
-msgid "search_project"
-msgstr "ابحث عن مشروع"
-
-#: app/templates/partials/dashboard/projects.html:56
-msgid "all_projects"
-msgstr "كل المشاريع"
-
-#: app/templates/partials/dashboard/projects.html:58
-msgid "completed_projects"
-msgstr "المشاريع المكتملة"
-
-#: app/templates/partials/dashboard/projects.html:76
-#: app/templates/partials/dashboard/team.html:60
-msgid "previous"
-msgstr "السابق"
-
-#: app/templates/partials/dashboard/projects.html:89
-#: app/templates/partials/dashboard/team.html:73
-msgid "next"
-msgstr "التالي"
 
 #: app/templates/partials/dashboard/team.html:9
 msgid "team_members"

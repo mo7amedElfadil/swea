@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-27 10:46+0400\n"
+"POT-Creation-Date: 2025-02-27 12:20+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,7 +57,7 @@ msgstr ""
 msgid "Team member deleted successfully"
 msgstr ""
 
-#: app/templates/dashboard.html:3
+#: app/templates/dashboard.html:7
 msgid "dashboard"
 msgstr ""
 
@@ -247,10 +247,12 @@ msgid "completed_projects"
 msgstr ""
 
 #: app/templates/macros/tab_content.html:80
+#: app/templates/partials/dashboard/team.html:60
 msgid "previous"
 msgstr ""
 
 #: app/templates/macros/tab_content.html:93
+#: app/templates/partials/dashboard/team.html:73
 msgid "next"
 msgstr ""
 
@@ -566,7 +568,7 @@ msgstr ""
 msgid "update_team_member"
 msgstr ""
 
-#: app/templates/partials/dashboard/new_project_form.html:11
+#: app/templates/partials/dashboard/new_project_form.html:5
 msgid "project_title_english"
 msgstr ""
 
@@ -603,6 +605,7 @@ msgid "Add more testimonials"
 msgstr ""
 
 #: app/templates/partials/dashboard/new_project_form.html:432
+#: app/templates/partials/dashboard/projects.html:5
 msgid "add_project"
 msgstr ""
 
@@ -611,11 +614,49 @@ msgstr ""
 msgid "add_team_member"
 msgstr ""
 
+#: app/templates/partials/dashboard/news-form.html:9
+#: app/templates/partials/dashboard/news-form.html:10
+msgid "news_title_english"
+msgstr ""
+
+#: app/templates/partials/dashboard/news-form.html:11
+#: app/templates/partials/dashboard/news-form.html:12
+msgid "news_title_arabic"
+msgstr ""
+
+#: app/templates/partials/dashboard/news-form.html:15
+msgid "news_date"
+msgstr ""
+
+#: app/templates/partials/dashboard/news-form.html:16
+msgid "news date"
+msgstr ""
+
+#: app/templates/partials/dashboard/news-form.html:19
+msgid "news_image"
+msgstr ""
+
+#: app/templates/partials/dashboard/news-form.html:20
+msgid "news image"
+msgstr ""
+
+#: app/templates/partials/dashboard/news-form.html:28
+msgid "content"
+msgstr ""
+
+#: app/templates/partials/dashboard/news-form.html:37
+msgid "create"
+msgstr ""
+
+#: app/templates/partials/dashboard/news.html:5
+msgid "add_news"
+msgstr ""
+
 #: app/templates/partials/dashboard/project_list.html:17
 msgid "by"
 msgstr ""
 
-#: app/templates/partials/dashboard/project_list.html:48
+#: app/templates/partials/dashboard/project_list.html:49
 #: app/templates/partials/dashboard/team_list.html:44
 msgid "edit"
 msgstr ""
@@ -624,35 +665,13 @@ msgstr ""
 msgid "confirm_delete_project"
 msgstr ""
 
-#: app/templates/partials/dashboard/project_list.html:57
+#: app/templates/partials/dashboard/project_list.html:58
 #: app/templates/partials/dashboard/team_list.html:53
 msgid "delete"
 msgstr ""
 
 #: app/templates/partials/dashboard/project_list.html:65
 msgid "no_projects_found"
-msgstr ""
-
-#: app/templates/partials/dashboard/projects.html:39
-msgid "search_project"
-msgstr ""
-
-#: app/templates/partials/dashboard/projects.html:56
-msgid "all_projects"
-msgstr ""
-
-#: app/templates/partials/dashboard/projects.html:58
-msgid "completed_projects"
-msgstr ""
-
-#: app/templates/partials/dashboard/projects.html:76
-#: app/templates/partials/dashboard/team.html:60
-msgid "previous"
-msgstr ""
-
-#: app/templates/partials/dashboard/projects.html:89
-#: app/templates/partials/dashboard/team.html:73
-msgid "next"
 msgstr ""
 
 #: app/templates/partials/dashboard/team.html:9

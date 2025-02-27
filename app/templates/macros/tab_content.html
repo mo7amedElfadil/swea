@@ -1,0 +1,98 @@
+{% macro tab_content(data=data, title_i18n='', title='', btn_text='', hx_get='',
+page=1, total_pages=1, search_placeholder=_('search_placeholder')) %} {%- set
+partial = { 'projects':'partials/dashboard/project_list.html', 'team':'',
+'knowledgehub':'partials/dashboard/knowledgehub-list.html',
+'subscribers':'partials/dashboard/subscribers-list.html',
+'news':'partials/dashboard/news-list.html' } -%}
+<div
+    id="tab-container"
+    class="bg-primary-50 rounded-xl shadow-sm transition-all duration-200"
+>
+    <!-- Header Section -->
+    <div class="flex justify-between items-center mb-6 capitalize">
+        <h2 class="text-2xl font-bold text-gray-900">{{ title_i18n }}</h2>
+        <button
+            class="flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-600 text-white capitalize hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:outline-none"
+            hx-get="{{ hx_get }}"
+            hx-target="#tab-container"
+            hx-swap="innerHTML"
+        >
+            <img
+                class="w-5 h-5 mr-2"
+                src="{{url_for('static', filename='icons/add.svg')}}"
+                alt="Add Icon"
+            />
+            {{ btn_text }}
+        </button>
+    </div>
+
+    <!-- Filter Section Wrapped in a Form -->
+    <form
+        hx-get="/dashboard/{{title}}"
+        hx-target="#tab-content-list"
+        hx-swap="innerHTML"
+        hx-indicator="#loading-indicator"
+        class="mb-6 flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0"
+    >
+        <!-- Search Input -->
+        <input
+            type="text"
+            id="search-input"
+            name="search"
+            value="{{ search | default('') }}"
+            placeholder="{{ search_placeholder }}"
+            class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            hx-trigger="keyup changed delay:500ms"
+            hx-get="/dashboard/{{title}}"
+            hx-target="#tab-content-list"
+            hx-swap="innerHTML"
+        />
+        {%if title == 'projects' %}
+        <!-- Filter Select -->
+        <select
+            id="filter-select"
+            name="filter"
+            class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            hx-trigger="change"
+            hx-get="/dashboard/{{title}}"
+            hx-target="#tab-content-list"
+            hx-swap="innerHTML"
+        >
+            <option value="all">{{ _("all_projects") }}</option>
+            <option value="ongoing">{{ _("ongoing") }}</option>
+            <option value="completed">{{ _("completed_projects") }}</option>
+        </select>
+        {% endif %}
+    </form>
+
+    <!-- Project list -->
+    <div id="tab-content-list">{% include partial[title] %}</div>
+
+    <!-- Pagination -->
+    <div class="mt-6 flex justify-center space-x-2">
+        {% if page and page > 1 %}
+        <button
+            class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none"
+            hx-get="/dashboard?q={{title}}&page={{ page - 1 }}"
+            hx-target="#tab-content-list"
+            hx-swap="innerHTML"
+        >
+            {{ _("previous") }}
+        </button>
+        {% endif %}
+        <span class="px-4 py-2 text-sm font-medium text-gray-700">
+            {{ page }} / {{ total_pages }}
+        </span>
+        {% if page and page < total_pages %}
+        <button
+            class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none"
+            hx-get="/dashboard?q={{title}}&page={{ page + 1 }}"
+            hx-target="#tab-content-list"
+            hx-swap="innerHTML"
+        >
+            {{ _("next") }}
+        </button>
+        {% endif %}
+    </div>
+</div>
+{% endmacro %}

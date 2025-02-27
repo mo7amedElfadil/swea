@@ -1,0 +1,67 @@
+{% import "macros/form.html" as form %}
+<div>
+    <form
+        id="create-news"
+        class="flex flex-col gap-4"
+        hx-post="/dashboard/news/create"
+    >
+        <!-- Title (Multi-language Support) -->
+        {{form.input(label=_("news_title_english"), id="title-en",
+        name="title[en]", placeholder=_("news_title_english"), )}}
+        {{form.input(label=_("news_title_arabic"), id="title-ar",
+        name="title[ar]", placeholder=_("news_title_arabic"), )}}
+
+        <!-- date -->
+        {{form.input(label=_("news_date"), id="news-img", name="news_date",
+        type="date",placeholder=_("news date"), )}}
+
+        <!-- image (Multi-language Support) -->
+        {{form.input(label=_("news_image"), id="news-img", name="news_img",
+        type="file",placeholder=_("news image"), )}}
+
+        <!-- description -->
+        <div>
+            <label
+                for="editor"
+                class="mb-1 block text-sm font-medium text-gray-700 capitalize"
+            >
+                {{_('content')}}
+            </label>
+            <div id="editor" class="bg-white"></div>
+            <input type="hidden" name="description" id="description" />
+        </div>
+        <button
+            class="w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
+            type="submit"
+        >
+            {{_('create')}}
+        </button>
+    </form>
+</div>
+<!-- Include the Quill library -->
+<script
+    src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"
+    onload="initQuill()"
+></script>
+<!-- Initialize Quill editor -->
+<script>
+    function initQuill() {
+        var quill = new Quill('#editor', {
+            theme: 'snow',
+        })
+        // Use htmx:configRequest to update the form parameters
+        document
+            .getElementById('create-news')
+            .addEventListener('htmx:configRequest', function (evt) {
+                // Get the HTML content from Quill
+                const content = quill.root.innerHTML
+                console.log('Content before sending:', content)
+
+                // Update the hidden input (optional)
+                document.getElementById('description').value = content
+
+                // Update the request parameters directly
+                evt.detail.parameters.content = content
+            })
+    }
+</script>

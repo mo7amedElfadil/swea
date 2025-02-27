@@ -1,0 +1,18 @@
+{% macro input(id='', name='', type='text', placeholder='', label='') %}
+<div>
+    <label
+        for="{{id}}"
+        class="block text-sm font-medium text-gray-700 capitalize"
+    >
+        {{ label }}
+    </label>
+    <input
+        required
+        type="{{type}}"
+        id="{{id}}"
+        name="{{name}}"
+        placeholder="{{ placeholder }}"
+        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+    />
+</div>
+{% endmacro %}

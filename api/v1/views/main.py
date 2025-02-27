@@ -71,6 +71,7 @@ def dashboard():
         "projects": "partials/dashboard/projects.html",
         "knowledge-hub": "partials/dashboard/knowledge_hub.html",
         "subscribers": "partials/dashboard/subscribers.html",
+        "news": "partials/dashboard/news.html",
     }
     if request.headers.get("hx-tab"):
         # Fetch projects for the 'projects' tab

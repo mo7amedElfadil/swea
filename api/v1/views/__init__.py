@@ -6,3 +6,4 @@ bp = Blueprint("app_views", __name__, template_folder="templates")
 
 from api.v1.views.main import *
 from api.v1.views.projects import *
+from api.v1.views.news import *

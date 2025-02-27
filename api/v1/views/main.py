@@ -128,6 +128,14 @@ def knowledge_hup():
     return dict(tab="research")
 
 
+@bp.route("/team")
+@response(template_file="team.html")
+def team():
+    """team page"""
+    all_team_members = TeamService().get_all_team_members()
+    return dict(**all_team_members)
+
+
 @bp.route("/set_language")
 def set_language():
     """set language"""

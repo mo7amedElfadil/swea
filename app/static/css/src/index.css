@@ -3,76 +3,88 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Noto Kufi Arabic";
-  src: url("../../fonts/NotoKufiArabic-Regular.ttf") format("truetype");
+    font-family: 'Noto Kufi Arabic';
+    src: url('../../fonts/NotoKufiArabic-Regular.ttf') format('truetype');
 }
 
 /*---------------UTILS---------------------*/
 .header-shadow {
-  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.3);
 }
 ul li a.active {
-  @apply sm:before:absolute sm:before:-bottom-[2px] sm:before:left-0 sm:before:w-full sm:before:h-[2px] sm:before:bg-red-500;
+    @apply sm:before:absolute sm:before:-bottom-[2px] sm:before:left-0 sm:before:w-full sm:before:h-[2px] sm:before:bg-red-500;
 }
 
 .active-tab {
-  @apply bg-red-800 text-white;
+    @apply bg-red-800 text-white;
 }
 .active-tab svg {
-  @apply text-white fill-white stroke-white;
+    @apply text-white fill-white stroke-white;
 }
 .active-tab svg path {
-  @apply stroke-white;
+    @apply stroke-white;
 }
 /*------------------------------------*/
 
 html,
 body {
-  /**    font-family: "Noto Kufi Arabic", sans-serif;*/
-  /**    height: 100%;*/
-  min-height: 100vh;
+    /**    font-family: "Noto Kufi Arabic", sans-serif;*/
+    /**    height: 100%;*/
+    min-height: 100vh;
 }
 
 section#mission {
-  background-image: url("../../imgs/mission.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    background-image: url('../../imgs/mission.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 section#our_story {
-  background-image:
-    linear-gradient(
-      to bottom right,
-      rgba(57, 24, 17, 0.8),
-      rgba(219, 142, 92, 0.5)
-    ),
-    url("../../imgs/discussion.jpg");
+    background-image:
+        linear-gradient(
+            to bottom right,
+            rgba(57, 24, 17, 0.8),
+            rgba(219, 142, 92, 0.5)
+        ),
+        url('../../imgs/discussion.jpg');
 }
 
 section#projects-hero {
-  background-image: url("../../imgs/projects.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    background-image: url('../../imgs/projects.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 section#kh-hero {
-  background-image:
-    url("../../imgs/kh-hero0.png"), url("../../imgs/kh-hero1.svg"),
-    url("../../imgs/kh-hero2.svg");
-  background-position: center center;
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  @apply bg-contain lg:bg-900;
+    background-image:
+        url('../../imgs/kh-hero0.png'), url('../../imgs/kh-hero1.svg'),
+        url('../../imgs/kh-hero2.svg');
+    background-position: center center;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    @apply bg-contain lg:bg-900;
 }
 
 footer {
-  background-image: url("../../imgs/bg-footer.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    background-image: url('../../imgs/bg-footer.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 header {
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

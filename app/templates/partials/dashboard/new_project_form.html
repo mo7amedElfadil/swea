@@ -1,5 +1,9 @@
 {% import "macros/form.html" as form %}
-<form hx-post="/dashboard/new-project" class="space-y-4">
+<form
+    hx-post="/dashboard/new-project"
+    hx-encoding="multipart/form-data"
+    class="space-y-4"
+>
     <!-- Title (Multi-language Support) -->
     {{form.input(label=_("title_english"), id="title-en", name="title[en]",
     placeholder=_("project_title_english"), )}}

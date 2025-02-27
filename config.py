@@ -21,7 +21,13 @@ class Config:
     BABEL_TRANSLATION_DIRECTORIES = os.path.join(basedir, "app/translations")
 
     # General App configuration
-    UPLOAD_FOLDER = getenv("UPLOAD_FOLDER", os.path.join(basedir, "uploads"))
+    UPLOAD_FOLDER = getenv(
+        "UPLOAD_FOLDER", os.path.join(basedir, "./app/static/uploads/")
+    )
+    # Create the upload folder if it doesn't exist
+    if not path.exists(UPLOAD_FOLDER):
+        os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
     SECRET_KEY = getenv("SECRET_KEY", "you-will-never-guess")
     PREFERRED_URL_SCHEME = getenv("PREFERRED_URL_SCHEME", "https")
     API_KEY = getenv("API_KEY", "you-will-never-guess")

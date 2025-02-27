@@ -15,6 +15,8 @@ from app.extensions import db
 from app.models.team import Team
 from app.schemas.team_schema import TeamSchema
 
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
+
 
 class TeamService:
     """Team service class."""
@@ -194,10 +196,18 @@ class TeamService:
         # Handle image upload
         image = files.get("image")
         if image and image.filename:
+            if not self._allowed_file(image.filename):
+                raise ValidationError(
+                    {"image": "Invalid file type. Only images are allowed."}
+                )
             filename = secure_filename(image.filename)
+            filename = f"{os.urandom(8).hex()}_{filename}"
+
+            # Construct the relative URL
+            relative_path = os.path.join("uploads", filename)
             filepath = os.path.join(current_app.config["UPLOAD_FOLDER"], filename)
             image.save(filepath)
-            processed_data["image"] = filepath  # Save file path
+            processed_data["image"] = relative_path
 
         return processed_data
 
@@ -236,3 +246,9 @@ class TeamService:
                 socials[platform] = ""
 
         return socials
+
+    def _allowed_file(self, filename: str) -> bool:
+        """Check if the file extension is allowed."""
+        return (
+            "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+        )

@@ -4,6 +4,7 @@
         id="create-news"
         class="flex flex-col gap-4"
         hx-post="/dashboard/news/create"
+        hx-encoding="multipart/form-data"
     >
         <!-- Title (Multi-language Support) -->
         {{form.input(label=_("news_title_english"), id="title-en",

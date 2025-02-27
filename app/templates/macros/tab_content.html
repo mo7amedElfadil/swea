@@ -5,7 +5,7 @@ partial = { 'projects':'partials/dashboard/project_list.html', 'team':'',
 'subscribers':'partials/dashboard/subscribers-list.html',
 'news':'partials/dashboard/news-list.html' } -%}
 <div
-    id="tab-container"
+    id="tab-content"
     class="bg-primary-50 rounded-xl shadow-sm transition-all duration-200"
 >
     <!-- Header Section -->
@@ -14,7 +14,7 @@ partial = { 'projects':'partials/dashboard/project_list.html', 'team':'',
         <button
             class="flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-600 text-white capitalize hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:outline-none"
             hx-get="{{ hx_get }}"
-            hx-target="#tab-container"
+            hx-target="#tab-content"
             hx-swap="innerHTML"
         >
             <img

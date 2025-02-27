@@ -1,132 +1,147 @@
 <form
-  hx-post="/dashboard/new-team-member"
-  hx-target="#modal-container"
-  hx-swap="innerHTML"
-  class="space-y-6"
+    hx-post="/dashboard/new-team-member"
+    hx-target="#modal-container"
+    hx-swap="innerHTML"
+    hx-encoding="multipart/form-data"
+    class="space-y-6"
 >
-  <!-- Name -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div>
-      <label for="name-en" class="block text-sm font-medium text-gray-700">
-        {{ _("name_english") }}
-      </label>
-      <input
-        type="text"
-        id="name-en"
-        name="name[en]"
-        placeholder="{{ _('enter_name_in_english') }}"
-        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-        required
-      />
+    <!-- Name -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+            <label
+                for="name-en"
+                class="block text-sm font-medium text-gray-700"
+            >
+                {{ _("name_english") }}
+            </label>
+            <input
+                type="text"
+                id="name-en"
+                name="name[en]"
+                placeholder="{{ _('enter_name_in_english') }}"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                required
+            />
+        </div>
+        <div>
+            <label
+                for="name-ar"
+                class="block text-sm font-medium text-gray-700"
+            >
+                {{ _("name_arabic") }}
+            </label>
+            <input
+                type="text"
+                id="name-ar"
+                name="name[ar]"
+                placeholder="{{ _('enter_name_in_arabic') }}"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+            />
+        </div>
     </div>
-    <div>
-      <label for="name-ar" class="block text-sm font-medium text-gray-700">
-        {{ _("name_arabic") }}
-      </label>
-      <input
-        type="text"
-        id="name-ar"
-        name="name[ar]"
-        placeholder="{{ _('enter_name_in_arabic') }}"
-        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-      />
-    </div>
-  </div>
 
-  <!-- Role -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div>
-      <label for="role-en" class="block text-sm font-medium text-gray-700">
-        {{ _("role_english") }}
-      </label>
-      <input
-        type="text"
-        id="role-en"
-        name="role[en]"
-        placeholder="{{ _('enter_role_in_english') }}"
-        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-        required
-      />
+    <!-- Role -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+            <label
+                for="role-en"
+                class="block text-sm font-medium text-gray-700"
+            >
+                {{ _("role_english") }}
+            </label>
+            <input
+                type="text"
+                id="role-en"
+                name="role[en]"
+                placeholder="{{ _('enter_role_in_english') }}"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                required
+            />
+        </div>
+        <div>
+            <label
+                for="role-ar"
+                class="block text-sm font-medium text-gray-700"
+            >
+                {{ _("role_arabic") }}
+            </label>
+            <input
+                type="text"
+                id="role-ar"
+                name="role[ar]"
+                placeholder="{{ _('enter_role_in_arabic') }}"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+            />
+        </div>
     </div>
-    <div>
-      <label for="role-ar" class="block text-sm font-medium text-gray-700">
-        {{ _("role_arabic") }}
-      </label>
-      <input
-        type="text"
-        id="role-ar"
-        name="role[ar]"
-        placeholder="{{ _('enter_role_in_arabic') }}"
-        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-      />
+
+    <!-- Bio -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+            <label for="bio-en" class="block text-sm font-medium text-gray-700">
+                {{ _("bio_english") }}
+            </label>
+            <textarea
+                id="bio-en"
+                name="bio[en]"
+                rows="3"
+                placeholder="{{ _('enter_bio_in_english') }}"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                required
+            ></textarea>
+        </div>
+        <div>
+            <label for="bio-ar" class="block text-sm font-medium text-gray-700">
+                {{ _("bio_arabic") }}
+            </label>
+            <textarea
+                id="bio-ar"
+                name="bio[ar]"
+                rows="3"
+                placeholder="{{ _('enter_bio_in_arabic') }}"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+            ></textarea>
+        </div>
     </div>
-  </div>
 
-  <!-- Bio -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <!-- Socials -->
     <div>
-      <label for="bio-en" class="block text-sm font-medium text-gray-700">
-        {{ _("bio_english") }}
-      </label>
-      <textarea
-        id="bio-en"
-        name="bio[en]"
-        rows="3"
-        placeholder="{{ _('enter_bio_in_english') }}"
-        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-        required
-      ></textarea>
+        <label for="socials" class="block text-sm font-medium text-gray-700">
+            {{ _("socials") }}
+        </label>
+        <input
+            type="text"
+            id="socials"
+            name="socials"
+            placeholder="{{ _('enter_socials_comma_separated') }}"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+        />
+        <p class="mt-2 text-sm text-gray-500">
+            {{ _("example_socials_format") }}
+        </p>
     </div>
+
+    <!-- Image Upload -->
     <div>
-      <label for="bio-ar" class="block text-sm font-medium text-gray-700">
-        {{ _("bio_arabic") }}
-      </label>
-      <textarea
-        id="bio-ar"
-        name="bio[ar]"
-        rows="3"
-        placeholder="{{ _('enter_bio_in_arabic') }}"
-        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-      ></textarea>
+        <label for="image" class="block text-sm font-medium text-gray-700">
+            {{ _("profile_image") }}
+        </label>
+        <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
+            class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100"
+        />
     </div>
-  </div>
 
-  <!-- Socials -->
-  <div>
-    <label for="socials" class="block text-sm font-medium text-gray-700">
-      {{ _("socials") }}
-    </label>
-    <input
-      type="text"
-      id="socials"
-      name="socials"
-      placeholder="{{ _('enter_socials_comma_separated') }}"
-      class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-    />
-    <p class="mt-2 text-sm text-gray-500">{{ _("example_socials_format") }}</p>
-  </div>
-
-  <!-- Image Upload -->
-  <div>
-    <label for="image" class="block text-sm font-medium text-gray-700">
-      {{ _("profile_image") }}
-    </label>
-    <input
-      type="file"
-      id="image"
-      name="image"
-      accept="image/*"
-      class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100"
-    />
-  </div>
-
-  <!-- Submit Button -->
-  <div>
-    <button
-      type="submit"
-      class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-    >
-      {{ _("add_team_member") }}
-    </button>
-  </div>
+    <!-- Submit Button -->
+    <div>
+        <button
+            type="submit"
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+        >
+            {{ _("add_team_member") }}
+        </button>
+    </div>
 </form>

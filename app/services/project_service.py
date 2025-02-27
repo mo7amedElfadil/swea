@@ -17,6 +17,8 @@ from app.extensions import db
 from app.models import Project
 from app.schemas.project_schema import ProjectSchema
 
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
+
 
 class ProjectService:
     """Project service class."""
@@ -249,10 +251,21 @@ class ProjectService:
         # Handle hero_image upload
         hero_image = files.get("hero_image")
         if hero_image and hero_image.filename:
+            if not self._allowed_file(hero_image.filename):
+                raise ValidationError(
+                    {
+                        "hero_image": "Invalid file type. Allowed file types are png, jpg, jpeg, gif"
+                    }
+                )
             filename = secure_filename(hero_image.filename)
+            filename = f"{os.urandom(8).hex()}_{filename}"
+
+            # Construct the relative URL
+            relative_path = os.path.join("uploads", filename)
             filepath = os.path.join(current_app.config["UPLOAD_FOLDER"], filename)
+
             hero_image.save(filepath)
-            processed_data["hero_image"] = filepath  # Save file path
+            processed_data["hero_image"] = relative_path
 
         # Process content field
         processed_data["content"] = self._parse_indexed_fields(form_data, "content")
@@ -340,3 +353,9 @@ class ProjectService:
             }
             result.append(entry)
         return result
+
+    def _allowed_file(self, filename: str) -> bool:
+        """Check if the file extension is allowed."""
+        return (
+            "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+        )

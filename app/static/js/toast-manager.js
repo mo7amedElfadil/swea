@@ -21,26 +21,38 @@ class ToastManager {
             document.body.appendChild(this.toastContainer)
         }
 
-        // Listen for custom toast events
-        document.addEventListener('show-toast', (e) => this.showToast(e.detail))
-
-        // Setup HTMX toast handling
-        document.addEventListener('htmx:afterSwap', (e) => {
-            const toastHeader = e.detail.xhr.getResponseHeader('HX-Trigger')
-            if (toastHeader) {
-                try {
-                    const triggers = JSON.parse(toastHeader)
-                    if (triggers.showToast) {
-                        this.showToast(triggers.showToast)
+        // Ensure listeners are not added multiple times
+        if (!this.listenersAdded) {
+            document.addEventListener('show-toast', (e) =>
+                this.showToast(e.detail)
+            )
+            document.addEventListener('htmx:afterSwap', (e) => {
+                const toastHeader = e.detail.xhr.getResponseHeader('HX-Trigger')
+                if (toastHeader) {
+                    try {
+                        const triggers = JSON.parse(toastHeader)
+                        if (triggers.showToast) {
+                            this.showToast(triggers.showToast)
+                        }
+                    } catch (e) {
+                        console.error('Error parsing HX-Trigger header', e)
                     }
-                } catch (e) {
-                    console.error('Error parsing HX-Trigger header', e)
                 }
-            }
-        })
+            })
+            this.listenersAdded = true
+        }
     }
 
     async showToast({ type = 'success', message = '', duration = 5000 }) {
+        // Check if a toast with the same message already exists
+        const existingToast = Array.from(this.toastContainer.children).find(
+            (toast) =>
+                toast.querySelector('.text-sm.font-normal')?.textContent ===
+                message
+        )
+        if (existingToast) {
+            return
+        }
         // Load the appropriate toast template via fetch if not already cached
         if (!this[`${type}Template`]) {
             const response = await fetch(`/toast/${type}`)
@@ -136,9 +148,11 @@ class ToastManager {
 }
 
 // Initialize the toast manager
-document.addEventListener('DOMContentLoaded', () => {
-    window.toastManager = new ToastManager()
-})
+if (!window.toastManager) {
+    document.addEventListener('DOMContentLoaded', () => {
+        window.toastManager = new ToastManager()
+    })
+}
 
 // Helper function to show toast from JS
 function showToast(options) {

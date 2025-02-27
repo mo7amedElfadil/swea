@@ -135,7 +135,7 @@ class TeamService:
             return team_data
         return None
 
-    def get_all_team_members(self, page: int = 1) -> List[Dict[str, Any]]:
+    def get_all_team_members(self, page: int = 1) -> Dict[str, Any]:
         """
         Retrieve all team members with pagination.
 
@@ -145,12 +145,22 @@ class TeamService:
         Returns:
             List[Dict[str, Any]]: A list of team members for the specified page.
         """
-        return [
+        members = [
             t.to_dict()
             for t in Team.query.filter_by(deleted_at=None)
             .paginate(page=page, per_page=self.page_size)
             .items
         ]
+
+        next_page = page + 1 if len(members) == self.page_size else None
+        total_pages = (len(members) // self.page_size) + 1
+
+        return {
+            "members": members,
+            "total_pages": total_pages,
+            "page": page,
+            "next_page": next_page,
+        }
 
     def search_team_members_by_name(self, name: str) -> List[Dict[str, Any]]:
         """
@@ -212,8 +222,17 @@ class TeamService:
         """Parse socials string into a dictionary of key-value pairs."""
         if not socials_str:
             return {}
+
         socials = {}
         for item in socials_str.split(","):
-            key, value = item.split(":")
-            socials[key.strip()] = value.strip()
+            # Split each item into platform and link
+            parts = item.strip().split(":", 1)
+            if len(parts) == 2:
+                platform, link = parts
+                socials[platform.strip()] = link.strip()
+            elif len(parts) == 1:
+                # Handle cases where no colon is present
+                platform = parts[0].strip()
+                socials[platform] = ""
+
         return socials

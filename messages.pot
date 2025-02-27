@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-27 09:51+0300\n"
+"POT-Creation-Date: 2025-02-27 10:46+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,27 @@ msgstr ""
 msgid "Project deleted successfully"
 msgstr ""
 
-#: app/templates/dashboard.html:7
+#: api/v1/views/team.py:48
+msgid "An error occurred while creating the team member"
+msgstr ""
+
+#: api/v1/views/team.py:58
+msgid "Team member created successfully"
+msgstr ""
+
+#: api/v1/views/team.py:68 api/v1/views/team.py:96
+msgid "Team member not found"
+msgstr ""
+
+#: api/v1/views/team.py:84
+msgid "Team member updated successfully"
+msgstr ""
+
+#: api/v1/views/team.py:105
+msgid "Team member deleted successfully"
+msgstr ""
+
+#: app/templates/dashboard.html:3
 msgid "dashboard"
 msgstr ""
 
@@ -458,7 +478,95 @@ msgstr ""
 msgid "update_project"
 msgstr ""
 
-#: app/templates/partials/dashboard/new_project_form.html:5
+#: app/templates/partials/dashboard/edit_team_member_form.html:11
+#: app/templates/partials/dashboard/new_team_member_form.html:11
+msgid "name_english"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_team_member_form.html:18
+#: app/templates/partials/dashboard/new_team_member_form.html:17
+msgid "enter_name_in_english"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_team_member_form.html:25
+#: app/templates/partials/dashboard/new_team_member_form.html:24
+msgid "name_arabic"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_team_member_form.html:32
+#: app/templates/partials/dashboard/new_team_member_form.html:30
+msgid "enter_name_in_arabic"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_team_member_form.html:42
+#: app/templates/partials/dashboard/new_team_member_form.html:40
+msgid "role_english"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_team_member_form.html:49
+#: app/templates/partials/dashboard/new_team_member_form.html:46
+msgid "enter_role_in_english"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_team_member_form.html:56
+#: app/templates/partials/dashboard/new_team_member_form.html:53
+msgid "role_arabic"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_team_member_form.html:63
+#: app/templates/partials/dashboard/new_team_member_form.html:59
+msgid "enter_role_in_arabic"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_team_member_form.html:73
+#: app/templates/partials/dashboard/new_team_member_form.html:69
+msgid "bio_english"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_team_member_form.html:79
+#: app/templates/partials/dashboard/new_team_member_form.html:75
+msgid "enter_bio_in_english"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_team_member_form.html:88
+#: app/templates/partials/dashboard/new_team_member_form.html:82
+msgid "bio_arabic"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_team_member_form.html:94
+#: app/templates/partials/dashboard/new_team_member_form.html:88
+msgid "enter_bio_in_arabic"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_team_member_form.html:105
+#: app/templates/partials/dashboard/new_team_member_form.html:97
+msgid "socials"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_team_member_form.html:112
+#: app/templates/partials/dashboard/new_team_member_form.html:103
+msgid "enter_socials_comma_separated"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_team_member_form.html:115
+#: app/templates/partials/dashboard/new_team_member_form.html:106
+msgid "example_socials_format"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_team_member_form.html:121
+#: app/templates/partials/dashboard/new_team_member_form.html:112
+msgid "profile_image"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_team_member_form.html:130
+msgid "current_image"
+msgstr ""
+
+#: app/templates/partials/dashboard/edit_team_member_form.html:148
+msgid "update_team_member"
+msgstr ""
+
+#: app/templates/partials/dashboard/new_project_form.html:11
 msgid "project_title_english"
 msgstr ""
 
@@ -498,45 +606,17 @@ msgstr ""
 msgid "add_project"
 msgstr ""
 
-#: app/templates/partials/dashboard/news-form.html:9
-#: app/templates/partials/dashboard/news-form.html:10
-msgid "news_title_english"
-msgstr ""
-
-#: app/templates/partials/dashboard/news-form.html:11
-#: app/templates/partials/dashboard/news-form.html:12
-msgid "news_title_arabic"
-msgstr ""
-
-#: app/templates/partials/dashboard/news-form.html:15
-msgid "news_date"
-msgstr ""
-
-#: app/templates/partials/dashboard/news-form.html:16
-msgid "news date"
-msgstr ""
-
-#: app/templates/partials/dashboard/news-form.html:19
-msgid "news_image"
-msgstr ""
-
-#: app/templates/partials/dashboard/news-form.html:20
-msgid "news image"
-msgstr ""
-
-#: app/templates/partials/dashboard/news-form.html:28
-msgid "content"
-msgstr ""
-
-#: app/templates/partials/dashboard/news-form.html:37
-msgid "create"
+#: app/templates/partials/dashboard/new_team_member_form.html:129
+#: app/templates/partials/dashboard/team.html:21
+msgid "add_team_member"
 msgstr ""
 
 #: app/templates/partials/dashboard/project_list.html:17
 msgid "by"
 msgstr ""
 
-#: app/templates/partials/dashboard/project_list.html:49
+#: app/templates/partials/dashboard/project_list.html:48
+#: app/templates/partials/dashboard/team_list.html:44
 msgid "edit"
 msgstr ""
 
@@ -544,11 +624,50 @@ msgstr ""
 msgid "confirm_delete_project"
 msgstr ""
 
-#: app/templates/partials/dashboard/project_list.html:58
+#: app/templates/partials/dashboard/project_list.html:57
+#: app/templates/partials/dashboard/team_list.html:53
 msgid "delete"
 msgstr ""
 
 #: app/templates/partials/dashboard/project_list.html:65
 msgid "no_projects_found"
+msgstr ""
+
+#: app/templates/partials/dashboard/projects.html:39
+msgid "search_project"
+msgstr ""
+
+#: app/templates/partials/dashboard/projects.html:56
+msgid "all_projects"
+msgstr ""
+
+#: app/templates/partials/dashboard/projects.html:58
+msgid "completed_projects"
+msgstr ""
+
+#: app/templates/partials/dashboard/projects.html:76
+#: app/templates/partials/dashboard/team.html:60
+msgid "previous"
+msgstr ""
+
+#: app/templates/partials/dashboard/projects.html:89
+#: app/templates/partials/dashboard/team.html:73
+msgid "next"
+msgstr ""
+
+#: app/templates/partials/dashboard/team.html:9
+msgid "team_members"
+msgstr ""
+
+#: app/templates/partials/dashboard/team.html:39
+msgid "search_team_member"
+msgstr ""
+
+#: app/templates/partials/dashboard/team_list.html:49
+msgid "confirm_delete_team_member"
+msgstr ""
+
+#: app/templates/partials/dashboard/team_list.html:60
+msgid "no_team_members_found"
 msgstr ""
 

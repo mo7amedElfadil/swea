@@ -96,8 +96,7 @@ def dashboard():
             return make_response(
                 render_template(
                     "partials/dashboard/team.html",
-                    locale=locale,
-                    team_members=team_members,
+                    **team_members,
                 )
             )
 

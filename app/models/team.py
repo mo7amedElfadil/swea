@@ -9,7 +9,7 @@ class Team(BaseModel):
 
     __tablename__ = "teams"
 
-    name = db.Column(db.JSON, nullable=False)  # {"ar": "اسم الفريق", "en": "Team Name"}
+    name = db.Column(db.JSON, nullable=False)
     role = db.Column(db.JSON, nullable=False)
     bio = db.Column(db.JSON, nullable=False)
     socials = db.Column(db.JSON, nullable=True)

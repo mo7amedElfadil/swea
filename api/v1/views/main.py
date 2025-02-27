@@ -4,6 +4,7 @@ from flask_babel import gettext as _
 from api.v1.views import bp
 from app.extensions import get_locale
 from app.services.project_service import ProjectService
+from app.services.team_service import TeamService
 from config import Config
 from utils.map_i18n import normailze_i18n
 from utils.referrer_modifier import modify_referrer_lang
@@ -11,6 +12,7 @@ from utils.view_modifiers import response
 
 # Initialize the service with static dummy data
 project_service = ProjectService()
+team_service = TeamService()
 
 
 @bp.route("/")
@@ -66,6 +68,7 @@ def dashboard():
     """Dashboard page"""
     locale = session.get("lang", Config.BABEL_DEFAULT_LOCALE)
     tab_query = request.args.get("q", "projects")
+    page = int(request.args.get("page", 1))
     tab_mapper = {
         "team": "partials/dashboard/team.html",
         "projects": "partials/dashboard/projects.html",
@@ -76,7 +79,6 @@ def dashboard():
     if request.headers.get("hx-tab"):
         # Fetch projects for the 'projects' tab
         if tab_query == "projects":
-            page = int(request.args.get("page", 1))
             all_projects = project_service.get_all_projects(page=page)
             return make_response(
                 render_template(
@@ -85,6 +87,17 @@ def dashboard():
                     projects=all_projects,
                     page=page,
                     total_pages=len(all_projects) // 5 + 1,
+                )
+            )
+
+        # Fetch team members for the 'team' tab
+        if tab_query == "team":
+            team_members = team_service.get_all_team_members(page=page)
+            return make_response(
+                render_template(
+                    "partials/dashboard/team.html",
+                    locale=locale,
+                    team_members=team_members,
                 )
             )
 

@@ -41,6 +41,11 @@ class BaseModel(db.Model):
             self.deleted_at = datetime.now(timezone.utc)
         db.session.commit()
 
+    def restore(self) -> None:
+        """Restore a soft-deleted record."""
+        self.deleted_at = None
+        db.session.commit()
+
     @classmethod
     def get_all(cls) -> list:
         """Get all records from the database."""
@@ -63,7 +68,9 @@ class BaseModel(db.Model):
 
     def to_dict(self):
         """Convert the model to a dictionary."""
-        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+        return {
+            column.name: getattr(self, column.name) for column in self.__table__.columns
+        }
 
     def __repr__(self):
         """Return a string representation of the model."""

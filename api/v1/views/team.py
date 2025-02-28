@@ -36,7 +36,12 @@ def filter_team_members():
 def add_team_member():
     """Add a new team member."""
     if request.method == "GET":
-        return render_template("partials/dashboard/new_team_member_form.html")
+        return render_template(
+            "partials/dashboard/team_member-form.html",
+            form_action="/dashboard/new-team-member",
+            team=None,
+            submit_text=_("create_team_member"),
+        )
 
     try:
         form_data = request.form.to_dict()
@@ -67,7 +72,10 @@ def update_team_member(member_id):
             resp = make_response("", 404)
             return add_toast(resp, "error", _("Team member not found"))
         return render_template(
-            "partials/dashboard/edit_team_member_form.html", team=member_data
+            "partials/dashboard/team_member-form.html",
+            form_action=f"/dashboard/update-team-member/{member_id}",
+            team=member_data,
+            submit_text=_("update_team_member"),
         )
 
     try:

@@ -1,0 +1,155 @@
+{# form_macros #}
+
+{# Text Input Field - Supports multilingual fields #}
+{% macro text_input(id, name, value, label, placeholder="", required=false, type="text") %}
+    <div>
+        <label for="{{ id }}" class="block text-sm font-medium text-gray-700">
+            {{ _(label) }}
+        </label>
+        <input
+            type="{{ type }}"
+            id="{{ id }}"
+            name="{{ name }}"
+            value="{{ value }}"
+            {% if placeholder %}placeholder="{{ _(placeholder) }}"{% endif %}
+            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+            {% if required %}required{% endif %}
+        />
+    </div>
+{% endmacro %}
+
+{# Textarea Field #}
+{% macro textarea(id, name, value, label, rows=3, placeholder="", required=false) %}
+    <div>
+        <label for="{{ id }}" class="block text-sm font-medium text-gray-700">
+            {{ _(label) }}
+        </label>
+        <textarea
+            id="{{ id }}"
+            name="{{ name }}"
+            rows="{{ rows }}"
+            {% if placeholder %}placeholder="{{ _(placeholder) }}"{% endif %}
+            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+            {% if required %}required{% endif %}
+        >{{ value }}</textarea>
+    </div>
+{% endmacro %}
+
+{# File Upload Field #}
+{% macro file_upload(id, name, label, accept="", required=false) %}
+    <div>
+        <label for="{{ id }}" class="block text-sm font-medium text-gray-700">
+            {{ _(label) }}
+        </label>
+        <input
+            type="file"
+            id="{{ id }}"
+            name="{{ name }}"
+            {% if accept %}accept="{{ accept }}"{% endif %}
+            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+            {% if required %}required{% endif %}
+        />
+    </div>
+{% endmacro %}
+
+{# Select/Dropdown Field #}
+{% macro select(id, name, options, selected_value, label, required=false) %}
+    <div>
+        <label for="{{ id }}" class="block text-sm font-medium text-gray-700">
+            {{ _(label) }}
+        </label>
+        <select
+            id="{{ id }}"
+            name="{{ name }}"
+            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+            {% if required %}required{% endif %}
+        >
+            {% for option in options %}
+                <option 
+                    value="{{ option.value }}"
+                    {% if option.value == selected_value %}selected{% endif %}
+                >
+                    {{ _(option.label) }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+{% endmacro %}
+
+{# Content Block Template #}
+{% macro content_block(index, content_en="", content_ar="") %}
+    <div class="bg-white shadow-sm rounded-lg p-6 border border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">
+            {{ _("Content") }} {{ index }}
+        </h3>
+        <div class="space-y-4">
+            {{ textarea("content-en-" + index|string, "content[" + index|string + "][en]", content_en, "English Content") }}
+            {{ textarea("content-ar-" + index|string, "content[" + index|string + "][ar]", content_ar, "Arabic Content") }}
+            {{ file_upload("content-image-" + index|string, "content_image[" + index|string + "]", "Content Image") }}
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="mt-4 flex justify-end gap-2">
+            <button
+                type="button"
+                class="p-2 bg-green-700 rounded-full hover:bg-green-800 transition-colors add-template"
+            >
+                <img
+                    class="size-6"
+                    src="{{ url_for('static', filename='icons/add.svg') }}"
+                    alt="{{ _('Add another content block') }}"
+                />
+            </button>
+            <button
+                type="button"
+                class="p-2 bg-red-700 rounded-full hover:bg-red-800 transition-colors remove-template"
+            >
+                <img
+                    class="size-6"
+                    src="{{ url_for('static', filename='icons/remove.svg') }}"
+                    alt="{{ _('Remove this content block') }}"
+                />
+            </button>
+        </div>
+    </div>
+{% endmacro %}
+
+{# Testimonial Block Template #}
+{% macro testimonial_block(index, testimonial_en="", testimonial_ar="", author="", qualification="") %}
+    <div class="bg-white shadow-sm rounded-lg p-6 border border-gray-200">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">
+            {{ _("Testimonial") }} {{ index }}
+        </h3>
+        <div class="space-y-4">
+            {{ textarea("testimonial-en-" + index|string, "testimonials[" + index|string + "][en]", testimonial_en, "English Testimonial", placeholder="testimonial_english_placeholder") }}
+            {{ textarea("testimonial-ar-" + index|string, "testimonials[" + index|string + "][ar]", testimonial_ar, "Arabic Testimonial", placeholder="testimonial_arabic_placeholder") }}
+            {{ text_input("testimonial-author-" + index|string, "testimonials[" + index|string + "][author]", author, "Testimonial Author", placeholder="testimonial_author_placeholder") }}
+            {{ text_input("testimonial-author-qualification-" + index|string, "testimonials[" + index|string + "][qualification]", qualification, "Testimonial Author Qualification", placeholder="testimonial_author_qualification_placeholder") }}
+            {{ file_upload("testimonial-author-photo-" + index|string, "testimonials[" + index|string + "][photo]", "Testimonial Author Photo") }}
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="mt-4 flex justify-end gap-2">
+            <button
+                type="button"
+                class="p-2 bg-green-700 rounded-full hover:bg-green-800 transition-colors add-template"
+            >
+                <img
+                    class="size-6"
+                    src="{{ url_for('static', filename='icons/add.svg') }}"
+                    alt="{{ _('Add another testimonial block') }}"
+                />
+            </button>
+            <button
+                type="button"
+                class="p-2 bg-red-700 rounded-full hover:bg-red-800 transition-colors remove-template"
+            >
+                <img
+                    class="size-6"
+                    src="{{ url_for('static', filename='icons/remove.svg') }}"
+                    alt="{{ _('Remove this testimonial block') }}"
+                />
+            </button>
+        </div>
+    </div>
+{% endmacro %}

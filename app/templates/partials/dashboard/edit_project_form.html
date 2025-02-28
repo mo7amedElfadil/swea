@@ -1,3 +1,5 @@
+{% import 'macros/form_macros.html' as forms %}
+
 <form
     hx-post="/dashboard/update-project/{{ project.uuid }}"
     hx-target="this"
@@ -5,149 +7,26 @@
     class="space-y-4"
 >
     <!-- Title (Multi-language Support) -->
-    <div>
-        <label for="title-en" class="block text-sm font-medium text-gray-700">
-            {{ _("title_english") }}
-        </label>
-        <input
-            type="text"
-            id="title-en"
-            name="title[en]"
-            value="{{ project.title.en }}"
-            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-            required
-        />
-    </div>
-    <div>
-        <label for="title-ar" class="block text-sm font-medium text-gray-700">
-            {{ _("title_arabic") }}
-        </label>
-        <input
-            type="text"
-            id="title-ar"
-            name="title[ar]"
-            value="{{ project.title.ar }}"
-            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-            required
-        />
-    </div>
+    {{ forms.text_input("title-en", "title[en]", project.title.en, "title_english", required=true) }}
+    {{ forms.text_input("title-ar", "title[ar]", project.title.ar, "title_arabic", required=true) }}
 
     <!-- Author (Name and Email) -->
-    <div>
-        <label
-            for="author-name-en"
-            class="block text-sm font-medium text-gray-700"
-        >
-            {{ _("author_name_en") }}
-        </label>
-        <input
-            type="text"
-            id="author-name-en"
-            name="author[name][en]"
-            value="{{ project.author.name.en }}"
-            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-            required
-        />
-    </div>
-    <div>
-        <label
-            for="author-name-ar"
-            class="block text-sm font-medium text-gray-700"
-        >
-            {{ _("author_name_ar") }}
-        </label>
-        <input
-            type="text"
-            id="author-name-ar"
-            name="author[name][ar]"
-            value="{{ project.author.name.ar }}"
-            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-            required
-        />
-    </div>
-    <div>
-        <label
-            for="author-email"
-            class="block text-sm font-medium text-gray-700"
-        >
-            {{ _("author_email") }}
-        </label>
-        <input
-            type="email"
-            id="author-email"
-            name="author[email]"
-            value="{{ project.author.email }}"
-            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-            required
-        />
-    </div>
+    {{ forms.text_input("author-name-en", "author[name][en]", project.author.name.en, "author_name_en", required=true) }}
+    {{ forms.text_input("author-name-ar", "author[name][ar]", project.author.name.ar, "author_name_ar", required=true) }}
+    {{ forms.text_input("author-email", "author[email]", project.author.email, "author_email", type="email", required=true) }}
 
     <!-- Status -->
-    <div>
-        <label for="status" class="block text-sm font-medium text-gray-700">
-            {{ _("status") }}
-        </label>
-        <select
-            id="status"
-            name="status"
-            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-            required
-        >
-            <option
-                value="ongoing"{% if project.status=="ongoing" %}selected{% endif %}
-            >
-                {{ _("ongoing") }}
-            </option>
-            <option
-                value="completed"{% if project.status=="completed" %}selected{% endif %}
-            >
-                {{ _("completed") }}
-            </option>
-        </select>
-    </div>
+    {{ forms.select("status", "status", [
+        {"value": "ongoing", "label": "ongoing"},
+        {"value": "completed", "label": "completed"}
+    ], project.status, "status", required=true) }}
 
     <!-- Date of Completion -->
-    <div>
-        <label
-            for="date-of-completion"
-            class="block text-sm font-medium text-gray-700"
-        >
-            {{ _("date_of_completion") }}
-        </label>
-        <input
-            type="date"
-            id="date-of-completion"
-            name="date_of_completion"
-            value="{{ project.date_of_completion }}"
-            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-        />
-    </div>
+    {{ forms.text_input("date-of-completion", "date_of_completion", project.date_of_completion, "date_of_completion", type="date") }}
 
     <!-- Tags (Multi-language Support) -->
-    <div>
-        <label for="tags-en" class="block text-sm font-medium text-gray-700">
-            {{ _("tags_english") }}
-        </label>
-        <input
-            type="text"
-            id="tags-en"
-            name="tags[en]"
-            value="{{ project.tags.en }}"
-            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-        />
-    </div>
-    <div>
-        <label for="tags-ar" class="block text-sm font-medium text-gray-700">
-            {{ _("tags_arabic") }}
-        </label>
-        <input
-            type="text"
-            id="tags-ar"
-            name="tags[ar]"
-            value="{{ project.tags.ar }}"
-            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-        />
-    </div>
+    {{ forms.text_input("tags-en", "tags[en]", project.tags.en, "tags_english") }}
+    {{ forms.text_input("tags-ar", "tags[ar]", project.tags.ar, "tags_arabic") }}
 
     <!-- Hero Image -->
     <div>
@@ -164,422 +43,31 @@
             <span class="text-sm text-gray-600">{{ _("current_image") }}</span>
         </div>
         {% endif %}
-        <input
-            type="file"
-            id="hero-image"
-            name="hero_image"
-            accept="image/*"
-            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-        />
+        {{ forms.file_upload("hero-image", "hero_image", "hero_image", accept="image/*") }}
     </div>
 
     <!-- Content -->
     <div id="contents" class="space-y-6">
         <!-- Existing Content Blocks -->
         {% for content in project.content %}
-        <div class="bg-white shadow-sm rounded-lg p-6 border border-gray-200">
-            <h3 class="text-lg font-medium text-gray-900 mb-4">
-                {{ _("Content") }} {{ loop.index }}
-            </h3>
-            <div class="space-y-4">
-                <!-- English Content -->
-                <div>
-                    <label
-                        for="content-en-{{ loop.index0 }}"
-                        class="block text-sm font-medium text-gray-700"
-                    >
-                        {{ _("English Content") }}
-                    </label>
-                    <textarea
-                        id="content-en-{{ loop.index0 }}"
-                        name="content[{{ loop.index0 }}][en]"
-                        rows="3"
-                        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-                    >
-{{ content.en }}</textarea
-                    >
-                </div>
-
-                <!-- Arabic Content -->
-                <div>
-                    <label
-                        for="content-ar-{{ loop.index0 }}"
-                        class="block text-sm font-medium text-gray-700"
-                    >
-                        {{ _("Arabic Content") }}
-                    </label>
-                    <textarea
-                        id="content-ar-{{ loop.index0 }}"
-                        name="content[{{ loop.index0 }}][ar]"
-                        rows="3"
-                        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-                    >
-{{ content.ar }}</textarea
-                    >
-                </div>
-
-                <!-- Image Upload -->
-                <div>
-                    <label
-                        for="content-image-{{ loop.index0 }}"
-                        class="block text-sm font-medium text-gray-700"
-                    >
-                        {{ _("Content Image") }}
-                    </label>
-                    <input
-                        type="file"
-                        id="content-image-{{ loop.index0 }}"
-                        name="content_image[{{ loop.index0 }}]"
-                        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-                    />
-                </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="mt-4 flex justify-end gap-2">
-                <button
-                    type="button"
-                    class="p-2 bg-green-700 rounded-full hover:bg-green-800 transition-colors add-template"
-                >
-                    <img
-                        class="size-6"
-                        src="{{ url_for('static', filename='icons/add.svg') }}"
-                        alt="{{ _('Add another content block') }}"
-                    />
-                </button>
-                <button
-                    type="button"
-                    class="p-2 bg-red-700 rounded-full hover:bg-red-800 transition-colors remove-template"
-                >
-                    <img
-                        class="size-6"
-                        src="{{ url_for('static', filename='icons/remove.svg') }}"
-                        alt="{{ _('Remove this content block') }}"
-                    />
-                </button>
-            </div>
-        </div>
+            {{ forms.content_block(loop.index0, content.en, content.ar) }}
         {% endfor %}
 
         <!-- Template for Additional Content Blocks -->
         <template id="content-template">
-            <div
-                class="bg-white shadow-sm rounded-lg p-6 border border-gray-200"
-            >
-                <h3 class="text-lg font-medium text-gray-900 mb-4">
-                    {{ _("Content") }}
-                    <span class="content-index"></span>
-                </h3>
-                <div class="space-y-4">
-                    <!-- English Content -->
-                    <div>
-                        <label
-                            for="content-en"
-                            class="block text-sm font-medium text-gray-700"
-                        >
-                            {{ _("English Content") }}
-                        </label>
-                        <textarea
-                            name="content[0][en]"
-                            rows="3"
-                            placeholder="{{ _('content_english_placeholder') }}"
-                            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-                        ></textarea>
-                    </div>
-
-                    <!-- Arabic Content -->
-                    <div>
-                        <label
-                            for="content-ar"
-                            class="block text-sm font-medium text-gray-700"
-                        >
-                            {{ _("Arabic Content") }}
-                        </label>
-                        <textarea
-                            name="content[0][ar]"
-                            rows="3"
-                            placeholder="{{ _('content_arabic_placeholder') }}"
-                            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-                        ></textarea>
-                    </div>
-
-                    <!-- Image Upload -->
-                    <div>
-                        <label
-                            for="content-image"
-                            class="block text-sm font-medium text-gray-700"
-                        >
-                            {{ _("content_image") }}
-                        </label>
-                        <input
-                            type="file"
-                            name="content_image[0]"
-                            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-                        />
-                    </div>
-                </div>
-
-                <!-- Action Buttons -->
-                <div class="mt-4 flex justify-end gap-2">
-                    <button
-                        id="add-content"
-                        type="button"
-                        class="p-2 bg-green-700 rounded-full hover:bg-green-800 transition-colors"
-                    >
-                        <img
-                            class="size-6"
-                            src="{{ url_for('static', filename='icons/add.svg') }}"
-                            alt="{{ _('Add another content block') }}"
-                        />
-                    </button>
-                    <button
-                        id="remove-content"
-                        type="button"
-                        class="p-2 bg-red-700 rounded-full hover:bg-red-800 transition-colors"
-                    >
-                        <img
-                            class="size-6"
-                            src="{{ url_for('static', filename='icons/remove.svg') }}"
-                            alt="{{ _('Remove this content block') }}"
-                        />
-                    </button>
-                </div>
-            </div>
+            {{ forms.content_block("0") }}
         </template>
     </div>
 
     <!-- Testimonials -->
     <div id="testimonials" class="space-y-6">
         {% for testimonial in project.testimonials %}
-        <div class="bg-white shadow-sm rounded-lg p-6 border border-gray-200">
-            <h3 class="text-lg font-medium text-gray-900 mb-4">
-                {{ _("Testimonial") }} {{ loop.index }}
-            </h3>
-            <div class="space-y-4">
-                <!-- English Testimonial -->
-                <div>
-                    <label
-                        for="testimonial-en-{{ loop.index }}"
-                        class="block text-sm font-medium text-gray-700"
-                    >
-                        {{ _("English Testimonial") }}
-                    </label>
-                    <textarea
-                        id="testimonial-en-{{ loop.index }}"
-                        name="testimonials[{{ loop.index }}][en]"
-                        rows="3"
-                        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-                    >
-{{ testimonial.en }}</textarea
-                    >
-                </div>
-
-                <!-- Arabic Testimonial -->
-                <div>
-                    <label
-                        for="testimonial-ar-{{ loop.index }}"
-                        class="block text-sm font-medium text-gray-700"
-                    >
-                        {{ _("Arabic Testimonial") }}
-                    </label>
-                    <textarea
-                        id="testimonial-ar-{{ loop.index }}"
-                        name="testimonials[{{ loop.index }}][ar]"
-                        rows="3"
-                        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-                    >
-{{ testimonial.ar }}</textarea
-                    >
-                </div>
-
-                <!-- Testimonial Author -->
-                <div>
-                    <label
-                        for="testimonial-author-{{ loop.index }}"
-                        class="block text-sm font-medium text-gray-700"
-                    >
-                        {{ _("Testimonial Author") }}
-                    </label>
-                    <input
-                        type="text"
-                        id="testimonial-author-{{ loop.index }}"
-                        name="testimonials[{{ loop.index }}][author]"
-                        value="{{ testimonial.author }}"
-                        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-                    />
-                </div>
-
-                <!-- Testimonial Author Qualification -->
-                <div>
-                    <label
-                        for="testimonial-author-qualification-{{ loop.index }}"
-                        class="block text-sm font-medium text-gray-700"
-                    >
-                        {{ _("Testimonial Author Qualification") }}
-                    </label>
-                    <input
-                        type="text"
-                        id="testimonial-author-qualification-{{ loop.index }}"
-                        name="testimonials[{{ loop.index }}][qualification]"
-                        value="{{ testimonial.qualification }}"
-                        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-                    />
-                </div>
-
-                <!-- Author Photo -->
-                <div>
-                    <label
-                        for="testimonial-author-photo-{{ loop.index }}"
-                        class="block text-sm font-medium text-gray-700"
-                    >
-                        {{ _("Testimonial Author Photo") }}
-                    </label>
-                    <input
-                        type="file"
-                        id="testimonial-author-photo-{{ loop.index }}"
-                        name="testimonials[{{ loop.index }}][photo]"
-                        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-                    />
-                </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="mt-4 flex justify-end gap-2">
-                <button
-                    type="button"
-                    class="p-2 bg-green-700 rounded-full hover:bg-green-800 transition-colors add-template"
-                >
-                    <img
-                        class="size-6"
-                        src="{{ url_for('static', filename='icons/add.svg') }}"
-                        alt="{{ _('Add another testimonial block') }}"
-                    />
-                </button>
-                <button
-                    type="button"
-                    class="p-2 bg-red-700 rounded-full hover:bg-red-800 transition-colors remove-template"
-                >
-                    <img
-                        class="size-6"
-                        src="{{ url_for('static', filename='icons/remove.svg') }}"
-                        alt="{{ _('Remove this testimonial block') }}"
-                    />
-                </button>
-            </div>
-        </div>
+            {{ forms.testimonial_block(loop.index, testimonial.en, testimonial.ar, testimonial.author, testimonial.qualification) }}
         {% endfor %}
 
         <!-- Template for Additional Testimonial Blocks -->
         <template id="testimonial-template">
-            <div
-                class="bg-white shadow-sm rounded-lg p-6 border border-gray-200"
-            >
-                <h3 class="text-lg font-medium text-gray-900 mb-4">
-                    {{ _("Testimonial") }}
-                    <span class="testimonial-index"></span>
-                </h3>
-                <div class="space-y-4">
-                    <!-- English Testimonial -->
-                    <div>
-                        <label
-                            for="testimonial-en"
-                            class="block text-sm font-medium text-gray-700"
-                        >
-                            {{ _("English Testimonial") }}
-                        </label>
-                        <textarea
-                            name="testimonials[0][en]"
-                            rows="3"
-                            placeholder="{{ _('testimonial_english_placeholder') }}"
-                            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-                        ></textarea>
-                    </div>
-                    <!-- Arabic Testimonial -->
-                    <div>
-                        <label
-                            for="testimonial-ar"
-                            class="block text-sm font-medium text-gray-700"
-                        >
-                            {{ _("Arabic Testimonial") }}
-                        </label>
-                        <textarea
-                            name="testimonials[0][ar]"
-                            rows="3"
-                            placeholder="{{ _('testimonial_arabic_placeholder') }}"
-                            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-                        ></textarea>
-                    </div>
-                    <!-- Testimonial Author -->
-                    <div>
-                        <label
-                            for="testimonial-author"
-                            class="block text-sm font-medium text-gray-700"
-                        >
-                            {{ _("Testimonial Author") }}
-                        </label>
-                        <input
-                            type="text"
-                            name="testimonials[0][author]"
-                            placeholder="{{ _('testimonial_author_placeholder') }}"
-                            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-                        />
-                    </div>
-                    <!-- Testimonial Author Qualification -->
-                    <div>
-                        <label
-                            for="testimonial-author-qualification"
-                            class="block text-sm font-medium text-gray-700"
-                        >
-                            {{ _("Testimonial Author Qualification") }}
-                        </label>
-                        <input
-                            type="text"
-                            name="testimonials[0][qualification]"
-                            placeholder="{{ _('testimonial_author_qualification_placeholder') }}"
-                            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-                        />
-                    </div>
-                    <!-- Author Photo -->
-                    <div>
-                        <label
-                            for="testimonial-author-photo"
-                            class="block text-sm font-medium text-gray-700"
-                        >
-                            {{ _("Testimonial Author Photo") }}
-                        </label>
-                        <input
-                            type="file"
-                            name="testimonials[0][photo]"
-                            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-                        />
-                    </div>
-                </div>
-                <!-- Action Buttons -->
-                <div class="mt-4 flex justify-end gap-2">
-                    <button
-                        id="add-testimonial-template"
-                        type="button"
-                        class="p-2 bg-green-700 rounded-full hover:bg-green-800 transition-colors"
-                    >
-                        <img
-                            class="size-6"
-                            src="{{ url_for('static', filename='icons/add.svg') }}"
-                            alt="{{ _('Add another testimonial block') }}"
-                        />
-                    </button>
-                    <button
-                        id="remove-testimonial-template"
-                        type="button"
-                        class="p-2 bg-red-700 rounded-full hover:bg-red-800 transition-colors"
-                    >
-                        <img
-                            class="size-6"
-                            src="{{ url_for('static', filename='icons/remove.svg') }}"
-                            alt="{{ _('Remove this testimonial block') }}"
-                        />
-                    </button>
-                </div>
-            </div>
+            {{ forms.testimonial_block("0") }}
         </template>
     </div>
 

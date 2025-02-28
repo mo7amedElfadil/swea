@@ -63,6 +63,7 @@ def update_team_member(member_id):
     """Update an existing team member."""
     if request.method == "GET":
         member_data = team_service.get_team_member_by_uuid(member_id)
+        print("=====MEMBER DATA=====", member_data)
         if not member_data:
             resp = make_response("", 404)
             return add_toast(resp, "error", _("Team member not found"))

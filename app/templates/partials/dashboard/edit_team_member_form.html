@@ -121,7 +121,7 @@
             type="text"
             id="socials"
             name="socials"
-            value="{% if team.socials %}{{ team.socials | join(', ') }}{% endif %}"
+            value="{% if team.socials %}{% for platform, url in team.socials.items() %}{{ platform }}:{{ url }}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}"
             placeholder="{{ _('enter_socials_comma_separated') }}"
             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
         />

@@ -15,7 +15,7 @@ class ToastManager {
                 document.documentElement.lang === 'ar'
 
             // Position based on RTL/LTR
-            this.toastContainer.className = `fixed top-4 flex flex-col gap-2 z-50`
+            this.toastContainer.className = `fixed top-4 flex flex-col gap-2 z-[500]`
             this.toastContainer.style.transform = 'translate(-50%, 0)'
             this.toastContainer.style.left = '50%'
             document.body.appendChild(this.toastContainer)
@@ -43,7 +43,7 @@ class ToastManager {
         }
     }
 
-    async showToast({ type = 'success', message = '', duration = 5000 }) {
+    async showToast({ type = 'success', message = '', duration = 10000 }) {
         // Check if a toast with the same message already exists
         const existingToast = Array.from(this.toastContainer.children).find(
             (toast) =>

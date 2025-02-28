@@ -12,5 +12,11 @@ from utils.view_modifiers import response
 def create_news():
     """Add a new news"""
     if request.headers.get('hx-request'):
-      pass
+      if request.method == "POST":
+          news_form = request.form.to_dict()
+          img = request.files.get('image')
+          news_form['image'] = img
+          news_data = NewsService().create(news_form)
+          print('=======>',news_data)
+          # TODO: sumbit to DB
     return dict()

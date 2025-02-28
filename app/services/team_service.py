@@ -4,16 +4,15 @@ Team Service Module
 This module provides the business logic for team-related operations.
 """
 
-import os
 from typing import Any, Dict, List, Optional
 
-from flask import current_app
 from marshmallow import ValidationError
-from werkzeug.utils import secure_filename
 
 from app.extensions import db
 from app.models.team import Team
 from app.schemas.team_schema import TeamSchema
+from utils.compose_i18n import compose_i18n
+from utils.file_manager import FileManager
 
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
 
@@ -187,46 +186,18 @@ class TeamService:
     ) -> Dict[str, Any]:
         """Process and validate form data for creating/updating a team member."""
         processed_data = {
-            "name": self._parse_nested_field(form_data, "name"),
-            "role": self._parse_nested_field(form_data, "role"),
-            "bio": self._parse_nested_field(form_data, "bio"),
+            "name": compose_i18n(form_data, "name"),
+            "role": compose_i18n(form_data, "role"),
+            "bio": compose_i18n(form_data, "bio"),
             "socials": self._parse_socials(form_data.get("socials")),
         }
 
         # Handle image upload
-        image = files.get("image")
-        if image and image.filename:
-            if not self._allowed_file(image.filename):
-                raise ValidationError(
-                    {"image": "Invalid file type. Only images are allowed."}
-                )
-            filename = secure_filename(image.filename)
-            filename = f"{os.urandom(8).hex()}_{filename}"
-
-            # Construct the relative URL
-            relative_path = os.path.join("uploads", filename)
-            filepath = os.path.join(current_app.config["UPLOAD_FOLDER"], filename)
-            image.save(filepath)
-            processed_data["image"] = relative_path
+        file = FileManager(files.get("image"))
+        relative_path = file.save()
+        processed_data["image"] = relative_path
 
         return processed_data
-
-    def _parse_nested_field(
-        self, form_data: Dict[str, Any], field_prefix: str
-    ) -> Dict[str, str]:
-        """Parse nested fields like name[en], name[ar]."""
-        return {
-            "en": (
-                form_data.get(f"{field_prefix}[en]").strip()
-                if form_data.get(f"{field_prefix}[en]")
-                else ""
-            ),
-            "ar": (
-                form_data.get(f"{field_prefix}[ar]").strip()
-                if form_data.get(f"{field_prefix}[ar]")
-                else ""
-            ),
-        }
 
     def _parse_socials(self, socials_str: Optional[str]) -> Dict[str, str]:
         """Parse socials string into a dictionary of key-value pairs."""
@@ -246,9 +217,3 @@ class TeamService:
                 socials[platform] = ""
 
         return socials
-
-    def _allowed_file(self, filename: str) -> bool:
-        """Check if the file extension is allowed."""
-        return (
-            "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
-        )

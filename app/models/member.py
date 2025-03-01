@@ -9,7 +9,7 @@ class Member(BaseModel):
 
     __tablename__ = "members"
 
-    name = db.Column(db.String(255), nullable=False)
+    name = db.Column(db.JSON, nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
     image = db.Column(db.String(255), nullable=True)
-    university_department = db.Column(db.String(255), nullable=True)
+    university_department = db.Column(db.JSON, nullable=True)

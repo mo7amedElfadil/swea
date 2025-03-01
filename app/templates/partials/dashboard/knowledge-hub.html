@@ -1,0 +1,59 @@
+<!-- Knowledge Hub Tab -->
+<div
+    id="modal-container"
+    class="bg-primary-50 rounded-xl shadow-sm transition-all duration-200"
+>
+    <!-- Header Section -->
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">
+            {{ _("knowledge_hub") }}
+        </h2>
+    </div>
+
+    <!-- Navigation Tabs for Knowledge Hub -->
+    <nav class="flex space-x-4 mb-6 border-b border-gray-200">
+        <!-- Courses Tab -->
+        <button
+            class="px-4 py-2 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent"
+            hx-get="/dashboard/knowledge-hub?tab=courses"
+            hx-target="#knowledge-hub-content"
+            hx-swap="innerHTML"
+            hx-headers='{"hx-tab": "true"}'
+            role="tab"
+            aria-selected="{{ 'true' if active_tab == 'courses' else 'false' }}"
+        >
+            {{ _("courses") }}
+        </button>
+
+        <!-- Researches Tab -->
+        <button
+            class="px-4 py-2 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent"
+            hx-get="/dashboard/knowledge-hub?tab=researches"
+            hx-target="#knowledge-hub-content"
+            hx-swap="innerHTML"
+            hx-headers='{"hx-tab": "true"}'
+            role="tab"
+            aria-selected="{{ 'true' if active_tab == 'researches' else 'false' }}"
+        >
+            {{ _("researches") }}
+        </button>
+
+        <!-- Podcasts Tab -->
+        <button
+            class="px-4 py-2 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent"
+            hx-get="/dashboard/knowledge-hub?tab=podcasts"
+            hx-target="#knowledge-hub-content"
+            hx-swap="innerHTML"
+            hx-headers='{"hx-tab": "true"}'
+            role="tab"
+            aria-selected="{{ 'true' if active_tab == 'podcasts' else 'false' }}"
+        >
+            {{ _("podcasts") }}
+        </button>
+    </nav>
+
+    <!-- Content Area for Knowledge Hub -->
+    <div id="knowledge-hub-content">
+        {% include 'partials/dashboard/knowledge_hub/courses.html' %}
+    </div>
+</div>

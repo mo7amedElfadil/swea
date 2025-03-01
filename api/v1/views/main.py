@@ -72,7 +72,7 @@ def dashboard():
     tab_mapper = {
         "team": "partials/dashboard/team.html",
         "projects": "partials/dashboard/projects.html",
-        "knowledge-hub": "partials/dashboard/knowledge_hub.html",
+        "knowledge-hub": "partials/dashboard/knowledge-hub.html",
         "subscribers": "partials/dashboard/subscribers.html",
         "news": "partials/dashboard/news.html",
     }
@@ -92,7 +92,7 @@ def dashboard():
 
         # Fetch team members for the 'team' tab
         if tab_query == "team":
-            team_members = team_service.get_all_team_members(page=page)
+            team_members = team_service.get_all(page=page)
             return make_response(
                 render_template(
                     "partials/dashboard/team.html",
@@ -132,7 +132,7 @@ def knowledge_hup():
 @response(template_file="team.html")
 def team():
     """team page"""
-    all_team_members = TeamService().get_all_team_members()
+    all_team_members = TeamService().get_all()
     return dict(**all_team_members)
 
 

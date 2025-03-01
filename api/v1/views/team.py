@@ -18,13 +18,14 @@ def filter_team_members():
     if search_str:
         team_members_res = team_service.search_team_members_by_name(search_str)
     else:
-        team_members_res = team_service.get_all_team_members(page=page)
+        team_members_res = team_service.get_all(page=page)
 
     total_pages = (len(team_members_res) // 5) + 1
+    print("Team members res", team_members_res)
     return make_response(
         render_template(
             "partials/dashboard/team_list.html",
-            members=team_members_res,
+            teams=team_members_res if search_str else team_members_res["teams"],
             search=search_str,
             page=page,
             total_pages=total_pages,
@@ -53,7 +54,7 @@ def add_team_member():
             resp, "error", _("An error occurred while creating the team member")
         )
 
-    team_members = team_service.get_all_team_members()
+    team_members = team_service.get_all()
     resp = make_response(
         render_template(
             "partials/dashboard/team.html",
@@ -67,7 +68,7 @@ def add_team_member():
 def update_team_member(member_id):
     """Update an existing team member."""
     if request.method == "GET":
-        member_data = team_service.get_team_member_by_uuid(member_id)
+        member_data = team_service.get_by_uuid(member_id)
         if not member_data:
             resp = make_response("", 404)
             return add_toast(resp, "error", _("Team member not found"))
@@ -82,7 +83,7 @@ def update_team_member(member_id):
         form_data = request.form.to_dict()
         files = request.files
         team_service.update_team_member(member_id, form_data, files)
-        members_res = team_service.get_all_team_members()
+        members_res = team_service.get_all()
         resp = make_response(
             render_template(
                 "partials/dashboard/team.html",
@@ -98,16 +99,16 @@ def update_team_member(member_id):
 @bp.route("/dashboard/delete-team-member/<member_id>", methods=["DELETE"])
 def delete_team_member(member_id):
     """Delete a team member."""
-    success = team_service.delete_team_member(member_id)
+    success = team_service.delete(member_id)
     if not success:
         resp = make_response("", 404)
         return add_toast(resp, "error", _("Team member not found"))
 
-    members_res = team_service.get_all_team_members()
+    members_res = team_service.get_all()
     resp = make_response(
         render_template(
             "partials/dashboard/team_list.html",
-            members=members_res["members"],
+            **members_res,
         )
     )
     return add_toast(resp, "success", _("Team member deleted successfully"))

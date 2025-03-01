@@ -29,7 +29,7 @@
                 {{_('content')}}
             </label>
             <div id="editor" class="bg-white"></div>
-            <input type="hidden" name="content" id="content" />
+            <input type="hidden" name="description[en]" id="description-en" />
         </div>
         <button
             class="w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
@@ -59,10 +59,10 @@
                 console.log('Content before sending:', content)
 
                 // Update the hidden input (optional)
-                document.getElementById('content').value = content
+                document.getElementById('description-en').value = content
 
                 // Update the request parameters directly
-                evt.detail.parameters.content = content
+                evt.detail.parameters['description[en]'] = content
             })
     }
 </script>

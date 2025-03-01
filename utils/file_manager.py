@@ -25,7 +25,10 @@ class FileManager:
     self.file = file
 
   def save(self) -> str:
-    '''Save the file.'''
+    '''Save the file.
+    Returns:
+      the relative path of the saved file.
+    '''
     if self.file and self.file.filename:
       filename = secure_filename(self.file.filename)
       filename = f"{os.urandom(8).hex()}_{filename}"

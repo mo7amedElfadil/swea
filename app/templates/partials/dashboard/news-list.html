@@ -1,4 +1,4 @@
-{% if data %}
+{% import "macros/pagination.html" as pagination %} {% if data %}
 <div class="space-y-4">
     {% for news in data %}
     <div
@@ -8,7 +8,7 @@
             <h3 class="text-lg font-semibold text-gray-900">
                 {{ news.title[locale] }}
             </h3>
-            <div class="">{{ news.description["en"] }}</div>
+            <div class="">{{ news.description[locale] | safe }}</div>
         </div>
         <!-- Actions -->
         <div class="flex gap-2">
@@ -23,7 +23,7 @@
             <button
                 class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-red-100 text-red-700 hover:bg-red-200 focus:ring-2 focus:ring-red-500 focus:outline-none"
                 hx-delete="/dashboard/news/{{ news.uuid }}"
-                hx-target="#team-list"
+                hx-target="#tab-content-list"
                 hx-swap="innerHTML"
             >
                 {{ _("delete") }}
@@ -31,6 +31,11 @@
         </div>
     </div>
     {% endfor %}
+
+    <!-- Pagination -->
+    {{ pagination.pagination( page=page, total_pages=total_pages,
+    next='/dashboard/news?page='+(page+1)|string,
+    prev='/dashboard/news?page='+(page-1)|string) }}
 </div>
 {% else %}
 <div class="text-center text-gray-600">{{ _("empty_news") }}</div>

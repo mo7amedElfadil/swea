@@ -3,7 +3,7 @@ News Service Module
 
 This module provides the business logic for news-related operations.
 """
-
+import math
 from datetime import date
 from typing import Any, Dict, List, Optional
 
@@ -19,22 +19,18 @@ from utils.file_manager import FileManager
 class NewsService:
     """News service class."""
 
-    def __init__(self, page_size: int = 1):
+    def __init__(self, page_size: int = 3):
         """Initialize news service."""
         self.page_size = page_size
         self.news_schema = NewsSchema()
 
     def get_all(self, page: int = 1) -> Dict[str, Any]:
       """Get all news."""
-      news_list = [
-          t.to_dict()
-          for t in News.query.filter_by(deleted_at=None)
+      pagination = News.query.filter_by(deleted_at=None)\
           .paginate(page=page, per_page=self.page_size)
-          .items
-      ]
-
-      next_page = page + 1 if len(news_list) == self.page_size else None
-      total_pages = (len(news_list) // self.page_size) + 1
+      total_pages = math.ceil(pagination._query_count() / self.page_size)
+      news_list = [t.to_dict() for t in pagination.items]
+      next_page = page + 1 if pagination.has_next else None
 
       return dict(
           news=news_list,

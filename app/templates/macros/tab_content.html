@@ -69,32 +69,5 @@ locale=locale) %} {%- set partial = {
 
     <!-- Project list -->
     <div id="tab-content-list">{% include partial[title] %}</div>
-
-    <!-- Pagination -->
-    <div class="mt-6 flex justify-center space-x-2">
-        {% if page and page > 1 %}
-        <button
-            class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none"
-            hx-get="/dashboard?q={{title}}&page={{ page - 1 }}"
-            hx-target="#tab-content-list"
-            hx-swap="innerHTML"
-        >
-            {{ _("previous") }}
-        </button>
-        {% endif %}
-        <span class="px-4 py-2 text-sm font-medium text-gray-700">
-            {{ page }} / {{ total_pages }}
-        </span>
-        {% if page and page < total_pages %}
-        <button
-            class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none"
-            hx-get="/dashboard?q={{title}}&page={{ page + 1 }}"
-            hx-target="#tab-content-list"
-            hx-swap="innerHTML"
-        >
-            {{ _("next") }}
-        </button>
-        {% endif %}
-    </div>
 </div>
 {% endmacro %}

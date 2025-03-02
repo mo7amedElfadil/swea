@@ -19,8 +19,11 @@ def retrieve_form():
 def get_news():
     """Get news paginated"""
     page = request.args.get("page", type=int, default=1)
-    news_list = NewsService().get_all(page=page)
-    return dict(news=news_list)
+    news = NewsService().get_all(page=page)
+    data = news.get('news')
+    del news['news']
+    return dict(data=data, **news)
+        
 
 @bp.route("/dashboard/news", methods=["POST"])
 def create_news():
@@ -30,7 +33,7 @@ def create_news():
     news_form['image'] = img
 
     try:
-      NewsService().create(news_form)
+      news = NewsService().create(news_form)
       return add_toast(make_response(), "success", _("News created successfully"))
     except ValidationError as e:
         return add_toast(make_response(str(e), 400),

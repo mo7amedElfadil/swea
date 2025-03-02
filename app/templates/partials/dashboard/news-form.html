@@ -5,6 +5,7 @@
         class="flex flex-col gap-4"
         hx-post="/dashboard/news/create"
         hx-encoding="multipart/form-data"
+        enctype="multipart/form-data"
     >
         <!-- Title (Multi-language Support) -->
         {{form.input(label=_("news_title_english"), id="title-en",
@@ -18,6 +19,7 @@
 
         <!-- image (Multi-language Support) -->
         {{form.input(label=_("news_image"), id="news-img", name="news_img",
+        accept="image/*",
         type="file",placeholder=_("news image"), )}}
 
         <!-- description -->
@@ -65,4 +67,5 @@
                 evt.detail.parameters.content = content
             })
     }
-</script>
+
+   </script>

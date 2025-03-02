@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-27 17:01+0400\n"
+"POT-Creation-Date: 2025-02-27 22:27+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,7 +85,7 @@ msgstr ""
 msgid "swea_subscribers"
 msgstr ""
 
-#: app/templates/dashboard.html:100 app/templates/index.html:90
+#: app/templates/dashboard.html:100 app/templates/index.html:95
 #: app/templates/partials/dashboard/news.html:4
 msgid "news"
 msgstr ""
@@ -114,83 +114,83 @@ msgstr ""
 msgid "mission 1 desc"
 msgstr ""
 
-#: app/templates/index.html:35
+#: app/templates/index.html:36
 msgid "mission 2 title"
 msgstr ""
 
-#: app/templates/index.html:36
+#: app/templates/index.html:37
 msgid "mission 2 desc"
 msgstr ""
 
-#: app/templates/index.html:45
+#: app/templates/index.html:47
 msgid "mission 3 title"
 msgstr ""
 
-#: app/templates/index.html:46
+#: app/templates/index.html:48
 msgid "mission 3 desc"
 msgstr ""
 
-#: app/templates/index.html:53
+#: app/templates/index.html:56
 msgid "mission 4 title"
 msgstr ""
 
-#: app/templates/index.html:54
+#: app/templates/index.html:57
 msgid "mission 4 desc"
 msgstr ""
 
-#: app/templates/index.html:65
+#: app/templates/index.html:70
 msgid "our story"
 msgstr ""
 
-#: app/templates/index.html:66
+#: app/templates/index.html:71
 msgid "our story desc"
 msgstr ""
 
-#: app/templates/index.html:70
-msgid "our vission"
+#: app/templates/index.html:75
+msgid "our vision"
 msgstr ""
 
-#: app/templates/index.html:73
+#: app/templates/index.html:78
 msgid "vision 1"
 msgstr ""
 
-#: app/templates/index.html:77
+#: app/templates/index.html:82
 msgid "vision 2"
 msgstr ""
 
-#: app/templates/index.html:81
+#: app/templates/index.html:86
 msgid "vision 3"
 msgstr ""
 
-#: app/templates/index.html:85
+#: app/templates/index.html:90
 msgid "vision 4"
 msgstr ""
 
-#: app/templates/index.html:139 app/templates/projects.html:27
+#: app/templates/index.html:144 app/templates/projects.html:27
 msgid "learn more"
 msgstr ""
 
-#: app/templates/index.html:150
+#: app/templates/index.html:155
 msgid "contact us"
 msgstr ""
 
-#: app/templates/index.html:151
+#: app/templates/index.html:156
 msgid "contact enquiry"
 msgstr ""
 
-#: app/templates/index.html:155
+#: app/templates/index.html:160
 msgid "form name"
 msgstr ""
 
-#: app/templates/index.html:163 app/templates/partials/footer.html:9
+#: app/templates/index.html:168 app/templates/partials/footer.html:9
 msgid "form email"
 msgstr ""
 
-#: app/templates/index.html:170
+#: app/templates/index.html:175
 msgid "form textarea"
 msgstr ""
 
-#: app/templates/index.html:175
+#: app/templates/index.html:180
 msgid "submit"
 msgstr ""
 

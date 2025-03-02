@@ -27,17 +27,19 @@
 				{{macros.mission_card(
 				title=_("mission 1 title"),
 				desc=_("mission 1 desc"),
-				from='from-red-950',
-				to='to-red-400/80',
-				cls='-translate-x-9 sm:translate-x-0'
+				from='from-[#020024]',
+				to='to-[rgba(255,0,0,0.6)]',
+        via='via-[rgba(255,0,0,0.7)]',
+				cls='-translate-x-6 sm:translate-x-0'
 				)}}
 				{{macros.mission_card(
 				title=_("mission 2 title"),
 				desc=_("mission 2 desc"),
-				gradient_dir='bg-gradient-to-br',
-				from='from-primary-300/80',
-				to='to-red-700/80',
-				cls='translate-x-6 -translate-y-12 sm:translate-y-0 sm:translate-x-0'
+				gradient_dir='bg-gradient-to-t',
+				from='from-[rgba(184,0,0,0.7)]',
+        via='via-[rgba(255,0,0,0.7)]',
+				to='to-[rgba(225,139,26,0.7)]',
+				cls='translate-x-6 -translate-y-6 sm:translate-y-0 sm:translate-x-0'
 				)}}
 			</div>
 			<div class='w-full flex flex-col gap-2 items-center sm:flex-row sm:justify-around'>
@@ -45,44 +47,51 @@
 				title=_("mission 3 title"),
 				desc=_("mission 3 desc"),
 				gradient_dir='bg-gradient-to-t',
-				from='from-primary-100/80',
-				to='to-red-500/80',
-				cls='-translate-x-6 -translate-y-24 sm:translate-y-0 sm:translate-x-0'
+				from='from-[#d1b283]',
+        via='via-[rgba(255,0,0,0.7)]',
+				to='to-[rgba(255,0,0,0.7)]',
+				cls='-translate-x-6 -translate-y-12 sm:translate-y-0 sm:translate-x-0 '
 				)}}
 				{{macros.mission_card(
 				title=_("mission 4 title"),
 				desc=_("mission 4 desc"),
 				gradient_dir='bg-gradient-to-t',
-				from='from-primary-300/80',
-				to='to-red-700/80',
-				cls='translate-x-9 -translate-y-36 sm:translate-y-0 sm:translate-x-0'
+				from='from-[#e18b1a]',
+        via='via-[rgba(255,0,0,0.7)]',
+				to='to-[rgba(255,0,0,0.7)]',
+				cls='translate-x-6 -translate-y-16 sm:translate-y-0 sm:translate-x-0'
 				)}}
 			</div>
 		</div>
 	</section>
-	<section id='our_story' class='flex items-center px-4 py-8 bg-cover bg-center bg-no-repeat sm:bg-[50%_20%] sm:min-h-[700px]'>
+	<section id='our_story' class='flex items-center px-4 py-8 bg-cover bg-center
+    bg-no-repeat sm:bg-[50%_20%] sm:min-h-[100vh]'>
 		<div class='container mx-auto'>
-			<h2 class='mb-6 text-3xl text-white capitalize font-extrabold sm:text-5xl'>{{_("our story")}}</h2>
-			<p class='text-white sm:max-w-[70%] sm:text-xl'>{{_("our story desc")}}</p>
+			<h2 class='mb-6 text-3xl text-white capitalize font-extrabold pb-6 sm:justify-self-center
+      lg:justify-self-start
+        sm:text-5xl'>{{_("our story")}}</h2>
+			<p class='text-white sm:max-w-[80%] xl:max-w-[40%] text-justify
+      sm:justify-self-center sm:text-xl lg:justify-self-start
+      lg:text-2xl'>{{_("our story desc")}}</p>
 		</div>
 	</section>
 	<section id='our_vision' class='container mx-auto flex flex-wrap px-4 py-8 sm:py-28'>
-		<h2 class='basis-full mb-6 text-3xl font-extrabold capitalize sm:text-center sm:text-5xl'>{{_("our vission")}}</h2>
+		<h2 class='basis-full mb-6 text-3xl font-extrabold capitalize sm:text-center sm:text-5xl'>{{_("our vision")}}</h2>
 		<div class='basis-full sm:basis-1/4'>
-			<img class='max-w-[50%] mx-auto sm:max-w-[auto]' src="{{url_for('static',filename='icons/advance.svg')}}" alt="advance icon"/>
-			<p class='max-w-[90%] mx-auto text-center'>{{_("vision 1")}}</p>
+			<img class='max-w-[40%] mx-auto sm:max-w-[auto]' src="{{url_for('static',filename='icons/advance.svg')}}" alt="advance icon"/>
+			<p class='max-w-[80%] mx-auto text-center'>{{_("vision 1")}}</p>
 		</div>
 		<div class='basis-full text-center sm:basis-1/4'>
-			<img class='max-w-[50%] mx-auto sm:max-w-[auto]' src="{{url_for('static',filename='icons/build_capacity.svg')}}" alt="build capacity icon"/>
-			<p class='max-w-[90%] mx-auto text-center'>{{_("vision 2")}}</p>
+			<img class='max-w-[40%] mx-auto sm:max-w-[auto]' src="{{url_for('static',filename='icons/build_capacity.svg')}}" alt="build capacity icon"/>
+			<p class='max-w-[80%] mx-auto text-center'>{{_("vision 2")}}</p>
 		</div>
 		<div class='basis-full text-center sm:basis-1/4'>
-			<img class='max-w-[50%] mx-auto sm:max-w-[auto]' src="{{url_for('static',filename='icons/Amplify.svg')}}" alt="amplify icon"/>
-			<p class='max-w-[90%] mx-auto text-center'>{{_("vision 3")}}</p>
+			<img class='max-w-[40%] mx-auto sm:max-w-[auto]' src="{{url_for('static',filename='icons/Amplify.svg')}}" alt="amplify icon"/>
+			<p class='max-w-[80%] mx-auto text-center'>{{_("vision 3")}}</p>
 		</div>
 		<div class='basis-full text-center sm:basis-1/4'>
-			<img class='max-w-[50%] mx-auto sm:max-w-[auto]' src="{{url_for('static',filename='icons/Solidarity.svg')}}" alt="solidarity icon"/>
-			<p class='max-w-[90%] mx-auto text-center'>{{_("vision 4")}}</p>
+			<img class='max-w-[40%] mx-auto sm:max-w-[auto]' src="{{url_for('static',filename='icons/Solidarity.svg')}}" alt="solidarity icon"/>
+			<p class='max-w-[80%] mx-auto text-center'>{{_("vision 4")}}</p>
 		</div>
 	</section>
 	<section id='news' class='container mx-auto px-4 py-8 overflow-x-hidden sm:py-28'>
@@ -143,7 +152,7 @@
 			{% endfor %}
 		</div>
 	</section>
-	<section id='contact' class='container mx-auto px-4 py-8 sm:py-28 lg:grid lg:grid-cols-2'>
+	<section id='contact' class='container justify-center mx-auto px-4 py-8 sm:py-28 lg:grid lg:grid-cols-2'>
 		<div class='relative flex flex-col gap-4 bg-white px-3 py-4
 		sm:px-8 sm:py-12'
 			 >

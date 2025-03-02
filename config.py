@@ -1,5 +1,4 @@
 """configuration file for your Flask application."""
-
 import os
 from os import getenv, path
 
@@ -24,9 +23,14 @@ class Config:
     UPLOAD_FOLDER = getenv(
         "UPLOAD_FOLDER", os.path.join(basedir, "./app/static/uploads/")
     )
+    UPLOAD_DIRS = ["projects", "research", "courses", "podcasts", "news",
+                   "team", "users"]
     # Create the upload folder if it doesn't exist
     if not path.exists(UPLOAD_FOLDER):
         os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+    for folder in UPLOAD_DIRS:
+        os.makedirs(os.path.join(UPLOAD_FOLDER, folder), exist_ok=True)
+    ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "webp"}
 
     SECRET_KEY = getenv("SECRET_KEY", "you-will-never-guess")
     PREFERRED_URL_SCHEME = getenv("PREFERRED_URL_SCHEME", "https")

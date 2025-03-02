@@ -1,6 +1,8 @@
 <form
     hx-post="/dashboard/update-project/{{ project.uuid }}"
     hx-target="this"
+    hx-encoding="multipart/form-data"
+    enctype="multipart/form-data"
     hx-swap="innerHTML"
     class="space-y-4"
 >

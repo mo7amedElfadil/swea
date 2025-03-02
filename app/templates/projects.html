@@ -11,6 +11,14 @@
     <section class='container mx-auto px-4 py-32 grid grid-cols-fluid gap-8' id='project-list'>
         {% for p in projects %}
         <div class='p-4 flex flex-col gap-4 shadow-[0_8px_10px_-3px_rgba(0,_0,_0,_0.3)]'>
+
+          {% if p.hero_image %}
+          <img
+              src="{{ url_for('static', filename=p.hero_image) }}"
+              alt="{{ p.title }}"
+              class="w-full h-48 object-cover rounded-lg"
+              />
+          {% endif %}
 			<h3 class='text-2xl font-bold'>{{p.title}}</h3>
             <div class='text-slate-500'>
 				<span class='after:content-["-"] after:mx-1'>{{p.author.name}}</span>

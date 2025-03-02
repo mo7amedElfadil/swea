@@ -2,4 +2,4 @@
 
 ## Naming convention:
 - file: kabab-case
-- variables: camelCase
+- variables: camel\_case

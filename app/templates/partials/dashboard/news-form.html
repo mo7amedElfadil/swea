@@ -3,8 +3,10 @@
     <form
         id="create-news"
         class="flex flex-col gap-4"
-        hx-post="/dashboard/news/create"
+        hx-post="/dashboard/news"
+        hx-target="#toast-container"
         hx-encoding="multipart/form-data"
+        hx-on::after-request="this.reset()"
     >
         <!-- Title (Multi-language Support) -->
         {{form.input(label=_("news_title_english"), id="title-en",

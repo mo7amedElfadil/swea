@@ -4,13 +4,11 @@ News Service Module
 This module provides the business logic for news-related operations.
 """
 
-import os
 from datetime import date
 from typing import Any, Dict, List, Optional
 
 from marshmallow import ValidationError
 from sqlalchemy import cast, or_
-from werkzeug.utils import secure_filename
 
 from app.extensions import db
 from app.models import News
@@ -21,10 +19,29 @@ from utils.file_manager import FileManager
 class NewsService:
     """News service class."""
 
-    def __init__(self, page_size: int = 10):
+    def __init__(self, page_size: int = 1):
         """Initialize news service."""
         self.page_size = page_size
         self.news_schema = NewsSchema()
+
+    def get_all(self, page: int = 1) -> Dict[str, Any]:
+      """Get all news."""
+      news_list = [
+          t.to_dict()
+          for t in News.query.filter_by(deleted_at=None)
+          .paginate(page=page, per_page=self.page_size)
+          .items
+      ]
+
+      next_page = page + 1 if len(news_list) == self.page_size else None
+      total_pages = (len(news_list) // self.page_size) + 1
+
+      return dict(
+          news=news_list,
+          total_pages=total_pages,
+          page=page,
+          next_page=next_page,
+          )
 
     def create(self, form_data: Dict[str, Any]) -> News:
       """
@@ -97,3 +114,24 @@ class NewsService:
 
         except ValidationError as error:
             raise ValidationError(error.messages) from error
+
+    def delete(self, uuid: str, permanent: bool = False) -> bool:
+      """ Delete a news. """
+      news_item = News.get_byuuid(uuid)
+      if news_item:
+          news_item.delete(permanent=permanent)
+          return True
+      return False
+
+    def search_news(self, query: str) -> List[Dict[str, Any]]:
+        """Search news by title or description."""
+        news_list = [
+            t.to_dict()
+            for t in News.query.filter(
+                or_(
+                    cast(News.title, db.String).ilike(f"%{query}%"),
+                    cast(News.description, db.String).ilike(f"%{query}%"),
+                )
+            )
+        ]
+        return news_list

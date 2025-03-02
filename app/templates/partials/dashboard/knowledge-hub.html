@@ -1,0 +1,6 @@
+{% import "macros/tab_content.html" as tabs %}
+
+<!-- Render the Macro -->
+{{ tabs.tab_content( data=[], title='knowledge_hub', title_i18n=_('knowledge
+hub'), btn_text=_('add_kh'), hx_get='/dashboard/knowledge-hub/form', page=page,
+total_pages=total_pages ) }}

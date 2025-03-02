@@ -3,6 +3,7 @@ from flask_babel import gettext as _
 
 from api.v1.views import bp
 from app.extensions import get_locale
+from app.services.news import NewsService
 from app.services.project_service import ProjectService
 from app.services.team_service import TeamService
 from config import Config
@@ -27,10 +28,10 @@ def index():
 @normailze_i18n
 def projects():
     """projects page"""
-    all_projects = ProjectService().get_all_projects()
+    projects = ProjectService().get_all_projects()
     # locale must be included in the dict in order to be normalized
     # DONT' use rqeuest.args.get('lang') as it will return None
-    return dict(projects=all_projects, locale=get_locale())
+    return dict(**projects, locale=get_locale())
 
 
 @bp.route("/login", methods=["GET", "POST"])
@@ -66,48 +67,32 @@ def login():
 @response(template_file="dashboard.html")
 def dashboard():
     """Dashboard page"""
-    locale = session.get("lang", Config.BABEL_DEFAULT_LOCALE)
-    tab_query = request.args.get("q", "projects")
-    page = int(request.args.get("page", 1))
-    tab_mapper = {
-        "team": "partials/dashboard/team.html",
-        "projects": "partials/dashboard/projects.html",
-        "knowledge-hub": "partials/dashboard/knowledge_hub.html",
-        "subscribers": "partials/dashboard/subscribers.html",
-        "news": "partials/dashboard/news.html",
-    }
-    if request.headers.get("hx-tab"):
-        # Fetch projects for the 'projects' tab
-        if tab_query == "projects":
-            all_projects = project_service.get_all_projects(page=page)
-            return make_response(
-                render_template(
-                    "partials/dashboard/projects.html",
-                    locale=locale,
-                    projects=all_projects,
-                    page=page,
-                    total_pages=len(all_projects) // 5 + 1,
-                )
-            )
+    tab_query = request.args.get("q")
+    if tab_query is None:
+      return dict(tab="projects")
 
-        # Fetch team members for the 'team' tab
-        if tab_query == "team":
-            team_members = team_service.get_all_team_members(page=page)
-            return make_response(
-                render_template(
-                    "partials/dashboard/team.html",
-                    **team_members,
-                )
-            )
-
-        return make_response(
-            render_template(
-                tab_mapper.get(tab_query, "partials/dashboard/projects.html")
-            )
+    tab_content = dict(
+        team=dict(temp="partials/dashboard/team.html",
+                  data=team_service.get_all_team_members),
+        projects=dict(temp="partials/dashboard/projects.html",
+                      data=project_service.get_all_projects),
+        knowledge_hub=dict(temp="partials/dashboard/knowledge-hub.html",
+                           data=dict),
+        subscribers=dict(temp="partials/dashboard/subscribers.html",
+                         data=dict),
+        news=dict(temp="partials/dashboard/news.html",
+                  data=NewsService().get_all),
         )
-    return dict(tab="projects")
+    template = tab_content.get(tab_query, {}).get("temp")
+    data = tab_content.get(tab_query, {}).get("data", lambda: {})()
+    print(dict(tab=template, **data))
 
-
+    return make_response(render_template(
+      template,
+      **data,
+    ))
+                                             
+        
 @bp.route("/knowledge-hub")
 @response(template_file="knowledge-hub.html")
 def knowledge_hup():

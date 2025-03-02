@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-27 17:01+0400\n"
+"POT-Creation-Date: 2025-03-02 07:42+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -17,7 +17,19 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.3\n"
+"Generated-By: Babel 2.16.0\n"
+
+#: api/v1/views/news.py:34
+msgid "News created successfully"
+msgstr "تم إنشاء المشروع بنجاح"
+
+#: api/v1/views/news.py:38
+msgid "An error occurred whilecreating the news"
+msgstr "حدث خطأ أثناء إنشاء المشروع"
+
+#: api/v1/views/news.py:45
+msgid "Unexpected error occurred"
+msgstr ""
 
 #: api/v1/views/projects.py:48
 msgid "An error occurred while creating the project"
@@ -190,7 +202,7 @@ msgstr ""
 "<b>تعزيز التضامن</b> بين النساء السودانيات العاملات في مجال الاقتصاد عبر "
 "الأجيال."
 
-#: app/templates/index.html:139 app/templates/projects.html:27
+#: app/templates/index.html:139 app/templates/projects.html:40
 msgid "learn more"
 msgstr "المزيد"
 
@@ -244,11 +256,11 @@ msgid "login"
 msgstr "تسجيل الدخول"
 
 #: app/templates/partials/dashboard/projects.html:4
-#: app/templates/partials/header.html:34 app/templates/projects.html:7
+#: app/templates/partials/header.html:34 app/templates/projects.html:14
 msgid "projects"
 msgstr "المشاريع"
 
-#: app/templates/projects.html:8
+#: app/templates/projects.html:16
 msgid "project hero desc"
 msgstr ""
 "استكشِف مشاريعنا المؤثرة التي تهدف إلى تمكين النساء السودانيات العاملات "
@@ -628,6 +640,16 @@ msgstr "صورة العضو"
 msgid "update_team_member"
 msgstr "تحديث العضو"
 
+#: app/templates/partials/dashboard/knowledge-hub.html:4
+msgid ""
+"knowledge\n"
+"hub"
+msgstr "مركز المعرفة"
+
+#: app/templates/partials/dashboard/knowledge-hub.html:5
+msgid "add_kh"
+msgstr "اضفاة عنصر"
+
 #: app/templates/partials/dashboard/new_project_form.html:9
 msgid "project_title_english"
 msgstr "عنوان المشروع بالإنجليزية"
@@ -674,37 +696,37 @@ msgstr "إضافة مشروع"
 msgid "add_team_member"
 msgstr "إضافة عضو"
 
-#: app/templates/partials/dashboard/news-form.html:10
-#: app/templates/partials/dashboard/news-form.html:11
+#: app/templates/partials/dashboard/news-form.html:12
+#: app/templates/partials/dashboard/news-form.html:13
 msgid "news_title_english"
 msgstr "عنوان الخبر بالإنجليزية"
 
-#: app/templates/partials/dashboard/news-form.html:12
-#: app/templates/partials/dashboard/news-form.html:13
+#: app/templates/partials/dashboard/news-form.html:14
+#: app/templates/partials/dashboard/news-form.html:15
 msgid "news_title_arabic"
 msgstr "عنوان الخبر بالعربية"
 
-#: app/templates/partials/dashboard/news-form.html:16
+#: app/templates/partials/dashboard/news-form.html:18
 msgid "news_date"
 msgstr "تاريخ الخبر"
 
-#: app/templates/partials/dashboard/news-form.html:17
+#: app/templates/partials/dashboard/news-form.html:19
 msgid "news date"
 msgstr "تاريخ الخبر"
 
-#: app/templates/partials/dashboard/news-form.html:20
+#: app/templates/partials/dashboard/news-form.html:22
 msgid "news_image"
 msgstr "صورة الخبر"
 
-#: app/templates/partials/dashboard/news-form.html:21
+#: app/templates/partials/dashboard/news-form.html:23
 msgid "news image"
 msgstr "صورة الخبر"
 
-#: app/templates/partials/dashboard/news-form.html:29
+#: app/templates/partials/dashboard/news-form.html:31
 msgid "content"
 msgstr "المحتوى"
 
-#: app/templates/partials/dashboard/news-form.html:38
+#: app/templates/partials/dashboard/news-form.html:40
 msgid "create"
 msgstr "إنشاء"
 
@@ -712,27 +734,35 @@ msgstr "إنشاء"
 msgid "add_news"
 msgstr "إضافة خبر"
 
-#: app/templates/partials/dashboard/project_list.html:17
+#: app/templates/partials/dashboard/project-list.html:17
 msgid "by"
 msgstr "بواسطة"
 
-#: app/templates/partials/dashboard/project_list.html:49
+#: app/templates/partials/dashboard/project-list.html:49
 #: app/templates/partials/dashboard/team_list.html:44
 msgid "edit"
 msgstr "تعديل"
 
-#: app/templates/partials/dashboard/project_list.html:54
+#: app/templates/partials/dashboard/project-list.html:54
 msgid "confirm_delete_project"
 msgstr "هل أنت متأكد من حذف المشروع؟"
 
-#: app/templates/partials/dashboard/project_list.html:58
+#: app/templates/partials/dashboard/project-list.html:58
 #: app/templates/partials/dashboard/team_list.html:53
 msgid "delete"
 msgstr "حذف"
 
-#: app/templates/partials/dashboard/project_list.html:65
+#: app/templates/partials/dashboard/project-list.html:65
 msgid "no_projects_found"
 msgstr "لا توجد مشاريع حالياً"
+
+#: app/templates/partials/dashboard/subscribers.html:4
+msgid "subscribers"
+msgstr "اشترك"
+
+#: app/templates/partials/dashboard/subscribers.html:5
+msgid "add_subscriber"
+msgstr "إضافة مشترك"
 
 #: app/templates/partials/dashboard/team.html:9
 msgid "team_members"

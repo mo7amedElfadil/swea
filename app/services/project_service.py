@@ -145,7 +145,7 @@ class ProjectService:
 
     def get_all_projects(
         self, status: str = "all", search_str: str = "", page: int = 1
-    ) -> List[Project]:
+        ) -> Dict[str, Any]:
         """
         Retrieve all projects with pagination.
 
@@ -158,10 +158,16 @@ class ProjectService:
             List[Project]: A list of projects for the specified page.
         """
         if search_str:
-            return self.search_projects_by_title(search_str)
+            data= self.search_projects_by_title(search_str)
+            return dict(
+                projects=data,
+                total_pages=(len(data) // self.page_size) + 1,
+                page=page,
+                next_page=page + 1 if len(data) == self.page_size else None,
+                )
 
         if status != "all":
-            return [
+            data = [
                 p.to_dict()
                 for p in (
                     Project.query.filter_by(status=status, deleted_at=None)
@@ -169,13 +175,25 @@ class ProjectService:
                     .items
                 )
             ]
+            return dict(
+                projects=data,
+                total_pages=(len(data) // self.page_size) + 1,
+                page=page,
+                next_page=page + 1 if len(data) == self.page_size else None,
+                )
 
-        return [
+        data = [
             p.to_dict()
             for p in Project.query.filter_by(deleted_at=None)
             .paginate(page=page, per_page=self.page_size)
             .items
         ]
+        return dict(
+            projects=data,
+            total_pages=(len(data) // self.page_size) + 1,
+            page=page,
+            next_page=page + 1 if len(data) == self.page_size else None,
+            )
 
     def get_projects_by_completion_date(
         self, date_of_completion: date

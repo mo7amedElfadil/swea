@@ -1,0 +1,6 @@
+<!-- Podcasts Tab Content -->
+{% from "macros/knowledge_hub_tabs.html" import render_knowledge_hub_section %}
+{{ render_knowledge_hub_section( title="podcasts", items=podcasts,
+add_endpoint="/dashboard/new-podcast", search_endpoint="/dashboard/podcasts",
+page=page, total_pages=total_pages, search_placeholder="search_podcast",
+item_type="podcasts" ) }}

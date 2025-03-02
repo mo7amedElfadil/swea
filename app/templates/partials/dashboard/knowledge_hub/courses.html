@@ -1,0 +1,6 @@
+<!-- Courses Tab Content -->
+{% from "macros/knowledge_hub_tabs.html" import render_knowledge_hub_section %}
+{{ render_knowledge_hub_section( title="courses", items=courses,
+add_endpoint="/dashboard/new-course", search_endpoint="/dashboard/courses",
+page=page, total_pages=total_pages, search_placeholder="search_course",
+item_type="courses" ) }}

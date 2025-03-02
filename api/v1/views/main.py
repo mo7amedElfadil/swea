@@ -11,10 +11,6 @@ from utils.map_i18n import normailze_i18n
 from utils.referrer_modifier import modify_referrer_lang
 from utils.view_modifiers import response
 
-# Initialize the service with static dummy data
-project_service = ProjectService()
-team_service = TeamService()
-
 
 @bp.route("/")
 @response(template_file="index.html")
@@ -73,9 +69,9 @@ def dashboard():
 
     tab_content = dict(
         team=dict(temp="partials/dashboard/team.html",
-                  data=team_service.get_all_team_members),
+                  data=TeamService().get_all),
         projects=dict(temp="partials/dashboard/projects.html",
-                      data=project_service.get_all_projects),
+                      data=ProjectService().get_all_projects),
         knowledge_hub=dict(temp="partials/dashboard/knowledge-hub.html",
                            data=dict),
         subscribers=dict(temp="partials/dashboard/subscribers.html",
@@ -85,7 +81,6 @@ def dashboard():
         )
     template = tab_content.get(tab_query, {}).get("temp")
     data = tab_content.get(tab_query, {}).get("data", lambda: {})()
-    print(dict(tab=template, **data))
 
     return make_response(render_template(
       template,
@@ -117,7 +112,7 @@ def knowledge_hup():
 @response(template_file="team.html")
 def team():
     """team page"""
-    all_team_members = TeamService().get_all_team_members()
+    all_team_members = TeamService().get_all()
     return dict(**all_team_members)
 
 

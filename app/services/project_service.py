@@ -4,18 +4,16 @@ Project Service Module
 This module provides the business logic for project-related operations.
 """
 
-import os
 from datetime import date
 from typing import Any, Dict, List, Optional
 
-from flask import current_app
 from marshmallow import ValidationError
 from sqlalchemy import cast, or_
-from werkzeug.utils import secure_filename
 
 from app.extensions import db
 from app.models import Project
 from app.schemas.project_schema import ProjectSchema
+from utils.file_manager import FileManager
 
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
 
@@ -124,8 +122,6 @@ class ProjectService:
                 project_data["testimonials"]["ar"] = ", ".join(
                     project_data["testimonials"].get("ar", [])
                 )
-
-            print("=====PROJECT DATA=====", project_data)
 
             return project_data
 
@@ -268,22 +264,7 @@ class ProjectService:
 
         # Handle hero_image upload
         hero_image = files.get("hero_image")
-        if hero_image and hero_image.filename:
-            if not self._allowed_file(hero_image.filename):
-                raise ValidationError(
-                    {
-                        "hero_image": "Invalid file type. Allowed file types are png, jpg, jpeg, gif"
-                    }
-                )
-            filename = secure_filename(hero_image.filename)
-            filename = f"{os.urandom(8).hex()}_{filename}"
-
-            # Construct the relative URL
-            relative_path = os.path.join("uploads", filename)
-            filepath = os.path.join(current_app.config["UPLOAD_FOLDER"], filename)
-
-            hero_image.save(filepath)
-            processed_data["hero_image"] = relative_path
+        processed_data["hero_image"] = FileManager(hero_image).save()
 
         # Process content field
         processed_data["content"] = self._parse_indexed_fields(form_data, "content")
@@ -371,9 +352,3 @@ class ProjectService:
             }
             result.append(entry)
         return result
-
-    def _allowed_file(self, filename: str) -> bool:
-        """Check if the file extension is allowed."""
-        return (
-            "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
-        )

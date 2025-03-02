@@ -1,3 +1,5 @@
+from typing import Dict
+
 from marshmallow import Schema, ValidationError, fields, validates
 
 
@@ -7,7 +9,12 @@ class MemberSchema(Schema):
     """
 
     # Required fields
-    name = fields.Str(required=True, error_messages={"required": "Name is required."})
+    name = fields.Dict(
+        keys=fields.Str(),
+        values=fields.Str(),
+        required=True,
+        error_messages={"required": "Member name is required."},
+    )
     email = fields.Email(
         required=True,
         error_messages={
@@ -17,10 +24,14 @@ class MemberSchema(Schema):
     )
     # Optional fields
     image = fields.Str(allow_none=True)
-    university_department = fields.Str(allow_none=True)
+    university_department = fields.Dict(
+        keys=fields.Str(),
+        values=fields.Str(),
+        allow_none=True,
+    )
 
     @validates("name")
-    def validate_name(self, value: str):
-        """Validate that the name is not empty."""
-        if not value.strip():
-            raise ValidationError("Name cannot be empty.")
+    def validate_name(self, value: Dict[str, str]):
+        """Validate that the name contains at least one language."""
+        if not value:
+            raise ValidationError("Name must contain at least one language.")

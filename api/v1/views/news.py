@@ -1,4 +1,4 @@
-from flask import make_response, render_template, request
+from flask import make_response, redirect, render_template, request, url_for
 from flask_babel import gettext as _
 from marshmallow import ValidationError
 
@@ -23,7 +23,7 @@ def get_news():
     data = news.get('news')
     del news['news']
     return dict(data=data, **news)
-        
+
 
 @bp.route("/dashboard/news", methods=["POST"])
 def create_news():
@@ -34,7 +34,11 @@ def create_news():
 
     try:
       news = NewsService().create(news_form)
-      return add_toast(make_response(), "success", _("News created successfully"))
+      return add_toast(
+        make_response("News created successfully", 201),
+        "success",
+        _("News created successfully")
+      )
     except ValidationError as e:
         return add_toast(make_response(str(e), 400),
                          "error",
@@ -46,7 +50,7 @@ def create_news():
         str(e), 500),
         "error",
         _("Unexpected error occurred"))
-                                                                
+
 
 @bp.route("/dashboard/news/<news_id>", methods=["PUT", "PATCH"])
 def update_news(news_id):
@@ -58,4 +62,15 @@ def update_news(news_id):
 @bp.route("/dashboard/news/<news_id>", methods=["DELETE"])
 def delete_news(news_id):
     """Delelte news"""
-    return make_response()
+    try:
+      NewsService().delete(news_id)
+      # 303 See Other:
+      # This status code tells the client to fetch the resource,
+      # from the Location header using a GET request.
+      resp = redirect(url_for("app_views.get_news"), code=303)
+
+      return resp
+    except Exception as e:
+      return add_toast(make_response(str(e), 500),
+                "error",
+                _("Unexpected error occurred"))

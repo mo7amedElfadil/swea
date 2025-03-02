@@ -28,7 +28,7 @@ class ToastManager {
             // document.addEventListener('show-toast', (e) =>
             //     this.showToast(e.detail)
             // )
-            document.addEventListener('htmx:afterSwap', (e) => {
+            document.addEventListener('htmx:afterRequest', (e) => {
                 const toastHeader = e.detail.xhr.getResponseHeader('HX-Trigger')
                 if (toastHeader) {
                     try {

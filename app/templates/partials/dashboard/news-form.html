@@ -4,7 +4,8 @@
         id="create-news"
         class="flex flex-col gap-4"
         hx-post="/dashboard/news"
-        hx-target="#toast-container"
+        hx-target="#tab-content"
+        hx-swap="none"
         hx-encoding="multipart/form-data"
         hx-on::after-request="this.reset()"
     >

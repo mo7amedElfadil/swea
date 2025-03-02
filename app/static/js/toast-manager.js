@@ -23,9 +23,11 @@ class ToastManager {
 
         // Ensure listeners are not added multiple times
         if (!this.listenersAdded) {
-            document.addEventListener('show-toast', (e) =>
-                this.showToast(e.detail)
-            )
+            // This event can be dispatched to show a toast from JS but when the toast
+            // triggered from the end-point with `add_toast`, it will show an overlapping toast
+            // document.addEventListener('show-toast', (e) =>
+            //     this.showToast(e.detail)
+            // )
             document.addEventListener('htmx:afterSwap', (e) => {
                 const toastHeader = e.detail.xhr.getResponseHeader('HX-Trigger')
                 if (toastHeader) {

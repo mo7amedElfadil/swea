@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{% block title %} {% endblock %} | swea</title>
+        <title>{% block title %} {% endblock %} | SWEA</title>
 
         <!-- Basic SEO -->
         <meta
@@ -74,16 +74,19 @@
         <!-- Toast Manager -->
         <script src="{{ url_for('static', filename='js/toast-manager.js') }}"></script>
     </head>
-    <body class="flex flex-col bg-secondary-100 {% if locale == 'ar' %}font-primary{%else%}font-secondary{%endif%}">
+    <body
+        class="flex flex-col bg-secondary-100 {% if locale == 'ar' %}font-primary{%else%}font-secondary{%endif%}"
+    >
         <!-- Toast container will be created dynamically if not present -->
         <div
             id="toast-container"
-            class="fixed top-4 left-1/2 -translate-x-1/2 flex flex-col gap-2 z-50"
+            class="fixed top-4 left-1/2 -translate-x-1/2 flex flex-col gap-2
+            z-[500]"
         ></div>
 
         {% include "partials/header.html" %}
         <main
-            class="w-full flex-1"
+            class="w-full flex-1 {% if locale == 'ar' %}font-primary{%else%}font-secondary{%endif%}"
         >
             {% block content %} {% endblock %}
         </main>

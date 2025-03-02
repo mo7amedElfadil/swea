@@ -1,0 +1,37 @@
+{% if data %}
+<div class="space-y-4">
+    {% for news in data %}
+    <div
+        class="flex justify-between items-center p-4 bg-white rounded-lg shadow-sm"
+    >
+        <div>
+            <h3 class="text-lg font-semibold text-gray-900">
+                {{ news.title[locale] }}
+            </h3>
+            <div class="">{{ news.description["en"] }}</div>
+        </div>
+        <!-- Actions -->
+        <div class="flex gap-2">
+            <button
+                class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none"
+                hx-update="/dashboard/news/{{ news.uuid }}"
+                hx-target="#modal-container"
+                hx-swap="innerHTML"
+            >
+                {{ _("edit") }}
+            </button>
+            <button
+                class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-red-100 text-red-700 hover:bg-red-200 focus:ring-2 focus:ring-red-500 focus:outline-none"
+                hx-delete="/dashboard/news/{{ news.uuid }}"
+                hx-target="#team-list"
+                hx-swap="innerHTML"
+            >
+                {{ _("delete") }}
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="text-center text-gray-600">{{ _("empty_news") }}</div>
+{% endif %}

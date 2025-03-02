@@ -81,6 +81,7 @@ def dashboard():
         )
     template = tab_content.get(tab_query, {}).get("temp")
     data = tab_content.get(tab_query, {}).get("data", lambda: {})()
+    print('=======>',data)
 
     return make_response(render_template(
       template,

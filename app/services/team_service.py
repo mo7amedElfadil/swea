@@ -11,7 +11,7 @@ from marshmallow import ValidationError
 from app.models.team import Team
 from app.schemas.team_schema import TeamSchema
 from utils.db_utils import search_by_multilang_field
-from utils.file_utils import handle_file_upload
+from utils.file_manager import FileManager
 from utils.form_utils import parse_key_value_items, parse_nested_field
 from utils.service_base import BaseService
 
@@ -81,6 +81,6 @@ class TeamService(BaseService):
         # Handle image upload
         image = files.get("image")
         if image and image.filename:
-            processed_data["image"] = handle_file_upload(image)
+            processed_data["image"] = FileManager(image).save()
 
         return processed_data

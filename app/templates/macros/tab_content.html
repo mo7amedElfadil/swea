@@ -1,6 +1,7 @@
 {% macro tab_content(data=data, title_i18n='', title='', btn_text='', hx_get='',
 page=1, total_pages=1, search_placeholder=_('search_placeholder')) %} {%- set
-partial = { 'projects':'partials/dashboard/project-list.html', 'team':'',
+partial = { 'projects':'partials/dashboard/project-list.html',
+'team-members':'partials/dashboard/team-list.html',
 'knowledge_hub':'partials/dashboard/knowledgehub-list.html',
 'subscribers':'partials/dashboard/subscribers-list.html',
 'news':'partials/dashboard/news-list.html' } -%}

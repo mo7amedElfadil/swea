@@ -1,5 +1,6 @@
 """Module that defines `create_app` function to create the Flask app instance"""
 
+import bleach
 from flask import Flask, render_template, request, send_from_directory, session
 from flask import session as flask_session
 from flask_babel import Babel
@@ -92,5 +93,11 @@ def create_app(config_class=Config):
             is_authenticated = True
 
         return render_template("not_found.html", is_authenticated=is_authenticated), 404
+
+    @app.template_filter("truncate_html")
+    def truncate_html_filter(html_content, length=200):
+        # Clean and truncate HTML safely
+        truncated = bleach.clean(html_content, strip=True)[:length]
+        return truncated if len(html_content) <= length else truncated + '...'
 
     return app

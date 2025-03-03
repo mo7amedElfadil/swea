@@ -22,15 +22,21 @@
     <div class="p-2 flex flex-col gap-2 bg-white sm:p-5">
         <span class="text-xs text-slate-500">{{n.date}}</span>
         <h3 class="font-extrabold">{{n.title[locale]}}</h3>
-        <div>{{n.description[locale] | safe }}</div>
-        <button class="flex gap-2 items-center text-sm mt-auto">
-            <span class="p-1.5 border border-red-700 rounded-full">
-                {% if locale == 'en' %} {{icons.arrow_right( clr="rgb(185 28
-                28)", cls="size-3" )}} {% else %} {{icons.arrow_left(
-                clr="rgb(185 28 28)", cls="size-3" )}} {% endif %}
-            </span>
-            <span class="text-red-700 capitalize">{{_('learn more')}}</span>
-        </button>
+        <div>
+            {% if n.description[locale] and n.description[locale]|length > 200
+            %} {{n.description[locale] | truncate_html(300) | safe}}... {% else
+            %} {{n.description[locale] | safe or ""}} {%endif %}
+        </div>
+        <div class="mt-auto">
+            <button class="flex gap-2 items-center text-sm">
+                <span class="p-1.5 border border-red-700 rounded-full">
+                    {% if locale == 'en' %} {{icons.arrow_right( clr="rgb(185 28
+                    28)", cls="size-3" )}} {% else %} {{icons.arrow_left(
+                    clr="rgb(185 28 28)", cls="size-3" )}} {% endif %}
+                </span>
+                <span class="text-red-700 capitalize">{{_('learn more')}}</span>
+            </button>
+        </div>
     </div>
 </div>
 {% endfor %}

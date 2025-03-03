@@ -40,3 +40,4 @@ def get_locale() -> str:
     """Get the best language for the user from the session."""
     lang = flask_session.get("lang", Config.BABEL_DEFAULT_LOCALE)
     return lang
+

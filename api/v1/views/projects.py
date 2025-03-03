@@ -30,7 +30,6 @@ def filter_projects():
         )
     )
 
-
 @bp.route("/dashboard/new-project", methods=["GET", "POST"])
 def add_project():
     """Add a new project"""
@@ -76,6 +75,9 @@ def update_project(project_id):
         form_data = request.form.to_dict()
 
         files = request.files
+
+        print(f"Received form data: {form_data}")
+        print(f"Received files: {files.keys()}")
         project_service.update_project(project_id, form_data, files)
         resp = make_response(
             render_template(

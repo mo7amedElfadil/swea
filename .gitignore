@@ -5,4 +5,4 @@ branch_manager.log
 node_modules/
 package-lock.json
 migrations/
-app/static/uploads/*
+app/static/uploads

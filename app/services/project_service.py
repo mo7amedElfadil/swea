@@ -14,9 +14,10 @@ from app.extensions import db
 from app.models import Project
 from app.schemas.project_schema import ProjectSchema
 from utils.file_manager import FileManager
+from utils.image_processing import ImageProcessing
 
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
-
+img = ImageProcessing()
 
 class ProjectService:
     """Project service class."""
@@ -45,6 +46,8 @@ class ProjectService:
             if errors:
                 raise ValidationError(errors)
             project = Project()
+            path = img.upload_image("projects", files["hero_image"])
+            processed_data["hero_image"] = path
             project.create(**processed_data)
             return project
         except ValidationError as error:
@@ -271,7 +274,7 @@ class ProjectService:
 
         # Process testimonials field
         processed_data["testimonials"] = self._parse_testimonials(form_data)
-
+        print("=====PROCESSED DATA=====", processed_data)
         return processed_data
 
     def _parse_nested_field(

@@ -1,4 +1,4 @@
-from flask import make_response, redirect, render_template, request, session, url_for
+from flask import make_response, redirect, render_template, request, session, url_for,  send_from_directory
 from flask_babel import gettext as _
 
 from api.v1.views import bp
@@ -10,6 +10,9 @@ from config import Config
 from utils.map_i18n import normailze_i18n
 from utils.referrer_modifier import modify_referrer_lang
 from utils.view_modifiers import response
+from utils.image_processing import ImageProcessing
+
+img = ImageProcessing()
 
 
 @bp.route("/")
@@ -104,7 +107,7 @@ def dashboard():
         
 @bp.route("/knowledge-hub")
 @response(template_file="knowledge-hub.html")
-def knowledge_hup():
+def knowledge_hub():
     """knowledge-hub page"""
     tab_query = request.args.get("q", "research")
     tab_mapper = {
@@ -148,3 +151,28 @@ def get_toast(toast_type):
         return "Toast type not found", 404
 
     return render_template(f"partials/toast/{toast_type}.html")
+
+
+
+@bp.route("/upload/<category>/<uuid>", methods=["POST"])
+def upload_image(category, uuid):
+    """Upload an image and save it to the appropriate category folder"""
+    if category not in ["projects", "research", "courses", "podcasts", "news", "team", "users"]:
+        return "Invalid category", 400
+
+    if "file" not in request.files:
+        return {"error": "No file uploaded"}, 400
+
+    file = request.files["file"]
+    saved_path = img.save_image(file, category, uuid)
+
+    if saved_path:
+        return {"message": "Image uploaded successfully", "path": saved_path}
+
+    return {"error": "Invalid file type"}, 400
+
+
+@bp.route("/uploads/<path:filename>")
+def get_image(filename):
+    """Retrieve uploaded images"""
+    return send_from_directory(Config.UPLOAD_FOLDER, filename)

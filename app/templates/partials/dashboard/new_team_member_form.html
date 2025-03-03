@@ -1,10 +1,9 @@
 <form
-    hx-post="{{ form_action }}"
+    hx-post="/dashboard/new-team-member"
     hx-target="#modal-container"
     hx-swap="innerHTML"
     hx-encoding="multipart/form-data"
     enctype="multipart/form-data"
-    hx-encoding="multipart/form-data"
     class="space-y-6"
 >
     <!-- Name -->
@@ -20,11 +19,8 @@
                 type="text"
                 id="name-en"
                 name="name[en]"
-                value="{{ team.name['en'] if team else '' }}"
                 placeholder="{{ _('enter_name_in_english') }}"
                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-                dir="ltr"
-                lang="en"
                 required
             />
         </div>
@@ -39,11 +35,8 @@
                 type="text"
                 id="name-ar"
                 name="name[ar]"
-                value="{{ team.name['ar'] if team else '' }}"
                 placeholder="{{ _('enter_name_in_arabic') }}"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm text-right"
-                dir="rtl"
-                lang="ar"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
             />
         </div>
     </div>
@@ -61,11 +54,8 @@
                 type="text"
                 id="role-en"
                 name="role[en]"
-                value="{{ team.role['en'] if team else '' }}"
                 placeholder="{{ _('enter_role_in_english') }}"
                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-                dir="ltr"
-                lang="en"
                 required
             />
         </div>
@@ -80,11 +70,8 @@
                 type="text"
                 id="role-ar"
                 name="role[ar]"
-                value="{{ team.role['ar'] if team else '' }}"
                 placeholder="{{ _('enter_role_in_arabic') }}"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm text-right"
-                dir="rtl"
-                lang="ar"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
             />
         </div>
     </div>
@@ -101,12 +88,8 @@
                 rows="3"
                 placeholder="{{ _('enter_bio_in_english') }}"
                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-                dir="ltr"
-                lang="en"
                 required
-            >
-{{ team.bio['en'] if team else '' }}</textarea
-            >
+            ></textarea>
         </div>
         <div>
             <label for="bio-ar" class="block text-sm font-medium text-gray-700">
@@ -117,12 +100,8 @@
                 name="bio[ar]"
                 rows="3"
                 placeholder="{{ _('enter_bio_in_arabic') }}"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm text-right"
-                dir="rtl"
-                lang="ar"
-            >
-{{ team.bio['ar'] if team else '' }}</textarea
-            >
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+            ></textarea>
         </div>
     </div>
 
@@ -135,10 +114,8 @@
             type="text"
             id="socials"
             name="socials"
-            value="{% if team and team.socials %}{% for platform, url in team.socials.items() %}{{ platform }}:{{ url }}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}"
             placeholder="{{ _('enter_socials_comma_separated') }}"
             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-            dir="ltr"
         />
         <p class="mt-2 text-sm text-gray-500">
             {{ _("example_socials_format") }}
@@ -150,16 +127,6 @@
         <label for="image" class="block text-sm font-medium text-gray-700">
             {{ _("profile_image") }}
         </label>
-        {% if team and team.image %}
-        <div class="flex items-center space-x-4">
-            <img
-                src="{{ url_for('static', filename=team.image) }}"
-                alt="{{ team.name['en'] }}"
-                class="w-24 h-24 object-cover rounded-full"
-            />
-            <span class="text-sm text-gray-600">{{ _("current_image") }}</span>
-        </div>
-        {% endif %}
         <input
             type="file"
             id="image"
@@ -175,7 +142,7 @@
             type="submit"
             class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
         >
-            {{ submit_text }}
+            {{ _("add_team_member") }}
         </button>
     </div>
 </form>

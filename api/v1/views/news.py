@@ -1,10 +1,11 @@
+import json
 from flask import make_response, redirect, render_template, request, url_for
 from flask_babel import gettext as _
 from marshmallow import ValidationError
 
 from api.v1.views import bp
 from app.services.news import NewsService
-from utils.toast_notify import add_toast
+from utils.toast_notify import add_toast, with_toast
 from utils.view_modifiers import response
 
 
@@ -26,6 +27,7 @@ def get_news():
 
 
 @bp.route("/dashboard/news", methods=["POST"])
+@with_toast
 def create_news():
     """Create news"""
     news_form = request.form.to_dict()
@@ -33,23 +35,18 @@ def create_news():
     news_form['image'] = img
 
     try:
-      news = NewsService().create(news_form)
-      return add_toast(
-        make_response("News created successfully", 201),
-        "success",
-        _("News created successfully")
-      )
+        news = NewsService().create(news_form)
+        return dict(
+            toast={"type": "success", "message": "News created successfully"},
+        )
     except ValidationError as e:
-        return add_toast(make_response(str(e), 400),
-                         "error",
-                         _("An error occurred while"+
-                           "creating the news"
-                           ))
+        return dict(
+            toast={"type": "error", "message": str(e)}
+        )
     except Exception as e:
-        return add_toast(make_response(
-        str(e), 500),
-        "error",
-        _("Unexpected error occurred"))
+        return dict(
+            toast={"type": "error", "message": _("Unexpected error occurred")}
+        )
 
 
 @bp.route("/dashboard/news/<news_id>", methods=["PUT", "PATCH"])
@@ -60,17 +57,26 @@ def update_news(news_id):
 
 
 @bp.route("/dashboard/news/<news_id>", methods=["DELETE"])
+@with_toast
 def delete_news(news_id):
     """Delelte news"""
+    news_service = NewsService()
     try:
-      NewsService().delete(news_id)
-      # 303 See Other:
-      # This status code tells the client to fetch the resource,
-      # from the Location header using a GET request.
-      resp = redirect(url_for("app_views.get_news"), code=303)
-
-      return resp
+        news_service.delete(news_id)
+        custom_header = json.dumps({
+          "type": "success",
+          "message": "News deleted successfully"
+        })
     except Exception as e:
-      return add_toast(make_response(str(e), 500),
-                "error",
-                _("Unexpected error occurred"))
+        custom_header = json.dumps({
+          "type": "error",
+          "message": "Unexpected error occurred"
+        })
+    
+    news = news_service.get_all()
+    data = news.get('news')
+    del news['news']
+    resp = make_response(render_template("partials/dashboard/news-list.html",
+                                      data=data, **news))
+    resp.headers["hx-toast"] = custom_header
+    return resp

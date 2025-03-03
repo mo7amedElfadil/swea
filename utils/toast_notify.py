@@ -1,4 +1,6 @@
 import json
+import werkzeug
+import werkzeug.wrappers
 from functools import wraps
 from typing import Any, Callable, Dict, Literal, TypeVar, cast
 
@@ -9,7 +11,7 @@ F = TypeVar("F", bound=Callable[..., Any])
 ToastType = Literal["success", "error", "warning", "info"]
 
 
-def with_toast(toast_type: ToastType, message: str) -> Callable[[F], F]:
+def with_toast(f):
     """
     Decorator to add toast notification to HTMX responses
 
@@ -27,31 +29,41 @@ def with_toast(toast_type: ToastType, message: str) -> Callable[[F], F]:
     ```
     """
 
-    def decorator(f: F) -> F:
-        @wraps(f)
-        def decorated_function(*args: Any, **kwargs: Any) -> Response:
-            response = make_response(f(*args, **kwargs))
-
-            # Only add toast for HTMX requests
-            if request.headers.get("HX-Request") == "true":
-                # Create or update the HX-Trigger header
-                trigger_header = response.headers.get("HX-Trigger", "{}")
-                try:
-                    triggers: Dict[str, Any] = json.loads(trigger_header)
-                except ValueError:
-                    triggers = {}
-
-                # Add the showToast event
-                triggers["showToast"] = {"type": toast_type, "message": message}
-
-                # Update the header
-                response.headers["HX-Trigger"] = json.dumps(triggers)
-
+    @wraps(f)
+    def decorated_function(*args: Any, **kwargs: Any):
+        response = f(*args, **kwargs)
+        toast = dict(type="success", message="Success")
+        if isinstance(response, (werkzeug.wrappers.Response, Response)):
+            toast = response.headers.get('hx-toast')
+            if toast:
+                toast = json.loads(toast)
+                response.headers["HX-Trigger"] = json.dumps({"showToast": toast})
             return response
+        # Only add toast for HTMX requests
+        if isinstance(response, dict) and request.headers.get("hx-request"):
+            toast = response.get("toast")
+            if toast is None:
+                return response
+            # Create or update the HX-Trigger header
+            response = make_response(response)
+            trigger_header = response.headers.get("HX-Trigger", "{}")
+            try:
+                triggers: Dict[str, Any] = json.loads(trigger_header)
+            except ValueError:
+                triggers = {}
 
-        return cast(F, decorated_function)
+            # Add the showToast event
+            triggers["showToast"] = dict(
+                type=toast.get("type"),
+                message=toast.get("message")
+                )
 
-    return decorator
+            # Update the header
+            response.headers["HX-Trigger"] = json.dumps(triggers)
+
+        return response
+
+    return decorated_function
 
 
 def add_toast(response: Response, toast_type: ToastType, message: str) -> Response:

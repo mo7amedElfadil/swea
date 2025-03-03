@@ -1,0 +1,36 @@
+{% import "macros/icons.html" as icons %} {% for n in data %}
+<div
+    class="shrink-0 w-[200px] h-[330px] grid grid-rows-[30%_auto] shadow-[0_8px_10px_5px_rgba(0,_0,_0,_0.3)] sm:w-[300px] sm:h-[400px]"
+    {%
+    if
+    loop.last
+    and
+    next_page
+    %}
+    hx-get="/news?page={{page+1}}"
+    hx-trigger="intersect once"
+    hx-swap="afterend"
+    {%
+    endif
+    %}
+>
+    <img
+        class="size-full object-cover"
+        src="{{url_for('static',filename=n.image)}}"
+        alt="discussion"
+    />
+    <div class="p-2 flex flex-col gap-2 bg-white sm:p-5">
+        <span class="text-xs text-slate-500">{{n.date}}</span>
+        <h3 class="font-extrabold">{{n.title[locale]}}</h3>
+        <div>{{n.description[locale] | safe }}</div>
+        <button class="flex gap-2 items-center text-sm mt-auto">
+            <span class="p-1.5 border border-red-700 rounded-full">
+                {% if locale == 'en' %} {{icons.arrow_right( clr="rgb(185 28
+                28)", cls="size-3" )}} {% else %} {{icons.arrow_left(
+                clr="rgb(185 28 28)", cls="size-3" )}} {% endif %}
+            </span>
+            <span class="text-red-700 capitalize">{{_('learn more')}}</span>
+        </button>
+    </div>
+</div>
+{% endfor %}

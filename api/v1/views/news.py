@@ -49,11 +49,12 @@ def create_news():
         )
 
 
-@bp.route("/dashboard/news/<news_id>", methods=["PUT", "PATCH"])
+@bp.route("/dashboard/news/<news_id>", methods=["GET", "PUT", "PATCH"])
+@response(template_file="partials/dashboard/news-form.html")
 def update_news(news_id):
     """Update news"""
     news_form = request.form.to_dict()
-    return make_response()
+    return dict()
 
 
 @bp.route("/dashboard/news/<news_id>", methods=["DELETE"])
@@ -72,7 +73,7 @@ def delete_news(news_id):
           "type": "error",
           "message": "Unexpected error occurred"
         })
-    
+
     news = news_service.get_all()
     data = news.get('news')
     del news['news']

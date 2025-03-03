@@ -16,7 +16,21 @@ from utils.view_modifiers import response
 @response(template_file="index.html")
 def index():
     """home page"""
-    return dict()
+    page = request.args.get("page", type=int, default=1)
+    news = NewsService().get_all(page=page)
+    data = news.get('news')
+    del news['news']
+    return dict(data=data, **news)
+
+
+@bp.route("/news")
+@response(template_file="partials/news/cards.html")
+def news():
+    page = request.args.get("page", type=int, default=1)
+    news = NewsService().get_all(page=page)
+    data = news.get('news')
+    del news['news']
+    return dict(data=data, **news)
 
 
 @bp.route("/projects")

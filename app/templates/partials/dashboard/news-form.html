@@ -21,9 +21,8 @@
         type="date",placeholder=_("news date"), )}}
 
         <!-- image (Multi-language Support) -->
-        {{form.input(label=_("news_image"), id="news-img", name="news_img",
-        accept="image/*",
-        type="file",placeholder=_("news image"), )}}
+        {{form.input(label=_("news_image"), id="news-img", name="image",
+        accept="image/*", type="file",placeholder=_("news image"), )}}
 
         <!-- description -->
         <div>
@@ -70,5 +69,4 @@
                 evt.detail.parameters['description[en]'] = content
             })
     }
-
-   </script>
+</script>

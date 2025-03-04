@@ -8,7 +8,7 @@
             <h3 class="text-lg font-semibold text-gray-900">
                 {{ news.title[locale] }}
             </h3>
-            <div class="">{{ news.description[locale] | safe }}</div>
+            <div>{{news.description[locale]|truncate_html(100)|safe}}</div>
         </div>
         <!-- Actions -->
         <div class="flex gap-2">

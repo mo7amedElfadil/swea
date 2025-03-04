@@ -1,6 +1,5 @@
 """Module that defines `create_app` function to create the Flask app instance"""
 
-import bleach
 from flask import Flask, render_template, request, send_from_directory, session
 from flask import session as flask_session
 from flask_babel import Babel
@@ -12,7 +11,15 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from api.v1.views import bp as app_view
 from app.extensions import db, get_locale, init_cache, init_session, migrate
 from config import Config
+from html_sanitizer import Sanitizer
 
+
+# Sanitizer configuration (you can customize it as per your needs)
+sanitizer = Sanitizer({
+    'tags': {'img', 'b', 'i', 'u', 'em', 'strong', 'a', 'p', 'ul', 'li', 'br', 'div', 'span'},
+    'attributes': {'a': ('href', 'title'), 'img': ('src', 'alt')},
+    'empty': {'a', 'br'},  # Tags that can be self-closing
+})
 
 def create_app(config_class=Config):
     """Creating a Flask Application Factory,
@@ -96,8 +103,10 @@ def create_app(config_class=Config):
 
     @app.template_filter("truncate_html")
     def truncate_html_filter(html_content, length=200):
-        # Clean and truncate HTML safely
-        truncated = bleach.clean(html_content, strip=True)[:length]
-        return truncated if len(html_content) <= length else truncated + '...'
+        # Clean the HTML content while maintaining valid structure
+        truncated = sanitizer.sanitize(html_content[:length])
+
+        # Ensure we add ellipsis only if content is actually truncated
+        return truncated+'...' if len(html_content) >= length else html_content
 
     return app

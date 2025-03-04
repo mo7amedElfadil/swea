@@ -1,11 +1,11 @@
 import json
-from flask import make_response, redirect, render_template, request, url_for
+from flask import make_response, render_template, request
 from flask_babel import gettext as _
 from marshmallow import ValidationError
 
 from api.v1.views import bp
 from app.services.news import NewsService
-from utils.toast_notify import add_toast, with_toast
+from utils.toast_notify import with_toast
 from utils.view_modifiers import response
 
 

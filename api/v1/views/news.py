@@ -54,10 +54,27 @@ def create_news():
 @with_toast
 def update_news(news_id):
     """Update news"""
+    news_service = NewsService()
+    news = news_service.get_by_uuid(news_id)
+    if not news:
+        return dict(
+            toast={"type": "error", "message": "News not found"}
+        )
     if request.method == "PATCH" or request.method == "PUT":
-        news_form = request.form.to_dict()
-        NewsService().update(news_id, news_form)
-    return dict(update=True)
+        try:
+            news_form = request.form.to_dict()
+            updated = news_service.update(news_id, news_form)
+            return dict(
+                toast={
+                    "type": "success",
+                    "message": "News updated successfully"
+                    },
+            )
+        except ValidationError as e:
+            return dict(
+                toast={"type": "error", "message": str(e)}
+            )
+    return dict(update=True, **news)
 
 
 @bp.route("/dashboard/news/<news_id>", methods=["DELETE"])

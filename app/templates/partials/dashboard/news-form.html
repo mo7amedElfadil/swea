@@ -1,7 +1,6 @@
-{% import "macros/form.html" as form %} {% set locale = 'en' %} {% set update =
-false %} {% set uuid = '' %} {% set _form = {title: {'en': '', 'ar': '' }} %} {%
-if news %} form.title['en'] = news.title['en'] form.title['ar']
-=news.title['ar'] {% set update = true %} {% set uuid = news.uuid %} {% endif %}
+{% import "macros/form.html" as form %} {% set _form = { 'title': { 'en':
+title['en'] if update else '', 'ar': title['ar'] if update else '', }, 'date':
+date if update else '', 'image': image if update else '' } %}
 <div>
     <form
         id="create-news"
@@ -21,22 +20,24 @@ if news %} form.title['en'] = news.title['en'] form.title['ar']
         hx-target="#tab-content"
         hx-swap="none"
         hx-encoding="multipart/form-data"
-        hx-on::after-request="this.reset()"
+        hx-on::after-request=""
         enctype="multipart/form-data"
     >
         <!-- Title (Multi-language Support) -->
         {{form.input(label=_("news_title_english"), id="title-en",
-        name="title[en]", placeholder=_("news_title_english"), )}}
-        {{form.input(label=_("news_title_arabic"), id="title-ar",
-        name="title[ar]", placeholder=_("news_title_arabic"), value='' )}}
+        name="title[en]", placeholder=_("news_title_english"),
+        value=_form.title.en )}} {{form.input(label=_("news_title_arabic"),
+        id="title-ar", name="title[ar]", placeholder=_("news_title_arabic"),
+        value=_form.title.ar )}}
 
         <!-- date -->
         {{form.input(label=_("news_date"), id="news-img", name="date",
-        type="date",placeholder=_("news date"), )}}
+        type="date",placeholder=_("news date"), value=_form.date )}}
 
         <!-- image (Multi-language Support) -->
         {{form.input(label=_("news_image"), id="news-img", name="image",
-        accept="image/*", type="file",placeholder=_("news image"), )}}
+        accept="image/*", type="file",placeholder=_("news image"),
+        value=_form.image, required=False )}}
 
         <!-- description -->
         <div>
@@ -50,10 +51,11 @@ if news %} form.title['en'] = news.title['en'] form.title['ar']
             <input type="hidden" name="description[en]" id="description-en" />
         </div>
         <button
-            class="w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
+            class="w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 uppercase"
             type="submit"
         >
-            {{_('create')}}
+            {% if update %} {{_('update')}} {%else %} {{_('create')}} {% endif
+            %}
         </button>
     </form>
 </div>
@@ -64,23 +66,40 @@ if news %} form.title['en'] = news.title['en'] form.title['ar']
 ></script>
 <!-- Initialize Quill editor -->
 <script>
-    function initQuill() {
-        var quill = new Quill('#editor', {
-            theme: 'snow',
-        })
-        // Use htmx:configRequest to update the form parameters
-        document
-            .getElementById('create-news')
-            .addEventListener('htmx:configRequest', function (evt) {
-                // Get the HTML content from Quill
-                const content = quill.root.innerHTML
-                console.log('Content before sending:', content)
+    var update = {{ update | default("") | tojson }};
+    var description = {{ description | default("") | tojson }};
+    var quill = null;
+      function initQuill() {
+          quill = new Quill('#editor', {
+              theme: 'snow',
+          })
+        if (update) {
+            quill.root.innerHTML = description.en
+        }
+          // Use htmx:configRequest to update the form parameters
+          document
+              .getElementById('create-news')
+              .addEventListener('htmx:configRequest', function (evt) {
+                  // Get the HTML content from Quill
+                  const content = quill.root.innerHTML
+                  console.log('Content before sending:', content)
 
-                // Update the hidden input (optional)
-                document.getElementById('description-en').value = content
+                  // Update the hidden input (optional)
+                  document.getElementById('description-en').value = content
 
-                // Update the request parameters directly
-                evt.detail.parameters['description[en]'] = content
-            })
-    }
+                  // Update the request parameters directly
+                  evt.detail.parameters['description[en]'] = content
+              })
+      }
+
+    /*document.addEventListener('htmx:afterRequest',(evt)=>{
+      if(evt.detail.elt.id === 'create-news'){
+        console.log('Form submitted')
+        quill.root.innerHTML = ''
+      }
+      const form = document.getElementById('create-news');
+      for (const input of form.querySelectorAll('input, textarea')) {
+        input.value = "";
+      }
+    })*/
 </script>

@@ -1,5 +1,5 @@
 {% macro input(id='', name='', type='text', placeholder='', label='', value='',
-accept='')%}
+accept='', required=True)%}
 <div>
     <label
         for="{{id}}"
@@ -7,15 +7,31 @@ accept='')%}
     >
         {{ label }}
     </label>
-    <input
-        required
-        type="{{type}}"
-        id="{{id}}"
-        name="{{name}}"
-        placeholder="{{ placeholder }}"
-        value="{{ value }}"
-        accept="{{ accept }}"
-        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-    />
+    <div class="flex gap-4 items-center">
+        {% if value and type == 'file' %}
+        <img
+            class="size-14 rounded-full"
+            src="{{ url_for('static', filename=value) }}"
+            alt="Uploaded image"
+        />
+        {% endif %}
+        <input
+            {%
+            if
+            required
+            %}
+            required
+            {%
+            endif
+            %}
+            type="{{type}}"
+            id="{{id}}"
+            name="{{name}}"
+            placeholder="{{ placeholder }}"
+            value="{{ value }}"
+            accept="{{ accept }}"
+            class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+        />
+    </div>
 </div>
 {% endmacro %}

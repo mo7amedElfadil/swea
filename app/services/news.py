@@ -15,14 +15,16 @@ from app.models import News
 from app.schemas.news_schema import NewsSchema
 from utils.compose_i18n import compose_i18n
 from utils.file_manager import FileManager
+from utils.service_base import BaseService
 
-class NewsService:
+class NewsService(BaseService):
     """News service class."""
 
     def __init__(self, page_size: int = 3):
         """Initialize news service."""
         self.page_size = page_size
         self.news_schema = NewsSchema()
+        super().__init__(News, NewsSchema, page_size)
 
     def get_all(self, page: int = 1) -> Dict[str, Any]:
       """Get all news."""
@@ -106,7 +108,7 @@ class NewsService:
                 raise ValidationError(errors)
 
             news.update(**processed_data)
-            return news
+            return news.to_dict()
 
         except ValidationError as error:
             raise ValidationError(error.messages) from error

@@ -158,7 +158,6 @@ class ProjectService:
         project_list = [t.to_dict() for t in pagination.items]
         next_page = page + 1 if pagination.has_next else None
 
-
         return dict(
             projects=project_list,
             total_pages=total_pages,

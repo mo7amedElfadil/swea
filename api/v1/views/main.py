@@ -38,13 +38,15 @@ def news():
 
 @bp.route("/projects")
 @response(template_file="projects.html")
-@normailze_i18n
 def projects():
     """projects page"""
-    projects = ProjectService().get_all_projects()
-    # locale must be included in the dict in order to be normalized
-    # DONT' use rqeuest.args.get('lang') as it will return None
-    return dict(**projects, locale=get_locale())
+    page = request.args.get("page", type=int, default=1)
+    projects = ProjectService().get_all(page=page)
+    if request.headers.get("hx-request"):
+        return make_response(
+            render_template("partials/projects/cards.html", **projects)
+        )
+    return dict(**projects)
 
 
 @bp.route("/login", methods=["GET", "POST"])

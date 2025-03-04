@@ -4,6 +4,7 @@ Project Service Module
 This module provides the business logic for project-related operations.
 """
 
+import math
 from datetime import date
 from typing import Any, Dict, List, Optional
 
@@ -14,15 +15,12 @@ from app.extensions import db
 from app.models import Project
 from app.schemas.project_schema import ProjectSchema
 from utils.file_manager import FileManager
-from utils.image_processing import ImageProcessing
 
-ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
-img = ImageProcessing()
 
 class ProjectService:
     """Project service class."""
 
-    def __init__(self, page_size: int = 10):
+    def __init__(self, page_size: int = 3):
         """Initialize project service."""
         self.page_size = page_size
         self.project_schema = ProjectSchema()
@@ -46,8 +44,6 @@ class ProjectService:
             if errors:
                 raise ValidationError(errors)
             project = Project()
-            path = img.upload_image("projects", files["hero_image"])
-            processed_data["hero_image"] = path
             project.create(**processed_data)
             return project
         except ValidationError as error:
@@ -142,8 +138,8 @@ class ProjectService:
         """
         return Project.get_all_by(author=author)
 
-    def get_all_projects(
-        self, status: str = "all", search_str: str = "", page: int = 1
+    def get_all(
+        self, status: str = "all", page: int = 1
         ) -> Dict[str, Any]:
         """
         Retrieve all projects with pagination.
@@ -156,43 +152,19 @@ class ProjectService:
         Returns:
             List[Project]: A list of projects for the specified page.
         """
-        if search_str:
-            data= self.search_projects_by_title(search_str)
-            return dict(
-                projects=data,
-                total_pages=(len(data) // self.page_size) + 1,
-                page=page,
-                next_page=page + 1 if len(data) == self.page_size else None,
-                )
+        pagination = Project.query.filter_by(deleted_at=None)\
+                .paginate(page=page, per_page=self.page_size)
+        total_pages = math.ceil(pagination._query_count() / self.page_size)
+        project_list = [t.to_dict() for t in pagination.items]
+        next_page = page + 1 if pagination.has_next else None
 
-        if status != "all":
-            data = [
-                p.to_dict()
-                for p in (
-                    Project.query.filter_by(status=status, deleted_at=None)
-                    .paginate(page=page, per_page=self.page_size)
-                    .items
-                )
-            ]
-            return dict(
-                projects=data,
-                total_pages=(len(data) // self.page_size) + 1,
-                page=page,
-                next_page=page + 1 if len(data) == self.page_size else None,
-                )
 
-        data = [
-            p.to_dict()
-            for p in Project.query.filter_by(deleted_at=None)
-            .paginate(page=page, per_page=self.page_size)
-            .items
-        ]
         return dict(
-            projects=data,
-            total_pages=(len(data) // self.page_size) + 1,
+            projects=project_list,
+            total_pages=total_pages,
             page=page,
-            next_page=page + 1 if len(data) == self.page_size else None,
-            )
+            next_page=next_page,
+        )
 
     def get_projects_by_completion_date(
         self, date_of_completion: date
@@ -274,7 +246,6 @@ class ProjectService:
 
         # Process testimonials field
         processed_data["testimonials"] = self._parse_testimonials(form_data)
-        print("=====PROCESSED DATA=====", processed_data)
         return processed_data
 
     def _parse_nested_field(

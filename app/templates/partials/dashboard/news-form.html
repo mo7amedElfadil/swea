@@ -1,9 +1,23 @@
-{% import "macros/form.html" as form %}
+{% import "macros/form.html" as form %} {% set locale = 'en' %} {% set update =
+false %} {% set uuid = '' %} {% set _form = {title: {'en': '', 'ar': '' }} %} {%
+if news %} form.title['en'] = news.title['en'] form.title['ar']
+=news.title['ar'] {% set update = true %} {% set uuid = news.uuid %} {% endif %}
 <div>
     <form
         id="create-news"
         class="flex flex-col gap-4"
+        {%
+        if
+        update
+        %}
+        hx-patch="/dashboard/news/{{ uuid }}"
+        {%
+        else
+        %}
         hx-post="/dashboard/news"
+        {%
+        endif
+        %}
         hx-target="#tab-content"
         hx-swap="none"
         hx-encoding="multipart/form-data"
@@ -14,7 +28,7 @@
         {{form.input(label=_("news_title_english"), id="title-en",
         name="title[en]", placeholder=_("news_title_english"), )}}
         {{form.input(label=_("news_title_arabic"), id="title-ar",
-        name="title[ar]", placeholder=_("news_title_arabic"), )}}
+        name="title[ar]", placeholder=_("news_title_arabic"), value='' )}}
 
         <!-- date -->
         {{form.input(label=_("news_date"), id="news-img", name="date",

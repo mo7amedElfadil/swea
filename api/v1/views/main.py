@@ -88,7 +88,7 @@ def dashboard():
         team=dict(temp="partials/dashboard/team.html",
                   data=TeamService().get_all),
         projects=dict(temp="partials/dashboard/projects.html",
-                      data=ProjectService().get_all_projects),
+                      data=ProjectService().get_all),
         knowledge_hub=dict(temp="partials/dashboard/knowledge-hub.html",
                            data=dict),
         subscribers=dict(temp="partials/dashboard/subscribers.html",
@@ -103,7 +103,7 @@ def dashboard():
       template,
       **data,
     ))
-                                             
+
         
 @bp.route("/knowledge-hub")
 @response(template_file="knowledge-hub.html")

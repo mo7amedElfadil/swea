@@ -1,3 +1,4 @@
+{% import "macros/pagination.html" as pagination %}
 <!-- Project List -->
 {% if data %}
 <div class="space-y-4">
@@ -7,15 +8,14 @@
     >
         <!-- Project Details -->
         <div>
-          <!-- Title -->
+            <!-- Title -->
             <h3 class="text-lg font-semibold text-gray-900">
                 {{ project.title[locale] | default(project.title['en']) }}
             </h3>
 
             <!-- Author -->
             <p class="text-sm text-gray-600">
-                {{ _("by") }} {{ project.author['name'][locale] |
-                default(project.author['name']['en']) }}
+                {{ _("by") }} {{ project.author['name'][locale] }}
             </p>
 
             <!-- Status -->
@@ -60,6 +60,10 @@
         </div>
     </div>
     {% endfor %}
+    <!-- Pagination -->
+    {{ pagination.pagination( page=page, total_pages=total_pages,
+    next='/dashboard/projects?page='+(page+1)|string,
+    prev='/dashboard/projects?page='+(page-1)|string) }}
 </div>
 {% else %}
 <div class="text-center text-gray-600">{{ _("no_projects_found") }}</div>

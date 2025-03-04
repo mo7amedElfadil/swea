@@ -51,16 +51,20 @@ def create_news():
 
 @bp.route("/dashboard/news/<news_id>", methods=["GET", "PUT", "PATCH"])
 @response(template_file="partials/dashboard/news-form.html")
+@with_toast
 def update_news(news_id):
     """Update news"""
-    news_form = request.form.to_dict()
-    return dict()
+    if request.method == "PATCH" or request.method == "PUT":
+        news_form = request.form.to_dict()
+        NewsService().update(news_id, news_form)
+    return dict(update=True)
 
 
 @bp.route("/dashboard/news/<news_id>", methods=["DELETE"])
 @with_toast
 def delete_news(news_id):
     """Delelte news"""
+    page = request.args.get("page", type=int, default=1)
     news_service = NewsService()
     try:
         news_service.delete(news_id)
@@ -74,7 +78,7 @@ def delete_news(news_id):
           "message": "Unexpected error occurred"
         })
 
-    news = news_service.get_all()
+    news = news_service.get_all(page=page)
     data = news.get('news')
     del news['news']
     resp = make_response(render_template("partials/dashboard/news-list.html",

@@ -1,4 +1,5 @@
-{% macro input(id='', name='', type='text', placeholder='', label='', accept='')%}
+{% macro input(id='', name='', type='text', placeholder='', label='', value='',
+accept='')%}
 <div>
     <label
         for="{{id}}"
@@ -12,11 +13,9 @@
         id="{{id}}"
         name="{{name}}"
         placeholder="{{ placeholder }}"
+        value="{{ value }}"
         accept="{{ accept }}"
         class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
-        {% if type== "file" %}
-        accept="{{accept}}"
-        {% endif %}
     />
 </div>
 {% endmacro %}

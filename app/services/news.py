@@ -95,10 +95,10 @@ class NewsService:
                 description=compose_i18n(form_data, "description"),
             )
             if form_data.get("image"):
-              processed_data["image"] = form_data.get("image")
-              file = FileManager(form_data.get("image"))
-              relative_path = file.save()
-              processed_data["image"] = relative_path
+                processed_data["image"] = form_data.get("image")
+                file = FileManager(form_data.get("image"))
+                relative_path = file.save()
+                processed_data["image"] = relative_path
 
             # Validate the data using the schema
             errors = self.news_schema.validate(processed_data)

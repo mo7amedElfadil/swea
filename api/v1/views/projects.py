@@ -74,7 +74,7 @@ def update_project(project_id):
         resp = make_response(
             render_template(
                 "partials/dashboard/projects.html",
-                projects=project_service.get_all_projects(),
+                **project_service.get_all(),
             )
         )
         return add_toast(resp, "success", _("Project updated successfully"))

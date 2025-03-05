@@ -4,7 +4,7 @@ Team Service Module
 This module provides the business logic for team-related operations.
 """
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 
 from marshmallow import ValidationError
 
@@ -62,7 +62,7 @@ class TeamService(BaseService):
         except ValidationError as error:
             raise ValidationError(error.messages) from error
 
-    def search_team_members_by_name(self, name: str) -> List[Dict[str, Any]]:
+    def search_team_members_by_name(self, name: str) -> Dict[str, Any]:
         """Search for team members by name."""
         print("search_team_members_by_name", name)
         return search_by_multilang_field(Team, "name", name)

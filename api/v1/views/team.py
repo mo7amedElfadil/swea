@@ -1,4 +1,4 @@
-from flask import make_response, render_template, request
+from flask import make_response, render_template, request, session
 from flask_babel import gettext as _
 
 from api.v1.views import bp
@@ -14,11 +14,19 @@ def filter_team_members():
     search_str = request.args.get("search", "")
     page = int(request.args.get("page", 1))
 
-    data = team_service.get_all(page=page)
+    # Fetch team members based on search string
+    if search_str:
+        team_members_res = team_service.search_team_members_by_name(search_str)
+    else:
+        team_members_res = team_service.get_all(page=page)
+
+    total_pages = (len(team_members_res) // 5) + 1
+    print("Team members res", team_members_res)
     return make_response(
         render_template(
             "partials/dashboard/team-list.html",
-            **data
+            data=team_members_res["teams"],
+            search=search_str,
         )
     )
 

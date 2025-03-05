@@ -51,7 +51,9 @@ def paginate_query(
     return items, pagination_info
 
 
-def search_by_multilang_field(model, field_name: str, search_term: str) -> List:
+def search_by_multilang_field(
+    model, field_name: str, search_term: str
+) -> Dict[str, Any]:
     """
     Search for items where a multilingual field contains the search term.
 
@@ -61,7 +63,7 @@ def search_by_multilang_field(model, field_name: str, search_term: str) -> List:
         search_term: The search term to look for
 
     Returns:
-        List of matching model instances
+        Dictionary containing search results and pagination metadata
     """
     field = getattr(model, field_name)
 
@@ -74,4 +76,17 @@ def search_by_multilang_field(model, field_name: str, search_term: str) -> List:
     ).all()
 
     res = [item.to_dict() for item in result if item]
-    return res
+
+    # Prepare pagination metadata
+    pagination_info = {
+        "total_pages": 1,
+        "page": 1,
+        "next_page": None,
+        "total_items": len(res),
+    }
+
+    collection_name = f"{model.__name__.lower()}s"
+    result = {collection_name: res}
+    result.update(pagination_info)
+
+    return result

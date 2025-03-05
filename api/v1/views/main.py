@@ -1,16 +1,23 @@
-from flask import make_response, redirect, render_template, request, session, url_for,  send_from_directory
+from flask import (
+    make_response,
+    redirect,
+    render_template,
+    request,
+    send_from_directory,
+    session,
+    url_for,
+)
 from flask_babel import gettext as _
 
 from api.v1.views import bp
-from app.extensions import get_locale
 from app.services.news import NewsService
 from app.services.project_service import ProjectService
 from app.services.team_service import TeamService
 from config import Config
+from utils.image_processing import ImageProcessing
 from utils.map_i18n import normailze_i18n
 from utils.referrer_modifier import modify_referrer_lang
 from utils.view_modifiers import response
-from utils.image_processing import ImageProcessing
 
 img = ImageProcessing()
 
@@ -21,32 +28,40 @@ def index():
     """home page"""
     page = request.args.get("page", type=int, default=1)
     news = NewsService().get_all(page=page)
-    data = news.get('data')
-    del news['data']
-    return dict(data=data, **news)
+    return dict(**news)
 
 
 @bp.route("/news")
 @response(template_file="partials/news/cards.html")
 def news():
+    """news page"""
     page = request.args.get("page", type=int, default=1)
     news = NewsService().get_all(page=page)
-    data = news.get('data')
-    del news['data']
-    return dict(data=data, **news)
+    return dict(**news)
 
 
 @bp.route("/projects")
 @response(template_file="projects.html")
+@normailze_i18n
 def projects():
     """projects page"""
-    page = request.args.get("page", type=int, default=1)
-    projects = ProjectService().get_all(page=page)
+    projects = ProjectService().get_all()
+    # locale must be included in the dict in order to be normalized
+    # DONT' use rqeuest.args.get('lang') as it will return None
     if request.headers.get("hx-projects"):
         return make_response(
             render_template("partials/projects/cards.html", **projects)
         )
+
     return dict(**projects)
+
+
+@bp.route("/team")
+@response(template_file="team.html")
+def team():
+    """team page"""
+    team_members = TeamService().get_all()
+    return dict(**team_members)
 
 
 @bp.route("/login", methods=["GET", "POST"])
@@ -84,27 +99,27 @@ def dashboard():
     """Dashboard page"""
     tab_query = request.args.get("q")
     if tab_query is None:
-      return dict(tab="projects")
+        return dict(tab="projects")
 
     tab_content = dict(
-        team=dict(temp="partials/dashboard/team.html",
-                  data=TeamService().get_all),
-        projects=dict(temp="partials/dashboard/projects.html",
-                      data=ProjectService().get_all),
-        knowledge_hub=dict(temp="partials/dashboard/knowledge-hub.html",
-                           data=dict),
-        subscribers=dict(temp="partials/dashboard/subscribers.html",
-                         data=dict),
-        news=dict(temp="partials/dashboard/news.html",
-                  data=NewsService().get_all),
-        )
+        team=dict(temp="partials/dashboard/team.html", data=TeamService().get_all),
+        projects=dict(
+            temp="partials/dashboard/projects.html",
+            data=ProjectService().get_all,
+        ),
+        knowledge_hub=dict(temp="partials/dashboard/knowledge-hub.html", data=dict),
+        subscribers=dict(temp="partials/dashboard/subscribers.html", data=dict),
+        news=dict(temp="partials/dashboard/news.html", data=NewsService().get_all),
+    )
     template = tab_content.get(tab_query, {}).get("temp")
     data = tab_content.get(tab_query, {}).get("data", lambda: {})()
 
-    return make_response(render_template(
-      template,
-      **data,
-    ))
+    return make_response(
+        render_template(
+            template,
+            **data,
+        )
+    )
 
 
 @bp.route("/knowledge-hub")
@@ -127,14 +142,6 @@ def knowledge_hub():
     return dict(tab="research")
 
 
-@bp.route("/team")
-@response(template_file="team.html")
-def team():
-    """team page"""
-    all_team_members = TeamService().get_all()
-    return dict(**all_team_members)
-
-
 @bp.route("/set_language")
 def set_language():
     """set language"""
@@ -155,11 +162,18 @@ def get_toast(toast_type):
     return render_template(f"partials/toast/{toast_type}.html")
 
 
-
 @bp.route("/upload/<category>/<uuid>", methods=["POST"])
 def upload_image(category, uuid):
     """Upload an image and save it to the appropriate category folder"""
-    if category not in ["projects", "research", "courses", "podcasts", "news", "team", "users"]:
+    if category not in [
+        "projects",
+        "research",
+        "courses",
+        "podcasts",
+        "news",
+        "team",
+        "users",
+    ]:
         return "Invalid category", 400
 
     if "file" not in request.files:

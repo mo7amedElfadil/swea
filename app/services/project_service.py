@@ -13,6 +13,7 @@ from sqlalchemy import cast, or_
 from app.extensions import db
 from app.models import Project
 from app.schemas.project_schema import ProjectSchema
+from utils.db_utils import search_by_multilang_field
 from utils.file_manager import FileManager
 from utils.service_base import BaseService
 
@@ -153,7 +154,7 @@ class ProjectService(BaseService):
         """
         return Project.get_all_by(date_of_completion=date_of_completion)
 
-    def search_projects_by_title(self, title: str) -> List[Project]:
+    def search_projects_by_title(self, title: str) -> Dict[str, Any]:
         """
         Search for projects by title.
 
@@ -161,15 +162,10 @@ class ProjectService(BaseService):
             title (str): The title to search for.
 
         Returns:
-            List[Project]: A list of projects matching the title.
+            Dict[str, Any]: Dictionary containing search results and pagination
+            metadata.
         """
-        return Project.query.filter(
-            Project.deleted_at.is_(None),
-            or_(
-                cast(Project.title["en"], db.String).ilike(f"%{title}%"),
-                cast(Project.title["ar"], db.String).ilike(f"%{title}%"),
-            ),
-        ).all()
+        return search_by_multilang_field(Project, "title", title)
 
     def restore_project(self, uuid: str) -> Optional[Project]:
         """

@@ -3,6 +3,8 @@ from flask_babel import gettext as _
 
 from api.v1.views import bp
 from app.services.course_service import CourseService
+from app.services.podcast_service import PodcastService
+from app.services.research_service import ResearchService
 from utils.toast_notify import add_toast
 
 course_service = CourseService()
@@ -27,3 +29,14 @@ def knowledge_hub_tabs():
             )
         )
     return dict()
+
+
+@bp.route("/dashboard/knowledge-hub/courses", methods=["GET"])
+def get_courses():
+    """Get courses."""
+    page = request.args.get("page", 1, type=int)
+    search = request.args.get("search", "")
+    courses = course_service.get_all(page=page, search=search)
+    return render_template(
+        "partials/dashboard/knowledge_hub/courses.html", courses=courses
+    )

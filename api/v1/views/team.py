@@ -14,21 +14,12 @@ def filter_team_members():
     search_str = request.args.get("search", "")
     page = int(request.args.get("page", 1))
 
-    # Fetch team members based on search string
-    if search_str:
-        team_members_res = team_service.search_team_members_by_name(search_str)
-    else:
-        team_members_res = team_service.get_all(page=page)
-
-    total_pages = (len(team_members_res) // 5) + 1
-    print("Team members res", team_members_res)
+    data = team_service.get_all(page=page)
+    print('============',data)
     return make_response(
         render_template(
-            "partials/dashboard/team_list.html",
-            teams=team_members_res if search_str else team_members_res["teams"],
-            search=search_str,
-            page=page,
-            total_pages=total_pages,
+            "partials/dashboard/team-list.html",
+            **data
         )
     )
 

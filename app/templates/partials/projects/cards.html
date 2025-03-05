@@ -10,6 +10,7 @@
     hx-get="{{url_for('app_views.projects', page=next_page)}}"
     hx-trigger="intersect once"
     hx-swap="afterend"
+    hx-headers='{"hx-projects":"true"}'
     {%
     endif
     %}

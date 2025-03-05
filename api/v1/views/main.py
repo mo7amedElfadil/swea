@@ -42,7 +42,7 @@ def projects():
     """projects page"""
     page = request.args.get("page", type=int, default=1)
     projects = ProjectService().get_all(page=page)
-    if request.headers.get("hx-request"):
+    if request.headers.get("hx-projects"):
         return make_response(
             render_template("partials/projects/cards.html", **projects)
         )

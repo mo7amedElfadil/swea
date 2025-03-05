@@ -26,21 +26,6 @@ class NewsService(BaseService):
         self.news_schema = NewsSchema()
         super().__init__(News, NewsSchema, page_size)
 
-    def get_all(self, page: int = 1) -> Dict[str, Any]:
-      """Get all news."""
-      pagination = News.query.filter_by(deleted_at=None)\
-          .paginate(page=page, per_page=self.page_size)
-      total_pages = math.ceil(pagination._query_count() / self.page_size)
-      news_list = [t.to_dict() for t in pagination.items]
-      next_page = page + 1 if pagination.has_next else None
-
-      return dict(
-          news=news_list,
-          total_pages=total_pages,
-          page=page,
-          next_page=next_page,
-          )
-
     def create(self, form_data: Dict[str, Any]) -> News:
       """
       Create a new news.

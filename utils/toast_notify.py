@@ -38,6 +38,9 @@ def with_toast(f):
             if toast:
                 toast = json.loads(toast)
                 response.headers["HX-Trigger"] = json.dumps({"showToast": toast})
+            elif hasattr(response, 'model') and response.model.get("toast"):
+                toast = response.model.get("toast")
+                response.headers["HX-Trigger"] = json.dumps({"showToast": toast})
             return response
         # Only add toast for HTMX requests
         if isinstance(response, dict) and request.headers.get("hx-request"):

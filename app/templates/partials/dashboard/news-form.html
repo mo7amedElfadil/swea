@@ -17,8 +17,8 @@ date if update else '', 'image': image if update else '' } %}
         {%
         endif
         %}
-        hx-target="#tab-content"
-        hx-swap="none"
+        hx-target="this"
+        hx-swap="outerHTML"
         hx-encoding="multipart/form-data"
         hx-on::after-request=""
         enctype="multipart/form-data"

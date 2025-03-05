@@ -21,32 +21,45 @@ def get_news():
     """Get news paginated"""
     page = request.args.get("page", type=int, default=1)
     news = NewsService().get_all(page=page)
-    data = news.get('news')
-    del news['news']
+    data = news.get('data')
+    del news['data']
     return dict(data=data, **news)
 
 
 @bp.route("/dashboard/news", methods=["POST"])
 @with_toast
+@response(template_file="partials/dashboard/news.html")
 def create_news():
     """Create news"""
     news_form = request.form.to_dict()
     img = request.files.get('image')
     news_form['image'] = img
+    news_service = NewsService()
+    data = {}
+    msg = ''
+    err = False
 
     try:
-        news = NewsService().create(news_form)
-        return dict(
-            toast={"type": "success", "message": "News created successfully"},
-        )
+        news = news_service.create(news_form)
+        data = news_service.get_all()
+        msg = "News created successfully"
     except ValidationError as e:
-        return dict(
-            toast={"type": "error", "message": str(e)}
-        )
+        err = True
+        msg = str(e)
     except Exception as e:
-        return dict(
-            toast={"type": "error", "message": _("Unexpected error occurred")}
-        )
+        err = True
+        msg = 'Unexepected error occurred'
+
+    if err:
+        data = news_service.get_all()
+
+    return dict(
+        **data,
+        toast={
+            "type": "error" if err else "success",
+            "message": msg
+        }
+    )
 
 
 @bp.route("/dashboard/news/<news_id>", methods=["GET", "PUT", "PATCH"])
@@ -61,19 +74,30 @@ def update_news(news_id):
             toast={"type": "error", "message": "News not found"}
         )
     if request.method == "PATCH" or request.method == "PUT":
+                                      
         try:
             news_form = request.form.to_dict()
-            updated = news_service.update(news_id, news_form)
-            return dict(
-                toast={
-                    "type": "success",
-                    "message": "News updated successfully"
-                    },
+            news_service.update(news_id, news_form)
+            resp = make_response(render_template(
+                "partials/dashboard/news.html",
+                **news_service.get_all()
+                )
             )
+            resp.headers["hx-toast"] = json.dumps({
+                "type": "success",
+                "message": "News updated successfully"
+            })
+            return resp
         except ValidationError as e:
-            return dict(
-                toast={"type": "error", "message": str(e)}
+            resp = make_response(render_template(
+                "partials/dashboard/news.html",
+                **news_service.get_all()
+                )
             )
+            resp.headers["hx-toast"] = json.dumps({
+                "type": "error",
+                "message": str(e)
+            })
     return dict(update=True, **news)
 
 
@@ -96,9 +120,7 @@ def delete_news(news_id):
         })
 
     news = news_service.get_all(page=page)
-    data = news.get('news')
-    del news['news']
     resp = make_response(render_template("partials/dashboard/news-list.html",
-                                      data=data, **news))
+                                      **news))
     resp.headers["hx-toast"] = custom_header
     return resp

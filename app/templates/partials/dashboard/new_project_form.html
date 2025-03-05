@@ -2,7 +2,7 @@
 <form
     hx-post="/dashboard/new-project"
     hx-target="#tab-content"
-    hx-swap="none"
+    hx-swap="innerHTML"
     hx-encoding="multipart/form-data"
     hx-on::after-request="this.reset()"
     enctype="multipart/form-data"

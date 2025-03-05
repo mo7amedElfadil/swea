@@ -1,5 +1,6 @@
 """Base service class with common functionality for all services."""
 
+from math import ceil
 from typing import Any, Dict, Optional
 
 from marshmallow import ValidationError
@@ -38,7 +39,7 @@ class BaseService:
             return entity.to_dict()
         return None
 
-    def get_all(self, page: int = 1) -> Dict[str, Any]:
+    def get_all(self, page: int = 1, **kw) -> Dict[str, Any]:
         """
         Retrieve all entities with pagination.
 
@@ -48,15 +49,18 @@ class BaseService:
         Returns:
             Dictionary with items and pagination metadata
         """
-        items, pagination = paginate_query(
-            self.model_class, page=page, page_size=self.page_size
+        pagination = self.model_class.query.filter_by(deleted_at=None, **kw)\
+                .paginate(page=page, per_page=self.page_size)
+        total_pages = ceil(pagination._query_count() / self.page_size)
+        next_page = page + 1 if pagination.has_next else None
+        data = [t.to_dict() for t in pagination.items]
+
+        return dict(
+            data=data,
+            total_pages=total_pages,
+            page=page,
+            next_page=next_page,
         )
-
-        collection_name = f"{self.model_class.__name__.lower()}s"
-        result = {collection_name: items}
-        result.update(pagination)
-
-        return result
 
     def delete(self, uuid: str, permanent: bool = False) -> bool:
         """

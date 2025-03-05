@@ -1,6 +1,6 @@
 {% import "macros/tab_content.html" as tabs %}
 
 <!-- Render the Macro -->
-{{ tabs.tab_content(data=news, title='news', title_i18n=_('news'),
+{{ tabs.tab_content(data=data, title='news', title_i18n=_('news'),
 btn_text=_('add_news'), hx_get='/dashboard/news/form', page=page,
 total_pages=total_pages, locale=locale ) }}

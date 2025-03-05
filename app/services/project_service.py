@@ -4,7 +4,6 @@ Project Service Module
 This module provides the business logic for project-related operations.
 """
 
-import math
 from datetime import date
 from typing import Any, Dict, List, Optional
 
@@ -15,15 +14,17 @@ from app.extensions import db
 from app.models import Project
 from app.schemas.project_schema import ProjectSchema
 from utils.file_manager import FileManager
+from utils.service_base import BaseService
 
 
-class ProjectService:
+class ProjectService(BaseService):
     """Project service class."""
 
     def __init__(self, page_size: int = 3):
         """Initialize project service."""
         self.page_size = page_size
         self.project_schema = ProjectSchema()
+        super().__init__(Project, ProjectSchema, page_size)
 
     def create_project(
         self, form_data: Dict[str, Any], files: Dict[str, Any]
@@ -137,33 +138,6 @@ class ProjectService:
             List[Project]: A list of projects authored by the specified author.
         """
         return Project.get_all_by(author=author)
-
-    def get_all(
-        self, status: str = "all", page: int = 1
-        ) -> Dict[str, Any]:
-        """
-        Retrieve all projects with pagination.
-
-        Args:
-            page (int): The page number to retrieve (default is 1).
-            status (str): The status of the projects to filter by (default is 'all').
-            search_str (str): The search string to filter projects by title.
-
-        Returns:
-            List[Project]: A list of projects for the specified page.
-        """
-        pagination = Project.query.filter_by(deleted_at=None)\
-                .paginate(page=page, per_page=self.page_size)
-        total_pages = math.ceil(pagination._query_count() / self.page_size)
-        project_list = [t.to_dict() for t in pagination.items]
-        next_page = page + 1 if pagination.has_next else None
-
-        return dict(
-            projects=project_list,
-            total_pages=total_pages,
-            page=page,
-            next_page=next_page,
-        )
 
     def get_projects_by_completion_date(
         self, date_of_completion: date

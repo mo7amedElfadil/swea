@@ -21,8 +21,8 @@ def index():
     """home page"""
     page = request.args.get("page", type=int, default=1)
     news = NewsService().get_all(page=page)
-    data = news.get('news')
-    del news['news']
+    data = news.get('data')
+    del news['data']
     return dict(data=data, **news)
 
 
@@ -31,8 +31,8 @@ def index():
 def news():
     page = request.args.get("page", type=int, default=1)
     news = NewsService().get_all(page=page)
-    data = news.get('news')
-    del news['news']
+    data = news.get('data')
+    del news['data']
     return dict(data=data, **news)
 
 
@@ -106,7 +106,7 @@ def dashboard():
       **data,
     ))
 
-        
+
 @bp.route("/knowledge-hub")
 @response(template_file="knowledge-hub.html")
 def knowledge_hub():

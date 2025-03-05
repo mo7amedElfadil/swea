@@ -113,23 +113,6 @@ content %}
     </div>
 </div>
 
-<!-- Loading Indicator (for HTMX requests) -->
-<div id="loading-indicator" class="htmx-indicator fixed top-4 right-4">
-    <div
-        class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500"
-    ></div>
-</div>
-
-<style>
-    .htmx-indicator {
-        opacity: 0;
-        transition: opacity 200ms ease-in;
-    }
-    .htmx-request .htmx-indicator {
-        opacity: 1;
-    }
-</style>
-
 {% endblock %} {% block extra_scripts %}
 <!-- Include the dashboard script -->
 <script

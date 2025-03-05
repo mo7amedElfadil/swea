@@ -1,34 +1,41 @@
-{% import 'macros/form_macros.html' as forms %}
+{% from 'macros/spinner.html' import spinner %} {% import
+'macros/form_macros.html' as forms %}
 
 <form
     hx-post="/dashboard/update-project/{{ project.uuid }}"
     hx-target="this"
     hx-encoding="multipart/form-data"
-    enctype="multipart/form-data"
     hx-swap="innerHTML"
+    hx-indicator="#spinner"
+    enctype="multipart/form-data"
     class="space-y-4"
 >
     <!-- Title (Multi-language Support) -->
-    {{ forms.text_input("title-en", "title[en]", project.title.en, "title_english", required=true) }}
-    {{ forms.text_input("title-ar", "title[ar]", project.title.ar, "title_arabic", required=true) }}
+    {{ forms.text_input("title-en", "title[en]", project.title.en,
+    "title_english", required=true) }} {{ forms.text_input("title-ar",
+    "title[ar]", project.title.ar, "title_arabic", required=true) }}
 
     <!-- Author (Name and Email) -->
-    {{ forms.text_input("author-name-en", "author[name][en]", project.author.name.en, "author_name_en", required=true) }}
-    {{ forms.text_input("author-name-ar", "author[name][ar]", project.author.name.ar, "author_name_ar", required=true) }}
-    {{ forms.text_input("author-email", "author[email]", project.author.email, "author_email", type="email", required=true) }}
+    {{ forms.text_input("author-name-en", "author[name][en]",
+    project.author.name.en, "author_name_en", required=true) }} {{
+    forms.text_input("author-name-ar", "author[name][ar]",
+    project.author.name.ar, "author_name_ar", required=true) }} {{
+    forms.text_input("author-email", "author[email]", project.author.email,
+    "author_email", type="email", required=true) }}
 
     <!-- Status -->
-    {{ forms.select("status", "status", [
-        {"value": "ongoing", "label": "ongoing"},
-        {"value": "completed", "label": "completed"}
-    ], project.status, "status", required=true) }}
+    {{ forms.select("status", "status", [ {"value": "ongoing", "label":
+    "ongoing"}, {"value": "completed", "label": "completed"} ], project.status,
+    "status", required=true) }}
 
     <!-- Date of Completion -->
-    {{ forms.text_input("date-of-completion", "date_of_completion", project.date_of_completion, "date_of_completion", type="date") }}
+    {{ forms.text_input("date-of-completion", "date_of_completion",
+    project.date_of_completion, "date_of_completion", type="date") }}
 
     <!-- Tags (Multi-language Support) -->
-    {{ forms.text_input("tags-en", "tags[en]", project.tags.en, "tags_english") }}
-    {{ forms.text_input("tags-ar", "tags[ar]", project.tags.ar, "tags_arabic") }}
+    {{ forms.text_input("tags-en", "tags[en]", project.tags.en, "tags_english")
+    }} {{ forms.text_input("tags-ar", "tags[ar]", project.tags.ar,
+    "tags_arabic") }}
 
     <!-- Hero Image -->
     <div>
@@ -44,16 +51,15 @@
             />
             <span class="text-sm text-gray-600">{{ _("current_image") }}</span>
         </div>
-        {% endif %}
-        {{ forms.file_upload("hero-image", "hero_image", "hero_image", accept="image/*") }}
+        {% endif %} {{ forms.file_upload("hero-image", "hero_image",
+        "hero_image", accept="image/*") }}
     </div>
 
     <!-- Content -->
     <div id="contents" class="space-y-6">
         <!-- Existing Content Blocks -->
-        {% for content in project.content %}
-            {{ forms.content_block(loop.index0, content.en, content.ar) }}
-        {% endfor %}
+        {% for content in project.content %} {{ forms.content_block(loop.index0,
+        content.en, content.ar) }} {% endfor %}
 
         <!-- Template for Additional Content Blocks -->
         <template id="content-template">
@@ -63,9 +69,9 @@
 
     <!-- Testimonials -->
     <div id="testimonials" class="space-y-6">
-        {% for testimonial in project.testimonials %}
-            {{ forms.testimonial_block(loop.index, testimonial.en, testimonial.ar, testimonial.author, testimonial.qualification) }}
-        {% endfor %}
+        {% for testimonial in project.testimonials %} {{
+        forms.testimonial_block(loop.index, testimonial.en, testimonial.ar,
+        testimonial.author, testimonial.qualification) }} {% endfor %}
 
         <!-- Template for Additional Testimonial Blocks -->
         <template id="testimonial-template">
@@ -79,7 +85,8 @@
             type="submit"
             class="w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
         >
-            {{ _("update_project") }}
+            {{spinner()}}
+            <span>{{ _("update_project") }}</span>
         </button>
     </div>
 </form>

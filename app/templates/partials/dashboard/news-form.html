@@ -1,6 +1,7 @@
-{% import "macros/form.html" as form %} {% set _form = { 'title': { 'en':
-title['en'] if update else '', 'ar': title['ar'] if update else '', }, 'date':
-date if update else '', 'image': image if update else '' } %}
+{% from "macros/spinner.html" import spinner %} {% import "macros/form.html" as
+form %} {% set _form = { 'title': { 'en': title['en'] if update else '', 'ar':
+title['ar'] if update else '', }, 'date': date if update else '', 'image': image
+if update else '' } %}
 <div>
     <form
         id="create-news"
@@ -20,7 +21,7 @@ date if update else '', 'image': image if update else '' } %}
         hx-target="this"
         hx-swap="outerHTML"
         hx-encoding="multipart/form-data"
-        hx-on::after-request=""
+        hx-indicator="#spinner"
         enctype="multipart/form-data"
     >
         <!-- Title (Multi-language Support) -->
@@ -51,11 +52,14 @@ date if update else '', 'image': image if update else '' } %}
             <input type="hidden" name="description[en]" id="description-en" />
         </div>
         <button
-            class="w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 uppercase"
+            class="flex justify-center w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 uppercase"
             type="submit"
         >
-            {% if update %} {{_('update')}} {%else %} {{_('create')}} {% endif
-            %}
+            {{spinner()}}
+            <span>
+                {% if update %} {{_('update')}} {%else %} {{_('create')}} {%
+                endif %}
+            </span>
         </button>
     </form>
 </div>

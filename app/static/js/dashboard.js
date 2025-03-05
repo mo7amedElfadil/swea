@@ -65,18 +65,6 @@ if (!window.dashboardInitialized) {
     }
   });
 
-  // Loading indicator for HTMX requests
-  const toggleLoadingIndicator = (show) =>
-    document
-      .getElementById("loading-indicator")
-      .classList.toggle("htmx-request", show);
-
-  tabsContainer.addEventListener("htmx:configRequest", () =>
-    toggleLoadingIndicator(true),
-  );
-  tabsContainer.addEventListener("htmx:afterRequest", () =>
-    toggleLoadingIndicator(false),
-  );
 
   // Restore the active tab on page load
   restoreActiveTabFromLocalStorage();

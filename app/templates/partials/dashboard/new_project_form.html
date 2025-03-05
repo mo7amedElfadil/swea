@@ -1,10 +1,12 @@
-{% import "macros/form.html" as form %}
+{% from "macros/spinner.html" import spinner %} {% import "macros/form.html" as
+form %}
 <form
     hx-post="/dashboard/new-project"
     hx-target="#tab-content"
     hx-swap="innerHTML"
     hx-encoding="multipart/form-data"
     hx-on::after-request="this.reset()"
+    hx-indicator="#spinner"
     enctype="multipart/form-data"
     class="space-y-4"
 >
@@ -435,9 +437,10 @@
     <div>
         <button
             type="submit"
-            class="w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
+            class="flex items-center justify-center w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
         >
-            {{ _("add_project") }}
+            {{ spinner() }}
+            <span>{{ _("add_project") }}</span>
         </button>
     </div>
 </form>

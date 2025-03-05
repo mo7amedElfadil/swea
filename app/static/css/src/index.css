@@ -24,6 +24,14 @@ ul li a.active {
 .active-tab svg path {
     @apply stroke-white;
 }
+
+#spinner.htmx-indicator.htmx-request {
+  display : block !important;
+}
+
+#spinner.htmx-indicator.htmx-request ~ * {
+  display : none;
+}
 /*------------------------------------*/
 
 html,

@@ -28,14 +28,13 @@ class ToastManager {
       // document.addEventListener('show-toast', (e) =>
       //     this.showToast(e.detail)
       // )
-      document.addEventListener('htmx:afterRequest', (e) => {
+      document.addEventListener('htmx:afterRequest', async (e) => {
         const toastHeader = e.detail.xhr.getResponseHeader('HX-Trigger')
-        console.log({ showToast: !!toastHeader });
         if (toastHeader) {
           try {
             const triggers = JSON.parse(toastHeader)
             if (triggers.showToast) {
-              this.showToast(triggers.showToast)
+              await this.showToast(triggers.showToast)
             }
           } catch (e) {
             console.error('Error parsing HX-Trigger header', e)

@@ -17,11 +17,11 @@ locale=locale) %} {%- set partial = {
             hx-swap="innerHTML"
         >
             <img
-                class="w-5 h-5 mr-2"
+                class="w-5 h-5"
                 src="{{url_for('static', filename='icons/add.svg')}}"
                 alt="Add Icon"
             />
-            {{ btn_text }}
+            <span>{{ btn_text }}</span>
         </button>
     </div>
 

@@ -1,10 +1,11 @@
+{% from 'macros/spinner.html' import spinner %}
 <form
     hx-post="{{ form_action }}"
     hx-target="#tab-content"
     hx-swap="innerHTML"
     hx-encoding="multipart/form-data"
+    hx-indicator="#spinner"
     enctype="multipart/form-data"
-    hx-encoding="multipart/form-data"
     class="space-y-6"
 >
     <!-- Name -->
@@ -173,9 +174,10 @@
     <div>
         <button
             type="submit"
-            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+            class="w-full flex items-center justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
         >
-            {{ submit_text }}
+            {{ spinner() }}
+            <span>{{ submit_text }}</span>
         </button>
     </div>
 </form>

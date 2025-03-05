@@ -24,7 +24,6 @@ def filter_projects():
         else:
             projects = project_service.get_all(page=page)
 
-    print(f"Projects: {projects}")
     return make_response(
         render_template(
             "partials/dashboard/project-list.html",

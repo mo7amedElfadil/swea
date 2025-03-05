@@ -7,7 +7,7 @@ from app.extensions import db
 
 def paginate_query(
     model, page: int = 1, page_size: int = 10, **filters
-) -> Tuple[List, Dict[str, Any]]:
+) -> Dict[str, Any]:
     """
     Execute a paginated query with filters.
 
@@ -41,14 +41,13 @@ def paginate_query(
     next_page = page + 1 if len(items) == page_size else None
     total_pages = (pagination.total + page_size - 1) // page_size
 
-    pagination_info = {
-        "total_pages": total_pages,
-        "page": page,
-        "next_page": next_page,
-        "total_items": pagination.total,
-    }
-
-    return items, pagination_info
+    return dict(
+        data=items,
+        page=page,
+        next_page=next_page,
+        total_pages=total_pages,
+        total_items=pagination.total,
+    )
 
 
 def search_by_multilang_field(

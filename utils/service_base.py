@@ -49,14 +49,9 @@ class BaseService:
         Returns:
             Dictionary with items and pagination metadata
         """
-        items, pagination = paginate_query(
+        return paginate_query(
             self.model_class, page=page, page_size=self.page_size, **filters
         )
-
-        result = {"data": items}
-        result.update(pagination)
-
-        return result
 
     def delete(self, uuid: str, permanent: bool = False) -> bool:
         """

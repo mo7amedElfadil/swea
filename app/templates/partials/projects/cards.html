@@ -29,7 +29,9 @@
         </span>
         <span>{{p.date_of_completion}}</span>
     </div>
+    {% if p.content %}
     <p>{{p.content[0][locale] | truncate_html(300) | safe}}</p>
+    {% endif %}
     <button class="me-auto flex gap-2">
         <span class="capitalize">{{_("learn more")}}</span>
         <span>

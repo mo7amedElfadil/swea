@@ -113,7 +113,7 @@
 				</button>
 			</div>
 		</div>
-		<div id='carousel' class='transition-all relative flex gap-6'>
+		<div id='carousel' class='min-w-[100vw] transition-all relative flex gap-6'>
       {% include "partials/news/cards.html" %}
 		</div>
 	</section>
@@ -176,9 +176,17 @@
 			`translateX(${locale === 'en' ? -currentSlide * slideWidth : currentSlide * slideWidth}px)`;
 	});
 	prev.addEventListener('click', () => {
+    // TODO: if slider item is last the next button should be disabled
 		currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
 		carousel.style.transform =
 			`translateX(${locale === 'en' ? -currentSlide * slideWidth : currentSlide * slideWidth}px)`;
 	});
+
+  document.addEventListener('htmx:afterRequest', (evt) => {
+    if (evt.detail.elt.id === 'news-slider'){
+      totalSlides = carousel.children.length;
+    }
+
+  });
 </script>
 {% endblock %}

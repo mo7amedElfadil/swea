@@ -15,7 +15,6 @@ def filter_team_members():
     page = int(request.args.get("page", 1))
 
     data = team_service.get_all(page=page)
-    print('============',data)
     return make_response(
         render_template(
             "partials/dashboard/team-list.html",
@@ -98,7 +97,7 @@ def delete_team_member(member_id):
     members_res = team_service.get_all()
     resp = make_response(
         render_template(
-            "partials/dashboard/team_list.html",
+            "partials/dashboard/team-list.html",
             **members_res,
         )
     )

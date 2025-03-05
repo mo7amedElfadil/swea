@@ -64,7 +64,6 @@ class TeamService(BaseService):
 
     def search_team_members_by_name(self, name: str) -> Dict[str, Any]:
         """Search for team members by name."""
-        print("search_team_members_by_name", name)
         return search_by_multilang_field(Team, "name", name)
 
     def validate_form_data(

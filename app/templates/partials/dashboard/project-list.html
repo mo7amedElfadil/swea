@@ -15,7 +15,8 @@
 
             <!-- Author -->
             <p class="text-sm text-gray-600">
-                {{ _("by") }} {{ project.author['name'][locale] }}
+                {{ _("by") }} {{ project.author['name'][locale] |
+                default(project.author['name']['en']) }}
             </p>
 
             <!-- Status -->

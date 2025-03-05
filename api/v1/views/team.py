@@ -1,4 +1,4 @@
-from flask import make_response, render_template, request, session
+from flask import make_response, render_template, request
 from flask_babel import gettext as _
 
 from api.v1.views import bp
@@ -20,12 +20,10 @@ def filter_team_members():
     else:
         team_members_res = team_service.get_all(page=page)
 
-    total_pages = (len(team_members_res) // 5) + 1
-    print("Team members res", team_members_res)
     return make_response(
         render_template(
             "partials/dashboard/team-list.html",
-            data=team_members_res["teams"],
+            **team_members_res,
             search=search_str,
         )
     )
@@ -105,7 +103,7 @@ def delete_team_member(member_id):
     members_res = team_service.get_all()
     resp = make_response(
         render_template(
-            "partials/dashboard/team-list.html",
+            "partials/dashboard/team.html",
             **members_res,
         )
     )

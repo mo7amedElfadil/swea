@@ -1,6 +1,5 @@
 """Base service class with common functionality for all services."""
 
-from math import ceil
 from typing import Any, Dict, Optional
 
 from marshmallow import ValidationError
@@ -53,6 +52,11 @@ class BaseService:
         items, pagination = paginate_query(
             self.model_class, page=page, page_size=self.page_size, **filters
         )
+
+        result = {"data": items}
+        result.update(pagination)
+
+        return result
 
     def delete(self, uuid: str, permanent: bool = False) -> bool:
         """

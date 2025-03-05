@@ -39,7 +39,7 @@ def paginate_query(
 
     # Prepare pagination metadata
     next_page = page + 1 if len(items) == page_size else None
-    total_pages = (pagination.total + page_size - 1) // page_size  # Ceiling division
+    total_pages = (pagination.total + page_size - 1) // page_size
 
     pagination_info = {
         "total_pages": total_pages,
@@ -85,8 +85,7 @@ def search_by_multilang_field(
         "total_items": len(res),
     }
 
-    collection_name = f"{model.__name__.lower()}s"
-    result = {collection_name: res}
+    result = {"data": res}
     result.update(pagination_info)
 
     return result

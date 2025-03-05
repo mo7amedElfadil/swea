@@ -3,7 +3,7 @@ from flask_babel import gettext as _
 
 from api.v1.views import bp
 from app.services.project_service import ProjectService
-from utils.toast_notify import add_toast, with_toast
+from utils.toast_notify import add_toast
 from utils.view_modifiers import response
 
 project_service = ProjectService()
@@ -16,16 +16,24 @@ def filter_projects():
     status = request.args.get("filter", "all")
     page = int(request.args.get("page", 1))
 
-    projects = project_service.get_all(page=page)
+    if search_str:
+        projects = project_service.search_projects_by_title(search_str)
+    else:
+        if status in ["ongoing", "completed"]:
+            projects = project_service.get_all(page=page, status=status)
+        else:
+            projects = project_service.get_all(page=page)
 
+    print(f"Projects: {projects}")
     return make_response(
         render_template(
             "partials/dashboard/project-list.html",
+            **projects,
             search=search_str,
             filter=status,
-            **projects
         )
     )
+
 
 @bp.route("/dashboard/new-project", methods=["GET", "POST"])
 @response(template_file="partials/dashboard/new_project_form.html")
@@ -37,17 +45,18 @@ def add_project():
             files = request.files
             project_service.create_project(form_data, files)
             resp = make_response(
-                    render_template(
-                        "partials/dashboard/projects.html",
-                        **project_service.get_all()
-                    )
+                render_template(
+                    "partials/dashboard/projects.html", **project_service.get_all()
+                )
             )
             return add_toast(resp, "success", _("Project created successfully"))
         except Exception as e:
-            resp = make_response(render_template(
-                "partials/dashboard/projects.html",
-                **project_service.get_all(),
-                ))
+            resp = make_response(
+                render_template(
+                    "partials/dashboard/projects.html",
+                    **project_service.get_all(),
+                )
+            )
             return add_toast(resp, "error", "Unexpected error occurred")
 
     return dict()

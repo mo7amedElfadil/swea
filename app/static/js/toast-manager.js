@@ -30,7 +30,6 @@ class ToastManager {
       // )
       document.addEventListener('htmx:afterRequest', (e) => {
         const toastHeader = e.detail.xhr.getResponseHeader('HX-Trigger')
-        console.log({ showToast: !!toastHeader });
         if (toastHeader) {
           try {
             const triggers = JSON.parse(toastHeader)

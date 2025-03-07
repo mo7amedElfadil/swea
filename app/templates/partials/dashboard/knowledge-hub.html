@@ -11,10 +11,12 @@
     </div>
 
     <!-- Navigation Tabs for Knowledge Hub -->
-    <nav class="flex space-x-4 mb-6 border-b border-gray-200">
+    <nav
+        class="flex justify-between mb-6 border-b border-gray-200 sm:justify-normal sm:gap-4"
+    >
         <!-- Courses Tab -->
         <button
-            class="px-4 py-2 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent"
+            class="py-2 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent sm:px-4"
             hx-get="/dashboard/knowledge-hub?tab=courses"
             hx-target="#kh-content"
             hx-swap="innerHTML"
@@ -27,7 +29,7 @@
 
         <!-- Researches Tab -->
         <button
-            class="px-4 py-2 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent"
+            class="py-2 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent sm:px-4"
             hx-get="/dashboard/knowledge-hub?tab=researches"
             hx-target="#kh-content"
             hx-swap="innerHTML"
@@ -40,7 +42,7 @@
 
         <!-- Podcasts Tab -->
         <button
-            class="px-4 py-2 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent"
+            class="py-2 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent sm:px-4"
             hx-get="/dashboard/knowledge-hub?tab=podcasts"
             hx-target="#kh-content"
             hx-swap="innerHTML"

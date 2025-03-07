@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-02 18:37+0400\n"
+"POT-Creation-Date: 2025-03-07 13:27+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -17,45 +17,181 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.16.0\n"
+"Generated-By: Babel 2.10.3\n"
 
-#: api/v1/views/projects.py:47
-msgid "An error occurred while creating the project"
-msgstr "حدث خطأ أثناء إنشاء المشروع"
+#: api/v1/views/knowledge_hub.py:33
+msgid "Invalid tab"
+msgstr "تبويب غير صالح"
 
-#: api/v1/views/projects.py:57
+#: api/v1/views/knowledge_hub.py:67
+msgid "Create Course"
+msgstr "إنشاء دورة"
+
+#: api/v1/views/knowledge_hub.py:77
+msgid "An error occurred while creating the course"
+msgstr "حدث خطأ أثناء إنشاء الدورة"
+
+#: api/v1/views/knowledge_hub.py:84
+msgid "Course created successfully"
+msgstr "تم إنشاء الدورة بنجاح"
+
+#: api/v1/views/knowledge_hub.py:98
+msgid "Update Course"
+msgstr "تحديث الدورة"
+
+#: api/v1/views/knowledge_hub.py:108
+msgid "An error occurred while updating the course"
+msgstr "حدث خطأ أثناء تحديث الدورة"
+
+#: api/v1/views/knowledge_hub.py:115
+msgid "Course updated successfully"
+msgstr "تم تحديث الدورة بنجاح"
+
+#: api/v1/views/knowledge_hub.py:127
+msgid "An error occurred while deleting the course"
+msgstr "حدث خطأ أثناء حذف الدورة"
+
+#: api/v1/views/knowledge_hub.py:134
+msgid "Course deleted successfully"
+msgstr "تم حذف الدورة بنجاح"
+
+#: api/v1/views/knowledge_hub.py:158
+msgid "Create Podcast"
+msgstr "إنشاء بودكاست"
+
+#: api/v1/views/knowledge_hub.py:168
+msgid "An error occurred while creating the podcast"
+msgstr "حدث خطأ أثناء إنشاء البودكاست"
+
+#: api/v1/views/knowledge_hub.py:175
+msgid "Podcast created successfully"
+msgstr "تم إنشاء البودكاست بنجاح"
+
+#: api/v1/views/knowledge_hub.py:191
+msgid "Update Podcast"
+msgstr "تحديث البودكاست"
+
+#: api/v1/views/knowledge_hub.py:201
+msgid "An error occurred while updating the podcast"
+msgstr "حدث خطأ أثناء تحديث البودكاست"
+
+#: api/v1/views/knowledge_hub.py:208
+msgid "Podcast updated successfully"
+msgstr "تم تحديث البودكاست بنجاح"
+
+#: api/v1/views/knowledge_hub.py:220
+msgid "An error occurred while deleting the podcast"
+msgstr "حدث خطأ أثناء حذف البودكاست"
+
+#: api/v1/views/knowledge_hub.py:229
+msgid "Podcast deleted successfully"
+msgstr "تم حذف البودكاست بنجاح"
+
+#: api/v1/views/knowledge_hub.py:253
+msgid "Create Research"
+msgstr "إنشاء بحث"
+
+#: api/v1/views/knowledge_hub.py:263
+msgid "An error occurred while creating the research"
+msgstr "حدث خطأ أثناء إنشاء البحث"
+
+#: api/v1/views/knowledge_hub.py:272
+msgid "Research created successfully"
+msgstr "تم إنشاء البحث بنجاح"
+
+#: api/v1/views/knowledge_hub.py:289
+msgid "Update Research"
+msgstr "تحديث البحث"
+
+#: api/v1/views/knowledge_hub.py:301
+msgid "An error occurred while updating the research"
+msgstr "حدث خطأ أثناء تحديث البحث"
+
+#: api/v1/views/knowledge_hub.py:310
+msgid "Research updated successfully"
+msgstr "تم تحديث البحث بنجاح"
+
+#: api/v1/views/knowledge_hub.py:322
+msgid "An error occurred while deleting the research"
+msgstr "حدث خطأ أثناء حذف البحث"
+
+#: api/v1/views/knowledge_hub.py:331
+msgid "Research deleted successfully"
+msgstr "تم حذف البحث بنجاح"
+
+#: api/v1/views/knowledge_hub.py:354
+msgid "Create Member"
+msgstr "إنشاء عضو"
+
+#: api/v1/views/knowledge_hub.py:364
+msgid "An error occurred while creating the member"
+msgstr "حدث خطأ أثناء إنشاء عضو الفريق"
+
+#: api/v1/views/knowledge_hub.py:371
+msgid "Member created successfully"
+msgstr "تم إنشاء عضو الفريق بنجاح"
+
+#: api/v1/views/knowledge_hub.py:385
+msgid "Update Member"
+msgstr "تحديث العضو"
+
+#: api/v1/views/knowledge_hub.py:395
+msgid "An error occurred while updating the member"
+msgstr "حدث خطأ أثناء تحديث عضو الفريق"
+
+#: api/v1/views/knowledge_hub.py:402
+msgid "Member updated successfully"
+msgstr "تم تحديث عضو الفريق بنجاح"
+
+#: api/v1/views/knowledge_hub.py:414
+msgid "An error occurred while deleting the member"
+msgstr "حدث خطأ أثناء حذف عضو الفريق"
+
+#: api/v1/views/knowledge_hub.py:421
+msgid "Member deleted successfully"
+msgstr "تم حذف عضو الفريق بنجاح"
+
+#: api/v1/views/projects.py:51
 msgid "Project created successfully"
 msgstr "تم إنشاء المشروع بنجاح"
 
-#: api/v1/views/projects.py:68 api/v1/views/projects.py:100
+#: api/v1/views/projects.py:72 api/v1/views/projects.py:104
 msgid "Project not found"
 msgstr "لم يتم العثور على المشروع"
 
-#: api/v1/views/projects.py:88
+#: api/v1/views/projects.py:92
 msgid "Project updated successfully"
 msgstr "تم تحديث المشروع بنجاح"
 
-#: api/v1/views/projects.py:109
+#: api/v1/views/projects.py:113
 msgid "Project deleted successfully"
 msgstr "تم حذف المشروع بنجاح"
 
-#: api/v1/views/team.py:48
+#: api/v1/views/team.py:40
+msgid "create_team_member"
+msgstr "إنشاء عضو"
+
+#: api/v1/views/team.py:50
 msgid "An error occurred while creating the team member"
 msgstr "حدث خطأ أثناء إنشاء عضو الفريق"
 
-#: api/v1/views/team.py:58
+#: api/v1/views/team.py:60
 msgid "Team member created successfully"
 msgstr "تم إنشاء عضو الفريق بنجاح"
 
-#: api/v1/views/team.py:68 api/v1/views/team.py:96
+#: api/v1/views/team.py:70 api/v1/views/team.py:101
 msgid "Team member not found"
 msgstr "لم يتم العثور على عضو الفريق"
 
-#: api/v1/views/team.py:84
+#: api/v1/views/team.py:75
+msgid "update_team_member"
+msgstr "تحديث العضو"
+
+#: api/v1/views/team.py:89
 msgid "Team member updated successfully"
 msgstr "تم تحديث عضو الفريق بنجاح"
 
-#: api/v1/views/team.py:105
+#: api/v1/views/team.py:110
 msgid "Team member deleted successfully"
 msgstr "تم حذف عضو الفريق بنجاح"
 
@@ -87,74 +223,74 @@ msgstr "مركز المعرفة"
 msgid "swea_subscribers"
 msgstr "المشتركين"
 
-#: app/templates/dashboard.html:100 app/templates/index.html:99
+#: app/templates/dashboard.html:100 app/templates/index.html:98
 #: app/templates/partials/dashboard/news.html:4
 msgid "news"
 msgstr "الأخبار"
 
-#: app/templates/index.html:11
+#: app/templates/index.html:10
 msgid "hero title"
 msgstr "تمكين النساء السودانيات العاملات في مجال الاقتصاد"
 
-#: app/templates/index.html:13
+#: app/templates/index.html:12
 msgid "hero description"
 msgstr ""
 "هدفنا هو إنشاء مساحة للنساء السودانيات العاملات في مجال الاقتصاد للنمو "
 "المهني، من خلال بناء العلاقات، وتعزيز المهارات، وتعبئة الفرص."
 
-#: app/templates/index.html:16
+#: app/templates/index.html:15
 msgid "join us"
 msgstr "إنضم لنا"
 
-#: app/templates/index.html:24
+#: app/templates/index.html:23
 msgid "mission title"
 msgstr "مهمتنا"
 
-#: app/templates/index.html:28
+#: app/templates/index.html:27
 msgid "mission 1 title"
 msgstr "تمكين الاقتصاديين السودانيين"
 
-#: app/templates/index.html:29
+#: app/templates/index.html:28
 msgid "mission 1 desc"
 msgstr ""
 "عرض أعمال النساء السودانيات العاملات في مجال الاقتصاد مع ضمان تضخيم أصوات"
 " النساء في مجالات الاقتصاد والتخصصات ذات الصلة، في كل من الأوساط "
 "الأكاديمية والممارسة العملية."
 
-#: app/templates/index.html:36
+#: app/templates/index.html:35
 msgid "mission 2 title"
 msgstr "التطور الوظيفي"
 
-#: app/templates/index.html:37
+#: app/templates/index.html:36
 msgid "mission 2 desc"
 msgstr ""
 "تطوير المسار الوظيفي وبناء القدرات للنساء الشابات العاملات في مجال "
 "الاقتصاد في السودان؛ إلى جانب توفير علاقة مهنية ثنائية الاتجاه بين "
 "الخبراء في المجال والاقتصاديات النساء الطموحات."
 
-#: app/templates/index.html:47
+#: app/templates/index.html:46
 msgid "mission 3 title"
 msgstr "التضامن بين الاقتصاديين"
 
-#: app/templates/index.html:48
+#: app/templates/index.html:47
 msgid "mission 3 desc"
 msgstr ""
 "دعم فرص البحث والنشر للنساء السودانيات العاملات في مجال الاقتصاد؛ داخل "
 "شبكة شاملة وداعمة."
 
-#: app/templates/index.html:56
+#: app/templates/index.html:55
 msgid "mission 4 title"
 msgstr "التواصل مع الشركاء"
 
-#: app/templates/index.html:57
+#: app/templates/index.html:56
 msgid "mission 4 desc"
 msgstr "تبادل المعرفة والخبرات بين الأجيال داخل مجال الاقتصاد"
 
-#: app/templates/index.html:72
+#: app/templates/index.html:71
 msgid "our story"
 msgstr "قصتنا"
 
-#: app/templates/index.html:75
+#: app/templates/index.html:74
 msgid "our story desc"
 msgstr ""
 "تم تأسيس جمعية النساء السودانيات العاملات في مجال الاقتصاد (SWEA) في "
@@ -166,55 +302,51 @@ msgstr ""
 "النساء السودانيات العاملات في مجال الاقتصاد، وتقديم فرص للتواصل، وإثراء "
 "مجال البحوث الاقتصادية بمساهمات أعضائها."
 
-#: app/templates/index.html:79
+#: app/templates/index.html:78
 msgid "our vision"
 msgstr "رؤيتنا"
 
-#: app/templates/index.html:82
+#: app/templates/index.html:81
 msgid "vision 1"
 msgstr ""
 "<b>تعزيز</b> مشاركة النساء السودانيات العاملات في مجال الاقتصاد في "
 "المجالات الأكاديمية والسياسات العامة في السودان"
 
-#: app/templates/index.html:86
+#: app/templates/index.html:85
 msgid "vision 2"
 msgstr "<b>بناء قدرات</b> النساء الشابات في مجال الاقتصاد"
 
-#: app/templates/index.html:90
+#: app/templates/index.html:89
 msgid "vision 3"
 msgstr "<b>تعزيز</b> أصوات النساء السودانيات في البحث والممارسة الاقتصادية."
 
-#: app/templates/index.html:94
+#: app/templates/index.html:93
 msgid "vision 4"
 msgstr ""
 "<b>تعزيز التضامن</b> بين النساء السودانيات العاملات في مجال الاقتصاد عبر "
 "الأجيال."
 
-#: app/templates/index.html:148 app/templates/projects.html:35
-msgid "learn more"
-msgstr "المزيد"
-
-#: app/templates/index.html:159
+#: app/templates/index.html:124
 msgid "contact us"
 msgstr "تواصل معنا"
 
-#: app/templates/index.html:160
+#: app/templates/index.html:125
 msgid "contact enquiry"
 msgstr "لديك سؤال أو إستفسار؟"
 
-#: app/templates/index.html:164
+#: app/templates/index.html:129
 msgid "form name"
 msgstr "أدخل اسمك"
 
-#: app/templates/index.html:172 app/templates/partials/footer.html:9
+#: app/templates/index.html:137 app/templates/partials/footer.html:9
 msgid "form email"
 msgstr "أدخل بريدك الإلكتروني"
 
-#: app/templates/index.html:179
+#: app/templates/index.html:144
 msgid "form textarea"
 msgstr "تعليق أو رسالة"
 
-#: app/templates/index.html:184
+#: app/templates/index.html:149
 msgid "submit"
 msgstr "إرسال"
 
@@ -231,10 +363,12 @@ msgid "research"
 msgstr "بحوث"
 
 #: app/templates/knowledge-hub.html:57
+#: app/templates/partials/dashboard/knowledge-hub.html:25
 msgid "courses"
 msgstr "دورات"
 
 #: app/templates/knowledge-hub.html:74
+#: app/templates/partials/dashboard/knowledge-hub.html:51
 msgid "podcasts"
 msgstr "بودكاست"
 
@@ -277,41 +411,70 @@ msgstr ""
 "مدافعات شغوفات يعملن معًا لتمكين المرأة وتعزيز التنمية المستدامة في "
 "السودان وخارجها."
 
-#: app/templates/team.html:205
+#: app/templates/team.html:207
 msgid "read_more"
 msgstr "إقرأ المزيد"
 
-#: app/templates/team.html:208
+#: app/templates/team.html:210
 msgid "read_less"
 msgstr "إقرأ أقل"
+
+#: app/templates/macros/form_macros.html:107
+#: app/templates/partials/dashboard/new_project_form.html:64
+#: app/templates/partials/dashboard/new_project_form.html:139
+msgid "Content"
+msgstr "المحتوى"
+
+#: app/templates/macros/form_macros.html:124
+#: app/templates/partials/dashboard/new_project_form.html:202
+msgid "Add another content block"
+msgstr "أضف محتوى آخر"
+
+#: app/templates/macros/form_macros.html:134
+#: app/templates/partials/dashboard/new_project_form.html:213
+msgid "Remove this content block"
+msgstr "إزالة هذا المحتوى"
+
+#: app/templates/macros/form_macros.html:145
+#: app/templates/partials/dashboard/new_project_form.html:226
+#: app/templates/partials/dashboard/new_project_form.html:328
+msgid "Testimonial"
+msgstr "التوصيات"
+
+#: app/templates/macros/form_macros.html:164
+#: app/templates/partials/dashboard/new_project_form.html:417
+msgid "Add another testimonial block"
+msgstr "أضف توصية أخرى"
+
+#: app/templates/macros/form_macros.html:174
+#: app/templates/partials/dashboard/new_project_form.html:428
+msgid "Remove this testimonial block"
+msgstr "إزالة هذه التوصية"
+
+#: app/templates/macros/pagination.html:9
+msgid "previous"
+msgstr "السابق"
+
+#: app/templates/macros/pagination.html:21
+msgid "next"
+msgstr "التالي"
 
 #: app/templates/macros/tab_content.html:2
 msgid "search_placeholder"
 msgstr "أبحث"
 
-#: app/templates/macros/tab_content.html:61
+#: app/templates/macros/tab_content.html:60
 msgid "all_projects"
 msgstr "كل المشاريع"
 
-#: app/templates/macros/tab_content.html:62
-#: app/templates/partials/dashboard/edit_project_form.html:101
-#: app/templates/partials/dashboard/new_project_form.html:35
+#: app/templates/macros/tab_content.html:61
+#: app/templates/partials/dashboard/new_project_form.html:40
 msgid "ongoing"
 msgstr "جاري"
 
-#: app/templates/macros/tab_content.html:63
+#: app/templates/macros/tab_content.html:62
 msgid "completed_projects"
 msgstr "المشاريع المكتملة"
-
-#: app/templates/macros/tab_content.html:80
-#: app/templates/partials/dashboard/team.html:60
-msgid "previous"
-msgstr "السابق"
-
-#: app/templates/macros/tab_content.html:93
-#: app/templates/partials/dashboard/team.html:73
-msgid "next"
-msgstr "التالي"
 
 #: app/templates/partials/courses.html:8
 msgid "empty courses"
@@ -345,421 +508,342 @@ msgstr "ﻻ توجد بودكاست حاليً"
 msgid "empty research"
 msgstr "ﻻ توجد بحوث حاليً"
 
-#: app/templates/partials/dashboard/edit_project_form.html:12
-#: app/templates/partials/dashboard/new_project_form.html:9
-msgid "title_english"
-msgstr "عنوان المشروع بالإنجليزية"
-
-#: app/templates/partials/dashboard/edit_project_form.html:25
-#: app/templates/partials/dashboard/new_project_form.html:11
-msgid "title_arabic"
-msgstr "عنوان المشروع بالعربية"
-
 #: app/templates/partials/dashboard/edit_project_form.html:43
-#: app/templates/partials/dashboard/new_project_form.html:15
-msgid "author_name_en"
-msgstr "إسم الكاتب بالإنجليزية"
-
-#: app/templates/partials/dashboard/edit_project_form.html:59
-#: app/templates/partials/dashboard/new_project_form.html:17
-msgid "author_name_ar"
-msgstr "إسم الكاتب بالعربية"
-
-#: app/templates/partials/dashboard/edit_project_form.html:75
-#: app/templates/partials/dashboard/new_project_form.html:20
-msgid "author_email"
-msgstr "عنوان البريد الإلكتروني للكاتب"
-
-#: app/templates/partials/dashboard/edit_project_form.html:90
-#: app/templates/partials/dashboard/new_project_form.html:27
-msgid "status"
-msgstr "الحالة"
-
-#: app/templates/partials/dashboard/edit_project_form.html:106
-#: app/templates/partials/dashboard/new_project_form.html:36
-msgid "completed"
-msgstr "مكتمل"
-
-#: app/templates/partials/dashboard/edit_project_form.html:117
-#: app/templates/partials/dashboard/new_project_form.html:41
-msgid "date_of_completion"
-msgstr "تاريخ الإنتهاء"
-
-#: app/templates/partials/dashboard/edit_project_form.html:131
-#: app/templates/partials/dashboard/new_project_form.html:45
-msgid "tags_english"
-msgstr "علامات بالإنجليزية"
-
-#: app/templates/partials/dashboard/edit_project_form.html:143
-#: app/templates/partials/dashboard/new_project_form.html:47
-msgid "tags_arabic"
-msgstr "علامات بالعربية"
-
-#: app/templates/partials/dashboard/edit_project_form.html:157
-#: app/templates/partials/dashboard/new_project_form.html:51
+#: app/templates/partials/dashboard/new_project_form.html:56
 msgid "hero_image"
 msgstr "صورة البطاقة"
 
-#: app/templates/partials/dashboard/edit_project_form.html:166
-#: app/templates/partials/dashboard/edit_team_member_form.html:147
+#: app/templates/partials/dashboard/edit_project_form.html:52
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:69
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:68
+#: app/templates/partials/dashboard/team_member-form.html:161
 msgid "current_image"
 msgstr "الصورة الحالية"
 
-#: app/templates/partials/dashboard/edit_project_form.html:184
-#: app/templates/partials/dashboard/edit_project_form.html:272
-#: app/templates/partials/dashboard/new_project_form.html:59
-#: app/templates/partials/dashboard/new_project_form.html:134
-msgid "Content"
-msgstr "المحتوى"
-
-#: app/templates/partials/dashboard/edit_project_form.html:193
-#: app/templates/partials/dashboard/edit_project_form.html:282
-#: app/templates/partials/dashboard/new_project_form.html:69
-#: app/templates/partials/dashboard/new_project_form.html:145
-msgid "English Content"
-msgstr "المحتوى بالإنجليزية"
-
-#: app/templates/partials/dashboard/edit_project_form.html:211
-#: app/templates/partials/dashboard/edit_project_form.html:298
-#: app/templates/partials/dashboard/new_project_form.html:86
-#: app/templates/partials/dashboard/new_project_form.html:161
-msgid "Arabic Content"
-msgstr "المحتوى بالعربية"
-
-#: app/templates/partials/dashboard/edit_project_form.html:229
-msgid "Content Image"
-msgstr "الصور المرفقة"
-
-#: app/templates/partials/dashboard/edit_project_form.html:249
-#: app/templates/partials/dashboard/edit_project_form.html:334
-#: app/templates/partials/dashboard/new_project_form.html:197
-msgid "Add another content block"
-msgstr "أضف محتوى آخر"
-
-#: app/templates/partials/dashboard/edit_project_form.html:259
-#: app/templates/partials/dashboard/edit_project_form.html:345
-#: app/templates/partials/dashboard/new_project_form.html:208
-msgid "Remove this content block"
-msgstr "إزالة هذا المحتوى"
-
-#: app/templates/partials/dashboard/edit_project_form.html:287
-#: app/templates/partials/dashboard/new_project_form.html:75
-#: app/templates/partials/dashboard/new_project_form.html:150
-msgid "content_english_placeholder"
-msgstr "المحتوى بالإنجليزية"
-
-#: app/templates/partials/dashboard/edit_project_form.html:303
-#: app/templates/partials/dashboard/new_project_form.html:92
-#: app/templates/partials/dashboard/new_project_form.html:166
-msgid "content_arabic_placeholder"
-msgstr "المحتوى بالعربية"
-
-#: app/templates/partials/dashboard/edit_project_form.html:314
-#: app/templates/partials/dashboard/new_project_form.html:103
-#: app/templates/partials/dashboard/new_project_form.html:177
-msgid "content_image"
-msgstr "صورة البطاقة"
-
-#: app/templates/partials/dashboard/edit_project_form.html:358
-#: app/templates/partials/dashboard/edit_project_form.html:480
-#: app/templates/partials/dashboard/new_project_form.html:221
-#: app/templates/partials/dashboard/new_project_form.html:323
-msgid "Testimonial"
-msgstr "التوصيات"
-
-#: app/templates/partials/dashboard/edit_project_form.html:367
-#: app/templates/partials/dashboard/edit_project_form.html:490
-#: app/templates/partials/dashboard/new_project_form.html:230
-#: app/templates/partials/dashboard/new_project_form.html:333
-msgid "English Testimonial"
-msgstr "التوصيات بالإنجليزية"
-
-#: app/templates/partials/dashboard/edit_project_form.html:385
-#: app/templates/partials/dashboard/edit_project_form.html:505
-#: app/templates/partials/dashboard/new_project_form.html:246
-#: app/templates/partials/dashboard/new_project_form.html:348
-msgid "Arabic Testimonial"
-msgstr "التوصيات بالعربية"
-
-#: app/templates/partials/dashboard/edit_project_form.html:403
-#: app/templates/partials/dashboard/edit_project_form.html:520
-#: app/templates/partials/dashboard/new_project_form.html:262
-#: app/templates/partials/dashboard/new_project_form.html:363
-msgid "Testimonial Author"
-msgstr "كاتب التوصية"
-
-#: app/templates/partials/dashboard/edit_project_form.html:420
-#: app/templates/partials/dashboard/edit_project_form.html:535
-#: app/templates/partials/dashboard/new_project_form.html:278
-#: app/templates/partials/dashboard/new_project_form.html:378
-msgid "Testimonial Author Qualification"
-msgstr "مؤهلات كاتب التوصية"
-
-#: app/templates/partials/dashboard/edit_project_form.html:437
-#: app/templates/partials/dashboard/edit_project_form.html:550
-#: app/templates/partials/dashboard/new_project_form.html:294
-#: app/templates/partials/dashboard/new_project_form.html:393
-msgid "Testimonial Author Photo"
-msgstr "صورة كاتب التوصية"
-
-#: app/templates/partials/dashboard/edit_project_form.html:457
-#: app/templates/partials/dashboard/edit_project_form.html:569
-#: app/templates/partials/dashboard/new_project_form.html:412
-msgid "Add another testimonial block"
-msgstr "أضف توصية أخرى"
-
-#: app/templates/partials/dashboard/edit_project_form.html:467
-#: app/templates/partials/dashboard/edit_project_form.html:580
-#: app/templates/partials/dashboard/new_project_form.html:423
-msgid "Remove this testimonial block"
-msgstr "إزالة هذه التوصية"
-
-#: app/templates/partials/dashboard/edit_project_form.html:495
-#: app/templates/partials/dashboard/new_project_form.html:236
-#: app/templates/partials/dashboard/new_project_form.html:338
-msgid "testimonial_english_placeholder"
-msgstr "التوصيات بالإنجليزية"
-
-#: app/templates/partials/dashboard/edit_project_form.html:510
-#: app/templates/partials/dashboard/new_project_form.html:252
-#: app/templates/partials/dashboard/new_project_form.html:353
-msgid "testimonial_arabic_placeholder"
-msgstr "التوصيات بالعربية"
-
-#: app/templates/partials/dashboard/edit_project_form.html:525
-#: app/templates/partials/dashboard/new_project_form.html:268
-#: app/templates/partials/dashboard/new_project_form.html:368
-msgid "testimonial_author_placeholder"
-msgstr "كاتب التوصية"
-
-#: app/templates/partials/dashboard/edit_project_form.html:540
-#: app/templates/partials/dashboard/new_project_form.html:284
-#: app/templates/partials/dashboard/new_project_form.html:383
-msgid "testimonial_author_qualification_placeholder"
-msgstr "مؤهلات كاتب التوصية"
-
-#: app/templates/partials/dashboard/edit_project_form.html:594
+#: app/templates/partials/dashboard/edit_project_form.html:89
 msgid "update_project"
 msgstr "تحديث المشروع"
 
-#: app/templates/partials/dashboard/edit_team_member_form.html:17
+#: app/templates/partials/dashboard/knowledge-hub.html:9
+msgid "knowledge_hub"
+msgstr "مركز المعرفة"
+
+#: app/templates/partials/dashboard/knowledge-hub.html:38
+msgid "researches"
+msgstr "بحوث"
+
+#: app/templates/partials/dashboard/new_project_form.html:14
+msgid "title_english"
+msgstr "عنوان المشروع بالإنجليزية"
+
+#: app/templates/partials/dashboard/new_project_form.html:15
+msgid "project_title_english"
+msgstr "عنوان المشروع بالإنجليزية"
+
+#: app/templates/partials/dashboard/new_project_form.html:16
+msgid "title_arabic"
+msgstr "عنوان المشروع بالعربية"
+
+#: app/templates/partials/dashboard/new_project_form.html:17
+msgid "project_title_arabic"
+msgstr "عنوان المشروع بالعربية"
+
+#: app/templates/partials/dashboard/new_project_form.html:20
+msgid "author_name_en"
+msgstr "إسم الكاتب بالإنجليزية"
+
+#: app/templates/partials/dashboard/new_project_form.html:21
+msgid "author_name_en_placeholder"
+msgstr "إسم الكاتب بالإنجليزية"
+
+#: app/templates/partials/dashboard/new_project_form.html:22
+msgid "author_name_ar"
+msgstr "إسم الكاتب بالعربية"
+
+#: app/templates/partials/dashboard/new_project_form.html:23
+msgid "author_name_ar_placeholder"
+msgstr "إسم الكاتب بالعربية"
+
+#: app/templates/partials/dashboard/new_project_form.html:25
+msgid "author_email"
+msgstr "عنوان البريد الإلكتروني للكاتب"
+
+#: app/templates/partials/dashboard/new_project_form.html:27
+msgid "author_email_placeholder"
+msgstr "عنوان البريد الإلكتروني للكاتب"
+
+#: app/templates/partials/dashboard/new_project_form.html:32
+msgid "status"
+msgstr "الحالة"
+
+#: app/templates/partials/dashboard/new_project_form.html:41
+msgid "completed"
+msgstr "مكتمل"
+
+#: app/templates/partials/dashboard/new_project_form.html:46
+msgid "date_of_completion"
+msgstr "تاريخ الإنتهاء"
+
+#: app/templates/partials/dashboard/new_project_form.html:50
+msgid "tags_english"
+msgstr "علامات بالإنجليزية"
+
+#: app/templates/partials/dashboard/new_project_form.html:51
+msgid "tags_english_placeholder"
+msgstr "علامات بالإنجليزية"
+
+#: app/templates/partials/dashboard/new_project_form.html:52
+msgid "tags_arabic"
+msgstr "علامات بالعربية"
+
+#: app/templates/partials/dashboard/new_project_form.html:53
+msgid "tags_arabic_placeholder"
+msgstr "علامات بالعربية"
+
+#: app/templates/partials/dashboard/new_project_form.html:74
+#: app/templates/partials/dashboard/new_project_form.html:150
+msgid "English Content"
+msgstr "المحتوى بالإنجليزية"
+
+#: app/templates/partials/dashboard/new_project_form.html:80
+#: app/templates/partials/dashboard/new_project_form.html:155
+msgid "content_english_placeholder"
+msgstr "المحتوى بالإنجليزية"
+
+#: app/templates/partials/dashboard/new_project_form.html:91
+#: app/templates/partials/dashboard/new_project_form.html:166
+msgid "Arabic Content"
+msgstr "المحتوى بالعربية"
+
+#: app/templates/partials/dashboard/new_project_form.html:97
+#: app/templates/partials/dashboard/new_project_form.html:171
+msgid "content_arabic_placeholder"
+msgstr "المحتوى بالعربية"
+
+#: app/templates/partials/dashboard/new_project_form.html:108
+#: app/templates/partials/dashboard/new_project_form.html:182
+msgid "content_image"
+msgstr "صورة البطاقة"
+
+#: app/templates/partials/dashboard/new_project_form.html:128
+msgid "Add more content"
+msgstr "إضافة المزيد من المحتوى"
+
+#: app/templates/partials/dashboard/new_project_form.html:235
+#: app/templates/partials/dashboard/new_project_form.html:338
+msgid "English Testimonial"
+msgstr "التوصيات بالإنجليزية"
+
+#: app/templates/partials/dashboard/new_project_form.html:241
+#: app/templates/partials/dashboard/new_project_form.html:343
+msgid "testimonial_english_placeholder"
+msgstr "التوصيات بالإنجليزية"
+
+#: app/templates/partials/dashboard/new_project_form.html:251
+#: app/templates/partials/dashboard/new_project_form.html:353
+msgid "Arabic Testimonial"
+msgstr "التوصيات بالعربية"
+
+#: app/templates/partials/dashboard/new_project_form.html:257
+#: app/templates/partials/dashboard/new_project_form.html:358
+msgid "testimonial_arabic_placeholder"
+msgstr "التوصيات بالعربية"
+
+#: app/templates/partials/dashboard/new_project_form.html:267
+#: app/templates/partials/dashboard/new_project_form.html:368
+msgid "Testimonial Author"
+msgstr "كاتب التوصية"
+
+#: app/templates/partials/dashboard/new_project_form.html:273
+#: app/templates/partials/dashboard/new_project_form.html:373
+msgid "testimonial_author_placeholder"
+msgstr "كاتب التوصية"
+
+#: app/templates/partials/dashboard/new_project_form.html:283
+#: app/templates/partials/dashboard/new_project_form.html:383
+msgid "Testimonial Author Qualification"
+msgstr "مؤهلات كاتب التوصية"
+
+#: app/templates/partials/dashboard/new_project_form.html:289
+#: app/templates/partials/dashboard/new_project_form.html:388
+msgid "testimonial_author_qualification_placeholder"
+msgstr "مؤهلات كاتب التوصية"
+
+#: app/templates/partials/dashboard/new_project_form.html:299
+#: app/templates/partials/dashboard/new_project_form.html:398
+msgid "Testimonial Author Photo"
+msgstr "صورة كاتب التوصية"
+
+#: app/templates/partials/dashboard/new_project_form.html:318
+msgid "Add more testimonials"
+msgstr "إضافة المزيد من التوصيات"
+
+#: app/templates/partials/dashboard/new_project_form.html:443
+#: app/templates/partials/dashboard/projects.html:5
+msgid "add_project"
+msgstr "إضافة مشروع"
+
 #: app/templates/partials/dashboard/new_team_member_form.html:16
+#: app/templates/partials/dashboard/team_member-form.html:18
 msgid "name_english"
 msgstr "إسم العضو بالإنجليزية"
 
-#: app/templates/partials/dashboard/edit_team_member_form.html:24
 #: app/templates/partials/dashboard/new_team_member_form.html:22
+#: app/templates/partials/dashboard/team_member-form.html:25
 msgid "enter_name_in_english"
 msgstr "إسم العضو بالإنجليزية"
 
-#: app/templates/partials/dashboard/edit_team_member_form.html:34
 #: app/templates/partials/dashboard/new_team_member_form.html:32
+#: app/templates/partials/dashboard/team_member-form.html:37
 msgid "name_arabic"
 msgstr "إسم العضو بالعربية"
 
-#: app/templates/partials/dashboard/edit_team_member_form.html:41
 #: app/templates/partials/dashboard/new_team_member_form.html:38
+#: app/templates/partials/dashboard/team_member-form.html:44
 msgid "enter_name_in_arabic"
 msgstr "إسم العضو بالعربية"
 
-#: app/templates/partials/dashboard/edit_team_member_form.html:54
 #: app/templates/partials/dashboard/new_team_member_form.html:51
+#: app/templates/partials/dashboard/team_member-form.html:59
 msgid "role_english"
 msgstr "منصب العضو بالإنجليزية"
 
-#: app/templates/partials/dashboard/edit_team_member_form.html:61
 #: app/templates/partials/dashboard/new_team_member_form.html:57
+#: app/templates/partials/dashboard/team_member-form.html:66
 msgid "enter_role_in_english"
 msgstr "منصب العضو بالإنجليزية"
 
-#: app/templates/partials/dashboard/edit_team_member_form.html:71
 #: app/templates/partials/dashboard/new_team_member_form.html:67
+#: app/templates/partials/dashboard/team_member-form.html:78
 msgid "role_arabic"
 msgstr "منصب العضو بالعربية"
 
-#: app/templates/partials/dashboard/edit_team_member_form.html:78
 #: app/templates/partials/dashboard/new_team_member_form.html:73
+#: app/templates/partials/dashboard/team_member-form.html:85
 msgid "enter_role_in_arabic"
 msgstr "منصب العضو بالعربية"
 
-#: app/templates/partials/dashboard/edit_team_member_form.html:88
 #: app/templates/partials/dashboard/new_team_member_form.html:83
+#: app/templates/partials/dashboard/team_member-form.html:97
 msgid "bio_english"
 msgstr "نبذة عن العضو بالإنجليزية"
 
-#: app/templates/partials/dashboard/edit_team_member_form.html:94
 #: app/templates/partials/dashboard/new_team_member_form.html:89
+#: app/templates/partials/dashboard/team_member-form.html:103
 msgid "enter_bio_in_english"
 msgstr "نبذة عن العضو بالإنجليزية"
 
-#: app/templates/partials/dashboard/edit_team_member_form.html:103
 #: app/templates/partials/dashboard/new_team_member_form.html:96
+#: app/templates/partials/dashboard/team_member-form.html:114
 msgid "bio_arabic"
 msgstr "نبذة عن العضو بالعربية"
 
-#: app/templates/partials/dashboard/edit_team_member_form.html:109
 #: app/templates/partials/dashboard/new_team_member_form.html:102
+#: app/templates/partials/dashboard/team_member-form.html:120
 msgid "enter_bio_in_arabic"
 msgstr "نبذة عن العضو بالعربية"
 
-#: app/templates/partials/dashboard/edit_team_member_form.html:120
 #: app/templates/partials/dashboard/new_team_member_form.html:111
+#: app/templates/partials/dashboard/team_member-form.html:133
 msgid "socials"
 msgstr "الروابط الاجتماعية"
 
-#: app/templates/partials/dashboard/edit_team_member_form.html:127
 #: app/templates/partials/dashboard/new_team_member_form.html:117
+#: app/templates/partials/dashboard/team_member-form.html:140
 msgid "enter_socials_comma_separated"
 msgstr "أدخل الروابط الاجتماعية مفصولة بفاصلة"
 
-#: app/templates/partials/dashboard/edit_team_member_form.html:131
 #: app/templates/partials/dashboard/new_team_member_form.html:121
+#: app/templates/partials/dashboard/team_member-form.html:145
 msgid "example_socials_format"
 msgstr ""
 "مثال: Facebook: https://facebook.com/swea, Twitter: "
 "https://twitter.com/swea"
 
-#: app/templates/partials/dashboard/edit_team_member_form.html:138
 #: app/templates/partials/dashboard/new_team_member_form.html:128
+#: app/templates/partials/dashboard/team_member-form.html:152
 msgid "profile_image"
 msgstr "صورة العضو"
 
-#: app/templates/partials/dashboard/edit_team_member_form.html:165
-msgid "update_team_member"
-msgstr "تحديث العضو"
-
-#: app/templates/partials/dashboard/knowledge-hub.html:4
-msgid ""
-"knowledge\n"
-"hub"
-msgstr "مركز المعرفة"
-
-#: app/templates/partials/dashboard/knowledge-hub.html:5
-msgid "add_kh"
-msgstr "اضفاة عنصر"
-
-#: app/templates/partials/dashboard/new_project_form.html:10
-msgid "project_title_english"
-msgstr "عنوان المشروع بالإنجليزية"
-
-#: app/templates/partials/dashboard/new_project_form.html:12
-msgid "project_title_arabic"
-msgstr "عنوان المشروع بالعربية"
-
-#: app/templates/partials/dashboard/new_project_form.html:16
-msgid "author_name_en_placeholder"
-msgstr "إسم الكاتب بالإنجليزية"
-
-#: app/templates/partials/dashboard/new_project_form.html:18
-msgid "author_name_ar_placeholder"
-msgstr "إسم الكاتب بالعربية"
-
-#: app/templates/partials/dashboard/new_project_form.html:22
-msgid "author_email_placeholder"
-msgstr "عنوان البريد الإلكتروني للكاتب"
-
-#: app/templates/partials/dashboard/new_project_form.html:46
-msgid "tags_english_placeholder"
-msgstr "علامات بالإنجليزية"
-
-#: app/templates/partials/dashboard/new_project_form.html:48
-msgid "tags_arabic_placeholder"
-msgstr "علامات بالعربية"
-
-#: app/templates/partials/dashboard/new_project_form.html:123
-msgid "Add more content"
-msgstr "إضافة المزيد من المحتوى"
-
-#: app/templates/partials/dashboard/new_project_form.html:313
-msgid "Add more testimonials"
-msgstr "إضافة المزيد من التوصيات"
-
-#: app/templates/partials/dashboard/new_project_form.html:437
-#: app/templates/partials/dashboard/projects.html:5
-msgid "add_project"
-msgstr "إضافة مشروع"
-
 #: app/templates/partials/dashboard/new_team_member_form.html:145
-#: app/templates/partials/dashboard/team.html:21
+#: app/templates/partials/dashboard/team.html:5
 msgid "add_team_member"
 msgstr "إضافة عضو"
 
-#: app/templates/partials/dashboard/news-form.html:12
-#: app/templates/partials/dashboard/news-form.html:13
+#: app/templates/partials/dashboard/news-form.html:28
+#: app/templates/partials/dashboard/news-form.html:29
 msgid "news_title_english"
 msgstr "عنوان الخبر بالإنجليزية"
 
-#: app/templates/partials/dashboard/news-form.html:14
-#: app/templates/partials/dashboard/news-form.html:15
+#: app/templates/partials/dashboard/news-form.html:30
+#: app/templates/partials/dashboard/news-form.html:31
 msgid "news_title_arabic"
 msgstr "عنوان الخبر بالعربية"
 
-#: app/templates/partials/dashboard/news-form.html:18
+#: app/templates/partials/dashboard/news-form.html:35
 msgid "news_date"
 msgstr "تاريخ الخبر"
 
-#: app/templates/partials/dashboard/news-form.html:19
+#: app/templates/partials/dashboard/news-form.html:36
 msgid "news date"
 msgstr "تاريخ الخبر"
 
-#: app/templates/partials/dashboard/news-form.html:22
-#: app/templates/partials/dashboard/news-form.html:11
-#: app/templates/partials/dashboard/news-form.html:12
-msgid "news_title_english"
-msgstr "عنوان الخبر بالإنجليزية"
-
-#: app/templates/partials/dashboard/news-form.html:13
-#: app/templates/partials/dashboard/news-form.html:14
-msgid "news_title_arabic"
-msgstr "عنوان الخبر بالعربية"
-
-#: app/templates/partials/dashboard/news-form.html:17
-msgid "news_date"
-msgstr "تاريخ الخبر"
-
-#: app/templates/partials/dashboard/news-form.html:18
-msgid "news date"
-msgstr "تاريخ الخبر"
-
-#: app/templates/partials/dashboard/news-form.html:21
+#: app/templates/partials/dashboard/news-form.html:39
 msgid "news_image"
 msgstr "صورة الخبر"
 
-#: app/templates/partials/dashboard/news-form.html:23
+#: app/templates/partials/dashboard/news-form.html:40
 msgid "news image"
 msgstr "صورة الخبر"
 
-#: app/templates/partials/dashboard/news-form.html:31
+#: app/templates/partials/dashboard/news-form.html:49
 msgid "content"
 msgstr "المحتوى"
 
-#: app/templates/partials/dashboard/news-form.html:40
+#: app/templates/partials/dashboard/news-form.html:60
+msgid "update"
+msgstr "تحديث"
+
+#: app/templates/partials/dashboard/news-form.html:60
 msgid "create"
 msgstr "إنشاء"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:45
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:45
+#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:40
+#: app/templates/partials/dashboard/news-list.html:21
+#: app/templates/partials/dashboard/project-list.html:50
+#: app/templates/partials/dashboard/team-list.html:45
+msgid "edit"
+msgstr "تعديل"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:54
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:54
+#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:49
+#: app/templates/partials/dashboard/news-list.html:29
+#: app/templates/partials/dashboard/project-list.html:59
+#: app/templates/partials/dashboard/team-list.html:54
+msgid "delete"
+msgstr "حذف"
+
+#: app/templates/partials/dashboard/news-list.html:41
+msgid "empty_news"
+msgstr "ﻻ توجد أخبار حاليً"
 
 #: app/templates/partials/dashboard/news.html:5
 msgid "add_news"
 msgstr "إضافة خبر"
 
-#: app/templates/partials/dashboard/project-list.html:17
+#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:17
+#: app/templates/partials/dashboard/project-list.html:18
 msgid "by"
 msgstr "بواسطة"
 
-#: app/templates/partials/dashboard/project-list.html:49
-#: app/templates/partials/dashboard/team_list.html:44
-msgid "edit"
-msgstr "تعديل"
-
-#: app/templates/partials/dashboard/project-list.html:54
+#: app/templates/partials/dashboard/project-list.html:55
 msgid "confirm_delete_project"
 msgstr "هل أنت متأكد من حذف المشروع؟"
 
-#: app/templates/partials/dashboard/project-list.html:58
-#: app/templates/partials/dashboard/team_list.html:53
-msgid "delete"
-msgstr "حذف"
-
-#: app/templates/partials/dashboard/project-list.html:65
+#: app/templates/partials/dashboard/project-list.html:70
 msgid "no_projects_found"
 msgstr "لا توجد مشاريع حالياً"
 
@@ -771,21 +855,54 @@ msgstr "اشترك"
 msgid "add_subscriber"
 msgstr "إضافة مشترك"
 
-#: app/templates/partials/dashboard/team.html:9
-msgid "team_members"
-msgstr "أعضاء الفريق"
-
-#: app/templates/partials/dashboard/team.html:39
-msgid "search_team_member"
-msgstr "ابحث عن عضو"
-
-#: app/templates/partials/dashboard/team_list.html:49
+#: app/templates/partials/dashboard/team-list.html:50
 msgid "confirm_delete_team_member"
 msgstr "هل أنت متأكد من حذف عضو الفريق؟"
 
-#: app/templates/partials/dashboard/team_list.html:60
+#: app/templates/partials/dashboard/team-list.html:65
 msgid "no_team_members_found"
 msgstr "لا توجد أعضاء حالياً"
+
+#: app/templates/partials/dashboard/team.html:5
+msgid "team_members"
+msgstr "أعضاء الفريق"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:50
+msgid "confirm_delete_course"
+msgstr "هل أنت متأكد من حذف الدورة؟"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:65
+msgid "no_courses_found"
+msgstr "لا توجد دورات حالياً"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:50
+msgid "confirm_delete_podcast"
+msgstr "هل أنت متأكد من حذف البودكاست؟"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:65
+msgid "no_podcasts_found"
+msgstr "لا توجد بودكاست حالياً"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:117
+msgid "current_hero_image"
+msgstr "الصورة الحالية"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:135
+msgid "confirm_delete_image"
+msgstr "هل أنت متأكد من حذف الصورة؟"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:45
+msgid "confirm_delete_research"
+msgstr "هل أنت متأكد من حذف البحث؟"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:60
+msgid "no_researches_found"
+msgstr "لا توجد بحوث حالياً"
+
+#: app/templates/partials/news/cards.html:35
+#: app/templates/partials/projects/cards.html:35
+msgid "learn more"
+msgstr "المزيد"
 
 #~ msgid "mission description"
 #~ msgstr ""
@@ -829,4 +946,15 @@ msgstr "لا توجد أعضاء حالياً"
 
 #~ msgid "swea_news"
 #~ msgstr "الفريق"
+
+#~ msgid "Content Image"
+#~ msgstr "الصور المرفقة"
+
+#~ msgid ""
+#~ "knowledge\n"
+#~ "hub"
+#~ msgstr "مركز المعرفة"
+
+#~ msgid "add_kh"
+#~ msgstr "اضفاة عنصر"
 

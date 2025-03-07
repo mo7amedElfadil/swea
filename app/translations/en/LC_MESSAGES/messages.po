@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-07 13:27+0400\n"
+"POT-Creation-Date: 2025-03-07 23:00+0300\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -16,137 +16,105 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.3\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: api/v1/views/knowledge_hub.py:33
 msgid "Invalid tab"
 msgstr "Invalid tab"
 
-#: api/v1/views/knowledge_hub.py:67
-msgid "Create Course"
-msgstr "Create Course"
-
-#: api/v1/views/knowledge_hub.py:77
+#: api/v1/views/knowledge_hub.py:88
 msgid "An error occurred while creating the course"
 msgstr "An error occurred while creating the course"
 
-#: api/v1/views/knowledge_hub.py:84
+#: api/v1/views/knowledge_hub.py:95
 msgid "Course created successfully"
 msgstr "Course created successfully"
 
-#: api/v1/views/knowledge_hub.py:98
-msgid "Update Course"
-msgstr "Update Course"
-
-#: api/v1/views/knowledge_hub.py:108
+#: api/v1/views/knowledge_hub.py:110
 msgid "An error occurred while updating the course"
 msgstr "An error occurred while updating the course"
 
-#: api/v1/views/knowledge_hub.py:115
+#: api/v1/views/knowledge_hub.py:117
 msgid "Course updated successfully"
 msgstr "Course updated successfully"
 
-#: api/v1/views/knowledge_hub.py:127
+#: api/v1/views/knowledge_hub.py:129
 msgid "An error occurred while deleting the course"
 msgstr "An error occurred while deleting the course"
 
-#: api/v1/views/knowledge_hub.py:134
+#: api/v1/views/knowledge_hub.py:136
 msgid "Course deleted successfully"
 msgstr "Course deleted successfully"
 
-#: api/v1/views/knowledge_hub.py:158
-msgid "Create Podcast"
-msgstr "Create Podcast"
-
-#: api/v1/views/knowledge_hub.py:168
+#: api/v1/views/knowledge_hub.py:162
 msgid "An error occurred while creating the podcast"
 msgstr "An error occurred while creating the podcast"
 
-#: api/v1/views/knowledge_hub.py:175
+#: api/v1/views/knowledge_hub.py:169
 msgid "Podcast created successfully"
 msgstr "Podcast created successfully"
 
-#: api/v1/views/knowledge_hub.py:191
-msgid "Update Podcast"
-msgstr "Update Podcast"
-
-#: api/v1/views/knowledge_hub.py:201
+#: api/v1/views/knowledge_hub.py:186
 msgid "An error occurred while updating the podcast"
 msgstr "An error occurred while creating the podcast"
 
-#: api/v1/views/knowledge_hub.py:208
+#: api/v1/views/knowledge_hub.py:193
 msgid "Podcast updated successfully"
 msgstr "Podcast updated successfully"
 
-#: api/v1/views/knowledge_hub.py:220
+#: api/v1/views/knowledge_hub.py:205
 msgid "An error occurred while deleting the podcast"
 msgstr "An error occurred while deleting the podcast"
 
-#: api/v1/views/knowledge_hub.py:229
+#: api/v1/views/knowledge_hub.py:214
 msgid "Podcast deleted successfully"
 msgstr "Podcast deleted successfully"
 
-#: api/v1/views/knowledge_hub.py:253
-msgid "Create Research"
-msgstr "Create Research"
-
-#: api/v1/views/knowledge_hub.py:263
+#: api/v1/views/knowledge_hub.py:240
 msgid "An error occurred while creating the research"
 msgstr "An error occurred while creating the research"
 
-#: api/v1/views/knowledge_hub.py:272
+#: api/v1/views/knowledge_hub.py:249
 msgid "Research created successfully"
 msgstr "Research created successfully"
 
-#: api/v1/views/knowledge_hub.py:289
-msgid "Update Research"
-msgstr "Update Research"
-
-#: api/v1/views/knowledge_hub.py:301
+#: api/v1/views/knowledge_hub.py:268
 msgid "An error occurred while updating the research"
 msgstr "An error occurred while updating the research"
 
-#: api/v1/views/knowledge_hub.py:310
+#: api/v1/views/knowledge_hub.py:277
 msgid "Research updated successfully"
 msgstr "Research updated successfully"
 
-#: api/v1/views/knowledge_hub.py:322
+#: api/v1/views/knowledge_hub.py:289
 msgid "An error occurred while deleting the research"
 msgstr "An error occurred while deleting the research"
 
-#: api/v1/views/knowledge_hub.py:331
+#: api/v1/views/knowledge_hub.py:298
 msgid "Research deleted successfully"
 msgstr "Research deleted successfully"
 
-#: api/v1/views/knowledge_hub.py:354
-msgid "Create Member"
-msgstr "Create Member"
-
-#: api/v1/views/knowledge_hub.py:364
+#: api/v1/views/knowledge_hub.py:323
 msgid "An error occurred while creating the member"
 msgstr "An error occurred while creating the member"
 
-#: api/v1/views/knowledge_hub.py:371
+#: api/v1/views/knowledge_hub.py:330
 msgid "Member created successfully"
 msgstr "Member created successfully"
 
-#: api/v1/views/knowledge_hub.py:385
-msgid "Update Member"
-msgstr "Update Member"
-
-#: api/v1/views/knowledge_hub.py:395
+#: api/v1/views/knowledge_hub.py:345
 msgid "An error occurred while updating the member"
 msgstr "An error occurred while updating the member"
 
-#: api/v1/views/knowledge_hub.py:402
+#: api/v1/views/knowledge_hub.py:352
 msgid "Member updated successfully"
 msgstr "Member updated successfully"
 
-#: api/v1/views/knowledge_hub.py:414
+#: api/v1/views/knowledge_hub.py:364
 msgid "An error occurred while deleting the member"
 msgstr "An error occurred while deleting the member"
 
-#: api/v1/views/knowledge_hub.py:421
+#: api/v1/views/knowledge_hub.py:371
 msgid "Member deleted successfully"
 msgstr "Member deleted successfully"
 
@@ -425,6 +393,22 @@ msgstr "Read More"
 msgid "read_less"
 msgstr "Read Less"
 
+#: app/templates/macros/form.html:44
+#, fuzzy
+msgid "course_desc"
+msgstr "Courses"
+
+#: app/templates/macros/form.html:51
+#: app/templates/partials/dashboard/new_project_form.html:80
+#: app/templates/partials/dashboard/new_project_form.html:155
+msgid "content_english_placeholder"
+msgstr "Content (English)"
+
+#: app/templates/macros/form.html:66
+#, fuzzy
+msgid "choose"
+msgstr "Courses"
+
 #: app/templates/macros/form_macros.html:107
 #: app/templates/partials/dashboard/new_project_form.html:64
 #: app/templates/partials/dashboard/new_project_form.html:139
@@ -590,18 +574,22 @@ msgstr "Completed"
 msgid "date_of_completion"
 msgstr "Date of Completion"
 
+#: app/templates/partials/dashboard/knowledge_hub/course-form.html:31
 #: app/templates/partials/dashboard/new_project_form.html:50
 msgid "tags_english"
 msgstr "Tags (English)"
 
+#: app/templates/partials/dashboard/knowledge_hub/course-form.html:32
 #: app/templates/partials/dashboard/new_project_form.html:51
 msgid "tags_english_placeholder"
 msgstr "Tags (English)"
 
+#: app/templates/partials/dashboard/knowledge_hub/course-form.html:33
 #: app/templates/partials/dashboard/new_project_form.html:52
 msgid "tags_arabic"
 msgstr "Tags (Arabic)"
 
+#: app/templates/partials/dashboard/knowledge_hub/course-form.html:34
 #: app/templates/partials/dashboard/new_project_form.html:53
 msgid "tags_arabic_placeholder"
 msgstr "Tags (Arabic)"
@@ -610,11 +598,6 @@ msgstr "Tags (Arabic)"
 #: app/templates/partials/dashboard/new_project_form.html:150
 msgid "English Content"
 msgstr "English Content"
-
-#: app/templates/partials/dashboard/new_project_form.html:80
-#: app/templates/partials/dashboard/new_project_form.html:155
-msgid "content_english_placeholder"
-msgstr "Content (English)"
 
 #: app/templates/partials/dashboard/new_project_form.html:91
 #: app/templates/partials/dashboard/new_project_form.html:166
@@ -790,6 +773,7 @@ msgstr "News Arabic Title"
 msgid "news_date"
 msgstr "News Date"
 
+#: app/templates/partials/dashboard/knowledge_hub/course-form.html:38
 #: app/templates/partials/dashboard/news-form.html:36
 msgid "news date"
 msgstr "News Date"
@@ -872,6 +856,46 @@ msgstr "No team members found"
 #: app/templates/partials/dashboard/team.html:5
 msgid "team_members"
 msgstr "Team Members"
+
+#: app/templates/partials/dashboard/knowledge_hub/course-form.html:14
+#: app/templates/partials/dashboard/knowledge_hub/course-form.html:15
+#, fuzzy
+msgid "course_title_english"
+msgstr "News English Title"
+
+#: app/templates/partials/dashboard/knowledge_hub/course-form.html:16
+#: app/templates/partials/dashboard/knowledge_hub/course-form.html:17
+#, fuzzy
+msgid "course_title_arabic"
+msgstr "News Arabic Title"
+
+#: app/templates/partials/dashboard/knowledge_hub/course-form.html:20
+#: app/templates/partials/dashboard/knowledge_hub/course-form.html:21
+#: app/templates/partials/dashboard/knowledge_hub/course-form.html:22
+#: app/templates/partials/dashboard/knowledge_hub/course-form.html:23
+#, fuzzy
+msgid "course_name_english"
+msgstr "Name (English)"
+
+#: app/templates/partials/dashboard/knowledge_hub/course-form.html:26
+#, fuzzy
+msgid "course_members"
+msgstr "Team Members"
+
+#: app/templates/partials/dashboard/knowledge_hub/course-form.html:37
+#, fuzzy
+msgid "course_date"
+msgstr "Create a News"
+
+#: app/templates/partials/dashboard/knowledge_hub/course-form.html:41
+#, fuzzy
+msgid "course_image"
+msgstr "Current Image"
+
+#: app/templates/partials/dashboard/knowledge_hub/course-form.html:42
+#, fuzzy
+msgid "course image"
+msgstr "Current Image"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-list.html:50
 msgid "confirm_delete_course"
@@ -969,4 +993,28 @@ msgstr "Learn more"
 
 #~ msgid "add_kh"
 #~ msgstr ""
+
+#~ msgid "Create Course"
+#~ msgstr "Create Course"
+
+#~ msgid "Update Course"
+#~ msgstr "Update Course"
+
+#~ msgid "Create Podcast"
+#~ msgstr "Create Podcast"
+
+#~ msgid "Update Podcast"
+#~ msgstr "Update Podcast"
+
+#~ msgid "Create Research"
+#~ msgstr "Create Research"
+
+#~ msgid "Update Research"
+#~ msgstr "Update Research"
+
+#~ msgid "Create Member"
+#~ msgstr "Create Member"
+
+#~ msgid "Update Member"
+#~ msgstr "Update Member"
 

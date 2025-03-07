@@ -1,10 +1,22 @@
-{% from "macros/form_macros.html" import text_input, textarea, file_upload,
-tags_input %}
+{% from "macros/form.html" import select %} {% from "macros/form_macros.html"
+import text_input, textarea, file_upload, tags_input %}
 <form
-    hx-post="{{ form_action }}"
+    id="course-form"
     hx-target="#tab-content"
     hx-swap="innerHTML"
     hx-encoding="multipart/form-data"
+    {%
+    if
+    update
+    %}
+    hx-patch="{{form_action}}"
+    {%
+    else
+    %}
+    hx-post="{{ form_action }}"
+    {%
+    endif
+    %}
     enctype="multipart/form-data"
     class="space-y-6"
 >
@@ -39,6 +51,11 @@ tags_input %}
         '', label="description_arabic", placeholder="Enter Arabic description",
         rows=5, required=true, dir="rtl" ) }}
     </div>
+
+    <!-- course members -->
+    {{select(label=_("course_members"), id="course-members", name="members",
+    options=[{'name': 'member-1', 'uuid': '1'}, {'name': 'member-2', 'uuid':
+    '2'}, {'name': 'member-3', 'uuid':'3'}, {'name':'member-4', 'uuid':'4'}],)}}
 
     <!-- Date -->
     {{ text_input( id="course_date", name="date", value=course.date if course
@@ -77,7 +94,20 @@ tags_input %}
             type="submit"
             class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
         >
-            {{ submit_text }}
+            {% if update %} {{_('update')}} {% else %} {{_('create')}} {%
+            endif%}
         </button>
     </div>
 </form>
+
+{% block extra_scripts %}
+<script charset="utf-8">
+    document.addEventListener('htmx:configRequest', (evt) => {
+        if (evt.detail.elt.id == 'course-form') {
+            evt.detail.parameters['members'] =
+                document.getElementById('course-members').dataset.members
+        }
+        console.log(evt.detail.parameters)
+    })
+</script>
+{% endblock %}

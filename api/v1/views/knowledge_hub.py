@@ -46,18 +46,33 @@ def get_knowledge_hub_data():
 @bp.route("/dashboard/knowledge-hub/form", methods=["GET"])
 def knowledge_hub_form():
     """knowledge-hub form."""
+    method = request.args.get("m", "CREATE")
     query = request.args.get("q", "courses")
     form_content = dict(
-        courses="partials/dashboard/knowledge_hub/course-form.html",
-        podcasts="partials/dashboard/knowledge_hub/podcast-form.html",
-        researches="partials/dashboard/knowledge_hub/research-form.html",
+        courses=dict(
+            temp="partials/dashboard/knowledge_hub/courses-form.html",
+            data=CourseService().get_all
+            ),
+        podcasts=dict(
+            temp="partials/dashboard/knowledge_hub/podcasts-form.html",
+            data=PodcastService().get_all
+            ),
+        researches=dict(
+            temp="partials/dashboard/knowledge_hub/researches-form.html",
+            data=ResearchService().get_all
+            )
     )
 
+    template = form_content.get(query, {}).get("temp")
+    if method == "UPDATE":
+        data = form_content.get(query).get("data", lambda: {})()
+    else:
+        data = {}
+
     return make_response(render_template(
-        form_content.get(
-            query,
-            "partials/dashboard/knowledge_hub/course-form.html"
-            )
+        template,
+        data=data,
+        update=method == "UPDATE"
         )
     )
 
@@ -73,18 +88,10 @@ def get_courses():
     )
 
 
-@bp.route("/dashboard/knowledge-hub/new-course", methods=["GET", "POST"])
+@bp.route("/dashboard/knowledge-hub/courses", methods=["POST"])
 def create_course():
     """Create a new course."""
     course_service = CourseService()
-
-    if request.method == "GET":
-        return render_template(
-            "partials/dashboard/knowledge_hub/courses-form.html",
-            form_action="/dashboard/knowledge-hub/new-course",
-            course=None,
-            submit_text=_("Create Course"),
-        )
 
     try:
         form_data = request.form.to_dict()
@@ -103,19 +110,10 @@ def create_course():
     return add_toast(resp, "success", _("Course created successfully"))
 
 
-@bp.route("/dashboard/knowledge-hub/update-course/<course_id>", methods=["GET", "POST"])
+@bp.route("/dashboard/knowledge-hub/courses/<course_id>", methods=["PATCH", "PUT"])
 def update_course(course_id):
     """Update an existing course."""
     course_service = CourseService()
-
-    if request.method == "GET":
-        course = course_service.get_by_uuid(course_id)
-        return render_template(
-            "partials/dashboard/knowledge_hub/courses-form.html",
-            form_action=f"/dashboard/knowledge-hub/update-course/{course_id}",
-            course=course,
-            submit_text=_("Update Course"),
-        )
 
     try:
         form_data = request.form.to_dict()
@@ -134,7 +132,7 @@ def update_course(course_id):
     return add_toast(resp, "success", _("Course updated successfully"))
 
 
-@bp.route("/dashboard/knowledge-hub/delete-course/<course_id>", methods=["DELETE"])
+@bp.route("/dashboard/knowledge-hub/courses/<course_id>", methods=["DELETE"])
 def delete_course(course_id):
     """Delete a course."""
     course_service = CourseService()
@@ -164,18 +162,10 @@ def get_podcasts():
     )
 
 
-@bp.route("/dashboard/knowledge-hub/new-podcast", methods=["GET", "POST"])
+@bp.route("/dashboard/knowledge-hub/podcasts", methods=["POST"])
 def create_podcast():
     """Create a new podcast."""
     podcast_service = PodcastService()
-
-    if request.method == "GET":
-        return render_template(
-            "partials/dashboard/knowledge_hub/podcasts-form.html",
-            form_action="/dashboard/knowledge-hub/new-podcast",
-            podcast=None,
-            submit_text=_("Create Podcast"),
-        )
 
     try:
         form_data = request.form.to_dict()
@@ -195,20 +185,11 @@ def create_podcast():
 
 
 @bp.route(
-    "/dashboard/knowledge-hub/update-podcast/<podcast_id>", methods=["GET", "POST"]
+    "/dashboard/knowledge-hub/podcasts/<podcast_id>", methods=["PUT", "PATCH"]
 )
 def update_podcast(podcast_id):
     """Update an existing podcast."""
     podcast_service = PodcastService()
-
-    if request.method == "GET":
-        podcast = podcast_service.get_by_uuid(podcast_id)
-        return render_template(
-            "partials/dashboard/knowledge_hub/podcasts-form.html",
-            form_action=f"/dashboard/knowledge-hub/update-podcast/{podcast_id}",
-            podcast=podcast,
-            submit_text=_("Update Podcast"),
-        )
 
     try:
         form_data = request.form.to_dict()
@@ -227,7 +208,7 @@ def update_podcast(podcast_id):
     return add_toast(resp, "success", _("Podcast updated successfully"))
 
 
-@bp.route("/dashboard/knowledge-hub/delete-podcast/<podcast_id>", methods=["DELETE"])
+@bp.route("/dashboard/knowledge-hub/podcasts/<podcast_id>", methods=["DELETE"])
 def delete_podcast(podcast_id):
     """Delete a podcast."""
     podcast_service = PodcastService()
@@ -259,18 +240,10 @@ def get_researches():
     )
 
 
-@bp.route("/dashboard/knowledge-hub/new-research", methods=["GET", "POST"])
+@bp.route("/dashboard/knowledge-hub/researches", methods=["POST"])
 def create_research():
     """Create a new research."""
     research_service = ResearchService()
-
-    if request.method == "GET":
-        return render_template(
-            "partials/dashboard/knowledge_hub/researches-form.html",
-            form_action="/dashboard/knowledge-hub/new-research",
-            research=None,
-            submit_text=_("Create Research"),
-        )
 
     try:
         form_data = request.form.to_dict()
@@ -292,21 +265,11 @@ def create_research():
 
 
 @bp.route(
-    "/dashboard/knowledge-hub/update-research/<research_id>", methods=["GET", "POST"]
+    "/dashboard/knowledge-hub/researches/<research_id>", methods=["PATCH", "PUT"]
 )
 def update_research(research_id):
     """Update an existing research."""
     research_service = ResearchService()
-
-    if request.method == "GET":
-        research = research_service.get_by_uuid(research_id)
-        print("============RESEARCH============", research)
-        return render_template(
-            "partials/dashboard/knowledge_hub/researches-form.html",
-            form_action=f"/dashboard/knowledge-hub/update-research/{research_id}",
-            research=research,
-            submit_text=_("Update Research"),
-        )
 
     try:
         form_data = request.form.to_dict()
@@ -329,7 +292,7 @@ def update_research(research_id):
     return add_toast(resp, "success", _("Research updated successfully"))
 
 
-@bp.route("/dashboard/knowledge-hub/delete-research/<research_id>", methods=["DELETE"])
+@bp.route("/dashboard/knowledge-hub/researches/<research_id>", methods=["DELETE"])
 def delete_research(research_id):
     """Delete a research."""
     research_service = ResearchService()
@@ -360,18 +323,10 @@ def get_members():
     return render_template("partials/dashboard/knowledge_hub/members.html", **members)
 
 
-@bp.route("/dashboard/knowledge-hub/new-member", methods=["GET", "POST"])
+@bp.route("/dashboard/knowledge-hub/members", methods=["POST"])
 def create_member():
     """Create a new member."""
     member_service = MemberService()
-
-    if request.method == "GET":
-        return render_template(
-            "partials/dashboard/knowledge_hub/members-form.html",
-            form_action="/dashboard/knowledge-hub/new-member",
-            member=None,
-            submit_text=_("Create Member"),
-        )
 
     try:
         form_data = request.form.to_dict()
@@ -390,19 +345,10 @@ def create_member():
     return add_toast(resp, "success", _("Member created successfully"))
 
 
-@bp.route("/dashboard/knowledge-hub/update-member/<member_id>", methods=["GET", "POST"])
+@bp.route("/dashboard/knowledge-hub/members/<member_id>", methods=["PUT", "PATCH"])
 def update_member(member_id):
     """Update an existing member."""
     member_service = MemberService()
-
-    if request.method == "GET":
-        member = member_service.get_by_uuid(member_id)
-        return render_template(
-            "partials/dashboard/knowledge_hub/members-form.html",
-            form_action=f"/dashboard/knowledge-hub/update-member/{member_id}",
-            member=member,
-            submit_text=_("Update Member"),
-        )
 
     try:
         form_data = request.form.to_dict()
@@ -421,7 +367,7 @@ def update_member(member_id):
     return add_toast(resp, "success", _("Member updated successfully"))
 
 
-@bp.route("/dashboard/knowledge-hub/delete-member/<member_id>", methods=["DELETE"])
+@bp.route("/dashboard/knowledge-hub/members/<member_id>", methods=["DELETE"])
 def delete_member(member_id):
     """Delete a member."""
     member_service = MemberService()

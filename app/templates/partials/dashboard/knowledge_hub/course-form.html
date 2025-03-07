@@ -24,9 +24,8 @@ spinner %}
 
     <!-- course members -->
     {{form.select(label=_("course_members"), id="course-members",
-    name="members", options=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'),
-    ('5', '5'), ('6', '6'), ('7', '7'), ('8', '8'), ('9', '9'), ('10',
-    '10')],)}}
+    name="members", options=[('member-1', '1'), ('member-2', '2'), ('member-3',
+    '3'), ('member-4', '4')],)}}
 
     <!-- Tags (Multi-language Support) -->
     {{form.input(label=_("tags_english"), id="tags-en", name="tags[en]",

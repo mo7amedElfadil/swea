@@ -51,7 +51,7 @@ def knowledge_hub_form():
     return make_response(render_template(
         form_content.get(
             query,
-            "partials/dashboard/knowledge-hub/course-form.html"
+            "partials/dashboard/knowledge_hub/course-form.html"
             )
         )
     )

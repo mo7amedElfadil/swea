@@ -1,5 +1,5 @@
 {% macro render_knowledge_hub_section(title, items, add_endpoint,
-search_endpoint, page, total_pages, search_placeholder, item_type) %}
+search_endpoint, page, total_pages, search_placeholder, item_type, data) %}
 <div
     id="modal-container"
     class="bg-primary-50 rounded-xl shadow-sm transition-all duration-200"
@@ -48,42 +48,9 @@ search_endpoint, page, total_pages, search_placeholder, item_type) %}
     <!-- Item List -->
     <div id="{{ item_type }}-list">
         <div class="space-y-4">
-            {% for item in items %}
-            <div class="p-4 bg-white rounded-lg shadow-sm">
-                <h4 class="text-lg font-medium text-gray-900">
-                    {{ item.title }}
-                </h4>
-                <p class="text-sm text-gray-600">{{ item.description }}</p>
-            </div>
-            {% endfor %}
+            {% include 'partials/dashboard/knowledge_hub/' + item_type +
+            '-list.html' %}
         </div>
-    </div>
-
-    <!-- Pagination -->
-    <div class="mt-6 flex justify-center space-x-2">
-        {% if page and page > 1 %}
-        <button
-            class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none"
-            hx-get="/dashboard?q={{ item_type }}&page={{ page - 1 }}"
-            hx-target="#{{ item_type }}-list"
-            hx-swap="innerHTML"
-        >
-            {{ _("previous") }}
-        </button>
-        {% endif %}
-        <span class="px-4 py-2 text-sm font-medium text-gray-700">
-            {{ page }} / {{ total_pages }}
-        </span>
-        {% if page and page < total_pages %}
-        <button
-            class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none"
-            hx-get="/dashboard?q={{ item_type }}&page={{ page + 1 }}"
-            hx-target="#{{ item_type }}-list"
-            hx-swap="innerHTML"
-        >
-            {{ _("next") }}
-        </button>
-        {% endif %}
     </div>
 </div>
 {% endmacro %}

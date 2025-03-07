@@ -1,4 +1,8 @@
-from typing import Any, Dict, List, Optional
+"""
+Member Service Module
+"""
+
+from typing import Any, Dict, Optional
 
 from marshmallow import ValidationError
 
@@ -22,14 +26,14 @@ class MemberService(BaseService):
         Create a new member.
 
         Args:
-            form_data: Dictionary containing form data for the member.
+            form_data: Dictionary containing member data from the form.
             files: Dictionary containing uploaded files (e.g., image).
 
         Returns:
             The created Member instance.
 
         Raises:
-            ValidationError: If form data validation fails.
+            ValidationError: If validation fails.
         """
         try:
             # Process and validate form data
@@ -41,7 +45,6 @@ class MemberService(BaseService):
             # Create the member
             member = Member()
             member.create(**processed_data)
-
             return member
 
         except ValidationError as error:
@@ -55,14 +58,14 @@ class MemberService(BaseService):
 
         Args:
             uuid: The UUID of the member to update.
-            form_data: Dictionary containing updated form data.
+            form_data: Dictionary containing updated member data.
             files: Dictionary containing updated files (e.g., image).
 
         Returns:
             The updated Member instance if found, otherwise None.
 
         Raises:
-            ValidationError: If form data validation fails.
+            ValidationError: If validation fails.
         """
         try:
             # Process and validate form data
@@ -74,9 +77,7 @@ class MemberService(BaseService):
             # Retrieve the member by UUID
             member = Member.get_byuuid(uuid)
             if member:
-                # Update the member
                 member.update(**processed_data)
-
                 return member
 
             return None
@@ -84,15 +85,15 @@ class MemberService(BaseService):
         except ValidationError as error:
             raise ValidationError(error.messages) from error
 
-    def search_members_by_name(self, name: str) -> List[Dict[str, Any]]:
+    def search_members_by_name(self, name: str) -> Dict[str, Any]:
         """
         Search for members by name.
 
         Args:
-            name: The name to search for.
+            name: The search term to look for in the name field.
 
         Returns:
-            A list of dictionaries representing the found members.
+            Dictionary containing search results and pagination metadata.
         """
         return search_by_multilang_field(Member, "name", name)
 
@@ -103,11 +104,11 @@ class MemberService(BaseService):
         Process and validate form data for creating/updating a member.
 
         Args:
-            form_data: Dictionary containing form data.
-            files: Dictionary containing uploaded files.
+            form_data: Dictionary containing member data from the form.
+            files: Dictionary containing uploaded files (e.g., image).
 
         Returns:
-            A dictionary of processed and validated data.
+            Processed and validated data dictionary.
         """
         processed_data = {
             "name": parse_nested_field(form_data, "name"),

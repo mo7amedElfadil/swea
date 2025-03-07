@@ -1,4 +1,8 @@
-from typing import Any, Dict, Optional
+"""
+Research Service Module
+"""
+
+from typing import Any, Dict, List, Optional
 
 from marshmallow import ValidationError
 
@@ -6,7 +10,7 @@ from app.models.research import Research
 from app.schemas.research_schema import ResearchSchema
 from utils.db_utils import search_by_multilang_field
 from utils.file_manager import FileManager
-from utils.form_utils import parse_nested_field, parse_tags
+from utils.form_utils import parse_nested_field
 from utils.service_base import BaseService
 
 
@@ -20,7 +24,19 @@ class ResearchService(BaseService):
     def create_research(
         self, form_data: Dict[str, Any], files: Dict[str, Any]
     ) -> Research:
-        """Create a new research."""
+        """
+        Create a new research entry.
+
+        Args:
+            form_data: Dictionary containing research data from the form.
+            files: Dictionary containing uploaded files (e.g., hero_image, images).
+
+        Returns:
+            The created Research instance.
+
+        Raises:
+            ValidationError: If validation fails.
+        """
         try:
             # Process and validate form data
             processed_data = self.validate_form_data(form_data, files)
@@ -28,9 +44,9 @@ class ResearchService(BaseService):
             # Validate with schema
             self.validate_with_schema(processed_data)
 
+            # Create the research entry
             research = Research()
             research.create(**processed_data)
-
             return research
 
         except ValidationError as error:
@@ -39,7 +55,20 @@ class ResearchService(BaseService):
     def update_research(
         self, uuid: str, form_data: Dict[str, Any], files: Dict[str, Any]
     ) -> Optional[Research]:
-        """Update an existing research."""
+        """
+        Update an existing research entry.
+
+        Args:
+            uuid: The UUID of the research entry to update.
+            form_data: Dictionary containing updated research data.
+            files: Dictionary containing updated files (e.g., hero_image, images).
+
+        Returns:
+            The updated Research instance if found, otherwise None.
+
+        Raises:
+            ValidationError: If validation fails.
+        """
         try:
             # Process and validate form data
             processed_data = self.validate_form_data(form_data, files)
@@ -47,34 +76,135 @@ class ResearchService(BaseService):
             # Validate with schema
             self.validate_with_schema(processed_data)
 
+            # Retrieve the research entry by UUID
             research = Research.get_byuuid(uuid)
             if research:
                 research.update(**processed_data)
-
                 return research
+
+            return None
+
         except ValidationError as error:
             raise ValidationError(error.messages) from error
 
-    def search_research(self, title: str) -> Dict[str, Any]:
-        """Search research by title."""
+    def search_researches_by_title(self, title: str) -> Dict[str, Any]:
+        """
+        Search for research entries by title.
+
+        Args:
+            title: The search term to look for in the title field.
+
+        Returns:
+            Dictionary containing search results and pagination metadata.
+        """
         return search_by_multilang_field(Research, "title", title)
 
     def validate_form_data(
         self, form_data: Dict[str, Any], files: Dict[str, Any]
     ) -> Dict[str, Any]:
-        """Validate and process form data."""
+        """
+        Process and validate form data for creating/updating a research entry.
+
+        Args:
+            form_data: Dictionary containing research data from the form.
+            files: Dictionary containing uploaded files (e.g., hero_image, images).
+
+        Returns:
+            Processed and validated data dictionary.
+        """
         processed_data = {
             "title": parse_nested_field(form_data, "title"),
-            "author": parse_nested_field(form_data, "author"),
-            "date_of_completion": form_data.get("date_of_completion"),
-            "content": parse_nested_field(form_data, "content"),
-            "tags": parse_tags(form_data.get("tags", {})),
-            "testimonials": parse_nested_field(form_data, "testimonials"),
+            "author": {
+                "name": parse_nested_field(form_data, "author[name]"),
+                "email": (
+                    form_data.get("author[email]").strip()
+                    if form_data.get("author[email]")
+                    else None
+                ),
+            },
+            "tags": {
+                "en": self._parse_tags(form_data.get("tags[en]")),
+                "ar": self._parse_tags(form_data.get("tags[ar]")),
+            },
+            "date_of_completion": form_data.get("date_of_completion"),  # Optional field
+            "content": self._parse_indexed_fields(
+                form_data, "content"
+            ),  # Optional field
+            "testimonials": self._parse_testimonials(form_data),  # Optional field
         }
 
-        processed_data["hero_image"] = FileManager(files.get("hero_image")).save()
-        processed_data["images"] = [
-            FileManager(image).save() for image in files.get("images", [])
-        ]
+        # Handle hero_image upload
+        hero_image = files.get("hero_image")
+        if hero_image and hero_image.filename:
+            processed_data["hero_image"] = FileManager(hero_image).save()
+
+        # Handle images upload
+        images = files.getlist("images") if "images" in files else []
+        if images:
+            processed_data["images"] = [
+                FileManager(image).save() for image in images if image.filename
+            ]
 
         return processed_data
+
+    def _parse_tags(self, tags_str: Optional[str]) -> List[str]:
+        """Parse tags string into a list of trimmed tags."""
+        if not tags_str:
+            return []
+        return [tag.strip() for tag in tags_str.split(",") if tag.strip()]
+
+    def _parse_indexed_fields(
+        self, form_data: Dict[str, Any], field_prefix: str
+    ) -> List[Dict[str, str]]:
+        """Parse indexed fields like content[0][en], content[0][ar]."""
+        indexed_keys = [key for key in form_data.keys() if key.startswith(field_prefix)]
+        index_values = set([key.split("[")[1].split("]")[0] for key in indexed_keys])
+        result = []
+        for index in sorted(index_values, key=int):
+            entry = {
+                "en": (
+                    form_data.get(f"{field_prefix}[{index}][en]").strip()
+                    if form_data.get(f"{field_prefix}[{index}][en]")
+                    else ""
+                ),
+                "ar": (
+                    form_data.get(f"{field_prefix}[{index}][ar]").strip()
+                    if form_data.get(f"{field_prefix}[{index}][ar]")
+                    else ""
+                ),
+            }
+            result.append(entry)
+        return result
+
+    def _parse_testimonials(self, form_data: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """Parse testimonials fields like testimonials[0][en], testimonials[0][author]."""
+        indexed_keys = [
+            key for key in form_data.keys() if key.startswith("testimonials")
+        ]
+        index_values = set([key.split("[")[1].split("]")[0] for key in indexed_keys])
+        result = []
+        for index in sorted(index_values, key=int):
+            entry = {
+                "en": (
+                    form_data.get(f"testimonials[{index}][en]").strip()
+                    if form_data.get(f"testimonials[{index}][en]")
+                    else ""
+                ),
+                "ar": (
+                    form_data.get(f"testimonials[{index}][ar]").strip()
+                    if form_data.get(f"testimonials[{index}][ar]")
+                    else ""
+                ),
+                "author": (
+                    form_data.get(f"testimonials[{index}][author]").strip()
+                    if form_data.get(f"testimonials[{index}][author]")
+                    else ""
+                ),
+                "qualification": (
+                    form_data.get(f"testimonials[{index}][qualification]").strip()
+                    if form_data.get(f"testimonials[{index}][qualification]")
+                    else ""
+                ),
+            }
+            result.append(entry)
+        return result

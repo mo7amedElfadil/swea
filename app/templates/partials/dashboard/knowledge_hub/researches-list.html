@@ -1,0 +1,61 @@
+{% import "macros/pagination.html" as pagination %}
+<!-- Research List -->
+{% if data %}
+<div class="space-y-4">
+    {% for research in data %}
+    <div
+        class="flex justify-between items-center p-4 bg-white rounded-lg shadow-sm"
+    >
+        <!-- Research Details -->
+        <div>
+            <!-- Title -->
+            <h3 class="text-lg font-semibold text-gray-900">
+                {{ research.title[locale] | default(research.title['en']) }}
+            </h3>
+            <!-- Author -->
+            <p class="text-sm text-gray-600">
+                {{ _("by") }} {{ research.author['name'][locale] |
+                default(research.author['name']['en']) }}
+            </p>
+            <!-- Tags -->
+            <div class="mt-2 space-x-2">
+                {% for tag in research.tags[locale] |
+                default(research.tags['en']) %}
+                <span
+                    class="inline-block px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-700"
+                >
+                    {{ tag }}
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- Actions -->
+        <div class="flex space-x-2">
+            <button
+                class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none"
+                hx-get="/dashboard/knowledge-hub/update-research/{{ research.uuid }}"
+                hx-target="#tab-content"
+                hx-swap="innerHTML"
+            >
+                {{ _("edit") }}
+            </button>
+            <button
+                class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-red-100 text-red-700 hover:bg-red-200 focus:ring-2 focus:ring-red-500 focus:outline-none"
+                hx-delete="/dashboard/knowledge-hub/delete-research/{{ research.uuid }}"
+                hx-confirm="{{ _('confirm_delete_research') }}"
+                hx-target="#researches-list"
+                hx-swap="innerHTML"
+            >
+                {{ _("delete") }}
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+    <!-- Pagination -->
+    {{ pagination.pagination( page=page, total_pages=total_pages,
+    next='/dashboard/knowledge-hub/researches?page='+(page+1)|string,
+    prev='/dashboard/knowledge-hub/researches?page='+(page-1)|string ) }}
+</div>
+{% else %}
+<div class="text-center text-gray-600">{{ _("no_researches_found") }}</div>
+{% endif %}

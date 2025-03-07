@@ -1,7 +1,8 @@
 {# form_macros #}
 
 {# Text Input Field - Supports multilingual fields #}
-{% macro text_input(id, name, value, label, placeholder="", required=false, type="text") %}
+{% macro text_input(id, name, value, label, placeholder="", required=false,
+type="text", dir="ltr") %}
     <div>
         <label for="{{ id }}" class="block text-sm font-medium text-gray-700">
             {{ _(label) }}
@@ -14,12 +15,14 @@
             {% if placeholder %}placeholder="{{ _(placeholder) }}"{% endif %}
             class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
             {% if required %}required{% endif %}
+            {% if dir %}dir="{{ dir }}"{% endif %}
         />
     </div>
 {% endmacro %}
 
 {# Textarea Field #}
-{% macro textarea(id, name, value, label, rows=3, placeholder="", required=false) %}
+{% macro textarea(id, name, value, label, rows=3, placeholder="",
+required=false, dir="ltr") %}
     <div>
         <label for="{{ id }}" class="block text-sm font-medium text-gray-700">
             {{ _(label) }}
@@ -31,12 +34,32 @@
             {% if placeholder %}placeholder="{{ _(placeholder) }}"{% endif %}
             class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
             {% if required %}required{% endif %}
+            {% if dir %}dir="{{ dir }}"{% endif %}
         >{{ value }}</textarea>
     </div>
 {% endmacro %}
 
+{# Tags Input Field - Supports multilingual tags #}
+{% macro tags_input(id, name, value, label, placeholder="", example_format="", dir="ltr") %}
+    <div>
+        <label for="{{ id }}" class="block text-sm font-medium text-gray-700">
+            {{ _(label) }}
+        </label>
+        <input
+            type="text"
+            id="{{ id }}"
+            name="{{ name }}"
+            value="{{ value }}"
+            placeholder="{{ _(placeholder) }}"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm {% if dir == 'rtl' %}text-right{% endif %}"
+            dir="{{ dir }}"
+        />
+        <p class="mt-2 text-sm text-gray-500">{{ _(example_format) }}</p>
+    </div>
+{% endmacro %}
+
 {# File Upload Field #}
-{% macro file_upload(id, name, label, accept="", required=false) %}
+{% macro file_upload(id, name, label, accept="", required=false, multiple=false) %}
     <div>
         <label for="{{ id }}" class="block text-sm font-medium text-gray-700">
             {{ _(label) }}
@@ -48,6 +71,7 @@
             {% if accept %}accept="{{ accept }}"{% endif %}
             class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
             {% if required %}required{% endif %}
+            {% if multiple %}multiple{% endif %}
         />
     </div>
 {% endmacro %}

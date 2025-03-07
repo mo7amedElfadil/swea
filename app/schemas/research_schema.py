@@ -17,7 +17,7 @@ class ResearchSchema(Schema):
     )
     author = fields.Dict(
         keys=fields.Str(),
-        values=fields.Str(),
+        values=fields.Raw(),
         required=True,
         error_messages={"required": "Author is required."},
     )
@@ -43,8 +43,17 @@ class ResearchSchema(Schema):
     @validates("author")
     def validate_author(self, value: Dict[str, str]):
         """Validate that the author contains a name and email."""
-        if "name" not in value or "email" not in value:
-            raise ValidationError("Author must contain 'name' and 'email'.")
+        if (
+            "name" not in value
+            or not isinstance(value["name"], dict)
+            or not any(value["name"].values())
+        ):
+            raise ValidationError(
+                "Author must contain a 'name' with at least one language."
+            )
+
+        if "email" not in value or not isinstance(value["email"], str):
+            raise ValidationError("Author must contain a valid 'email'.")
 
     @validates("tags")
     def validate_tags(self, value: Dict[str, List[str]]):

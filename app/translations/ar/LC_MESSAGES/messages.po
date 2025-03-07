@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-07 04:24+0300\n"
+"POT-Creation-Date: 2025-03-07 13:27+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -17,7 +17,139 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.16.0\n"
+"Generated-By: Babel 2.10.3\n"
+
+#: api/v1/views/knowledge_hub.py:33
+msgid "Invalid tab"
+msgstr "تبويب غير صالح"
+
+#: api/v1/views/knowledge_hub.py:67
+msgid "Create Course"
+msgstr "إنشاء دورة"
+
+#: api/v1/views/knowledge_hub.py:77
+msgid "An error occurred while creating the course"
+msgstr "حدث خطأ أثناء إنشاء الدورة"
+
+#: api/v1/views/knowledge_hub.py:84
+msgid "Course created successfully"
+msgstr "تم إنشاء الدورة بنجاح"
+
+#: api/v1/views/knowledge_hub.py:98
+msgid "Update Course"
+msgstr "تحديث الدورة"
+
+#: api/v1/views/knowledge_hub.py:108
+msgid "An error occurred while updating the course"
+msgstr "حدث خطأ أثناء تحديث الدورة"
+
+#: api/v1/views/knowledge_hub.py:115
+msgid "Course updated successfully"
+msgstr "تم تحديث الدورة بنجاح"
+
+#: api/v1/views/knowledge_hub.py:127
+msgid "An error occurred while deleting the course"
+msgstr "حدث خطأ أثناء حذف الدورة"
+
+#: api/v1/views/knowledge_hub.py:134
+msgid "Course deleted successfully"
+msgstr "تم حذف الدورة بنجاح"
+
+#: api/v1/views/knowledge_hub.py:158
+msgid "Create Podcast"
+msgstr "إنشاء بودكاست"
+
+#: api/v1/views/knowledge_hub.py:168
+msgid "An error occurred while creating the podcast"
+msgstr "حدث خطأ أثناء إنشاء البودكاست"
+
+#: api/v1/views/knowledge_hub.py:175
+msgid "Podcast created successfully"
+msgstr "تم إنشاء البودكاست بنجاح"
+
+#: api/v1/views/knowledge_hub.py:191
+msgid "Update Podcast"
+msgstr "تحديث البودكاست"
+
+#: api/v1/views/knowledge_hub.py:201
+msgid "An error occurred while updating the podcast"
+msgstr "حدث خطأ أثناء تحديث البودكاست"
+
+#: api/v1/views/knowledge_hub.py:208
+msgid "Podcast updated successfully"
+msgstr "تم تحديث البودكاست بنجاح"
+
+#: api/v1/views/knowledge_hub.py:220
+msgid "An error occurred while deleting the podcast"
+msgstr "حدث خطأ أثناء حذف البودكاست"
+
+#: api/v1/views/knowledge_hub.py:229
+msgid "Podcast deleted successfully"
+msgstr "تم حذف البودكاست بنجاح"
+
+#: api/v1/views/knowledge_hub.py:253
+msgid "Create Research"
+msgstr "إنشاء بحث"
+
+#: api/v1/views/knowledge_hub.py:263
+msgid "An error occurred while creating the research"
+msgstr "حدث خطأ أثناء إنشاء البحث"
+
+#: api/v1/views/knowledge_hub.py:272
+msgid "Research created successfully"
+msgstr "تم إنشاء البحث بنجاح"
+
+#: api/v1/views/knowledge_hub.py:289
+msgid "Update Research"
+msgstr "تحديث البحث"
+
+#: api/v1/views/knowledge_hub.py:301
+msgid "An error occurred while updating the research"
+msgstr "حدث خطأ أثناء تحديث البحث"
+
+#: api/v1/views/knowledge_hub.py:310
+msgid "Research updated successfully"
+msgstr "تم تحديث البحث بنجاح"
+
+#: api/v1/views/knowledge_hub.py:322
+msgid "An error occurred while deleting the research"
+msgstr "حدث خطأ أثناء حذف البحث"
+
+#: api/v1/views/knowledge_hub.py:331
+msgid "Research deleted successfully"
+msgstr "تم حذف البحث بنجاح"
+
+#: api/v1/views/knowledge_hub.py:354
+msgid "Create Member"
+msgstr "إنشاء عضو"
+
+#: api/v1/views/knowledge_hub.py:364
+msgid "An error occurred while creating the member"
+msgstr "حدث خطأ أثناء إنشاء عضو الفريق"
+
+#: api/v1/views/knowledge_hub.py:371
+msgid "Member created successfully"
+msgstr "تم إنشاء عضو الفريق بنجاح"
+
+#: api/v1/views/knowledge_hub.py:385
+msgid "Update Member"
+msgstr "تحديث العضو"
+
+#: api/v1/views/knowledge_hub.py:395
+msgid "An error occurred while updating the member"
+msgstr "حدث خطأ أثناء تحديث عضو الفريق"
+
+#: api/v1/views/knowledge_hub.py:402
+msgid "Member updated successfully"
+msgstr "تم تحديث عضو الفريق بنجاح"
+
+#: api/v1/views/knowledge_hub.py:414
+msgid "An error occurred while deleting the member"
+msgstr "حدث خطأ أثناء حذف عضو الفريق"
+
+#: api/v1/views/knowledge_hub.py:421
+msgid "Member deleted successfully"
+msgstr "تم حذف عضو الفريق بنجاح"
 
 #: api/v1/views/projects.py:51
 msgid "Project created successfully"
@@ -36,9 +168,8 @@ msgid "Project deleted successfully"
 msgstr "تم حذف المشروع بنجاح"
 
 #: api/v1/views/team.py:40
-#, fuzzy
 msgid "create_team_member"
-msgstr "تحديث العضو"
+msgstr "إنشاء عضو"
 
 #: api/v1/views/team.py:50
 msgid "An error occurred while creating the team member"
@@ -288,44 +419,42 @@ msgstr "إقرأ المزيد"
 msgid "read_less"
 msgstr "إقرأ أقل"
 
-#: app/templates/macros/form_macros.html:83
+#: app/templates/macros/form_macros.html:107
 #: app/templates/partials/dashboard/new_project_form.html:64
 #: app/templates/partials/dashboard/new_project_form.html:139
 msgid "Content"
 msgstr "المحتوى"
 
-#: app/templates/macros/form_macros.html:100
+#: app/templates/macros/form_macros.html:124
 #: app/templates/partials/dashboard/new_project_form.html:202
 msgid "Add another content block"
 msgstr "أضف محتوى آخر"
 
-#: app/templates/macros/form_macros.html:110
+#: app/templates/macros/form_macros.html:134
 #: app/templates/partials/dashboard/new_project_form.html:213
 msgid "Remove this content block"
 msgstr "إزالة هذا المحتوى"
 
-#: app/templates/macros/form_macros.html:121
+#: app/templates/macros/form_macros.html:145
 #: app/templates/partials/dashboard/new_project_form.html:226
 #: app/templates/partials/dashboard/new_project_form.html:328
 msgid "Testimonial"
 msgstr "التوصيات"
 
-#: app/templates/macros/form_macros.html:140
+#: app/templates/macros/form_macros.html:164
 #: app/templates/partials/dashboard/new_project_form.html:417
 msgid "Add another testimonial block"
 msgstr "أضف توصية أخرى"
 
-#: app/templates/macros/form_macros.html:150
+#: app/templates/macros/form_macros.html:174
 #: app/templates/partials/dashboard/new_project_form.html:428
 msgid "Remove this testimonial block"
 msgstr "إزالة هذه التوصية"
 
-#: app/templates/macros/knowledge_hub_tabs.html:71
 #: app/templates/macros/pagination.html:9
 msgid "previous"
 msgstr "السابق"
 
-#: app/templates/macros/knowledge_hub_tabs.html:84
 #: app/templates/macros/pagination.html:21
 msgid "next"
 msgstr "التالي"
@@ -385,6 +514,8 @@ msgid "hero_image"
 msgstr "صورة البطاقة"
 
 #: app/templates/partials/dashboard/edit_project_form.html:52
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:69
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:68
 #: app/templates/partials/dashboard/team_member-form.html:161
 msgid "current_image"
 msgstr "الصورة الحالية"
@@ -394,12 +525,10 @@ msgid "update_project"
 msgstr "تحديث المشروع"
 
 #: app/templates/partials/dashboard/knowledge-hub.html:9
-#, fuzzy
 msgid "knowledge_hub"
 msgstr "مركز المعرفة"
 
 #: app/templates/partials/dashboard/knowledge-hub.html:38
-#, fuzzy
 msgid "researches"
 msgstr "بحوث"
 
@@ -672,20 +801,25 @@ msgid "content"
 msgstr "المحتوى"
 
 #: app/templates/partials/dashboard/news-form.html:60
-#, fuzzy
 msgid "update"
-msgstr "تحديث المشروع"
+msgstr "تحديث"
 
 #: app/templates/partials/dashboard/news-form.html:60
 msgid "create"
 msgstr "إنشاء"
 
+#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:45
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:45
+#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:40
 #: app/templates/partials/dashboard/news-list.html:21
 #: app/templates/partials/dashboard/project-list.html:50
 #: app/templates/partials/dashboard/team-list.html:45
 msgid "edit"
 msgstr "تعديل"
 
+#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:54
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:54
+#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:49
 #: app/templates/partials/dashboard/news-list.html:29
 #: app/templates/partials/dashboard/project-list.html:59
 #: app/templates/partials/dashboard/team-list.html:54
@@ -694,12 +828,13 @@ msgstr "حذف"
 
 #: app/templates/partials/dashboard/news-list.html:41
 msgid "empty_news"
-msgstr ""
+msgstr "ﻻ توجد أخبار حاليً"
 
 #: app/templates/partials/dashboard/news.html:5
 msgid "add_news"
 msgstr "إضافة خبر"
 
+#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:17
 #: app/templates/partials/dashboard/project-list.html:18
 msgid "by"
 msgstr "بواسطة"
@@ -731,6 +866,38 @@ msgstr "لا توجد أعضاء حالياً"
 #: app/templates/partials/dashboard/team.html:5
 msgid "team_members"
 msgstr "أعضاء الفريق"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:50
+msgid "confirm_delete_course"
+msgstr "هل أنت متأكد من حذف الدورة؟"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:65
+msgid "no_courses_found"
+msgstr "لا توجد دورات حالياً"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:50
+msgid "confirm_delete_podcast"
+msgstr "هل أنت متأكد من حذف البودكاست؟"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:65
+msgid "no_podcasts_found"
+msgstr "لا توجد بودكاست حالياً"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:117
+msgid "current_hero_image"
+msgstr "الصورة الحالية"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:135
+msgid "confirm_delete_image"
+msgstr "هل أنت متأكد من حذف الصورة؟"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:45
+msgid "confirm_delete_research"
+msgstr "هل أنت متأكد من حذف البحث؟"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:60
+msgid "no_researches_found"
+msgstr "لا توجد بحوث حالياً"
 
 #: app/templates/partials/news/cards.html:35
 #: app/templates/partials/projects/cards.html:35
@@ -780,9 +947,6 @@ msgstr "المزيد"
 #~ msgid "swea_news"
 #~ msgstr "الفريق"
 
-#~ msgid "An error occurred while creating the project"
-#~ msgstr "حدث خطأ أثناء إنشاء المشروع"
-
 #~ msgid "Content Image"
 #~ msgstr "الصور المرفقة"
 
@@ -793,7 +957,4 @@ msgstr "المزيد"
 
 #~ msgid "add_kh"
 #~ msgstr "اضفاة عنصر"
-
-#~ msgid "search_team_member"
-#~ msgstr "ابحث عن عضو"
 

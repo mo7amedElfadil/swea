@@ -1,0 +1,317 @@
+{% from "macros/form_macros.html" import text_input, textarea, file_upload,
+tags_input, content_block, testimonial_block %}
+
+<form
+    hx-post="{{ form_action }}"
+    hx-target="#tab-content"
+    hx-swap="innerHTML"
+    hx-encoding="multipart/form-data"
+    enctype="multipart/form-data"
+    class="space-y-6"
+>
+    <!-- Title -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {{ text_input( id="title_en", name="title[en]",
+        value=research.title['en'] if research else '', label="title_english",
+        placeholder="enter_title_in_english", required=true ) }} {{ text_input(
+        id="title-ar", name="title[ar]", value=research.title['ar'] if research
+        else '', label="title_arabic", placeholder="enter_title_in_arabic",
+        required=true, dir="rtl" ) }}
+    </div>
+
+    <!-- Author -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {{ text_input( id="author_name_en", name="author[name][en]",
+        value=research.author['name']['en'] if research and research.author else
+        '', label="author_name_english",
+        placeholder="enter_author_name_in_english", required=true ) }} {{
+        text_input( id="author_name_ar", name="author[name][ar]",
+        value=research.author['name']['ar'] if research and research.author else
+        '', label="author_name_arabic",
+        placeholder="enter_author_name_in_arabic", required=true, dir="rtl" ) }}
+        <!-- Author email -->
+        {{ text_input( id="author_email", name="author[email]",
+        value=research.author['email'] if research and research.author else '',
+        label="author_email", placeholder="enter_author_email", type="email" )
+        }}
+    </div>
+
+    <!-- Date of Completion -->
+    {{ text_input("date_of_completion", "date_of_completion",
+    research.date_of_completion.strftime('%Y-%m-%d') if research and
+    research.date_of_completion else '', "date_of_completion", type="date") }}
+
+    <!-- Content Block -->
+    <div id="content-block" class="space-y-4">
+        <div class="bg-white shadow-sm rounded-lg p-6 border border-gray-200">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">Content</h3>
+            <div class="space-y-4">
+                <!-- English Content -->
+                <div>
+                    <label
+                        for="content-en"
+                        class="block text-sm font-medium text-gray-700"
+                    >
+                        English Content
+                    </label>
+                    <div id="quill-en" class="bg-white"></div>
+                    <input
+                        type="hidden"
+                        id="content-en"
+                        name="content[0][en]"
+                        value="{{ research.content[0]['en'] if research else '' }}"
+                    />
+                </div>
+
+                <!-- Arabic Content -->
+                <div>
+                    <label
+                        for="content-ar"
+                        class="block text-sm font-medium text-gray-700"
+                    >
+                        Arabic Content
+                    </label>
+                    <div id="quill-ar" class="bg-white"></div>
+                    <input
+                        type="hidden"
+                        id="content-ar"
+                        name="content[0][ar]"
+                        value="{{ research.content[0]['ar'] if research else '' }}"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonial Blocks -->
+    <div id="testimonials" class="space-y-4">
+        {% if research and research.testimonials %} {% for index, testimonial in
+        research.testimonials|enumerate %} {{ testimonial_block(index,
+        testimonial['en'], testimonial['ar'], testimonial['author'],
+        testimonial['qualification']) }} {% endfor %} {% else %} {{
+        testimonial_block(0) }} {% endif %}
+    </div>
+
+    <!-- Template for Additional Testimonial Blocks -->
+    <template id="testimonial-template">{{ testimonial_block("0") }}</template>
+
+    <!-- Tags -->
+    {{ tags_input( id="tags-en", name="tags[en]", value=research.tags['en'] |
+    join(',') if research and research.tags['en'] else '', label="tags",
+    placeholder="enter_en_tags_comma_separated",
+    example_format="example_tags_format", dir="ltr" ) }} {{ tags_input(
+    id="tags-ar", name="tags[ar]", value=research.tags['ar'] | join(',') if
+    research and research.tags['ar'] else '', label="tags",
+    placeholder="enter_ar_tags_comma_separated",
+    example_format="example_tags_format", dir="rtl" ) }}
+
+    <!-- Hero Image Upload -->
+    {{ file_upload("hero_image", "hero_image", "hero_image", accept="image/*")
+    }} {% if research and research.hero_image %}
+    <div class="flex items-center space-x-4">
+        <img
+            src="{{ url_for('static', filename=research.hero_image) }}"
+            alt="{{ research.title['en'] }}"
+            class="w-24 h-24 object-cover rounded-md"
+        />
+        <span class="text-sm text-gray-600">{{ _("current_hero_image") }}</span>
+    </div>
+    {% endif %}
+
+    <!-- Additional Images Upload -->
+    {{ file_upload("images", "images", "additional_images", accept="image/*",
+    multiple=true) }} {% if research and research.images %}
+    <div class="flex flex-wrap space-x-4">
+        {% for image in research.images %}
+        <div class="relative">
+            <img
+                src="{{ url_for('static', filename=image) }}"
+                alt="{{ research.title['en'] }}"
+                class="w-24 h-24 object-cover rounded-md"
+            />
+            <span
+                class="absolute top-0 right-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-pointer delete-image"
+                hx-delete="/dashboard/delete-research-image/{{ research.uuid }}?image={{ image }}"
+                hx-confirm="{{ _('confirm_delete_image') }}"
+                hx-target="#tab-content"
+                hx-swap="innerHTML"
+            >
+                &times;
+            </span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Submit Button -->
+    <div>
+        <button
+            type="submit"
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+        >
+            {{ submit_text }}
+        </button>
+    </div>
+</form>
+<!-- Include Quill JS -->
+<script
+    src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"
+    onload="initQuillEditors()"
+></script>
+<script>
+    // Initialize Quill editors
+    function initQuillEditors() {
+        // Initialize English Quill editor
+        const quillEn = new Quill('#quill-en', {
+            theme: 'snow',
+        })
+
+        // Initialize Arabic Quill editor
+        const quillAr = new Quill('#quill-ar', {
+            theme: 'snow',
+        })
+
+        // Set Quill content if available
+        const contentEn = document.getElementById('content-en').value
+        const contentAr = document.getElementById('content-ar').value
+
+        if (contentEn) {
+            quillEn.setContents(JSON.parse(contentEn))
+        }
+
+        if (contentAr) {
+            quillAr.setContents(JSON.parse(contentAr))
+        }
+
+        // Update hidden inputs with Quill content on form submission
+        const form = document.querySelector('form')
+        if (form) {
+            form.addEventListener('htmx:configRequest', (event) => {
+                const enContent = quillEn.getContents()
+                const arContent = quillAr.getContents()
+
+                event.detail.parameters['content[0][en]'] =
+                    JSON.stringify(enContent)
+                event.detail.parameters['content[0][ar]'] =
+                    JSON.stringify(arContent)
+            })
+        }
+    }
+
+    // Call the initialization function
+    document.addEventListener('DOMContentLoaded', initQuillEditors)
+</script>
+<script>
+    ;(function () {
+        const initializeDynamicBlocks = (
+            containerId,
+            templateId,
+            addTemplateButtonSelector,
+            removeTemplateButtonSelector,
+            titlePrefix
+        ) => {
+            let nodes = []
+            let nodeCount = 0
+            const container = document.getElementById(containerId)
+            const template = document.getElementById(templateId)
+
+            // Function to generate a title for the block
+            const generateTitle = (id) => {
+                const label = document.createElement('label')
+                label.textContent = `${titlePrefix} ${id}`
+                label.setAttribute(
+                    'class',
+                    'text-sm font-medium text-gray-700 capitalize'
+                )
+                return label
+            }
+
+            // Function to add a new block
+            const addBlock = () => {
+                nodeCount++
+                const clone = template.content.cloneNode(true)
+                nodes.push(clone)
+
+                // Add event listeners to the cloned block's buttons
+                clone
+                    .querySelector(addTemplateButtonSelector)
+                    .addEventListener('click', addBlock)
+                clone
+                    .querySelector(removeTemplateButtonSelector)
+                    .addEventListener('click', removeBlock)
+
+                // Update IDs and names for the cloned block
+                const blockElement = clone.querySelector('div')
+                blockElement.setAttribute('id', nodeCount - 1)
+                blockElement.prepend(generateTitle(nodeCount))
+
+                // Update all fields (textarea and input) with the correct index
+                const fields = blockElement.querySelectorAll('textarea, input')
+                fields.forEach((field) => {
+                    const name = field.getAttribute('name')
+                    if (name) {
+                        const newName = name.replace(
+                            /\[\d+\]/,
+                            `[${nodeCount - 1}]`
+                        )
+                        field.setAttribute('name', newName)
+                    }
+                })
+
+                // Append the cloned block to the container
+                container.appendChild(clone)
+
+                // Hide the "Add" button in the second-to-last block
+                const secondToLast =
+                    container.children[container.children.length - 2]
+                if (secondToLast) {
+                    secondToLast
+                        .querySelector(addTemplateButtonSelector)
+                        .classList.add('hidden')
+                }
+            }
+
+            // Function to remove a block
+            const removeBlock = (evt) => {
+                nodeCount--
+                const id = parseInt(
+                    evt.currentTarget.parentElement.parentElement.getAttribute(
+                        'id'
+                    )
+                )
+                nodes[id] = null
+                evt.currentTarget.parentElement.parentElement.remove()
+
+                // Show the "Add" button in the last remaining block
+                if (nodeCount === 1) {
+                    container.children[2]
+                        .querySelector(addTemplateButtonSelector)
+                        .classList.remove('hidden')
+                } else if (nodeCount === 0) {
+                    nodes = []
+                }
+            }
+
+            // Add event listener to the "Add More" button
+            const addMoreButtons = container.querySelectorAll('.add-template')
+            addMoreButtons.forEach((button) => {
+                button.addEventListener('click', addBlock)
+            })
+
+            // Add event listener to the "Remove" button
+            const removeButtons = container.querySelectorAll('.remove-template')
+            removeButtons.forEach((button) => {
+                button.addEventListener('click', removeBlock)
+            })
+        }
+
+        // Initialize "Testimonials" section
+        initializeDynamicBlocks(
+            'testimonials', // Container ID
+            'testimonial-template', // Template ID
+            '#add-testimonial', // Add Button Selector
+            '.remove-testimonial', // Remove Button Selector
+            'Testimonial' // Title Prefix
+        )
+    })()
+</script>

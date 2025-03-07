@@ -95,15 +95,4 @@ if update else '' } %}
                   evt.detail.parameters['description[en]'] = content
               })
       }
-
-    /*document.addEventListener('htmx:afterRequest',(evt)=>{
-      if(evt.detail.elt.id === 'create-news'){
-        console.log('Form submitted')
-        quill.root.innerHTML = ''
-      }
-      const form = document.getElementById('create-news');
-      for (const input of form.querySelectorAll('input, textarea')) {
-        input.value = "";
-      }
-    })*/
 </script>

@@ -1,5 +1,6 @@
-{% from "macros/form.html" import select %} {% from "macros/form_macros.html"
-import text_input, textarea, file_upload, tags_input %}
+{% from "macros/modal.html" import modal %} {% from "macros/form.html" import
+select %} {% from "macros/form_macros.html" import text_input, textarea,
+file_upload, tags_input %}
 <form
     id="course-form"
     hx-target="#tab-content"
@@ -98,6 +99,8 @@ import text_input, textarea, file_upload, tags_input %}
             endif%}
         </button>
     </div>
+    <!-- modal -->
+    {{modal()}}
 </form>
 
 {% block extra_scripts %}
@@ -107,7 +110,6 @@ import text_input, textarea, file_upload, tags_input %}
             evt.detail.parameters['members'] =
                 document.getElementById('course-members').dataset.members
         }
-        console.log(evt.detail.parameters)
     })
 </script>
 {% endblock %}

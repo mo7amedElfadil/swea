@@ -1,7 +1,7 @@
-{% macro render_knowledge_hub_section(title, items, add_endpoint,
+{% macro render_knowledge_hub_section(title, data, add_endpoint,
 search_endpoint, page, total_pages, search_placeholder, item_type) %}
 <div
-    id="modal-container"
+    id="kh-tab-container"
     class="bg-primary-50 rounded-xl shadow-sm transition-all duration-200"
 >
     <!-- Header Section -->
@@ -10,7 +10,7 @@ search_endpoint, page, total_pages, search_placeholder, item_type) %}
         <button
             class="flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-600 text-white hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:outline-none"
             hx-get="{{ add_endpoint }}"
-            hx-target="#modal-container"
+            hx-target="#kh-tab-container"
             hx-swap="innerHTML"
         >
             <img
@@ -48,7 +48,7 @@ search_endpoint, page, total_pages, search_placeholder, item_type) %}
     <!-- Item List -->
     <div id="{{ item_type }}-list">
         <div class="space-y-4">
-            {% for item in items %}
+            {% for item in data %}
             <div class="p-4 bg-white rounded-lg shadow-sm">
                 <h4 class="text-lg font-medium text-gray-900">
                     {{ item.title }}

@@ -1,6 +1,6 @@
 <!-- Researches Tab Content -->
 {% from "macros/knowledge_hub_tabs.html" import render_knowledge_hub_section %}
-{{ render_knowledge_hub_section( title="researches", items=researches,
+{{ render_knowledge_hub_section( title="researches", data=data,
 add_endpoint="/dashboard/new-research", search_endpoint="/dashboard/researches",
 page=page, total_pages=total_pages, search_placeholder="search_research",
 item_type="researches" ) }}

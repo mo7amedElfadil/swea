@@ -34,4 +34,38 @@ accept='', required=True)%}
         />
     </div>
 </div>
+
+{% endmacro %} {% macro textarea(id='', name='', value='') %}
+<div>
+    <label
+        for="editor"
+        class="mb-1 block text-sm font-medium text-gray-700 capitalize"
+    >
+        {{_('course_desc')}}
+    </label>
+    <textarea
+        id="{{id}}"
+        name="{{name}}"
+        value="{{value}}"
+        rows="3"
+        placeholder="{{ _('content_english_placeholder') }}"
+        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+    ></textarea>
+</div>
+{% endmacro %} {% macro select(id='', name='', label='', options=[],
+selected='') %}
+<div>
+    <label for="{{id}}" class="block text-sm font-medium text-gray-700">
+        {{ label }}
+    </label>
+    <select
+        id="{{id}}"
+        name="{{name}}"
+        class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
+    >
+        {% for val, txt in options %}
+        <option value="{{val}}">{{ txt }}</option>
+        {% endfor %}
+    </select>
+</div>
 {% endmacro %}

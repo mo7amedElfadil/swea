@@ -14,21 +14,47 @@ course_service = CourseService()
 def knowledge_hub_tabs():
     """knowledge-hub tabs."""
     tab_query = request.args.get("tab", "courses")
-    tab_mapper = {
-        "courses": "partials/dashboard/knowledge_hub/courses.html",
-        "podcasts": "partials/dashboard/knowledge_hub/podcasts.html",
-        "researches": "partials/dashboard/knowledge_hub/researches.html",
-    }
-
-    if request.headers.get("hx-tab"):
-        return make_response(
-            render_template(
-                tab_mapper.get(
-                    tab_query, "partials/dashboard/knowledge_hub/courses.html"
+    tab_content = dict(
+            courses=dict(
+                temp="partials/dashboard/knowledge_hub/courses.html",
+                data=dict
+                ),
+            podcasts=dict(
+                temp="partials/dashboard/knowledge_hub/podcasts.html",
+                data=dict
+                ),
+            researches=dict(
+                temp="partials/dashboard/knowledge_hub/researches.html",
+                data=dict
                 ),
             )
+
+    if request.headers.get("hx-tab"):
+        template = tab_content.get(tab_query, {}).get("temp")
+        data = tab_content.get(tab_query,{}).get("data", lambda : {})()
+        return make_response(
+            render_template(template, **data)
         )
     return dict()
+
+
+@bp.route("/dashboard/knowledge-hub/form", methods=["GET"])
+def knowledge_hub_form():
+    """knowledge-hub form."""
+    query = request.args.get("q", "courses")
+    form_content = dict(
+        courses="partials/dashboard/knowledge_hub/course-form.html",
+        podcasts="partials/dashboard/knowledge_hub/podcast-form.html",
+        researches="partials/dashboard/knowledge_hub/research-form.html",
+    )
+
+    return make_response(render_template(
+        form_content.get(
+            query,
+            "partials/dashboard/knowledge-hub/course-form.html"
+            )
+        )
+    )
 
 
 @bp.route("/dashboard/knowledge-hub/courses", methods=["GET"])

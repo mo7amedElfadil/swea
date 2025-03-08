@@ -1,9 +1,25 @@
 {% import "macros/icons.html" as icons %}
-<div class="w-full h-full min-h-[300px]">
+<div class="relative w-full h-full min-h-[300px] flex gap-6 bg-red-200">
     {% if not data %}
     <div class="w-full h-full grid place-items-center">
         <span>{{icons.research(cls='size-24')}}</span>
         <p class="text-slate-500">{{_("empty research")}}</p>
     </div>
-    {% endif %}
+    {% else %}
+    <button
+        id="left-arrow"
+        class="absolute size-10 p-2 bg-black rounded-full {% if locale == 'ar'%}left-0{% else %}right-0{% endif %}"
+    >
+        <img
+            class="size-6 {% if locale == 'en'%}rotate-180{% endif %}"
+            src="{{url_for('static',filename='icons/left-arrow.svg')}}"
+            alt="left arrow"
+        />
+    </button>
+
+    {% for item in data %}
+    <div
+        class="shrink-0 w-[200px] h-[330px] bg-white shadow-md rounded-lg p-4"
+    ></div>
+    {% endfor %} {% endif %}
 </div>

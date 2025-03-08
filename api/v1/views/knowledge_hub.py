@@ -40,7 +40,12 @@ def get_knowledge_hub_data():
 
     data = service.get_all(page=page, deleted_at=None)
     # Render the appropriate template
-    return make_response(render_template(template_mapper[tab], **data))
+    return make_response(render_template(
+        template_mapper[tab],
+        **data,
+        active_tab=tab
+        )
+    )
 
 
 @bp.route("/dashboard/knowledge-hub/form", methods=["GET"])

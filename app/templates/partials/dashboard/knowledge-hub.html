@@ -16,39 +16,39 @@
     >
         <!-- Courses Tab -->
         <button
-            class="py-2 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent sm:px-4"
+            class="py-2 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent sm:px-4 aria-selected:bg-primary-200"
             hx-get="/dashboard/knowledge-hub?tab=courses"
             hx-target="#kh-content"
             hx-swap="innerHTML"
             hx-headers='{"hx-tab": "true"}'
-            role="tab"
-            aria-selected="{{ 'true' if active_tab == 'courses' else 'false' }}"
+            role="kh-tab"
+            aria-selected="true"
         >
             {{ _("courses") }}
         </button>
 
         <!-- Researches Tab -->
         <button
-            class="py-2 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent sm:px-4"
+            class="py-2 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent sm:px-4 aria-selected:bg-primary-200"
             hx-get="/dashboard/knowledge-hub?tab=researches"
             hx-target="#kh-content"
             hx-swap="innerHTML"
             hx-headers='{"hx-tab": "true"}'
-            role="tab"
-            aria-selected="{{ 'true' if active_tab == 'researches' else 'false' }}"
+            role="kh-tab"
+            aria-selected="false"
         >
             {{ _("researches") }}
         </button>
 
         <!-- Podcasts Tab -->
         <button
-            class="py-2 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent sm:px-4"
+            class="py-2 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent sm:px-4 aria-selected:bg-primary-200"
             hx-get="/dashboard/knowledge-hub?tab=podcasts"
             hx-target="#kh-content"
             hx-swap="innerHTML"
             hx-headers='{"hx-tab": "true"}'
-            role="tab"
-            aria-selected="{{ 'true' if active_tab == 'podcasts' else 'false' }}"
+            role="kh-tab"
+            aria-selected="false"
         >
             {{ _("podcasts") }}
         </button>
@@ -59,3 +59,17 @@
         {% include 'partials/dashboard/knowledge_hub/courses.html' %}
     </div>
 </div>
+
+<script charset="utf-8">
+    document.querySelectorAll('[role="kh-tab"]').forEach((tab) => {
+        tab.addEventListener('click', (e) => {
+            const tabs = document.querySelectorAll('[role="kh-tab"]')
+            tabs.forEach((t) => {
+                t.setAttribute('aria-selected', 'false')
+                t.classList.remove('bg-primary-200')
+            })
+            tab.setAttribute('aria-selected', 'true')
+            tab.classList.add('bg-primary-200')
+        })
+    })
+</script>

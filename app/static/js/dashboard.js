@@ -5,7 +5,7 @@ if (!window.dashboardInitialized) {
   // Update the active tab visually
   const updateActiveTab = (activeTab) => {
     document
-      .querySelectorAll("[role='tab']")
+      .querySelectorAll("[role='db-tab']")
       .forEach((tab) =>
         tab.setAttribute("aria-selected", tab === activeTab ? "true" : "false"),
       );
@@ -19,7 +19,7 @@ if (!window.dashboardInitialized) {
   const restoreActiveTabFromLocalStorage = () => {
     const savedQuery = localStorage.getItem("activeTabQuery");
     if (savedQuery) {
-      const activeTab = [...document.querySelectorAll("[role='tab']")].find(
+      const activeTab = [...document.querySelectorAll("[role='db-tab']")].find(
         (tab) => tab.getAttribute("hx-get")?.includes(savedQuery),
       );
       if (activeTab) {
@@ -35,7 +35,7 @@ if (!window.dashboardInitialized) {
 
   // Handle tab clicks using event delegation
   tabsContainer.addEventListener("click", (event) => {
-    const tab = event.target.closest("[role='tab']");
+    const tab = event.target.closest("[role='db-tab']");
     if (tab) {
       const queryParam = tab.getAttribute("hx-get").split("?q=")[1];
       saveActiveTabToLocalStorage(queryParam);
@@ -47,7 +47,7 @@ if (!window.dashboardInitialized) {
   tabsContainer.addEventListener("htmx:beforeSwap", (event) => {
     if (event.detail.xhr.getResponseHeader("hx-tab")) {
       const queryParam = event.detail.requestConfig.parameters.q;
-      const activeTab = [...document.querySelectorAll("[role='tab']")].find(
+      const activeTab = [...document.querySelectorAll("[role='db-tab']")].find(
         (tab) => tab.getAttribute("hx-get")?.includes(queryParam),
       );
       if (activeTab) {

@@ -2,8 +2,19 @@
 tags_input, content_block, testimonial_block %}
 
 <form
-    hx-post="{{ form_action }}"
-    hx-target="#tab-content"
+    {%
+    if
+    update
+    %}
+    hx-patch="/dashboard/knowledge-hub/researches/{{uuid}}"
+    {%
+    else
+    %}
+    hx-post="/dashboard/knowledge-hub/researches"
+    {%
+    endif
+    %}
+    hx-target="#kh-content"
     hx-swap="innerHTML"
     hx-encoding="multipart/form-data"
     enctype="multipart/form-data"
@@ -11,35 +22,33 @@ tags_input, content_block, testimonial_block %}
 >
     <!-- Title -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {{ text_input( id="title_en", name="title[en]",
-        value=research.title['en'] if research else '', label="title_english",
+        {{ text_input( id="title_en", name="title[en]", value=title['en'] if
+        title else '', label="title_english",
         placeholder="enter_title_in_english", required=true ) }} {{ text_input(
-        id="title-ar", name="title[ar]", value=research.title['ar'] if research
-        else '', label="title_arabic", placeholder="enter_title_in_arabic",
+        id="title-ar", name="title[ar]", value=title['ar'] if title else '',
+        label="title_arabic", placeholder="enter_title_in_arabic",
         required=true, dir="rtl" ) }}
     </div>
 
     <!-- Author -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {{ text_input( id="author_name_en", name="author[name][en]",
-        value=research.author['name']['en'] if research and research.author else
-        '', label="author_name_english",
-        placeholder="enter_author_name_in_english", required=true ) }} {{
-        text_input( id="author_name_ar", name="author[name][ar]",
-        value=research.author['name']['ar'] if research and research.author else
-        '', label="author_name_arabic",
-        placeholder="enter_author_name_in_arabic", required=true, dir="rtl" ) }}
+        value=author['name']['en'] if author else '',
+        label="author_name_english", placeholder="enter_author_name_in_english",
+        required=true ) }} {{ text_input( id="author_name_ar",
+        name="author[name][ar]", value=author['name']['ar'] if author else '',
+        label="author_name_arabic", placeholder="enter_author_name_in_arabic",
+        required=true, dir="rtl" ) }}
         <!-- Author email -->
         {{ text_input( id="author_email", name="author[email]",
-        value=research.author['email'] if research and research.author else '',
-        label="author_email", placeholder="enter_author_email", type="email" )
-        }}
+        value=author['email'] if author else '', label="author_email",
+        placeholder="enter_author_email", type="email" ) }}
     </div>
 
     <!-- Date of Completion -->
     {{ text_input("date_of_completion", "date_of_completion",
-    research.date_of_completion.strftime('%Y-%m-%d') if research and
-    research.date_of_completion else '', "date_of_completion", type="date") }}
+    date_of_completion.strftime('%Y-%m-%d') if date_of_completion else '',
+    "date_of_completion", type="date") }}
 
     <!-- Content Block -->
     <div id="content-block" class="space-y-4">
@@ -59,7 +68,7 @@ tags_input, content_block, testimonial_block %}
                         type="hidden"
                         id="content-en"
                         name="content[0][en]"
-                        value="{{ research.content[0]['en'] if research else '' }}"
+                        value="{{ content[0]['en'] if content else '' }}"
                     />
                 </div>
 
@@ -76,7 +85,7 @@ tags_input, content_block, testimonial_block %}
                         type="hidden"
                         id="content-ar"
                         name="content[0][ar]"
-                        value="{{ research.content[0]['ar'] if research else '' }}"
+                        value="{{ content[0]['ar'] if content else '' }}"
                     />
                 </div>
             </div>
@@ -85,33 +94,30 @@ tags_input, content_block, testimonial_block %}
 
     <!-- Testimonial Blocks -->
     <div id="testimonials" class="space-y-4">
-        {% if research and research.testimonials %} {% for index, testimonial in
-        research.testimonials|enumerate %} {{ testimonial_block(index,
-        testimonial['en'], testimonial['ar'], testimonial['author'],
-        testimonial['qualification']) }} {% endfor %} {% else %} {{
-        testimonial_block(0) }} {% endif %}
+        {% if testimonials %} {% for testimonial in testimonials %} {{
+        testimonial_block(loop.index0, testimonial['en'], testimonial['ar'],
+        testimonial['author'], testimonial['qualification']) }} {% endfor %} {%
+        else %} {{ testimonial_block(0) }} {% endif %}
     </div>
 
     <!-- Template for Additional Testimonial Blocks -->
     <template id="testimonial-template">{{ testimonial_block("0") }}</template>
 
     <!-- Tags -->
-    {{ tags_input( id="tags-en", name="tags[en]", value=research.tags['en'] |
-    join(',') if research and research.tags['en'] else '', label="tags",
-    placeholder="enter_en_tags_comma_separated",
+    {{ tags_input( id="tags-en", name="tags[en]", value=tags['en'] | join(',')if
+    tags else '', label="tags", placeholder="enter_en_tags_comma_separated",
     example_format="example_tags_format", dir="ltr" ) }} {{ tags_input(
-    id="tags-ar", name="tags[ar]", value=research.tags['ar'] | join(',') if
-    research and research.tags['ar'] else '', label="tags",
-    placeholder="enter_ar_tags_comma_separated",
+    id="tags-ar", name="tags[ar]", value=tags['ar'] | join(',') if tags else '',
+    label="tags", placeholder="enter_ar_tags_comma_separated",
     example_format="example_tags_format", dir="rtl" ) }}
 
     <!-- Hero Image Upload -->
     {{ file_upload("hero_image", "hero_image", "hero_image", accept="image/*")
-    }} {% if research and research.hero_image %}
+    }} {% if hero_image %}
     <div class="flex items-center space-x-4">
         <img
-            src="{{ url_for('static', filename=research.hero_image) }}"
-            alt="{{ research.title['en'] }}"
+            src="{{ url_for('static', filename=hero_image) }}"
+            alt="{{ title['en'] }}"
             class="w-24 h-24 object-cover rounded-md"
         />
         <span class="text-sm text-gray-600">{{ _("current_hero_image") }}</span>
@@ -120,18 +126,18 @@ tags_input, content_block, testimonial_block %}
 
     <!-- Additional Images Upload -->
     {{ file_upload("images", "images", "additional_images", accept="image/*",
-    multiple=true) }} {% if research and research.images %}
+    multiple=true) }} {% if images %}
     <div class="flex flex-wrap space-x-4">
-        {% for image in research.images %}
+        {% for image in images %}
         <div class="relative">
             <img
                 src="{{ url_for('static', filename=image) }}"
-                alt="{{ research.title['en'] }}"
+                alt="{{ title['en'] }}"
                 class="w-24 h-24 object-cover rounded-md"
             />
             <span
                 class="absolute top-0 right-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-pointer delete-image"
-                hx-delete="/dashboard/delete-research-image/{{ research.uuid }}?image={{ image }}"
+                hx-delete="/dashboard/delete-research-image/{{ uuid }}?image={{ image }}"
                 hx-confirm="{{ _('confirm_delete_image') }}"
                 hx-target="#tab-content"
                 hx-swap="innerHTML"
@@ -149,7 +155,8 @@ tags_input, content_block, testimonial_block %}
             type="submit"
             class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
         >
-            {{ submit_text }}
+            {% if update %} {{ _('update') }} {% else %} {{ _('create') }} {%
+            endif %}
         </button>
     </div>
 </form>
@@ -306,12 +313,12 @@ tags_input, content_block, testimonial_block %}
         }
 
         // Initialize "Testimonials" section
-        initializeDynamicBlocks(
-            'testimonials', // Container ID
-            'testimonial-template', // Template ID
-            '#add-testimonial', // Add Button Selector
-            '.remove-testimonial', // Remove Button Selector
-            'Testimonial' // Title Prefix
-        )
+        //initializeDynamicBlocks(
+        //    'testimonials', // Container ID
+        //    'testimonial-template', // Template ID
+        //    '#add-testimonial', // Add Button Selector
+        //    '.remove-testimonial', // Remove Button Selector
+        //    'Testimonial' // Title Prefix
+        //)
     })()
 </script>

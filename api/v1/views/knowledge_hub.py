@@ -48,31 +48,33 @@ def knowledge_hub_form():
     """knowledge-hub form."""
     method = request.args.get("m", "CREATE")
     query = request.args.get("q", "courses")
+    uuid = request.args.get("uuid", None)
     form_content = dict(
         courses=dict(
             temp="partials/dashboard/knowledge_hub/courses-form.html",
-            data=CourseService().get_all
+            data=CourseService().get_by_uuid
             ),
         podcasts=dict(
             temp="partials/dashboard/knowledge_hub/podcasts-form.html",
-            data=PodcastService().get_all
+            data=PodcastService().get_by_uuid
             ),
         researches=dict(
             temp="partials/dashboard/knowledge_hub/researches-form.html",
-            data=ResearchService().get_all
+            data=ResearchService().get_by_uuid
             )
     )
 
     template = form_content.get(query, {}).get("temp")
     if method == "UPDATE":
-        data = form_content.get(query).get("data", lambda: {})()
+        data = form_content.get(query).get("data", lambda: {})(uuid)
     else:
         data = {}
 
+    print("============DATA============", data)
     return make_response(render_template(
         template,
-        data=data,
-        update=method == "UPDATE"
+        update=method == "UPDATE",
+        **data,
         )
     )
 

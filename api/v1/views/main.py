@@ -13,9 +13,11 @@ from api.v1.views import bp
 from app.services.news import NewsService
 from app.services.project_service import ProjectService
 from app.services.team_service import TeamService
+from app.services.course_service import CourseService
+from app.services.podcast_service import PodcastService
+from app.services.research_service import ResearchService
 from config import Config
 from utils.image_processing import ImageProcessing
-from utils.map_i18n import normailze_i18n
 from utils.referrer_modifier import modify_referrer_lang
 from utils.view_modifiers import response
 
@@ -107,7 +109,9 @@ def dashboard():
             temp="partials/dashboard/projects.html",
             data=ProjectService().get_all,
         ),
-        knowledge_hub=dict(temp="partials/dashboard/knowledge-hub.html", data=dict),
+        knowledge_hub=dict(
+            temp="partials/dashboard/knowledge-hub.html",
+            data=CourseService().get_all),
         subscribers=dict(temp="partials/dashboard/subscribers.html", data=dict),
         news=dict(temp="partials/dashboard/news.html", data=NewsService().get_all),
     )
@@ -127,16 +131,24 @@ def dashboard():
 def knowledge_hub():
     """knowledge-hub page"""
     tab_query = request.args.get("q", "research")
-    tab_mapper = {
-        "research": "partials/research.html",
-        "courses": "partials/courses.html",
-        "podcasts": "partials/podcasts.html",
-    }
+    tab_content = dict(
+        research=dict(
+            temp="partials/knowledge-hub/research.html",
+            data=ResearchService().get_all),
+        courses=dict(
+            temp="partials/knowledge-hub/courses.html",
+            data=CourseService().get_all),
+        podcasts=dict(
+            temp="partials/knowledge-hub/podcasts.html",
+            data=PodcastService().get_all),
+    )
 
     if request.headers.get("hx-tab"):
+        template = tab_content.get(tab_query, {}).get("temp")
+        data = tab_content.get(tab_query, {}).get("data", lambda: {})()
         return make_response(
             render_template(
-                tab_mapper.get(tab_query, "partials/research.html"), data=dict()
+                template, **data
             )
         )
     return dict(tab="research")

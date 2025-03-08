@@ -1,0 +1,9 @@
+{% import "macros/icons.html" as icons %}
+<div class="w-full h-full min-h-[300px]">
+    {% if not data %}
+    <div class="w-full h-full grid place-items-center">
+        <span>{{icons.music(cls='size-24')}}</span>
+        <p class="text-slate-500">{{_("empty podcast")}}</p>
+    </div>
+    {% endif %}
+</div>

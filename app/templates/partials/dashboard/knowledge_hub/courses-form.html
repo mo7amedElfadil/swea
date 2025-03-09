@@ -56,7 +56,8 @@ file_upload, tags_input %}
     <!-- course members -->
     {{select(label=_("course_members"), id="course-members", name="members",
     options=[{'name': 'member-1', 'uuid': '1'}, {'name': 'member-2', 'uuid':
-    '2'}, {'name': 'member-3', 'uuid':'3'}, {'name':'member-4', 'uuid':'4'}],)}}
+    '2'}, {'name': 'member-3', 'uuid':'3'}, {'name':'member-4', 'uuid':'4'}],
+    endpoint='/dashboard/knowledge-hub/members') }}
 
     <!-- Date -->
     {{ text_input( id="course_date", name="date", value=date if date else '',
@@ -92,6 +93,7 @@ file_upload, tags_input %}
     <!-- Submit Button -->
     <div>
         <button
+            form="course-form"
             type="submit"
             class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
         >
@@ -100,7 +102,8 @@ file_upload, tags_input %}
         </button>
     </div>
     <!-- modal -->
-    {{modal(form='members-form')}}
+    {{modal( template='members-form',
+    endpoint='/dashboard/knowledge-hub/members', form='member-form') }}
 </form>
 
 {% block extra_scripts %}

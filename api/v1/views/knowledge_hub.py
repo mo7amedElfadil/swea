@@ -246,7 +246,6 @@ def create_research():
 
     try:
         form_data = request.form.to_dict()
-        print("============FORM DATA============", form_data)
         files = request.files
         research_service.create_research(form_data, files)
     except Exception as e:
@@ -316,7 +315,7 @@ def get_members():
     member_service = MemberService()
     search = request.args.get("search", "")
     members = member_service.search_members_by_name(search)
-    return render_template("partials/dashboard/knowledge_hub/members.html", **members)
+    return render_template("partials/dashboard/knowledge_hub/members-list.html", **members)
 
 
 @bp.route("/dashboard/knowledge-hub/members", methods=["POST"])
@@ -329,16 +328,14 @@ def create_member():
         files = request.files
         member_service.create_member(form_data, files)
     except Exception as e:
+        print("============ERROR============", e)
         resp = make_response(str(e), 400)
         return add_toast(
             resp, "error", _("An error occurred while creating the member")
         )
 
-    members = member_service.get_all()
-    resp = make_response(
-        render_template("partials/dashboard/knowledge_hub/members.html", **members)
-    )
-    return add_toast(resp, "success", _("Member created successfully"))
+
+    return add_toast(make_response(), "success", _("Member created successfully"))
 
 
 @bp.route("/dashboard/knowledge-hub/members/<member_id>", methods=["PUT", "PATCH"])

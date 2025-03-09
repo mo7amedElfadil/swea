@@ -53,7 +53,7 @@ accept='', required=True)%}
     ></textarea>
 </div>
 {% endmacro %} {% macro select(id='', name='', label='', options=[],
-selected='') %}
+selected='', endpoint='') %}
 <div class="relative">
     <label for="{{id}}">{{label}}</label>
     <button
@@ -62,6 +62,9 @@ selected='') %}
         role="menubutton"
         type="button"
         class="flex justify-between w-full px-4 py-2 border rounded-lg shadow-sm bg-white focus:ring-primary-500 focus:border-primary-500"
+        hx-get="{{endpoint}}"
+        hx-trigger="click"
+        hx-target="#select-options"
         data-members=""
     >
         <span id="btn-content">{{_('choose')}}</span>
@@ -74,36 +77,11 @@ selected='') %}
         </span>
     </button>
     <ul
+        id="select-options"
         role="menu"
         class="hidden absolute top-full left-0 w-full max-h-48 overflow-y-auto mt-2 z-10 bg-white rounded-lg shadow-lg"
     >
-        {% for opt in options %}
-        <li
-            role="menuitem"
-            class="flex justify-between px-4 py-2 cursor-pointer hover:bg-gray-100"
-        >
-            <span data-val="{{opt.uuid}}">{{opt.name}}</span>
-            <span id="check" class="hidden">
-                <img
-                    class="size-6"
-                    src="{{url_for('static',filename='icons/check.svg')}}"
-                    alt="check icon"
-                />
-            </span>
-        </li>
-        {% endfor %}
-        <li class="flex justify-center px-4 py-2">
-            <!-- Modal toggle -->
-            <button
-                id="modal-toggle"
-                data-modal-target="default-modal"
-                data-modal-toggle="default-modal"
-                class="block text-black bg-slate-300 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:text-white"
-                type="button"
-            >
-                {{_('add_new')}}
-            </button>
-        </li>
+        {% include "partials/dashboard/knowledge_hub/members-list.html" %}
     </ul>
 </div>
 <script charset="utf-8">
@@ -148,9 +126,6 @@ selected='') %}
         if (!menuBtn.contains(evt.target) && !menuList.contains(evt.target)) {
             menuList.classList.add('hidden')
         }
-    })
-    document.getElementById('modal-toggle').addEventListener('click', () => {
-        document.getElementById('default-modal').classList.toggle('hidden')
     })
 </script>
 {% endmacro %}

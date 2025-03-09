@@ -1,4 +1,6 @@
-{% macro modal(close_txt='', title='', ok='add', form='') %}
+{% from "macros/spinner.html" import spinner %} {% macro modal(close_txt='',
+title='Create Member', ok='add', template='', update=False, endpoint='',
+form='') %}
 <!-- Main modal -->
 <div
     id="default-modal"
@@ -31,8 +33,8 @@
             </div>
             <!-- Modal body -->
             <div id="modal-body" class="p-4 md:p-5 space-y-4">
-                {% if form %} {% include "partials/dashboard/knowledge_hub/" ~
-                form ~ ".html" %} {% endif %}
+                {% if template %} {% include "partials/dashboard/knowledge_hub/"
+                ~ template ~ ".html" %} {% endif %}
             </div>
             <!-- Modal footer -->
             <div
@@ -44,8 +46,25 @@
                     data-modal-hide="default-modal"
                     type="button"
                     class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                    form="{{ form }}"
+                    hx-swap="none"
+                    hx-trigger="click"
+                    hx-indicator="#spinner"
+                    {%
+                    if
+                    update
+                    %}
+                    hx-patch="{{ endpoint }}"
+                    {%
+                    else
+                    %}
+                    hx-post="{{ endpoint }}"
+                    {%
+                    endif
+                    %}
                 >
-                    {{ ok }}
+                    {{spinner()}}
+                    <span>{{ ok }}</span>
                 </button>
                 <button
                     id="modal-cancel"
@@ -78,6 +97,11 @@
             !modalFooter.contains(evt.target) &&
             !document.getElementById('modal-toggle').contains(evt.target)
         ) {
+            modal.classList.add('hidden')
+        }
+    })
+    modal.addEventListener('htmx:afterRequest', (evt) => {
+        if (evt.detail.successful) {
             modal.classList.add('hidden')
         }
     })

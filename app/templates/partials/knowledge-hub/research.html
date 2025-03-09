@@ -1,14 +1,24 @@
 {% import "macros/icons.html" as icons %}
-<div class="relative w-full h-full min-h-[300px] flex gap-6 bg-red-200">
+<div class="p-4 w-[90%] relative overflow-x-hidden">
     {% if not data %}
-    <div class="w-full h-full grid place-items-center">
+    <div class="h-full grid place-items-center">
         <span>{{icons.research(cls='size-24')}}</span>
         <p class="text-slate-500">{{_("empty research")}}</p>
     </div>
     {% else %}
     <button
-        id="left-arrow"
-        class="absolute size-10 p-2 bg-black rounded-full {% if locale == 'ar'%}left-0{% else %}right-0{% endif %}"
+        id="prev"
+        class="absolute top-1/2 -translate-y-1/2 size-10 p-2 bg-black rounded-full z-[1] {% if locale == 'ar'%}right-0{% else %}left-0{% endif %}"
+    >
+        <img
+            class="size-6 {% if locale == 'en'%}rotate-180{% endif %}"
+            src="{{url_for('static',filename='icons/right-arrow.svg')}}"
+            alt="right arrow"
+        />
+    </button>
+    <button
+        id="next"
+        class="absolute top-1/2 -translate-y-1/2 size-10 p-2 bg-black rounded-full z-[1] {% if locale == 'ar'%}left-0{% else %}right-0{% endif %}"
     >
         <img
             class="size-6 {% if locale == 'en'%}rotate-180{% endif %}"
@@ -16,10 +26,76 @@
             alt="left arrow"
         />
     </button>
-
-    {% for item in data %}
-    <div
-        class="shrink-0 w-[200px] h-[330px] bg-white shadow-md rounded-lg p-4"
-    ></div>
-    {% endfor %} {% endif %}
+    <div id="carousel" class="transition-all flex gap-6 sm:gap-14">
+        {% for r in data %}
+        <div
+            class="grid grid-rows-[auto_auto_40%_auto_auto] shrink-0 w-[200px] h-[330px] bg-white shadow-[0_8px_10px_5px_rgba(0,_0,_0,_0.3)] rounded-lg p-4 sm:p-8 sm:w-[400px] sm:h-[500px]"
+        >
+            <h3 class="text-lg sm:text-3xl font-bold capitalize">
+                {{r.title[locale]}}
+            </h3>
+            <div class="text-sm text-gray-400 sm:text-base">
+                <span class="after:content-[&quot;-&quot;]">
+                    {{r.author.name[locale]}}
+                </span>
+                <span class="italic">{{r.date_of_completion}}</span>
+            </div>
+            <div class="flex justify-center">
+                <img
+                    class="w-full object-cover"
+                    src="{{url_for('static',filename=r.hero_image)}}"
+                    alt="project image"
+                />
+            </div>
+            <p class="text-sm sm:text-base">
+                {{"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est
+                laborum." | truncate_html(100) | safe}}
+            </p>
+            <button class="text-sm flex gap-2 items-center sm:text-base">
+                <span>{{_('learn more')}}</span>
+                <span>
+                    <img
+                        class="size-6 {%if locale =='en'%}rotate-180{%endif%}"
+                        src="{{url_for('static',filename='icons/arrow-left.svg')}}"
+                        alt="see more icon"
+                    />
+                </span>
+            </button>
+        </div>
+        {% endfor %} {% endif %}
+    </div>
 </div>
+
+<script>
+    var next = document.getElementById('next')
+    var prev = document.getElementById('prev')
+    var carousel = document.getElementById('carousel')
+    var slides = carousel.children
+    var totalSlides = slides.length
+    var GAP = 0
+    var slideWidth = slides[0].clientWidth + GAP
+    var locale = document.documentElement.lang
+
+    var currentSlide = 0
+    next.addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % totalSlides
+        carousel.style.transform = `translateX(${locale === 'en' ? -currentSlide * slideWidth : currentSlide * slideWidth}px)`
+    })
+    prev.addEventListener('click', () => {
+        // TODO: if slider item is last the next button should be disabled
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides
+        carousel.style.transform = `translateX(${locale === 'en' ? -currentSlide * slideWidth : currentSlide * slideWidth}px)`
+    })
+
+    document.addEventListener('htmx:afterRequest', (evt) => {
+        if (evt.detail.elt.id === 'news-slider') {
+            totalSlides = carousel.children.length
+        }
+    })
+</script>

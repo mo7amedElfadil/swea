@@ -97,14 +97,14 @@
 		<div class='w-full flex justify-between'>
 			<h2 class='mb-6 text-3xl font-extrabold capitalize sm:text-5xl'>{{_("news")}}</h2>
 			<div class='flex gap-4'>
-				<button id='left-arrow' class='size-10 p-2 bg-black rounded-full'>
+				<button id='prev' class='size-10 p-2 bg-black rounded-full'>
 					<img
 							class='size-6 {% if locale == 'ar' %}rotate-180{% endif %}'
 							src="{{url_for('static',filename='icons/left-arrow.svg')}}"
 							alt="left arrow"
 							/>
 				</button>
-				<button id='right-arrow' class='size-10 p-2 bg-black rounded-full'>
+				<button id='next' class='size-10 p-2 bg-black rounded-full'>
 					<img
 							class='size-6 {% if locale == 'ar' %}rotate-180{% endif %}'
 							src="{{url_for('static',filename='icons/right-arrow.svg')}}"
@@ -160,8 +160,8 @@
 
 {% block extra_scripts %}
 <script>
-	var next = document.getElementById('right-arrow');
-	var prev = document.getElementById('left-arrow');
+	var next = document.getElementById('next');
+	var prev = document.getElementById('prev');
 	var carousel = document.getElementById('carousel');
 	var slides = carousel.children;
 	var totalSlides = slides.length;

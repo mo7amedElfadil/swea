@@ -313,9 +313,8 @@ def delete_research(research_id):
 def get_members():
     """Get members."""
     member_service = MemberService()
-    page = request.args.get("page", 1, type=int)
     search = request.args.get("search", "")
-    members = member_service.get_all(page=page, name=search)
+    members = member_service.search_members_by_name(search)
     return render_template("partials/dashboard/knowledge_hub/members.html", **members)
 
 

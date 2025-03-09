@@ -1,6 +1,8 @@
-{% from "macros/form_macros.html" import text_input, textarea, file_upload,
-tags_input %}
+{% from "macros/modal.html" import modal %} {% from "macros/form.html" import
+select %} {% from "macros/form_macros.html" import text_input, textarea,
+file_upload, tags_input %}
 <form
+    id="podcast-form"
     {%
     if
     update
@@ -49,6 +51,11 @@ tags_input %}
     placeholder="Enter Arabic description", rows=5, required=true, dir="rtl" )
     }}
 
+    <!-- podcast members -->
+    {{select(label=_("podcast_members"), id="podcast-members", name="members",
+    options=[{'name': 'member-1', 'uuid': '1'}, {'name': 'member-2', 'uuid':
+    '2'}, {'name': 'member-3', 'uuid':'3'}, {'name':'member-4', 'uuid':'4'}],)}}
+
     <!-- Date -->
     {{ text_input( id="podcast_date", name="date", value=date if date else '',
     label="podcast_date", type="date", required=true ) }}
@@ -92,4 +99,17 @@ tags_input %}
             endif %}
         </button>
     </div>
+    <!-- modal -->
+    {{modal(form='members-form')}}
 </form>
+
+{% block extra_scripts %}
+<script charset="utf-8">
+    document.addEventListener('htmx:configRequest', (evt) => {
+        if (evt.detail.elt.id == 'podcast-form') {
+            evt.detail.parameters['members'] =
+                document.getElementById('podcast-members').dataset.members
+        }
+    })
+</script>
+{% endblock %}

@@ -38,15 +38,15 @@
         <div class="flex space-x-2">
             <button
                 class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none"
-                hx-get="/dashboard/knowledge-hub/update-podcast/{{ podcast.uuid }}"
-                hx-target="#tab-content"
+                hx-get="/dashboard/knowledge-hub/form?q=podcasts&uuid={{ podcast.uuid }}&m=UPDATE"
+                hx-target="#kh-content"
                 hx-swap="innerHTML"
             >
                 {{ _("edit") }}
             </button>
             <button
                 class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-red-100 text-red-700 hover:bg-red-200 focus:ring-2 focus:ring-red-500 focus:outline-none"
-                hx-delete="/dashboard/knowledge-hub/delete-podcast/{{ podcast.uuid }}"
+                hx-delete="/dashboard/knowledge-hub/podcasts/{{ podcast.uuid }}"
                 hx-confirm="{{ _('confirm_delete_podcast') }}"
                 hx-target="#podcasts-list"
                 hx-swap="innerHTML"

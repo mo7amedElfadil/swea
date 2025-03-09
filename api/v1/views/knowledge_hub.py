@@ -1,4 +1,4 @@
-from flask import make_response, render_template, request, session
+from flask import make_response, render_template, request
 from flask_babel import gettext as _
 
 from api.v1.views import bp
@@ -40,12 +40,7 @@ def get_knowledge_hub_data():
 
     data = service.get_all(page=page, deleted_at=None)
     # Render the appropriate template
-    return make_response(render_template(
-        template_mapper[tab],
-        **data,
-        active_tab=tab
-        )
-    )
+    return make_response(render_template(template_mapper[tab], **data, active_tab=tab))
 
 
 @bp.route("/dashboard/knowledge-hub/form", methods=["GET"])
@@ -57,16 +52,16 @@ def knowledge_hub_form():
     form_content = dict(
         courses=dict(
             temp="partials/dashboard/knowledge_hub/courses-form.html",
-            data=CourseService().get_by_uuid
-            ),
+            data=CourseService().get_by_uuid,
+        ),
         podcasts=dict(
             temp="partials/dashboard/knowledge_hub/podcasts-form.html",
-            data=PodcastService().get_by_uuid
-            ),
+            data=PodcastService().get_by_uuid,
+        ),
         researches=dict(
             temp="partials/dashboard/knowledge_hub/researches-form.html",
-            data=ResearchService().get_by_uuid
-            )
+            data=ResearchService().get_by_uuid,
+        ),
     )
 
     template = form_content.get(query, {}).get("temp")
@@ -75,11 +70,11 @@ def knowledge_hub_form():
     else:
         data = {}
 
-    print("============DATA============", data)
-    return make_response(render_template(
-        template,
-        update=method == "UPDATE",
-        **data,
+    return make_response(
+        render_template(
+            template,
+            update=method == "UPDATE",
+            **data,
         )
     )
 
@@ -191,9 +186,7 @@ def create_podcast():
     return add_toast(resp, "success", _("Podcast created successfully"))
 
 
-@bp.route(
-    "/dashboard/knowledge-hub/podcasts/<podcast_id>", methods=["PUT", "PATCH"]
-)
+@bp.route("/dashboard/knowledge-hub/podcasts/<podcast_id>", methods=["PUT", "PATCH"])
 def update_podcast(podcast_id):
     """Update an existing podcast."""
     podcast_service = PodcastService()
@@ -271,20 +264,16 @@ def create_research():
     return add_toast(resp, "success", _("Research created successfully"))
 
 
-@bp.route(
-    "/dashboard/knowledge-hub/researches/<research_id>", methods=["PATCH", "PUT"]
-)
+@bp.route("/dashboard/knowledge-hub/researches/<research_id>", methods=["PATCH", "PUT"])
 def update_research(research_id):
     """Update an existing research."""
     research_service = ResearchService()
 
     try:
         form_data = request.form.to_dict()
-        print("============FORM DATA============", form_data)
         files = request.files
         research_service.update_research(research_id, form_data, files)
     except Exception as e:
-        print("============ERROR============", e)
         resp = make_response(str(e), 400)
         return add_toast(
             resp, "error", _("An error occurred while updating the research")

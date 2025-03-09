@@ -48,7 +48,8 @@
                 />
             </div>
             <div class="text-sm sm:text-base">
-                {{r.content and r.content[locale] | truncate_html(100) | safe}}
+                {{r.content and r.content[0][locale] | truncate_html(100) |
+                safe}}
             </div>
             <button class="text-sm flex gap-2 items-center sm:text-base">
                 <span>{{_('learn more')}}</span>

@@ -143,16 +143,16 @@ def knowledge_hub():
             data=PodcastService().get_all),
     )
 
+    data = tab_content.get(tab_query, {}).get("data", lambda: {})()
+    template = tab_content.get(tab_query, {}).get("temp")
+    print('------DATA------>', data)
     if request.headers.get("hx-tab"):
-        template = tab_content.get(tab_query, {}).get("temp")
-        data = tab_content.get(tab_query, {}).get("data", lambda: {})()
-        print('------DATA------>', data)
         return make_response(
             render_template(
                 template, **data
             )
         )
-    return dict(tab="research", **ResearchService().get_all())
+    return dict(tab="research", **data)
 
 
 @bp.route("/set_language")

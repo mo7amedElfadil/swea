@@ -12,6 +12,7 @@ from utils.db_utils import search_by_multilang_field
 from utils.file_manager import FileManager
 from utils.form_utils import parse_nested_field
 from utils.service_base import BaseService
+from utils.compose_i18n import compose_i18n
 
 
 class ResearchService(BaseService):
@@ -127,7 +128,7 @@ class ResearchService(BaseService):
                 "ar": self._parse_tags(form_data.get("tags[ar]")),
             },
             "date_of_completion": form_data.get("date_of_completion"),  # Optional field
-            "content": self._parse_indexed_fields(
+            "content": compose_i18n(
                 form_data, "content"
             ),  # Optional field
             "testimonials": self._parse_testimonials(form_data),  # Optional field

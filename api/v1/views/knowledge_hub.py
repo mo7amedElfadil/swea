@@ -75,7 +75,6 @@ def knowledge_hub_form():
     else:
         data = {}
 
-    print("============DATA============", data)
     return make_response(render_template(
         template,
         update=method == "UPDATE",
@@ -254,9 +253,11 @@ def create_research():
 
     try:
         form_data = request.form.to_dict()
+        print("============FORM DATA============", form_data)
         files = request.files
         research_service.create_research(form_data, files)
     except Exception as e:
+        print("============ERROR============", e)
         resp = make_response(str(e), 400)
         return add_toast(
             resp, "error", _("An error occurred while creating the research")

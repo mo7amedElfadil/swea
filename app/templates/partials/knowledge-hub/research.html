@@ -29,7 +29,7 @@
     <div id="carousel" class="transition-all flex gap-6 sm:gap-14">
         {% for r in data %}
         <div
-            class="grid grid-rows-[auto_auto_40%_auto_auto] shrink-0 w-[200px] h-[330px] bg-white shadow-[0_8px_10px_5px_rgba(0,_0,_0,_0.3)] rounded-lg p-4 sm:p-8 sm:w-[400px] sm:h-[500px]"
+            class="grid gap-3 grid-rows-[auto_auto_40%_auto_auto] shrink-0 w-[200px] h-[350px] bg-white shadow-[0_8px_10px_5px_rgba(0,_0,_0,_0.3)] rounded-lg p-4 sm:p-8 sm:w-[400px] sm:h-[500px]"
         >
             <h3 class="text-lg sm:text-3xl font-bold capitalize">
                 {{r.title[locale]}}
@@ -43,13 +43,14 @@
             <div class="flex justify-center">
                 <img
                     class="w-full object-cover"
-                    src="{{url_for('static',filename=r.hero_image)}}"
+                    src="{{url_for('static',filename=r.hero_image if
+                    r.hero_image)}}"
+                    onerror="this.src='http:///i.imgur.com/hfM1J8s.png'"
                     alt="project image"
                 />
             </div>
             <div class="text-sm sm:text-base">
-                {{r.content and r.content[0][locale] | truncate_html(100) |
-                safe}}
+                {{r.content and r.content[locale] | truncate_html(100) | safe}}
             </div>
             <button class="text-sm flex gap-2 items-center sm:text-base">
                 <span>{{_('learn more')}}</span>

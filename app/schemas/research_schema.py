@@ -29,7 +29,12 @@ class ResearchSchema(Schema):
     )
     # Optional fields
     date_of_completion = fields.Date(allow_none=True)
-    content = fields.List(fields.Dict(), allow_none=True)
+    content = fields.Dict(
+            keys=fields.Str(),
+            values=fields.Str(),
+            allow_none=True,
+            required=False,
+            )
     hero_image = fields.Str(allow_none=True)
     images = fields.List(fields.Str(), allow_none=True)
     testimonials = fields.List(fields.Dict(), allow_none=True)
@@ -60,3 +65,9 @@ class ResearchSchema(Schema):
         """Validate that tags are provided for at least one language."""
         if not value:
             raise ValidationError("Tags must be provided for at least one language.")
+
+    @validates("content")
+    def validate_content(self, value: Dict[str, str]):
+        """Validate that the content contains at least one language."""
+        if not value:
+            raise ValidationError("Content must contain at least one language.")

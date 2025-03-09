@@ -86,7 +86,6 @@ if update else '' } %}
               .addEventListener('htmx:configRequest', function (evt) {
                   // Get the HTML content from Quill
                   const content = quill.root.innerHTML
-                  console.log('Content before sending:', content)
 
                   // Update the hidden input (optional)
                   document.getElementById('description-en').value = content

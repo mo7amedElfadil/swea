@@ -1,0 +1,73 @@
+{% from "macros/form_macros.html" import text_input, textarea, file_upload %}
+
+<form
+    id="member-form"
+    hx-target="#kh-content"
+    hx-swap="innerHTML"
+    hx-encoding="multipart/form-data"
+    {%
+    if
+    update
+    %}
+    hx-patch="/dashboard/knowledge-hub/members/{{ uuid }}"
+    {%
+    else
+    %}
+    hx-post="/dashboard/knowledge-hub/members"
+    {%
+    endif
+    %}
+    enctype="multipart/form-data"
+    class="space-y-6"
+    onsubmit="event.stopPropagation();"
+>
+    <!-- Name -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {{ text_input( id="name_english", name="name[en]", value=name['en'] if
+        name else '', label="name_english", placeholder="Enter English name",
+        required=true ) }} {{ text_input( id="name_arabic", name="name[ar]",
+        value=name['ar'] if name else '', label="name_arabic",
+        placeholder="Enter Arabic name", required=true, dir="rtl" ) }}
+    </div>
+
+    <!-- Email -->
+    {{ text_input( id="email", name="email", value=email if email else '',
+    label="email", placeholder="Enter email address", type="email",
+    required=true ) }}
+
+    <!-- University Department -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {{ text_input( id="university_department_english",
+        name="university_department[en]", value=university_department['en'] if
+        university_department else '', label="university_department_english",
+        placeholder="Enter English university department" ) }} {{ text_input(
+        id="university_department_arabic", name="university_department[ar]",
+        value=university_department['ar'] if university_department else '',
+        label="university_department_arabic", placeholder="Enter Arabic
+        university department", dir="rtl" ) }}
+    </div>
+
+    <!-- Image Upload -->
+    {% if image %}
+    <div class="flex items-center space-x-4">
+        <img
+            src="{{ url_for('static', filename=image) }}"
+            alt="{{ name['en'] }}"
+            class="w-24 h-24 object-cover rounded-md"
+        />
+        <span class="text-sm text-gray-600">{{ _("current_image") }}</span>
+    </div>
+    {% endif %} {{ file_upload( id="member_image", name="image",
+    label="member_image", accept="image/*" ) }}
+
+    <!-- Submit Button -->
+    <div>
+        <button
+            type="submit"
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+        >
+            {% if update %} {{ _('update') }} {% else %} {{ _('create') }} {%
+            endif %}
+        </button>
+    </div>
+</form>

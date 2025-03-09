@@ -2,5 +2,6 @@
 {% from "macros/knowledge_hub_tabs.html" import render_knowledge_hub_section %}
 {{ render_knowledge_hub_section( title="researches", data=data,
 add_endpoint="/dashboard/knowledge-hub/form?q=researches",
-search_endpoint="/dashboard/researches", page=page, total_pages=total_pages,
-search_placeholder="search_research", item_type="researches" ) }}
+search_endpoint="/dashboard/knowledge-hub/researches", page=page,
+total_pages=total_pages, search_placeholder="search_research",
+item_type="researches" ) }}

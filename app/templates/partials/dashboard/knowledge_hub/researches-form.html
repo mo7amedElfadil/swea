@@ -214,8 +214,6 @@ content_block, testimonial_block %}
             removeTemplateButtonSelector,
             titlePrefix
         ) => {
-            let nodes = []
-            let nodeCount = 0
             const container = document.getElementById(containerId)
             const template = document.getElementById(templateId)
 
@@ -232,32 +230,19 @@ content_block, testimonial_block %}
 
             // Function to add a new block
             const addBlock = () => {
-                nodeCount++
                 const clone = template.content.cloneNode(true)
-                nodes.push(clone)
-
-                // Add event listeners to the cloned block's buttons
-                clone
-                    .querySelector(addTemplateButtonSelector)
-                    .addEventListener('click', addBlock)
-                clone
-                    .querySelector(removeTemplateButtonSelector)
-                    .addEventListener('click', removeBlock)
-
-                // Update IDs and names for the cloned block
                 const blockElement = clone.querySelector('div')
-                blockElement.setAttribute('id', nodeCount - 1)
-                blockElement.prepend(generateTitle(nodeCount))
+                const index = container.children.length
+
+                // Update the title
+                blockElement.prepend(generateTitle(index))
 
                 // Update all fields (textarea and input) with the correct index
                 const fields = blockElement.querySelectorAll('textarea, input')
                 fields.forEach((field) => {
                     const name = field.getAttribute('name')
                     if (name) {
-                        const newName = name.replace(
-                            /\[\d+\]/,
-                            `[${nodeCount - 1}]`
-                        )
+                        const newName = name.replace(/\[\d+\]/, `[${index}]`)
                         field.setAttribute('name', newName)
                     }
                 })
@@ -277,45 +262,45 @@ content_block, testimonial_block %}
 
             // Function to remove a block
             const removeBlock = (evt) => {
-                nodeCount--
-                const id = parseInt(
-                    evt.currentTarget.parentElement.parentElement.getAttribute(
-                        'id'
-                    )
+                // Find the closest parent block element
+                const blockElement = evt.target.closest(
+                    '.bg-white.shadow-sm.rounded-lg.p-6.border.border-gray-200'
                 )
-                nodes[id] = null
-                evt.currentTarget.parentElement.parentElement.remove()
+                if (blockElement) {
+                    blockElement.remove()
+                }
 
                 // Show the "Add" button in the last remaining block
-                if (nodeCount === 1) {
-                    container.children[2]
+                const lastBlock = container.lastElementChild
+                if (lastBlock) {
+                    lastBlock
                         .querySelector(addTemplateButtonSelector)
                         .classList.remove('hidden')
-                } else if (nodeCount === 0) {
-                    nodes = []
                 }
             }
 
-            // Add event listener to the "Add More" button
-            const addMoreButtons = container.querySelectorAll('.add-template')
-            addMoreButtons.forEach((button) => {
-                button.addEventListener('click', addBlock)
+            // Event delegation for "Add" and "Remove" buttons
+            container.addEventListener('click', (evt) => {
+                if (evt.target.closest(addTemplateButtonSelector)) {
+                    addBlock()
+                } else if (evt.target.closest(removeTemplateButtonSelector)) {
+                    removeBlock(evt)
+                }
             })
 
-            // Add event listener to the "Remove" button
-            const removeButtons = container.querySelectorAll('.remove-template')
-            removeButtons.forEach((button) => {
-                button.addEventListener('click', removeBlock)
-            })
+            // Initialize the first block if there are no testimonials
+            if (container.children.length === 0) {
+                addBlock()
+            }
         }
 
         // Initialize "Testimonials" section
-        //initializeDynamicBlocks(
-        //    'testimonials', // Container ID
-        //    'testimonial-template', // Template ID
-        //    '#add-testimonial', // Add Button Selector
-        //    '.remove-testimonial', // Remove Button Selector
-        //    'Testimonial' // Title Prefix
-        //)
+        initializeDynamicBlocks(
+            'testimonials', // Container ID
+            'testimonial-template', // Template ID
+            '.add-template', // Add Button Selector
+            '.remove-template', // Remove Button Selector
+            'Testimonial' // Title Prefix
+        )
     })()
 </script>

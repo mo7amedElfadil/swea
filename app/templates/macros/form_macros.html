@@ -164,6 +164,7 @@ required=false, dir="ltr") %}
                     alt="{{ _('Add another testimonial block') }}"
                 />
             </button>
+            {% if index != 0 %}
             <button
                 type="button"
                 class="p-2 bg-red-700 rounded-full hover:bg-red-800 transition-colors remove-template"
@@ -174,6 +175,7 @@ required=false, dir="ltr") %}
                     alt="{{ _('Remove this testimonial block') }}"
                 />
             </button>
+            {% endif %}
         </div>
     </div>
 {% endmacro %}

@@ -15,14 +15,14 @@ function showModal() {
   MODAL.cancel = MODAL.clone.querySelector('#modal-cancel')
 
   document.body.appendChild(MODAL.clone)
+  htmx.process(document.body)
 }
 
 function hideModal() {
   MODAL.close.addEventListener('click', () => {
-    console.log('close')
     MODAL.container.remove()
   })
-  MODAL.close.addEventListener('click', () => {
+  MODAL.cancel.addEventListener('click', () => {
     MODAL.container.remove()
   })
 

@@ -52,9 +52,8 @@ file_upload, tags_input %}
     }}
 
     <!-- podcast members -->
-    {{select(label=_("podcast_members"), id="podcast-members", name="members",
-    options=[{'name': 'member-1', 'uuid': '1'}, {'name': 'member-2', 'uuid':
-    '2'}, {'name': 'member-3', 'uuid':'3'}, {'name':'member-4', 'uuid':'4'}],)}}
+    {{select( label=_("podcast_members"), id="podcast-members", name="members",
+    endpoint='/dashboard/knowledge-hub/members') }}
 
     <!-- Date -->
     {{ text_input( id="podcast_date", name="date", value=date if date else '',
@@ -100,7 +99,10 @@ file_upload, tags_input %}
         </button>
     </div>
     <!-- modal -->
-    {{modal(form='members-form')}}
+    <template id="modal-template">
+        {{modal( template='members-form',
+        endpoint='/dashboard/knowledge-hub/members', form='member-form') }}
+    </template>
 </form>
 
 {% block extra_scripts %}

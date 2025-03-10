@@ -1,9 +1,9 @@
-{% for opt in options %}
+{% if data %} {% for member in data %}
 <li
     role="menuitem"
     class="flex justify-between px-4 py-2 cursor-pointer hover:bg-gray-100"
 >
-    <span data-val="{{opt.uuid}}">{{opt.name}}</span>
+    <span data-val="{{member.uuid}}">{{member.name[locale]}}</span>
     <span id="check" class="hidden">
         <img
             class="size-6"
@@ -12,7 +12,11 @@
         />
     </span>
 </li>
-{% endfor %}
+{% endfor %} {% else %}
+<li role="menuitem" class="flex justify-between px-4 py-2 text-gray-400">
+    {{_("no members")}}
+</li>
+{% endif %}
 <li class="flex justify-center px-4 py-2">
     <!-- Modal toggle -->
     <button
@@ -25,9 +29,52 @@
         {{_('add_new')}}
     </button>
 </li>
+<script type="module" charset="utf-8">
+    import { MODAL } from "{{url_for('static', filename='js/modal.js')}}"
+    var menuBtn = document.querySelector('[role="menubutton"]')
+    var menuList = document.querySelector('[role="menu"]')
+    var selectedItems = []
+    var selectedUUIDS = []
+    var menuBtnContent = menuBtn.querySelector('span:first-child')
 
-<script>
+    menuBtn.addEventListener('click', () => {
+        menuList.classList.toggle('hidden')
+    })
+
+    for (const li of menuList.querySelectorAll('li[role="menuitem"]')) {
+        li.addEventListener('click', (evt) => {
+            const checkIcon = li.querySelector('#check')
+            const selectedUUID =
+                li.querySelector('span:first-child').dataset.val
+            const selectedTxt = li.querySelector('span:first-child').textContent
+
+            checkIcon.classList.toggle('hidden')
+
+            if (checkIcon.classList.contains('hidden')) {
+                selectedItems = selectedItems.filter(
+                    (item) => item !== selectedTxt
+                )
+                selectedUUIDS = selectedUUIDS.filter(
+                    (uuid) => uuid !== selectedUUID
+                )
+            } else {
+                selectedItems.push(selectedTxt)
+                selectedUUIDS.push(selectedUUID)
+            }
+            if (menuBtnContent.textContent === '') {
+                menuBtnContent.textContent = 'Choose'
+            }
+            menuBtnContent.textContent = selectedItems.join(', ')
+            menuBtn.dataset.members = selectedUUIDS.join(',')
+        })
+    }
+    document.addEventListener('click', (evt) => {
+        if (!menuBtn.contains(evt.target) && !menuList.contains(evt.target)) {
+            menuList.classList.add('hidden')
+        }
+    })
     document.getElementById('modal-toggle').addEventListener('click', () => {
-        document.getElementById('default-modal').classList.toggle('hidden')
+        MODAL.showModal()
+        MODAL.hideModal()
     })
 </script>

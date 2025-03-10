@@ -96,6 +96,7 @@ def create_course():
 
     try:
         form_data = request.form.to_dict()
+        print('============>', form_data)
         files = request.files
         course_service.create_course(form_data, files)
     except Exception as e:
@@ -313,8 +314,8 @@ def delete_research(research_id):
 def get_members():
     """Get members."""
     member_service = MemberService()
-    search = request.args.get("search", "")
-    members = member_service.search_members_by_name(search)
+    page = request.args.get("page", default=1, type=int)
+    members = member_service.get_all(page=page)
     return render_template("partials/dashboard/knowledge_hub/members-list.html", **members)
 
 

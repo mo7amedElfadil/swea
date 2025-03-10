@@ -6,7 +6,7 @@ form='') %}
     id="default-modal"
     tabindex="-1"
     aria-hidden="true"
-    class="hidden flex overflow-y-auto overflow-x-hidden fixed inset-0 z-50 justify-center items-center w-full bg-slate-700/50"
+    class="flex overflow-y-auto overflow-x-hidden fixed inset-0 z-50 justify-center items-center w-full bg-slate-700/50"
 >
     <div class="relative p-4 w-full max-w-2xl max-h-full">
         <!-- Modal content -->
@@ -78,32 +78,5 @@ form='') %}
         </div>
     </div>
 </div>
-<script charset="utf-8">
-    var modal = document.getElementById('default-modal')
-    var modalHeader = document.getElementById('modal-header')
-    var modalBody = document.getElementById('modal-body')
-    var modalFooter = document.getElementById('modal-footer')
-    var ok = document.getElementById('ok')
-    document.getElementById('modal-close').addEventListener('click', () => {
-        modal.classList.add('hidden')
-    })
-    document.getElementById('modal-cancel').addEventListener('click', () => {
-        modal.classList.add('hidden')
-    })
-    document.addEventListener('click', (evt) => {
-        if (
-            !modalHeader.contains(evt.target) &&
-            !modalBody.contains(evt.target) &&
-            !modalFooter.contains(evt.target) &&
-            !document.getElementById('modal-toggle').contains(evt.target)
-        ) {
-            modal.classList.add('hidden')
-        }
-    })
-    modal.addEventListener('htmx:afterRequest', (evt) => {
-        if (evt.detail.successful) {
-            modal.classList.add('hidden')
-        }
-    })
-</script>
+
 {% endmacro %}

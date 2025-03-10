@@ -52,8 +52,8 @@ accept='', required=True)%}
         class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
     ></textarea>
 </div>
-{% endmacro %} {% macro select(id='', name='', label='', options=[],
-selected='', endpoint='') %}
+{% endmacro %} {% macro select(id='', name='', label='', selected='',
+endpoint='') %}
 <div class="relative">
     <label for="{{id}}">{{label}}</label>
     <button
@@ -84,48 +84,5 @@ selected='', endpoint='') %}
         {% include "partials/dashboard/knowledge_hub/members-list.html" %}
     </ul>
 </div>
-<script charset="utf-8">
-    var menuBtn = document.querySelector('[role="menubutton"]')
-    var menuList = document.querySelector('[role="menu"]')
-    var selectedItems = []
-    var selectedUUIDS = []
-    var menuBtnContent = menuBtn.querySelector('span:first-child')
 
-    menuBtn.addEventListener('click', () => {
-        menuList.classList.toggle('hidden')
-    })
-
-    for (const li of menuList.querySelectorAll('li[role="menuitem"]')) {
-        li.addEventListener('click', (evt) => {
-            const checkIcon = li.querySelector('#check')
-            const selectedUUID =
-                li.querySelector('span:first-child').dataset.val
-            const selectedTxt = li.querySelector('span:first-child').textContent
-
-            checkIcon.classList.toggle('hidden')
-
-            if (checkIcon.classList.contains('hidden')) {
-                selectedItems = selectedItems.filter(
-                    (item) => item !== selectedTxt
-                )
-                selectedUUIDS = selectedUUIDS.filter(
-                    (uuid) => uuid !== selectedUUID
-                )
-            } else {
-                selectedItems.push(selectedTxt)
-                selectedUUIDS.push(selectedUUID)
-            }
-            if (menuBtnContent.textContent === '') {
-                menuBtnContent.textContent = 'Choose'
-            }
-            menuBtnContent.textContent = selectedItems.join(', ')
-            menuBtn.dataset.members = selectedUUIDS.join(',')
-        })
-    }
-    document.addEventListener('click', (evt) => {
-        if (!menuBtn.contains(evt.target) && !menuList.contains(evt.target)) {
-            menuList.classList.add('hidden')
-        }
-    })
-</script>
 {% endmacro %}

@@ -35,7 +35,7 @@ ul li a.active {
 
 .blur-b {
   position: relative;
-  @apply after:absolute after:-bottom-6 after:left-0 after:w-full after:h-10 after:bg-white/20 after:backdrop-blur-lg;
+  @apply after:absolute after:-bottom-5 after:left-0 after:w-full after:h-10 after:bg-white/20 after:backdrop-blur-lg;
 }
 .blur-t {
   position: relative;

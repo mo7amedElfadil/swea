@@ -1,12 +1,14 @@
 {% macro mission_card(title='', desc='', cls='',
 gradient_dir='bg-gradient-to-b', from='', via='', to='') %}
-<div class='flex flex-col gap-4 justify-center relative
-h-[16rem] w-[16rem] px-4  lg:w-[25rem] lg:h-[25rem] text-white {{gradient_dir}} {{from}} {{via}} {{to}} rounded-full {{cls}}'
+<div
+    class="flex flex-col gap-4 justify-center relative
+h-[16rem] w-[16rem] px-4  lg:w-[25rem] lg:h-[25rem] text-white {{gradient_dir}} {{from}} {{via}} {{to}} rounded-full {{cls}}"
+>
+    <h3
+        class="p-2 relative text-lg lg:text-2xl text-center font-semibold capitalize text-wrap lg:mb-6"
     >
-    <h3 class='p-2 relative text-lg lg:text-3xl text-center font-bold capitalize
-    text-wrap lg:mb-6'>{{title}}</h3>
-    <p class='p-3 text-center text-xs lg:text-lg text-wrap'>{{desc}}</p>
+        {{title}}
+    </h3>
+    <p class="p-3 text-center text-xs lg:text-lg text-wrap">{{desc}}</p>
 </div>
 {% endmacro %}
-
-

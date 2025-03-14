@@ -35,12 +35,12 @@ ul li a.active {
 
 .blur-b {
   position: relative;
-  @apply after:absolute after:-bottom-5 after:left-0 after:w-full after:h-10 after:bg-white/20 after:backdrop-blur-lg;
+  @apply after:absolute after:-bottom-5 after:left-0 after:w-full after:h-10 after:bg-white/20 after:backdrop-blur-md;
 }
 .blur-t {
   position: relative;
-  @apply before:absolute before:-top-4 before:left-0 before:w-full before:h-10 before:backdrop-blur-lg;
-box-shadow: 0 0 10px 50px rgba(255, 255, 255, 0.35);
+  @apply before:absolute before:-top-4 before:left-0 before:w-full before:h-10 before:bg-white/5 before:backdrop-blur-lg;
+/**box-shadow: 0 0 10px 50px rgba(255, 255, 255, 0.35);*/
 }
 /*------------------------------------*/
 

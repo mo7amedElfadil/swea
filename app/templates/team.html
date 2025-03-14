@@ -1,58 +1,7 @@
 {% extends "base.html" %} {% block title %}Meet The Team{% endblock %} {% block
 content %}
-<!-- Hero Section with Parallax Effect -->
-<section
-    class="relative h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-primary-50 to-white"
->
-    <div class="absolute inset-0 z-0 opacity-10">
-        <div
-            class="absolute inset-0 bg-primary-800 pattern-dots pattern-size-4 pattern-opacity-20"
-        ></div>
-    </div>
-
-    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-        <h1
-            class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4"
-        >
-            <span class="text-primary-800 block mb-2">
-                {{ _("meet_the_team_hero_title_1") }}
-            </span>
-            <span
-                class="bg-clip-text text-transparent bg-gradient-to-r from-primary-700 to-primary-500"
-            >
-                {{ _("meet_the_team_hero_title_2") }}
-            </span>
-        </h1>
-        <p class="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
-            {{ _("meet_team_subtitle", default="Our dedicated professionals
-            working together to achieve excellence") }}
-        </p>
-        <div class="mt-10">
-            <a
-                href="#team-members"
-                class="inline-flex items-center justify-center rounded-full w-12 h-12 bg-white shadow-md hover:shadow-lg transition-all duration-300"
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6 text-primary-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M19 9l-7 7-7-7"
-                    />
-                </svg>
-            </a>
-        </div>
-    </div>
-</section>
-
 <!-- Team Members Section -->
-<section id="team-members" class="py-20 px-4 bg-gray-50">
+<section id="team-members" class="py-20 px-4">
     <div class="container mx-auto max-w-6xl">
         <!-- Section Header -->
         <div class="text-center mb-16">
@@ -70,16 +19,15 @@ content %}
         </div>
 
         <!-- Team Members Grid with Staggered Animation -->
-        <div
-            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
-        >
+        <div class="flex flex-col gap-6">
             {% for member in data %}
             <div
-                class="team-card relative bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
+                class="flex flex-col gap-8 items-center justify-center sm:flex-row"
                 style="animation: fadeInUp 0.5s ease-out {{ loop.index0 * 0.1 }}s both;"
             >
-                <!-- Profile Image with Hover Effect -->
-                <div class="relative overflow-hidden group h-56">
+                <div
+                    class="w-52 shrink-0 rounded-full overflow-hidden sm:w-80 sm:h-80"
+                >
                     <img
                         src="{{ url_for('static',filename=member.image if
                         member.image else '') }}"
@@ -87,14 +35,20 @@ content %}
                         onerror="this.src='http:///i.imgur.com/hfM1J8s.png'"
                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    ></div>
-
-                    <!-- Social Links on Image Hover -->
-                    <div
-                        class="absolute bottom-4 left-0 right-0 flex justify-center gap-4 transform translate-y-10 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
-                    >
+                </div>
+                <div class="flex flex-col gap-4">
+                    <div class="flex flex-col gap-2">
+                        <span class="font-semibold sm:text-lg">
+                            {{member.role[locale]}}
+                        </span>
+                        <h3
+                            class="flex flex-col gap-4 font-bold text-xl after:w-full after:h-[2px] after:bg-black sm:text-3xl"
+                        >
+                            {{member.name[locale]}}
+                        </h3>
+                    </div>
+                    <p class="sm:text-lg">{{member.bio[locale]}}</p>
+                    <div class="flex justify-center flex-wrap gap-4">
                         {% if member.socials.Twitter %}
                         <a
                             href="{{ member.socials.Twitter }}"
@@ -171,69 +125,6 @@ content %}
                                 <polyline points="22,6 12,13 2,6"></polyline>
                             </svg>
                         </a>
-                        {% endif %}
-                    </div>
-                </div>
-
-                <!-- Member Info -->
-                <div class="p-6">
-                    <div class="flex flex-col gap-2">
-                        <h3 class="text-xl font-bold text-gray-900">
-                            {{ member.name[locale] | default(member.name['en'])
-                            }}
-                        </h3>
-                        <p class="text-primary-600 font-medium">
-                            {{ member.role[locale] | default(member.role['en'])
-                            }}
-                        </p>
-
-                        <!-- Divider -->
-                        <div class="w-16 h-1 bg-primary-200 my-2"></div>
-
-                        <!-- Bio with line clamp for consistent card heights -->
-                        <p class="text-gray-600 line-clamp-4 mb-4">
-                            {{ member.bio[locale] | default(member.bio['en']) }}
-                        </p>
-
-                        <!-- Read More Button (only if bio is long enough) -->
-                        {% if (member.bio[locale] | default(member.bio['en']) |
-                        length) > 150 %}
-                        <button
-                            type="button"
-                            onclick="expandBio(this)"
-                            class="text-primary-600 hover:text-primary-800 font-medium text-sm flex items-center self-start"
-                        >
-                            <span class="read-more">
-                                {{ _("read_more", default="Read more") }}
-                            </span>
-                            <span class="read-less hidden">
-                                {{ _("read_less", default="Read less") }}
-                            </span>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-4 w-4 ml-1 read-more"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                            >
-                                <path
-                                    fill-rule="evenodd"
-                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                    clip-rule="evenodd"
-                                />
-                            </svg>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-4 w-4 ml-1 read-less hidden"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                            >
-                                <path
-                                    fill-rule="evenodd"
-                                    d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
-                                    clip-rule="evenodd"
-                                />
-                            </svg>
-                        </button>
                         {% endif %}
                     </div>
                 </div>

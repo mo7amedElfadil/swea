@@ -27,6 +27,10 @@ class TeamSchema(Schema):
         required=True,
         error_messages={"required": "Bio is required."},
     )
+    order = fields.Int(
+        required=True, error_messages={"required": "Team member Order is required."}
+    )
+
     # Optional fields
     socials = fields.Dict(keys=fields.Str(), values=fields.Str(), allow_none=True)
     image = fields.Str(allow_none=True)
@@ -36,6 +40,12 @@ class TeamSchema(Schema):
         """Validate that the name contains at least one language."""
         if not value:
             raise ValidationError("Name must contain at least one language.")
+
+    @validates("order")
+    def validate_order(self, value: int):
+        """Validate that the order is a positive integer."""
+        if value < 1:
+            raise ValidationError("Order must be a positive integer.")
 
     @validates("role")
     def validate_role(self, value: Dict[str, str]):

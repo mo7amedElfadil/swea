@@ -9,9 +9,16 @@
         <!-- Team Member Details -->
         <div>
             <!-- Name -->
-            <h3 class="text-lg font-semibold text-gray-900">
-                {{ member.name[locale] | default(member.name['en']) }}
-            </h3>
+            <span class="flex items-center space-x-2">
+                <span
+                    class="inline-block px-2 py-1 text-xs font-medium rounded-sm bg-gray-100 text-gray-700"
+                >
+                    {{ member.order }}
+                </span>
+                <h3 class="text-lg font-semibold text-gray-900">
+                    {{ member.name[locale] | default(member.name['en']) }}
+                </h3>
+            </span>
             <!-- Role -->
             <p class="text-sm text-gray-600">
                 {{ member.role[locale] | default(member.role['en']) }}

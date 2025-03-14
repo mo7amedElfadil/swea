@@ -1,6 +1,6 @@
 """DB utility functions for querying and paginating SQLAlchemy models."""
 
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict
 
 from app.extensions import db
 
@@ -16,37 +16,45 @@ def paginate_query(
         page: Page number (1-indexed)
         page_size: Number of items per page
         **filters: Filter conditions to apply to the query
+            Special filters:
+            - sort: Field to sort by (can be a SQLAlchemy order_by expression)
 
     Returns:
-        Tuple containing (list of items, pagination metadata)
+        Dictionary containing:
+        - data: List of items (as dictionaries if to_dict method exists)
+        - page: Current page number
+        - next_page: Next page number if more results exist, otherwise None
+        - total_pages: Total number of pages
+        - total_items: Total number of items matching the query
     """
-    # Apply filters, default to exclude deleted items
-    if "deleted_at" not in filters:
-        filters["deleted_at"] = None
+    sort = filters.pop("sort", None)
 
-    # Execute query with pagination
-    pagination = model.query.filter_by(**filters).paginate(
-        page=page, per_page=page_size
-    )
+    # Default to exclude deleted items
+    filters.setdefault("deleted_at", None)
 
-    # Convert to dictionaries if they have to_dict method
-    items = []
-    for item in pagination.items:
-        if hasattr(item, "to_dict"):
-            items.append(item.to_dict())
-        else:
-            items.append(item)
+    query = model.query.filter_by(**filters)
 
-    # Prepare pagination metadata
-    next_page = page + 1 if len(items) == page_size else None
-    total_pages = (pagination.total + page_size - 1) // page_size
+    # Apply sorting if specified
+    if sort:
+        query = query.order_by(sort)
+
+    pagination = query.paginate(page=page, per_page=page_size)
+
+    items = [
+        item.to_dict() if hasattr(item, "to_dict") else item
+        for item in pagination.items
+    ]
+
+    total_items = pagination.total
+    total_pages = (total_items + page_size - 1) // page_size if total_items > 0 else 0
+    next_page = page + 1 if page < total_pages else None
 
     return dict(
         data=items,
         page=page,
         next_page=next_page,
         total_pages=total_pages,
-        total_items=pagination.total,
+        total_items=total_items,
     )
 
 

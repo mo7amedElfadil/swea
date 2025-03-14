@@ -90,6 +90,22 @@
         </div>
     </div>
 
+    <!-- Order -->
+    <div>
+        <label for="order" class="block text-sm font-medium text-gray-700">
+            {{ _("order") }}
+        </label>
+        <input
+            type="number"
+            id="order"
+            name="order"
+            value="{{ team.order if team else '' }}"
+            placeholder="{{ _('enter_member_order') }}"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+            required
+        />
+    </div>
+
     <!-- Bio -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>

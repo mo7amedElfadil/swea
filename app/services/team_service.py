@@ -75,6 +75,7 @@ class TeamService(BaseService):
             "role": parse_nested_field(form_data, "role"),
             "bio": parse_nested_field(form_data, "bio"),
             "socials": parse_key_value_items(form_data.get("socials")),
+            "order": int(form_data.get("order", 1)),
         }
 
         # Handle image upload

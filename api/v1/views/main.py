@@ -10,12 +10,12 @@ from flask import (
 from flask_babel import gettext as _
 
 from api.v1.views import bp
-from app.services.news import NewsService
-from app.services.project_service import ProjectService
-from app.services.team_service import TeamService
 from app.services.course_service import CourseService
+from app.services.news import NewsService
 from app.services.podcast_service import PodcastService
+from app.services.project_service import ProjectService
 from app.services.research_service import ResearchService
+from app.services.team_service import TeamService
 from config import Config
 from utils.image_processing import ImageProcessing
 from utils.referrer_modifier import modify_referrer_lang
@@ -62,7 +62,7 @@ def projects():
 @response(template_file="team.html")
 def team():
     """team page"""
-    team_members = TeamService().get_all()
+    team_members = TeamService().get_all(sort="order")
     return dict(**team_members)
 
 
@@ -110,8 +110,8 @@ def dashboard():
             data=ProjectService().get_all,
         ),
         knowledge_hub=dict(
-            temp="partials/dashboard/knowledge-hub.html",
-            data=CourseService().get_all),
+            temp="partials/dashboard/knowledge-hub.html", data=CourseService().get_all
+        ),
         subscribers=dict(temp="partials/dashboard/subscribers.html", data=dict),
         news=dict(temp="partials/dashboard/news.html", data=NewsService().get_all),
     )
@@ -133,25 +133,21 @@ def knowledge_hub():
     tab_query = request.args.get("q", "research")
     tab_content = dict(
         research=dict(
-            temp="partials/knowledge-hub/research.html",
-            data=ResearchService().get_all),
+            temp="partials/knowledge-hub/research.html", data=ResearchService().get_all
+        ),
         courses=dict(
-            temp="partials/knowledge-hub/courses.html",
-            data=CourseService().get_all),
+            temp="partials/knowledge-hub/courses.html", data=CourseService().get_all
+        ),
         podcasts=dict(
-            temp="partials/knowledge-hub/podcasts.html",
-            data=PodcastService().get_all),
+            temp="partials/knowledge-hub/podcasts.html", data=PodcastService().get_all
+        ),
     )
 
     data = tab_content.get(tab_query, {}).get("data", lambda: {})()
     template = tab_content.get(tab_query, {}).get("temp")
-    print('------DATA------>', data)
+    print("------DATA------>", data)
     if request.headers.get("hx-tab"):
-        return make_response(
-            render_template(
-                template, **data
-            )
-        )
+        return make_response(render_template(template, **data))
     return dict(tab="research", **data)
 
 

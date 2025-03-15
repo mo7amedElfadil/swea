@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-15 06:46+0400\n"
+"POT-Creation-Date: 2025-03-15 10:24+0400\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.16.0\n"
+"Generated-By: Babel 2.10.3\n"
 
 #: api/v1/views/knowledge_hub.py:33
 msgid "Invalid tab"
@@ -118,19 +118,28 @@ msgstr "An error occurred while deleting the member"
 msgid "Member deleted successfully"
 msgstr "Member deleted successfully"
 
-#: api/v1/views/projects.py:51
-msgid "Project created successfully"
-msgstr "Project created successfully"
+#: api/v1/views/main.py:83 api/v1/views/main.py:86
+msgid "Invalid credentials"
+msgstr "Invalid Credentials"
 
-#: api/v1/views/projects.py:72 api/v1/views/projects.py:104
+#: api/v1/views/main.py:91
+msgid "Login successful"
+msgstr "Login successful"
+
+#: api/v1/views/projects.py:18 api/v1/views/projects.py:86
+#: api/v1/views/projects.py:116
 msgid "Project not found"
 msgstr "Project not found"
 
-#: api/v1/views/projects.py:92
+#: api/v1/views/projects.py:64
+msgid "Project created successfully"
+msgstr "Project created successfully"
+
+#: api/v1/views/projects.py:104
 msgid "Project updated successfully"
 msgstr "Project updated successfully"
 
-#: api/v1/views/projects.py:113
+#: api/v1/views/projects.py:125
 msgid "Project deleted successfully"
 msgstr "Project deleted successfully"
 
@@ -333,7 +342,7 @@ msgstr "Hub"
 
 #: app/templates/knowledge-hub.html:40
 msgid "research"
-msgstr ""
+msgstr "Research"
 
 #: app/templates/knowledge-hub.html:57
 #: app/templates/partials/dashboard/knowledge-hub.html:27
@@ -349,6 +358,26 @@ msgstr "Podcasts"
 #: app/templates/login.html:31
 msgid "login"
 msgstr "Login"
+
+#: app/templates/project-page.html:32
+msgid "Author"
+msgstr "Author"
+
+#: app/templates/project-page.html:38
+msgid "Status"
+msgstr "Project Status"
+
+#: app/templates/project-page.html:46
+msgid "Completion Date"
+msgstr "Completion Date"
+
+#: app/templates/project-page.html:49
+msgid "Ongoing"
+msgstr "Ongoing"
+
+#: app/templates/project-page.html:76
+msgid "Testimonials"
+msgstr "Testimonials"
 
 #: app/templates/partials/dashboard/projects.html:4
 #: app/templates/partials/header.html:34 app/templates/projects.html:11
@@ -378,8 +407,6 @@ msgid "course_desc"
 msgstr "Courses Description"
 
 #: app/templates/macros/form.html:51
-#: app/templates/partials/dashboard/new_project_form.html:80
-#: app/templates/partials/dashboard/new_project_form.html:155
 msgid "content_english_placeholder"
 msgstr "Content (English)"
 
@@ -388,34 +415,26 @@ msgid "choose"
 msgstr "Choose"
 
 #: app/templates/macros/form_macros.html:109
-#: app/templates/partials/dashboard/new_project_form.html:64
-#: app/templates/partials/dashboard/new_project_form.html:139
 msgid "Content"
 msgstr "Content"
 
 #: app/templates/macros/form_macros.html:126
-#: app/templates/partials/dashboard/new_project_form.html:202
 msgid "Add another content block"
 msgstr "Add another content block"
 
-#: app/templates/macros/form_macros.html:136
-#: app/templates/partials/dashboard/new_project_form.html:213
+#: app/templates/macros/form_macros.html:137
 msgid "Remove this content block"
 msgstr "Remove this content block"
 
-#: app/templates/macros/form_macros.html:147
-#: app/templates/partials/dashboard/new_project_form.html:226
-#: app/templates/partials/dashboard/new_project_form.html:328
+#: app/templates/macros/form_macros.html:149
 msgid "Testimonial"
 msgstr "Testimonials"
 
-#: app/templates/macros/form_macros.html:166
-#: app/templates/partials/dashboard/new_project_form.html:417
+#: app/templates/macros/form_macros.html:168
 msgid "Add another testimonial block"
 msgstr "Add another testimonial block"
 
-#: app/templates/macros/form_macros.html:177
-#: app/templates/partials/dashboard/new_project_form.html:428
+#: app/templates/macros/form_macros.html:179
 msgid "Remove this testimonial block"
 msgstr "Remove this testimonial block"
 
@@ -440,7 +459,6 @@ msgid "all_projects"
 msgstr "All Projects"
 
 #: app/templates/macros/tab_content.html:61
-#: app/templates/partials/dashboard/new_project_form.html:40
 msgid "ongoing"
 msgstr "Ongoing"
 
@@ -468,23 +486,6 @@ msgstr "knowledge hub"
 msgid "switch language"
 msgstr "العربية"
 
-#: app/templates/partials/dashboard/edit_project_form.html:43
-#: app/templates/partials/dashboard/new_project_form.html:56
-msgid "hero_image"
-msgstr "Project Hero Image"
-
-#: app/templates/partials/dashboard/edit_project_form.html:52
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:86
-#: app/templates/partials/dashboard/knowledge_hub/members-form.html:38
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:85
-#: app/templates/partials/dashboard/team_member-form.html:237
-msgid "current_image"
-msgstr "Current Image"
-
-#: app/templates/partials/dashboard/edit_project_form.html:89
-msgid "update_project"
-msgstr "Active Projects"
-
 #: app/templates/partials/dashboard/knowledge-hub.html:9
 msgid "knowledge_hub"
 msgstr "Knowledge Hub"
@@ -492,237 +493,6 @@ msgstr "Knowledge Hub"
 #: app/templates/partials/dashboard/knowledge-hub.html:40
 msgid "researches"
 msgstr "Researches"
-
-#: app/templates/partials/dashboard/new_project_form.html:14
-msgid "title_english"
-msgstr "English Title"
-
-#: app/templates/partials/dashboard/new_project_form.html:15
-msgid "project_title_english"
-msgstr "Project Title (English)"
-
-#: app/templates/partials/dashboard/new_project_form.html:16
-msgid "title_arabic"
-msgstr "Arabic Title"
-
-#: app/templates/partials/dashboard/new_project_form.html:17
-msgid "project_title_arabic"
-msgstr "Project Title (Arabic)"
-
-#: app/templates/partials/dashboard/new_project_form.html:20
-msgid "author_name_en"
-msgstr "Author Name (English)"
-
-#: app/templates/partials/dashboard/new_project_form.html:21
-msgid "author_name_en_placeholder"
-msgstr "Author Name (English)"
-
-#: app/templates/partials/dashboard/new_project_form.html:22
-msgid "author_name_ar"
-msgstr "Author Name (Arabic)"
-
-#: app/templates/partials/dashboard/new_project_form.html:23
-msgid "author_name_ar_placeholder"
-msgstr "Author Name (Arabic)"
-
-#: app/templates/partials/dashboard/new_project_form.html:25
-msgid "author_email"
-msgstr "Author Email"
-
-#: app/templates/partials/dashboard/new_project_form.html:27
-msgid "author_email_placeholder"
-msgstr "Author Email"
-
-#: app/templates/partials/dashboard/new_project_form.html:32
-msgid "status"
-msgstr "Project Status"
-
-#: app/templates/partials/dashboard/new_project_form.html:41
-msgid "completed"
-msgstr "Completed"
-
-#: app/templates/partials/dashboard/new_project_form.html:46
-msgid "date_of_completion"
-msgstr "Date of Completion"
-
-#: app/templates/partials/dashboard/new_project_form.html:50
-msgid "tags_english"
-msgstr "Tags (English)"
-
-#: app/templates/partials/dashboard/new_project_form.html:51
-msgid "tags_english_placeholder"
-msgstr "Tags (English)"
-
-#: app/templates/partials/dashboard/new_project_form.html:52
-msgid "tags_arabic"
-msgstr "Tags (Arabic)"
-
-#: app/templates/partials/dashboard/new_project_form.html:53
-msgid "tags_arabic_placeholder"
-msgstr "Tags (Arabic)"
-
-#: app/templates/partials/dashboard/new_project_form.html:74
-#: app/templates/partials/dashboard/new_project_form.html:150
-msgid "English Content"
-msgstr "English Content"
-
-#: app/templates/partials/dashboard/new_project_form.html:91
-#: app/templates/partials/dashboard/new_project_form.html:166
-msgid "Arabic Content"
-msgstr "Arabic Content"
-
-#: app/templates/partials/dashboard/new_project_form.html:97
-#: app/templates/partials/dashboard/new_project_form.html:171
-msgid "content_arabic_placeholder"
-msgstr "Content (Arabic)"
-
-#: app/templates/partials/dashboard/new_project_form.html:108
-#: app/templates/partials/dashboard/new_project_form.html:182
-msgid "content_image"
-msgstr "Content Image"
-
-#: app/templates/partials/dashboard/new_project_form.html:128
-msgid "Add more content"
-msgstr "Add more content"
-
-#: app/templates/partials/dashboard/new_project_form.html:235
-#: app/templates/partials/dashboard/new_project_form.html:338
-msgid "English Testimonial"
-msgstr "Testimonials (English)"
-
-#: app/templates/partials/dashboard/new_project_form.html:241
-#: app/templates/partials/dashboard/new_project_form.html:343
-msgid "testimonial_english_placeholder"
-msgstr "Add Testimonials (English)"
-
-#: app/templates/partials/dashboard/new_project_form.html:251
-#: app/templates/partials/dashboard/new_project_form.html:353
-msgid "Arabic Testimonial"
-msgstr "Testimonials (Arabic)"
-
-#: app/templates/partials/dashboard/new_project_form.html:257
-#: app/templates/partials/dashboard/new_project_form.html:358
-msgid "testimonial_arabic_placeholder"
-msgstr "Add Testimonials (Arabic)"
-
-#: app/templates/partials/dashboard/new_project_form.html:267
-#: app/templates/partials/dashboard/new_project_form.html:368
-msgid "Testimonial Author"
-msgstr "Testimonial Author"
-
-#: app/templates/partials/dashboard/new_project_form.html:273
-#: app/templates/partials/dashboard/new_project_form.html:373
-msgid "testimonial_author_placeholder"
-msgstr "Add Testimonial Author"
-
-#: app/templates/partials/dashboard/new_project_form.html:283
-#: app/templates/partials/dashboard/new_project_form.html:383
-msgid "Testimonial Author Qualification"
-msgstr "Testimonial Author Qualification"
-
-#: app/templates/partials/dashboard/new_project_form.html:289
-#: app/templates/partials/dashboard/new_project_form.html:388
-msgid "testimonial_author_qualification_placeholder"
-msgstr "Add Testimonial's Author Qualification"
-
-#: app/templates/partials/dashboard/new_project_form.html:299
-#: app/templates/partials/dashboard/new_project_form.html:398
-msgid "Testimonial Author Photo"
-msgstr "Testimonial Author Photo"
-
-#: app/templates/partials/dashboard/new_project_form.html:318
-msgid "Add more testimonials"
-msgstr "Testimonials (Arabic)"
-
-#: app/templates/partials/dashboard/new_project_form.html:443
-#: app/templates/partials/dashboard/projects.html:5
-msgid "add_project"
-msgstr "Add Project"
-
-#: app/templates/partials/dashboard/new_team_member_form.html:16
-#: app/templates/partials/dashboard/team_member-form.html:18
-msgid "name_english"
-msgstr "Name (English)"
-
-#: app/templates/partials/dashboard/new_team_member_form.html:22
-#: app/templates/partials/dashboard/team_member-form.html:25
-msgid "enter_name_in_english"
-msgstr "Member Name (English)"
-
-#: app/templates/partials/dashboard/new_team_member_form.html:32
-#: app/templates/partials/dashboard/team_member-form.html:37
-msgid "name_arabic"
-msgstr "Name (Arabic)"
-
-#: app/templates/partials/dashboard/new_team_member_form.html:38
-#: app/templates/partials/dashboard/team_member-form.html:44
-msgid "enter_name_in_arabic"
-msgstr "Member Name (Arabic)"
-
-#: app/templates/partials/dashboard/new_team_member_form.html:51
-#: app/templates/partials/dashboard/team_member-form.html:59
-msgid "role_english"
-msgstr "Member Role (English)"
-
-#: app/templates/partials/dashboard/new_team_member_form.html:57
-#: app/templates/partials/dashboard/team_member-form.html:66
-msgid "enter_role_in_english"
-msgstr "Member Role (English)"
-
-#: app/templates/partials/dashboard/new_team_member_form.html:67
-#: app/templates/partials/dashboard/team_member-form.html:78
-msgid "role_arabic"
-msgstr "Member Role (Arabic)"
-
-#: app/templates/partials/dashboard/new_team_member_form.html:73
-#: app/templates/partials/dashboard/team_member-form.html:85
-msgid "enter_role_in_arabic"
-msgstr "Member Role (Arabic)"
-
-#: app/templates/partials/dashboard/new_team_member_form.html:83
-#: app/templates/partials/dashboard/team_member-form.html:113
-msgid "bio_english"
-msgstr "English Bio"
-
-#: app/templates/partials/dashboard/new_team_member_form.html:89
-#: app/templates/partials/dashboard/team_member-form.html:119
-msgid "enter_bio_in_english"
-msgstr "Member Bio (English)"
-
-#: app/templates/partials/dashboard/new_team_member_form.html:96
-#: app/templates/partials/dashboard/team_member-form.html:130
-msgid "bio_arabic"
-msgstr "Arabic Bio"
-
-#: app/templates/partials/dashboard/new_team_member_form.html:102
-#: app/templates/partials/dashboard/team_member-form.html:136
-msgid "enter_bio_in_arabic"
-msgstr "Member Bio (Arabic)"
-
-#: app/templates/partials/dashboard/new_team_member_form.html:111
-#: app/templates/partials/dashboard/team_member-form.html:164
-msgid "socials"
-msgstr "Social links"
-
-#: app/templates/partials/dashboard/new_team_member_form.html:117
-msgid "enter_socials_comma_separated"
-msgstr "Enter social links separated by commas"
-
-#: app/templates/partials/dashboard/new_team_member_form.html:121
-msgid "example_socials_format"
-msgstr ""
-"Example: Twitter: https://twitter.com/swea, "
-"LinkedIn:https://linkedin.com/swea"
-
-#: app/templates/partials/dashboard/new_team_member_form.html:128
-#: app/templates/partials/dashboard/team_member-form.html:228
-msgid "profile_image"
-msgstr "Member Profile Image"
-
-#: app/templates/partials/dashboard/new_team_member_form.html:145
-#: app/templates/partials/dashboard/team.html:5
-msgid "add_team_member"
-msgstr "Add Team Member"
 
 #: app/templates/partials/dashboard/news-form.html:28
 #: app/templates/partials/dashboard/news-form.html:29
@@ -794,6 +564,87 @@ msgstr "There are no news yet!"
 msgid "add_news"
 msgstr "Add News"
 
+#: app/templates/partials/dashboard/project-form.html:25
+msgid "title_english"
+msgstr "English Title"
+
+#: app/templates/partials/dashboard/project-form.html:27
+msgid "project_title_english"
+msgstr "Project Title (English)"
+
+#: app/templates/partials/dashboard/project-form.html:28
+msgid "title_arabic"
+msgstr "Arabic Title"
+
+#: app/templates/partials/dashboard/project-form.html:30
+msgid "project_title_arabic"
+msgstr "Project Title (Arabic)"
+
+#: app/templates/partials/dashboard/project-form.html:33
+msgid "author_name_en"
+msgstr "Author Name (English)"
+
+#: app/templates/partials/dashboard/project-form.html:35
+msgid "author_name_en_placeholder"
+msgstr "Author Name (English)"
+
+#: app/templates/partials/dashboard/project-form.html:36
+msgid "author_name_ar"
+msgstr "Author Name (Arabic)"
+
+#: app/templates/partials/dashboard/project-form.html:38
+msgid "author_name_ar_placeholder"
+msgstr "Author Name (Arabic)"
+
+#: app/templates/partials/dashboard/project-form.html:39
+msgid "author_email"
+msgstr "Author Email"
+
+#: app/templates/partials/dashboard/project-form.html:41
+msgid "author_email_placeholder"
+msgstr "Author Email"
+
+#: app/templates/partials/dashboard/project-form.html:49
+msgid "date_of_completion"
+msgstr "Date of Completion"
+
+#: app/templates/partials/dashboard/project-form.html:55
+msgid "tags_english"
+msgstr "Tags (English)"
+
+#: app/templates/partials/dashboard/project-form.html:57
+msgid "tags_english_placeholder"
+msgstr "Tags (English)"
+
+#: app/templates/partials/dashboard/project-form.html:58
+msgid "tags_arabic"
+msgstr "Tags (Arabic)"
+
+#: app/templates/partials/dashboard/project-form.html:60
+msgid "tags_arabic_placeholder"
+msgstr "Tags (Arabic)"
+
+#: app/templates/partials/dashboard/project-form.html:65
+msgid "hero_image"
+msgstr "Project Hero Image"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:86
+#: app/templates/partials/dashboard/knowledge_hub/members-form.html:38
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:85
+#: app/templates/partials/dashboard/project-form.html:74
+#: app/templates/partials/dashboard/team_member-form.html:85
+msgid "current_image"
+msgstr "Current Image"
+
+#: app/templates/partials/dashboard/project-form.html:111
+msgid "update_project"
+msgstr "Update Project"
+
+#: app/templates/partials/dashboard/project-form.html:112
+#: app/templates/partials/dashboard/projects.html:5
+msgid "add_project"
+msgstr "Add Project"
+
 #: app/templates/partials/dashboard/knowledge_hub/researches-list.html:17
 #: app/templates/partials/dashboard/project-list.html:18
 msgid "by"
@@ -827,21 +678,13 @@ msgstr "No team members found"
 msgid "team_members"
 msgstr "Team Members"
 
-#: app/templates/partials/dashboard/team_member-form.html:96
-msgid "order"
-msgstr "Hierarchy Order"
+#: app/templates/partials/dashboard/team.html:5
+msgid "add_team_member"
+msgstr "Add Team Member"
 
-#: app/templates/partials/dashboard/team_member-form.html:103
-msgid "enter_member_order"
-msgstr "Enter Member Hierarchy Order"
-
-#: app/templates/partials/dashboard/team_member-form.html:149
-msgid "email"
-msgstr "Email"
-
-#: app/templates/partials/dashboard/team_member-form.html:156
-msgid "enter_member_email"
-msgstr "Enter Member Email"
+#: app/templates/partials/dashboard/team_member-form.html:55
+msgid "socials"
+msgstr "Social links"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:57
 msgid "course_members"
@@ -1049,11 +892,103 @@ msgstr "Learn more"
 #~ msgstr "Hierarchy Order"
 
 #~ msgid "enter_member_order"
-#~ msgstr "Enter Member Order"
+#~ msgstr "Enter Member Hierarchy Order"
 
 #~ msgid "email"
 #~ msgstr "Email"
 
 #~ msgid "enter_member_email"
 #~ msgstr "Enter Member Email"
+
+#~ msgid "English Content"
+#~ msgstr "English Content"
+
+#~ msgid "Arabic Content"
+#~ msgstr "Arabic Content"
+
+#~ msgid "content_arabic_placeholder"
+#~ msgstr "Content (Arabic)"
+
+#~ msgid "content_image"
+#~ msgstr "Content Image"
+
+#~ msgid "Add more content"
+#~ msgstr "Add more content"
+
+#~ msgid "English Testimonial"
+#~ msgstr "Testimonials (English)"
+
+#~ msgid "testimonial_english_placeholder"
+#~ msgstr "Add Testimonials (English)"
+
+#~ msgid "Arabic Testimonial"
+#~ msgstr "Testimonials (Arabic)"
+
+#~ msgid "testimonial_arabic_placeholder"
+#~ msgstr "Add Testimonials (Arabic)"
+
+#~ msgid "Testimonial Author"
+#~ msgstr "Testimonial Author"
+
+#~ msgid "testimonial_author_placeholder"
+#~ msgstr "Add Testimonial Author"
+
+#~ msgid "Testimonial Author Qualification"
+#~ msgstr "Testimonial Author Qualification"
+
+#~ msgid "testimonial_author_qualification_placeholder"
+#~ msgstr "Add Testimonial's Author Qualification"
+
+#~ msgid "Testimonial Author Photo"
+#~ msgstr "Testimonial Author Photo"
+
+#~ msgid "Add more testimonials"
+#~ msgstr "Testimonials (Arabic)"
+
+#~ msgid "name_english"
+#~ msgstr "Name (English)"
+
+#~ msgid "enter_name_in_english"
+#~ msgstr "Member Name (English)"
+
+#~ msgid "name_arabic"
+#~ msgstr "Name (Arabic)"
+
+#~ msgid "enter_name_in_arabic"
+#~ msgstr "Member Name (Arabic)"
+
+#~ msgid "role_english"
+#~ msgstr "Member Role (English)"
+
+#~ msgid "enter_role_in_english"
+#~ msgstr "Member Role (English)"
+
+#~ msgid "role_arabic"
+#~ msgstr "Member Role (Arabic)"
+
+#~ msgid "enter_role_in_arabic"
+#~ msgstr "Member Role (Arabic)"
+
+#~ msgid "bio_english"
+#~ msgstr "English Bio"
+
+#~ msgid "enter_bio_in_english"
+#~ msgstr "Member Bio (English)"
+
+#~ msgid "bio_arabic"
+#~ msgstr "Arabic Bio"
+
+#~ msgid "enter_bio_in_arabic"
+#~ msgstr "Member Bio (Arabic)"
+
+#~ msgid "enter_socials_comma_separated"
+#~ msgstr "Enter social links separated by commas"
+
+#~ msgid "example_socials_format"
+#~ msgstr ""
+#~ "Example: Twitter: https://twitter.com/swea, "
+#~ "LinkedIn:https://linkedin.com/swea"
+
+#~ msgid "profile_image"
+#~ msgstr "Member Profile Image"
 

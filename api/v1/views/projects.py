@@ -48,7 +48,7 @@ def filter_projects():
 
 
 @bp.route("/dashboard/new-project", methods=["GET", "POST"])
-@response(template_file="partials/dashboard/project_form.html")
+@response(template_file="partials/dashboard/project-form.html")
 def add_project():
     """Add a new project"""
     if request.method == "POST":
@@ -86,7 +86,7 @@ def update_project(project_id):
             return add_toast(resp, "error", _("Project not found"))
 
         return render_template(
-            "partials/dashboard/project_form.html", project=project_data
+            "partials/dashboard/project-form.html", project=project_data
         )
 
     try:

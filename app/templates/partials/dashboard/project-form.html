@@ -27,7 +27,7 @@
     placeholder=_("project_title_english"), required=true) }} {{
     form.text_input(label=_("title_arabic"), id="title-ar", name="title[ar]",
     value=project.title.ar if project else "",
-    placeholder=_("project_title_arabic"), required=true) }}
+    placeholder=_("project_title_arabic"), required=true, dir="rtl") }}
 
     <!-- Author (Name and Email) -->
     {{ form.text_input(label=_("author_name_en"), id="author-name-en",
@@ -35,7 +35,7 @@
     placeholder=_("author_name_en_placeholder"), required=true) }} {{
     form.text_input(label=_("author_name_ar"), id="author-name-ar",
     name="author[name][ar]", value=project.author.name.ar if project else "",
-    placeholder=_("author_name_ar_placeholder"), required=true) }} {{
+    placeholder=_("author_name_ar_placeholder"), required=true, dir="rtl") }} {{
     form.text_input(label=_("author_email"), id="author-email",
     name="author[email]", value=project.author.email if project else "",
     type="email", placeholder=_("author_email_placeholder"), required=true) }}
@@ -56,7 +56,7 @@
     value=project.tags.en if project else "",
     placeholder=_("tags_english_placeholder")) }} {{
     form.text_input(label=_("tags_arabic"), id="tags-ar", name="tags[ar]",
-    value=project.tags.ar if project else "",
+    value=project.tags.ar if project else "", dir="rtl",
     placeholder=_("tags_arabic_placeholder")) }}
 
     <!-- Hero Image -->

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-10 21:56+0400\n"
+"POT-Creation-Date: 2025-03-15 06:46+0400\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.3\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: api/v1/views/knowledge_hub.py:33
 msgid "Invalid tab"
@@ -190,77 +190,77 @@ msgstr "Knowledge Hub"
 msgid "swea_subscribers"
 msgstr "Subscribers"
 
-#: app/templates/dashboard.html:100 app/templates/index.html:98
+#: app/templates/dashboard.html:100 app/templates/index.html:103
 #: app/templates/partials/dashboard/news.html:4
 msgid "news"
 msgstr "News"
 
-#: app/templates/index.html:10
+#: app/templates/index.html:11
 msgid "hero title"
 msgstr "Empowering Sudanese Women Economists"
 
-#: app/templates/index.html:12
+#: app/templates/index.html:13
 msgid "hero description"
 msgstr ""
 "Our aim is to create a space for Sudanese women economists to grow "
 "professionally, through networking, skills enhancing and opportunities "
 "mobilizing."
 
-#: app/templates/index.html:15
+#: app/templates/index.html:16
 msgid "join us"
 msgstr "Join Us"
 
-#: app/templates/index.html:23
+#: app/templates/index.html:27
 msgid "mission title"
 msgstr "Our Mission"
 
-#: app/templates/index.html:27
+#: app/templates/index.html:31
 msgid "mission 1 title"
 msgstr "Empower Sudanese Economists"
 
-#: app/templates/index.html:28
+#: app/templates/index.html:32
 msgid "mission 1 desc"
 msgstr ""
 "Showcase Sudanese women economists work alongside ensuring women’s voices"
 " are amplified in the fields of economics and economic-related "
 "disciplines, in both academia and practice."
 
-#: app/templates/index.html:35
+#: app/templates/index.html:39
 msgid "mission 2 title"
 msgstr "Career Advancement"
 
-#: app/templates/index.html:36
+#: app/templates/index.html:40
 msgid "mission 2 desc"
 msgstr ""
 "Career development and capacity building of young women economists in "
 "Sudan; alongside providing a professional bi-directional relationship "
 "between experts in the field, and prospective women economists."
 
-#: app/templates/index.html:46
+#: app/templates/index.html:50
 msgid "mission 3 title"
 msgstr "Solidarity Amongst Economists"
 
-#: app/templates/index.html:47
+#: app/templates/index.html:51
 msgid "mission 3 desc"
 msgstr ""
 "Support research and publication opportunities of Sudanese women "
 "economists; within an inclusive and supportive network."
 
-#: app/templates/index.html:55
+#: app/templates/index.html:59
 msgid "mission 4 title"
 msgstr "Connect With Partners"
 
-#: app/templates/index.html:56
+#: app/templates/index.html:60
 msgid "mission 4 desc"
 msgstr ""
 "Inter-generatinal exchange of knowledge and experiences within the "
 "economics discipline"
 
-#: app/templates/index.html:71
+#: app/templates/index.html:75
 msgid "our story"
-msgstr ""
+msgstr "Our Story"
 
-#: app/templates/index.html:74
+#: app/templates/index.html:78
 msgid "our story desc"
 msgstr ""
 "Sudanese women economists association (SWEA) was founded in June 2020, on"
@@ -273,53 +273,53 @@ msgstr ""
 "economists, offering networking opportunities and enriching the economic "
 "research space by contributions from its membres."
 
-#: app/templates/index.html:78
+#: app/templates/index.html:83
 msgid "our vision"
 msgstr "Our Vision"
 
-#: app/templates/index.html:81
+#: app/templates/index.html:86
 msgid "vision 1"
 msgstr ""
 "<b>Advance</b> Sudanese Women Economists' participation in Academic And "
 "public policy spheres in Sudan."
 
-#: app/templates/index.html:85
+#: app/templates/index.html:90
 msgid "vision 2"
 msgstr "<b>Build capacity</b> of young women in economics."
 
-#: app/templates/index.html:89
+#: app/templates/index.html:94
 msgid "vision 3"
 msgstr ""
 "<b>Amplify</b> the voices of sudanese women in economic research and "
 "practice."
 
-#: app/templates/index.html:93
+#: app/templates/index.html:98
 msgid "vision 4"
 msgstr ""
 "<b>Promote solidarity</b> between Sudanese women economists across "
 "generations."
 
-#: app/templates/index.html:124
+#: app/templates/index.html:129
 msgid "contact us"
 msgstr "Contact Us"
 
-#: app/templates/index.html:125
+#: app/templates/index.html:130
 msgid "contact enquiry"
 msgstr "Have any inquiries or want to ask us something?"
 
-#: app/templates/index.html:129
+#: app/templates/index.html:134
 msgid "form name"
 msgstr "Name"
 
-#: app/templates/index.html:137 app/templates/partials/footer.html:9
+#: app/templates/index.html:142 app/templates/partials/footer.html:9
 msgid "form email"
 msgstr "Email"
 
-#: app/templates/index.html:144
+#: app/templates/index.html:149
 msgid "form textarea"
 msgstr "Comment or Message"
 
-#: app/templates/index.html:149
+#: app/templates/index.html:154
 msgid "submit"
 msgstr "Submit"
 
@@ -351,52 +351,31 @@ msgid "login"
 msgstr "Login"
 
 #: app/templates/partials/dashboard/projects.html:4
-#: app/templates/partials/header.html:34 app/templates/projects.html:14
+#: app/templates/partials/header.html:34 app/templates/projects.html:11
 msgid "projects"
 msgstr "projects"
 
-#: app/templates/projects.html:16
+#: app/templates/projects.html:13
 msgid "project hero desc"
 msgstr ""
 "Explore our impactful projects aimed to empower Sudanese women "
 "economists, fotser collaboration, and drive sustainable economic "
 "development"
 
-#: app/templates/team.html:18
-msgid "meet_the_team_hero_title_1"
-msgstr "Empowering Women, Building Futures"
-
-#: app/templates/team.html:23
-msgid "meet_the_team_hero_title_2"
-msgstr "Meet the Visionaries Behind SWEA"
-
-#: app/templates/team.html:27
-msgid "meet_team_subtitle"
-msgstr "Dedicated to driving change and fostering equality"
-
-#: app/templates/team.html:60
+#: app/templates/team.html:9
 msgid "our_exceptional_team"
 msgstr "Our Exceptional Team of Leaders and Innovators"
 
-#: app/templates/team.html:66
+#: app/templates/team.html:15
 msgid "team_description"
 msgstr ""
 "At SWEA, our team is the heart of our mission. Composed of passionate "
 "economists, researchers, and advocates, we work collectively to empower "
 "women and promote sustainable development across Sudan and beyond."
 
-#: app/templates/team.html:207
-msgid "read_more"
-msgstr "Read More"
-
-#: app/templates/team.html:210
-msgid "read_less"
-msgstr "Read Less"
-
 #: app/templates/macros/form.html:44
-#, fuzzy
 msgid "course_desc"
-msgstr "Courses"
+msgstr "Courses Description"
 
 #: app/templates/macros/form.html:51
 #: app/templates/partials/dashboard/new_project_form.html:80
@@ -408,34 +387,34 @@ msgstr "Content (English)"
 msgid "choose"
 msgstr "Choose"
 
-#: app/templates/macros/form_macros.html:107
+#: app/templates/macros/form_macros.html:109
 #: app/templates/partials/dashboard/new_project_form.html:64
 #: app/templates/partials/dashboard/new_project_form.html:139
 msgid "Content"
 msgstr "Content"
 
-#: app/templates/macros/form_macros.html:124
+#: app/templates/macros/form_macros.html:126
 #: app/templates/partials/dashboard/new_project_form.html:202
 msgid "Add another content block"
 msgstr "Add another content block"
 
-#: app/templates/macros/form_macros.html:134
+#: app/templates/macros/form_macros.html:136
 #: app/templates/partials/dashboard/new_project_form.html:213
 msgid "Remove this content block"
 msgstr "Remove this content block"
 
-#: app/templates/macros/form_macros.html:145
+#: app/templates/macros/form_macros.html:147
 #: app/templates/partials/dashboard/new_project_form.html:226
 #: app/templates/partials/dashboard/new_project_form.html:328
 msgid "Testimonial"
 msgstr "Testimonials"
 
-#: app/templates/macros/form_macros.html:164
+#: app/templates/macros/form_macros.html:166
 #: app/templates/partials/dashboard/new_project_form.html:417
 msgid "Add another testimonial block"
 msgstr "Add another testimonial block"
 
-#: app/templates/macros/form_macros.html:175
+#: app/templates/macros/form_macros.html:177
 #: app/templates/partials/dashboard/new_project_form.html:428
 msgid "Remove this testimonial block"
 msgstr "Remove this testimonial block"
@@ -498,7 +477,7 @@ msgstr "Project Hero Image"
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:86
 #: app/templates/partials/dashboard/knowledge_hub/members-form.html:38
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:85
-#: app/templates/partials/dashboard/team_member-form.html:161
+#: app/templates/partials/dashboard/team_member-form.html:237
 msgid "current_image"
 msgstr "Current Image"
 
@@ -701,44 +680,42 @@ msgid "enter_role_in_arabic"
 msgstr "Member Role (Arabic)"
 
 #: app/templates/partials/dashboard/new_team_member_form.html:83
-#: app/templates/partials/dashboard/team_member-form.html:97
+#: app/templates/partials/dashboard/team_member-form.html:113
 msgid "bio_english"
 msgstr "English Bio"
 
 #: app/templates/partials/dashboard/new_team_member_form.html:89
-#: app/templates/partials/dashboard/team_member-form.html:103
+#: app/templates/partials/dashboard/team_member-form.html:119
 msgid "enter_bio_in_english"
 msgstr "Member Bio (English)"
 
 #: app/templates/partials/dashboard/new_team_member_form.html:96
-#: app/templates/partials/dashboard/team_member-form.html:114
+#: app/templates/partials/dashboard/team_member-form.html:130
 msgid "bio_arabic"
 msgstr "Arabic Bio"
 
 #: app/templates/partials/dashboard/new_team_member_form.html:102
-#: app/templates/partials/dashboard/team_member-form.html:120
+#: app/templates/partials/dashboard/team_member-form.html:136
 msgid "enter_bio_in_arabic"
 msgstr "Member Bio (Arabic)"
 
 #: app/templates/partials/dashboard/new_team_member_form.html:111
-#: app/templates/partials/dashboard/team_member-form.html:133
+#: app/templates/partials/dashboard/team_member-form.html:164
 msgid "socials"
 msgstr "Social links"
 
 #: app/templates/partials/dashboard/new_team_member_form.html:117
-#: app/templates/partials/dashboard/team_member-form.html:140
 msgid "enter_socials_comma_separated"
 msgstr "Enter social links separated by commas"
 
 #: app/templates/partials/dashboard/new_team_member_form.html:121
-#: app/templates/partials/dashboard/team_member-form.html:145
 msgid "example_socials_format"
 msgstr ""
 "Example: Twitter: https://twitter.com/swea, "
 "LinkedIn:https://linkedin.com/swea"
 
 #: app/templates/partials/dashboard/new_team_member_form.html:128
-#: app/templates/partials/dashboard/team_member-form.html:152
+#: app/templates/partials/dashboard/team_member-form.html:228
 msgid "profile_image"
 msgstr "Member Profile Image"
 
@@ -796,7 +773,7 @@ msgstr "Create"
 #: app/templates/partials/dashboard/knowledge_hub/researches-list.html:40
 #: app/templates/partials/dashboard/news-list.html:21
 #: app/templates/partials/dashboard/project-list.html:50
-#: app/templates/partials/dashboard/team-list.html:45
+#: app/templates/partials/dashboard/team-list.html:52
 msgid "edit"
 msgstr "Edit"
 
@@ -805,7 +782,7 @@ msgstr "Edit"
 #: app/templates/partials/dashboard/knowledge_hub/researches-list.html:49
 #: app/templates/partials/dashboard/news-list.html:29
 #: app/templates/partials/dashboard/project-list.html:59
-#: app/templates/partials/dashboard/team-list.html:54
+#: app/templates/partials/dashboard/team-list.html:61
 msgid "delete"
 msgstr "Delete"
 
@@ -836,13 +813,13 @@ msgstr "subscribe"
 
 #: app/templates/partials/dashboard/subscribers.html:5
 msgid "add_subscriber"
-msgstr "add Subscribers"
+msgstr "Add Subscribers"
 
-#: app/templates/partials/dashboard/team-list.html:50
+#: app/templates/partials/dashboard/team-list.html:57
 msgid "confirm_delete_team_member"
 msgstr "Are you sure you want to delete this team member?"
 
-#: app/templates/partials/dashboard/team-list.html:65
+#: app/templates/partials/dashboard/team-list.html:72
 msgid "no_team_members_found"
 msgstr "No team members found"
 
@@ -850,10 +827,25 @@ msgstr "No team members found"
 msgid "team_members"
 msgstr "Team Members"
 
+#: app/templates/partials/dashboard/team_member-form.html:96
+msgid "order"
+msgstr "Hierarchy Order"
+
+#: app/templates/partials/dashboard/team_member-form.html:103
+msgid "enter_member_order"
+msgstr "Enter Member Hierarchy Order"
+
+#: app/templates/partials/dashboard/team_member-form.html:149
+msgid "email"
+msgstr "Email"
+
+#: app/templates/partials/dashboard/team_member-form.html:156
+msgid "enter_member_email"
+msgstr "Enter Member Email"
+
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:57
-#, fuzzy
 msgid "course_members"
-msgstr "Team Members"
+msgstr "Course Members"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-list.html:50
 msgid "confirm_delete_course"
@@ -1037,4 +1029,31 @@ msgstr "Learn more"
 
 #~ msgid "course image"
 #~ msgstr "Current Image"
+
+#~ msgid "meet_the_team_hero_title_1"
+#~ msgstr "Empowering Women, Building Futures"
+
+#~ msgid "meet_the_team_hero_title_2"
+#~ msgstr "Meet the Visionaries Behind SWEA"
+
+#~ msgid "meet_team_subtitle"
+#~ msgstr "Dedicated to driving change and fostering equality"
+
+#~ msgid "read_more"
+#~ msgstr "Read More"
+
+#~ msgid "read_less"
+#~ msgstr "Read Less"
+
+#~ msgid "order"
+#~ msgstr "Hierarchy Order"
+
+#~ msgid "enter_member_order"
+#~ msgstr "Enter Member Order"
+
+#~ msgid "email"
+#~ msgstr "Email"
+
+#~ msgid "enter_member_email"
+#~ msgstr "Enter Member Email"
 

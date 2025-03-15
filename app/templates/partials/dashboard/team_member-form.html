@@ -1,4 +1,6 @@
-{% from 'macros/spinner.html' import spinner %}
+{% from 'macros/form_macros.html' import text_input, textarea, file_upload %} {%
+from 'macros/spinner.html' import spinner %}
+
 <form
     hx-post="{{ form_action }}"
     hx-target="#tab-content"
@@ -10,196 +12,80 @@
 >
     <!-- Name -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-            <label
-                for="name-en"
-                class="block text-sm font-medium text-gray-700"
-            >
-                {{ _("name_english") }}
-            </label>
-            <input
-                type="text"
-                id="name-en"
-                name="name[en]"
-                value="{{ team.name['en'] if team else '' }}"
-                placeholder="{{ _('enter_name_in_english') }}"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-                dir="ltr"
-                lang="en"
-                required
-            />
-        </div>
-        <div>
-            <label
-                for="name-ar"
-                class="block text-sm font-medium text-gray-700"
-            >
-                {{ _("name_arabic") }}
-            </label>
-            <input
-                type="text"
-                id="name-ar"
-                name="name[ar]"
-                value="{{ team.name['ar'] if team else '' }}"
-                placeholder="{{ _('enter_name_in_arabic') }}"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm text-right"
-                dir="rtl"
-                lang="ar"
-            />
-        </div>
+        {{ text_input( id="name-en", name="name[en]", value=team.name['en'] if
+        team else '', label="name_english", placeholder="enter_name_in_english",
+        required=true, dir="ltr", lang="en" ) }} {{ text_input( id="name-ar",
+        name="name[ar]", value=team.name['ar'] if team else '',
+        label="name_arabic", placeholder="enter_name_in_arabic", dir="rtl",
+        lang="ar" ) }}
     </div>
 
     <!-- Role -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-            <label
-                for="role-en"
-                class="block text-sm font-medium text-gray-700"
-            >
-                {{ _("role_english") }}
-            </label>
-            <input
-                type="text"
-                id="role-en"
-                name="role[en]"
-                value="{{ team.role['en'] if team else '' }}"
-                placeholder="{{ _('enter_role_in_english') }}"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-                dir="ltr"
-                lang="en"
-                required
-            />
-        </div>
-        <div>
-            <label
-                for="role-ar"
-                class="block text-sm font-medium text-gray-700"
-            >
-                {{ _("role_arabic") }}
-            </label>
-            <input
-                type="text"
-                id="role-ar"
-                name="role[ar]"
-                value="{{ team.role['ar'] if team else '' }}"
-                placeholder="{{ _('enter_role_in_arabic') }}"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm text-right"
-                dir="rtl"
-                lang="ar"
-            />
-        </div>
+        {{ text_input( id="role-en", name="role[en]", value=team.role['en'] if
+        team else '', label="role_english", placeholder="enter_role_in_english",
+        required=true, dir="ltr", lang="en" ) }} {{ text_input( id="role-ar",
+        name="role[ar]", value=team.role['ar'] if team else '',
+        label="role_arabic", placeholder="enter_role_in_arabic", dir="rtl",
+        lang="ar" ) }}
     </div>
 
     <!-- Order -->
-    <div>
-        <label for="order" class="block text-sm font-medium text-gray-700">
-            {{ _("order") }}
-        </label>
-        <input
-            type="number"
-            id="order"
-            name="order"
-            value="{{ team.order if team else '' }}"
-            placeholder="{{ _('enter_member_order') }}"
-            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-            required
-        />
-    </div>
+    {{ text_input( id="order", name="order", value=team.order if team else '',
+    label="order", placeholder="enter_member_order", type="number",
+    required=true ) }}
 
     <!-- Bio -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-            <label for="bio-en" class="block text-sm font-medium text-gray-700">
-                {{ _("bio_english") }}
-            </label>
-            <textarea
-                id="bio-en"
-                name="bio[en]"
-                rows="3"
-                placeholder="{{ _('enter_bio_in_english') }}"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-                dir="ltr"
-                lang="en"
-                required
-            >
-{{ team.bio['en'] if team else '' }}</textarea
-            >
-        </div>
-        <div>
-            <label for="bio-ar" class="block text-sm font-medium text-gray-700">
-                {{ _("bio_arabic") }}
-            </label>
-            <textarea
-                id="bio-ar"
-                name="bio[ar]"
-                rows="3"
-                placeholder="{{ _('enter_bio_in_arabic') }}"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm text-right"
-                dir="rtl"
-                lang="ar"
-            >
-{{ team.bio['ar'] if team else '' }}</textarea
-            >
-        </div>
+        {{ textarea( id="bio-en", name="bio[en]", value=team.bio['en'] if team
+        else '', label="bio_english", placeholder="enter_bio_in_english",
+        required=true, dir="ltr", lang="en" ) }} {{ textarea( id="bio-ar",
+        name="bio[ar]", value=team.bio['ar'] if team else '',
+        label="bio_arabic", placeholder="enter_bio_in_arabic", dir="rtl",
+        lang="ar" ) }}
     </div>
 
     <!-- Email -->
-    <div>
-        <label for="email" class="block text-sm font-medium text-gray-700">
-            {{ _("email") }}
-        </label>
-        <input
-            type="email"
-            id="email"
-            name="email"
-            value="{{ team.email if team else '' }}"
-            placeholder="{{ _('enter_member_email') }}"
-            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-        />
-    </div>
+    {{ text_input( id="email", name="email", value=team.email if team else '',
+    label="email", placeholder="enter_member_email", type="email" ) }}
 
     <!-- Socials -->
-    <div>
-        <label for="socials" class="block text-sm font-medium text-gray-700">
+    <div class="flex flex-col gap-4">
+        <label class="block text-sm font-medium text-gray-700">
             {{ _("socials") }}
         </label>
-        <input
-            type="text"
-            id="socials"
-            name="socials"
-            value="{% if team and team.socials %}{% for platform, url in team.socials.items() %}{{ platform }}:{{ url }}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}"
-            placeholder="{{ _('enter_socials_comma_separated') }}"
-            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-            dir="ltr"
-        />
-        <p class="mt-2 text-sm text-gray-500">
-            {{ _("example_socials_format") }}
-        </p>
+
+        <!-- Twitter -->
+        {{ text_input( id="socials-twitter", name="socials[Twitter]",
+        value=team.socials.get('Twitter', '') if team and team.socials else '',
+        label="Twitter", placeholder="https://twitter.com/username", type="url",
+        dir="ltr" ) }}
+
+        <!-- LinkedIn -->
+        {{ text_input( id="socials-linkedin", name="socials[LinkedIn]",
+        value=team.socials.get('LinkedIn', '') if team and team.socials else '',
+        label="LinkedIn", placeholder="https://linkedin.com/in/username",
+        type="url", dir="ltr" ) }}
+
+        <!-- Facebook -->
+        {{ text_input( id="socials-facebook", name="socials[Facebook]",
+        value=team.socials.get('Facebook', '') if team and team.socials else '',
+        label="Facebook", placeholder="https://facebook.com/username",
+        type="url", dir="ltr" ) }}
     </div>
 
     <!-- Image Upload -->
-    <div>
-        <label for="image" class="block text-sm font-medium text-gray-700">
-            {{ _("profile_image") }}
-        </label>
-        {% if team and team.image %}
-        <div class="flex items-center space-x-4">
-            <img
-                src="{{ url_for('static', filename=team.image) }}"
-                alt="{{ team.name['en'] }}"
-                class="w-24 h-24 object-cover rounded-full"
-            />
-            <span class="text-sm text-gray-600">{{ _("current_image") }}</span>
-        </div>
-        {% endif %}
-        <input
-            type="file"
-            id="image"
-            name="image"
-            accept="image/*"
-            class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100"
+    {% if team and team.image %}
+    <div class="flex items-center space-x-4">
+        <img
+            src="{{ url_for('static', filename=team.image) }}"
+            alt="{{ team.name['en'] }}"
+            class="w-24 h-24 object-cover rounded-full"
         />
+        <span class="text-sm text-gray-600">{{ _("current_image") }}</span>
     </div>
+    {% endif %} {{ file_upload( id="image", name="image", label="profile_image",
+    accept="image/*" ) }}
 
     <!-- Submit Button -->
     <div>

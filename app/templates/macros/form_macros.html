@@ -2,7 +2,7 @@
 
 {# Text Input Field - Supports multilingual fields #}
 {% macro text_input(id, name, value, label, placeholder="", required=false,
-type="text", dir="ltr") %}
+lang="en", type="text", dir="ltr") %}
     <div>
         <label for="{{ id }}" class="block text-sm font-medium text-gray-700">
             {{ _(label) }}
@@ -16,13 +16,14 @@ type="text", dir="ltr") %}
             class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
             {% if required %}required{% endif %}
             {% if dir %}dir="{{ dir }}"{% endif %}
+            {% if lang %}lang="{{ lang }}"{% endif %}
         />
     </div>
 {% endmacro %}
 
 {# Textarea Field #}
 {% macro textarea(id, name, value, label, rows=3, placeholder="",
-required=false, dir="ltr") %}
+required=false, lang='en', dir="ltr") %}
     <div>
         <label for="{{ id }}" class="block text-sm font-medium text-gray-700">
             {{ _(label) }}
@@ -35,6 +36,7 @@ required=false, dir="ltr") %}
             class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
             {% if required %}required{% endif %}
             {% if dir %}dir="{{ dir }}"{% endif %}
+            {% if lang %}lang="{{ lang }}"{% endif %}
         >{{ value }}</textarea>
     </div>
 {% endmacro %}

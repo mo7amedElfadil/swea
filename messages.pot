@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-10 21:56+0400\n"
+"POT-Creation-Date: 2025-03-15 06:46+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.3\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: api/v1/views/knowledge_hub.py:33
 msgid "Invalid tab"
@@ -189,108 +189,108 @@ msgstr ""
 msgid "swea_subscribers"
 msgstr ""
 
-#: app/templates/dashboard.html:100 app/templates/index.html:98
+#: app/templates/dashboard.html:100 app/templates/index.html:103
 #: app/templates/partials/dashboard/news.html:4
 msgid "news"
 msgstr ""
 
-#: app/templates/index.html:10
+#: app/templates/index.html:11
 msgid "hero title"
 msgstr ""
 
-#: app/templates/index.html:12
+#: app/templates/index.html:13
 msgid "hero description"
 msgstr ""
 
-#: app/templates/index.html:15
+#: app/templates/index.html:16
 msgid "join us"
 msgstr ""
 
-#: app/templates/index.html:23
+#: app/templates/index.html:27
 msgid "mission title"
 msgstr ""
 
-#: app/templates/index.html:27
+#: app/templates/index.html:31
 msgid "mission 1 title"
 msgstr ""
 
-#: app/templates/index.html:28
+#: app/templates/index.html:32
 msgid "mission 1 desc"
 msgstr ""
 
-#: app/templates/index.html:35
+#: app/templates/index.html:39
 msgid "mission 2 title"
 msgstr ""
 
-#: app/templates/index.html:36
+#: app/templates/index.html:40
 msgid "mission 2 desc"
 msgstr ""
 
-#: app/templates/index.html:46
+#: app/templates/index.html:50
 msgid "mission 3 title"
 msgstr ""
 
-#: app/templates/index.html:47
+#: app/templates/index.html:51
 msgid "mission 3 desc"
 msgstr ""
 
-#: app/templates/index.html:55
+#: app/templates/index.html:59
 msgid "mission 4 title"
 msgstr ""
 
-#: app/templates/index.html:56
+#: app/templates/index.html:60
 msgid "mission 4 desc"
 msgstr ""
 
-#: app/templates/index.html:71
+#: app/templates/index.html:75
 msgid "our story"
 msgstr ""
 
-#: app/templates/index.html:74
+#: app/templates/index.html:78
 msgid "our story desc"
 msgstr ""
 
-#: app/templates/index.html:78
+#: app/templates/index.html:83
 msgid "our vision"
 msgstr ""
 
-#: app/templates/index.html:81
+#: app/templates/index.html:86
 msgid "vision 1"
 msgstr ""
 
-#: app/templates/index.html:85
+#: app/templates/index.html:90
 msgid "vision 2"
 msgstr ""
 
-#: app/templates/index.html:89
+#: app/templates/index.html:94
 msgid "vision 3"
 msgstr ""
 
-#: app/templates/index.html:93
+#: app/templates/index.html:98
 msgid "vision 4"
 msgstr ""
 
-#: app/templates/index.html:124
+#: app/templates/index.html:129
 msgid "contact us"
 msgstr ""
 
-#: app/templates/index.html:125
+#: app/templates/index.html:130
 msgid "contact enquiry"
 msgstr ""
 
-#: app/templates/index.html:129
+#: app/templates/index.html:134
 msgid "form name"
 msgstr ""
 
-#: app/templates/index.html:137 app/templates/partials/footer.html:9
+#: app/templates/index.html:142 app/templates/partials/footer.html:9
 msgid "form email"
 msgstr ""
 
-#: app/templates/index.html:144
+#: app/templates/index.html:149
 msgid "form textarea"
 msgstr ""
 
-#: app/templates/index.html:149
+#: app/templates/index.html:154
 msgid "submit"
 msgstr ""
 
@@ -322,40 +322,20 @@ msgid "login"
 msgstr ""
 
 #: app/templates/partials/dashboard/projects.html:4
-#: app/templates/partials/header.html:34 app/templates/projects.html:14
+#: app/templates/partials/header.html:34 app/templates/projects.html:11
 msgid "projects"
 msgstr ""
 
-#: app/templates/projects.html:16
+#: app/templates/projects.html:13
 msgid "project hero desc"
 msgstr ""
 
-#: app/templates/team.html:18
-msgid "meet_the_team_hero_title_1"
-msgstr ""
-
-#: app/templates/team.html:23
-msgid "meet_the_team_hero_title_2"
-msgstr ""
-
-#: app/templates/team.html:27
-msgid "meet_team_subtitle"
-msgstr ""
-
-#: app/templates/team.html:60
+#: app/templates/team.html:9
 msgid "our_exceptional_team"
 msgstr ""
 
-#: app/templates/team.html:66
+#: app/templates/team.html:15
 msgid "team_description"
-msgstr ""
-
-#: app/templates/team.html:207
-msgid "read_more"
-msgstr ""
-
-#: app/templates/team.html:210
-msgid "read_less"
 msgstr ""
 
 #: app/templates/macros/form.html:44
@@ -372,34 +352,34 @@ msgstr ""
 msgid "choose"
 msgstr ""
 
-#: app/templates/macros/form_macros.html:107
+#: app/templates/macros/form_macros.html:109
 #: app/templates/partials/dashboard/new_project_form.html:64
 #: app/templates/partials/dashboard/new_project_form.html:139
 msgid "Content"
 msgstr ""
 
-#: app/templates/macros/form_macros.html:124
+#: app/templates/macros/form_macros.html:126
 #: app/templates/partials/dashboard/new_project_form.html:202
 msgid "Add another content block"
 msgstr ""
 
-#: app/templates/macros/form_macros.html:134
+#: app/templates/macros/form_macros.html:136
 #: app/templates/partials/dashboard/new_project_form.html:213
 msgid "Remove this content block"
 msgstr ""
 
-#: app/templates/macros/form_macros.html:145
+#: app/templates/macros/form_macros.html:147
 #: app/templates/partials/dashboard/new_project_form.html:226
 #: app/templates/partials/dashboard/new_project_form.html:328
 msgid "Testimonial"
 msgstr ""
 
-#: app/templates/macros/form_macros.html:164
+#: app/templates/macros/form_macros.html:166
 #: app/templates/partials/dashboard/new_project_form.html:417
 msgid "Add another testimonial block"
 msgstr ""
 
-#: app/templates/macros/form_macros.html:175
+#: app/templates/macros/form_macros.html:177
 #: app/templates/partials/dashboard/new_project_form.html:428
 msgid "Remove this testimonial block"
 msgstr ""
@@ -462,7 +442,7 @@ msgstr ""
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:86
 #: app/templates/partials/dashboard/knowledge_hub/members-form.html:38
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:85
-#: app/templates/partials/dashboard/team_member-form.html:161
+#: app/templates/partials/dashboard/team_member-form.html:237
 msgid "current_image"
 msgstr ""
 
@@ -665,42 +645,40 @@ msgid "enter_role_in_arabic"
 msgstr ""
 
 #: app/templates/partials/dashboard/new_team_member_form.html:83
-#: app/templates/partials/dashboard/team_member-form.html:97
+#: app/templates/partials/dashboard/team_member-form.html:113
 msgid "bio_english"
 msgstr ""
 
 #: app/templates/partials/dashboard/new_team_member_form.html:89
-#: app/templates/partials/dashboard/team_member-form.html:103
+#: app/templates/partials/dashboard/team_member-form.html:119
 msgid "enter_bio_in_english"
 msgstr ""
 
 #: app/templates/partials/dashboard/new_team_member_form.html:96
-#: app/templates/partials/dashboard/team_member-form.html:114
+#: app/templates/partials/dashboard/team_member-form.html:130
 msgid "bio_arabic"
 msgstr ""
 
 #: app/templates/partials/dashboard/new_team_member_form.html:102
-#: app/templates/partials/dashboard/team_member-form.html:120
+#: app/templates/partials/dashboard/team_member-form.html:136
 msgid "enter_bio_in_arabic"
 msgstr ""
 
 #: app/templates/partials/dashboard/new_team_member_form.html:111
-#: app/templates/partials/dashboard/team_member-form.html:133
+#: app/templates/partials/dashboard/team_member-form.html:164
 msgid "socials"
 msgstr ""
 
 #: app/templates/partials/dashboard/new_team_member_form.html:117
-#: app/templates/partials/dashboard/team_member-form.html:140
 msgid "enter_socials_comma_separated"
 msgstr ""
 
 #: app/templates/partials/dashboard/new_team_member_form.html:121
-#: app/templates/partials/dashboard/team_member-form.html:145
 msgid "example_socials_format"
 msgstr ""
 
 #: app/templates/partials/dashboard/new_team_member_form.html:128
-#: app/templates/partials/dashboard/team_member-form.html:152
+#: app/templates/partials/dashboard/team_member-form.html:228
 msgid "profile_image"
 msgstr ""
 
@@ -758,7 +736,7 @@ msgstr ""
 #: app/templates/partials/dashboard/knowledge_hub/researches-list.html:40
 #: app/templates/partials/dashboard/news-list.html:21
 #: app/templates/partials/dashboard/project-list.html:50
-#: app/templates/partials/dashboard/team-list.html:45
+#: app/templates/partials/dashboard/team-list.html:52
 msgid "edit"
 msgstr ""
 
@@ -767,7 +745,7 @@ msgstr ""
 #: app/templates/partials/dashboard/knowledge_hub/researches-list.html:49
 #: app/templates/partials/dashboard/news-list.html:29
 #: app/templates/partials/dashboard/project-list.html:59
-#: app/templates/partials/dashboard/team-list.html:54
+#: app/templates/partials/dashboard/team-list.html:61
 msgid "delete"
 msgstr ""
 
@@ -800,16 +778,32 @@ msgstr ""
 msgid "add_subscriber"
 msgstr ""
 
-#: app/templates/partials/dashboard/team-list.html:50
+#: app/templates/partials/dashboard/team-list.html:57
 msgid "confirm_delete_team_member"
 msgstr ""
 
-#: app/templates/partials/dashboard/team-list.html:65
+#: app/templates/partials/dashboard/team-list.html:72
 msgid "no_team_members_found"
 msgstr ""
 
 #: app/templates/partials/dashboard/team.html:5
 msgid "team_members"
+msgstr ""
+
+#: app/templates/partials/dashboard/team_member-form.html:96
+msgid "order"
+msgstr ""
+
+#: app/templates/partials/dashboard/team_member-form.html:103
+msgid "enter_member_order"
+msgstr ""
+
+#: app/templates/partials/dashboard/team_member-form.html:149
+msgid "email"
+msgstr ""
+
+#: app/templates/partials/dashboard/team_member-form.html:156
+msgid "enter_member_email"
 msgstr ""
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:57

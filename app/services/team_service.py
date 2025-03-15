@@ -12,7 +12,7 @@ from app.models.team import Team
 from app.schemas.team_schema import TeamSchema
 from utils.db_utils import search_by_multilang_field
 from utils.file_manager import FileManager
-from utils.form_utils import parse_key_value_items, parse_nested_field
+from utils.form_utils import parse_nested_field
 from utils.service_base import BaseService
 
 
@@ -70,11 +70,20 @@ class TeamService(BaseService):
         self, form_data: Dict[str, Any], files: Dict[str, Any]
     ) -> Dict[str, Any]:
         """Process and validate form data for creating/updating a team member."""
+        # Parse socials
+        socials = {}
+        for key, value in form_data.items():
+            if key.startswith("socials[") and key.endswith("]"):
+                platform = key[len("socials[") : -1]
+                if value:  # Only add non-empty values
+                    socials[platform] = value
+
+        # Process form data
         processed_data = {
             "name": parse_nested_field(form_data, "name"),
             "role": parse_nested_field(form_data, "role"),
             "bio": parse_nested_field(form_data, "bio"),
-            "socials": parse_key_value_items(form_data.get("socials")),
+            "socials": socials,
             "order": int(form_data.get("order", 1)),
             "email": form_data.get("email"),
         }

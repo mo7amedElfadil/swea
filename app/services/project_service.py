@@ -207,9 +207,9 @@ class ProjectService(BaseService):
         }
 
         # Handle image upload
-        image = files.get("image")
+        image = files.get("hero_image")
         if image and image.filename:
-            processed_data["image"] = FileManager(image).save()
+            processed_data["hero_image"] = FileManager(image).save()
 
         # Process content field
         processed_data["content"] = self._parse_indexed_fields(form_data, "content")

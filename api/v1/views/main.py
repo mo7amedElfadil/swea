@@ -19,6 +19,7 @@ from app.services.team_service import TeamService
 from config import Config
 from utils.image_processing import ImageProcessing
 from utils.referrer_modifier import modify_referrer_lang
+from utils.toast_notify import add_toast
 from utils.view_modifiers import response
 
 img = ImageProcessing()
@@ -49,7 +50,7 @@ def projects():
     page = request.args.get("page", type=int, default=1)
     projects = ProjectService().get_all(page=page)
     # locale must be included in the dict in order to be normalized
-    # DONT' use rqeuest.args.get('lang') as it will return None
+    # DONT' use request.args.get('lang') as it will return None
     if request.headers.get("hx-projects"):
         return make_response(
             render_template("partials/projects/cards.html", **projects)
@@ -79,20 +80,15 @@ def login():
     password = request.form.get("password")
     # Dummy validation (replace with real auth logic)
     if not username or not password:
-        return make_response(
-            "<p class='text-red-500'>Please enter both username and password to login.</p>",
-            400,
-        )
+        return add_toast(make_response(), "error", _("Invalid credentials"))
 
     if username != "a" or password != "a":
-        return make_response(
-            "<p class='text-red-500'>Invalid credentials. Please try again.</p>", 400
-        )
+        return add_toast(make_response(), "error", _("Invalid credentials"))
 
     # Successful login - Use HX-Redirect header for redirection
     response = make_response()
     response.headers["HX-Redirect"] = url_for("app_views.dashboard")
-    return response
+    return add_toast(response, "success", _("Login successful"))
 
 
 @bp.route("/dashboard")

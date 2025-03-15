@@ -1,48 +1,70 @@
 {% from 'macros/spinner.html' import spinner %} {% import
-'macros/form_macros.html' as forms %}
+'macros/form_macros.html' as form %}
 
 <form
+    {%
+    if
+    project
+    %}
     hx-post="/dashboard/update-project/{{ project.uuid }}"
+    {%
+    else
+    %}
+    hx-post="/dashboard/new-project"
+    {%
+    endif
+    %}
     hx-target="this"
-    hx-encoding="multipart/form-data"
     hx-swap="innerHTML"
+    hx-encoding="multipart/form-data"
     hx-indicator="#spinner"
     enctype="multipart/form-data"
     class="space-y-4"
 >
     <!-- Title (Multi-language Support) -->
-    {{ forms.text_input("title-en", "title[en]", project.title.en,
-    "title_english", required=true) }} {{ forms.text_input("title-ar",
-    "title[ar]", project.title.ar, "title_arabic", required=true) }}
+    {{ form.text_input(label=_("title_english"), id="title-en",
+    name="title[en]", value=project.title.en if project else "",
+    placeholder=_("project_title_english"), required=true) }} {{
+    form.text_input(label=_("title_arabic"), id="title-ar", name="title[ar]",
+    value=project.title.ar if project else "",
+    placeholder=_("project_title_arabic"), required=true) }}
 
     <!-- Author (Name and Email) -->
-    {{ forms.text_input("author-name-en", "author[name][en]",
-    project.author.name.en, "author_name_en", required=true) }} {{
-    forms.text_input("author-name-ar", "author[name][ar]",
-    project.author.name.ar, "author_name_ar", required=true) }} {{
-    forms.text_input("author-email", "author[email]", project.author.email,
-    "author_email", type="email", required=true) }}
+    {{ form.text_input(label=_("author_name_en"), id="author-name-en",
+    name="author[name][en]", value=project.author.name.en if project else "",
+    placeholder=_("author_name_en_placeholder"), required=true) }} {{
+    form.text_input(label=_("author_name_ar"), id="author-name-ar",
+    name="author[name][ar]", value=project.author.name.ar if project else "",
+    placeholder=_("author_name_ar_placeholder"), required=true) }} {{
+    form.text_input(label=_("author_email"), id="author-email",
+    name="author[email]", value=project.author.email if project else "",
+    type="email", placeholder=_("author_email_placeholder"), required=true) }}
 
     <!-- Status -->
-    {{ forms.select("status", "status", [ {"value": "ongoing", "label":
-    "ongoing"}, {"value": "completed", "label": "completed"} ], project.status,
-    "status", required=true) }}
+    {{ form.select("status", "status", [ {"value": "ongoing", "label":
+    "ongoing"}, {"value": "completed", "label": "completed"} ], project.status
+    if project else "ongoing", "status", required=true) }}
 
     <!-- Date of Completion -->
-    {{ forms.text_input("date-of-completion", "date_of_completion",
-    project.date_of_completion, "date_of_completion", type="date") }}
+    {{ form.text_input(label=_("date_of_completion"), id="date-of-completion",
+    name="date_of_completion",
+    value=project.date_of_completion.strftime('%Y-%m-%d') if project and
+    project.date_of_completion else "", type="date") }}
 
     <!-- Tags (Multi-language Support) -->
-    {{ forms.text_input("tags-en", "tags[en]", project.tags.en, "tags_english")
-    }} {{ forms.text_input("tags-ar", "tags[ar]", project.tags.ar,
-    "tags_arabic") }}
+    {{ form.text_input(label=_("tags_english"), id="tags-en", name="tags[en]",
+    value=project.tags.en if project else "",
+    placeholder=_("tags_english_placeholder")) }} {{
+    form.text_input(label=_("tags_arabic"), id="tags-ar", name="tags[ar]",
+    value=project.tags.ar if project else "",
+    placeholder=_("tags_arabic_placeholder")) }}
 
     <!-- Hero Image -->
     <div>
         <label for="hero-image" class="block text-sm font-medium text-gray-700">
             {{ _("hero_image") }}
         </label>
-        {% if project.hero_image %}
+        {% if project and project.hero_image %}
         <div class="flex items-center space-x-4">
             <img
                 src="{{ url_for('static', filename=project.hero_image) }}"
@@ -51,31 +73,30 @@
             />
             <span class="text-sm text-gray-600">{{ _("current_image") }}</span>
         </div>
-        {% endif %} {{ forms.file_upload("hero-image", "hero_image",
+        {% endif %} {{ form.file_upload("hero-image", "hero_image",
         "hero_image", accept="image/*") }}
     </div>
 
-    <!-- Content -->
+    <!-- Content Blocks -->
     <div id="contents" class="space-y-6">
-        <!-- Existing Content Blocks -->
-        {% for content in project.content %} {{ forms.content_block(loop.index0,
-        content.en, content.ar) }} {% endfor %}
+        {% if project %} {% for content in project.content %} {{
+        form.content_block(loop.index0, content.en, content.ar) }} {% endfor %}
+        {% else %} {{ form.content_block(0) }} {% endif %}
 
         <!-- Template for Additional Content Blocks -->
-        <template id="content-template">
-            {{ forms.content_block("0") }}
-        </template>
+        <template id="content-template">{{ form.content_block("0") }}</template>
     </div>
 
-    <!-- Testimonials -->
+    <!-- Testimonial Blocks -->
     <div id="testimonials" class="space-y-6">
-        {% for testimonial in project.testimonials %} {{
-        forms.testimonial_block(loop.index, testimonial.en, testimonial.ar,
-        testimonial.author, testimonial.qualification) }} {% endfor %}
+        {% if project %} {% for testimonial in project.testimonials %} {{
+        form.testimonial_block(loop.index0, testimonial.en, testimonial.ar,
+        testimonial.author, testimonial.qualification) }} {% endfor %} {% else
+        %} {{ form.testimonial_block(0) }} {% endif %}
 
         <!-- Template for Additional Testimonial Blocks -->
         <template id="testimonial-template">
-            {{ forms.testimonial_block("0") }}
+            {{ form.testimonial_block("0") }}
         </template>
     </div>
 
@@ -85,8 +106,11 @@
             type="submit"
             class="w-full flex justify-center items-center px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
         >
-            {{spinner()}}
-            <span>{{ _("update_project") }}</span>
+            {{ spinner() }}
+            <span>
+                {% if project %} {{ _("update_project") }} {% else %} {{
+                _("add_project") }} {% endif %}
+            </span>
         </button>
     </div>
 </form>
@@ -136,8 +160,10 @@
                 blockElement.setAttribute('id', nodeCount - 1)
                 blockElement.prepend(generateTitle(nodeCount))
 
-                // Update all fields (textarea and input) with the correct index
-                const fields = blockElement.querySelectorAll('textarea, input')
+                // Update all fields (textarea and.text_input) with the correct index
+                const fields = blockElement.querySelectorAll(
+                    'textarea,.text_input'
+                )
                 fields.forEach((field) => {
                     const name = field.getAttribute('name')
                     if (name) {
@@ -209,8 +235,8 @@
         initializeDynamicBlocks(
             'testimonials', // Container ID
             'testimonial-template', // Template ID
-            '#add-testimonial', // Add Button Selector
-            '.remove-testimonial', // Remove Button Selector
+            '.add-template', // Add Button Selector
+            '.remove-template', // Remove Button Selector
             'Testimonial' // Title Prefix
         )
     })()

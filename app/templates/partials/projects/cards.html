@@ -17,7 +17,7 @@
 >
     <img
         src="{{ url_for('static', filename=p.hero_image) }}"
-        alt="{{ p.title }}"
+        alt="{{ p.title[locale] }}"
         onerror="this.src='http:///i.imgur.com/hfM1J8s.png'"
         class="w-full h-48 object-cover rounded-lg"
     />
@@ -31,7 +31,7 @@
     {% if p.content %}
     <p>{{p.content[0][locale] | truncate_html(300) | safe}}</p>
     {% endif %}
-    <button class="me-auto flex gap-2">
+    <a class="me-auto flex gap-2" href="/projects/{{p.uuid}}">
         <span class="capitalize">{{_("learn more")}}</span>
         <span>
             {%if locale == 'en'%}
@@ -48,6 +48,6 @@
             />
             {%endif%}
         </span>
-    </button>
+    </a>
 </div>
 {% endfor %}

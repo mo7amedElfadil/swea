@@ -9,6 +9,19 @@ from utils.view_modifiers import response
 project_service = ProjectService()
 
 
+@bp.route("/projects/<uuid>", methods=["GET"])
+@response(template_file="project-page.html")
+def project_page(uuid):
+    """Project page"""
+    project = project_service.get_project_by_uuid(uuid)
+    if not project:
+        return add_toast(make_response("", 404), "error", _("Project not found"))
+
+    print(f"Project: {project}")
+
+    return dict(project=project)
+
+
 @bp.route("/dashboard/projects", methods=["GET"])
 def filter_projects():
     """Filter projects by status and search string"""
@@ -35,7 +48,7 @@ def filter_projects():
 
 
 @bp.route("/dashboard/new-project", methods=["GET", "POST"])
-@response(template_file="partials/dashboard/new_project_form.html")
+@response(template_file="partials/dashboard/project_form.html")
 def add_project():
     """Add a new project"""
     if request.method == "POST":
@@ -50,6 +63,7 @@ def add_project():
             )
             return add_toast(resp, "success", _("Project created successfully"))
         except Exception as e:
+            print(f"Error: {e}")
             resp = make_response(
                 render_template(
                     "partials/dashboard/projects.html",
@@ -72,14 +86,12 @@ def update_project(project_id):
             return add_toast(resp, "error", _("Project not found"))
 
         return render_template(
-            "partials/dashboard/edit_project_form.html", project=project_data
+            "partials/dashboard/project_form.html", project=project_data
         )
 
     try:
         form_data = request.form.to_dict()
-
         files = request.files
-
         print(f"Received form data: {form_data}")
         print(f"Received files: {files.keys()}")
         project_service.update_project(project_id, form_data, files)

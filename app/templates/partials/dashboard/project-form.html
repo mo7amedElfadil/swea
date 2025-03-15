@@ -125,15 +125,38 @@
             removeTemplateButtonSelector,
             titlePrefix
         ) => {
-            let nodes = []
+            // Maintain a counter for display purposes and a separate index counter for unique IDs
             let nodeCount = 0
+            let currentIndex = 0
+            let nodes = []
+
             const container = document.getElementById(containerId)
             const template = document.getElementById(templateId)
 
+            // Count existing blocks when initializing
+            const initializeNodeCount = () => {
+                // Count existing blocks in the container
+                const existingBlocks = container.querySelectorAll(
+                    '.bg-white.shadow-sm.rounded-lg'
+                )
+                nodeCount = existingBlocks.length
+
+                // Set the starting index based on existing blocks
+                if (existingBlocks.length > 0) {
+                    // Find the highest index in existing blocks
+                    let highestIndex = -1
+                    existingBlocks.forEach((block) => {
+                        const id = parseInt(block.getAttribute('id') || '-1')
+                        if (id > highestIndex) highestIndex = id
+                    })
+                    currentIndex = highestIndex + 1
+                }
+            }
+
             // Function to generate a title for the block
-            const generateTitle = (id) => {
+            const generateTitle = (displayNum) => {
                 const label = document.createElement('label')
-                label.textContent = `${titlePrefix} ${id}`
+                label.textContent = `${titlePrefix} ${displayNum}`
                 label.setAttribute(
                     'class',
                     'text-sm font-medium text-gray-700 capitalize'
@@ -143,9 +166,11 @@
 
             // Function to add a new block
             const addBlock = () => {
+                // Increment node count for display purposes
                 nodeCount++
+
+                // Clone template
                 const clone = template.content.cloneNode(true)
-                nodes.push(clone)
 
                 // Add event listeners to the cloned block's buttons
                 clone
@@ -155,12 +180,13 @@
                     .querySelector(removeTemplateButtonSelector)
                     .addEventListener('click', removeBlock)
 
-                // Update IDs and names for the cloned block
+                // Update IDs and names for the cloned block using unique index
                 const blockElement = clone.querySelector('div')
-                blockElement.setAttribute('id', nodeCount - 1)
+                blockElement.setAttribute('id', currentIndex)
+                blockElement.setAttribute('data-display-num', nodeCount)
                 blockElement.prepend(generateTitle(nodeCount))
 
-                // Update all fields (textarea and.text_input) with the correct index
+                // Update all fields with the correct index
                 const fields = blockElement.querySelectorAll(
                     'textarea,.text_input'
                 )
@@ -169,57 +195,92 @@
                     if (name) {
                         const newName = name.replace(
                             /\[\d+\]/,
-                            `[${nodeCount - 1}]`
+                            `[${currentIndex}]`
                         )
                         field.setAttribute('name', newName)
                     }
                 })
 
+                // Add to state array and increment index for next block
+                nodes[currentIndex] = blockElement
+                currentIndex++
+
                 // Append the cloned block to the container
                 container.appendChild(clone)
 
-                // Hide the "Add" button in the second-to-last block
-                const secondToLast =
-                    container.children[container.children.length - 2]
-                if (secondToLast) {
-                    secondToLast
-                        .querySelector(addTemplateButtonSelector)
-                        .classList.add('hidden')
-                }
+                // Hide the "Add" button in all blocks except the last one
+                updateAddButtonVisibility()
             }
 
             // Function to remove a block
             const removeBlock = (evt) => {
                 nodeCount--
-                const id = parseInt(
-                    evt.currentTarget.parentElement.parentElement.getAttribute(
-                        'id'
-                    )
-                )
-                nodes[id] = null
-                evt.currentTarget.parentElement.parentElement.remove()
 
-                // Show the "Add" button in the last remaining block
-                if (nodeCount === 1) {
-                    container.children[2]
-                        .querySelector(addTemplateButtonSelector)
-                        .classList.remove('hidden')
-                } else if (nodeCount === 0) {
+                // Get the block ID
+                const block = evt.currentTarget.closest('div[id]')
+                const id = parseInt(block.getAttribute('id'))
+
+                // Remove from state array
+                nodes[id] = null
+
+                // Remove from DOM
+                block.remove()
+
+                // If all blocks are removed, reset state
+                if (nodeCount === 0) {
                     nodes = []
+                    currentIndex = 0
+                }
+
+                // Update add button visibility
+                updateAddButtonVisibility()
+            }
+
+            // Function to update add button visibility
+            const updateAddButtonVisibility = () => {
+                // Hide all add buttons
+                const allAddButtons = container.querySelectorAll(
+                    addTemplateButtonSelector
+                )
+                allAddButtons.forEach((button) => {
+                    button.classList.add('hidden')
+                })
+
+                // Show only the last one
+                const blocks = container.querySelectorAll(
+                    '.bg-white.shadow-sm.rounded-lg'
+                )
+                if (blocks.length > 0) {
+                    const lastBlock = blocks[blocks.length - 1]
+                    const lastAddButton = lastBlock.querySelector(
+                        addTemplateButtonSelector
+                    )
+                    if (lastAddButton) {
+                        lastAddButton.classList.remove('hidden')
+                    }
                 }
             }
 
-            // Add event listener to the "Add More" button
-            const addMoreButtons = container.querySelectorAll('.add-template')
+            // Initialize node count based on existing blocks
+            initializeNodeCount()
+
+            // Add event listeners to existing buttons
+            const addMoreButtons = container.querySelectorAll(
+                addTemplateButtonSelector
+            )
             addMoreButtons.forEach((button) => {
                 button.addEventListener('click', addBlock)
             })
 
-            // Add event listener to the "Remove" button
-            const removeButtons = container.querySelectorAll('.remove-template')
+            const removeButtons = container.querySelectorAll(
+                removeTemplateButtonSelector
+            )
             removeButtons.forEach((button) => {
                 button.addEventListener('click', removeBlock)
             })
+
+            // Initial button visibility
+            updateAddButtonVisibility()
         }
 
         // Initialize "Contents" section

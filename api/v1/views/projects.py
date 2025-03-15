@@ -17,8 +17,6 @@ def project_page(uuid):
     if not project:
         return add_toast(make_response("", 404), "error", _("Project not found"))
 
-    print(f"Project: {project}")
-
     return dict(project=project)
 
 

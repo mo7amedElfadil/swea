@@ -34,6 +34,7 @@ class TeamSchema(Schema):
     # Optional fields
     socials = fields.Dict(keys=fields.Str(), values=fields.Str(), allow_none=True)
     image = fields.Str(allow_none=True)
+    email = fields.Str(allow_none=True)
 
     @validates("name")
     def validate_name(self, value: Dict[str, str]):

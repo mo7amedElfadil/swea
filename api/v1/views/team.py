@@ -18,7 +18,7 @@ def filter_team_members():
     if search_str:
         team_members_res = team_service.search_team_members_by_name(search_str)
     else:
-        team_members_res = team_service.get_all(page=page)
+        team_members_res = team_service.get_all(page=page, sort="order")
 
     return make_response(
         render_template(
@@ -50,7 +50,7 @@ def add_team_member():
             resp, "error", _("An error occurred while creating the team member")
         )
 
-    team_members = team_service.get_all()
+    team_members = team_service.get_all(sort="order")
     resp = make_response(
         render_template(
             "partials/dashboard/team.html",
@@ -79,7 +79,7 @@ def update_team_member(member_id):
         form_data = request.form.to_dict()
         files = request.files
         team_service.update_team_member(member_id, form_data, files)
-        members_res = team_service.get_all()
+        members_res = team_service.get_all(sort="order")
         resp = make_response(
             render_template(
                 "partials/dashboard/team.html",
@@ -100,7 +100,7 @@ def delete_team_member(member_id):
         resp = make_response("", 404)
         return add_toast(resp, "error", _("Team member not found"))
 
-    members_res = team_service.get_all()
+    members_res = team_service.get_all(sort="order")
     resp = make_response(
         render_template(
             "partials/dashboard/team.html",

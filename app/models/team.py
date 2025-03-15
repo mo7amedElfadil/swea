@@ -15,3 +15,4 @@ class Team(BaseModel):
     bio = db.Column(db.JSON, nullable=False)
     socials = db.Column(db.JSON, nullable=True)
     image = db.Column(db.String(255), nullable=True)
+    email = db.Column(db.String(255), nullable=True)

@@ -143,6 +143,21 @@
         </div>
     </div>
 
+    <!-- Email -->
+    <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">
+            {{ _("email") }}
+        </label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            value="{{ team.email if team else '' }}"
+            placeholder="{{ _('enter_member_email') }}"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+        />
+    </div>
+
     <!-- Socials -->
     <div>
         <label for="socials" class="block text-sm font-medium text-gray-700">

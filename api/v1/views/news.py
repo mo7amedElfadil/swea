@@ -25,6 +25,13 @@ def get_news():
     del news['data']
     return dict(data=data, **news)
 
+@bp.route("/news/<id>", methods=["GET"])
+@response(template_file="single-news.html")
+def get_single_news(id):
+    """Get single news"""
+    news = NewsService().get_by_uuid(id)
+    return dict(**news)
+
 
 @bp.route("/dashboard/news", methods=["POST"])
 @with_toast

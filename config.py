@@ -1,4 +1,5 @@
 """configuration file for your Flask application."""
+
 import os
 from os import getenv, path
 
@@ -23,8 +24,15 @@ class Config:
     UPLOAD_FOLDER = getenv(
         "UPLOAD_FOLDER", os.path.join(basedir, "./app/static/uploads/")
     )
-    UPLOAD_DIRS = ["projects", "research", "courses", "podcasts", "news",
-                   "team", "users"]
+    UPLOAD_DIRS = [
+        "projects",
+        "research",
+        "courses",
+        "podcasts",
+        "news",
+        "team",
+        "users",
+    ]
     # Create the upload folder if it doesn't exist
     if not path.exists(UPLOAD_FOLDER):
         os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -44,6 +52,12 @@ class Config:
     SESSION_PERMANENT = False
     SESSION_USE_SIGNER = True
     SESSION_REDIS = redis.from_url(getenv("SESSION_REDIS_URL"))
+
+    # Email configuration
+    SMTP_HOST = getenv("SMTP_HOST")
+    SMTP_PORT = int(getenv("SMTP_PORT", "587"))
+    SMTP_USER = getenv("SMTP_USER")
+    SMTP_PASS = getenv("SMTP_PASS")
 
     # Redis Database configuration for queue service
     REDIS_URL = getenv("REDIS_URL")

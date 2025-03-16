@@ -10,6 +10,7 @@ from flask import (
 from flask_babel import gettext as _
 
 from api.v1.views import bp
+from app.services.contact_us import ManageContactUs
 from app.services.course_service import CourseService
 from app.services.news import NewsService
 from app.services.podcast_service import PodcastService
@@ -145,6 +146,27 @@ def knowledge_hub():
     if request.headers.get("hx-tab"):
         return make_response(render_template(template, **data))
     return dict(tab="research", **data)
+
+
+@bp.route("/contact-us", methods=["POST"])
+def contact_us():
+    """contact-us page"""
+    contact_us_serv = ManageContactUs()
+
+    form_data = request.form
+
+    if form_data:
+        print("------Contact us FORM DATA------>", form_data)
+        try:
+            contact_us_serv.contact_us_message(form_data)
+        except Exception as e:
+            return add_toast(
+                make_response("", 400), "error", _("Failed to send message")
+            )
+
+    return add_toast(
+        make_response("", 200), "success", _("Your comment received successfully")
+    )
 
 
 @bp.route("/set_language")

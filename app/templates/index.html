@@ -128,7 +128,11 @@
 			 >
 			 <h2 class='text-3xl capitalize font-extrabold sm:text-5xl'>{{_('contact us')}}</h2>
 			 <p>{{_('contact enquiry')}}</p>
-			 <form class='flex flex-col gap-3'>
+			 <form class='flex flex-col gap-3'
+             hx-post='/contact-us'
+             hx-trigger='submit'
+             hx-on::after-request="this.reset()"
+         >
 				 <input
 						 required
 						 placeholder='{{_("form name")}}'

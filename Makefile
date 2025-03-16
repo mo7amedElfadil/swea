@@ -1,5 +1,5 @@
 # Makefile for the Application (Frontend & Backend)
-.PHONY: help setup check-dependencies clean check_venv run_flask watch_tw watch_static up_db down_db stop_flask stop_tailwind stop_static restart restart_tw stop_static list status test version update-translation db_init db_migrate db_upgrade db_reset
+.PHONY: help setup check-dependencies clean check_venv run_flask watch_tw watch_static queue_worker up_db down_db stop_flask stop_tailwind stop_static restart restart_tw stop_static list status test version update-translation db_init db_migrate db_upgrade db_reset
 
 # Default target
 .DEFAULT_GOAL := help
@@ -25,6 +25,7 @@ STATIC_FILE_SESSION := hmr
 TW_WATCH := npm run dev:wt_css
 #STATIC_WATCH := npm run dev:static
 FLASK_RUN := python -m app.run # flask run
+QUEUE_WORKER := python -m app.services.queue_worker
 VEN_ACTIVATE := . .venv/bin/activate
 UP_DB := docker compose up -d
 DOWN_DB := docker compose down
@@ -104,6 +105,10 @@ watch_tw: check_npm clean ## Run tailwindcss watch
 watch_static: ## Watch for changes in css, html files
 	@echo 'Watching for changes in static files {html,css}...'
 	@$(call run_session,$(STATIC_FILE_SESSION),hmr app)
+
+queue_worker: ## Run the queue worker
+	@echo 'Running the queue worker...'
+	@$(call run_session,$(QUEUE_WORKER),$(VEN_ACTIVATE) && $(QUEUE_WORKER))
 
 up_db: ## Start the database (docker-compose: MongoDB & Redis)
 	@$(UP_DB)

@@ -1,5 +1,6 @@
 {% import "macros/mission-card.html" as macros %}
 {% extends "base.html" %}
+{% from "macros/spinner.html" import spinner %}
 {% block title %}home{% endblock %}
 {% block content %}
 <div class='w-full h-full'>
@@ -133,6 +134,7 @@
              hx-trigger='submit'
              hx-on::after-request="this.reset()"
              hx-swap='none'
+             hx-indicator="#spinner"
          >
 				 <input
 						 required
@@ -156,7 +158,12 @@
 						 value=""
 						 class='bg-[#ccc] p-3 rounded-md'
 						 ></textarea>
-				 <button type='submit' class='bg-black py-2 text-white uppercase rounded-md font-extrabold'>{{_('submit')}}</button>
+				 <button type='submit' class='bg-black py-2 text-white uppercase rounded-md font-extrabold'>
+            {{spinner()}}
+            <span>
+                {{_('submit')}}
+            </span>
+           </button>
 			 </form>
 		</div>
 		<div

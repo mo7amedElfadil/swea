@@ -16,7 +16,7 @@
     %}
 >
     <img
-        src="{{ url_for('static', filename=p.hero_image) }}"
+        src="{{ url_for('static', filename=p.hero_image if p.hero_image else '') }}"
         alt="{{ p.title[locale] }}"
         onerror="this.src='http:///i.imgur.com/hfM1J8s.png'"
         class="w-full h-48 object-cover rounded-lg"

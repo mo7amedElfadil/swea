@@ -235,7 +235,7 @@ section#kh-hero {
 footer {
     background-image: url('../../imgs/bg-footer.png');
     background-size: cover;
-    background-position: center;
+    background-position: center 35%;
     background-repeat: no-repeat;
 }
 

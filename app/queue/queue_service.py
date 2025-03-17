@@ -100,7 +100,7 @@ class QueueService:
         """
         while not self._shutdown_flag:
             try:
-                _, job = self.redis_client.blpop(self.queue_name)
+                _, job = self.redis_client.blpop([self.queue_name])
                 if job:
                     task = json.loads(job)
                     self.executor.submit(self.process_task, task)

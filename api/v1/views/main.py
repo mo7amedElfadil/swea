@@ -19,6 +19,7 @@ from app.services.research_service import ResearchService
 from app.services.team_service import TeamService
 from config import Config
 from utils.image_processing import ImageProcessing
+from utils.rate_limiter import RateLimits, rate_limit
 from utils.referrer_modifier import modify_referrer_lang
 from utils.toast_notify import add_toast
 from utils.view_modifiers import response
@@ -149,17 +150,18 @@ def knowledge_hub():
 
 
 @bp.route("/contact-us", methods=["POST"])
+@rate_limit(limits=RateLimits.STRICT)
 def contact_us():
     """contact-us page"""
     contact_us_serv = ManageContactUs()
 
-    form_data = request.form
+    form_data = request.form.to_dict()
 
     if form_data:
-        print("------Contact us FORM DATA------>", form_data)
         try:
             contact_us_serv.contact_us_message(form_data)
         except Exception as e:
+            print("------Contact us ERROR------>", e)
             return add_toast(
                 make_response("", 400), "error", _("Failed to send message")
             )

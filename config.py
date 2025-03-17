@@ -62,6 +62,7 @@ class Config:
     # Redis Database configuration for queue service
     REDIS_URL = getenv("REDIS_URL")
     TOKEN_REDIS_URL = getenv("TOKEN_REDIS_URL")
+    LIMITER_REDIS_URL = getenv("LIMITER_REDIS_URL")
 
     # Database configuration (PostgreSQL)
     SQLALCHEMY_DATABASE_URI = getenv(
@@ -77,3 +78,12 @@ class Config:
         CACHE_REDIS_URL = getenv("CACHE_REDIS_URL")
         CACHE_KEY_PREFIX = "swea_"
         CACHE_DEFAULT_TIMEOUT = 300  # 5 minutes
+
+    # Rate limiter configuration
+    RATE_LIMITS = {
+        "DEFAULT": ["200 per day", "50 per hour"],
+        "STRICT": ["5 per minute", "20 per hour"],
+        "NORMAL": ["10 per minute", "100 per hour"],
+        "LENIENT": ["30 per minute", "300 per hour"],
+        "API": ["60 per minute", "1000 per hour"],
+    }

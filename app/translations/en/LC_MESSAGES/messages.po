@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-15 10:24+0400\n"
+"POT-Creation-Date: 2025-03-17 10:26+0400\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -118,28 +118,36 @@ msgstr "An error occurred while deleting the member"
 msgid "Member deleted successfully"
 msgstr "Member deleted successfully"
 
-#: api/v1/views/main.py:83 api/v1/views/main.py:86
+#: api/v1/views/main.py:85 api/v1/views/main.py:88
 msgid "Invalid credentials"
 msgstr "Invalid Credentials"
 
-#: api/v1/views/main.py:91
+#: api/v1/views/main.py:93
 msgid "Login successful"
 msgstr "Login successful"
 
-#: api/v1/views/projects.py:18 api/v1/views/projects.py:86
-#: api/v1/views/projects.py:116
+#: api/v1/views/main.py:166
+msgid "Failed to send message"
+msgstr "Failed to send your message"
+
+#: api/v1/views/main.py:170
+msgid "Your comment received successfully"
+msgstr "Your comment received successfully"
+
+#: api/v1/views/projects.py:18 api/v1/views/projects.py:84
+#: api/v1/views/projects.py:114
 msgid "Project not found"
 msgstr "Project not found"
 
-#: api/v1/views/projects.py:64
+#: api/v1/views/projects.py:62
 msgid "Project created successfully"
 msgstr "Project created successfully"
 
-#: api/v1/views/projects.py:104
+#: api/v1/views/projects.py:102
 msgid "Project updated successfully"
 msgstr "Project updated successfully"
 
-#: api/v1/views/projects.py:125
+#: api/v1/views/projects.py:123
 msgid "Project deleted successfully"
 msgstr "Project deleted successfully"
 
@@ -171,6 +179,10 @@ msgstr "Team member updated successfully"
 msgid "Team member deleted successfully"
 msgstr "Team member deleted successfully"
 
+#: app/__init__.py:137
+msgid "Rate limit exceeded"
+msgstr "Rate limit exceeded"
+
 #: app/templates/dashboard.html:7
 msgid "dashboard"
 msgstr "Dashboard"
@@ -199,77 +211,77 @@ msgstr "Knowledge Hub"
 msgid "swea_subscribers"
 msgstr "Subscribers"
 
-#: app/templates/dashboard.html:100 app/templates/index.html:103
+#: app/templates/dashboard.html:100 app/templates/index.html:104
 #: app/templates/partials/dashboard/news.html:4
 msgid "news"
 msgstr "News"
 
-#: app/templates/index.html:11
+#: app/templates/index.html:12
 msgid "hero title"
 msgstr "Empowering Sudanese Women Economists"
 
-#: app/templates/index.html:13
+#: app/templates/index.html:14
 msgid "hero description"
 msgstr ""
 "Our aim is to create a space for Sudanese women economists to grow "
 "professionally, through networking, skills enhancing and opportunities "
 "mobilizing."
 
-#: app/templates/index.html:16
+#: app/templates/index.html:17
 msgid "join us"
 msgstr "Join Us"
 
-#: app/templates/index.html:27
+#: app/templates/index.html:28
 msgid "mission title"
 msgstr "Our Mission"
 
-#: app/templates/index.html:31
+#: app/templates/index.html:32
 msgid "mission 1 title"
 msgstr "Empower Sudanese Economists"
 
-#: app/templates/index.html:32
+#: app/templates/index.html:33
 msgid "mission 1 desc"
 msgstr ""
 "Showcase Sudanese women economists work alongside ensuring women’s voices"
 " are amplified in the fields of economics and economic-related "
 "disciplines, in both academia and practice."
 
-#: app/templates/index.html:39
+#: app/templates/index.html:40
 msgid "mission 2 title"
 msgstr "Career Advancement"
 
-#: app/templates/index.html:40
+#: app/templates/index.html:41
 msgid "mission 2 desc"
 msgstr ""
 "Career development and capacity building of young women economists in "
 "Sudan; alongside providing a professional bi-directional relationship "
 "between experts in the field, and prospective women economists."
 
-#: app/templates/index.html:50
+#: app/templates/index.html:51
 msgid "mission 3 title"
 msgstr "Solidarity Amongst Economists"
 
-#: app/templates/index.html:51
+#: app/templates/index.html:52
 msgid "mission 3 desc"
 msgstr ""
 "Support research and publication opportunities of Sudanese women "
 "economists; within an inclusive and supportive network."
 
-#: app/templates/index.html:59
+#: app/templates/index.html:60
 msgid "mission 4 title"
 msgstr "Connect With Partners"
 
-#: app/templates/index.html:60
+#: app/templates/index.html:61
 msgid "mission 4 desc"
 msgstr ""
 "Inter-generatinal exchange of knowledge and experiences within the "
 "economics discipline"
 
-#: app/templates/index.html:75
+#: app/templates/index.html:76
 msgid "our story"
 msgstr "Our Story"
 
-#: app/templates/index.html:78
+#: app/templates/index.html:79
 msgid "our story desc"
 msgstr ""
 "Sudanese women economists association (SWEA) was founded in June 2020, on"
@@ -282,53 +294,53 @@ msgstr ""
 "economists, offering networking opportunities and enriching the economic "
 "research space by contributions from its membres."
 
-#: app/templates/index.html:83
+#: app/templates/index.html:84
 msgid "our vision"
 msgstr "Our Vision"
 
-#: app/templates/index.html:86
+#: app/templates/index.html:87
 msgid "vision 1"
 msgstr ""
 "<b>Advance</b> Sudanese Women Economists' participation in Academic And "
 "public policy spheres in Sudan."
 
-#: app/templates/index.html:90
+#: app/templates/index.html:91
 msgid "vision 2"
 msgstr "<b>Build capacity</b> of young women in economics."
 
-#: app/templates/index.html:94
+#: app/templates/index.html:95
 msgid "vision 3"
 msgstr ""
 "<b>Amplify</b> the voices of sudanese women in economic research and "
 "practice."
 
-#: app/templates/index.html:98
+#: app/templates/index.html:99
 msgid "vision 4"
 msgstr ""
 "<b>Promote solidarity</b> between Sudanese women economists across "
 "generations."
 
-#: app/templates/index.html:129
+#: app/templates/index.html:130
 msgid "contact us"
 msgstr "Contact Us"
 
-#: app/templates/index.html:130
+#: app/templates/index.html:131
 msgid "contact enquiry"
 msgstr "Have any inquiries or want to ask us something?"
 
-#: app/templates/index.html:134
+#: app/templates/index.html:141
 msgid "form name"
 msgstr "Name"
 
-#: app/templates/index.html:142 app/templates/partials/footer.html:9
+#: app/templates/index.html:149 app/templates/partials/footer.html:9
 msgid "form email"
 msgstr "Email"
 
-#: app/templates/index.html:149
+#: app/templates/index.html:156
 msgid "form textarea"
 msgstr "Comment or Message"
 
-#: app/templates/index.html:154
+#: app/templates/index.html:165
 msgid "submit"
 msgstr "Submit"
 
@@ -391,6 +403,10 @@ msgstr ""
 "economists, fotser collaboration, and drive sustainable economic "
 "development"
 
+#: app/templates/single-news.html:29
+msgid "date"
+msgstr "Date"
+
 #: app/templates/team.html:9
 msgid "our_exceptional_team"
 msgstr "Our Exceptional Team of Leaders and Innovators"
@@ -438,7 +454,7 @@ msgstr "Add another testimonial block"
 msgid "Remove this testimonial block"
 msgstr "Remove this testimonial block"
 
-#: app/templates/macros/modal.html:75
+#: app/templates/macros/modal.html:76
 msgid "cancel"
 msgstr "Cancel"
 
@@ -763,7 +779,7 @@ msgid "empty research"
 msgstr "There are no researches yet. Coming soon!"
 
 #: app/templates/partials/knowledge-hub/research.html:56
-#: app/templates/partials/news/cards.html:35
+#: app/templates/partials/news/cards.html:36
 #: app/templates/partials/projects/cards.html:35
 msgid "learn more"
 msgstr "Learn more"

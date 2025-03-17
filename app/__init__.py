@@ -1,25 +1,44 @@
 """Module that defines `create_app` function to create the Flask app instance"""
 
-from flask import Flask, render_template, request, send_from_directory, session
+from flask import Flask, make_response, render_template, request, send_from_directory
+from flask import session
 from flask import session as flask_session
 from flask_babel import Babel
 from flask_babel import gettext as _
 from flask_cors import CORS
 from flask_minify import Minify
+from html_sanitizer import Sanitizer
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 from api.v1.views import bp as app_view
 from app.extensions import db, get_locale, init_cache, init_session, migrate
 from config import Config
-from html_sanitizer import Sanitizer
-
+from utils.rate_limiter import init_limiter
+from utils.toast_notify import add_toast
 
 # Sanitizer configuration (you can customize it as per your needs)
-sanitizer = Sanitizer({
-    'tags': {'img', 'b', 'i', 'u', 'em', 'strong', 'a', 'p', 'ul', 'li', 'br', 'div', 'span'},
-    'attributes': {'a': ('href', 'title'), 'img': ('src', 'alt')},
-    'empty': {'a', 'br'},  # Tags that can be self-closing
-})
+sanitizer = Sanitizer(
+    {
+        "tags": {
+            "img",
+            "b",
+            "i",
+            "u",
+            "em",
+            "strong",
+            "a",
+            "p",
+            "ul",
+            "li",
+            "br",
+            "div",
+            "span",
+        },
+        "attributes": {"a": ("href", "title"), "img": ("src", "alt")},
+        "empty": {"a", "br"},  # Tags that can be self-closing
+    }
+)
+
 
 def create_app(config_class=Config):
     """Creating a Flask Application Factory,
@@ -79,6 +98,9 @@ def create_app(config_class=Config):
     # initializing minify for html, js and cssless
     Minify(app=app, html=True, js=True, cssless=True)
 
+    # Initialize the rate limiter
+    init_limiter(app)
+
     @app.context_processor
     def inject_locale():
         """Inject the locale into each rendered template"""
@@ -107,6 +129,11 @@ def create_app(config_class=Config):
         truncated = sanitizer.sanitize(html_content[:length])
 
         # Ensure we add ellipsis only if content is actually truncated
-        return truncated+'...' if len(html_content) >= length else html_content
+        return truncated + "..." if len(html_content) >= length else html_content
+
+    @app.errorhandler(429)
+    def rate_limit_exceeded(e):
+        """Handle rate limit errors"""
+        return add_toast(make_response("", 429), "error", _("Rate limit exceeded"))
 
     return app

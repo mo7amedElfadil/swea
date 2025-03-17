@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-15 10:24+0400\n"
+"POT-Creation-Date: 2025-03-17 10:26+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -119,28 +119,36 @@ msgstr "حدث خطأ أثناء حذف عضو الفريق"
 msgid "Member deleted successfully"
 msgstr "تم حذف عضو الفريق بنجاح"
 
-#: api/v1/views/main.py:83 api/v1/views/main.py:86
+#: api/v1/views/main.py:85 api/v1/views/main.py:88
 msgid "Invalid credentials"
 msgstr "بيانات الاعتماد غير صالحة"
 
-#: api/v1/views/main.py:91
+#: api/v1/views/main.py:93
 msgid "Login successful"
 msgstr "تم تسجيل الدخول بنجاح"
 
-#: api/v1/views/projects.py:18 api/v1/views/projects.py:86
-#: api/v1/views/projects.py:116
+#: api/v1/views/main.py:166
+msgid "Failed to send message"
+msgstr "فشل في إرسال الرسالة"
+
+#: api/v1/views/main.py:170
+msgid "Your comment received successfully"
+msgstr "تم استلام  تعليقك  بنجاح"
+
+#: api/v1/views/projects.py:18 api/v1/views/projects.py:84
+#: api/v1/views/projects.py:114
 msgid "Project not found"
 msgstr "لم يتم العثور على المشروع"
 
-#: api/v1/views/projects.py:64
+#: api/v1/views/projects.py:62
 msgid "Project created successfully"
 msgstr "تم إنشاء المشروع بنجاح"
 
-#: api/v1/views/projects.py:104
+#: api/v1/views/projects.py:102
 msgid "Project updated successfully"
 msgstr "تم تحديث المشروع بنجاح"
 
-#: api/v1/views/projects.py:125
+#: api/v1/views/projects.py:123
 msgid "Project deleted successfully"
 msgstr "تم حذف المشروع بنجاح"
 
@@ -172,6 +180,10 @@ msgstr "تم تحديث عضو الفريق بنجاح"
 msgid "Team member deleted successfully"
 msgstr "تم حذف عضو الفريق بنجاح"
 
+#: app/__init__.py:137
+msgid "Rate limit exceeded"
+msgstr "تجاوز الحد الأقصى"
+
 #: app/templates/dashboard.html:7
 msgid "dashboard"
 msgstr "لوحة التحكم"
@@ -200,74 +212,74 @@ msgstr "مركز المعرفة"
 msgid "swea_subscribers"
 msgstr "المشتركين"
 
-#: app/templates/dashboard.html:100 app/templates/index.html:103
+#: app/templates/dashboard.html:100 app/templates/index.html:104
 #: app/templates/partials/dashboard/news.html:4
 msgid "news"
 msgstr "الأخبار"
 
-#: app/templates/index.html:11
+#: app/templates/index.html:12
 msgid "hero title"
 msgstr "تمكين النساء السودانيات العاملات في مجال الاقتصاد"
 
-#: app/templates/index.html:13
+#: app/templates/index.html:14
 msgid "hero description"
 msgstr ""
 "هدفنا هو إنشاء مساحة للنساء السودانيات العاملات في مجال الاقتصاد للنمو "
 "المهني، من خلال بناء العلاقات، وتعزيز المهارات، وتعبئة الفرص."
 
-#: app/templates/index.html:16
+#: app/templates/index.html:17
 msgid "join us"
 msgstr "إنضم لنا"
 
-#: app/templates/index.html:27
+#: app/templates/index.html:28
 msgid "mission title"
 msgstr "مهمتنا"
 
-#: app/templates/index.html:31
+#: app/templates/index.html:32
 msgid "mission 1 title"
 msgstr "تمكين الاقتصاديين السودانيين"
 
-#: app/templates/index.html:32
+#: app/templates/index.html:33
 msgid "mission 1 desc"
 msgstr ""
 "عرض أعمال النساء السودانيات العاملات في مجال الاقتصاد مع ضمان تضخيم أصوات"
 " النساء في مجالات الاقتصاد والتخصصات ذات الصلة، في كل من الأوساط "
 "الأكاديمية والممارسة العملية."
 
-#: app/templates/index.html:39
+#: app/templates/index.html:40
 msgid "mission 2 title"
 msgstr "التطور الوظيفي"
 
-#: app/templates/index.html:40
+#: app/templates/index.html:41
 msgid "mission 2 desc"
 msgstr ""
 "تطوير المسار الوظيفي وبناء القدرات للنساء الشابات العاملات في مجال "
 "الاقتصاد في السودان؛ إلى جانب توفير علاقة مهنية ثنائية الاتجاه بين "
 "الخبراء في المجال والاقتصاديات النساء الطموحات."
 
-#: app/templates/index.html:50
+#: app/templates/index.html:51
 msgid "mission 3 title"
 msgstr "التضامن بين الاقتصاديين"
 
-#: app/templates/index.html:51
+#: app/templates/index.html:52
 msgid "mission 3 desc"
 msgstr ""
 "دعم فرص البحث والنشر للنساء السودانيات العاملات في مجال الاقتصاد؛ داخل "
 "شبكة شاملة وداعمة."
 
-#: app/templates/index.html:59
+#: app/templates/index.html:60
 msgid "mission 4 title"
 msgstr "التواصل مع الشركاء"
 
-#: app/templates/index.html:60
+#: app/templates/index.html:61
 msgid "mission 4 desc"
 msgstr "تبادل المعرفة والخبرات بين الأجيال داخل مجال الاقتصاد"
 
-#: app/templates/index.html:75
+#: app/templates/index.html:76
 msgid "our story"
 msgstr "قصتنا"
 
-#: app/templates/index.html:78
+#: app/templates/index.html:79
 msgid "our story desc"
 msgstr ""
 "تم تأسيس جمعية النساء السودانيات العاملات في مجال الاقتصاد (SWEA) في "
@@ -279,51 +291,51 @@ msgstr ""
 "النساء السودانيات العاملات في مجال الاقتصاد، وتقديم فرص للتواصل، وإثراء "
 "مجال البحوث الاقتصادية بمساهمات أعضائها."
 
-#: app/templates/index.html:83
+#: app/templates/index.html:84
 msgid "our vision"
 msgstr "رؤيتنا"
 
-#: app/templates/index.html:86
+#: app/templates/index.html:87
 msgid "vision 1"
 msgstr ""
 "<b>تعزيز</b> مشاركة النساء السودانيات العاملات في مجال الاقتصاد في "
 "المجالات الأكاديمية والسياسات العامة في السودان"
 
-#: app/templates/index.html:90
+#: app/templates/index.html:91
 msgid "vision 2"
 msgstr "<b>بناء قدرات</b> النساء الشابات في مجال الاقتصاد"
 
-#: app/templates/index.html:94
+#: app/templates/index.html:95
 msgid "vision 3"
 msgstr "<b>تعزيز</b> أصوات النساء السودانيات في البحث والممارسة الاقتصادية."
 
-#: app/templates/index.html:98
+#: app/templates/index.html:99
 msgid "vision 4"
 msgstr ""
 "<b>تعزيز التضامن</b> بين النساء السودانيات العاملات في مجال الاقتصاد عبر "
 "الأجيال."
 
-#: app/templates/index.html:129
+#: app/templates/index.html:130
 msgid "contact us"
 msgstr "تواصل معنا"
 
-#: app/templates/index.html:130
+#: app/templates/index.html:131
 msgid "contact enquiry"
 msgstr "لديك سؤال أو إستفسار؟"
 
-#: app/templates/index.html:134
+#: app/templates/index.html:141
 msgid "form name"
 msgstr "أدخل اسمك"
 
-#: app/templates/index.html:142 app/templates/partials/footer.html:9
+#: app/templates/index.html:149 app/templates/partials/footer.html:9
 msgid "form email"
 msgstr "أدخل بريدك الإلكتروني"
 
-#: app/templates/index.html:149
+#: app/templates/index.html:156
 msgid "form textarea"
 msgstr "تعليق أو رسالة"
 
-#: app/templates/index.html:154
+#: app/templates/index.html:165
 msgid "submit"
 msgstr "إرسال"
 
@@ -385,6 +397,10 @@ msgstr ""
 "استكشِف مشاريعنا المؤثرة التي تهدف إلى تمكين النساء السودانيات العاملات "
 "في مجال الاقتصاد، وتعزيز التعاون، ودفع عجلة التنمية الاقتصادية المستدامة."
 
+#: app/templates/single-news.html:29
+msgid "date"
+msgstr "التاريخ"
+
 #: app/templates/team.html:9
 msgid "our_exceptional_team"
 msgstr "فريقنا الاستثنائي من القائدات والمبتكرات"
@@ -432,7 +448,7 @@ msgstr "أضف توصية أخرى"
 msgid "Remove this testimonial block"
 msgstr "إزالة هذه التوصية"
 
-#: app/templates/macros/modal.html:75
+#: app/templates/macros/modal.html:76
 msgid "cancel"
 msgstr "إلغاء"
 
@@ -757,7 +773,7 @@ msgid "empty research"
 msgstr "ﻻ توجد بحوث حاليً"
 
 #: app/templates/partials/knowledge-hub/research.html:56
-#: app/templates/partials/news/cards.html:35
+#: app/templates/partials/news/cards.html:36
 #: app/templates/partials/projects/cards.html:35
 msgid "learn more"
 msgstr "المزيد"

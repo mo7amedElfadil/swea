@@ -23,6 +23,7 @@ class QueueService:
         self.max_retries = max_retries
         self.task_processors: Dict[str, Callable[[Dict[str, Any]], bool]] = {}
         self.executor = ThreadPoolExecutor(max_workers=max_workers)
+        self._shutdown_flag = False
 
     def register_task_processor(
         self, task_type: str, processor: Callable[[Dict[str, Any]], bool]
@@ -97,14 +98,22 @@ class QueueService:
 
         Logs errors if there are issues with Redis or JSON decoding.
         """
-        while True:
+        while not self._shutdown_flag:
             try:
                 _, job = self.redis_client.blpop(self.queue_name)
-                task = json.loads(job)
-
-                # Process the task asynchronously
-                self.executor.submit(self.process_task, task)
+                if job:
+                    task = json.loads(job)
+                    self.executor.submit(self.process_task, task)
             except redis.RedisError as e:
                 logging.error("Redis error during queue processing: %s", e)
             except json.JSONDecodeError:
                 logging.error("Failed to decode task from queue")
+            except Exception as e:
+                logging.error("Unexpected error during queue processing: %s", e)
+
+    def shutdown(self) -> None:
+        """Gracefully shuts down the queue worker."""
+        logging.info("Shutting down queue worker...")
+        self._shutdown_flag = True
+        self.executor.shutdown(wait=True)  # Wait for all tasks to complete
+        logging.info("Queue worker shutdown complete.")

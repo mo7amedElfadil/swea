@@ -1,5 +1,5 @@
 # Makefile for the Application (Frontend & Backend)
-.PHONY: help setup check-dependencies clean check_venv run_flask watch_tw watch_static queue_worker up_db down_db stop_flask stop_tailwind stop_static restart restart_tw stop_static list status test version update-translation db_init db_migrate db_upgrade db_reset
+.PHONY: help setup check-dependencies clean check_venv run_flask watch_tw watch_static queue_worker up_db down_db stop_flask stop_tailwind stop_static stop_queue restart restart_tw stop_static stop_queue list status test version update-translation db_init db_migrate db_upgrade db_reset
 
 # Default target
 .DEFAULT_GOAL := help
@@ -20,6 +20,7 @@ RESET := \e[0m
 SWEA_SESSION := swea
 TAILWIND_SESSION := tailwind
 STATIC_FILE_SESSION := hmr
+WORKER_SESSION := queue_worker
 
 # scripts
 TW_WATCH := npm run dev:wt_css
@@ -91,7 +92,7 @@ check_npm:
 
 
 #run everything
-run: run_flask watch_tw watch_static ## Run the application
+run: run_flask watch_tw watch_static queue_worker ## Run the application
 
 
 
@@ -106,9 +107,9 @@ watch_static: ## Watch for changes in css, html files
 	@echo 'Watching for changes in static files {html,css}...'
 	@$(call run_session,$(STATIC_FILE_SESSION),hmr app)
 
-queue_worker: ## Run the queue worker
+queue_worker: clean check_venv ## Run the queue worker
 	@echo 'Running the queue worker...'
-	@$(call run_session,$(QUEUE_WORKER),$(VEN_ACTIVATE) && $(QUEUE_WORKER))
+	@$(call run_session,$(WORKER_SESSION),$(VEN_ACTIVATE) && $(QUEUE_WORKER))
 
 up_db: ## Start the database (docker-compose: MongoDB & Redis)
 	@$(UP_DB)
@@ -117,7 +118,7 @@ down_db: ## Stop the database (docker-compose: MongoDB & Redis)
 	@$(DOWN_DB)
 
 # Stop everything
-stop: stop_flask stop_tailwind stop_static ## Stop the application
+stop: stop_flask stop_tailwind stop_static stop_queue ## Stop the application
 
 # Stop sessions
 stop_flask: ## Stop flask application
@@ -129,6 +130,9 @@ stop_tailwind: ## Stop tailwindcss watch
 stop_static: ## Stop watching static files 
 	@$(call kill_session,$(STATIC_FILE_SESSION))
 
+stop_queue: ## Stop the queue worker
+	@$(call kill_session,$(QUEUE_WORKER))
+
 # Restart application
 restart: ## Restart flask server
 	@$(MAKE) -s stop_flask run_flask && \
@@ -139,6 +143,9 @@ restart_tw: stop_tailwind  ## Restart tailwindcss watch
 
 restart_static: stop_static ## Restart watching static files
 	@$(MAKE) -s watch_static
+
+restart_queue: stop_queue ## Restart the queue worker
+	@$(MAKE) -s queue_worker
 
 list: ## List all running tmux sessions
 	@$(TMUX) ls
@@ -179,6 +186,8 @@ db_reset: ## Reset the database (drop all tables and reapply migrations)
 	@$(FLASK) db upgrade
 
 # Help message
-help: ## Show this help message
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
-	awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+help: ## Display this help message
+	@echo "Usage: make [target]"
+	@echo ""
+	@echo "Targets:"
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  %-20s %s\n", $$1, $$2}' $(MAKEFILE_LIST)

@@ -12,7 +12,7 @@ from config import Config
 # Initialize limiter
 limiter = Limiter(
     get_remote_address,
-    default_limits=["200 per day", "50 per hour"],
+    default_limits=["2000 per day", "500 per hour"],
     storage_uri=Config.LIMITER_REDIS_URL,
 )
 

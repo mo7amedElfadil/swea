@@ -66,6 +66,7 @@ def create_app(config_class=Config):
         PodcastMember,
         Project,
         Research,
+        Subscriber,
         Team,
         User,
     )

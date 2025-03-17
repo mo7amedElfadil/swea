@@ -7,5 +7,6 @@ from app.models.news import News
 from app.models.podcast import Podcast, PodcastMember
 from app.models.project import Project
 from app.models.research import Research
+from app.models.subscriber import Subscriber
 from app.models.team import Team
 from app.models.user import User

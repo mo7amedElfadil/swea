@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-17 10:26+0400\n"
+"POT-Creation-Date: 2025-03-17 14:12+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.3\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: api/v1/views/knowledge_hub.py:33
 msgid "Invalid tab"
@@ -117,19 +117,19 @@ msgstr ""
 msgid "Member deleted successfully"
 msgstr ""
 
-#: api/v1/views/main.py:85 api/v1/views/main.py:88
+#: api/v1/views/main.py:86 api/v1/views/main.py:89
 msgid "Invalid credentials"
 msgstr ""
 
-#: api/v1/views/main.py:93
+#: api/v1/views/main.py:94
 msgid "Login successful"
 msgstr ""
 
-#: api/v1/views/main.py:166
+#: api/v1/views/main.py:169
 msgid "Failed to send message"
 msgstr ""
 
-#: api/v1/views/main.py:170
+#: api/v1/views/main.py:173
 msgid "Your comment received successfully"
 msgstr ""
 
@@ -148,6 +148,30 @@ msgstr ""
 
 #: api/v1/views/projects.py:123
 msgid "Project deleted successfully"
+msgstr ""
+
+#: api/v1/views/subscribers.py:20
+msgid "Failed to subscribe"
+msgstr ""
+
+#: api/v1/views/subscribers.py:22
+msgid "Thank you for subscribing"
+msgstr ""
+
+#: api/v1/views/subscribers.py:35
+msgid "Failed to unsubscribe"
+msgstr ""
+
+#: api/v1/views/subscribers.py:38
+msgid "Unsubscribed successfully"
+msgstr ""
+
+#: api/v1/views/subscribers.py:77
+msgid "Failed to send broadcast email"
+msgstr ""
+
+#: api/v1/views/subscribers.py:90
+msgid "Broadcast email sent successfully"
 msgstr ""
 
 #: api/v1/views/team.py:40
@@ -178,7 +202,7 @@ msgstr ""
 msgid "Team member deleted successfully"
 msgstr ""
 
-#: app/__init__.py:137
+#: app/__init__.py:138
 msgid "Rate limit exceeded"
 msgstr ""
 
@@ -303,7 +327,7 @@ msgstr ""
 msgid "form name"
 msgstr ""
 
-#: app/templates/index.html:149 app/templates/partials/footer.html:9
+#: app/templates/index.html:149 app/templates/partials/footer.html:16
 msgid "form email"
 msgstr ""
 
@@ -447,11 +471,11 @@ msgstr ""
 msgid "completed_projects"
 msgstr ""
 
-#: app/templates/partials/footer.html:5
+#: app/templates/partials/footer.html:6
 msgid "footer caption"
 msgstr ""
 
-#: app/templates/partials/footer.html:14
+#: app/templates/partials/footer.html:24
 msgid "subscribe"
 msgstr ""
 
@@ -639,12 +663,44 @@ msgstr ""
 msgid "no_projects_found"
 msgstr ""
 
+#: app/templates/partials/dashboard/subscribers-list.html:7
+msgid "total_subscribers"
+msgstr ""
+
+#: app/templates/partials/dashboard/subscribers-list.html:24
+msgid "subscribed_on"
+msgstr ""
+
+#: app/templates/partials/dashboard/subscribers-list.html:46
+msgid "no_subscribers_yet"
+msgstr ""
+
 #: app/templates/partials/dashboard/subscribers.html:4
 msgid "subscribers"
 msgstr ""
 
 #: app/templates/partials/dashboard/subscribers.html:5
-msgid "add_subscriber"
+msgid "broadcast_email"
+msgstr ""
+
+#: app/templates/partials/dashboard/subscribers_broadcast-form.html:15
+msgid "email_subject"
+msgstr ""
+
+#: app/templates/partials/dashboard/subscribers_broadcast-form.html:16
+msgid "email_subject_placeholder"
+msgstr ""
+
+#: app/templates/partials/dashboard/subscribers_broadcast-form.html:19
+msgid "subject_required"
+msgstr ""
+
+#: app/templates/partials/dashboard/subscribers_broadcast-form.html:29
+msgid "email_body"
+msgstr ""
+
+#: app/templates/partials/dashboard/subscribers_broadcast-form.html:51
+msgid "send"
 msgstr ""
 
 #: app/templates/partials/dashboard/team-list.html:57

@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{ subject }}</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap');
+
+            body,
+            p,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-family: 'Noto Kufi Arabic', serif;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body
+        style="
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Kufi Arabic', serif;
+            background-color: #fcf6f0;
+        "
+    >
+        <!-- Outer wrapper for better email client compatibility -->
+        <table
+            role="presentation"
+            width="100%"
+            cellpadding="0"
+            cellspacing="0"
+            border="0"
+            style="background-color: #fcf6f0"
+        >
+            <tr>
+                <td align="center" style="padding: 20px 0">
+                    <!-- Main content wrapper -->
+                    <table
+                        role="presentation"
+                        width="600"
+                        cellpadding="0"
+                        cellspacing="0"
+                        border="0"
+                        style="
+                            background-color: #ffffff;
+                            border-radius: 12px;
+                            border: 1px solid #f6e5d3;
+                            box-shadow: 0 4px 20px rgba(219, 0, 0, 0.05);
+                            margin: 0 auto;
+                        "
+                    >
+                        <!-- Header Banner -->
+                        <tr>
+                            <td
+                                style="
+                                    background-color: #ffefef;
+                                    border-radius: 12px 12px 0 0;
+                                    padding: 24px 0 12px 0;
+                                "
+                            >
+                                <table
+                                    role="presentation"
+                                    width="100%"
+                                    cellpadding="0"
+                                    cellspacing="0"
+                                    border="0"
+                                >
+                                    <tr>
+                                        <td
+                                            align="center"
+                                            style="padding-bottom: 12px"
+                                        >
+                                            <img
+                                                src="https://aidluminate.pro/static/imgs/swea-logo-og.webp"
+                                                alt="SWEA Logo"
+                                                width="180"
+                                                style="
+                                                    display: inline-block;
+                                                    vertical-align: middle;
+                                                "
+                                            />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <!-- Content Area -->
+                        <tr>
+                            <td style="padding: 32px 36px">
+                                <!-- Email Subject/Header -->
+                                <table
+                                    role="presentation"
+                                    width="100%"
+                                    cellpadding="0"
+                                    cellspacing="0"
+                                    border="0"
+                                >
+                                    <tr>
+                                        <td
+                                            align="left"
+                                            style="padding-bottom: 24px"
+                                        >
+                                            <h1
+                                                style="
+                                                    font-size: 24px;
+                                                    color: #db0000;
+                                                    font-weight: 700;
+                                                    margin: 0;
+                                                    border-bottom: 2px solid
+                                                        #f6e5d3;
+                                                    padding-bottom: 12px;
+                                                "
+                                            >
+                                                {{ subject }}
+                                            </h1>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <!-- Greeting -->
+                                <table
+                                    role="presentation"
+                                    width="100%"
+                                    cellpadding="0"
+                                    cellspacing="0"
+                                    border="0"
+                                    style="margin-bottom: 24px"
+                                >
+                                    <tr>
+                                        <td
+                                            style="
+                                                font-size: 18px;
+                                                line-height: 1.6;
+                                                color: #391811;
+                                                font-weight: 500;
+                                            "
+                                        >
+                                            Dear {{ recipient }},
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <!-- Message Content -->
+                                <table
+                                    role="presentation"
+                                    width="100%"
+                                    cellpadding="0"
+                                    cellspacing="0"
+                                    border="0"
+                                    style="
+                                        border-left: 3px solid #ff5454;
+                                        margin: 24px 0;
+                                    "
+                                >
+                                    <tr>
+                                        <td
+                                            style="
+                                                font-size: 16px;
+                                                line-height: 1.8;
+                                                color: #09090b;
+                                                padding: 0 0 0 16px;
+                                            "
+                                        >
+                                            {{ message }}
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <!-- Footer -->
+                                <table
+                                    role="presentation"
+                                    width="100%"
+                                    cellpadding="0"
+                                    cellspacing="0"
+                                    border="0"
+                                    style="
+                                        margin-top: 32px;
+                                        border-top: 1px solid #f6e5d3;
+                                        background-color: #ffefef;
+                                        border-radius: 8px;
+                                    "
+                                >
+                                    <tr>
+                                        <td
+                                            align="center"
+                                            style="
+                                                padding: 24px 16px 16px 16px;
+                                                font-size: 16px;
+                                                color: #520000;
+                                                font-weight: bold;
+                                            "
+                                        >
+                                            Best regards,
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            align="center"
+                                            style="
+                                                padding-bottom: 8px;
+                                                font-size: 18px;
+                                                color: #b80000;
+                                                font-weight: 600;
+                                            "
+                                        >
+                                            The SWEA Team
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            align="center"
+                                            style="
+                                                padding: 4px 0 24px 0;
+                                                font-size: 14px;
+                                                color: #71717a;
+                                            "
+                                        >
+                                            <img
+                                                src="https://aidluminate.pro/static/imgs/swea-logo-og.webp"
+                                                alt="SWEA"
+                                                width="80"
+                                                style="opacity: 0.8"
+                                            />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <!-- Bottom Banner -->
+                        <tr>
+                            <td
+                                style="
+                                    background-color: #520000;
+                                    border-radius: 0 0 12px 12px;
+                                    padding: 16px;
+                                    text-align: center;
+                                    color: #ffffff;
+                                    font-size: 12px;
+                                "
+                            >
+                                © SWEA 2025 | All Rights Reserved
+                                <br />
+                                <span
+                                    style="
+                                        font-size: 10px;
+                                        display: block;
+                                        margin-top: 5px;
+                                    "
+                                >
+                                    If you no longer wish to receive these
+                                    emails, you can
+                                    <a
+                                        href="{{unsubscribe_link}}"
+                                        style="
+                                            color: #ffbfbf;
+                                            text-decoration: underline;
+                                        "
+                                    >
+                                        unsubscribe here
+                                    </a>
+                                    .
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

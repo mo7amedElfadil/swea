@@ -1,0 +1,48 @@
+{% import "macros/pagination.html" as pagination %}
+<!-- Subscribers List -->
+{% if data %}
+<div class="space-y-4">
+    <!-- Total subscribers count -->
+    <div class="text-gray-600 font-medium">
+        {{ _("total_subscribers") }}:
+        <span class="text-primary-600 font-bold">{{ data | count }}</span>
+    </div>
+
+    {% for subscriber in data %}
+    <div
+        class="flex justify-between items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border-l-4 border-primary-400"
+    >
+        <!-- Subscriber Details -->
+        <div class="flex-grow">
+            <!-- Email -->
+            <p class="text-sm font-medium text-gray-800">
+                {{ subscriber.email }}
+            </p>
+
+            {% if subscriber.created_at %}
+            <p class="text-xs text-secondary-600 mt-1">
+                {{ _("subscribed_on") }}: {{
+                subscriber.created_at.strftime('%Y-%m-%d') }}
+            </p>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    <!-- Pagination -->
+    {{ pagination.pagination( page=page, total_pages=total_pages,
+    next='/dashboard/subscribers?page='+(page+1)|string,
+    prev='/dashboard/subscribers?page='+(page-1)|string) }}
+</div>
+{% else %}
+<!-- Empty state -->
+<div
+    class="flex flex-col items-center justify-center p-6 bg-white rounded-lg shadow-sm text-center"
+>
+    <img
+        class="w-24 h-24"
+        src="{{ url_for('static', filename='icons/envelope.svg') }}"
+        alt="Empty Icon"
+    />
+    <p class="text-gray-500">{{ _("no_subscribers_yet") }}</p>
+</div>
+{% endif %}

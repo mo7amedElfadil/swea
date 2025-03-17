@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-17 10:26+0400\n"
+"POT-Creation-Date: 2025-03-17 14:12+0400\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.3\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: api/v1/views/knowledge_hub.py:33
 msgid "Invalid tab"
@@ -118,19 +118,19 @@ msgstr "An error occurred while deleting the member"
 msgid "Member deleted successfully"
 msgstr "Member deleted successfully"
 
-#: api/v1/views/main.py:85 api/v1/views/main.py:88
+#: api/v1/views/main.py:86 api/v1/views/main.py:89
 msgid "Invalid credentials"
 msgstr "Invalid Credentials"
 
-#: api/v1/views/main.py:93
+#: api/v1/views/main.py:94
 msgid "Login successful"
 msgstr "Login successful"
 
-#: api/v1/views/main.py:166
+#: api/v1/views/main.py:169
 msgid "Failed to send message"
 msgstr "Failed to send your message"
 
-#: api/v1/views/main.py:170
+#: api/v1/views/main.py:173
 msgid "Your comment received successfully"
 msgstr "Your comment received successfully"
 
@@ -150,6 +150,30 @@ msgstr "Project updated successfully"
 #: api/v1/views/projects.py:123
 msgid "Project deleted successfully"
 msgstr "Project deleted successfully"
+
+#: api/v1/views/subscribers.py:20
+msgid "Failed to subscribe"
+msgstr "Failed to subscribe"
+
+#: api/v1/views/subscribers.py:22
+msgid "Thank you for subscribing"
+msgstr "Thank you for subscribing"
+
+#: api/v1/views/subscribers.py:35
+msgid "Failed to unsubscribe"
+msgstr "Failed to unsubscribe"
+
+#: api/v1/views/subscribers.py:38
+msgid "Unsubscribed successfully"
+msgstr "Unsubscribed successfully"
+
+#: api/v1/views/subscribers.py:77
+msgid "Failed to send broadcast email"
+msgstr "Failed to send broadcast email"
+
+#: api/v1/views/subscribers.py:90
+msgid "Broadcast email sent successfully"
+msgstr "Broadcast email sent successfully"
 
 #: api/v1/views/team.py:40
 msgid "create_team_member"
@@ -179,7 +203,7 @@ msgstr "Team member updated successfully"
 msgid "Team member deleted successfully"
 msgstr "Team member deleted successfully"
 
-#: app/__init__.py:137
+#: app/__init__.py:138
 msgid "Rate limit exceeded"
 msgstr "Rate limit exceeded"
 
@@ -332,7 +356,7 @@ msgstr "Have any inquiries or want to ask us something?"
 msgid "form name"
 msgstr "Name"
 
-#: app/templates/index.html:149 app/templates/partials/footer.html:9
+#: app/templates/index.html:149 app/templates/partials/footer.html:16
 msgid "form email"
 msgstr "Email"
 
@@ -482,11 +506,11 @@ msgstr "Ongoing"
 msgid "completed_projects"
 msgstr "Completed Projects"
 
-#: app/templates/partials/footer.html:5
+#: app/templates/partials/footer.html:6
 msgid "footer caption"
 msgstr "Stay informed by <b>subscribing</b> to our newsletter!"
 
-#: app/templates/partials/footer.html:14
+#: app/templates/partials/footer.html:24
 msgid "subscribe"
 msgstr "subscribe"
 
@@ -674,13 +698,45 @@ msgstr "Are you sure you want to delete this project?"
 msgid "no_projects_found"
 msgstr "No projects found"
 
+#: app/templates/partials/dashboard/subscribers-list.html:7
+msgid "total_subscribers"
+msgstr "Total Subscribers"
+
+#: app/templates/partials/dashboard/subscribers-list.html:24
+msgid "subscribed_on"
+msgstr "Subscribed On"
+
+#: app/templates/partials/dashboard/subscribers-list.html:46
+msgid "no_subscribers_yet"
+msgstr "No subscribers yet"
+
 #: app/templates/partials/dashboard/subscribers.html:4
 msgid "subscribers"
 msgstr "subscribe"
 
 #: app/templates/partials/dashboard/subscribers.html:5
-msgid "add_subscriber"
-msgstr "Add Subscribers"
+msgid "broadcast_email"
+msgstr "Broadcast Email"
+
+#: app/templates/partials/dashboard/subscribers_broadcast-form.html:15
+msgid "email_subject"
+msgstr "Email Subject"
+
+#: app/templates/partials/dashboard/subscribers_broadcast-form.html:16
+msgid "email_subject_placeholder"
+msgstr "Email Subject"
+
+#: app/templates/partials/dashboard/subscribers_broadcast-form.html:19
+msgid "subject_required"
+msgstr "Subject is required"
+
+#: app/templates/partials/dashboard/subscribers_broadcast-form.html:29
+msgid "email_body"
+msgstr "Email Body"
+
+#: app/templates/partials/dashboard/subscribers_broadcast-form.html:51
+msgid "send"
+msgstr "Send"
 
 #: app/templates/partials/dashboard/team-list.html:57
 msgid "confirm_delete_team_member"

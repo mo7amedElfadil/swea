@@ -1,17 +1,29 @@
+{% from "macros/spinner.html" import spinner %}
 <footer class='min-h-60 px-4 py-8 {% if locale == 'ar' %}font-primary{%else%}font-secondary{%endif%}'>
     <div class='container mx-auto grid gap-6'>
         <img class='w-[150px]' src="{{url_for('static',filename='imgs/logo.png')}}" alt="logo"/>
         <div class='space-y-2'>
             <p class='text-white'>{{_("footer caption")}}</p>
-            <form class='flex gap-2 sm:max-w-[50%]'>
+            <form class='flex gap-2 sm:max-w-[50%]'
+                 hx-post='/subscribe'
+                 hx-trigger='submit'
+                 hx-on::after-request="this.reset()"
+                 hx-swap='none'
+                 hx-indicator="#spinner"
+              >
                 <input
                         class='flex-1 w-3/4 px-6 py-2 bg-slate-300 bg-opacity-90 rounded-full sm:w-auto'
                         placeholder='{{_("form email")}}'
-                        type="text"
-                        name="subscribe"
+                        type="email"
+                        name="email"
                         value=""
                         />
-                <button class='py-3 px-4 bg-white rounded-full'>{{_("subscribe")}}</button>
+                <button type='submit' class='py-3 px-4 bg-white rounded-full flex items-center justify-center'>
+                    {{spinner()}}
+                  <span>
+                      {{_("subscribe")}}
+                  </span>
+                </button>
             </form>
         </div>
         <div class='flex items-center gap-2'>

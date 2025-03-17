@@ -16,6 +16,7 @@ from app.services.news import NewsService
 from app.services.podcast_service import PodcastService
 from app.services.project_service import ProjectService
 from app.services.research_service import ResearchService
+from app.services.subscriber_service import SubscriberService
 from app.services.team_service import TeamService
 from config import Config
 from utils.image_processing import ImageProcessing
@@ -110,7 +111,9 @@ def dashboard():
         knowledge_hub=dict(
             temp="partials/dashboard/knowledge-hub.html", data=CourseService().get_all
         ),
-        subscribers=dict(temp="partials/dashboard/subscribers.html", data=dict),
+        subscribers=dict(
+            temp="partials/dashboard/subscribers.html", data=SubscriberService().get_all
+        ),
         news=dict(temp="partials/dashboard/news.html", data=NewsService().get_all),
     )
     template = tab_content.get(tab_query, {}).get("temp")

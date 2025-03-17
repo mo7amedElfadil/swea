@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Any, Dict
 
-from app.services.queue_service import QueueService
+from app.queue import QueueService
 from config import Config
 
 

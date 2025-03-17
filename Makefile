@@ -26,7 +26,7 @@ WORKER_SESSION := queue_worker
 TW_WATCH := npm run dev:wt_css
 #STATIC_WATCH := npm run dev:static
 FLASK_RUN := python -m app.run # flask run
-QUEUE_WORKER := python -m app.services.queue_worker
+QUEUE_WORKER := python -m app.queue
 VEN_ACTIVATE := . .venv/bin/activate
 UP_DB := docker compose up -d
 DOWN_DB := docker compose down
@@ -131,7 +131,7 @@ stop_static: ## Stop watching static files
 	@$(call kill_session,$(STATIC_FILE_SESSION))
 
 stop_queue: ## Stop the queue worker
-	@$(call kill_session,$(QUEUE_WORKER))
+	@$(call kill_session,$(WORKER_SESSION))
 
 # Restart application
 restart: ## Restart flask server

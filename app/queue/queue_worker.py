@@ -1,7 +1,7 @@
 import logging
 
+from app.queue.queue_service import QueueService
 from app.services.mailing import EmailService
-from app.services.queue_service import QueueService
 
 # Initialize Mongo connection
 

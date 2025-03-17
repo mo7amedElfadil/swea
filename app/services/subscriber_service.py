@@ -9,8 +9,8 @@ from typing import Any, Dict
 from marshmallow import ValidationError
 
 from app.models.subscriber import Subscriber
+from app.queue import QueueService
 from app.schemas.subscriber_schema import SubscriberSchema
-from app.services.queue_service import QueueService
 from config import Config
 from utils.db_utils import paginate_query
 from utils.service_base import BaseService

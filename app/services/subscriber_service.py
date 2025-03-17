@@ -118,12 +118,13 @@ class SubscriberService(BaseService):
 
             # Get all subscribers
             subscribers = self.get_all()
-            list_of_subscribers = [
-                subscriber["email"] for subscriber in subscribers["data"]
-            ]
 
             if subscribers["total_items"] == 0:
                 raise ValueError("No subscribers found")
+
+            list_of_subscribers = [
+                subscriber["email"] for subscriber in subscribers["data"]
+            ]
 
             for subscriber in list_of_subscribers:
                 email_config = EmailConfig(

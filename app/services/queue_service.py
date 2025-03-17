@@ -87,11 +87,15 @@ class QueueService:
             logging.error("No registered processor for task type '%s'", task_type)
 
     def process_queue(self) -> None:
-        """Process the email queue.
-        This method will be called by a background worker to process the email queue,
-        `blpop` is a blocking popleft operation that waits until an item is available in the queue,
-        if the queue is empty, it process enters a sleep state until an item is available,
-        thus saving CPU cycles.
+        """
+        Continuously processes tasks from the queue.
+
+        This method runs in a loop, waiting for tasks to be available in the queue.
+        It uses `blpop`, a blocking operation that removes and returns an item from the queue
+        when available, preventing unnecessary CPU usage when the queue is empty.
+        Retrieved tasks are processed asynchronously using a thread pool executor.
+
+        Logs errors if there are issues with Redis or JSON decoding.
         """
         while True:
             try:

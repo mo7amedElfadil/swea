@@ -98,7 +98,7 @@ class SubscriberService(BaseService):
         try:
             subscriber = self.search_subscribers_by_email(subscriber_email)
 
-            if subscriber:
+            if subscriber["total_items"] > 0:
                 uuid = subscriber["data"][0]["uuid"]
                 self.delete(uuid, permanent=True)
                 return True

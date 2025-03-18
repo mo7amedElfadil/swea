@@ -26,7 +26,7 @@
         <span class="after:content-[&quot;-&quot;] after:mx-1">
             {{p.author.name[locale]}}
         </span>
-        <span>{{p.date_of_completion}}</span>
+        <span>{{p.date_of_completion.strftime('%Y-%m-%d')}}</span>
     </div>
     {% if p.content %}
     <p>{{p.content[0][locale] | truncate_html(300) | safe}}</p>

@@ -1,6 +1,20 @@
 from marshmallow import Schema, ValidationError, fields, validates
 
 
+class AuthorSchema(Schema):
+    """
+    Schema for validating author data.
+    """
+
+    name = fields.Dict(
+        keys=fields.Str(),
+        values=fields.Str(),
+        required=True,
+        error_messages={"required": "Author name is required."},
+    )
+    email = fields.Str(allow_none=True)
+
+
 class ProjectSchema(Schema):
     """
     Schema for validating project data.
@@ -14,9 +28,8 @@ class ProjectSchema(Schema):
         error_messages={"required": "Title is required."},
     )
 
-    author = fields.Dict(
-        keys=fields.Str(),
-        values=fields.Raw(),  # Accepts both dict (for 'name') and str (for 'email')
+    author = fields.Nested(
+        AuthorSchema,  # Accepts both dict (for 'name') and str (for 'email')
         required=True,
         error_messages={"required": "Author is required."},
     )
@@ -27,14 +40,12 @@ class ProjectSchema(Schema):
         validate=lambda x: x in ["ongoing", "completed"],
     )
 
+    # Optional fields
     tags = fields.Dict(
         keys=fields.Str(),
         values=fields.List(fields.Str()),
-        required=True,
-        error_messages={"required": "Tags are required."},
+        allow_none=True,
     )
-
-    # Optional fields
     date_of_completion = fields.Date(allow_none=True)
     content = fields.List(fields.Dict(), allow_none=True)
     hero_image = fields.Str(allow_none=True)
@@ -48,7 +59,7 @@ class ProjectSchema(Schema):
 
     @validates("author")
     def validate_author(self, value):
-        """Ensure the author contains a name (with at least one language) and an email."""
+        """Ensure the author contains a name (with at least one language)."""
         if (
             "name" not in value
             or not isinstance(value["name"], dict)
@@ -57,12 +68,3 @@ class ProjectSchema(Schema):
             raise ValidationError(
                 "Author must contain a 'name' with at least one language."
             )
-
-        if "email" not in value or not isinstance(value["email"], str):
-            raise ValidationError("Author must contain a valid 'email'.")
-
-    @validates("tags")
-    def validate_tags(self, value):
-        """Ensure tags are provided for at least one language."""
-        if not value or not any(value.values()):
-            raise ValidationError("Tags must be provided for at least one language.")

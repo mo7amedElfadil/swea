@@ -18,7 +18,7 @@
                 default(research.author['name']['en']) }}
             </p>
             <!-- Tags -->
-            <div class="mt-2 space-x-2">
+            <div class="mt-2 gap-2">
                 {% for tag in research.tags[locale] |
                 default(research.tags['en']) %}
                 <span
@@ -30,7 +30,7 @@
             </div>
         </div>
         <!-- Actions -->
-        <div class="flex space-x-2">
+        <div class="flex gap-2">
             <button
                 class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none"
                 hx-get="/dashboard/knowledge-hub/form?q=researches&uuid={{research.uuid}}&m=UPDATE"

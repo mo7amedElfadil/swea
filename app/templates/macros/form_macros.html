@@ -1,8 +1,7 @@
 {# form_macros #}
 
 {# Text Input Field - Supports multilingual fields #}
-{% macro text_input(id, name, value, label, placeholder="", required=false,
-lang="en", type="text", dir="ltr") %}
+{% macro text_input(id, name, value, label, placeholder="", required=false, lang="en", type="text", dir="ltr") %}
     <div>
         <label for="{{ id }}" class="block text-sm font-medium text-gray-700">
             {{ _(label) }}
@@ -22,8 +21,7 @@ lang="en", type="text", dir="ltr") %}
 {% endmacro %}
 
 {# Textarea Field #}
-{% macro textarea(id, name, value, label, rows=3, placeholder="",
-required=false, lang='en', dir="ltr") %}
+{% macro textarea(id, name, value, label, rows=3, placeholder="", required=false, lang='en', dir="ltr") %}
     <div>
         <label for="{{ id }}" class="block text-sm font-medium text-gray-700">
             {{ _(label) }}
@@ -103,7 +101,7 @@ required=false, lang='en', dir="ltr") %}
 {% endmacro %}
 
 {# Content Block Template #}
-{% macro content_block(index, content_en="", content_ar="") %}
+{% macro content_block(index, content_en="", content_ar="", content_image="") %}
     <div class="bg-white shadow-sm rounded-lg p-6 border border-gray-200">
         <h3 class="text-lg font-medium text-gray-900 mb-4">
             {{ _("Content") }} {{ index }}
@@ -111,7 +109,24 @@ required=false, lang='en', dir="ltr") %}
         <div class="space-y-4">
             {{ textarea("content-en-" + index|string, "content[" + index|string + "][en]", content_en, "English Content") }}
             {{ textarea("content-ar-" + index|string, "content[" + index|string + "][ar]", content_ar, "Arabic Content") }}
-            {{ file_upload("content-image-" + index|string, "content_image[" + index|string + "]", "Content Image") }}
+            <!-- Image Upload Field -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {% if content_image %}
+            <img
+                src="{{ url_for('static', filename=content_image) }}"
+                alt="{{ _("Content Image") }}"
+                onerror="this.src='http://i.imgur.com/hfM1J8s.png'"
+                class="w-24 h-24 object-cover"
+                />
+            <!-- Hidden input to retain existing image path -->
+            <input
+                type="hidden"
+                name="content[{{ index }}][existing_image]"
+                value="{{ content_image }}"
+            />
+            {% endif %}
+            {{ file_upload("content-image-" + index|string, "content[" + index|string + "][image]", "Content Image", accept="image/*", required=false) }}
+            </div>
         </div>
 
         <!-- Action Buttons -->
@@ -126,7 +141,7 @@ required=false, lang='en', dir="ltr") %}
                     alt="{{ _('Add another content block') }}"
                 />
             </button>
-            {% if index != 0 %}
+            {% if index != 1 %}
             <button
                 type="button"
                 class="p-2 bg-red-700 rounded-full hover:bg-red-800 transition-colors remove-template"
@@ -143,17 +158,34 @@ required=false, lang='en', dir="ltr") %}
 {% endmacro %}
 
 {# Testimonial Block Template #}
-{% macro testimonial_block(index, testimonial_en="", testimonial_ar="", author="", qualification="") %}
+{% macro testimonial_block(index, testimonial_en="", testimonial_ar="", author="", qualification="", testimonial_image="") %}
     <div class="bg-white shadow-sm rounded-lg p-6 border border-gray-200">
         <h3 class="text-lg font-medium text-gray-900 mb-4">
             {{ _("Testimonial") }} {{ index }}
         </h3>
         <div class="space-y-4">
-            {{ textarea("testimonial-en-" + index|string, "testimonials[" + index|string + "][en]", testimonial_en, "English Testimonial", placeholder="testimonial_english_placeholder") }}
-            {{ textarea("testimonial-ar-" + index|string, "testimonials[" + index|string + "][ar]", testimonial_ar, "Arabic Testimonial", placeholder="testimonial_arabic_placeholder") }}
-            {{ text_input("testimonial-author-" + index|string, "testimonials[" + index|string + "][author]", author, "Testimonial Author", placeholder="testimonial_author_placeholder") }}
-            {{ text_input("testimonial-author-qualification-" + index|string, "testimonials[" + index|string + "][qualification]", qualification, "Testimonial Author Qualification", placeholder="testimonial_author_qualification_placeholder") }}
-            {{ file_upload("testimonial-author-photo-" + index|string, "testimonials[" + index|string + "][photo]", "Testimonial Author Photo") }}
+            {{ textarea("testimonial-en-" + index|string, "testimonial[" + index|string + "][en]", testimonial_en, "English Testimonial", placeholder="testimonial_english_placeholder") }}
+            {{ textarea("testimonial-ar-" + index|string, "testimonial[" + index|string + "][ar]", testimonial_ar, "Arabic Testimonial", placeholder="testimonial_arabic_placeholder") }}
+            {{ text_input("testimonial-author-" + index|string, "testimonial[" + index|string + "][author]", author, "Testimonial Author", placeholder="testimonial_author_placeholder") }}
+            {{ text_input("testimonial-author-qualification-" + index|string, "testimonial[" + index|string + "][qualification]", qualification, "Testimonial Author Qualification", placeholder="testimonial_author_qualification_placeholder") }}
+            <!-- Image Upload Field -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {% if testimonial_image %}
+            <img
+                src="{{ url_for('static', filename=testimonial_image) }}"
+                alt="{{ _("Testimonial Author Photo") }}"
+                onerror="this.src='http://i.imgur.com/hfM1J8s.png'"
+                class="w-24 h-24 object-cover"
+                />
+            <!-- Hidden input to retain existing image path -->
+            <input
+                type="hidden"
+                name="testimonial[{{ index }}][existing_image]"
+                value="{{ testimonial_image }}"
+            />
+            {% endif %}
+            {{ file_upload("testimonial-image-" + index|string, "testimonial[" + index|string + "][image]", "Testimonial Author Photo", accept="image/*", required=false) }}
+            </div>
         </div>
 
         <!-- Action Buttons -->
@@ -168,7 +200,7 @@ required=false, lang='en', dir="ltr") %}
                     alt="{{ _('Add another testimonial block') }}"
                 />
             </button>
-            {% if index != 0 %}
+            {% if index != 1 %}
             <button
                 type="button"
                 class="p-2 bg-red-700 rounded-full hover:bg-red-800 transition-colors remove-template"

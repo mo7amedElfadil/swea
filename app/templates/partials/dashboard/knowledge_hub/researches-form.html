@@ -116,7 +116,7 @@ content_block, testimonial_block %}
     <!-- Hero Image Upload -->
     {{ file_upload("hero_image", "hero_image", "hero_image", accept="image/*")
     }} {% if hero_image %}
-    <div class="flex items-center space-x-4">
+    <div class="flex items-center gap-4">
         <img
             src="{{ url_for('static', filename=hero_image if hero_image else '') }}"
             alt="{{ title['en'] }}"
@@ -129,7 +129,7 @@ content_block, testimonial_block %}
     <!-- Additional Images Upload -->
     {{ file_upload("images", "images", "additional_images", accept="image/*",
     multiple=true) }} {% if images %}
-    <div class="flex flex-wrap space-x-4">
+    <div class="flex flex-wrap gap-4">
         {% for image in images %}
         <div class="relative">
             <img

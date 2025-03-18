@@ -1,4 +1,4 @@
-from flask import make_response, render_template, request
+from flask import make_response, render_template, request, session
 from flask_babel import gettext as _
 
 from api.v1.views import bp
@@ -61,7 +61,7 @@ def add_project():
             )
             return add_toast(resp, "success", _("Project created successfully"))
         except Exception as e:
-            print(f"Error: {e}")
+            print("Error:", e)
             resp = make_response(
                 render_template(
                     "partials/dashboard/projects.html",
@@ -90,8 +90,6 @@ def update_project(project_id):
     try:
         form_data = request.form.to_dict()
         files = request.files
-        print(f"Received form data: {form_data}")
-        print(f"Received files: {files.keys()}")
         project_service.update_project(project_id, form_data, files)
         resp = make_response(
             render_template(

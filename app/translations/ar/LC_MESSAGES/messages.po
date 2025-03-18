@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-17 14:12+0400\n"
+"POT-Creation-Date: 2025-03-19 02:54+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -17,7 +17,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.16.0\n"
+"Generated-By: Babel 2.10.3\n"
 
 #: api/v1/views/knowledge_hub.py:33
 msgid "Invalid tab"
@@ -119,24 +119,24 @@ msgstr "حدث خطأ أثناء حذف عضو الفريق"
 msgid "Member deleted successfully"
 msgstr "تم حذف عضو الفريق بنجاح"
 
-#: api/v1/views/main.py:86 api/v1/views/main.py:89
+#: api/v1/views/main.py:88 api/v1/views/main.py:91
 msgid "Invalid credentials"
 msgstr "بيانات الاعتماد غير صالحة"
 
-#: api/v1/views/main.py:94
+#: api/v1/views/main.py:96
 msgid "Login successful"
 msgstr "تم تسجيل الدخول بنجاح"
 
-#: api/v1/views/main.py:169
+#: api/v1/views/main.py:171
 msgid "Failed to send message"
 msgstr "فشل في إرسال الرسالة"
 
-#: api/v1/views/main.py:173
+#: api/v1/views/main.py:175
 msgid "Your comment received successfully"
 msgstr "تم استلام  تعليقك  بنجاح"
 
 #: api/v1/views/projects.py:18 api/v1/views/projects.py:84
-#: api/v1/views/projects.py:114
+#: api/v1/views/projects.py:112
 msgid "Project not found"
 msgstr "لم يتم العثور على المشروع"
 
@@ -144,11 +144,11 @@ msgstr "لم يتم العثور على المشروع"
 msgid "Project created successfully"
 msgstr "تم إنشاء المشروع بنجاح"
 
-#: api/v1/views/projects.py:102
+#: api/v1/views/projects.py:100
 msgid "Project updated successfully"
 msgstr "تم تحديث المشروع بنجاح"
 
-#: api/v1/views/projects.py:123
+#: api/v1/views/projects.py:121
 msgid "Project deleted successfully"
 msgstr "تم حذف المشروع بنجاح"
 
@@ -406,7 +406,7 @@ msgstr "تاريخ الإنتهاء"
 msgid "Ongoing"
 msgstr "جاري"
 
-#: app/templates/project-page.html:76
+#: app/templates/project-page.html:99
 msgid "Testimonials"
 msgstr "التوصيات"
 
@@ -448,27 +448,35 @@ msgstr "المحتوى بالإنجليزية"
 msgid "choose"
 msgstr "اختر"
 
-#: app/templates/macros/form_macros.html:109
+#: app/templates/macros/form_macros.html:107
 msgid "Content"
 msgstr "المحتوى"
 
-#: app/templates/macros/form_macros.html:126
+#: app/templates/macros/form_macros.html:117
+msgid "Content Image"
+msgstr "صورة المحتوى"
+
+#: app/templates/macros/form_macros.html:141
 msgid "Add another content block"
 msgstr "أضف محتوى آخر"
 
-#: app/templates/macros/form_macros.html:137
+#: app/templates/macros/form_macros.html:152
 msgid "Remove this content block"
 msgstr "إزالة هذا المحتوى"
 
-#: app/templates/macros/form_macros.html:149
+#: app/templates/macros/form_macros.html:164
 msgid "Testimonial"
 msgstr "التوصيات"
 
-#: app/templates/macros/form_macros.html:168
+#: app/templates/macros/form_macros.html:176
+msgid "Testimonial Author Photo"
+msgstr "صورة الكاتب"
+
+#: app/templates/macros/form_macros.html:200
 msgid "Add another testimonial block"
 msgstr "أضف توصية أخرى"
 
-#: app/templates/macros/form_macros.html:179
+#: app/templates/macros/form_macros.html:211
 msgid "Remove this testimonial block"
 msgstr "إزالة هذه التوصية"
 

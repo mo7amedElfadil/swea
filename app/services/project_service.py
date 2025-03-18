@@ -8,7 +8,6 @@ from datetime import date
 from typing import Any, Dict, List, Optional
 
 from marshmallow import ValidationError
-from sqlalchemy import cast, or_
 
 from app.extensions import db
 from app.models import Project
@@ -23,37 +22,35 @@ class ProjectService(BaseService):
 
     def __init__(self, page_size: int = 3):
         """Initialize project service."""
-        self.page_size = page_size
-        self.project_schema = ProjectSchema()
         super().__init__(Project, ProjectSchema, page_size)
+        self.file_manager = FileManager
 
-    def create_project(
-        self, form_data: Dict[str, Any], files: Dict[str, Any]
-    ) -> Project | Dict[str, Any]:
+    def create_project(self, form_data: Dict[str, Any], files: Dict[str, Any]) -> bool:
         """
         Create a new project.
         Args:
             form_data (Dict[str, Any]): The project data to create.
             files (Dict[str, Any]): The uploaded files.
         Returns:
-            Project: The created project instance.
+            bool: True if the project was created successfully, otherwise raises
+            a ValidationError.
         """
         try:
             # Process and validate form data
             processed_data = self.validate_form_data(form_data, files)
             # Validate the data using the schema
-            errors = ProjectSchema().validate(processed_data)
+            errors = self.schema.validate(processed_data)
             if errors:
                 raise ValidationError(errors)
-            project = Project()
-            project.create(**processed_data)
-            return project
+
+            self.model_class.create(**processed_data)
+            return True  # Return True if successful
         except ValidationError as error:
             raise ValidationError(error.messages) from error
 
     def update_project(
         self, uuid: str, form_data: Dict[str, Any], files: Dict[str, Any]
-    ) -> Project:
+    ) -> bool:
         """
         Update an existing project.
 
@@ -63,21 +60,22 @@ class ProjectService(BaseService):
             files (Dict[str, Any]): The uploaded files.
 
         Returns:
-            Optional[Project]: The updated project instance if found, otherwise None.
+            bool: True if the project was updated successfully, otherwise raises
+            a ValidationError.
         """
         try:
             # Process and validate form data
             form_data = self.validate_form_data(form_data, files)
 
             # Validate project data
-            errors = self.project_schema.validate(form_data)
+            errors = self.schema.validate(form_data)
             if errors:
                 raise ValidationError(errors)
 
-            project = Project.get_byuuid(uuid)
+            project = self.model_class.get_byuuid(uuid)
             if project:
                 project.update(**form_data)
-            return project
+            return True
         except ValidationError as error:
             raise ValidationError(error.messages) from error
 
@@ -92,7 +90,7 @@ class ProjectService(BaseService):
         Returns:
             bool: True if the project was deleted, False if the project was not found.
         """
-        project = Project.get_byuuid(uuid)
+        project = self.model_class.get_byuuid(uuid)
         if project:
             project.delete(permanent=permanent)
             return True
@@ -108,7 +106,7 @@ class ProjectService(BaseService):
         Returns:
             Optional[Project]: The project instance if found, otherwise None.
         """
-        project = Project.get_byuuid(uuid)
+        project = self.model_class.get_byuuid(uuid)
 
         # Prepare the project data for rendering
         if project:
@@ -138,7 +136,7 @@ class ProjectService(BaseService):
         Returns:
             List[Project]: A list of projects authored by the specified author.
         """
-        return Project.get_all_by(author=author)
+        return self.model_class.get_all_by(author=author)
 
     def get_projects_by_completion_date(
         self, date_of_completion: date
@@ -152,7 +150,7 @@ class ProjectService(BaseService):
         Returns:
             List[Project]: A list of projects with the specified completion date.
         """
-        return Project.get_all_by(date_of_completion=date_of_completion)
+        return self.model_class.get_all_by(date_of_completion=date_of_completion)
 
     def search_projects_by_title(self, title: str) -> Dict[str, Any]:
         """
@@ -165,7 +163,7 @@ class ProjectService(BaseService):
             Dict[str, Any]: Dictionary containing search results and pagination
             metadata.
         """
-        return search_by_multilang_field(Project, "title", title)
+        return search_by_multilang_field(self.model_class, "title", title)
 
     def restore_project(self, uuid: str) -> Optional[Project]:
         """
@@ -177,7 +175,7 @@ class ProjectService(BaseService):
         Returns:
             Optional[Project]: The restored project instance if found, otherwise None.
         """
-        project = Project.get_byuuid(uuid)
+        project = self.model_class.get_byuuid(uuid)
         if project and project.deleted_at:
             project.deleted_at = None
             db.session.commit()
@@ -192,30 +190,29 @@ class ProjectService(BaseService):
             "title": self._parse_nested_field(form_data, "title"),
             "author": {
                 "name": self._parse_nested_field(form_data, "author[name]"),
-                "email": (
-                    form_data.get("author[email]").strip()
-                    if form_data.get("author[email]")
-                    else None
-                ),
+                "email": self._parse_field(form_data, "author[email]"),
             },
             "status": form_data.get("status", "ongoing").strip(),
-            "date_of_completion": form_data.get("date_of_completion"),
+            "date_of_completion": self._parse_field(form_data, "date_of_completion"),
             "tags": {
                 "en": self._parse_tags(form_data.get("tags[en]")),
                 "ar": self._parse_tags(form_data.get("tags[ar]")),
             },
+            "content": self._parse_indexed_fields(form_data, files, "content"),
         }
 
-        # Handle image upload
+        # Handle hero_image upload
         image = files.get("hero_image")
         if image and image.filename:
-            processed_data["hero_image"] = FileManager(image).save()
-
-        # Process content field
-        processed_data["content"] = self._parse_indexed_fields(form_data, "content")
+            processed_data["hero_image"] = self.file_manager(image).save()
 
         # Process testimonials field
-        processed_data["testimonials"] = self._parse_testimonials(form_data)
+        processed_data["testimonials"] = self._parse_indexed_fields(
+            form_data,
+            files,
+            "testimonial",
+            additional_fields={"author": "author", "qualification": "qualification"},
+        )
         return processed_data
 
     def _parse_nested_field(
@@ -242,57 +239,73 @@ class ProjectService(BaseService):
         return [tag.strip() for tag in tags_str.split(",") if tag.strip()]
 
     def _parse_indexed_fields(
-        self, form_data: Dict[str, Any], field_prefix: str
-    ) -> List[Dict[str, str]]:
-        """Parse indexed fields like content[0][en], content[0][ar]."""
+        self,
+        form_data: Dict[str, Any],
+        files: Dict[str, Any],
+        field_prefix: str,
+        additional_fields: Optional[Dict[str, str]] = None,
+    ) -> List[Dict[str, Any]]:
+        """
+        Parse indexed fields like content[0][en], content[0][ar], or testimonials[0][en], testimonials[0][author].
+
+        Args:
+            form_data: The form data dictionary.
+            files: The files dictionary.
+            field_prefix: The prefix for the indexed fields (e.g., "content" or "testimonial").
+            additional_fields: A dictionary of additional fields to include in the result
+                              (e.g., {"author": "author", "qualification": "qualification"}).
+
+        Returns:
+            A list of dictionaries containing the parsed fields.
+        """
         indexed_keys = [key for key in form_data.keys() if key.startswith(field_prefix)]
-        index_values = set([key.split("[")[1].split("]")[0] for key in indexed_keys])
+        index_values = set(key.split("[")[1].split("]")[0] for key in indexed_keys)
         result = []
+
         for index in sorted(index_values, key=int):
             entry = {
-                "en": (
-                    form_data.get(f"{field_prefix}[{index}][en]").strip()
-                    if form_data.get(f"{field_prefix}[{index}][en]")
-                    else ""
+                "en": self._parse_field(
+                    form_data, f"{field_prefix}[{index}][en]", default=""
                 ),
-                "ar": (
-                    form_data.get(f"{field_prefix}[{index}][ar]").strip()
-                    if form_data.get(f"{field_prefix}[{index}][ar]")
-                    else ""
+                "ar": self._parse_field(
+                    form_data, f"{field_prefix}[{index}][ar]", default=""
+                ),
+                "image": self._handle_file_upload(
+                    files,
+                    f"{field_prefix}[{index}][image]",
+                    form_data.get(f"{field_prefix}[{index}][existing_image]"),
                 ),
             }
+
+            # Add additional fields if provided
+            if additional_fields:
+                for field_key, field_name in additional_fields.items():
+                    entry[field_key] = self._parse_field(
+                        form_data, f"{field_prefix}[{index}][{field_name}]", default=""
+                    )
+
             result.append(entry)
+
         return result
 
-    def _parse_testimonials(self, form_data: Dict[str, Any]) -> List[Dict[str, Any]]:
-        """Parse testimonials fields like testimonials[0][en], testimonials[0][author]."""
-        indexed_keys = [
-            key for key in form_data.keys() if key.startswith("testimonials")
-        ]
-        index_values = set([key.split("[")[1].split("]")[0] for key in indexed_keys])
-        result = []
-        for index in sorted(index_values, key=int):
-            entry = {
-                "en": (
-                    form_data.get(f"testimonials[{index}][en]").strip()
-                    if form_data.get(f"testimonials[{index}][en]")
-                    else ""
-                ),
-                "ar": (
-                    form_data.get(f"testimonials[{index}][ar]").strip()
-                    if form_data.get(f"testimonials[{index}][ar]")
-                    else ""
-                ),
-                "author": (
-                    form_data.get(f"testimonials[{index}][author]").strip()
-                    if form_data.get(f"testimonials[{index}][author]")
-                    else ""
-                ),
-                "qualification": (
-                    form_data.get(f"testimonials[{index}][qualification]").strip()
-                    if form_data.get(f"testimonials[{index}][qualification]")
-                    else ""
-                ),
-            }
-            result.append(entry)
-        return result
+    def _parse_field(
+        self, form_data: Dict[str, Any], field_name: str, default: Optional[str] = None
+    ) -> Optional[str]:
+        """Parse a single field from form data."""
+        value = form_data.get(field_name)
+        return value.strip() if value else default
+
+    def _handle_file_upload(
+        self,
+        files: Dict[str, Any],
+        field_name: str,
+        existing_image: Optional[str] = None,
+    ) -> Optional[str]:
+        """
+        Handle file upload and return the saved file path.
+        If no new file is uploaded, retain the existing image.
+        """
+        file = files.get(field_name)
+        if file and file.filename:
+            return self.file_manager(file).save()
+        return existing_image

@@ -51,7 +51,9 @@ def news():
 def projects():
     """projects page"""
     page = request.args.get("page", type=int, default=1)
-    projects = ProjectService().get_all(page=page)
+    projects = ProjectService().get_all(
+        page=page, sort="COALESCE(date_of_completion, created_at) DESC"
+    )
     # locale must be included in the dict in order to be normalized
     # DONT' use request.args.get('lang') as it will return None
     if request.headers.get("hx-projects"):
@@ -66,7 +68,7 @@ def projects():
 @response(template_file="team.html")
 def team():
     """team page"""
-    team_members = TeamService().get_all(sort="order")
+    team_members = TeamService().get_all(sort='teams."order"')
     return dict(**team_members)
 
 

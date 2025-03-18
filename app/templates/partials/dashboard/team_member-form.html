@@ -76,7 +76,7 @@ from 'macros/spinner.html' import spinner %}
 
     <!-- Image Upload -->
     {% if team and team.image %}
-    <div class="flex items-center space-x-4">
+    <div class="flex items-center gap-4">
         <img
             src="{{ url_for('static', filename=team.image) }}"
             alt="{{ team.name['en'] }}"

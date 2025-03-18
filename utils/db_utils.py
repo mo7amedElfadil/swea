@@ -2,6 +2,8 @@
 
 from typing import Any, Dict
 
+from sqlalchemy import text
+
 from app.extensions import db
 
 
@@ -36,7 +38,10 @@ def paginate_query(
 
     # Apply sorting if specified
     if sort:
-        query = query.order_by(sort)
+        if isinstance(sort, str):
+            query = query.order_by(text(sort))
+        else:
+            query = query.order_by(sort)
 
     pagination = query.paginate(page=page, per_page=page_size)
 

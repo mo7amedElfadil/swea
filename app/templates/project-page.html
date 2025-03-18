@@ -62,31 +62,83 @@ endblock %} {% block content %}
             </div>
         </div>
     </div>
+
     <!-- Project Content -->
-    <div class="prose max-w-none mb-8">
-        {% for section in project.content %}
-        <p class="text-secondary-700">{{ section[locale] }}</p>
-        {% endfor %}
+    <div class="mb-12">
+        {% if project.content %}
+            {% for section in project.content %}
+                {% set is_even = loop.index0 % 2 == 0 %}
+                {% set is_reversed = (is_even and locale == 'ar') or (not is_even and locale == 'en') %}
+                
+                <div class="flex flex-col md:flex-row items-center gap-8 mb-16 {% if is_reversed %}md:flex-row-reverse{% endif %}">
+                    <div class="flex-1 prose max-w-none">
+                        <p class="text-secondary-700 text-lg leading-relaxed">{{ section[locale] }}</p>
+                    </div>
+                    
+                    {% if section.image %}
+                    <div class="flex-1 mt-6 md:mt-0">
+                        <div class="rounded-lg overflow-hidden shadow-lg">
+                            <img
+                                src="{{ url_for('static', filename=section.image) }}"
+                                alt="{{ project.title[locale] }}"
+                                onerror="this.src='http://i.imgur.com/hfM1J8s.png'"
+                                class="w-full h-auto object-cover aspect-video"
+                            />
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endif %}
     </div>
 
     <!-- Testimonials Section -->
-    {% if project.testimonials %}
-    <div class="bg-secondary-50 rounded-lg p-6">
-        <h2 class="text-2xl font-bold text-primary-800 mb-4">
+    {% if project.testimonials and project.testimonials[0][locale] %}
+    <div class="bg-secondary-50 rounded-lg p-8 my-12">
+        <h2 class="text-2xl font-bold text-primary-800 mb-8 text-center">
             {{ _('Testimonials') }}
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <div class="space-y-8">
             {% for testimonial in project.testimonials %}
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <p class="text-secondary-700 italic mb-4">
-                    "{{ testimonial[locale] }}"
-                </p>
-                <p class="text-secondary-800 font-semibold">
-                    {{ testimonial.author }}
-                </p>
-                <p class="text-secondary-600 text-sm">
-                    {{ testimonial.qualification }}
-                </p>
+            <div class="bg-white p-6 rounded-lg shadow-md transition-transform hover:shadow-lg hover:-translate-y-1">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <!-- Author Info Column -->
+                    <div class="md:w-1/4 flex flex-col items-center text-center">
+                        {% if testimonial.image %}
+                        <div class="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-primary-200">
+                            <img
+                                src="{{ url_for('static', filename=testimonial.image) }}"
+                                alt="{{ testimonial.author }}"
+                                onerror="this.src='http://i.imgur.com/hfM1J8s.png'"
+                                class="w-full h-full object-cover"
+                            />
+                        </div>
+                        {% else %}
+                        <div class="w-24 h-24 rounded-full mb-4 bg-primary-100 flex items-center justify-center">
+                            <span class="text-primary-500 text-2xl font-bold">{{ testimonial.author[:1] }}</span>
+                        </div>
+                        {% endif %}
+                        
+                        <p class="text-secondary-800 font-semibold">
+                            {{ testimonial.author }}
+                        </p>
+                        {% if testimonial.qualification %}
+                        <p class="text-secondary-500 text-sm">
+                            {{ testimonial.qualification }}
+                        </p>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Testimonial Text Column -->
+                    <div class="md:w-3/4 flex items-center">
+                        <div class="relative">
+                            <p class="text-secondary-700 italic leading-relaxed text-lg">
+                                "{{ testimonial[locale] }}"
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
             {% endfor %}
         </div>

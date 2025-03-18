@@ -9,7 +9,6 @@ from typing import Any, Dict, List, Optional
 
 from marshmallow import ValidationError
 
-from app.extensions import db
 from app.models import Project
 from app.schemas.project_schema import ProjectSchema
 from utils.db_utils import search_by_multilang_field
@@ -43,7 +42,8 @@ class ProjectService(BaseService):
             if errors:
                 raise ValidationError(errors)
 
-            self.model_class.create(**processed_data)
+            instance = self.model_class()
+            instance.create(**processed_data)
             return True  # Return True if successful
         except ValidationError as error:
             raise ValidationError(error.messages) from error
@@ -177,8 +177,7 @@ class ProjectService(BaseService):
         """
         project = self.model_class.get_byuuid(uuid)
         if project and project.deleted_at:
-            project.deleted_at = None
-            db.session.commit()
+            project.restore()
             return project
         return None
 

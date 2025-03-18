@@ -146,7 +146,9 @@ def knowledge_hub():
         ),
     )
 
-    data = tab_content.get(tab_query, {}).get("data", lambda: {})()
+    data = tab_content.get(tab_query, {}).get("data", lambda: {})(
+        sort="created_at DESC"
+    )
     template = tab_content.get(tab_query, {}).get("temp")
     print("------DATA------>", data)
     if request.headers.get("hx-tab"):

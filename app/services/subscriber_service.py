@@ -22,7 +22,7 @@ class EmailTemplate(Enum):
     CONFIRMATION = "email_confirmation_email_form.html"
     PASSWORD_RESET = "password_reset_email_form.html"
     CONTACT_US = "contact_us_email-form.html"
-    ANNOUNCEMENT = "announcement_email_form.html"
+    BROADCAST = "broadcast_email-form.html"
 
 
 @dataclass
@@ -131,7 +131,7 @@ class SubscriberService(BaseService):
                     service="SWEA",
                     recipient=subscriber,
                     subject=email_data["subject"],
-                    template=EmailTemplate.ANNOUNCEMENT.value,
+                    template=EmailTemplate.BROADCAST.value,
                     data={
                         "subject": email_data["subject"],
                         "recipient": subscriber.split("@")[0],

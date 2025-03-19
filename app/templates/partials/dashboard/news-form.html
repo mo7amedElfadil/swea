@@ -40,17 +40,52 @@ if update else '' } %}
         accept="image/*", type="file",placeholder=_("news image"),
         value=_form.image, required=False )}}
 
-        <!-- description -->
-        <div>
-            <label
-                for="editor"
-                class="mb-1 block text-sm font-medium text-gray-700 capitalize"
+        <!-- description Block -->
+        <div id="description-block" class="space-y-4">
+            <div
+                class="bg-white shadow-sm rounded-lg p-6 border border-gray-200"
             >
-                {{_('content')}}
-            </label>
-            <div id="editor" class="bg-white"></div>
-            <input type="hidden" name="description[en]" id="description-en" />
+                <h3 class="text-lg font-medium text-gray-900 mb-4">
+                    Description
+                </h3>
+                <div class="space-y-4">
+                    <!-- English description -->
+                    <div>
+                        <label
+                            for="description-en"
+                            class="block text-sm font-medium text-gray-700"
+                        >
+                            English description
+                        </label>
+                        <div id="quill-en" class="bg-white"></div>
+                        <input
+                            type="hidden"
+                            id="description-en"
+                            name="description[en]"
+                            value="{{ description['en'] if description else '' }}"
+                        />
+                    </div>
+
+                    <!-- Arabic description -->
+                    <div>
+                        <label
+                            for="description-ar"
+                            class="block text-sm font-medium text-gray-700"
+                        >
+                            Arabic description
+                        </label>
+                        <div id="quill-ar" class="bg-white"></div>
+                        <input
+                            type="hidden"
+                            id="description-ar"
+                            name="description[ar]"
+                            value="{{ description['ar'] if description else '' }}"
+                        />
+                    </div>
+                </div>
+            </div>
         </div>
+
         <button
             class="flex justify-center w-full px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 uppercase"
             type="submit"
@@ -66,32 +101,41 @@ if update else '' } %}
 <!-- Include the Quill library -->
 <script
     src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"
-    onload="initQuill()"
+    onload="initQuillEditors()"
 ></script>
 <!-- Initialize Quill editor -->
 <script>
     var update = {{ update | default("") | tojson }};
-    var description = {{ description | default("") | tojson }};
-    var quill = null;
-      function initQuill() {
-          quill = new Quill('#editor', {
+    var description = {{  description | default(False) | tojson }};
+
+      // Initialize Quill editors
+      function initQuillEditors() {
+          // Initialize English Quill editor
+          const quillEn = new Quill('#quill-en', {
               theme: 'snow',
           })
+
+          // Initialize Arabic Quill editor
+          const quillAr = new Quill('#quill-ar', {
+              theme: 'snow',
+          })
+
         if (update) {
-            quill.root.innerHTML = description.en
-        }
-          // Use htmx:configRequest to update the form parameters
-          document
-              .getElementById('create-news')
-              .addEventListener('htmx:configRequest', function (evt) {
-                  // Get the HTML content from Quill
-                  const content = quill.root.innerHTML
+              quillEn.root.innerHTML = description.en;
+              quillAr.root.innerHTML = description.ar;
+          }
 
-                  // Update the hidden input (optional)
-                  document.getElementById('description-en').value = content
+          // Update hidden inputs with Quill description on form submission
+          const form = document.querySelector('form')
+          if (form) {
+              form.addEventListener('htmx:configRequest', (event) => {
+                  event.detail.parameters['description[en]'] = quillEn.root.innerHTML
 
-                  // Update the request parameters directly
-                  evt.detail.parameters['description[en]'] = content
+                  event.detail.parameters['description[ar]'] = quillAr.root.innerHTML
               })
+          }
       }
+
+      // Call the initialization function
+      document.addEventListener('DOMContentLoaded', initQuillEditors)
 </script>

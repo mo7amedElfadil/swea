@@ -1,9 +1,10 @@
 {% from "macros/spinner.html" import spinner %}
+{% import "macros/icons.html" as icons %}
 <footer class='min-h-60 px-4 py-8 {% if locale == 'ar' %}font-primary{%else%}font-secondary{%endif%}'>
     <div class='container mx-auto grid gap-6'>
         <img class='w-[150px]' src="{{url_for('static',filename='imgs/logo.png')}}" alt="logo"/>
         <div class='space-y-2'>
-            <p class='text-white'>{{_("footer caption")}}</p>
+          <p class="{% if locale == 'en' %}text-white{% else %}text-black{% endif %}">{{_("footer caption")}}</p>
             <form class='flex gap-2 sm:max-w-[50%]'
                  hx-post='/subscribe'
                  hx-trigger='submit'
@@ -27,20 +28,21 @@
             </form>
         </div>
         <div class='flex items-center gap-2'>
+          {% set icon_color = "#fff" if locale == 'en' else "#000" %}
             <a href="#" target="_blank">
-                <img class='size-6' src="{{url_for('static',filename='icons/facebook.svg')}}" alt="facebook icon">
+              {{ icons.facebook(clr=icon_color) }}
             </a>
             <a href="#" target="_blank">
-                <img class='size-6' src="{{url_for('static',filename='icons/linkedin.svg')}}" alt="linkedin icon">
+              {{ icons.linkedin(clr=icon_color) }}
             </a>
             <a href="#" target="_blank">
-                <img class='size-6' src="{{url_for('static',filename='icons/X.svg')}}" alt="X icon">
+              {{ icons.x(clr=icon_color) }}
             </a>
             <a href="#" target="_blank">
-                <img class='size-6' src="{{url_for('static',filename='icons/mail.svg')}}" alt="mail icon">
+              {{ icons.mail(clr=icon_color) }}
             </a>
         </div>
         <hr>
-        <span class='mx-auto'>&copy; 2024 SWEA Inc</span>
+        <span class='mx-auto'>&copy; 2025 SWEA Inc</span>
     </div>
 </footer>

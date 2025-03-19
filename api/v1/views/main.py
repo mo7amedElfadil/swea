@@ -134,6 +134,7 @@ def dashboard():
 def knowledge_hub():
     """knowledge-hub page"""
     tab_query = request.args.get("q", "research")
+
     tab_content = dict(
         research=dict(
             temp="partials/knowledge-hub/research.html", data=ResearchService().get_all
@@ -150,10 +151,38 @@ def knowledge_hub():
         sort="created_at DESC"
     )
     template = tab_content.get(tab_query, {}).get("temp")
+
+    if tab_query == "courses":
+        data = CourseService().process_courses_data(data)
+
     print("------DATA------>", data)
     if request.headers.get("hx-tab"):
         return make_response(render_template(template, **data))
     return dict(tab="research", **data)
+
+
+@bp.route("/knowledge-hub/filter-courses")
+def filter_courses():
+    """Filter courses based on selected course name or tag."""
+    course_name = request.args.get("course_name")
+    tag = request.args.get("tag")
+    locale = request.args.get("locale", "en")
+
+    courses_data = CourseService().get_all(sort="created_at DESC")
+
+    # Filter courses based on the selected course name or tag
+    filtered_courses = []
+    for course in courses_data.get("data", []):
+        matches_course = not course_name or course["course_name"][locale] == course_name
+        matches_tag = not tag or tag in course["tags"][locale]
+        if matches_course and matches_tag:
+            filtered_courses.append(course)
+
+    courses_data["data"] = filtered_courses
+
+    return render_template(
+        "partials/knowledge-hub/courses_cards-list.html", **courses_data
+    )
 
 
 @bp.route("/contact-us", methods=["POST"])

@@ -57,7 +57,8 @@
 				<span>{{_("courses")}}</span>
 			</button>
 			<button
-					class="flex items-center justify-center gap-1 bg-white px-4 py-2 capitalize"
+					class="flex items-center justify-center gap-1 px-4 py-2 capitalize bg-white
+						   {% if locale == 'ar' %} rounded-l-3xl {%else%} rounded-r-2xl {%endif%}" 
 					id="tab-podcasts"
 					role="tab"
 					aria-controls="panel-podcasts"
@@ -80,7 +81,7 @@
 				id="tab-panels"
 				class='flex justify-center w-[min(100%,900px)] mx-auto sm:text-xl'
 				role="tabpanels"
-				aria-labelledby="tab-pannels"
+				aria-labelledby="tab-panels"
 				>
 				{# INCLUDE DEFAULT PARTIAL FOR ACTIVE TAB #}
 				{% include "partials/knowledge-hub/research.html" %}

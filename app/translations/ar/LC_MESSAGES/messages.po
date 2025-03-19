@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-19 02:54+0400\n"
+"POT-Creation-Date: 2025-03-19 11:30+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -127,11 +127,11 @@ msgstr "بيانات الاعتماد غير صالحة"
 msgid "Login successful"
 msgstr "تم تسجيل الدخول بنجاح"
 
-#: api/v1/views/main.py:171
+#: api/v1/views/main.py:202
 msgid "Failed to send message"
 msgstr "فشل في إرسال الرسالة"
 
-#: api/v1/views/main.py:175
+#: api/v1/views/main.py:206
 msgid "Your comment received successfully"
 msgstr "تم استلام  تعليقك  بنجاح"
 
@@ -380,7 +380,7 @@ msgstr "بحوث"
 msgid "courses"
 msgstr "دورات"
 
-#: app/templates/knowledge-hub.html:74
+#: app/templates/knowledge-hub.html:75
 #: app/templates/partials/dashboard/knowledge-hub.html:53
 msgid "podcasts"
 msgstr "بودكاست"
@@ -808,25 +808,21 @@ msgstr "هل أنت متأكد من حذف البحث؟"
 msgid "no_researches_found"
 msgstr "لا توجد بحوث حالياً"
 
-#: app/templates/partials/knowledge-hub/courses.html:9
-msgid "videos found"
-msgstr "الفيديوهات المتاحة"
-
-#: app/templates/partials/knowledge-hub/courses.html:17
+#: app/templates/partials/knowledge-hub/courses.html:18
 msgid "Select the course"
-msgstr "ﻻ توجد دورات حاليً"
+msgstr "اختر الدورة"
 
-#: app/templates/partials/knowledge-hub/courses.html:28
+#: app/templates/partials/knowledge-hub/courses.html:35
 msgid "Select Tags"
 msgstr "اختر العلامات"
 
-#: app/templates/partials/knowledge-hub/courses.html:72
-msgid "Watch Now"
-msgstr "شاهد الآن"
-
-#: app/templates/partials/knowledge-hub/courses.html:88
+#: app/templates/partials/knowledge-hub/courses.html:75
 msgid "No courses found"
 msgstr "لا توجد دورات حالياً"
+
+#: app/templates/partials/knowledge-hub/courses_cards-list.html:56
+msgid "Watch Now"
+msgstr "شاهد الآن"
 
 #: app/templates/partials/knowledge-hub/podcasts.html:9
 msgid "No podcasts available"
@@ -1059,4 +1055,7 @@ msgstr "المزيد"
 
 #~ msgid "profile_image"
 #~ msgstr "صورة العضو"
+
+#~ msgid "videos found"
+#~ msgstr "الفيديوهات المتاحة"
 

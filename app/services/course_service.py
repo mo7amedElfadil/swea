@@ -148,6 +148,55 @@ class CourseService(BaseService):
         """
         return search_by_multilang_field(Course, "title", title)
 
+    def process_courses_data(self, result_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Process course data for display.
+
+        Args:
+            result_data: Dictionary containing course data.
+
+        Returns:
+            Dictionary containing processed course data.
+        """
+        unique_courses = {}
+        # Extract all unique tags
+        all_tags = {"en": set(), "ar": set()}
+
+        for course in result_data["data"]:
+            course_uuid = course["uuid"]
+            course_name_en = course["course_name"]["en"]
+            course_name_ar = course["course_name"]["ar"]
+
+            # Store unique courses with their UUIDs
+            if course_name_en not in unique_courses.get("en", {}):
+                if "en" not in unique_courses:
+                    unique_courses["en"] = {}
+                unique_courses["en"][course_name_en] = course_uuid
+
+            if course_name_ar not in unique_courses.get("ar", {}):
+                if "ar" not in unique_courses:
+                    unique_courses["ar"] = {}
+                unique_courses["ar"][course_name_ar] = course_uuid
+
+            # Collect tags from each language
+            for tag in course["tags"].get("en", []):
+                all_tags["en"].add(tag)
+
+            for tag in course["tags"].get("ar", []):
+                all_tags["ar"].add(tag)
+
+        # Convert sets to sorted lists
+        unique_tags = {
+            "en": sorted(list(all_tags["en"])),
+            "ar": sorted(list(all_tags["ar"])),
+        }
+
+        # Add the processed data to the result
+        result_data["unique_courses"] = unique_courses
+        result_data["unique_tags"] = unique_tags
+
+        return result_data
+
     def validate_form_data(
         self, form_data: Dict[str, Any], files: Dict[str, Any]
     ) -> Dict[str, Any]:

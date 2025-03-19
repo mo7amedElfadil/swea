@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-19 02:54+0400\n"
+"POT-Creation-Date: 2025-03-19 11:30+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -125,11 +125,11 @@ msgstr ""
 msgid "Login successful"
 msgstr ""
 
-#: api/v1/views/main.py:171
+#: api/v1/views/main.py:202
 msgid "Failed to send message"
 msgstr ""
 
-#: api/v1/views/main.py:175
+#: api/v1/views/main.py:206
 msgid "Your comment received successfully"
 msgstr ""
 
@@ -356,7 +356,7 @@ msgstr ""
 msgid "courses"
 msgstr ""
 
-#: app/templates/knowledge-hub.html:74
+#: app/templates/knowledge-hub.html:75
 #: app/templates/partials/dashboard/knowledge-hub.html:53
 msgid "podcasts"
 msgstr ""
@@ -779,24 +779,20 @@ msgstr ""
 msgid "no_researches_found"
 msgstr ""
 
-#: app/templates/partials/knowledge-hub/courses.html:9
-msgid "videos found"
-msgstr ""
-
-#: app/templates/partials/knowledge-hub/courses.html:17
+#: app/templates/partials/knowledge-hub/courses.html:18
 msgid "Select the course"
 msgstr ""
 
-#: app/templates/partials/knowledge-hub/courses.html:28
+#: app/templates/partials/knowledge-hub/courses.html:35
 msgid "Select Tags"
 msgstr ""
 
-#: app/templates/partials/knowledge-hub/courses.html:72
-msgid "Watch Now"
+#: app/templates/partials/knowledge-hub/courses.html:75
+msgid "No courses found"
 msgstr ""
 
-#: app/templates/partials/knowledge-hub/courses.html:88
-msgid "No courses found"
+#: app/templates/partials/knowledge-hub/courses_cards-list.html:56
+msgid "Watch Now"
 msgstr ""
 
 #: app/templates/partials/knowledge-hub/podcasts.html:9

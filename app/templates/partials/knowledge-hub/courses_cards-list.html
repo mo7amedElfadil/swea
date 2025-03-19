@@ -1,0 +1,66 @@
+{% for course in data %}
+<div
+    class="bg-white shadow-lg rounded-xl overflow-hidden transition-all transform hover:shadow-2xl hover:-translate-y-1 shrink-0 w-[300px] sm:w-[350px] md:w-[400px]"
+    data-course-uuid="{{ course.uuid }}"
+    data-tags="{{ course.tags[locale] | join(',') }}"
+>
+    <!-- Course Image -->
+    <div class="relative h-48 overflow-hidden">
+        <img
+            class="w-full h-full object-cover"
+            src="{{ url_for('static', filename=course.image if course.image) }}"
+            onerror="this.src='http://i.imgur.com/hfM1J8s.png'"
+            alt="{{ course.title[locale] }}"
+        />
+        <!-- Overlay for better text readability -->
+        <div
+            class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"
+        ></div>
+    </div>
+
+    <!-- Course Details -->
+    <div class="p-6">
+        <!-- Title -->
+        <h3 class="text-xl font-bold font-primary text-primary-900">
+            {{ course.title[locale] }}
+        </h3>
+
+        <!-- Date -->
+        <p class="text-sm text-secondary-600 mt-2">
+            {{ course.date.strftime('%b %d, %Y') }}
+        </p>
+
+        <!-- Description -->
+        <p class="text-sm text-secondary-700 mt-4 leading-relaxed">
+            {{ course.description[locale] | truncate(50) }}
+        </p>
+
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2 mt-4">
+            {% for tag in course.tags[locale] %}
+            <span
+                class="bg-secondary-100 text-secondary-900 text-xs px-3 py-1.5 rounded-full font-secondary hover:bg-secondary-200 transition-colors"
+            >
+                {{ tag }}
+            </span>
+            {% endfor %}
+        </div>
+
+        <!-- Watch Now Button -->
+        <div class="flex items-center mt-6">
+            <a
+                href="{{ course.url }}"
+                target="_blank"
+                class="inline-flex items-center gap-2 text-primary-500 hover:text-primary-600 transition-colors"
+            >
+                <span class="font-semibold">{{ _("Watch Now") }}</span>
+                <img
+                    class="size-6 {% if locale == 'en' %}rotate-180{% endif %}"
+                    src="{{ url_for('static', filename='icons/arrow-left.svg') }}"
+                    alt="see more icon"
+                />
+            </a>
+        </div>
+    </div>
+</div>
+{% endfor %}

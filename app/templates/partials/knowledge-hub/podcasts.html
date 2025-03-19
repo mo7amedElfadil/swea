@@ -1,21 +1,44 @@
 {% import "macros/icons.html" as icons %} {% from "macros/soundcloud.html"
 import soundcloud_embed %}
 
-<div class="w-full h-full min-h-[300px] p-6 bg-primary-300">
+<div class="w-full h-full min-h-[300px] p-6 relative overflow-x-hidden">
     {% if not data %}
     <div class="w-full h-full grid place-items-center">
-        <span class="text-primary-600">{{icons.music(cls='size-24')}}</span>
+        <span class="text-primary-600">{{ icons.music(cls='size-24') }}</span>
         <p class="text-slate-500 text-lg font-primary mt-4">
-            {{_("No podcasts available")}}
+            {{ _("No podcasts available") }}
         </p>
     </div>
     {% else %}
-    <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8"
+    <!-- Carousel Navigation Buttons -->
+    <button
+        id="prev"
+        class="absolute top-1/2 -translate-y-1/2 size-10 p-2 bg-black rounded-full z-[1] {% if locale == 'ar'%}right-0{% else %}left-0{% endif %}"
     >
+        <img
+            class="size-6 {% if locale == 'en'%}rotate-180{% endif %}"
+            src="{{ url_for('static', filename='icons/right-arrow.svg') }}"
+            alt="right arrow"
+        />
+    </button>
+    <button
+        id="next"
+        class="absolute top-1/2 -translate-y-1/2 size-10 p-2 bg-black rounded-full z-[1] {% if locale == 'ar'%}left-0{% else %}right-0{% endif %}"
+    >
+        <img
+            class="size-6 {% if locale == 'en'%}rotate-180{% endif %}"
+            src="{{ url_for('static', filename='icons/left-arrow.svg') }}"
+            alt="left arrow"
+        />
+    </button>
+
+    <!-- Podcast Carousel -->
+    <div id="podcast-carousel" class="transition-all flex gap-8">
         {% for podcast in data %}
         <div
-            class="bg-white shadow-xl rounded-xl overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl"
+            class="bg-white shadow-xl rounded-xl overflow-hidden transition-transform transform hover:shadow-2xl hover:-translate-y-1 shrink-0 w-[300px] sm:w-[350px] md:w-[400px]"
+            data-podcast-uuid="{{ podcast.uuid }}"
+            data-tags="{{ podcast.tags[locale] | join(',') }}"
         >
             <!-- SoundCloud Embed -->
             <div class="p-4 bg-gradient-to-r from-primary-50 to-secondary-50">
@@ -26,24 +49,26 @@ import soundcloud_embed %}
             <div class="p-6">
                 <!-- Title -->
                 <h3 class="text-2xl font-bold font-primary text-primary-900">
-                    {{podcast.title[locale]}}
+                    {{ podcast.title[locale] }}
                 </h3>
 
                 <!-- Date -->
-                <p class="text-sm text-secondary-600 mt-2">{{podcast.date}}</p>
+                <p class="text-sm text-secondary-600 mt-2">
+                    {{ podcast.date }}
+                </p>
 
                 <!-- Description -->
                 <p class="text-sm text-secondary-700 mt-4 leading-relaxed">
-                    {{podcast.description[locale] | truncate(120)}}
+                    {{ podcast.description[locale] | truncate(120) }}
                 </p>
 
                 <!-- Tags -->
-                <div class="flex flex-wrap gap-2 mt-6">
+                <div class="flex flex-wrap gap-2 mt-4">
                     {% for tag in podcast.tags[locale] %}
                     <span
-                        class="bg-secondary-100 text-secondary-900 text-xs px-3 py-1.5 rounded-full font-secondary"
+                        class="bg-secondary-100 text-secondary-900 text-xs px-3 py-1.5 rounded-full font-secondary hover:bg-secondary-200 transition-colors"
                     >
-                        {{tag}}
+                        {{ tag }}
                     </span>
                     {% endfor %}
                 </div>
@@ -53,3 +78,45 @@ import soundcloud_embed %}
     </div>
     {% endif %}
 </div>
+
+<!-- JavaScript for Carousel -->
+<script>
+    var next = document.getElementById('next')
+    var prev = document.getElementById('prev')
+    var carousel = document.getElementById('podcast-carousel')
+    var slides = carousel.children
+    var totalSlides = slides.length
+    var GAP = 32
+    var slideWidth = slides[0].clientWidth + GAP
+    var locale = document.documentElement.lang
+
+    var currentSlide = 0
+
+    // Update carousel position based on current slide
+    function updateCarousel() {
+        carousel.style.transform = `translateX(${locale === 'en' ? -currentSlide * slideWidth : currentSlide * slideWidth}px)`
+    }
+
+    // Next button click handler
+    next.addEventListener('click', () => {
+        if (currentSlide < totalSlides - 1) {
+            currentSlide++
+            updateCarousel()
+        }
+    })
+
+    // Previous button click handler
+    prev.addEventListener('click', () => {
+        if (currentSlide > 0) {
+            currentSlide--
+            updateCarousel()
+        }
+    })
+
+    // Update slide count after HTMX request
+    document.addEventListener('htmx:afterRequest', (evt) => {
+        if (evt.detail.elt.id === 'podcast-carousel') {
+            totalSlides = carousel.children.length
+        }
+    })
+</script>

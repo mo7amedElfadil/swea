@@ -92,9 +92,7 @@ check_npm:
 
 
 #run everything
-run: run_flask watch_tw watch_static queue_worker ## Run the application
-
-
+run: run_flask watch_tw watch_static queue_worker dev ## Run the application
 
 # Run sessions
 run_flask: clean check_venv ## Run flask application
@@ -111,14 +109,24 @@ queue_worker: clean check_venv ## Run the queue worker
 	@echo 'Running the queue worker...'
 	@$(call run_session,$(WORKER_SESSION),$(VEN_ACTIVATE) && $(QUEUE_WORKER))
 
-up_db: ## Start the database (docker-compose: MongoDB & Redis)
+up_db: ## Start the database (docker-compose: Postgres & Redis)
 	@$(UP_DB)
 
-down_db: ## Stop the database (docker-compose: MongoDB & Redis)
+down_db: ## Stop the database (docker-compose: Postgres & Redis)
 	@$(DOWN_DB)
 
+dev: ## Start a tmux session named 'dev' with two windows: Editor (vim) and Bash
+	@$(TMUX) new-session -d -s dev -n Editor
+	@$(TMUX) send-keys -t dev:Editor "$(VEN_ACTIVATE) && vim" C-m
+	@$(TMUX) new-window -t dev -n Bash
+	@echo -e '$(BOLD)$(GREEN)tmux session "dev" started$(RESET)'
+	@echo -e '  - Window 1: $(BOLD)Editor$(RESET) (running vim in virtualenv)'
+	@echo -e '  - Window 2: $(BOLD)Bash$(RESET)'
+	@$(TMUX) select-window -t dev:Editor
+	@$(TMUX) attach -t dev
+
 # Stop everything
-stop: stop_flask stop_tailwind stop_static stop_queue ## Stop the application
+stop: stop_flask stop_tailwind stop_static stop_queue stop_dev ## Stop the application
 
 # Stop sessions
 stop_flask: ## Stop flask application
@@ -132,6 +140,10 @@ stop_static: ## Stop watching static files
 
 stop_queue: ## Stop the queue worker
 	@$(call kill_session,$(WORKER_SESSION))
+
+stop_dev: ## Stop the dev session
+	@$(TMUX) kill-session -t dev
+	@echo -e '$(BOLD)$(RED)tmux session "dev" stopped$(RESET)'
 
 # Restart application
 restart: ## Restart flask server

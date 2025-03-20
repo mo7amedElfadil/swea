@@ -143,7 +143,7 @@ stop_queue: ## Stop the queue worker
 
 stop_dev: ## Stop the dev session
 	@$(TMUX) kill-session -t dev
-	@echo -e '$(BOLD)$(RED)tmux session "dev" stopped$(RESET)'
+	@echo -e 'tmux session "dev" $(RED)stopped!$(RESET)'
 
 # Restart application
 restart: ## Restart flask server

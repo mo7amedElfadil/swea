@@ -12,13 +12,13 @@
 				{{_('hero title')}}
 			</h1>
 			<p class='sm:text-xl sm:text-center sm:max-w-[80%] xl:max-w-[50%]'>{{_('hero description')}}</p>
-			<button class='w-max py-2 px-4 text-white font-bold bg-primary-800 capitalize rounded-xl
+			<button id="join-us" class='w-max py-2 px-4 text-white font-bold bg-primary-800 capitalize rounded-xl
 			sm:py-3 sm:px-5 sm:text-lg'>
 				{{_('join us')}}
 			</button>
 		</div>
     <div>
-		<img class='w-full h-full object-contain' src="{{url_for('static',filename='imgs/hero.jpeg')}}" alt="hero image"/>
+		<img class='w-full h-full object-contain' src="{{url_for('static',filename='imgs/hero-croped-1.png')}}" alt="hero image"/>
       
     </div>
 	</section>
@@ -205,6 +205,18 @@
       totalSlides = carousel.children.length;
     }
 
+  });
+
+  // Scroll to subscribe input and focus on it
+  document.getElementById('join-us').addEventListener('click', function() {
+      const inputField = document.getElementById('email-input');
+      inputField.scrollIntoView({ 
+          behavior: 'smooth', 
+      });
+
+      setTimeout(() => {
+          inputField.focus();
+      }, 500);
   });
 </script>
 {% endblock %}

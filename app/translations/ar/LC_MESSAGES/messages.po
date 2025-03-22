@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-19 11:30+0400\n"
+"POT-Creation-Date: 2025-03-22 09:10+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -119,19 +119,19 @@ msgstr "حدث خطأ أثناء حذف عضو الفريق"
 msgid "Member deleted successfully"
 msgstr "تم حذف عضو الفريق بنجاح"
 
-#: api/v1/views/main.py:88 api/v1/views/main.py:91
+#: api/v1/views/main.py:91 api/v1/views/main.py:94
 msgid "Invalid credentials"
 msgstr "بيانات الاعتماد غير صالحة"
 
-#: api/v1/views/main.py:96
+#: api/v1/views/main.py:100
 msgid "Login successful"
 msgstr "تم تسجيل الدخول بنجاح"
 
-#: api/v1/views/main.py:202
+#: api/v1/views/main.py:207
 msgid "Failed to send message"
 msgstr "فشل في إرسال الرسالة"
 
-#: api/v1/views/main.py:206
+#: api/v1/views/main.py:211
 msgid "Your comment received successfully"
 msgstr "تم استلام  تعليقك  بنجاح"
 
@@ -207,6 +207,22 @@ msgstr "تم حذف عضو الفريق بنجاح"
 #: app/__init__.py:138
 msgid "Rate limit exceeded"
 msgstr "تجاوز الحد الأقصى"
+
+#: app/templates/auth.html:3 app/templates/auth.html:58
+msgid "login"
+msgstr "تسجيل الدخول"
+
+#: app/templates/auth.html:15
+msgid "admin login"
+msgstr "تسجيل الدخول للمشرف"
+
+#: app/templates/auth.html:29 app/templates/auth.html:37
+msgid "Username"
+msgstr "إسم المستخدم"
+
+#: app/templates/auth.html:42 app/templates/auth.html:50
+msgid "Password"
+msgstr "كلمة المرور"
 
 #: app/templates/dashboard.html:7
 msgid "dashboard"
@@ -351,7 +367,7 @@ msgstr "لديك سؤال أو إستفسار؟"
 msgid "form name"
 msgstr "أدخل اسمك"
 
-#: app/templates/index.html:149 app/templates/partials/footer.html:16
+#: app/templates/index.html:149 app/templates/partials/footer.html:18
 msgid "form email"
 msgstr "أدخل بريدك الإلكتروني"
 
@@ -371,24 +387,23 @@ msgstr "المعرفة"
 msgid "kh hero title 2"
 msgstr "مركز"
 
-#: app/templates/knowledge-hub.html:40
+#: app/templates/knowledge-hub.html:27
+msgid "Scroll to content"
+msgstr "التمرير إلى المحتوى"
+
+#: app/templates/knowledge-hub.html:50
 msgid "research"
 msgstr "بحوث"
 
-#: app/templates/knowledge-hub.html:57
+#: app/templates/knowledge-hub.html:67
 #: app/templates/partials/dashboard/knowledge-hub.html:27
 msgid "courses"
 msgstr "دورات"
 
-#: app/templates/knowledge-hub.html:75
+#: app/templates/knowledge-hub.html:85
 #: app/templates/partials/dashboard/knowledge-hub.html:53
 msgid "podcasts"
 msgstr "بودكاست"
-
-#: app/templates/login.html:1 app/templates/login.html:5
-#: app/templates/login.html:31
-msgid "login"
-msgstr "تسجيل الدخول"
 
 #: app/templates/project-page.html:32
 msgid "Author"
@@ -508,11 +523,11 @@ msgstr "جاري"
 msgid "completed_projects"
 msgstr "المشاريع المكتملة"
 
-#: app/templates/partials/footer.html:6
+#: app/templates/partials/footer.html:7
 msgid "footer caption"
 msgstr "ابقَ على اطلاع من خلال <b>الاشتراك</b> في نشرتنا الإخبارية!"
 
-#: app/templates/partials/footer.html:24
+#: app/templates/partials/footer.html:26
 msgid "subscribe"
 msgstr "اشترك"
 
@@ -562,21 +577,17 @@ msgstr "صورة الخبر"
 msgid "news image"
 msgstr "صورة الخبر"
 
-#: app/templates/partials/dashboard/news-form.html:49
-msgid "content"
-msgstr "المحتوى"
-
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:98
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:97
 #: app/templates/partials/dashboard/knowledge_hub/researches-form.html:162
-#: app/templates/partials/dashboard/news-form.html:60
+#: app/templates/partials/dashboard/news-form.html:95
 msgid "update"
 msgstr "تحديث"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:98
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:97
 #: app/templates/partials/dashboard/knowledge_hub/researches-form.html:162
-#: app/templates/partials/dashboard/news-form.html:60
+#: app/templates/partials/dashboard/news-form.html:95
 msgid "create"
 msgstr "إنشاء"
 
@@ -838,6 +849,10 @@ msgstr "ﻻ توجد بحوث حاليً"
 msgid "learn more"
 msgstr "المزيد"
 
+#: utils/auth_utils.py:42
+msgid "Please log in to access this page"
+msgstr "الرجاء تسجيل الدخول للوصول إلى هذه الصفحة"
+
 #~ msgid "mission description"
 #~ msgstr ""
 #~ "هدفنا هو إنشاء مساحة للنساء السودانيات"
@@ -1058,4 +1073,7 @@ msgstr "المزيد"
 
 #~ msgid "videos found"
 #~ msgstr "الفيديوهات المتاحة"
+
+#~ msgid "content"
+#~ msgstr "المحتوى"
 

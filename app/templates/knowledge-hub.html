@@ -5,7 +5,7 @@
 <div>
 	<!-- Hero -->
 	<section
-			class='h-[60vh] grid grid-cols-1 items-start mx-8 py-32 md:h-screen'
+			class='h-[60vh] grid grid-cols-1 items-start mx-8 py-32 md:h-screen relative'
 			id='kh-hero'
 			>
 			<h1 class='w-max -mt-20 mx-auto flex flex-col gap-1 justify-center mb-4 text-4xl text-center font-bold capitalize md:text-6xl md:mt-0 lg:pt-40 xl:pt-0
@@ -16,9 +16,19 @@
 				</span>
 		<span class='{% if locale == 'en' %} ms-auto {%else%} me-auto {%endif%}'>{{_("kh hero title 2")}}</span>
 			</h1>
+            
+            <!-- Floating Arrow -->
+            <div id="scroll-arrow" class="absolute bottom-24 left cursor-pointer animate-bounce">
+                <div class="p-2 rounded-full bg-primary-700 shadow-lg hover:bg-primary-800 transition-colors duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                </div>
+                <span class="sr-only">{{_("Scroll to content")}}</span>
+            </div>
 	</section>
 	<!-- Tabs -->
-	<section class='flex flex-col gap-4 container mx-auto px-8 pb-32'>
+	<section id="tabs-section" class='flex flex-col gap-4 container mx-auto px-8 pb-32'>
 		<!-- Tab list -->
 		<div class="grid grid-cols-3 mx-auto w-[min(100%,900px)] text-xs sm:text-xl" role="tablist" aria-label="Content Tabs">
 			<button
@@ -92,6 +102,7 @@
 
 {% block extra_scripts %}
 <script charset="utf-8">
+	// Tab management
 	for (const tab of document.querySelectorAll('[role="tab"]')){
 		tab.addEventListener('click', (evt) => {
 		for (const sibling of document.querySelectorAll('[role="tab"]')){
@@ -104,5 +115,25 @@
 	}
 	// initial active tab
 	document.getElementById('tab-research').classList.add('active-tab');
+	
+	// Scroll arrow functionality
+	document.getElementById('scroll-arrow').addEventListener('click', function() {
+		document.getElementById('tabs-section').scrollIntoView({ 
+			behavior: 'smooth'
+		});
+	});
+	
+	// Hide the arrow when scrolled past the hero section
+	window.addEventListener('scroll', function() {
+		const arrow = document.getElementById('scroll-arrow');
+		const heroSection = document.getElementById('kh-hero');
+		const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+		
+		if (window.scrollY > heroBottom - 500) {
+			arrow.classList.add('opacity-0', 'pointer-events-none');
+		} else {
+			arrow.classList.remove('opacity-0', 'pointer-events-none');
+		}
+	});
 </script>
 {% endblock %}

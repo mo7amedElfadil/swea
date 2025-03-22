@@ -19,6 +19,7 @@ from app.services.research_service import ResearchService
 from app.services.subscriber_service import SubscriberService
 from app.services.team_service import TeamService
 from config import Config
+from utils.auth_utils import login_required
 from utils.image_processing import ImageProcessing
 from utils.rate_limiter import RateLimits, rate_limit
 from utils.referrer_modifier import modify_referrer_lang
@@ -73,7 +74,7 @@ def team():
 
 
 @bp.route("/login", methods=["GET", "POST"])
-@response(template_file="login.html")
+@response(template_file="auth.html")
 def login():
     """Login page with HTMX"""
 
@@ -91,12 +92,14 @@ def login():
         return add_toast(make_response(), "error", _("Invalid credentials"))
 
     # Successful login - Use HX-Redirect header for redirection
+    session["user"] = username
     response = make_response()
     response.headers["HX-Redirect"] = url_for("app_views.dashboard")
     return add_toast(response, "success", _("Login successful"))
 
 
 @bp.route("/dashboard")
+@login_required()
 @response(template_file="dashboard.html")
 def dashboard():
     """Dashboard page"""

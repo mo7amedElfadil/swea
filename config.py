@@ -51,6 +51,9 @@ class Config:
     SESSION_TYPE = "redis"
     SESSION_PERMANENT = False
     SESSION_USE_SIGNER = True
+    SESSION_COOKIE_HTTPONLY = True
+    REMEMBER_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SAMESITE = "Strict"
     SESSION_REDIS = redis.from_url(getenv("SESSION_REDIS_URL"))
 
     # Email configuration

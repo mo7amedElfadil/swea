@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-19 11:30+0400\n"
+"POT-Creation-Date: 2025-03-22 09:10+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,19 +117,19 @@ msgstr ""
 msgid "Member deleted successfully"
 msgstr ""
 
-#: api/v1/views/main.py:88 api/v1/views/main.py:91
+#: api/v1/views/main.py:91 api/v1/views/main.py:94
 msgid "Invalid credentials"
 msgstr ""
 
-#: api/v1/views/main.py:96
+#: api/v1/views/main.py:100
 msgid "Login successful"
 msgstr ""
 
-#: api/v1/views/main.py:202
+#: api/v1/views/main.py:207
 msgid "Failed to send message"
 msgstr ""
 
-#: api/v1/views/main.py:206
+#: api/v1/views/main.py:211
 msgid "Your comment received successfully"
 msgstr ""
 
@@ -204,6 +204,22 @@ msgstr ""
 
 #: app/__init__.py:138
 msgid "Rate limit exceeded"
+msgstr ""
+
+#: app/templates/auth.html:3 app/templates/auth.html:58
+msgid "login"
+msgstr ""
+
+#: app/templates/auth.html:15
+msgid "admin login"
+msgstr ""
+
+#: app/templates/auth.html:29 app/templates/auth.html:37
+msgid "Username"
+msgstr ""
+
+#: app/templates/auth.html:42 app/templates/auth.html:50
+msgid "Password"
 msgstr ""
 
 #: app/templates/dashboard.html:7
@@ -327,7 +343,7 @@ msgstr ""
 msgid "form name"
 msgstr ""
 
-#: app/templates/index.html:149 app/templates/partials/footer.html:16
+#: app/templates/index.html:149 app/templates/partials/footer.html:18
 msgid "form email"
 msgstr ""
 
@@ -347,23 +363,22 @@ msgstr ""
 msgid "kh hero title 2"
 msgstr ""
 
-#: app/templates/knowledge-hub.html:40
+#: app/templates/knowledge-hub.html:27
+msgid "Scroll to content"
+msgstr ""
+
+#: app/templates/knowledge-hub.html:50
 msgid "research"
 msgstr ""
 
-#: app/templates/knowledge-hub.html:57
+#: app/templates/knowledge-hub.html:67
 #: app/templates/partials/dashboard/knowledge-hub.html:27
 msgid "courses"
 msgstr ""
 
-#: app/templates/knowledge-hub.html:75
+#: app/templates/knowledge-hub.html:85
 #: app/templates/partials/dashboard/knowledge-hub.html:53
 msgid "podcasts"
-msgstr ""
-
-#: app/templates/login.html:1 app/templates/login.html:5
-#: app/templates/login.html:31
-msgid "login"
 msgstr ""
 
 #: app/templates/project-page.html:32
@@ -479,11 +494,11 @@ msgstr ""
 msgid "completed_projects"
 msgstr ""
 
-#: app/templates/partials/footer.html:6
+#: app/templates/partials/footer.html:7
 msgid "footer caption"
 msgstr ""
 
-#: app/templates/partials/footer.html:24
+#: app/templates/partials/footer.html:26
 msgid "subscribe"
 msgstr ""
 
@@ -533,21 +548,17 @@ msgstr ""
 msgid "news image"
 msgstr ""
 
-#: app/templates/partials/dashboard/news-form.html:49
-msgid "content"
-msgstr ""
-
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:98
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:97
 #: app/templates/partials/dashboard/knowledge_hub/researches-form.html:162
-#: app/templates/partials/dashboard/news-form.html:60
+#: app/templates/partials/dashboard/news-form.html:95
 msgid "update"
 msgstr ""
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:98
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:97
 #: app/templates/partials/dashboard/knowledge_hub/researches-form.html:162
-#: app/templates/partials/dashboard/news-form.html:60
+#: app/templates/partials/dashboard/news-form.html:95
 msgid "create"
 msgstr ""
 
@@ -807,5 +818,9 @@ msgstr ""
 #: app/templates/partials/news/cards.html:36
 #: app/templates/partials/projects/cards.html:35
 msgid "learn more"
+msgstr ""
+
+#: utils/auth_utils.py:42
+msgid "Please log in to access this page"
 msgstr ""
 

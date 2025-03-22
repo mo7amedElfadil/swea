@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-19 11:30+0400\n"
+"POT-Creation-Date: 2025-03-22 09:10+0400\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -118,19 +118,19 @@ msgstr "An error occurred while deleting the member"
 msgid "Member deleted successfully"
 msgstr "Member deleted successfully"
 
-#: api/v1/views/main.py:88 api/v1/views/main.py:91
+#: api/v1/views/main.py:91 api/v1/views/main.py:94
 msgid "Invalid credentials"
 msgstr "Invalid Credentials"
 
-#: api/v1/views/main.py:96
+#: api/v1/views/main.py:100
 msgid "Login successful"
 msgstr "Login successful"
 
-#: api/v1/views/main.py:202
+#: api/v1/views/main.py:207
 msgid "Failed to send message"
 msgstr "Failed to send your message"
 
-#: api/v1/views/main.py:206
+#: api/v1/views/main.py:211
 msgid "Your comment received successfully"
 msgstr "Your comment received successfully"
 
@@ -206,6 +206,22 @@ msgstr "Team member deleted successfully"
 #: app/__init__.py:138
 msgid "Rate limit exceeded"
 msgstr "Rate limit exceeded"
+
+#: app/templates/auth.html:3 app/templates/auth.html:58
+msgid "login"
+msgstr "Login"
+
+#: app/templates/auth.html:15
+msgid "admin login"
+msgstr "Admin Login"
+
+#: app/templates/auth.html:29 app/templates/auth.html:37
+msgid "Username"
+msgstr "Username"
+
+#: app/templates/auth.html:42 app/templates/auth.html:50
+msgid "Password"
+msgstr "Password"
 
 #: app/templates/dashboard.html:7
 msgid "dashboard"
@@ -356,7 +372,7 @@ msgstr "Have any inquiries or want to ask us something?"
 msgid "form name"
 msgstr "Name"
 
-#: app/templates/index.html:149 app/templates/partials/footer.html:16
+#: app/templates/index.html:149 app/templates/partials/footer.html:18
 msgid "form email"
 msgstr "Email"
 
@@ -376,24 +392,23 @@ msgstr "Knowledge"
 msgid "kh hero title 2"
 msgstr "Hub"
 
-#: app/templates/knowledge-hub.html:40
+#: app/templates/knowledge-hub.html:27
+msgid "Scroll to content"
+msgstr "Scroll to content"
+
+#: app/templates/knowledge-hub.html:50
 msgid "research"
 msgstr "Research"
 
-#: app/templates/knowledge-hub.html:57
+#: app/templates/knowledge-hub.html:67
 #: app/templates/partials/dashboard/knowledge-hub.html:27
 msgid "courses"
 msgstr "Courses"
 
-#: app/templates/knowledge-hub.html:75
+#: app/templates/knowledge-hub.html:85
 #: app/templates/partials/dashboard/knowledge-hub.html:53
 msgid "podcasts"
 msgstr "Podcasts"
-
-#: app/templates/login.html:1 app/templates/login.html:5
-#: app/templates/login.html:31
-msgid "login"
-msgstr "Login"
 
 #: app/templates/project-page.html:32
 msgid "Author"
@@ -514,11 +529,11 @@ msgstr "Ongoing"
 msgid "completed_projects"
 msgstr "Completed Projects"
 
-#: app/templates/partials/footer.html:6
+#: app/templates/partials/footer.html:7
 msgid "footer caption"
 msgstr "Stay informed by <b>subscribing</b> to our newsletter!"
 
-#: app/templates/partials/footer.html:24
+#: app/templates/partials/footer.html:26
 msgid "subscribe"
 msgstr "subscribe"
 
@@ -568,21 +583,17 @@ msgstr "Project Hero Image"
 msgid "news image"
 msgstr "Content Image"
 
-#: app/templates/partials/dashboard/news-form.html:49
-msgid "content"
-msgstr "News Content"
-
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:98
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:97
 #: app/templates/partials/dashboard/knowledge_hub/researches-form.html:162
-#: app/templates/partials/dashboard/news-form.html:60
+#: app/templates/partials/dashboard/news-form.html:95
 msgid "update"
 msgstr "Update"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:98
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:97
 #: app/templates/partials/dashboard/knowledge_hub/researches-form.html:162
-#: app/templates/partials/dashboard/news-form.html:60
+#: app/templates/partials/dashboard/news-form.html:95
 msgid "create"
 msgstr "Create"
 
@@ -844,6 +855,10 @@ msgstr "There are no researches yet. Coming soon!"
 msgid "learn more"
 msgstr "Learn more"
 
+#: utils/auth_utils.py:42
+msgid "Please log in to access this page"
+msgstr "Please log in to access this page"
+
 #~ msgid "mission description"
 #~ msgstr ""
 #~ "our aim is to create a space "
@@ -1070,4 +1085,7 @@ msgstr "Learn more"
 
 #~ msgid "videos found"
 #~ msgstr "Videos found"
+
+#~ msgid "content"
+#~ msgstr "News Content"
 

@@ -52,6 +52,19 @@ content_block, testimonial_block %}
     date_of_completion.strftime('%Y-%m-%d') if date_of_completion else '',
     "date_of_completion", type="date") }}
 
+    <!-- Hero Image Upload -->
+    {{ file_upload("hero_image", "hero_image", "hero_image", accept="image/*")
+    }} {% if hero_image %}
+    <div class="flex items-center gap-4">
+        <img
+            src="{{ url_for('static', filename=hero_image if hero_image else '') }}"
+            alt="{{ title['en'] }}"
+            class="w-24 h-24 object-cover rounded-md"
+        />
+        <span class="text-sm text-gray-600">{{ _("current_hero_image") }}</span>
+    </div>
+    {% endif %}
+
     <!-- Content Block -->
     <div id="content-block" class="space-y-4">
         <div class="bg-white shadow-sm rounded-lg p-6 border border-gray-200">
@@ -112,19 +125,6 @@ content_block, testimonial_block %}
     id="tags-ar", name="tags[ar]", value=tags['ar'] | join(',') if tags else '',
     label="tags", placeholder="enter_ar_tags_comma_separated",
     example_format="example_tags_format", dir="rtl" ) }}
-
-    <!-- Hero Image Upload -->
-    {{ file_upload("hero_image", "hero_image", "hero_image", accept="image/*")
-    }} {% if hero_image %}
-    <div class="flex items-center gap-4">
-        <img
-            src="{{ url_for('static', filename=hero_image if hero_image else '') }}"
-            alt="{{ title['en'] }}"
-            class="w-24 h-24 object-cover rounded-md"
-        />
-        <span class="text-sm text-gray-600">{{ _("current_hero_image") }}</span>
-    </div>
-    {% endif %}
 
     <!-- Additional Images Upload -->
     {{ file_upload("images", "images", "additional_images", accept="image/*",

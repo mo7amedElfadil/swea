@@ -52,16 +52,24 @@
                 {{ r.content and r.content[locale] | truncate_html(100) | safe
                 }}
             </div>
-            <button class="text-sm flex gap-2 items-center sm:text-base">
-                <span>{{ _('learn more') }}</span>
+            <a class="me-auto flex gap-2" href="/researches/{{r.uuid}}">
+                <span class="capitalize">{{_("learn more")}}</span>
                 <span>
+                    {%if locale == 'en'%}
                     <img
-                        class="size-6 {% if locale == 'en'%}rotate-180{% endif %}"
-                        src="{{ url_for('static', filename='icons/arrow-left.svg') }}"
-                        alt="see more icon"
+                        class="size-6"
+                        src="{{url_for('static',filename='icons/arrow.svg')}}"
+                        alt="arrow right"
                     />
+                    {%else%}
+                    <img
+                        class="size-6"
+                        src="{{url_for('static',filename='icons/arrow-left.svg')}}"
+                        alt="arrow left"
+                    />
+                    {%endif%}
                 </span>
-            </button>
+            </a>
         </div>
         {% endfor %}
     </div>

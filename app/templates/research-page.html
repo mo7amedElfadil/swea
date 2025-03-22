@@ -1,0 +1,154 @@
+{% extends "base.html" %} {% block title %}{{ _('Research') }}{% endblock %} {%
+block content %}
+<div class="container mx-auto px-4">
+    <!-- Hero Section -->
+    <div class="relative mb-8">
+        <!-- Hero Image -->
+        {% if research.hero_image %}
+        <div class="w-full h-96 overflow-hidden">
+            <img
+                src="{{ url_for('static', filename=research.hero_image) }}"
+                alt="{{ research.title[locale] }}"
+                onerror="this.src='https://i.imgur.com/hfM1J8s.png'"
+                class="w-full h-full object-cover"
+            />
+        </div>
+        {% else %}
+        <div class="w-full h-96 bg-secondary-200"></div>
+        {% endif %}
+
+        <!-- Blurred Overlay with Research Details -->
+        <div
+            class="absolute inset-x-0 bottom-0 bg-black bg-opacity-50 backdrop-blur-sm p-6"
+        >
+            <div class="max-w-4xl mx-auto text-white">
+                <h1 class="text-4xl font-bold mb-4">
+                    {{ research.title[locale] }}
+                </h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-lg">
+                            <span class="font-semibold">
+                                {{ _('Author') }}:
+                            </span>
+                            {{ research.author.name[locale] }}
+                        </p>
+                        <p class="text-lg">
+                            <span class="font-semibold">
+                                {{ _('Completion Date') }}:
+                            </span>
+                            {{ research.date_of_completion.strftime('%Y-%m-%d')
+                            if research.date_of_completion else _('Ongoing') }}
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            {% for tag in research.tags[locale] %}
+                            <span
+                                class="bg-primary-500 text-white px-3 py-1 rounded-full text-sm"
+                            >
+                                {{ tag }}
+                            </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Research Content -->
+    <div class="mb-12">
+        {% if research.content %}
+        <div class="prose max-w-none">
+            {{ research.content[locale] | safe }}
+        </div>
+        {% else %}
+        <p class="text-secondary-700 text-lg text-center">
+            {{ _('No content available for this research.') }}
+        </p>
+        {% endif %}
+    </div>
+
+    <!-- Additional Images Section -->
+    {% if research.images %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {% for image in research.images %}
+        <div class="rounded-lg overflow-hidden shadow-lg">
+            <img
+                src="{{ url_for('static', filename=image) }}"
+                alt="{{ research.title[locale] }}"
+                onerror="this.src='https://i.imgur.com/hfM1J8s.png'"
+                class="w-full h-auto object-cover aspect-video"
+            />
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Testimonials Section -->
+    {% if research.testimonials and research.testimonials[0][locale] %}
+    <div class="bg-secondary-50 rounded-lg p-8 my-12">
+        <h2 class="text-2xl font-bold text-primary-800 mb-8 text-center">
+            {{ _('Testimonials') }}
+        </h2>
+
+        <div class="space-y-8">
+            {% for testimonial in research.testimonials %}
+            <div
+                class="bg-white p-6 rounded-lg shadow-md transition-transform hover:shadow-lg hover:-translate-y-1"
+            >
+                <div class="flex flex-col md:flex-row gap-6">
+                    <!-- Author Info Column -->
+                    <div
+                        class="md:w-1/4 flex flex-col items-center text-center"
+                    >
+                        {% if testimonial.image %}
+                        <div
+                            class="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-primary-200"
+                        >
+                            <img
+                                src="{{ url_for('static', filename=testimonial.image) }}"
+                                alt="{{ testimonial.author }}"
+                                onerror="this.src='https://i.imgur.com/hfM1J8s.png'"
+                                class="w-full h-full object-cover"
+                            />
+                        </div>
+                        {% else %}
+                        <div
+                            class="w-24 h-24 rounded-full mb-4 bg-primary-100 flex items-center justify-center"
+                        >
+                            <span class="text-primary-500 text-2xl font-bold">
+                                {{ testimonial.author[:1] }}
+                            </span>
+                        </div>
+                        {% endif %}
+
+                        <p class="text-secondary-800 font-semibold">
+                            {{ testimonial.author }}
+                        </p>
+                        {% if testimonial.qualification %}
+                        <p class="text-secondary-500 text-sm">
+                            {{ testimonial.qualification }}
+                        </p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Testimonial Text Column -->
+                    <div class="md:w-3/4 flex items-center">
+                        <div class="relative">
+                            <p
+                                class="text-secondary-700 italic leading-relaxed text-lg"
+                            >
+                                "{{ testimonial[locale] }}"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

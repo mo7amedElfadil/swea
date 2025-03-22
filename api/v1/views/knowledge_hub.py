@@ -7,6 +7,7 @@ from app.services.member_service import MemberService
 from app.services.podcast_service import PodcastService
 from app.services.research_service import ResearchService
 from utils.toast_notify import add_toast
+from utils.view_modifiers import response
 
 
 @bp.route("/dashboard/knowledge-hub", methods=["GET"])
@@ -43,6 +44,17 @@ def get_knowledge_hub_data():
     return make_response(render_template(template_mapper[tab], **data, active_tab=tab))
 
 
+@bp.route("/researches/<uuid>", methods=["GET"])
+@response(template_file="research-page.html")
+def research_page(uuid):
+    """Research page"""
+    research = ResearchService().get_by_uuid(uuid)
+    if not research:
+        return add_toast(make_response("", 404), "error", _("Research not found"))
+
+    return dict(research=research)
+
+
 @bp.route("/dashboard/knowledge-hub/form", methods=["GET"])
 def knowledge_hub_form():
     """knowledge-hub form."""
@@ -70,10 +82,11 @@ def knowledge_hub_form():
     else:
         data = {}
 
-    return make_response(render_template(
-        template,
-        update=method == "UPDATE",
-        **data,
+    return make_response(
+        render_template(
+            template,
+            update=method == "UPDATE",
+            **data,
         )
     )
 
@@ -96,7 +109,6 @@ def create_course():
 
     try:
         form_data = request.form.to_dict()
-        print('============>', form_data)
         files = request.files
         course_service.create_course(form_data, files)
     except Exception as e:
@@ -316,7 +328,9 @@ def get_members():
     member_service = MemberService()
     page = request.args.get("page", default=1, type=int)
     members = member_service.get_all(page=page)
-    return render_template("partials/dashboard/knowledge_hub/members-list.html", **members)
+    return render_template(
+        "partials/dashboard/knowledge_hub/members-list.html", **members
+    )
 
 
 @bp.route("/dashboard/knowledge-hub/members", methods=["POST"])
@@ -334,7 +348,6 @@ def create_member():
         return add_toast(
             resp, "error", _("An error occurred while creating the member")
         )
-
 
     return add_toast(make_response(), "success", _("Member created successfully"))
 

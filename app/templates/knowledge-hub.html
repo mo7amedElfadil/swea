@@ -17,15 +17,15 @@
 		<span class='{% if locale == 'en' %} ms-auto {%else%} me-auto {%endif%}'>{{_("kh hero title 2")}}</span>
 			</h1>
             
-            <!-- Floating Arrow -->
-            <div id="scroll-arrow" class="absolute bottom-24 left cursor-pointer animate-bounce hidden md:block">
-                <div class="p-2 rounded-full bg-primary-700 shadow-lg hover:bg-primary-800 transition-colors duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                    </svg>
-                </div>
-                <span class="sr-only">{{_("Scroll to content")}}</span>
-            </div>
+    <!-- Floating Arrow -->
+    <div id="scroll-arrow" class="absolute bottom-24 left cursor-pointer animate-bounce hidden md:block">
+        <div class="p-2 rounded-full bg-primary-700 shadow-lg hover:bg-primary-800 transition-colors duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+        </div>
+        <span class="sr-only">{{_("Scroll to content")}}</span>
+    </div>
 	</section>
 	<!-- Tabs -->
 	<section id="tabs-section" class='flex flex-col gap-4 container mx-auto px-8 pb-32'>
@@ -117,11 +117,20 @@
 	document.getElementById('tab-research').classList.add('active-tab');
 	
 	// Scroll arrow functionality
-	document.getElementById('scroll-arrow').addEventListener('click', function() {
-		document.getElementById('tabs-section').scrollIntoView({ 
-			behavior: 'smooth'
-		});
-	});
+  document.getElementById('scroll-arrow').addEventListener('click', function() {
+      const tabsSection = document.getElementById('tabs-section');
+
+      tabsSection.scrollIntoView({
+          behavior: 'smooth'
+      });
+
+      setTimeout(() => {
+          window.scrollBy({
+              top: -50,
+              behavior: 'smooth'
+          });
+      }, 300);
+  });
 	
 	// Hide the arrow when scrolled past the hero section
 	window.addEventListener('scroll', function() {

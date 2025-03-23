@@ -3,6 +3,8 @@
 from datetime import datetime, timezone
 from uuid import uuid4
 
+from sqlalchemy.exc import IntegrityError
+
 from app.extensions import db
 
 
@@ -25,7 +27,11 @@ class BaseModel(db.Model):
         for key, value in kwargs.items():
             setattr(self, key, value)
         db.session.add(self)
-        db.session.commit()
+        try:
+            db.session.commit()
+        except IntegrityError as e:
+            db.session.rollback()
+            raise e
 
     def update(self, **kwargs) -> None:
         """Update a record in the database."""

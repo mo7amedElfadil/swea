@@ -1,6 +1,7 @@
-{% macro spinner(size=6, display='hidden', color='text-current', cls='') %}
+{% macro spinner(size=6, display='hidden', color='text-current', cls='',
+id="spinner") %}
 <svg
-    id="spinner"
+    id="{{id}}"
     class="htmx-indicator {{display}} animate-spin size-{{size}} text-white {{cls}}"
     xmlns="http://www.w3.org/2000/svg"
     fill="none"

@@ -37,6 +37,48 @@ def rate_limit(
 
     Returns:
         decorator: A decorator to apply rate limiting to a route
+
+    Examples:
+        Basic usage with direct limit specification:
+        ```python
+        @app.route('/api/comments')
+        @rate_limit("5 per minute")
+        def post_comment():
+            # This endpoint is limited to 5 requests per minute per IP
+            return create_comment()
+        ```
+
+        Using predefined limit configurations:
+        ```python
+        @app.route('/api/user-profile')
+        @rate_limit(RateLimits.NORMAL)
+        def get_user_profile():
+            # This endpoint uses the NORMAL rate limit configuration
+            return fetch_profile()
+        ```
+
+        Exempting certain users:
+        ```python
+        @app.route('/api/data-export')
+        @rate_limit("2 per day", exempt_when=RateLimits.exempt_for_admins)
+        def export_data():
+            # Regular users limited to 2 exports per day
+            # Admin users are exempt from this limit
+            return generate_export()
+        ```
+
+        Combined approach for sensitive endpoints:
+        ```python
+        @app.route('/api/password-reset')
+        @rate_limit(
+            RateLimits.STRICT,
+            key_func=RateLimits.get_key_by_ip_and_path,
+            exempt_when=RateLimits.exempt_for_admins
+        )
+        def reset_password():
+            # Uses strict limits, identified by IP+path, exempts admins
+            return process_password_reset()
+        ```
     """
     # Convert list of limits to comma-separated string if it's a list
     if isinstance(limits, list):

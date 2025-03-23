@@ -99,30 +99,57 @@
 			<p class='max-w-[80%] mx-auto text-center'>{{_("vision 4")}}</p>
 		</div>
 	</section>
-	<section id='news' class='container mx-auto px-4 py-8 overflow-x-hidden sm:py-28'>
-		<div class='w-full flex justify-between'>
-			<h2 class='mb-6 text-3xl font-extrabold capitalize sm:text-7xl'>{{_("news")}}</h2>
-			<div class='flex gap-4'>
-				<button id='prev' class='size-10 p-2 bg-black rounded-full'>
-					<img
-							class='size-6 {% if locale == 'ar' %}rotate-180{% endif %}'
-							src="{{url_for('static',filename='icons/left-arrow.svg')}}"
-							alt="left arrow"
-							/>
-				</button>
-				<button id='next' class='size-10 p-2 bg-black rounded-full'>
-					<img
-							class='size-6 {% if locale == 'ar' %}rotate-180{% endif %}'
-							src="{{url_for('static',filename='icons/right-arrow.svg')}}"
-							alt="rightarrow"
-							/>
-				</button>
-			</div>
-		</div>
-		<div id='carousel' class='min-w-[100vw] transition-all relative flex gap-6'>
-      {% include "partials/news/cards.html" %}
-		</div>
-	</section>
+  <section id='news' class='container mx-auto px-4 py-8 overflow-visible sm:py-28 relative'>
+    <div class="relative">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 144 580"
+            class="absolute top-32 w-36 h-[580px] z-0 hidden sm:block"
+            {% if locale == 'ar' %}
+                style="right: 0;"
+            {% else %}
+                style="left: 0;"
+            {% endif %}
+        >
+            {% if locale == 'en' %}
+                <path
+                    d="M120,0 q24,0 24,24 v532 q0,24 -24,24 h-96 v-580z"
+                    fill="#b80000"
+                />
+            {% endif %}
+            {% if locale == 'ar' %}
+                <path
+                    d="M24,0 q-24,0 -24,24 v532 q0,24 24,24 h96 v-580z"
+                    fill="#b80000"
+                />
+            {% endif %}
+        </svg>
+        <div class='w-full flex justify-between relative z-10'>
+            <h2 class='mb-4 text-2xl font-extrabold capitalize sm:text-7xl'>
+                {{_("news")}}
+            </h2>
+            <div class='flex gap-4'>
+                <button id='prev' class='size-10 p-2 bg-black rounded-full'>
+                    <img
+                        class='size-6 {% if locale == 'ar' %}rotate-180{% endif %}'
+                        src="{{url_for('static',filename='icons/left-arrow.svg')}}"
+                        alt="left arrow"
+                    />
+                </button>
+                <button id='next' class='size-10 p-2 bg-black rounded-full'>
+                    <img
+                        class='size-6 {% if locale == 'ar' %}rotate-180{% endif %}'
+                        src="{{url_for('static',filename='icons/right-arrow.svg')}}"
+                        alt="right arrow"
+                    />
+                </button>
+            </div>
+        </div>
+        <div id='carousel' class='w-full transition-all relative z-10 flex gap-6 p-4 sm:p-20 overflow-x-auto'>
+            {% include "partials/news/cards.html" %}
+        </div>
+    </div>
+  </section>
 	<section id='contact' class='container justify-center mx-auto px-4 py-8 sm:py-28 lg:grid lg:grid-cols-2'>
 		<div class='relative flex flex-col gap-4 bg-white px-3 py-4
 		sm:px-8 sm:py-12'

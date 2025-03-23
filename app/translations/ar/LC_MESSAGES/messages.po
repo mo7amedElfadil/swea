@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-22 09:10+0400\n"
+"POT-Creation-Date: 2025-03-23 20:29+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -19,119 +19,123 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.10.3\n"
 
-#: api/v1/views/knowledge_hub.py:33
+#: api/v1/views/knowledge_hub.py:34
 msgid "Invalid tab"
 msgstr "تبويب غير صالح"
 
-#: api/v1/views/knowledge_hub.py:105
+#: api/v1/views/knowledge_hub.py:53
+msgid "Research not found"
+msgstr "لم يتم العثور على البحث"
+
+#: api/v1/views/knowledge_hub.py:117
 msgid "An error occurred while creating the course"
 msgstr "حدث خطأ أثناء إنشاء الدورة"
 
-#: api/v1/views/knowledge_hub.py:112
+#: api/v1/views/knowledge_hub.py:124
 msgid "Course created successfully"
 msgstr "تم إنشاء الدورة بنجاح"
 
-#: api/v1/views/knowledge_hub.py:127
+#: api/v1/views/knowledge_hub.py:139
 msgid "An error occurred while updating the course"
 msgstr "حدث خطأ أثناء تحديث الدورة"
 
-#: api/v1/views/knowledge_hub.py:134
+#: api/v1/views/knowledge_hub.py:146
 msgid "Course updated successfully"
 msgstr "تم تحديث الدورة بنجاح"
 
-#: api/v1/views/knowledge_hub.py:146
+#: api/v1/views/knowledge_hub.py:158
 msgid "An error occurred while deleting the course"
 msgstr "حدث خطأ أثناء حذف الدورة"
 
-#: api/v1/views/knowledge_hub.py:153
+#: api/v1/views/knowledge_hub.py:165
 msgid "Course deleted successfully"
 msgstr "تم حذف الدورة بنجاح"
 
-#: api/v1/views/knowledge_hub.py:179
+#: api/v1/views/knowledge_hub.py:191
 msgid "An error occurred while creating the podcast"
 msgstr "حدث خطأ أثناء إنشاء البودكاست"
 
-#: api/v1/views/knowledge_hub.py:186
+#: api/v1/views/knowledge_hub.py:198
 msgid "Podcast created successfully"
 msgstr "تم إنشاء البودكاست بنجاح"
 
-#: api/v1/views/knowledge_hub.py:201
+#: api/v1/views/knowledge_hub.py:213
 msgid "An error occurred while updating the podcast"
 msgstr "حدث خطأ أثناء تحديث البودكاست"
 
-#: api/v1/views/knowledge_hub.py:208
+#: api/v1/views/knowledge_hub.py:220
 msgid "Podcast updated successfully"
 msgstr "تم تحديث البودكاست بنجاح"
 
-#: api/v1/views/knowledge_hub.py:220
+#: api/v1/views/knowledge_hub.py:232
 msgid "An error occurred while deleting the podcast"
 msgstr "حدث خطأ أثناء حذف البودكاست"
 
-#: api/v1/views/knowledge_hub.py:229
+#: api/v1/views/knowledge_hub.py:241
 msgid "Podcast deleted successfully"
 msgstr "تم حذف البودكاست بنجاح"
 
-#: api/v1/views/knowledge_hub.py:256
+#: api/v1/views/knowledge_hub.py:268
 msgid "An error occurred while creating the research"
 msgstr "حدث خطأ أثناء إنشاء البحث"
 
-#: api/v1/views/knowledge_hub.py:265
+#: api/v1/views/knowledge_hub.py:277
 msgid "Research created successfully"
 msgstr "تم إنشاء البحث بنجاح"
 
-#: api/v1/views/knowledge_hub.py:280
+#: api/v1/views/knowledge_hub.py:292
 msgid "An error occurred while updating the research"
 msgstr "حدث خطأ أثناء تحديث البحث"
 
-#: api/v1/views/knowledge_hub.py:289
+#: api/v1/views/knowledge_hub.py:301
 msgid "Research updated successfully"
 msgstr "تم تحديث البحث بنجاح"
 
-#: api/v1/views/knowledge_hub.py:301
+#: api/v1/views/knowledge_hub.py:313
 msgid "An error occurred while deleting the research"
 msgstr "حدث خطأ أثناء حذف البحث"
 
-#: api/v1/views/knowledge_hub.py:310
+#: api/v1/views/knowledge_hub.py:322
 msgid "Research deleted successfully"
 msgstr "تم حذف البحث بنجاح"
 
-#: api/v1/views/knowledge_hub.py:335
+#: api/v1/views/knowledge_hub.py:349
 msgid "An error occurred while creating the member"
 msgstr "حدث خطأ أثناء إنشاء عضو الفريق"
 
-#: api/v1/views/knowledge_hub.py:339
+#: api/v1/views/knowledge_hub.py:352
 msgid "Member created successfully"
 msgstr "تم إنشاء عضو الفريق بنجاح"
 
-#: api/v1/views/knowledge_hub.py:354
+#: api/v1/views/knowledge_hub.py:367
 msgid "An error occurred while updating the member"
 msgstr "حدث خطأ أثناء تحديث عضو الفريق"
 
-#: api/v1/views/knowledge_hub.py:361
+#: api/v1/views/knowledge_hub.py:374
 msgid "Member updated successfully"
 msgstr "تم تحديث عضو الفريق بنجاح"
 
-#: api/v1/views/knowledge_hub.py:373
+#: api/v1/views/knowledge_hub.py:386
 msgid "An error occurred while deleting the member"
 msgstr "حدث خطأ أثناء حذف عضو الفريق"
 
-#: api/v1/views/knowledge_hub.py:380
+#: api/v1/views/knowledge_hub.py:393
 msgid "Member deleted successfully"
 msgstr "تم حذف عضو الفريق بنجاح"
 
-#: api/v1/views/main.py:91 api/v1/views/main.py:94
+#: api/v1/views/main.py:89 api/v1/views/main.py:92
 msgid "Invalid credentials"
 msgstr "بيانات الاعتماد غير صالحة"
 
-#: api/v1/views/main.py:100
+#: api/v1/views/main.py:98
 msgid "Login successful"
 msgstr "تم تسجيل الدخول بنجاح"
 
-#: api/v1/views/main.py:207
+#: api/v1/views/main.py:205
 msgid "Failed to send message"
 msgstr "فشل في إرسال الرسالة"
 
-#: api/v1/views/main.py:211
+#: api/v1/views/main.py:209
 msgid "Your comment received successfully"
 msgstr "تم استلام  تعليقك  بنجاح"
 
@@ -252,7 +256,7 @@ msgstr "مركز المعرفة"
 msgid "swea_subscribers"
 msgstr "المشتركين"
 
-#: app/templates/dashboard.html:100 app/templates/index.html:104
+#: app/templates/dashboard.html:100 app/templates/index.html:129
 #: app/templates/partials/dashboard/news.html:4
 msgid "news"
 msgstr "الأخبار"
@@ -355,27 +359,27 @@ msgstr ""
 "<b>تعزيز التضامن</b> بين النساء السودانيات العاملات في مجال الاقتصاد عبر "
 "الأجيال."
 
-#: app/templates/index.html:130
+#: app/templates/index.html:157
 msgid "contact us"
 msgstr "تواصل معنا"
 
-#: app/templates/index.html:131
+#: app/templates/index.html:158
 msgid "contact enquiry"
 msgstr "لديك سؤال أو إستفسار؟"
 
-#: app/templates/index.html:141
+#: app/templates/index.html:168
 msgid "form name"
 msgstr "أدخل اسمك"
 
-#: app/templates/index.html:149 app/templates/partials/footer.html:18
+#: app/templates/index.html:176 app/templates/partials/footer.html:18
 msgid "form email"
 msgstr "أدخل بريدك الإلكتروني"
 
-#: app/templates/index.html:156
+#: app/templates/index.html:183
 msgid "form textarea"
 msgstr "تعليق أو رسالة"
 
-#: app/templates/index.html:165
+#: app/templates/index.html:192
 msgid "submit"
 msgstr "إرسال"
 
@@ -405,7 +409,25 @@ msgstr "دورات"
 msgid "podcasts"
 msgstr "بودكاست"
 
-#: app/templates/project-page.html:32
+#: app/templates/not_found.html:14
+msgid "Page Not Found"
+msgstr "الصفحة غير موجودة"
+
+#: app/templates/not_found.html:16
+msgid "not_found_message"
+msgstr ""
+"لم نتمكن من العثور على الصفحة التي تبحث عنها. قد تكون قد تم نقلها، أو "
+"حذفها، أو ربما لم تكن موجودة أبدًا."
+
+#: app/templates/not_found.html:23
+msgid "Return Home"
+msgstr "العودة إلى الصفحة الرئيسية"
+
+#: app/templates/not_found.html:27
+msgid "Go Back"
+msgstr "العودة للخلف"
+
+#: app/templates/project-page.html:32 app/templates/research-page.html:32
 msgid "Author"
 msgstr "الكاتب"
 
@@ -413,15 +435,15 @@ msgstr "الكاتب"
 msgid "Status"
 msgstr "الحالة"
 
-#: app/templates/project-page.html:46
+#: app/templates/project-page.html:46 app/templates/research-page.html:38
 msgid "Completion Date"
 msgstr "تاريخ الإنتهاء"
 
-#: app/templates/project-page.html:49
+#: app/templates/project-page.html:49 app/templates/research-page.html:41
 msgid "Ongoing"
 msgstr "جاري"
 
-#: app/templates/project-page.html:99
+#: app/templates/project-page.html:99 app/templates/research-page.html:93
 msgid "Testimonials"
 msgstr "التوصيات"
 
@@ -435,6 +457,14 @@ msgid "project hero desc"
 msgstr ""
 "استكشِف مشاريعنا المؤثرة التي تهدف إلى تمكين النساء السودانيات العاملات "
 "في مجال الاقتصاد، وتعزيز التعاون، ودفع عجلة التنمية الاقتصادية المستدامة."
+
+#: app/templates/research-page.html:1
+msgid "Research"
+msgstr "البحوث"
+
+#: app/templates/research-page.html:68
+msgid "No content available for this research."
+msgstr "ﻻ يوجد محتوى متاح لهذا البحث."
 
 #: app/templates/single-news.html:29
 msgid "date"
@@ -803,7 +833,7 @@ msgstr "هل أنت متأكد من حذف البودكاست؟"
 msgid "no_podcasts_found"
 msgstr "لا توجد بودكاست حالياً"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:125
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:64
 msgid "current_hero_image"
 msgstr "الصورة الحالية"
 
@@ -843,7 +873,7 @@ msgstr "ﻻ توجد بودكاست حاليً"
 msgid "empty research"
 msgstr "ﻻ توجد بحوث حاليً"
 
-#: app/templates/partials/knowledge-hub/research.html:56
+#: app/templates/partials/knowledge-hub/research.html:73
 #: app/templates/partials/news/cards.html:36
 #: app/templates/partials/projects/cards.html:35
 msgid "learn more"

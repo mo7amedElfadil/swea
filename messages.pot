@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-22 09:10+0400\n"
+"POT-Creation-Date: 2025-03-23 20:29+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,119 +17,123 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.10.3\n"
 
-#: api/v1/views/knowledge_hub.py:33
+#: api/v1/views/knowledge_hub.py:34
 msgid "Invalid tab"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:105
+#: api/v1/views/knowledge_hub.py:53
+msgid "Research not found"
+msgstr ""
+
+#: api/v1/views/knowledge_hub.py:117
 msgid "An error occurred while creating the course"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:112
+#: api/v1/views/knowledge_hub.py:124
 msgid "Course created successfully"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:127
+#: api/v1/views/knowledge_hub.py:139
 msgid "An error occurred while updating the course"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:134
+#: api/v1/views/knowledge_hub.py:146
 msgid "Course updated successfully"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:146
+#: api/v1/views/knowledge_hub.py:158
 msgid "An error occurred while deleting the course"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:153
+#: api/v1/views/knowledge_hub.py:165
 msgid "Course deleted successfully"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:179
+#: api/v1/views/knowledge_hub.py:191
 msgid "An error occurred while creating the podcast"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:186
+#: api/v1/views/knowledge_hub.py:198
 msgid "Podcast created successfully"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:201
+#: api/v1/views/knowledge_hub.py:213
 msgid "An error occurred while updating the podcast"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:208
+#: api/v1/views/knowledge_hub.py:220
 msgid "Podcast updated successfully"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:220
+#: api/v1/views/knowledge_hub.py:232
 msgid "An error occurred while deleting the podcast"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:229
+#: api/v1/views/knowledge_hub.py:241
 msgid "Podcast deleted successfully"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:256
+#: api/v1/views/knowledge_hub.py:268
 msgid "An error occurred while creating the research"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:265
+#: api/v1/views/knowledge_hub.py:277
 msgid "Research created successfully"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:280
+#: api/v1/views/knowledge_hub.py:292
 msgid "An error occurred while updating the research"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:289
+#: api/v1/views/knowledge_hub.py:301
 msgid "Research updated successfully"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:301
+#: api/v1/views/knowledge_hub.py:313
 msgid "An error occurred while deleting the research"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:310
+#: api/v1/views/knowledge_hub.py:322
 msgid "Research deleted successfully"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:335
+#: api/v1/views/knowledge_hub.py:349
 msgid "An error occurred while creating the member"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:339
+#: api/v1/views/knowledge_hub.py:352
 msgid "Member created successfully"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:354
+#: api/v1/views/knowledge_hub.py:367
 msgid "An error occurred while updating the member"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:361
+#: api/v1/views/knowledge_hub.py:374
 msgid "Member updated successfully"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:373
+#: api/v1/views/knowledge_hub.py:386
 msgid "An error occurred while deleting the member"
 msgstr ""
 
-#: api/v1/views/knowledge_hub.py:380
+#: api/v1/views/knowledge_hub.py:393
 msgid "Member deleted successfully"
 msgstr ""
 
-#: api/v1/views/main.py:91 api/v1/views/main.py:94
+#: api/v1/views/main.py:89 api/v1/views/main.py:92
 msgid "Invalid credentials"
 msgstr ""
 
-#: api/v1/views/main.py:100
+#: api/v1/views/main.py:98
 msgid "Login successful"
 msgstr ""
 
-#: api/v1/views/main.py:207
+#: api/v1/views/main.py:205
 msgid "Failed to send message"
 msgstr ""
 
-#: api/v1/views/main.py:211
+#: api/v1/views/main.py:209
 msgid "Your comment received successfully"
 msgstr ""
 
@@ -250,7 +254,7 @@ msgstr ""
 msgid "swea_subscribers"
 msgstr ""
 
-#: app/templates/dashboard.html:100 app/templates/index.html:104
+#: app/templates/dashboard.html:100 app/templates/index.html:129
 #: app/templates/partials/dashboard/news.html:4
 msgid "news"
 msgstr ""
@@ -331,27 +335,27 @@ msgstr ""
 msgid "vision 4"
 msgstr ""
 
-#: app/templates/index.html:130
+#: app/templates/index.html:157
 msgid "contact us"
 msgstr ""
 
-#: app/templates/index.html:131
+#: app/templates/index.html:158
 msgid "contact enquiry"
 msgstr ""
 
-#: app/templates/index.html:141
+#: app/templates/index.html:168
 msgid "form name"
 msgstr ""
 
-#: app/templates/index.html:149 app/templates/partials/footer.html:18
+#: app/templates/index.html:176 app/templates/partials/footer.html:18
 msgid "form email"
 msgstr ""
 
-#: app/templates/index.html:156
+#: app/templates/index.html:183
 msgid "form textarea"
 msgstr ""
 
-#: app/templates/index.html:165
+#: app/templates/index.html:192
 msgid "submit"
 msgstr ""
 
@@ -381,7 +385,23 @@ msgstr ""
 msgid "podcasts"
 msgstr ""
 
-#: app/templates/project-page.html:32
+#: app/templates/not_found.html:14
+msgid "Page Not Found"
+msgstr ""
+
+#: app/templates/not_found.html:16
+msgid "not_found_message"
+msgstr ""
+
+#: app/templates/not_found.html:23
+msgid "Return Home"
+msgstr ""
+
+#: app/templates/not_found.html:27
+msgid "Go Back"
+msgstr ""
+
+#: app/templates/project-page.html:32 app/templates/research-page.html:32
 msgid "Author"
 msgstr ""
 
@@ -389,15 +409,15 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: app/templates/project-page.html:46
+#: app/templates/project-page.html:46 app/templates/research-page.html:38
 msgid "Completion Date"
 msgstr ""
 
-#: app/templates/project-page.html:49
+#: app/templates/project-page.html:49 app/templates/research-page.html:41
 msgid "Ongoing"
 msgstr ""
 
-#: app/templates/project-page.html:99
+#: app/templates/project-page.html:99 app/templates/research-page.html:93
 msgid "Testimonials"
 msgstr ""
 
@@ -408,6 +428,14 @@ msgstr ""
 
 #: app/templates/projects.html:13
 msgid "project hero desc"
+msgstr ""
+
+#: app/templates/research-page.html:1
+msgid "Research"
+msgstr ""
+
+#: app/templates/research-page.html:68
+msgid "No content available for this research."
 msgstr ""
 
 #: app/templates/single-news.html:29
@@ -774,7 +802,7 @@ msgstr ""
 msgid "no_podcasts_found"
 msgstr ""
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:125
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:64
 msgid "current_hero_image"
 msgstr ""
 
@@ -814,7 +842,7 @@ msgstr ""
 msgid "empty research"
 msgstr ""
 
-#: app/templates/partials/knowledge-hub/research.html:56
+#: app/templates/partials/knowledge-hub/research.html:73
 #: app/templates/partials/news/cards.html:36
 #: app/templates/partials/projects/cards.html:35
 msgid "learn more"

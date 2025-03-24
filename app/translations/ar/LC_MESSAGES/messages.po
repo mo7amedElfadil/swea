@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-24 04:05+0400\n"
+"POT-Creation-Date: 2025-03-24 09:08+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -131,11 +131,11 @@ msgstr "بيانات الاعتماد غير صالحة"
 msgid "Login successful"
 msgstr "تم تسجيل الدخول بنجاح"
 
-#: api/v1/views/main.py:205
+#: api/v1/views/main.py:203
 msgid "Failed to send message"
 msgstr "فشل في إرسال الرسالة"
 
-#: api/v1/views/main.py:209
+#: api/v1/views/main.py:207
 msgid "Your comment received successfully"
 msgstr "تم استلام  تعليقك  بنجاح"
 
@@ -156,33 +156,37 @@ msgstr "تم تحديث المشروع بنجاح"
 msgid "Project deleted successfully"
 msgstr "تم حذف المشروع بنجاح"
 
-#: api/v1/views/subscribers.py:22
+#: api/v1/views/subscribers.py:23
 msgid "Email already subscribed"
 msgstr "البريد الإلكتروني مشترك بالفعل"
 
-#: api/v1/views/subscribers.py:25
+#: api/v1/views/subscribers.py:26
 msgid "Failed to subscribe"
 msgstr "فشل في الاشتراك"
 
-#: api/v1/views/subscribers.py:27
+#: api/v1/views/subscribers.py:28
 msgid "Thank you for subscribing"
 msgstr "شكرًا لك على الاشتراك"
 
-#: api/v1/views/subscribers.py:40
+#: api/v1/views/subscribers.py:41
 msgid "Failed to unsubscribe"
 msgstr "فشل في إلغاء الاشتراك"
 
-#: api/v1/views/subscribers.py:43
+#: api/v1/views/subscribers.py:44
 msgid "Unsubscribed successfully"
 msgstr "تم إلغاء الاشتراك بنجاح"
 
-#: api/v1/views/subscribers.py:82
+#: api/v1/views/subscribers.py:83
 msgid "Failed to send broadcast email"
 msgstr "فشل في إرسال البريد الإلكتروني الجماعي"
 
-#: api/v1/views/subscribers.py:95
+#: api/v1/views/subscribers.py:96
 msgid "Broadcast email sent successfully"
 msgstr "تم إرسال البريد الإلكتروني الجماعي بنجاح"
+
+#: api/v1/views/subscribers.py:111
+msgid "Subscribers exported successfully"
+msgstr "تم تصدير المشتركين بنجاح"
 
 #: api/v1/views/team.py:40
 msgid "create_team_member"
@@ -550,15 +554,19 @@ msgstr "التالي"
 msgid "search_placeholder"
 msgstr "أبحث"
 
-#: app/templates/macros/tab_content.html:60
+#: app/templates/macros/tab_content.html:26
+msgid "Export to Excel"
+msgstr "تصدير إلى Excel"
+
+#: app/templates/macros/tab_content.html:77
 msgid "all_projects"
 msgstr "كل المشاريع"
 
-#: app/templates/macros/tab_content.html:61
+#: app/templates/macros/tab_content.html:78
 msgid "ongoing"
 msgstr "جاري"
 
-#: app/templates/macros/tab_content.html:62
+#: app/templates/macros/tab_content.html:79
 msgid "completed_projects"
 msgstr "المشاريع المكتملة"
 
@@ -858,31 +866,31 @@ msgstr "هل أنت متأكد من حذف البحث؟"
 msgid "no_researches_found"
 msgstr "لا توجد بحوث حالياً"
 
-#: app/templates/partials/knowledge-hub/courses.html:18
-msgid "Select the course"
-msgstr "اختر الدورة"
-
-#: app/templates/partials/knowledge-hub/courses.html:35
-msgid "Select Tags"
-msgstr "اختر العلامات"
-
-#: app/templates/partials/knowledge-hub/courses.html:75
-msgid "No courses found"
-msgstr "لا توجد دورات حالياً"
-
-#: app/templates/partials/knowledge-hub/courses_cards-list.html:56
+#: app/templates/partials/knowledge-hub/courses-cards.html:56
 msgid "Watch Now"
 msgstr "شاهد الآن"
 
-#: app/templates/partials/knowledge-hub/podcasts.html:9
+#: app/templates/partials/knowledge-hub/courses.html:19
+msgid "Select the course"
+msgstr "اختر الدورة"
+
+#: app/templates/partials/knowledge-hub/courses.html:36
+msgid "Select Tags"
+msgstr "اختر العلامات"
+
+#: app/templates/partials/knowledge-hub/courses.html:45
+msgid "No courses found"
+msgstr "لا توجد دورات حالياً"
+
+#: app/templates/partials/knowledge-hub/podcasts.html:4
 msgid "No podcasts available"
 msgstr "ﻻ توجد بودكاست حاليً"
 
-#: app/templates/partials/knowledge-hub/research.html:6
+#: app/templates/partials/knowledge-hub/research.html:4
 msgid "empty research"
 msgstr "ﻻ توجد بحوث حاليً"
 
-#: app/templates/partials/knowledge-hub/research.html:73
+#: app/templates/partials/knowledge-hub/researches-cards.html:38
 #: app/templates/partials/news/cards.html:36
 #: app/templates/partials/projects/cards.html:35
 msgid "learn more"

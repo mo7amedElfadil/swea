@@ -3,10 +3,14 @@ Subscriber service module.
 """
 
 from dataclasses import dataclass
+from datetime import datetime
 from enum import Enum
-from typing import Any, Dict
+from io import BytesIO
+from typing import Any, Dict, Tuple
 
 from marshmallow import ValidationError
+from openpyxl import Workbook
+from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from psycopg2.errors import UniqueViolation
 from sqlalchemy.exc import IntegrityError
 
@@ -178,3 +182,89 @@ class SubscriberService(BaseService):
             raise ValueError(f"Missing required fields: {', '.join(missing_keys)}")
 
         return form_data
+
+    def export_subscribers(self) -> Tuple[BytesIO, str]:
+        """
+        Export all subscribers to a professionally formatted Excel file.
+
+        Returns:
+            A tuple containing the BytesIO object and the filename.
+
+        """
+        subscribers = self.get_all().get("data", [])
+
+        # Create a new workbook and select the active worksheet
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "SWEA Subscribers"
+
+        # Define styles
+        header_font = Font(bold=True, color="FFFFFF")  # White text for headers
+        header_fill = PatternFill(
+            start_color="ff520000", end_color="ff520000", fill_type="solid"
+        )  # Dark red fill for headers
+        alignment = Alignment(horizontal="center", vertical="center")
+        thin_border = Border(
+            left=Side(style="thin"),
+            right=Side(style="thin"),
+            top=Side(style="thin"),
+            bottom=Side(style="thin"),
+        )
+
+        # Add headers
+        headers = ["Email", "Created At"]
+        ws.append(headers)
+
+        # Apply header styles
+        for col in range(1, len(headers) + 1):
+            cell = ws.cell(row=1, column=col)
+            cell.font = header_font
+            cell.fill = header_fill
+            cell.alignment = alignment
+            cell.border = thin_border
+
+        # Add subscriber data
+        for subscriber in subscribers:
+            ws.append(
+                [
+                    subscriber.get("email"),
+                    (
+                        subscriber.get("created_at").strftime("%Y-%m-%d %H:%M:%S")
+                        if subscriber.get("created_at")
+                        else ""
+                    ),
+                ]
+            )
+
+        # Apply styles to data rows
+        for row in ws.iter_rows(
+            min_row=2, max_row=ws.max_row, min_col=1, max_col=len(headers)
+        ):
+            for cell in row:
+                cell.alignment = Alignment(horizontal="left", vertical="center")
+                cell.border = thin_border
+
+        # Adjust column widths
+        for col in ws.columns:
+            max_length = 0
+            column = col[0].column_letter
+            for cell in col:
+                try:
+                    if len(str(cell.value)) > max_length:
+                        max_length = len(str(cell.value))
+                except:
+                    pass
+            adjusted_width = (max_length + 2) * 1.2  # Add some padding
+            ws.column_dimensions[column].width = adjusted_width
+
+        # Freeze the header row
+        ws.freeze_panes = "A2"
+
+        # Save the workbook to a BytesIO object
+        output = BytesIO()
+        wb.save(output)
+        output.seek(0)
+
+        date_str = datetime.now().strftime("%Y-%m-%d")
+
+        return output, f"SWEA_Subscribers_{date_str}.xlsx"

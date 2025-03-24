@@ -4,6 +4,7 @@ from psycopg2.errors import UniqueViolation
 
 from api.v1.views import bp
 from app.services.subscriber_service import SubscriberService
+from utils.auth_utils import login_required
 from utils.toast_notify import add_toast
 
 subscriber_service = SubscriberService()
@@ -93,3 +94,18 @@ def send_broadcast_email():
     )
 
     return add_toast(resp, "success", _("Broadcast email sent successfully"))
+
+
+@bp.route("/export-subscribers", methods=["GET"])
+@login_required()
+def export_subscribers():
+    """Export subscribers to an Excel file."""
+    excel_file, file_name = subscriber_service.export_subscribers()
+
+    response = make_response(excel_file.read())
+    response.headers["Content-Disposition"] = f"attachment;filename={file_name}"
+    response.headers["Content-Type"] = (
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
+
+    return add_toast(response, "success", _("Subscribers exported successfully"))

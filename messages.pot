@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-24 04:05+0400\n"
+"POT-Creation-Date: 2025-03-24 09:08+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,11 +129,11 @@ msgstr ""
 msgid "Login successful"
 msgstr ""
 
-#: api/v1/views/main.py:205
+#: api/v1/views/main.py:203
 msgid "Failed to send message"
 msgstr ""
 
-#: api/v1/views/main.py:209
+#: api/v1/views/main.py:207
 msgid "Your comment received successfully"
 msgstr ""
 
@@ -154,32 +154,36 @@ msgstr ""
 msgid "Project deleted successfully"
 msgstr ""
 
-#: api/v1/views/subscribers.py:22
+#: api/v1/views/subscribers.py:23
 msgid "Email already subscribed"
 msgstr ""
 
-#: api/v1/views/subscribers.py:25
+#: api/v1/views/subscribers.py:26
 msgid "Failed to subscribe"
 msgstr ""
 
-#: api/v1/views/subscribers.py:27
+#: api/v1/views/subscribers.py:28
 msgid "Thank you for subscribing"
 msgstr ""
 
-#: api/v1/views/subscribers.py:40
+#: api/v1/views/subscribers.py:41
 msgid "Failed to unsubscribe"
 msgstr ""
 
-#: api/v1/views/subscribers.py:43
+#: api/v1/views/subscribers.py:44
 msgid "Unsubscribed successfully"
 msgstr ""
 
-#: api/v1/views/subscribers.py:82
+#: api/v1/views/subscribers.py:83
 msgid "Failed to send broadcast email"
 msgstr ""
 
-#: api/v1/views/subscribers.py:95
+#: api/v1/views/subscribers.py:96
 msgid "Broadcast email sent successfully"
+msgstr ""
+
+#: api/v1/views/subscribers.py:111
+msgid "Subscribers exported successfully"
 msgstr ""
 
 #: api/v1/views/team.py:40
@@ -519,15 +523,19 @@ msgstr ""
 msgid "search_placeholder"
 msgstr ""
 
-#: app/templates/macros/tab_content.html:60
+#: app/templates/macros/tab_content.html:26
+msgid "Export to Excel"
+msgstr ""
+
+#: app/templates/macros/tab_content.html:77
 msgid "all_projects"
 msgstr ""
 
-#: app/templates/macros/tab_content.html:61
+#: app/templates/macros/tab_content.html:78
 msgid "ongoing"
 msgstr ""
 
-#: app/templates/macros/tab_content.html:62
+#: app/templates/macros/tab_content.html:79
 msgid "completed_projects"
 msgstr ""
 
@@ -827,31 +835,31 @@ msgstr ""
 msgid "no_researches_found"
 msgstr ""
 
-#: app/templates/partials/knowledge-hub/courses.html:18
-msgid "Select the course"
-msgstr ""
-
-#: app/templates/partials/knowledge-hub/courses.html:35
-msgid "Select Tags"
-msgstr ""
-
-#: app/templates/partials/knowledge-hub/courses.html:75
-msgid "No courses found"
-msgstr ""
-
-#: app/templates/partials/knowledge-hub/courses_cards-list.html:56
+#: app/templates/partials/knowledge-hub/courses-cards.html:56
 msgid "Watch Now"
 msgstr ""
 
-#: app/templates/partials/knowledge-hub/podcasts.html:9
+#: app/templates/partials/knowledge-hub/courses.html:19
+msgid "Select the course"
+msgstr ""
+
+#: app/templates/partials/knowledge-hub/courses.html:36
+msgid "Select Tags"
+msgstr ""
+
+#: app/templates/partials/knowledge-hub/courses.html:45
+msgid "No courses found"
+msgstr ""
+
+#: app/templates/partials/knowledge-hub/podcasts.html:4
 msgid "No podcasts available"
 msgstr ""
 
-#: app/templates/partials/knowledge-hub/research.html:6
+#: app/templates/partials/knowledge-hub/research.html:4
 msgid "empty research"
 msgstr ""
 
-#: app/templates/partials/knowledge-hub/research.html:73
+#: app/templates/partials/knowledge-hub/researches-cards.html:38
 #: app/templates/partials/news/cards.html:36
 #: app/templates/partials/projects/cards.html:35
 msgid "learn more"

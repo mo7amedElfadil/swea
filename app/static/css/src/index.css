@@ -273,3 +273,28 @@ header {
         transform: translateY(0);
     }
 }
+
+/*-------------------------Print cleanup-----------------------------*/
+@media print {
+    header,
+    footer,
+    nav,
+    .no-print {
+        display: none !important;
+    }
+
+    body {
+        font-size: 12pt;
+        color: #000;
+        background: #fff;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    /* breaks where needed */
+    .page-break {
+        page-break-before: always;
+    }
+}

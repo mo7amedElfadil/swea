@@ -1,5 +1,6 @@
 from flask import make_response, render_template, request
 from flask_babel import gettext as _
+from psycopg2.errors import UniqueViolation
 
 from api.v1.views import bp
 from app.services.subscriber_service import SubscriberService
@@ -16,6 +17,10 @@ def subscribe():
     if form_data:
         try:
             subscriber_service.create_subscriber(form_data)
+        except UniqueViolation:
+            return add_toast(
+                make_response("", 409), "error", _("Email already subscribed")
+            )
         except Exception as e:
             return add_toast(make_response("", 400), "error", _("Failed to subscribe"))
 

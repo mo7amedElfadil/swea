@@ -20,12 +20,12 @@ def login_required(redirect_to="app_views.login", message=None):
 
     Usage:
         ```
-        @bp.route('/protected')
+        @app.route('/protected')
         @login_required()
         def protected_route():
             return 'This is protected'
 
-        @bp.route('/admin-only')
+        @app.route('/admin-only')
         @login_required(message='Admin access required')
         def admin_route():
             return 'Admin area'

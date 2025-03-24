@@ -10,7 +10,7 @@
                  hx-trigger='submit'
                  hx-on::after-request="this.reset()"
                  hx-swap='none'
-                 hx-indicator="#spinner"
+                 hx-indicator="#fspinner"
               >
                 <input
                         id="email-input"
@@ -21,7 +21,7 @@
                         value=""
                         />
                 <button type='submit' class='py-3 px-4 bg-white rounded-full flex items-center justify-center'>
-                    {{spinner()}}
+                    {{spinner(id="fspinner")}}
                   <span>
                       {{_("subscribe")}}
                   </span>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-23 20:29+0400\n"
+"POT-Creation-Date: 2025-03-24 04:05+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -154,27 +154,31 @@ msgstr ""
 msgid "Project deleted successfully"
 msgstr ""
 
-#: api/v1/views/subscribers.py:20
+#: api/v1/views/subscribers.py:22
+msgid "Email already subscribed"
+msgstr ""
+
+#: api/v1/views/subscribers.py:25
 msgid "Failed to subscribe"
 msgstr ""
 
-#: api/v1/views/subscribers.py:22
+#: api/v1/views/subscribers.py:27
 msgid "Thank you for subscribing"
 msgstr ""
 
-#: api/v1/views/subscribers.py:35
+#: api/v1/views/subscribers.py:40
 msgid "Failed to unsubscribe"
 msgstr ""
 
-#: api/v1/views/subscribers.py:38
+#: api/v1/views/subscribers.py:43
 msgid "Unsubscribed successfully"
 msgstr ""
 
-#: api/v1/views/subscribers.py:77
+#: api/v1/views/subscribers.py:82
 msgid "Failed to send broadcast email"
 msgstr ""
 
-#: api/v1/views/subscribers.py:90
+#: api/v1/views/subscribers.py:95
 msgid "Broadcast email sent successfully"
 msgstr ""
 
@@ -401,24 +405,29 @@ msgstr ""
 msgid "Go Back"
 msgstr ""
 
-#: app/templates/project-page.html:32 app/templates/research-page.html:32
+#: app/templates/project-page.html:33 app/templates/research-page.html:32
 msgid "Author"
 msgstr ""
 
-#: app/templates/project-page.html:38
+#: app/templates/project-page.html:39
 msgid "Status"
 msgstr ""
 
-#: app/templates/project-page.html:46 app/templates/research-page.html:38
+#: app/templates/project-page.html:47 app/templates/research-page.html:38
 msgid "Completion Date"
 msgstr ""
 
-#: app/templates/project-page.html:49 app/templates/research-page.html:41
+#: app/templates/project-page.html:50 app/templates/research-page.html:41
 msgid "Ongoing"
 msgstr ""
 
-#: app/templates/project-page.html:99 app/templates/research-page.html:93
+#: app/templates/project-page.html:110 app/templates/research-page.html:103
 msgid "Testimonials"
+msgstr ""
+
+#: app/templates/project-page.html:171 app/templates/project-page.html:185
+#: app/templates/research-page.html:176 app/templates/research-page.html:190
+msgid "Link copied to clipboard!"
 msgstr ""
 
 #: app/templates/partials/dashboard/projects.html:4
@@ -434,7 +443,7 @@ msgstr ""
 msgid "Research"
 msgstr ""
 
-#: app/templates/research-page.html:68
+#: app/templates/research-page.html:78
 msgid "No content available for this research."
 msgstr ""
 

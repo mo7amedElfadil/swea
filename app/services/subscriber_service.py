@@ -7,6 +7,8 @@ from enum import Enum
 from typing import Any, Dict
 
 from marshmallow import ValidationError
+from psycopg2.errors import UniqueViolation
+from sqlalchemy.exc import IntegrityError
 
 from app.models.subscriber import Subscriber
 from app.queue import QueueService
@@ -67,7 +69,13 @@ class SubscriberService(BaseService):
 
             # Create the subscriber
             subscriber = Subscriber()
-            subscriber.create(**processed_data)
+            try:
+                subscriber.create(**processed_data)
+            except IntegrityError as db_error:
+                if isinstance(db_error.orig, UniqueViolation):
+                    raise UniqueViolation("Email already subscribed") from db_error
+                raise db_error
+
             return subscriber
 
         except ValidationError as error:

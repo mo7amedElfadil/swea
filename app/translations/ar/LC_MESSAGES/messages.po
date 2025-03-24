@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-24 11:48+0400\n"
+"POT-Creation-Date: 2025-03-24 20:36+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -554,19 +554,19 @@ msgstr "التالي"
 msgid "search_placeholder"
 msgstr "أبحث"
 
-#: app/templates/macros/tab_content.html:26
+#: app/templates/macros/tab_content.html:30
 msgid "Export to Excel"
 msgstr "تصدير إلى Excel"
 
-#: app/templates/macros/tab_content.html:77
+#: app/templates/macros/tab_content.html:81
 msgid "all_projects"
 msgstr "كل المشاريع"
 
-#: app/templates/macros/tab_content.html:78
+#: app/templates/macros/tab_content.html:82
 msgid "ongoing"
 msgstr "جاري"
 
-#: app/templates/macros/tab_content.html:79
+#: app/templates/macros/tab_content.html:83
 msgid "completed_projects"
 msgstr "المشاريع المكتملة"
 
@@ -643,7 +643,7 @@ msgstr "إنشاء"
 #: app/templates/partials/dashboard/knowledge_hub/researches-list.html:40
 #: app/templates/partials/dashboard/news-list.html:21
 #: app/templates/partials/dashboard/project-list.html:50
-#: app/templates/partials/dashboard/team-list.html:52
+#: app/templates/partials/dashboard/team-list.html:54
 msgid "edit"
 msgstr "تعديل"
 
@@ -652,7 +652,7 @@ msgstr "تعديل"
 #: app/templates/partials/dashboard/knowledge_hub/researches-list.html:49
 #: app/templates/partials/dashboard/news-list.html:29
 #: app/templates/partials/dashboard/project-list.html:59
-#: app/templates/partials/dashboard/team-list.html:61
+#: app/templates/partials/dashboard/team-list.html:63
 msgid "delete"
 msgstr "حذف"
 
@@ -798,11 +798,11 @@ msgstr "محتوى البريد الإلكتروني"
 msgid "send"
 msgstr "إرسال"
 
-#: app/templates/partials/dashboard/team-list.html:57
+#: app/templates/partials/dashboard/team-list.html:59
 msgid "confirm_delete_team_member"
 msgstr "هل أنت متأكد من حذف عضو الفريق؟"
 
-#: app/templates/partials/dashboard/team-list.html:72
+#: app/templates/partials/dashboard/team-list.html:74
 msgid "no_team_members_found"
 msgstr "لا توجد أعضاء حالياً"
 

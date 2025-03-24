@@ -1,5 +1,5 @@
 {% macro carousel(id='carousel', items=[], gap='6', perSlide=1, emptyState={},
-locale='en') %}
+locale='en', responsive=true) %}
 <div class="w-full p-4 relative overflow-x-hidden">
     {% if not items or items|length == 0 %}
     <div class="h-full grid place-items-center">
@@ -10,22 +10,24 @@ locale='en') %}
     <!-- Navigation Buttons -->
     <button
         id="prev-{{ id }}"
-        class="absolute top-1/2 -translate-y-1/2 size-10 p-2 bg-black rounded-full z-[1] {% if locale == 'ar'%}right-0{% else %}left-0{% endif %}"
+        class="absolute top-1/2 -translate-y-1/2 size-10 p-2 bg-black rounded-full z-[1] {% if locale == 'ar'%}right-0{% else %}left-0{% endif %} disabled:opacity-50"
+        aria-label="Previous slides"
     >
         <img
             class="size-6 {% if locale == 'en'%}rotate-180{% endif %}"
             src="{{ url_for('static', filename='icons/right-arrow.svg') }}"
-            alt="right arrow"
+            alt="Previous"
         />
     </button>
     <button
         id="next-{{ id }}"
-        class="absolute top-1/2 -translate-y-1/2 size-10 p-2 bg-black rounded-full z-[1] {% if locale == 'ar'%}left-0{% else %}right-0{% endif %}"
+        class="absolute top-1/2 -translate-y-1/2 size-10 p-2 bg-black rounded-full z-[1] {% if locale == 'ar'%}left-0{% else %}right-0{% endif %} disabled:opacity-50"
+        aria-label="Next slides"
     >
         <img
             class="size-6 {% if locale == 'en'%}rotate-180{% endif %}"
             src="{{ url_for('static', filename='icons/left-arrow.svg') }}"
-            alt="left arrow"
+            alt="Next"
         />
     </button>
 
@@ -36,91 +38,159 @@ locale='en') %}
     {% endif %}
 </div>
 
+{% if items and items|length > 0 %}
 <script>
     (function() {
         var id = "{{ id }}";
-        var perSlide = {{ perSlide }};
+        var defaultPerSlide = {{ perSlide }};
+        var isResponsive = {{ 'true' if responsive else 'false' }};
         var next = document.getElementById('next-' + id);
         var prev = document.getElementById('prev-' + id);
         var carousel = document.getElementById(id);
+
+        if (!carousel || !carousel.children.length) {
+            console.warn("Carousel with id '" + id + "' has no items");
+            return;
+        }
+
         var slides = carousel.children;
-        var totalSlides = Math.ceil(slides.length / perSlide);
-        var GAP = window.getComputedStyle(carousel).gap;
-        var slideWidth = slides[0].clientWidth + parseInt(GAP);
-        var currentSlide = 0;
+        var perSlide = defaultPerSlide;
+        var scrollBy = 1; // Always scroll by 1 item on small screens
+        var totalItems = slides.length;
+        var GAPStyle = window.getComputedStyle(carousel).gap;
+        var GAP = 0;
+        try {
+            GAP = parseInt(GAPStyle);
+        } catch (e) {
+            console.warn("Could not parse gap for carousel '" + id + "', defaulting to 0");
+        }
+
+        var slideWidth = slides[0].clientWidth + GAP;
+        var currentItem = 0; // Track by item index instead of slide index
         var locale = "{{ locale }}";
+        var isSmallScreen = !window.matchMedia('(min-width: 1000px)').matches;
+
+        // Update button states visually
+        function updateButtonStates() {
+            next.disabled = currentItem >= totalItems - (isSmallScreen ? 1 : perSlide);
+            prev.disabled = currentItem <= 0;
+
+            if (next.disabled) {
+                next.setAttribute('aria-disabled', 'true');
+                next.classList.add('opacity-50');
+            } else {
+                next.setAttribute('aria-disabled', 'false');
+                next.classList.remove('opacity-50');
+            }
+
+            if (prev.disabled) {
+                prev.setAttribute('aria-disabled', 'true');
+                prev.classList.add('opacity-50');
+            } else {
+                prev.setAttribute('aria-disabled', 'false');
+                prev.classList.remove('opacity-50');
+            }
+        }
 
         // Update carousel position
         function updateCarousel() {
-            var shift = currentSlide * slideWidth * perSlide;
+            var shift = currentItem * slideWidth;
 
+            // Apply direction based on locale
             if (locale === 'en') {
                 shift = -shift;
             }
 
-            if (currentSlide === totalSlides - 1 && perSlide > 1) {
-                shift = (totalSlides - perSlide) * slideWidth;
-
-                if (locale === 'ar') {
+            // Make sure we don't scroll past the end
+            if (!isSmallScreen && currentItem > totalItems - perSlide) {
+                currentItem = totalItems - perSlide;
+                shift = currentItem * slideWidth;
+                if (locale === 'en') {
                     shift = -shift;
                 }
             }
 
             carousel.style.transform = `translateX(${shift}px)`;
-            next.disabled = currentSlide === totalSlides - 1;
-            prev.disabled = currentSlide === 0;
+            updateButtonStates();
         }
 
         // Next button click handler
         next.addEventListener('click', () => {
-            if (currentSlide < totalSlides - 1) {
-                currentSlide++;
-                updateCarousel();
+            // On small screens, scroll one by one
+            // On large screens, scroll by perSlide unless near the end
+            if (isSmallScreen) {
+                if (currentItem < totalItems - 1) {
+                    currentItem++;
+                }
+            } else {
+                // On larger screens, we need to handle the last slide specially
+                var remainingItems = totalItems - currentItem - perSlide;
+                if (remainingItems > 0) {
+                    currentItem += scrollBy;
+                    // Don't scroll past the point where perSlide items are visible
+                    if (currentItem > totalItems - perSlide) {
+                        currentItem = totalItems - perSlide;
+                    }
+                }
             }
+            updateCarousel();
         });
 
         // Previous button click handler
         prev.addEventListener('click', () => {
-            if (currentSlide > 0) {
-                currentSlide--;
+            if (currentItem > 0) {
+                // On small screens, scroll one by one
+                // On large screens, scroll by perSlide
+                currentItem -= isSmallScreen ? 1 : scrollBy;
+                if (currentItem < 0) currentItem = 0;
                 updateCarousel();
             }
         });
 
-        // Update slide count after HTMX request
+        // Update carousel after HTMX request
         document.addEventListener('htmx:afterRequest', (evt) => {
             if (evt.detail.elt.id === id) {
-                totalSlides = Math.ceil(carousel.children.length / perSlide);
-                updateCarousel();
+                recalculateCarousel();
             }
         });
 
-        // Initialize carousel
-        updateCarousel();
+        // Central function to recalculate carousel parameters
+        function recalculateCarousel() {
+            isSmallScreen = !window.matchMedia('(min-width: 1000px)').matches;
+            totalItems = slides.length;
 
-        // Handle responsive behavior
-        window.addEventListener('resize', () => {
-            // Update perSlide based on viewport width
-            if (window.matchMedia('(min-width: 1000px)').matches) {
-                perSlide = Math.min(3, slides.length);
+            // Update perSlide based on viewport width if responsive
+            if (isResponsive && !isSmallScreen) {
+                perSlide = Math.min(3, totalItems);
+                scrollBy = 3; // Scroll by full page on large screens
             } else {
-                perSlide = 1;
+                perSlide = isSmallScreen ? 1 : defaultPerSlide;
+                scrollBy = 1; // Scroll one by one on small screens
             }
 
-            // Recalculate totalSlides
-            totalSlides = Math.ceil(slides.length / perSlide);
-
-            // Reset current slide if needed
-            if (currentSlide >= totalSlides) {
-                currentSlide = totalSlides - 1;
+            // Reset current item if needed
+            if (currentItem >= totalItems) {
+                currentItem = Math.max(0, totalItems - 1);
             }
 
-            // Update slideWidth in case of responsive changes
-            slideWidth = slides[0].clientWidth + parseInt(GAP);
+            // Update slideWidth
+            try {
+                slideWidth = slides[0].clientWidth + parseInt(window.getComputedStyle(carousel).gap);
+            } catch (e) {
+                slideWidth = slides[0].clientWidth;
+            }
 
             // Update carousel position
             updateCarousel();
-        });
+        }
+
+        // Handle responsive behavior
+        if (isResponsive) {
+            window.addEventListener('resize', recalculateCarousel);
+        }
+
+        // Initialize carousel
+        recalculateCarousel();
     })();
 </script>
-{% endmacro %}
+{% endif %} {% endmacro %}

@@ -8,14 +8,18 @@ locale=locale) %} {%- set partial = {
 'news':'partials/dashboard/news-list.html' } -%}
 <div class="bg-primary-50 rounded-xl shadow-sm transition-all duration-200">
     <!-- Header Section -->
-    <div class="flex justify-between items-center mb-6 capitalize">
+    <div
+        class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-4"
+    >
+        <!-- Title -->
         <h2 class="text-2xl font-bold text-gray-900">{{ title_i18n }}</h2>
-        <div class="flex gap-4">
-            <!-- Export to Excel Button -->
+
+        <!-- Buttons Container -->
+        <div class="flex flex-wrap justify-start gap-4 sm:flex-nowrap sm:gap-4">
             {% if title == 'subscribers' %}
             <a
                 href="/dashboard/export-subscribers"
-                class="flex items-center px-4 py-2 gap-2 text-sm font-medium rounded-lg transition-all duration-200 bg-green-600 text-white capitalize hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:outline-none"
+                class="flex items-center px-4 py-2 gap-2 text-sm font-medium rounded-lg transition-all duration-200 bg-green-600 text-white capitalize hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:outline-none w-auto min-w-[140px] sm:w-auto"
                 download="subscribers.xlsx"
             >
                 <img
@@ -27,7 +31,7 @@ locale=locale) %} {%- set partial = {
             </a>
             {% endif %}
             <button
-                class="flex items-center px-4 py-2 gap-2 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-600 text-white capitalize hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:outline-none"
+                class="flex items-center px-4 py-2 gap-2 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-600 text-white capitalize hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:outline-none w-auto min-w-[140px] sm:w-auto"
                 hx-get="{{ hx_get }}"
                 hx-target="#tab-content"
                 hx-swap="innerHTML"

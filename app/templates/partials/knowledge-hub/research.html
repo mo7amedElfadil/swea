@@ -94,17 +94,19 @@
 </div>
 
 <script>
+    var perSlide = 1
+    if (window.matchMedia('(min-width: 640px)').matches) {
+        perSlide = 3
+    }
     var next = document.getElementById('next')
     var prev = document.getElementById('prev')
     var carousel = document.getElementById('carousel')
     var slides = carousel.children
-    var perSlide = 3
     var totalSlides = Math.ceil(slides.length / perSlide)
-    var GAP = window.getComputedStyle(carousel).gap // match the gap (gap-6 = 24px)
+    var GAP = window.getComputedStyle(carousel).gap
     var slideWidth = slides[0].clientWidth + parseInt(GAP)
-    var locale = document.documentElement.lang
-
     var currentSlide = 0
+    var locale = document.documentElement.lang
 
     // Update carousel position
     function updateCarousel() {

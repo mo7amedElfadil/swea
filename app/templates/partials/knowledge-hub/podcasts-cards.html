@@ -1,0 +1,40 @@
+{% from "macros/soundcloud.html" import soundcloud_embed %} {% for podcast in
+data %}
+<div
+    class="bg-white shadow-xl rounded-xl overflow-hidden transition-transform transform hover:shadow-2xl hover:-translate-y-1 shrink-0 w-[300px] sm:w-[350px] md:w-[400px]"
+    data-podcast-uuid="{{ podcast.uuid }}"
+    data-tags="{{ podcast.tags[locale] | join(',') }}"
+>
+    <!-- SoundCloud Embed -->
+    <div class="p-4 bg-gradient-to-r from-primary-50 to-secondary-50">
+        {{ soundcloud_embed(share_link=podcast.url) }}
+    </div>
+
+    <!-- Podcast Details -->
+    <div class="p-6">
+        <!-- Title -->
+        <h3 class="text-2xl font-bold font-primary text-primary-900">
+            {{ podcast.title[locale] }}
+        </h3>
+
+        <!-- Date -->
+        <p class="text-sm text-secondary-600 mt-2">{{ podcast.date }}</p>
+
+        <!-- Description -->
+        <p class="text-sm text-secondary-700 mt-4 leading-relaxed">
+            {{ podcast.description[locale] | truncate(120) }}
+        </p>
+
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2 mt-4">
+            {% for tag in podcast.tags[locale] %}
+            <span
+                class="bg-secondary-100 text-secondary-900 text-xs px-3 py-1.5 rounded-full font-secondary hover:bg-secondary-200 transition-colors"
+            >
+                {{ tag }}
+            </span>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endfor %}

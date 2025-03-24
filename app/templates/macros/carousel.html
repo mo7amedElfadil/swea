@@ -1,0 +1,126 @@
+{% macro carousel(id='carousel', items=[], gap='6', perSlide=1, emptyState={},
+locale='en') %}
+<div class="w-full p-4 relative overflow-x-hidden">
+    {% if not items or items|length == 0 %}
+    <div class="h-full grid place-items-center">
+        <span>{{ emptyState.icon|safe }}</span>
+        <p class="text-slate-500">{{ emptyState.text }}</p>
+    </div>
+    {% else %}
+    <!-- Navigation Buttons -->
+    <button
+        id="prev-{{ id }}"
+        class="absolute top-1/2 -translate-y-1/2 size-10 p-2 bg-black rounded-full z-[1] {% if locale == 'ar'%}right-0{% else %}left-0{% endif %}"
+    >
+        <img
+            class="size-6 {% if locale == 'en'%}rotate-180{% endif %}"
+            src="{{ url_for('static', filename='icons/right-arrow.svg') }}"
+            alt="right arrow"
+        />
+    </button>
+    <button
+        id="next-{{ id }}"
+        class="absolute top-1/2 -translate-y-1/2 size-10 p-2 bg-black rounded-full z-[1] {% if locale == 'ar'%}left-0{% else %}right-0{% endif %}"
+    >
+        <img
+            class="size-6 {% if locale == 'en'%}rotate-180{% endif %}"
+            src="{{ url_for('static', filename='icons/left-arrow.svg') }}"
+            alt="left arrow"
+        />
+    </button>
+
+    <!-- Carousel Items -->
+    <div id="{{ id }}" class="transition-all flex gap-{{ gap }}">
+        {{ caller() }}
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    (function() {
+        var id = "{{ id }}";
+        var perSlide = {{ perSlide }};
+        var next = document.getElementById('next-' + id);
+        var prev = document.getElementById('prev-' + id);
+        var carousel = document.getElementById(id);
+        var slides = carousel.children;
+        var totalSlides = Math.ceil(slides.length / perSlide);
+        var GAP = window.getComputedStyle(carousel).gap;
+        var slideWidth = slides[0].clientWidth + parseInt(GAP);
+        var currentSlide = 0;
+        var locale = "{{ locale }}";
+
+        // Update carousel position
+        function updateCarousel() {
+            var shift = currentSlide * slideWidth * perSlide;
+
+            if (locale === 'en') {
+                shift = -shift;
+            }
+
+            if (currentSlide === totalSlides - 1 && perSlide > 1) {
+                shift = (totalSlides - perSlide) * slideWidth;
+
+                if (locale === 'ar') {
+                    shift = -shift;
+                }
+            }
+
+            carousel.style.transform = `translateX(${shift}px)`;
+            next.disabled = currentSlide === totalSlides - 1;
+            prev.disabled = currentSlide === 0;
+        }
+
+        // Next button click handler
+        next.addEventListener('click', () => {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateCarousel();
+            }
+        });
+
+        // Previous button click handler
+        prev.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateCarousel();
+            }
+        });
+
+        // Update slide count after HTMX request
+        document.addEventListener('htmx:afterRequest', (evt) => {
+            if (evt.detail.elt.id === id) {
+                totalSlides = Math.ceil(carousel.children.length / perSlide);
+                updateCarousel();
+            }
+        });
+
+        // Initialize carousel
+        updateCarousel();
+
+        // Handle responsive behavior
+        window.addEventListener('resize', () => {
+            // Update perSlide based on viewport width
+            if (window.matchMedia('(min-width: 1000px)').matches) {
+                perSlide = Math.min(3, slides.length);
+            } else {
+                perSlide = 1;
+            }
+
+            // Recalculate totalSlides
+            totalSlides = Math.ceil(slides.length / perSlide);
+
+            // Reset current slide if needed
+            if (currentSlide >= totalSlides) {
+                currentSlide = totalSlides - 1;
+            }
+
+            // Update slideWidth in case of responsive changes
+            slideWidth = slides[0].clientWidth + parseInt(GAP);
+
+            // Update carousel position
+            updateCarousel();
+        });
+    })();
+</script>
+{% endmacro %}

@@ -1,4 +1,5 @@
-{% import "macros/icons.html" as icons %}
+{% import "macros/icons.html" as icons %} {% import "macros/carousel.html" as
+carousel_macro %}
 <div class="p-4 w-[90%] mx-auto relative overflow-x-hidden">
     <div
         class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4"
@@ -39,82 +40,8 @@
             </select>
         </div>
     </div>
-
-    <!-- Carousel Navigation Buttons -->
-    <button
-        id="prev"
-        class="absolute top-1/2 -translate-y-1/2 size-10 p-2 bg-black rounded-full z-[1] {% if locale == 'ar'%}right-0{% else %}left-0{% endif %}"
-    >
-        <img
-            class="size-6 {% if locale == 'en'%}rotate-180{% endif %}"
-            src="{{ url_for('static', filename='icons/right-arrow.svg') }}"
-            alt="right arrow"
-        />
-    </button>
-    <button
-        id="next"
-        class="absolute top-1/2 -translate-y-1/2 size-10 p-2 bg-black rounded-full z-[1] {% if locale == 'ar'%}left-0{% else %}right-0{% endif %}"
-    >
-        <img
-            class="size-6 {% if locale == 'en'%}rotate-180{% endif %}"
-            src="{{ url_for('static', filename='icons/left-arrow.svg') }}"
-            alt="left arrow"
-        />
-    </button>
-
-    <!-- Course Carousel -->
-    {% if data %}
-    <div id="course-carousel" class="transition-all flex gap-6 sm:gap-14">
-        {% include 'partials/knowledge-hub/courses_cards-list.html' %}
-    </div>
-
-    <!-- No Courses Found -->
-    {% else %}
-    <div class="h-full grid place-items-center">
-        <span>{{ icons.research(cls='size-24 text-primary-600') }}</span>
-        <p class="text-slate-500 font-primary">{{ _("No courses found") }}</p>
-    </div>
-    {% endif %}
+    {% call carousel_macro.carousel( id='course-carousel', items=data, gap='6
+    sm:gap-14', perSlide=1, emptyState={ 'icon': icons.research(cls='size-24
+    text-primary-600'), 'text': _("No courses found") }, locale=locale ) %} {%
+    include 'partials/knowledge-hub/courses-cards.html' %} {% endcall %}
 </div>
-
-<!-- JavaScript for Carousel -->
-<script>
-    var next = document.getElementById('next')
-    var prev = document.getElementById('prev')
-    var carousel = document.getElementById('course-carousel')
-    var slides = carousel.children
-    var totalSlides = slides.length
-    var GAP = 32
-    var slideWidth = slides[0].clientWidth + GAP
-    var locale = document.documentElement.lang
-
-    var currentSlide = 0
-
-    // Update carousel position based on current slide
-    function updateCarousel() {
-        carousel.style.transform = `translateX(${locale === 'en' ? -currentSlide * slideWidth : currentSlide * slideWidth}px)`
-    }
-
-    // Next button click handler
-    next.addEventListener('click', () => {
-        if (currentSlide < totalSlides - 1) {
-            currentSlide++
-            updateCarousel()
-        }
-    })
-
-    // Previous button click handler
-    prev.addEventListener('click', () => {
-        if (currentSlide > 0) {
-            currentSlide--
-            updateCarousel()
-        }
-    })
-
-    // Update slide count after HTMX request
-    document.addEventListener('htmx:afterRequest', (evt) => {
-        if (evt.detail.elt.id === 'course-carousel') {
-            totalSlides = carousel.children.length
-        }
-    })
-</script>

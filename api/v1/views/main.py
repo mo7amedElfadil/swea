@@ -183,9 +183,7 @@ def filter_courses():
 
     courses_data["data"] = filtered_courses
 
-    return render_template(
-        "partials/knowledge-hub/courses_cards-list.html", **courses_data
-    )
+    return render_template("partials/knowledge-hub/courses-cards.html", **courses_data)
 
 
 @bp.route("/contact-us", methods=["POST"])

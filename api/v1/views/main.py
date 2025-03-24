@@ -88,7 +88,7 @@ def login():
     if not username or not password:
         return add_toast(make_response(), "error", _("Invalid credentials"))
 
-    if username != "a" or password != "a":
+    if username != "sawsan" or password != "sawsan":
         return add_toast(make_response(), "error", _("Invalid credentials"))
 
     # Successful login - Use HX-Redirect header for redirection

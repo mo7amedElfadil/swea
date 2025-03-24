@@ -110,11 +110,23 @@
 
     // Update carousel position
     function updateCarousel() {
-        carousel.style.transform = `translateX(${
-            locale === 'en'
-                ? -currentSlide * slideWidth * perSlide
-                : currentSlide * slideWidth * perSlide
-        }px)`
+        // var remainingSlides = Math.round(totalSlides / perSlide)
+        var shift = currentSlide * slideWidth * perSlide
+
+        if (locale === 'en') {
+            shift = -shift
+        }
+
+        if (currentSlide === totalSlides - 1 && perSlide > 1) {
+            shift = (totalSlides - perSlide) * slideWidth
+
+            if (locale === 'ar') {
+                shift = -shift
+            }
+        }
+
+        console.log({ shift })
+        carousel.style.transform = `translateX(${shift}px)`
         next.disabled = currentSlide === totalSlides - 1
         prev.disabled = currentSlide === 0
     }

@@ -1,5 +1,5 @@
 {% import "macros/icons.html" as icons %}
-<div class="p-4 w-[90%] relative overflow-x-hidden">
+<div class="w-max p-4 relative overflow-x-hidden">
     {% if not data %}
     <div class="h-full grid place-items-center">
         <span>{{ icons.research(cls='size-24') }}</span>
@@ -29,10 +29,10 @@
     </button>
 
     <!-- Research Cards -->
-    <div id="carousel" class="transition-all flex gap-6 sm:gap-14">
+    <div id="carousel" class="transition-all flex gap-6 sm:gap-10">
         {% for r in data %}
         <div
-            class="grid gap-3 grid-rows-[auto_auto_auto_auto_auto] shrink-0 w-[200px] min-h-[400px] bg-white shadow-xl rounded-xl p-4 sm:p-8 sm:w-[400px] sm:min-h-[500px] overflow-hidden transition-transform hover:shadow-2xl hover:-translate-y-1"
+            class="grid gap-3 grid-rows-[auto_auto_auto_auto_auto] shrink-0 w-full min-h-[400px] bg-white shadow-xl rounded-xl p-4 sm:p-8 sm:w-[400px] sm:min-h-[500px] overflow-hidden transition-transform hover:shadow-2xl hover:-translate-y-1"
         >
             <!-- Title -->
             <h3 class="text-lg sm:text-2xl font-bold capitalize">
@@ -98,16 +98,21 @@
     var prev = document.getElementById('prev')
     var carousel = document.getElementById('carousel')
     var slides = carousel.children
-    var totalSlides = slides.length
-    var GAP = 24 // match the gap (gap-6 = 24px)
-    var slideWidth = slides[0].clientWidth + GAP
+    var perSlide = 3
+    var totalSlides = Math.ceil(slides.length / perSlide)
+    var GAP = window.getComputedStyle(carousel).gap // match the gap (gap-6 = 24px)
+    var slideWidth = slides[0].clientWidth + parseInt(GAP)
     var locale = document.documentElement.lang
 
     var currentSlide = 0
 
     // Update carousel position
     function updateCarousel() {
-        carousel.style.transform = `translateX(${locale === 'en' ? -currentSlide * slideWidth : currentSlide * slideWidth}px)`
+        carousel.style.transform = `translateX(${
+            locale === 'en'
+                ? -currentSlide * slideWidth * perSlide
+                : currentSlide * slideWidth * perSlide
+        }px)`
         next.disabled = currentSlide === totalSlides - 1
         prev.disabled = currentSlide === 0
     }
@@ -131,7 +136,7 @@
     // Update slide count after HTMX request
     document.addEventListener('htmx:afterRequest', (evt) => {
         if (evt.detail.elt.id === 'carousel') {
-            totalSlides = carousel.children.length
+            totalSlides = Math.ceil(carousel.children.length / perSlide)
             updateCarousel()
         }
     })

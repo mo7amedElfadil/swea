@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-24 20:36+0400\n"
+"POT-Creation-Date: 2025-03-24 22:05+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -160,31 +160,31 @@ msgstr "تم حذف المشروع بنجاح"
 msgid "Email already subscribed"
 msgstr "البريد الإلكتروني مشترك بالفعل"
 
-#: api/v1/views/subscribers.py:26
+#: api/v1/views/subscribers.py:28
 msgid "Failed to subscribe"
 msgstr "فشل في الاشتراك"
 
-#: api/v1/views/subscribers.py:28
+#: api/v1/views/subscribers.py:30
 msgid "Thank you for subscribing"
 msgstr "شكرًا لك على الاشتراك"
 
-#: api/v1/views/subscribers.py:41
+#: api/v1/views/subscribers.py:43
 msgid "Failed to unsubscribe"
 msgstr "فشل في إلغاء الاشتراك"
 
-#: api/v1/views/subscribers.py:44
+#: api/v1/views/subscribers.py:46
 msgid "Unsubscribed successfully"
 msgstr "تم إلغاء الاشتراك بنجاح"
 
-#: api/v1/views/subscribers.py:83
+#: api/v1/views/subscribers.py:85
 msgid "Failed to send broadcast email"
 msgstr "فشل في إرسال البريد الإلكتروني الجماعي"
 
-#: api/v1/views/subscribers.py:96
+#: api/v1/views/subscribers.py:98
 msgid "Broadcast email sent successfully"
 msgstr "تم إرسال البريد الإلكتروني الجماعي بنجاح"
 
-#: api/v1/views/subscribers.py:111
+#: api/v1/views/subscribers.py:113
 msgid "Subscribers exported successfully"
 msgstr "تم تصدير المشتركين بنجاح"
 
@@ -435,28 +435,28 @@ msgstr "العودة إلى الصفحة الرئيسية"
 msgid "Go Back"
 msgstr "العودة للخلف"
 
-#: app/templates/project-page.html:33 app/templates/research-page.html:32
+#: app/templates/project-page.html:31 app/templates/research-page.html:30
 msgid "Author"
 msgstr "الكاتب"
 
-#: app/templates/project-page.html:39
+#: app/templates/project-page.html:37
 msgid "Status"
 msgstr "الحالة"
 
-#: app/templates/project-page.html:47 app/templates/research-page.html:38
+#: app/templates/project-page.html:45 app/templates/research-page.html:36
 msgid "Completion Date"
 msgstr "تاريخ الإنتهاء"
 
-#: app/templates/project-page.html:50 app/templates/research-page.html:41
+#: app/templates/project-page.html:47 app/templates/research-page.html:38
 msgid "Ongoing"
 msgstr "جاري"
 
-#: app/templates/project-page.html:110 app/templates/research-page.html:103
+#: app/templates/project-page.html:107
 msgid "Testimonials"
 msgstr "التوصيات"
 
-#: app/templates/project-page.html:171 app/templates/project-page.html:185
-#: app/templates/research-page.html:176 app/templates/research-page.html:190
+#: app/templates/project-page.html:168 app/templates/project-page.html:182
+#: app/templates/research-page.html:77 app/templates/research-page.html:91
 msgid "Link copied to clipboard!"
 msgstr "تم نسخ الرابط إلى الحافظة!"
 
@@ -474,10 +474,6 @@ msgstr ""
 #: app/templates/research-page.html:1
 msgid "Research"
 msgstr "البحوث"
-
-#: app/templates/research-page.html:78
-msgid "No content available for this research."
-msgstr "ﻻ يوجد محتوى متاح لهذا البحث."
 
 #: app/templates/single-news.html:29
 msgid "date"
@@ -900,6 +896,14 @@ msgstr "المزيد"
 msgid "Please log in to access this page"
 msgstr "الرجاء تسجيل الدخول للوصول إلى هذه الصفحة"
 
+#: utils/email_validation.py:40
+msgid "Disposable email addresses are not allowed"
+msgstr "لا يُسمح بالبريد الإلكتروني المؤقت. يرجى استخدام بريد صالح"
+
+#: utils/email_validation.py:43
+msgid "Email domain does not have valid MX records"
+msgstr "نطاق البريد الإلكتروني غير صالح. يرجى التحقق من البريد الإلكتروني"
+
 #~ msgid "mission description"
 #~ msgstr ""
 #~ "هدفنا هو إنشاء مساحة للنساء السودانيات"
@@ -1123,4 +1127,7 @@ msgstr "الرجاء تسجيل الدخول للوصول إلى هذه الصف
 
 #~ msgid "content"
 #~ msgstr "المحتوى"
+
+#~ msgid "No content available for this research."
+#~ msgstr "ﻻ يوجد محتوى متاح لهذا البحث."
 

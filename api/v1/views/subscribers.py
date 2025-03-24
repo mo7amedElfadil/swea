@@ -22,6 +22,8 @@ def subscribe():
             return add_toast(
                 make_response("", 409), "error", _("Email already subscribed")
             )
+        except ValueError as ve:
+            return add_toast(make_response("", 400), "error", str(ve))
         except Exception as e:
             return add_toast(make_response("", 400), "error", _("Failed to subscribe"))
 

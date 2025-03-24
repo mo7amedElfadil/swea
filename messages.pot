@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-24 20:36+0400\n"
+"POT-Creation-Date: 2025-03-24 22:05+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -158,31 +158,31 @@ msgstr ""
 msgid "Email already subscribed"
 msgstr ""
 
-#: api/v1/views/subscribers.py:26
+#: api/v1/views/subscribers.py:28
 msgid "Failed to subscribe"
 msgstr ""
 
-#: api/v1/views/subscribers.py:28
+#: api/v1/views/subscribers.py:30
 msgid "Thank you for subscribing"
 msgstr ""
 
-#: api/v1/views/subscribers.py:41
+#: api/v1/views/subscribers.py:43
 msgid "Failed to unsubscribe"
 msgstr ""
 
-#: api/v1/views/subscribers.py:44
+#: api/v1/views/subscribers.py:46
 msgid "Unsubscribed successfully"
 msgstr ""
 
-#: api/v1/views/subscribers.py:83
+#: api/v1/views/subscribers.py:85
 msgid "Failed to send broadcast email"
 msgstr ""
 
-#: api/v1/views/subscribers.py:96
+#: api/v1/views/subscribers.py:98
 msgid "Broadcast email sent successfully"
 msgstr ""
 
-#: api/v1/views/subscribers.py:111
+#: api/v1/views/subscribers.py:113
 msgid "Subscribers exported successfully"
 msgstr ""
 
@@ -409,28 +409,28 @@ msgstr ""
 msgid "Go Back"
 msgstr ""
 
-#: app/templates/project-page.html:33 app/templates/research-page.html:32
+#: app/templates/project-page.html:31 app/templates/research-page.html:30
 msgid "Author"
 msgstr ""
 
-#: app/templates/project-page.html:39
+#: app/templates/project-page.html:37
 msgid "Status"
 msgstr ""
 
-#: app/templates/project-page.html:47 app/templates/research-page.html:38
+#: app/templates/project-page.html:45 app/templates/research-page.html:36
 msgid "Completion Date"
 msgstr ""
 
-#: app/templates/project-page.html:50 app/templates/research-page.html:41
+#: app/templates/project-page.html:47 app/templates/research-page.html:38
 msgid "Ongoing"
 msgstr ""
 
-#: app/templates/project-page.html:110 app/templates/research-page.html:103
+#: app/templates/project-page.html:107
 msgid "Testimonials"
 msgstr ""
 
-#: app/templates/project-page.html:171 app/templates/project-page.html:185
-#: app/templates/research-page.html:176 app/templates/research-page.html:190
+#: app/templates/project-page.html:168 app/templates/project-page.html:182
+#: app/templates/research-page.html:77 app/templates/research-page.html:91
 msgid "Link copied to clipboard!"
 msgstr ""
 
@@ -445,10 +445,6 @@ msgstr ""
 
 #: app/templates/research-page.html:1
 msgid "Research"
-msgstr ""
-
-#: app/templates/research-page.html:78
-msgid "No content available for this research."
 msgstr ""
 
 #: app/templates/single-news.html:29
@@ -867,5 +863,13 @@ msgstr ""
 
 #: utils/auth_utils.py:42
 msgid "Please log in to access this page"
+msgstr ""
+
+#: utils/email_validation.py:40
+msgid "Disposable email addresses are not allowed"
+msgstr ""
+
+#: utils/email_validation.py:43
+msgid "Email domain does not have valid MX records"
 msgstr ""
 

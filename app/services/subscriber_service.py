@@ -19,6 +19,7 @@ from app.queue import QueueService
 from app.schemas.subscriber_schema import SubscriberSchema
 from config import Config
 from utils.db_utils import paginate_query
+from utils.email_validation import validate_email
 from utils.service_base import BaseService
 
 
@@ -71,6 +72,9 @@ class SubscriberService(BaseService):
             # Validate with schema
             self.validate_with_schema(processed_data)
 
+            # Validate email
+            validate_email(processed_data["email"])
+
             # Create the subscriber
             subscriber = Subscriber()
             try:
@@ -84,6 +88,8 @@ class SubscriberService(BaseService):
 
         except ValidationError as error:
             raise ValidationError(error.messages) from error
+        except ValueError as ve:
+            raise ValueError(ve) from ve
 
     def search_subscribers_by_email(self, email: str) -> Dict[str, Any]:
         """

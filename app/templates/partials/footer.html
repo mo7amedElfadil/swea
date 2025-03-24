@@ -1,49 +1,39 @@
 {% from "macros/spinner.html" import spinner %}
 {% import "macros/icons.html" as icons %}
-<footer class='min-h-60 px-4 py-8 {% if locale == 'ar' %}font-primary{%else%}font-secondary{%endif%}'>
-    <div class='container mx-auto grid gap-6'>
-        <img class='w-[150px]' src="{{url_for('static',filename='imgs/logo.png')}}" alt="logo"/>
-        <div class='space-y-2'>
-          <p class="{% if locale == 'en' %}text-white{% else %}text-black{% endif %}">{{_("footer caption")}}</p>
-            <form class='flex gap-2 sm:max-w-[50%]'
-                 hx-post='/subscribe'
-                 hx-trigger='submit'
-                 hx-on::after-request="this.reset()"
-                 hx-swap='none'
-                 hx-indicator="#fspinner"
-              >
-                <input
-                        id="email-input"
-                        class='flex-1 w-3/4 px-6 py-2 bg-slate-300 bg-opacity-90 rounded-full sm:w-auto'
-                        placeholder='{{_("form email")}}'
-                        type="email"
-                        name="email"
-                        value=""
-                        />
-                <button type='submit' class='py-3 px-4 bg-white rounded-full flex items-center justify-center'>
-                    {{spinner(id="fspinner")}}
-                  <span>
-                      {{_("subscribe")}}
-                  </span>
-                </button>
-            </form>
-        </div>
-        <div class='flex items-center gap-2'>
-          {% set icon_color = "#fff" if locale == 'en' else "#000" %}
-            <a href="#" target="_blank">
-              {{ icons.facebook(clr=icon_color) }}
-            </a>
-            <a href="#" target="_blank">
-              {{ icons.linkedin(clr=icon_color) }}
-            </a>
-            <a href="#" target="_blank">
-              {{ icons.x(clr=icon_color) }}
-            </a>
-            <a href="#" target="_blank">
-              {{ icons.mail(clr=icon_color) }}
-            </a>
-        </div>
-        <hr>
-        <span class='mx-auto'>&copy; 2025 SWEA Inc</span>
+<footer class='min-h-60 px-4 py-8 {% if locale == ' ar' %}font-primary{%else%}font-secondary{%endif%}'>
+  <div class='container mx-auto grid gap-6'>
+    <img class='w-[150px]' src="{{url_for('static',filename='imgs/logo.png')}}" alt="logo" />
+    <div class='space-y-2'>
+      <p class="{% if locale == 'en' %}text-white{% else %}text-black{% endif %}">{{_("footer caption")}}</p>
+      <form class='flex gap-2 sm:max-w-[50%]' hx-post='/subscribe' hx-trigger='submit'
+        hx-on::after-request="this.reset()" hx-swap='none' hx-indicator="#fspinner">
+        <input required id="email-input"
+          class='flex-1 w-3/4 px-6 py-2 bg-slate-300 bg-opacity-90 rounded-full sm:w-auto'
+          placeholder='{{_("form email")}}' type="email" name="email" value="" />
+        <button type='submit' class='py-3 px-4 bg-white rounded-full flex items-center justify-center'>
+          {{spinner(id="fspinner")}}
+          <span>
+            {{_("subscribe")}}
+          </span>
+        </button>
+      </form>
     </div>
+    <div class='flex items-center gap-2'>
+      {% set icon_color = "#fff" if locale == 'en' else "#000" %}
+      <a href="#" target="_blank">
+        {{ icons.facebook(clr=icon_color) }}
+      </a>
+      <a href="#" target="_blank">
+        {{ icons.linkedin(clr=icon_color) }}
+      </a>
+      <a href="#" target="_blank">
+        {{ icons.x(clr=icon_color) }}
+      </a>
+      <a href="#" target="_blank">
+        {{ icons.mail(clr=icon_color) }}
+      </a>
+    </div>
+    <hr>
+    <span class='mx-auto'>&copy; 2025 SWEA Inc</span>
+  </div>
 </footer>

@@ -9,188 +9,96 @@ locale='en', responsive=true) %}
     {% else %}
     <!-- Navigation Buttons -->
     <button
-        id="prev-{{ id }}"
-        class="absolute top-1/2 -translate-y-1/2 size-10 p-2 bg-black rounded-full z-[1] {% if locale == 'ar'%}right-0{% else %}left-0{% endif %} disabled:opacity-50"
-        aria-label="Previous slides"
+        id="prev"
+        class="absolute top-1/2 -translate-y-1/2 size-10 p-2 bg-black rounded-full z-[1] {% if locale == 'ar'%}right-0{% else %}left-0{% endif %}"
     >
         <img
             class="size-6 {% if locale == 'en'%}rotate-180{% endif %}"
             src="{{ url_for('static', filename='icons/right-arrow.svg') }}"
-            alt="Previous"
+            alt="right arrow"
         />
     </button>
     <button
-        id="next-{{ id }}"
-        class="absolute top-1/2 -translate-y-1/2 size-10 p-2 bg-black rounded-full z-[1] {% if locale == 'ar'%}left-0{% else %}right-0{% endif %} disabled:opacity-50"
-        aria-label="Next slides"
+        id="next"
+        class="absolute top-1/2 -translate-y-1/2 size-10 p-2 bg-black rounded-full z-[1] {% if locale == 'ar'%}left-0{% else %}right-0{% endif %}"
     >
         <img
             class="size-6 {% if locale == 'en'%}rotate-180{% endif %}"
             src="{{ url_for('static', filename='icons/left-arrow.svg') }}"
-            alt="Next"
+            alt="left arrow"
         />
     </button>
 
-    <!-- Carousel Items -->
-    <div id="{{ id }}" class="transition-all flex gap-{{ gap }}">
-        {{ caller() }}
+    <!-- Research Cards -->
+    <div id="carousel" class="transition-all flex gap-6 sm:gap-10">
+        {% for item in data %}
+        <div
+            class="grid gap-3 grid-rows-[auto_auto_auto_auto_auto] shrink-0 w-full min-h-[400px] bg-white shadow-xl rounded-xl p-4 sm:p-8 sm:w-[400px] sm:min-h-[500px] overflow-hidden transition-transform hover:shadow-2xl hover:-translate-y-1"
+        >
+            {% include "partials/cards/"~card~".html" %}
+        </div>
+        {% endfor %}
     </div>
     {% endif %}
 </div>
-
-{% if items and items|length > 0 %}
 <script>
-    (function() {
-        var id = "{{ id }}";
-        var defaultPerSlide = {{ perSlide }};
-        var isResponsive = {{ 'true' if responsive else 'false' }};
-        var next = document.getElementById('next-' + id);
-        var prev = document.getElementById('prev-' + id);
-        var carousel = document.getElementById(id);
+    var perSlide = 1
+    if (window.matchMedia('(min-width: 1000px)').matches) {
+        perSlide = 3
+    }
+    var next = document.getElementById('next')
+    var prev = document.getElementById('prev')
+    var carousel = document.getElementById('carousel')
+    var slides = carousel.children
+    var totalSlides = Math.ceil(slides.length / perSlide)
+    var GAP = window.getComputedStyle(carousel).gap
+    var slideWidth = slides[0].clientWidth + parseInt(GAP)
+    var currentSlide = 0
+    var locale = document.documentElement.lang
 
-        if (!carousel || !carousel.children.length) {
-            console.warn("Carousel with id '" + id + "' has no items");
-            return;
+    // Update carousel position
+    function updateCarousel() {
+        var shift = currentSlide * slideWidth * perSlide
+        if (locale === 'en') {
+            shift = -shift
         }
-
-        var slides = carousel.children;
-        var perSlide = defaultPerSlide;
-        var scrollBy = 1; // Always scroll by 1 item on small screens
-        var totalItems = slides.length;
-        var GAPStyle = window.getComputedStyle(carousel).gap;
-        var GAP = 0;
-        try {
-            GAP = parseInt(GAPStyle);
-        } catch (e) {
-            console.warn("Could not parse gap for carousel '" + id + "', defaulting to 0");
-        }
-
-        var slideWidth = slides[0].clientWidth + GAP;
-        var currentItem = 0; // Track by item index instead of slide index
-        var locale = "{{ locale }}";
-        var isSmallScreen = !window.matchMedia('(min-width: 1000px)').matches;
-
-        // Update button states visually
-        function updateButtonStates() {
-            next.disabled = currentItem >= totalItems - (isSmallScreen ? 1 : perSlide);
-            prev.disabled = currentItem <= 0;
-
-            if (next.disabled) {
-                next.setAttribute('aria-disabled', 'true');
-                next.classList.add('opacity-50');
-            } else {
-                next.setAttribute('aria-disabled', 'false');
-                next.classList.remove('opacity-50');
-            }
-
-            if (prev.disabled) {
-                prev.setAttribute('aria-disabled', 'true');
-                prev.classList.add('opacity-50');
-            } else {
-                prev.setAttribute('aria-disabled', 'false');
-                prev.classList.remove('opacity-50');
+        if (currentSlide === totalSlides - 1 && perSlide > 1) {
+            shift = (totalSlides - perSlide) * slideWidth
+            if (locale === 'ar') {
+                shift = -shift
             }
         }
 
-        // Update carousel position
-        function updateCarousel() {
-            var shift = currentItem * slideWidth;
+        carousel.style.transform = `translateX(${shift}px)`
 
-            // Apply direction based on locale
-            if (locale === 'en') {
-                shift = -shift;
-            }
+        next.disabled = currentSlide === totalSlides - 1
+        prev.disabled = currentSlide === 0
+    }
 
-            // Make sure we don't scroll past the end
-            if (!isSmallScreen && currentItem > totalItems - perSlide) {
-                currentItem = totalItems - perSlide;
-                shift = currentItem * slideWidth;
-                if (locale === 'en') {
-                    shift = -shift;
-                }
-            }
-
-            carousel.style.transform = `translateX(${shift}px)`;
-            updateButtonStates();
+    // Next button click handler
+    next.addEventListener('click', () => {
+        if (currentSlide < totalSlides - 1) {
+            currentSlide++
+            updateCarousel()
         }
+    })
 
-        // Next button click handler
-        next.addEventListener('click', () => {
-            // On small screens, scroll one by one
-            // On large screens, scroll by perSlide unless near the end
-            if (isSmallScreen) {
-                if (currentItem < totalItems - 1) {
-                    currentItem++;
-                }
-            } else {
-                // On larger screens, we need to handle the last slide specially
-                var remainingItems = totalItems - currentItem - perSlide;
-                if (remainingItems > 0) {
-                    currentItem += scrollBy;
-                    // Don't scroll past the point where perSlide items are visible
-                    if (currentItem > totalItems - perSlide) {
-                        currentItem = totalItems - perSlide;
-                    }
-                }
-            }
-            updateCarousel();
-        });
-
-        // Previous button click handler
-        prev.addEventListener('click', () => {
-            if (currentItem > 0) {
-                // On small screens, scroll one by one
-                // On large screens, scroll by perSlide
-                currentItem -= isSmallScreen ? 1 : scrollBy;
-                if (currentItem < 0) currentItem = 0;
-                updateCarousel();
-            }
-        });
-
-        // Update carousel after HTMX request
-        document.addEventListener('htmx:afterRequest', (evt) => {
-            if (evt.detail.elt.id === id) {
-                recalculateCarousel();
-            }
-        });
-
-        // Central function to recalculate carousel parameters
-        function recalculateCarousel() {
-            isSmallScreen = !window.matchMedia('(min-width: 1000px)').matches;
-            totalItems = slides.length;
-
-            // Update perSlide based on viewport width if responsive
-            if (isResponsive && !isSmallScreen) {
-                perSlide = Math.min(3, totalItems);
-                scrollBy = 3; // Scroll by full page on large screens
-            } else {
-                perSlide = isSmallScreen ? 1 : defaultPerSlide;
-                scrollBy = 1; // Scroll one by one on small screens
-            }
-
-            // Reset current item if needed
-            if (currentItem >= totalItems) {
-                currentItem = Math.max(0, totalItems - 1);
-            }
-
-            // Update slideWidth
-            try {
-                slideWidth = slides[0].clientWidth + parseInt(window.getComputedStyle(carousel).gap);
-            } catch (e) {
-                slideWidth = slides[0].clientWidth;
-            }
-
-            // Update carousel position
-            updateCarousel();
+    // Previous button click handler
+    prev.addEventListener('click', () => {
+        if (currentSlide > 0) {
+            currentSlide--
+            updateCarousel()
         }
+    })
 
-        // Handle responsive behavior
-        if (isResponsive) {
-            window.addEventListener('resize', recalculateCarousel);
+    // Update slide count after HTMX request
+    document.addEventListener('htmx:afterRequest', (evt) => {
+        if (evt.detail.elt.id === 'carousel') {
+            totalSlides = Math.ceil(carousel.children.length / perSlide)
+            updateCarousel()
         }
+    })
 
-        // Initialize carousel
-        recalculateCarousel();
-    })();
+    updateCarousel()
 </script>
-{% endif %} {% endmacro %}
+{% endmacro %}

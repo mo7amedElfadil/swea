@@ -1,5 +1,2 @@
-{% import "macros/carousel.html" as carousel_macro %} {% import
-"macros/icons.html" as icons %} {% call carousel_macro.carousel(
-id='research-carousel', items=data, gap='6', perSlide=3, emptyState={ 'icon':
-icons.research(cls='size-24'), 'text': _("empty research") }, locale=locale ) %}
-{% include 'partials/knowledge-hub/researches-cards.html' %} {% endcall %}
+{% from "macros/carousel.html" import carousel %} {{ carousel( data=data,
+locale=locale, card="research", ) }}

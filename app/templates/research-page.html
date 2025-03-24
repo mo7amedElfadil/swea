@@ -54,6 +54,16 @@ block content %}
                     </div>
                 </div>
             </div>
+            <!-- Action buttons -->
+            <div class="flex justify-end gap-1 print:hidden">
+                <button id="shareButton" class="flex items-center gap-2 hover:bg-primary-600 text-white px-4 py-2 rounded-lg transition-colors">
+                  <img src="{{ url_for('static', filename='icons/share.svg') }}" alt="Share" class="h-6 w-6" />
+                </button>
+                <button id="printButton" class="flex items-center gap-2 hover:bg-secondary-600 text-white px-4 py-2 rounded-lg transition-colors">
+                  <img src="{{ url_for('static', filename='icons/printer.svg')
+                  }}" alt="Print" class="h-6 w-6" />
+                </button>
+            </div>
         </div>
     </div>
 
@@ -151,4 +161,42 @@ block content %}
     </div>
     {% endif %}
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const shareButton = document.getElementById('shareButton');
+    const printButton = document.getElementById('printButton');
+    
+    shareButton.addEventListener('click', function() {
+        const url = window.location.href;
+        
+        // Use Clipboard API to copy the URL
+        navigator.clipboard.writeText(url).then(function() {
+            window.toastManager.showToast({
+                type: 'success',
+                message: '{{ _("Link copied to clipboard!") }}',
+                duration: 3000
+            });
+        }).catch(function() {
+            // Fallback for older browsers
+            const tempInput = document.createElement('input');
+            document.body.appendChild(tempInput);
+            tempInput.value = url;
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            
+            window.toastManager.showToast({
+                type: 'success',
+                message: '{{ _("Link copied to clipboard!") }}',
+                duration: 3000
+            });
+        });
+    });
+    
+    // Print button functionality
+    printButton.addEventListener('click', function() {
+        window.print();
+    });
+});
+</script>
 {% endblock %}

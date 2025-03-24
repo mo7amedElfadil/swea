@@ -1,9 +1,9 @@
 {% macro carousel(data=[], locale='en', card='') %}
 <div class="w-full p-4 relative overflow-x-hidden">
-    {% if not items or items|length == 0 %}
+    {% if not data %}
     <div class="h-full grid place-items-center">
-        <span>{{ emptyState.icon|safe }}</span>
-        <p class="text-slate-500">{{ emptyState.text }}</p>
+        <span>{{ icons.research(cls='size-24') }}</span>
+        <p class="text-slate-500">{{ _("empty research") }}</p>
     </div>
     {% else %}
     <!-- Navigation Buttons -->
@@ -58,17 +58,11 @@
     // Update carousel position
     function updateCarousel() {
         var shift = currentSlide * slideWidth * perSlide
-        if (locale === 'en') {
-            shift = -shift
-        }
         if (currentSlide === totalSlides - 1 && perSlide > 1) {
-            shift = (totalSlides - perSlide) * slideWidth
-            if (locale === 'ar') {
-                shift = -shift
-            }
+            shift = Math.abs(totalSlides - perSlide) * slideWidth
         }
 
-        carousel.style.transform = `translateX(${shift}px)`
+        carousel.style.transform = `translateX(${locale === 'en' ? -shift : shift}px)`
 
         next.disabled = currentSlide === totalSlides - 1
         prev.disabled = currentSlide === 0

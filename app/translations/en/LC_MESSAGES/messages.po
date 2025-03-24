@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-24 09:08+0400\n"
+"POT-Creation-Date: 2025-03-24 11:48+0400\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -60,7 +60,7 @@ msgstr "Podcast created successfully"
 
 #: api/v1/views/knowledge_hub.py:213
 msgid "An error occurred while updating the podcast"
-msgstr "An error occurred while creating the podcast"
+msgstr "An error occurred while updating the podcast"
 
 #: api/v1/views/knowledge_hub.py:220
 msgid "Podcast updated successfully"
@@ -558,7 +558,7 @@ msgstr "Next"
 
 #: app/templates/macros/tab_content.html:2
 msgid "search_placeholder"
-msgstr "search"
+msgstr "Search"
 
 #: app/templates/macros/tab_content.html:26
 msgid "Export to Excel"
@@ -582,7 +582,7 @@ msgstr "Stay informed by <b>subscribing</b> to our newsletter!"
 
 #: app/templates/partials/footer.html:26
 msgid "subscribe"
-msgstr "subscribe"
+msgstr "Subscribe"
 
 #: app/templates/partials/header.html:27
 msgid "team"

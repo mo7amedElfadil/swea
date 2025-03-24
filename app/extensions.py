@@ -2,6 +2,8 @@
 like database connections, session, caching, etc.
 """
 
+import os
+
 from flask import session as flask_session
 from flask_caching import Cache
 from flask_migrate import Migrate
@@ -41,3 +43,23 @@ def get_locale() -> str:
     lang = flask_session.get("lang", Config.BABEL_DEFAULT_LOCALE)
     return lang
 
+
+def load_disposable_domains() -> set:
+    """Load disposable email domains from a file into a set."""
+    disposable_domains = set()
+    if not os.path.exists(Config.DISPOSABLE_EMAIL_FILE):
+        raise FileNotFoundError(
+            f"Disposable email blocklist not found at {Config.DISPOSABLE_EMAIL_FILE}"
+        )
+
+    with open(Config.DISPOSABLE_EMAIL_FILE, "r", encoding="utf-8") as file:
+        for line in file:
+            domain = line.strip().lower()
+            if domain:
+                disposable_domains.add(domain)
+
+    return disposable_domains
+
+
+# Global set for quick lookup
+DISPOSABLE_DOMAINS = load_disposable_domains()

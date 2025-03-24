@@ -1,12 +1,12 @@
 {% extends "base.html" %} {% block title %}Project {{ project.title[locale] }}{%
 endblock %} 
 {% block content %}
-<div class="container mx-auto px-4">
+<div class="container mx-auto px-4 mt-16 md:mt-0">
     <!-- Hero Section -->
     <div class="relative mb-8">
         <!-- Hero Image -->
         {% if project.hero_image %}
-        <div class="w-full h-96 overflow-hidden">
+        <div class="w-full aspect-[16/9] min-h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden">
             <img
                 src="{{ url_for('static', filename=project.hero_image) }}"
                 alt="{{ project.title[locale] }}"
@@ -15,26 +15,24 @@ endblock %}
             />
         </div>
         {% else %}
-        <div class="w-full h-96 bg-secondary-200"></div>
+        <div class="w-full aspect-[16/9] bg-secondary-200"></div>
         {% endif %}
-
+    
         <!-- Blurred Overlay with Project Details -->
-        <div
-            class="absolute inset-x-0 bottom-0 bg-black bg-opacity-50 backdrop-blur-sm p-6"
-        >
+        <div class="absolute inset-x-0 bottom-0 bg-black bg-opacity-50 backdrop-blur-lg p-4 sm:p-6">
             <div class="max-w-4xl mx-auto text-white">
-                <h1 class="text-4xl font-bold mb-4">
+                <h1 class="text-2xl sm:text-4xl font-bold mb-2 sm:mb-4 text-center sm:text-left">
                     {{ project.title[locale] }}
                 </h1>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
                     <div>
-                        <p class="text-lg">
+                        <p class="text-sm sm:text-lg">
                             <span class="font-semibold">
                                 {{ _('Author') }}:
                             </span>
                             {{ project.author.name[locale] }}
                         </p>
-                        <p class="text-lg">
+                        <p class="text-sm sm:text-lg">
                             <span class="font-semibold">
                                 {{ _('Status') }}:
                             </span>
@@ -42,17 +40,16 @@ endblock %}
                         </p>
                     </div>
                     <div>
-                        <p class="text-lg">
+                        <p class="text-sm sm:text-lg">
                             <span class="font-semibold">
                                 {{ _('Completion Date') }}:
                             </span>
-                            {{ project.date_of_completion.strftime('%Y-%m-%d')
-                            if project.date_of_completion else _('Ongoing') }}
+                            {{ project.date_of_completion.strftime('%Y-%m-%d') if project.date_of_completion else _('Ongoing') }}
                         </p>
                         <div class="flex flex-wrap gap-2 mt-2">
                             {% for tag in project.tags[locale].split(',') %}
                             <span
-                                class="bg-primary-500 text-white px-3 py-1 rounded-full text-sm"
+                                class="bg-primary-500 text-white px-3 py-1 rounded-full text-xs sm:text-sm"
                             >
                                 {{ tag }}
                             </span>
@@ -61,14 +58,14 @@ endblock %}
                     </div>
                 </div>
             </div>
+    
             <!-- Action buttons -->
-            <div class="flex justify-end gap-1 print:hidden">
-                <button id="shareButton" class="flex items-center gap-2 hover:bg-primary-600 text-white px-4 py-2 rounded-lg transition-colors">
-                  <img src="{{ url_for('static', filename='icons/share.svg') }}" alt="Share" class="h-6 w-6" />
+            <div class="flex justify-center sm:justify-end gap-2 mt-2 sm:mt-0 print:hidden">
+                <button id="shareButton" class="flex items-center gap-2 hover:bg-primary-600 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-colors">
+                    <img src="{{ url_for('static', filename='icons/share.svg') }}" alt="Share" class="h-5 sm:h-6 w-5 sm:w-6" />
                 </button>
-                <button id="printButton" class="flex items-center gap-2 hover:bg-secondary-600 text-white px-4 py-2 rounded-lg transition-colors">
-                  <img src="{{ url_for('static', filename='icons/printer.svg')
-                  }}" alt="Print" class="h-6 w-6" />
+                <button id="printButton" class="flex items-center gap-2 hover:bg-secondary-600 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-colors">
+                    <img src="{{ url_for('static', filename='icons/printer.svg') }}" alt="Print" class="h-5 sm:h-6 w-5 sm:w-6" />
                 </button>
             </div>
         </div>

@@ -90,3 +90,6 @@ class Config:
         "LENIENT": ["30 per minute", "300 per hour"],
         "API": ["60 per minute", "1000 per hour"],
     }
+
+    # Email validation configuration
+    DISPOSABLE_EMAIL_FILE = "utils/disposable_email_blocklist.conf"

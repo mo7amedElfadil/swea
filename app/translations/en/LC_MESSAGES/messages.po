@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-24 11:48+0400\n"
+"POT-Creation-Date: 2025-03-24 22:05+0400\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -159,31 +159,31 @@ msgstr "Project deleted successfully"
 msgid "Email already subscribed"
 msgstr "Email already subscribed"
 
-#: api/v1/views/subscribers.py:26
+#: api/v1/views/subscribers.py:28
 msgid "Failed to subscribe"
 msgstr "Failed to subscribe"
 
-#: api/v1/views/subscribers.py:28
+#: api/v1/views/subscribers.py:30
 msgid "Thank you for subscribing"
 msgstr "Thank you for subscribing"
 
-#: api/v1/views/subscribers.py:41
+#: api/v1/views/subscribers.py:43
 msgid "Failed to unsubscribe"
 msgstr "Failed to unsubscribe"
 
-#: api/v1/views/subscribers.py:44
+#: api/v1/views/subscribers.py:46
 msgid "Unsubscribed successfully"
 msgstr "Unsubscribed successfully"
 
-#: api/v1/views/subscribers.py:83
+#: api/v1/views/subscribers.py:85
 msgid "Failed to send broadcast email"
 msgstr "Failed to send broadcast email"
 
-#: api/v1/views/subscribers.py:96
+#: api/v1/views/subscribers.py:98
 msgid "Broadcast email sent successfully"
 msgstr "Broadcast email sent successfully"
 
-#: api/v1/views/subscribers.py:111
+#: api/v1/views/subscribers.py:113
 msgid "Subscribers exported successfully"
 msgstr "Subscribers exported successfully"
 
@@ -440,35 +440,35 @@ msgstr "Return Home"
 msgid "Go Back"
 msgstr "Go Back"
 
-#: app/templates/project-page.html:33 app/templates/research-page.html:32
+#: app/templates/project-page.html:31 app/templates/research-page.html:30
 msgid "Author"
 msgstr "Author"
 
-#: app/templates/project-page.html:39
+#: app/templates/project-page.html:37
 msgid "Status"
 msgstr "Project Status"
 
-#: app/templates/project-page.html:47 app/templates/research-page.html:38
+#: app/templates/project-page.html:45 app/templates/research-page.html:36
 msgid "Completion Date"
 msgstr "Completion Date"
 
-#: app/templates/project-page.html:50 app/templates/research-page.html:41
+#: app/templates/project-page.html:47 app/templates/research-page.html:38
 msgid "Ongoing"
 msgstr "Ongoing"
 
-#: app/templates/project-page.html:110 app/templates/research-page.html:103
+#: app/templates/project-page.html:107
 msgid "Testimonials"
 msgstr "Testimonials"
 
-#: app/templates/project-page.html:171 app/templates/project-page.html:185
-#: app/templates/research-page.html:176 app/templates/research-page.html:190
+#: app/templates/project-page.html:168 app/templates/project-page.html:182
+#: app/templates/research-page.html:77 app/templates/research-page.html:91
 msgid "Link copied to clipboard!"
 msgstr "Link copied to clipboard!"
 
 #: app/templates/partials/dashboard/projects.html:4
 #: app/templates/partials/header.html:34 app/templates/projects.html:11
 msgid "projects"
-msgstr "projects"
+msgstr "Projects"
 
 #: app/templates/projects.html:13
 msgid "project hero desc"
@@ -480,10 +480,6 @@ msgstr ""
 #: app/templates/research-page.html:1
 msgid "Research"
 msgstr "Research"
-
-#: app/templates/research-page.html:78
-msgid "No content available for this research."
-msgstr "No content available for this research."
 
 #: app/templates/single-news.html:29
 msgid "date"
@@ -560,19 +556,19 @@ msgstr "Next"
 msgid "search_placeholder"
 msgstr "Search"
 
-#: app/templates/macros/tab_content.html:26
+#: app/templates/macros/tab_content.html:30
 msgid "Export to Excel"
 msgstr "Export to Excel"
 
-#: app/templates/macros/tab_content.html:77
+#: app/templates/macros/tab_content.html:81
 msgid "all_projects"
 msgstr "All Projects"
 
-#: app/templates/macros/tab_content.html:78
+#: app/templates/macros/tab_content.html:82
 msgid "ongoing"
 msgstr "Ongoing"
 
-#: app/templates/macros/tab_content.html:79
+#: app/templates/macros/tab_content.html:83
 msgid "completed_projects"
 msgstr "Completed Projects"
 
@@ -649,7 +645,7 @@ msgstr "Create"
 #: app/templates/partials/dashboard/knowledge_hub/researches-list.html:40
 #: app/templates/partials/dashboard/news-list.html:21
 #: app/templates/partials/dashboard/project-list.html:50
-#: app/templates/partials/dashboard/team-list.html:52
+#: app/templates/partials/dashboard/team-list.html:54
 msgid "edit"
 msgstr "Edit"
 
@@ -658,7 +654,7 @@ msgstr "Edit"
 #: app/templates/partials/dashboard/knowledge_hub/researches-list.html:49
 #: app/templates/partials/dashboard/news-list.html:29
 #: app/templates/partials/dashboard/project-list.html:59
-#: app/templates/partials/dashboard/team-list.html:61
+#: app/templates/partials/dashboard/team-list.html:63
 msgid "delete"
 msgstr "Delete"
 
@@ -778,7 +774,7 @@ msgstr "No subscribers yet"
 
 #: app/templates/partials/dashboard/subscribers.html:4
 msgid "subscribers"
-msgstr "subscribe"
+msgstr "Subscribers"
 
 #: app/templates/partials/dashboard/subscribers.html:5
 msgid "broadcast_email"
@@ -804,11 +800,11 @@ msgstr "Email Body"
 msgid "send"
 msgstr "Send"
 
-#: app/templates/partials/dashboard/team-list.html:57
+#: app/templates/partials/dashboard/team-list.html:59
 msgid "confirm_delete_team_member"
 msgstr "Are you sure you want to delete this team member?"
 
-#: app/templates/partials/dashboard/team-list.html:72
+#: app/templates/partials/dashboard/team-list.html:74
 msgid "no_team_members_found"
 msgstr "No team members found"
 
@@ -905,6 +901,14 @@ msgstr "Learn more"
 #: utils/auth_utils.py:42
 msgid "Please log in to access this page"
 msgstr "Please log in to access this page"
+
+#: utils/email_validation.py:40
+msgid "Disposable email addresses are not allowed"
+msgstr "Temporary emails are not allowed. Please use a valid email"
+
+#: utils/email_validation.py:43
+msgid "Email domain does not have valid MX records"
+msgstr "Invalid email domain. Please check your email"
 
 #~ msgid "mission description"
 #~ msgstr ""
@@ -1135,4 +1139,7 @@ msgstr "Please log in to access this page"
 
 #~ msgid "content"
 #~ msgstr "News Content"
+
+#~ msgid "No content available for this research."
+#~ msgstr "No content available for this research."
 

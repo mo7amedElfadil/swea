@@ -1,16 +1,27 @@
-{% for course in data %}
+{% for item in data %}
 <div
-    class="bg-white shadow-lg rounded-xl overflow-hidden transition-all transform hover:shadow-2xl hover:-translate-y-1 shrink-0 w-[300px] sm:w-[350px] md:w-[400px]"
-    data-course-uuid="{{ course.uuid }}"
-    data-tags="{{ course.tags[locale] | join(',') }}"
+    class="grid gap-3 grid-rows-[auto_auto_auto_auto_auto] shrink-0 w-full min-h-[400px] bg-white shadow-xl rounded-xl p-4 sm:p-8 sm:w-[400px] sm:min-h-[500px] overflow-hidden transition-transform hover:shadow-2xl hover:-translate-y-1"
+    {%
+    if
+    loop.last
+    and
+    data.next_page
+    %}
+    hx-get="/knowledge-hub/q=courses?page={{ data.next_page }}"
+    hx-target="#carousel"
+    hx-trigger="intersect once"
+    hx-swap="afterend"
+    {%
+    endif
+    %}
 >
     <!-- Course Image -->
     <div class="relative h-48 overflow-hidden">
         <img
             class="w-full h-full object-cover"
-            src="{{ url_for('static', filename=course.image if course.image) }}"
+            src="{{ url_for('static', filename=item.image if item.image) }}"
             onerror="this.src='http://i.imgur.com/hfM1J8s.png'"
-            alt="{{ course.title[locale] }}"
+            alt="{{ item.title[locale] }}"
         />
         <!-- Overlay for better text readability -->
         <div
@@ -22,22 +33,22 @@
     <div class="p-6">
         <!-- Title -->
         <h3 class="text-xl font-bold font-primary text-primary-900">
-            {{ course.title[locale] }}
+            {{ item.title[locale] }}
         </h3>
 
         <!-- Date -->
         <p class="text-sm text-secondary-600 mt-2">
-            {{ course.date.strftime('%b %d, %Y') }}
+            {{ item.date.strftime('%b %d, %Y') }}
         </p>
 
         <!-- Description -->
         <p class="text-sm text-secondary-700 mt-4 leading-relaxed">
-            {{ course.description[locale] | truncate(50) }}
+            {{ item.description[locale] | truncate(50) }}
         </p>
 
         <!-- Tags -->
         <div class="flex flex-wrap gap-2 mt-4">
-            {% for tag in course.tags[locale] %}
+            {% for tag in item.tags[locale] %}
             <span
                 class="bg-secondary-100 text-secondary-900 text-xs px-3 py-1.5 rounded-full font-secondary hover:bg-secondary-200 transition-colors"
             >
@@ -49,7 +60,7 @@
         <!-- Watch Now Button -->
         <div class="flex items-center mt-6">
             <a
-                href="{{ course.url }}"
+                href="{{ item.url }}"
                 target="_blank"
                 class="inline-flex items-center gap-2 text-primary-500 hover:text-primary-600 transition-colors"
             >

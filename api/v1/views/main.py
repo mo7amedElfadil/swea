@@ -137,6 +137,7 @@ def dashboard():
 def knowledge_hub():
     """knowledge-hub page"""
     tab_query = request.args.get("q", "research")
+    page = request.args.get("page", type=int, default=1)
 
     tab_content = dict(
         research=dict(
@@ -151,7 +152,7 @@ def knowledge_hub():
     )
 
     data = tab_content.get(tab_query, {}).get("data", lambda: {})(
-        sort="created_at DESC"
+        sort="created_at DESC", page=page
     )
     template = tab_content.get(tab_query, {}).get("temp")
 
@@ -183,7 +184,7 @@ def filter_courses():
 
     courses_data["data"] = filtered_courses
 
-    return render_template("partials/knowledge-hub/courses-cards.html", **courses_data)
+    return render_template("partials/cards/course.html", **courses_data)
 
 
 @bp.route("/contact-us", methods=["POST"])

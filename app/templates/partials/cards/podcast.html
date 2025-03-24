@@ -1,0 +1,51 @@
+{% from "macros/soundcloud.html" import soundcloud_embed %} {% for item in data
+%}
+<div
+    class="grid gap-3 grid-rows-[auto_auto_auto_auto_auto] shrink-0 w-full min-h-[400px] bg-white shadow-xl rounded-xl p-4 sm:p-8 sm:w-[400px] sm:min-h-[500px] overflow-hidden transition-transform hover:shadow-2xl hover:-translate-y-1"
+    {%
+    if
+    loop.last
+    and
+    data.next_page
+    %}
+    hx-get="/knowledge-hub/q=podcasts?page={{ data.next_page }}"
+    hx-target="#carousel"
+    hx-trigger="intersect once"
+    hx-swap="afterend"
+    {%
+    endif
+    %}
+>
+    <!-- SoundCloud Embed -->
+    <div class="p-4 bg-gradient-to-r from-primary-50 to-secondary-50">
+        {{ soundcloud_embed(share_link=item.url) }}
+    </div>
+
+    <!-- Podcast Details -->
+    <div class="p-6">
+        <!-- Title -->
+        <h3 class="text-2xl font-bold font-primary text-primary-900">
+            {{ item.title[locale] }}
+        </h3>
+
+        <!-- Date -->
+        <p class="text-sm text-secondary-600 mt-2">{{ item.date }}</p>
+
+        <!-- Description -->
+        <p class="text-sm text-secondary-700 mt-4 leading-relaxed">
+            {{ item.description[locale] | truncate(120) }}
+        </p>
+
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2 mt-4">
+            {% for tag in item.tags[locale] %}
+            <span
+                class="bg-secondary-100 text-secondary-900 text-xs px-3 py-1.5 rounded-full font-secondary hover:bg-secondary-200 transition-colors"
+            >
+                {{ tag }}
+            </span>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endfor %}

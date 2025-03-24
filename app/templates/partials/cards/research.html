@@ -1,50 +1,69 @@
-<!-- Title -->
-<h3 class="text-lg sm:text-2xl font-bold capitalize">
-    {{ item.title[locale] }}
-</h3>
-
-<!-- Author & Date -->
-<div class="text-xs sm:text-sm text-gray-400">
-    <span class="after:content-['-']">{{ item.author.name[locale] }}</span>
-    <span class="italic">{{ item.date_of_completion }}</span>
-</div>
-
-<!-- Image (Fixed Aspect Ratio) -->
+{% for item in data %}
 <div
-    class="w-full h-40 sm:h-56 flex items-center justify-center overflow-hidden rounded-md bg-gray-100"
+    class="grid gap-3 grid-rows-[auto_auto_auto_auto_auto] shrink-0 w-full min-h-[400px] bg-white shadow-xl rounded-xl p-4 sm:p-8 sm:w-[400px] sm:min-h-[500px] overflow-hidden transition-transform hover:shadow-2xl hover:-translate-y-1"
+    {%
+    if
+    loop.last
+    and
+    data.next_page
+    %}
+    hx-get="/knowledge-hub/q=research?page={{ data.next_page }}"
+    hx-target="#carousel"
+    hx-trigger="intersect once"
+    hx-swap="afterend"
+    {%
+    endif
+    %}
 >
-    <img
-        class="w-full h-full object-cover"
-        src="{{ url_for('static', filename=item.hero_image if item.hero_image) }}"
-        onerror="this.src='https://i.imgur.com/hfM1J8s.png'"
-        alt="research image"
-    />
-</div>
+    <!-- Title -->
+    <h3 class="text-lg sm:text-2xl font-bold capitalize">
+        {{ item.title[locale] }}
+    </h3>
 
-<!-- Research Content -->
-<div class="text-sm sm:text-base">
-    {{ item.content and item.content[locale] | truncate_html(100) | safe }}
-</div>
+    <!-- Author & Date -->
+    <div class="text-xs sm:text-sm text-gray-400">
+        <span class="after:content-['-']">{{ item.author.name[locale] }}</span>
+        <span class="italic">{{ item.date_of_completion }}</span>
+    </div>
 
-<!-- Learn More Button -->
-<a
-    class="mt-auto me-auto flex gap-2 items-center text-red-600 text-sm font-medium hover:text-red-800"
-    href="/researches/{{item.uuid}}"
->
-    <span class="capitalize">{{_("learn more")}}</span>
-    <span>
-        {% if locale == 'en' %}
+    <!-- Image (Fixed Aspect Ratio) -->
+    <div
+        class="w-full h-40 sm:h-56 flex items-center justify-center overflow-hidden rounded-md bg-gray-100"
+    >
         <img
-            class="size-6"
-            src="{{url_for('static',filename='icons/arrow.svg')}}"
-            alt="arrow right"
+            class="w-full h-full object-cover"
+            src="{{ url_for('static', filename=item.hero_image if item.hero_image) }}"
+            onerror="this.src='https://i.imgur.com/hfM1J8s.png'"
+            alt="research image"
         />
-        {% else %}
-        <img
-            class="size-6"
-            src="{{url_for('static',filename='icons/arrow-left.svg')}}"
-            alt="arrow left"
-        />
-        {% endif %}
-    </span>
-</a>
+    </div>
+
+    <!-- Research Content -->
+    <div class="text-sm sm:text-base">
+        {{ item.content and item.content[locale] | truncate_html(100) | safe }}
+    </div>
+
+    <!-- Learn More Button -->
+    <a
+        class="mt-auto me-auto flex gap-2 items-center text-red-600 text-sm font-medium hover:text-red-800"
+        href="/researches/{{item.uuid}}"
+    >
+        <span class="capitalize">{{_("learn more")}}</span>
+        <span>
+            {% if locale == 'en' %}
+            <img
+                class="size-6"
+                src="{{url_for('static',filename='icons/arrow.svg')}}"
+                alt="arrow right"
+            />
+            {% else %}
+            <img
+                class="size-6"
+                src="{{url_for('static',filename='icons/arrow-left.svg')}}"
+                alt="arrow left"
+            />
+            {% endif %}
+        </span>
+    </a>
+</div>
+{% endfor %}

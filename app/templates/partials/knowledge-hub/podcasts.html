@@ -1,6 +1,2 @@
-{% import "macros/carousel.html" as carousel_macro %} {% import
-"macros/icons.html" as icons %} {% call carousel_macro.carousel(
-id='podcast-carousel', items=data, gap='8', perSlide=1, emptyState={ 'icon':
-icons.music(cls='size-24 text-primary-600'), 'text': _("No podcasts available")
-}, locale=locale ) %} {% include 'partials/knowledge-hub/podcasts-cards.html' %}
-{% endcall %}
+{% from "macros/carousel.html" import carousel %} {% import "macros/icons.html"
+as icons %} {{ carousel( data=data, locale=locale, card="podcast", ) }}

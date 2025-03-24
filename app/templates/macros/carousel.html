@@ -1,5 +1,4 @@
-{% macro carousel(id='carousel', items=[], gap='6', perSlide=1, emptyState={},
-locale='en', responsive=true) %}
+{% macro carousel(data=[], locale='en', card='') %}
 <div class="w-full p-4 relative overflow-x-hidden">
     {% if not items or items|length == 0 %}
     <div class="h-full grid place-items-center">

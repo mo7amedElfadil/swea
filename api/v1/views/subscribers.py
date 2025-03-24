@@ -96,7 +96,7 @@ def send_broadcast_email():
     return add_toast(resp, "success", _("Broadcast email sent successfully"))
 
 
-@bp.route("/export-subscribers", methods=["GET"])
+@bp.route("/dashboard/export-subscribers", methods=["GET"])
 @login_required()
 def export_subscribers():
     """Export subscribers to an Excel file."""

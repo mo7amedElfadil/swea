@@ -9,7 +9,6 @@ from utils.view_modifiers import response
 
 
 @bp.route("/dashboard/knowledge-hub", methods=["GET"])
-@cache_response()
 def get_knowledge_hub_data():
     """
     Unified route to handle fetching data for courses, podcasts, and researches.
@@ -122,7 +121,7 @@ def create_course():
     resp = make_response(
         render_template("partials/dashboard/knowledge_hub/courses.html", **courses)
     )
-    invalidate_cache(["get_courses", "get_knowledge_hub_data", "knowledge_hub"])
+    invalidate_cache(["get_courses", "knowledge_hub"])
     return add_toast(resp, "success", _("Course created successfully"))
 
 
@@ -145,7 +144,7 @@ def update_course(course_id):
     resp = make_response(
         render_template("partials/dashboard/knowledge_hub/courses.html", **courses)
     )
-    invalidate_cache(["get_courses", "get_knowledge_hub_data", "knowledge_hub"])
+    invalidate_cache(["get_courses", "knowledge_hub"])
     return add_toast(resp, "success", _("Course updated successfully"))
 
 
@@ -165,7 +164,7 @@ def delete_course(course_id):
     resp = make_response(
         render_template("partials/dashboard/knowledge_hub/courses-list.html", **courses)
     )
-    invalidate_cache(["get_courses", "get_knowledge_hub_data", "knowledge_hub"])
+    invalidate_cache(["get_courses", "knowledge_hub"])
     return add_toast(resp, "success", _("Course deleted successfully"))
 
 
@@ -200,7 +199,7 @@ def create_podcast():
     resp = make_response(
         render_template("partials/dashboard/knowledge_hub/podcasts.html", **podcasts)
     )
-    invalidate_cache(["get_podcasts", "get_knowledge_hub_data", "knowledge_hub"])
+    invalidate_cache(["get_podcasts", "knowledge_hub"])
     return add_toast(resp, "success", _("Podcast created successfully"))
 
 
@@ -223,7 +222,7 @@ def update_podcast(podcast_id):
     resp = make_response(
         render_template("partials/dashboard/knowledge_hub/podcasts.html", **podcasts)
     )
-    invalidate_cache(["get_podcasts", "get_knowledge_hub_data", "knowledge_hub"])
+    invalidate_cache(["get_podcasts", "knowledge_hub"])
     return add_toast(resp, "success", _("Podcast updated successfully"))
 
 
@@ -245,7 +244,7 @@ def delete_podcast(podcast_id):
             "partials/dashboard/knowledge_hub/podcasts-list.html", **podcasts
         )
     )
-    invalidate_cache(["get_podcasts", "get_knowledge_hub_data", "knowledge_hub"])
+    invalidate_cache(["get_podcasts", "knowledge_hub"])
     return add_toast(resp, "success", _("Podcast deleted successfully"))
 
 
@@ -283,7 +282,7 @@ def create_research():
             "partials/dashboard/knowledge_hub/researches.html", **researches
         )
     )
-    invalidate_cache(["get_researches", "get_knowledge_hub_data", "knowledge_hub"])
+    invalidate_cache(["get_researches", "research_page", "knowledge_hub"])
     return add_toast(resp, "success", _("Research created successfully"))
 
 
@@ -308,7 +307,7 @@ def update_research(research_id):
             "partials/dashboard/knowledge_hub/researches.html", **researches
         )
     )
-    invalidate_cache(["get_researches", "get_knowledge_hub_data", "knowledge_hub"])
+    invalidate_cache(["get_researches", "research_page", "knowledge_hub"])
     return add_toast(resp, "success", _("Research updated successfully"))
 
 
@@ -330,7 +329,7 @@ def delete_research(research_id):
             "partials/dashboard/knowledge_hub/researches-list.html", **researches
         )
     )
-    invalidate_cache(["get_researches", "get_knowledge_hub_data", "knowledge_hub"])
+    invalidate_cache(["get_researches", "research_page", "knowledge_hub"])
     return add_toast(resp, "success", _("Research deleted successfully"))
 
 

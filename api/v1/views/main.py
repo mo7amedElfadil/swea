@@ -130,7 +130,6 @@ def login():
 @bp.route("/dashboard")
 @login_required()
 @response(template_file="dashboard.html")
-@cache_response()
 def dashboard():
     """Dashboard page"""
     tab_query = request.args.get("q")

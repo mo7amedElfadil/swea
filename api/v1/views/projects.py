@@ -72,7 +72,7 @@ def add_project():
                 )
             )
             return add_toast(resp, "error", "Unexpected error occurred")
-    invalidate_cache(["projects", "project_page", "filter_projects", "dashboard"])
+    invalidate_cache(["projects", "project_page", "filter_projects"])
     return dict()
 
 
@@ -100,7 +100,7 @@ def update_project(project_id):
                 **project_service.get_all(),
             )
         )
-        invalidate_cache(["projects", "project_page", "filter_projects", "dashboard"])
+        invalidate_cache(["projects", "project_page", "filter_projects"])
         return add_toast(resp, "success", _("Project updated successfully"))
     except Exception as e:
         resp = make_response(e, 400)
@@ -121,5 +121,5 @@ def delete_project(project_id):
             **project_service.get_all(),
         )
     )
-    invalidate_cache(["projects", "project_page", "filter_projects", "dashboard"])
+    invalidate_cache(["projects", "project_page", "filter_projects"])
     return add_toast(resp, "success", _("Project deleted successfully"))

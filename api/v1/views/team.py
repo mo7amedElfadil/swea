@@ -59,7 +59,7 @@ def add_team_member():
             **team_members,
         )
     )
-    invalidate_cache(["filter_team_members", "team", "dashboard"])
+    invalidate_cache(["filter_team_members", "team"])
     return add_toast(resp, "success", _("Team member created successfully"))
 
 
@@ -89,7 +89,7 @@ def update_team_member(member_id):
                 **members_res,
             )
         )
-        invalidate_cache(["filter_team_members", "team", "dashboard"])
+        invalidate_cache(["filter_team_members", "team"])
         return add_toast(resp, "success", _("Team member updated successfully"))
     except Exception as e:
         resp = make_response(str(e), 400)
@@ -111,5 +111,5 @@ def delete_team_member(member_id):
             **members_res,
         )
     )
-    invalidate_cache(["filter_team_members", "team", "dashboard"])
+    invalidate_cache(["filter_team_members", "team"])
     return add_toast(resp, "success", _("Team member deleted successfully"))

@@ -14,9 +14,9 @@ from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from psycopg2.errors import UniqueViolation
 from sqlalchemy.exc import IntegrityError
 
-from app.models.subscriber import Subscriber
+from app.models import Subscriber
 from app.queue import QueueService
-from app.schemas.subscriber_schema import SubscriberSchema
+from app.schemas import SubscriberSchema
 from config import Config
 from utils.db_utils import paginate_query
 from utils.email_validation import validate_email
@@ -76,7 +76,7 @@ class SubscriberService(BaseService):
             validate_email(processed_data["email"])
 
             # Create the subscriber
-            subscriber = Subscriber()
+            subscriber = self.model_class()
             try:
                 subscriber.create(**processed_data)
             except IntegrityError as db_error:
@@ -101,7 +101,7 @@ class SubscriberService(BaseService):
         Returns:
             The Subscriber instance if found, None otherwise.
         """
-        return paginate_query(Subscriber, email=email)
+        return paginate_query(self.model_class, email=email)
 
     def delete_subscriber(self, subscriber_email: str) -> bool:
         """

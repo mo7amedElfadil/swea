@@ -3,7 +3,7 @@ from flask_babel import gettext as _
 from psycopg2.errors import UniqueViolation
 
 from api.v1.views import bp
-from app.services.subscriber_service import SubscriberService
+from app.services import SubscriberService
 from utils.auth_utils import login_required
 from utils.toast_notify import add_toast
 

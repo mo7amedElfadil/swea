@@ -6,10 +6,9 @@ from typing import Any, Dict, List, Optional
 
 from marshmallow import ValidationError
 
-from app.models.course import Course, CourseMember
-from app.schemas.course_schema import CourseSchema
+from app.models import Course, CourseMember
+from app.schemas import CourseSchema
 from utils.db_utils import search_by_multilang_field
-from utils.file_manager import FileManager
 from utils.form_utils import parse_nested_field
 from utils.service_base import BaseService
 
@@ -43,7 +42,7 @@ class CourseService(BaseService):
             self.validate_with_schema(processed_data)
 
             # Create the course
-            course = Course()
+            course = self.model_class()
             course.create(**processed_data)
             return course
 
@@ -75,7 +74,7 @@ class CourseService(BaseService):
             self.validate_with_schema(processed_data)
 
             # Retrieve the course by UUID
-            course = Course.get_byuuid(uuid)
+            course = self.model_class.get_byuuid(uuid)
             if course:
                 course.update(**processed_data)
                 return course
@@ -96,7 +95,7 @@ class CourseService(BaseService):
         Returns:
             True if members were successfully added, False otherwise.
         """
-        course = Course.get_byuuid(course_uuid)
+        course = self.model_class.get_byuuid(course_uuid)
         if not course:
             return False
 
@@ -122,7 +121,7 @@ class CourseService(BaseService):
         Returns:
             True if members were successfully removed, False otherwise.
         """
-        course = Course.get_byuuid(course_uuid)
+        course = self.model_class.get_byuuid(course_uuid)
         if not course:
             return False
 
@@ -146,7 +145,7 @@ class CourseService(BaseService):
         Returns:
             Dictionary containing search results and pagination metadata.
         """
-        return search_by_multilang_field(Course, "title", title)
+        return search_by_multilang_field(self.model_class, "title", title)
 
     def process_courses_data(self, result_data: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -225,7 +224,7 @@ class CourseService(BaseService):
         # Handle image upload
         image = files.get("image")
         if image and image.filename:
-            processed_data["image"] = FileManager(image).save()
+            processed_data["image"] = self.file_manager(image).save()
 
         return processed_data
 

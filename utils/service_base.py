@@ -5,6 +5,7 @@ from typing import Any, Dict, Optional
 from marshmallow import ValidationError
 
 from utils.db_utils import paginate_query
+from utils.file_manager import FileManager
 
 
 class BaseService:
@@ -22,6 +23,7 @@ class BaseService:
         self.model_class = model_class
         self.schema = schema_class()
         self.page_size = page_size
+        self.file_manager = FileManager
 
     def get_by_uuid(self, uuid: str) -> Optional[Dict[str, Any]]:
         """

@@ -1,8 +1,8 @@
-from flask import make_response, render_template, request, session
+from flask import make_response, render_template, request
 from flask_babel import gettext as _
 
 from api.v1.views import bp
-from app.services.project_service import ProjectService
+from app.services import ProjectService
 from utils.toast_notify import add_toast
 from utils.view_modifiers import response
 

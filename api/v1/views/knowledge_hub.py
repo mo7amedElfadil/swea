@@ -2,10 +2,7 @@ from flask import make_response, render_template, request
 from flask_babel import gettext as _
 
 from api.v1.views import bp
-from app.services.course_service import CourseService
-from app.services.member_service import MemberService
-from app.services.podcast_service import PodcastService
-from app.services.research_service import ResearchService
+from app.services import CourseService, MemberService, PodcastService, ResearchService
 from utils.toast_notify import add_toast
 from utils.view_modifiers import response
 

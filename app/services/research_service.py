@@ -6,13 +6,12 @@ from typing import Any, Dict, List, Optional
 
 from marshmallow import ValidationError
 
-from app.models.research import Research
-from app.schemas.research_schema import ResearchSchema
+from app.models import Research
+from app.schemas import ResearchSchema
+from utils.compose_i18n import compose_i18n
 from utils.db_utils import search_by_multilang_field
-from utils.file_manager import FileManager
 from utils.form_utils import parse_nested_field
 from utils.service_base import BaseService
-from utils.compose_i18n import compose_i18n
 
 
 class ResearchService(BaseService):
@@ -46,7 +45,7 @@ class ResearchService(BaseService):
             self.validate_with_schema(processed_data)
 
             # Create the research entry
-            research = Research()
+            research = self.model_class()
             research.create(**processed_data)
             return research
 
@@ -78,7 +77,7 @@ class ResearchService(BaseService):
             self.validate_with_schema(processed_data)
 
             # Retrieve the research entry by UUID
-            research = Research.get_byuuid(uuid)
+            research = self.model_class.get_byuuid(uuid)
             if research:
                 research.update(**processed_data)
                 return research
@@ -98,7 +97,7 @@ class ResearchService(BaseService):
         Returns:
             Dictionary containing search results and pagination metadata.
         """
-        return search_by_multilang_field(Research, "title", title)
+        return search_by_multilang_field(self.model_class, "title", title)
 
     def validate_form_data(
         self, form_data: Dict[str, Any], files: Dict[str, Any]
@@ -128,22 +127,20 @@ class ResearchService(BaseService):
                 "ar": self._parse_tags(form_data.get("tags[ar]")),
             },
             "date_of_completion": form_data.get("date_of_completion"),  # Optional field
-            "content": compose_i18n(
-                form_data, "content"
-            ),  # Optional field
+            "content": compose_i18n(form_data, "content"),  # Optional field
             "testimonials": self._parse_testimonials(form_data),  # Optional field
         }
 
         # Handle hero_image upload
         hero_image = files.get("hero_image")
         if hero_image and hero_image.filename:
-            processed_data["hero_image"] = FileManager(hero_image).save()
+            processed_data["hero_image"] = self.file_manager(hero_image).save()
 
         # Handle images upload
         images = files.getlist("images") if "images" in files else []
         if images:
             processed_data["images"] = [
-                FileManager(image).save() for image in images if image.filename
+                self.file_manager(image).save() for image in images if image.filename
             ]
 
         return processed_data

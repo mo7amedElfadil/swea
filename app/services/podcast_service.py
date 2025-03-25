@@ -6,11 +6,10 @@ from typing import Any, Dict, List, Optional
 
 from marshmallow import ValidationError
 
-from app.models.podcast import Podcast, PodcastMember
-from app.schemas.podcast_schema import PodcastSchema
+from app.models import Podcast, PodcastMember
+from app.schemas import PodcastSchema
 from utils.db_utils import search_by_multilang_field
-from utils.file_manager import FileManager
-from utils.form_utils import parse_key_value_items, parse_nested_field
+from utils.form_utils import parse_nested_field
 from utils.service_base import BaseService
 
 
@@ -45,7 +44,7 @@ class PodcastService(BaseService):
             self.validate_with_schema(processed_data)
 
             # Create the podcast
-            podcast = Podcast()
+            podcast = self.model_class()
             podcast.create(**processed_data)
             return podcast
 
@@ -77,7 +76,7 @@ class PodcastService(BaseService):
             self.validate_with_schema(processed_data)
 
             # Retrieve the podcast by UUID
-            podcast = Podcast.get_byuuid(uuid)
+            podcast = self.model_class.get_byuuid(uuid)
             if podcast:
                 podcast.update(**processed_data)
                 return podcast
@@ -100,7 +99,7 @@ class PodcastService(BaseService):
         Returns:
             True if members were successfully added, False otherwise.
         """
-        podcast = Podcast.get_byuuid(podcast_uuid)
+        podcast = self.model_class.get_byuuid(podcast_uuid)
         if not podcast:
             return False
 
@@ -126,7 +125,7 @@ class PodcastService(BaseService):
         Returns:
             True if members were successfully removed, False otherwise.
         """
-        podcast = Podcast.get_byuuid(podcast_uuid)
+        podcast = self.model_class.get_byuuid(podcast_uuid)
         if not podcast:
             return False
 
@@ -150,7 +149,7 @@ class PodcastService(BaseService):
         Returns:
             Dictionary containing search results and pagination metadata.
         """
-        return search_by_multilang_field(Podcast, "title", title)
+        return search_by_multilang_field(self.model_class, "title", title)
 
     def validate_form_data(
         self, form_data: Dict[str, Any], files: Dict[str, Any]
@@ -180,7 +179,7 @@ class PodcastService(BaseService):
         # Handle image upload
         image = files.get("image")
         if image and image.filename:
-            processed_data["image"] = FileManager(image).save()
+            processed_data["image"] = self.file_manager(image).save()
 
         return processed_data
 

@@ -10,9 +10,8 @@ from typing import Any, Dict, List, Optional
 from marshmallow import ValidationError
 
 from app.models import Project
-from app.schemas.project_schema import ProjectSchema
+from app.schemas import ProjectSchema
 from utils.db_utils import search_by_multilang_field
-from utils.file_manager import FileManager
 from utils.service_base import BaseService
 
 
@@ -22,7 +21,6 @@ class ProjectService(BaseService):
     def __init__(self, page_size: int = 3):
         """Initialize project service."""
         super().__init__(Project, ProjectSchema, page_size)
-        self.file_manager = FileManager
 
     def create_project(self, form_data: Dict[str, Any], files: Dict[str, Any]) -> bool:
         """
@@ -38,9 +36,7 @@ class ProjectService(BaseService):
             # Process and validate form data
             processed_data = self.validate_form_data(form_data, files)
             # Validate the data using the schema
-            errors = self.schema.validate(processed_data)
-            if errors:
-                raise ValidationError(errors)
+            self.validate_with_schema(processed_data)
 
             instance = self.model_class()
             instance.create(**processed_data)
@@ -68,9 +64,7 @@ class ProjectService(BaseService):
             form_data = self.validate_form_data(form_data, files)
 
             # Validate project data
-            errors = self.schema.validate(form_data)
-            if errors:
-                raise ValidationError(errors)
+            self.validate_with_schema(form_data)
 
             project = self.model_class.get_byuuid(uuid)
             if project:

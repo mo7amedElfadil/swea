@@ -6,6 +6,7 @@ from marshmallow import ValidationError
 
 from api.v1.views import bp
 from app.services import NewsService
+from utils.cache_mgr import cache_response, invalidate_cache
 from utils.toast_notify import with_toast
 from utils.view_modifiers import response
 
@@ -21,6 +22,7 @@ def retrieve_form():
 
 @bp.route("/dashboard/news", methods=["GET"])
 @response(template_file="partials/dashboard/news-list.html")
+@cache_response()
 def get_news():
     """Get news paginated"""
     page = request.args.get("page", type=int, default=1)
@@ -32,6 +34,7 @@ def get_news():
 
 @bp.route("/news/<id>", methods=["GET"])
 @response(template_file="single-news.html")
+@cache_response()
 def get_single_news(id):
     """Get single news"""
     news = news_service.get_by_uuid(id)
@@ -63,7 +66,7 @@ def create_news():
 
     if err:
         data = news_service.get_all()
-
+    invalidate_cache(["news", "get_single_news", "get_news"])
     return dict(**data, toast={"type": "error" if err else "success", "message": msg})
 
 
@@ -96,13 +99,14 @@ def update_news(news_id):
                 )
             )
             resp.headers["hx-toast"] = json.dumps({"type": "error", "message": str(e)})
+    invalidate_cache(["news", "get_single_news", "get_news"])
     return dict(update=True, **news)
 
 
 @bp.route("/dashboard/news/<news_id>", methods=["DELETE"])
 @with_toast
 def delete_news(news_id):
-    """Delelte news"""
+    """Delete news"""
     page = request.args.get("page", type=int, default=1)
     try:
         news_service.delete(news_id)
@@ -117,4 +121,5 @@ def delete_news(news_id):
     news = news_service.get_all(page=page)
     resp = make_response(render_template("partials/dashboard/news-list.html", **news))
     resp.headers["hx-toast"] = custom_header
+    invalidate_cache(["news", "get_single_news", "get_news"])
     return resp

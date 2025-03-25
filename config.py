@@ -78,9 +78,10 @@ class Config:
         CACHE_TYPE = "null"
     else:
         CACHE_TYPE = "redis"
-        CACHE_REDIS_URL = getenv("CACHE_REDIS_URL")
-        CACHE_KEY_PREFIX = "swea_"
-        CACHE_DEFAULT_TIMEOUT = 300  # 5 minutes
+
+    CACHE_REDIS_URL = getenv("CACHE_REDIS_URL")
+    CACHE_KEY_PREFIX = "swea_"
+    CACHE_DEFAULT_TIMEOUT = 3600  # 1 hour
 
     # Rate limiter configuration
     RATE_LIMITS = {

@@ -24,6 +24,7 @@ from app.services import (
 )
 from config import Config
 from utils.auth_utils import login_required
+from utils.cache_mgr import cache_response
 from utils.image_processing import ImageProcessing
 from utils.rate_limiter import RateLimits, rate_limit
 from utils.referrer_modifier import modify_referrer_lang
@@ -68,6 +69,7 @@ def get_paginated_data(
 
 @bp.route("/")
 @response(template_file="index.html")
+@cache_response()
 def index():
     """Home page"""
     return get_paginated_data(NewsService)
@@ -75,6 +77,7 @@ def index():
 
 @bp.route("/news")
 @response(template_file="partials/news/cards.html")
+@cache_response()
 def news():
     """News page"""
     return get_paginated_data(NewsService)
@@ -82,6 +85,7 @@ def news():
 
 @bp.route("/projects")
 @response(template_file="projects.html")
+@cache_response()
 def projects():
     """Projects page"""
     page = request.args.get("page", type=int, default=1)
@@ -99,6 +103,7 @@ def projects():
 
 @bp.route("/team")
 @response(template_file="team.html")
+@cache_response()
 def team():
     """Team page"""
     return get_paginated_data(TeamService, sort='teams."order"')
@@ -125,6 +130,7 @@ def login():
 @bp.route("/dashboard")
 @login_required()
 @response(template_file="dashboard.html")
+@cache_response()
 def dashboard():
     """Dashboard page"""
     tab_query = request.args.get("q")
@@ -144,6 +150,7 @@ def dashboard():
 
 @bp.route("/knowledge-hub")
 @response(template_file="knowledge-hub.html")
+@cache_response()
 def knowledge_hub():
     """Knowledge Hub page"""
     tab_query = request.args.get("q", "research")
@@ -166,6 +173,7 @@ def knowledge_hub():
 
 
 @bp.route("/knowledge-hub/filter-courses")
+@cache_response()
 def filter_courses():
     """Filter courses based on selected course name or tag."""
     course_name, tag, locale = (

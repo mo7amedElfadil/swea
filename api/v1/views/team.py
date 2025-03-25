@@ -3,12 +3,14 @@ from flask_babel import gettext as _
 
 from api.v1.views import bp
 from app.services import TeamService
+from utils.cache_mgr import cache_response, invalidate_cache
 from utils.toast_notify import add_toast
 
 team_service = TeamService()
 
 
 @bp.route("/dashboard/team-members", methods=["GET"])
+@cache_response()
 def filter_team_members():
     """Filter team members by search string."""
     search_str = request.args.get("search", "")
@@ -57,6 +59,7 @@ def add_team_member():
             **team_members,
         )
     )
+    invalidate_cache(["filter_team_members", "team"])
     return add_toast(resp, "success", _("Team member created successfully"))
 
 
@@ -86,6 +89,7 @@ def update_team_member(member_id):
                 **members_res,
             )
         )
+        invalidate_cache(["filter_team_members", "team"])
         return add_toast(resp, "success", _("Team member updated successfully"))
     except Exception as e:
         resp = make_response(str(e), 400)
@@ -107,4 +111,5 @@ def delete_team_member(member_id):
             **members_res,
         )
     )
+    invalidate_cache(["filter_team_members", "team"])
     return add_toast(resp, "success", _("Team member deleted successfully"))

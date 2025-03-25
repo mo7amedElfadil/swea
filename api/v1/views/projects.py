@@ -3,6 +3,7 @@ from flask_babel import gettext as _
 
 from api.v1.views import bp
 from app.services import ProjectService
+from utils.cache_mgr import cache_response, invalidate_cache
 from utils.toast_notify import add_toast
 from utils.view_modifiers import response
 
@@ -11,6 +12,7 @@ project_service = ProjectService()
 
 @bp.route("/projects/<uuid>", methods=["GET"])
 @response(template_file="project-page.html")
+@cache_response()
 def project_page(uuid):
     """Project page"""
     project = project_service.get_project_by_uuid(uuid)
@@ -21,6 +23,7 @@ def project_page(uuid):
 
 
 @bp.route("/dashboard/projects", methods=["GET"])
+@cache_response()
 def filter_projects():
     """Filter projects by status and search string"""
     search_str = request.args.get("search", "")
@@ -69,7 +72,7 @@ def add_project():
                 )
             )
             return add_toast(resp, "error", "Unexpected error occurred")
-
+    invalidate_cache(["projects", "project_page", "filter_projects"])
     return dict()
 
 
@@ -97,6 +100,7 @@ def update_project(project_id):
                 **project_service.get_all(),
             )
         )
+        invalidate_cache(["projects", "project_page", "filter_projects"])
         return add_toast(resp, "success", _("Project updated successfully"))
     except Exception as e:
         resp = make_response(e, 400)
@@ -117,5 +121,5 @@ def delete_project(project_id):
             **project_service.get_all(),
         )
     )
-
+    invalidate_cache(["projects", "project_page", "filter_projects"])
     return add_toast(resp, "success", _("Project deleted successfully"))

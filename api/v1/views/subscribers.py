@@ -5,6 +5,7 @@ from psycopg2.errors import UniqueViolation
 from api.v1.views import bp
 from app.services import SubscriberService
 from utils.auth_utils import login_required
+from utils.cache_mgr import cache_response, invalidate_cache
 from utils.toast_notify import add_toast
 
 subscriber_service = SubscriberService()
@@ -26,7 +27,7 @@ def subscribe():
             return add_toast(make_response("", 400), "error", str(ve))
         except Exception as e:
             return add_toast(make_response("", 400), "error", _("Failed to subscribe"))
-
+    invalidate_cache(["filter_subscribers"])
     return add_toast(make_response("", 200), "success", _("Thank you for subscribing"))
 
 
@@ -42,11 +43,12 @@ def unsubscribe():
             return add_toast(
                 make_response("", 400), "error", _("Failed to unsubscribe")
             )
-
+    invalidate_cache(["filter_subscribers"])
     return add_toast(make_response("", 200), "success", _("Unsubscribed successfully"))
 
 
 @bp.route("/dashboard/subscribers", methods=["GET"])
+@cache_response()
 def filter_subscribers():
     """Filter subscribers by search string."""
     search_str = request.args.get("search", "")

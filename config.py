@@ -81,7 +81,7 @@ class Config:
 
     CACHE_REDIS_URL = getenv("CACHE_REDIS_URL")
     CACHE_KEY_PREFIX = "swea_"
-    CACHE_DEFAULT_TIMEOUT = 3600  # 1 hour
+    CACHE_DEFAULT_TIMEOUT = 86400  # 1 day
 
     # Rate limiter configuration
     RATE_LIMITS = {

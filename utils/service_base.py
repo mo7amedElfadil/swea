@@ -9,7 +9,42 @@ from utils.file_manager import FileManager
 
 
 class BaseService:
-    """Base service class with common functionality for all services."""
+    """
+    A foundational service class providing core CRUD and utility operations for database models.
+
+    The BaseService serves as an abstract base class that encapsulates common database
+    interaction patterns, validation, and pagination logic. It is designed to be inherited
+    by specific service classes for different domain models.
+
+    Key Features:
+    - Standardized retrieval of entities by UUID
+    - Pagination support for entity listings
+    - Soft and hard deletion capabilities
+    - Data validation using Marshmallow schemas
+    - File management integration
+
+    Attributes:
+        model_class (Type[SQLAlchemy Model]): The database model class associated with this service.
+        schema (Marshmallow Schema): Schema used for data validation and serialization.
+        page_size (int): Number of items to return per paginated request.
+                         Defaults to 10 if not specified.
+        file_manager (FileManager): Utility for handling file-related operations.
+
+    Usage Example:
+        ```
+        class CourseService(BaseService):
+            def __init__(self):
+                super().__init__(
+                    model_class=Course,
+                    schema_class=CourseSchema,
+                    page_size=15
+                )
+        ```
+
+    Note:
+        This class is intended to be subclassed and should not be used directly.
+        Subclasses should specify their specific model and schema classes.
+    """
 
     def __init__(self, model_class, schema_class, page_size: int = 10):
         """
@@ -19,6 +54,7 @@ class BaseService:
             model_class: The SQLAlchemy model class for this service
             schema_class: The Marshmallow schema class for validation
             page_size: Default page size for pagination
+            file_manager: Utility for handling file-related operations
         """
         self.model_class = model_class
         self.schema = schema_class()

@@ -27,7 +27,7 @@ def subscribe():
             return add_toast(make_response("", 400), "error", str(ve))
         except Exception as e:
             return add_toast(make_response("", 400), "error", _("Failed to subscribe"))
-    invalidate_cache(["filter_subscribers"])
+    invalidate_cache(["filter_subscribers", "dashboard"])
     return add_toast(make_response("", 200), "success", _("Thank you for subscribing"))
 
 
@@ -43,7 +43,7 @@ def unsubscribe():
             return add_toast(
                 make_response("", 400), "error", _("Failed to unsubscribe")
             )
-    invalidate_cache(["filter_subscribers"])
+    invalidate_cache(["filter_subscribers", "dashboard"])
     return add_toast(make_response("", 200), "success", _("Unsubscribed successfully"))
 
 

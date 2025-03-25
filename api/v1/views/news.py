@@ -66,7 +66,7 @@ def create_news():
 
     if err:
         data = news_service.get_all()
-    invalidate_cache(["news", "get_single_news", "get_news"])
+    invalidate_cache(["news", "get_single_news", "get_news", "index", "dashboard"])
     return dict(**data, toast={"type": "error" if err else "success", "message": msg})
 
 
@@ -99,7 +99,7 @@ def update_news(news_id):
                 )
             )
             resp.headers["hx-toast"] = json.dumps({"type": "error", "message": str(e)})
-    invalidate_cache(["news", "get_single_news", "get_news"])
+    invalidate_cache(["news", "get_single_news", "get_news", "index", "dashboard"])
     return dict(update=True, **news)
 
 
@@ -121,5 +121,5 @@ def delete_news(news_id):
     news = news_service.get_all(page=page)
     resp = make_response(render_template("partials/dashboard/news-list.html", **news))
     resp.headers["hx-toast"] = custom_header
-    invalidate_cache(["news", "get_single_news", "get_news"])
+    invalidate_cache(["news", "get_single_news", "get_news", "index", "dashboard"])
     return resp

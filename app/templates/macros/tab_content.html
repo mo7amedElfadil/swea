@@ -32,10 +32,11 @@ locale=locale, total_items=1) %} {%- set partial = {
             </a>
             {% endif %}
             <button
-                class="flex items-center px-4 py-2 gap-2 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-600 text-white capitalize hover:bg-primary-700 focus:ring-2 focus:ring-primary-500 focus:outline-none w-auto min-w-[140px] sm:w-auto"
+                class="flex items-center px-4 py-2 gap-2 text-sm font-medium rounded-lg transition-all duration-200 {% if title == 'subscribers' and total_items == 0 %}bg-gray-300 text-gray-500 cursor-not-allowed{% else %}bg-primary-600 text-white hover:bg-primary-700{% endif %} focus:ring-2 focus:ring-primary-500 focus:outline-none w-auto min-w-[140px] sm:w-auto"
                 hx-get="{{ hx_get }}"
                 hx-target="#tab-content"
                 hx-swap="innerHTML"
+                {% if title == 'subscribers' and total_items == 0 %}disabled aria-disabled="true"{% endif %}
             >
                 <img
                     class="w-5 h-5"

@@ -168,7 +168,7 @@ stop_dev: ## Stop the dev session
 # Restart application
 restart: ## Restart flask server
 	@$(MAKE) -s stop_flask run_flask && \
-	echo "$(BOLD)Restarted$(RESET)"
+	echo -e "$(BOLD)Restarted$(RESET)"
 
 restart_tw: stop_tailwind  ## Restart tailwindcss watch
 	@$(MAKE) -s watch_tw
@@ -222,4 +222,7 @@ help: ## Display this help message
 	@echo "Usage: make [target]"
 	@echo ""
 	@echo "Targets:"
-	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  %-20s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+	@awk 'BEGIN {FS = ":.*?## "} \
+		/^[a-zA-Z_-]+:.*?## / { \
+			system("printf \"  \033[1m\033[32m%-20s\033[0m %s\\n\" \"" $$1 "\" \"" $$2 "\"") \
+		}' $(MAKEFILE_LIST)

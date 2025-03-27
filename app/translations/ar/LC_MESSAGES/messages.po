@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-27 09:37+0400\n"
+"POT-Creation-Date: 2025-03-27 10:03+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -611,6 +611,10 @@ msgstr "أضف توصية أخرى"
 #: app/templates/macros/form_macros.html:217
 msgid "Remove this testimonial block"
 msgstr "إزالة هذه التوصية"
+
+#: app/templates/macros/modal.html:2
+msgid "create_member"
+msgstr "إنشاء عضو"
 
 #: app/templates/macros/modal.html:2
 msgid "add"

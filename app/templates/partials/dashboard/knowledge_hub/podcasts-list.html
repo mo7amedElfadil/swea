@@ -23,7 +23,7 @@
                 default(podcast.description['en']) }}
             </p>
             <!-- Tags -->
-            <div class="mt-2 gap-2">
+            <div class="mt-2 flex gap-2">
                 {% for tag in podcast.tags[locale] | default(podcast.tags['en'])
                 %}
                 <span

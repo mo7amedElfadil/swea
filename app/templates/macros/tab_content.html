@@ -40,7 +40,9 @@ locale=locale, total_items=1) %} {%- set partial = {
             >
                 <img
                     class="w-5 h-5"
-                    src="{{url_for('static', filename='icons/add.svg')}}"
+                    src={% if title == 'subscribers' %}"{{url_for('static',
+                    filename='icons/mail.svg')}}"{% else %}"{{url_for('static',
+                    filename='icons/add.svg')}}" {% endif %}
                     alt="Add Icon"
                 />
                 <span>{{ btn_text }}</span>

@@ -23,7 +23,7 @@
                 default(course.description['en']) }}
             </p>
             <!-- Tags -->
-            <div class="mt-2 gap-2">
+            <div class="mt-2 flex gap-2">
                 {% for tag in course.tags[locale] | default(course.tags['en'])
                 %}
                 <span

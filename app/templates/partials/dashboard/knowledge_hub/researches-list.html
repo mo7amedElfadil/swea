@@ -18,7 +18,7 @@
                 default(research.author['name']['en']) }}
             </p>
             <!-- Tags -->
-            <div class="mt-2 gap-2">
+            <div class="mt-2 flex gap-2">
                 {% for tag in research.tags[locale] |
                 default(research.tags['en']) %}
                 <span

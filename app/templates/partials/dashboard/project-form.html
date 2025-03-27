@@ -42,8 +42,8 @@
 
     <!-- Status -->
     {{ form.select("status", "status", [ {"value": "ongoing", "label":
-    "ongoing"}, {"value": "completed", "label": "completed"} ], project.status
-    if project else "ongoing", "status", required=true) }}
+    _("ongoing")}, {"value": "completed", "label": _("completed")} ],
+    project.status if project else "ongoing", _("status"), required=true) }}
 
     <!-- Date of Completion -->
     {{ form.text_input(label=_("date_of_completion"), id="date-of-completion",
@@ -52,20 +52,19 @@
     project.date_of_completion else "", type="date") }}
 
     <!-- Tags (Multi-language Support) -->
-    {{ form.text_input(label=_("tags_english"), id="tags-en", name="tags[en]",
+    {{ form.tags_input(label=_("tags_english"), id="tags-en", name="tags[en]",
     value=project.tags.en if project else "",
-    placeholder=_("tags_english_placeholder")) }} {{
-    form.text_input(label=_("tags_arabic"), id="tags-ar", name="tags[ar]",
+    placeholder=_("tags_english_placeholder"),
+    example_format=_("tags_english_example") ) }} {{
+    form.tags_input(label=_("tags_arabic"), id="tags-ar", name="tags[ar]",
     value=project.tags.ar if project else "", dir="rtl",
-    placeholder=_("tags_arabic_placeholder")) }}
+    placeholder=_("tags_arabic_placeholder"),
+    example_format=_("tags_arabic_example") ) }}
 
     <!-- Hero Image -->
     <div>
-        <label for="hero-image" class="block text-sm font-medium text-gray-700">
-            {{ _("hero_image") }}
-        </label>
         {% if project and project.hero_image %}
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-4 mb-4">
             <img
                 src="{{ url_for('static', filename=project.hero_image) }}"
                 alt="{{ project.title.en }}"
@@ -74,7 +73,7 @@
             <span class="text-sm text-gray-600">{{ _("current_image") }}</span>
         </div>
         {% endif %} {{ form.file_upload("hero-image", "hero_image",
-        "hero_image", accept="image/*") }}
+        _("hero_image"), accept="image/*") }}
     </div>
 
     <!-- Content Blocks -->

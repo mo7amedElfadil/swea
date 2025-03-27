@@ -25,36 +25,38 @@ content_block, testimonial_block %}
     <!-- Title -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {{ text_input( id="title_en", name="title[en]", value=title['en'] if
-        title else '', label="title_english",
-        placeholder="enter_title_in_english", required=true ) }} {{ text_input(
-        id="title-ar", name="title[ar]", value=title['ar'] if title else '',
-        label="title_arabic", placeholder="enter_title_in_arabic",
-        required=true, dir="rtl" ) }}
+        title else '', label=_("re_title_english"),
+        placeholder=_("re_enter_title_in_english"), required=true ) }} {{
+        text_input( id="title-ar", name="title[ar]", value=title['ar'] if title
+        else '', label=_("re_title_arabic"),
+        placeholder=_("re_enter_title_in_arabic"), required=true, dir="rtl" ) }}
     </div>
 
     <!-- Author -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {{ text_input( id="author_name_en", name="author[name][en]",
         value=author['name']['en'] if author else '',
-        label="author_name_english", placeholder="enter_author_name_in_english",
-        required=true ) }} {{ text_input( id="author_name_ar",
-        name="author[name][ar]", value=author['name']['ar'] if author else '',
-        label="author_name_arabic", placeholder="enter_author_name_in_arabic",
-        required=true, dir="rtl" ) }}
+        label=_("author_name_english"),
+        placeholder=_("enter_author_name_in_english"), required=true ) }} {{
+        text_input( id="author_name_ar", name="author[name][ar]",
+        value=author['name']['ar'] if author else '',
+        label=_("author_name_arabic"),
+        placeholder=_("enter_author_name_in_arabic"), required=true, dir="rtl" )
+        }}
         <!-- Author email -->
         {{ text_input( id="author_email", name="author[email]",
-        value=author['email'] if author else '', label="author_email",
-        placeholder="enter_author_email", type="email" ) }}
+        value=author['email'] if author else '', label=_("author_email"),
+        placeholder=_("enter_author_email"), type="email" ) }}
     </div>
 
     <!-- Date of Completion -->
     {{ text_input("date_of_completion", "date_of_completion",
     date_of_completion.strftime('%Y-%m-%d') if date_of_completion else '',
-    "date_of_completion", type="date") }}
+    _("date_of_completion"), type="date") }}
 
     <!-- Hero Image Upload -->
-    {{ file_upload("hero_image", "hero_image", "hero_image", accept="image/*")
-    }} {% if hero_image %}
+    {{ file_upload("hero_image", "hero_image", _("hero_image"),
+    accept="image/*") }} {% if hero_image %}
     <div class="flex items-center gap-4">
         <img
             src="{{ url_for('static', filename=hero_image if hero_image else '') }}"
@@ -68,15 +70,17 @@ content_block, testimonial_block %}
     <!-- Content Block -->
     <div id="content-block" class="space-y-4">
         <div class="bg-white shadow-sm rounded-lg p-6 border border-gray-200">
-            <h3 class="text-lg font-medium text-gray-900 mb-4">Content</h3>
+            <h3 class="text-lg font-medium text-gray-900 mb-4">
+                {{ _("Content") }}
+            </h3>
             <div class="space-y-4">
                 <!-- English Content -->
                 <div>
                     <label
                         for="content-en"
-                        class="block text-sm font-medium text-gray-700"
+                        class="block text-sm font-medium text-gray-700 mb-4"
                     >
-                        English Content
+                        {{ _("re_en_content") }}
                     </label>
                     <div id="quill-en" class="bg-white"></div>
                     <input
@@ -91,9 +95,9 @@ content_block, testimonial_block %}
                 <div>
                     <label
                         for="content-ar"
-                        class="block text-sm font-medium text-gray-700"
+                        class="block text-sm font-medium text-gray-700 mb-4"
                     >
-                        Arabic Content
+                        {{ _("re_ar_content") }}
                     </label>
                     <div id="quill-ar" class="bg-white"></div>
                     <input
@@ -120,14 +124,15 @@ content_block, testimonial_block %}
 
     <!-- Tags -->
     {{ tags_input( id="tags-en", name="tags[en]", value=tags['en'] | join(',')if
-    tags else '', label="tags", placeholder="enter_en_tags_comma_separated",
-    example_format="example_tags_format", dir="ltr" ) }} {{ tags_input(
+    tags else '', label=_("tags_english"),
+    placeholder=_("enter_en_tags_comma_separated"),
+    example_format=_("tags_english_example"), dir="ltr" ) }} {{ tags_input(
     id="tags-ar", name="tags[ar]", value=tags['ar'] | join(',') if tags else '',
-    label="tags", placeholder="enter_ar_tags_comma_separated",
-    example_format="example_tags_format", dir="rtl" ) }}
+    label=_("tags_arabic"), placeholder=_("enter_ar_tags_comma_separated"),
+    example_format=_("tags_arabic_example"), dir="rtl" ) }}
 
     <!-- Additional Images Upload -->
-    {{ file_upload("images", "images", "additional_images", accept="image/*",
+    {{ file_upload("images", "images", _("additional_images"), accept="image/*",
     multiple=true) }} {% if images %}
     <div class="flex flex-wrap gap-4">
         {% for image in images %}

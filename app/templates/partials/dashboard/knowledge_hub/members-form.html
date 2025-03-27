@@ -4,27 +4,28 @@
     <!-- Name -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {{ text_input( id="name_english", name="name[en]", value=name['en'] if
-        name else '', label="name_english", placeholder="Enter English name",
+        name else '', label=_("mem_name_english"),
+        placeholder=_("enter_mem_english_name"),
         required=true ) }} {{ text_input( id="name_arabic", name="name[ar]",
-        value=name['ar'] if name else '', label="name_arabic",
-        placeholder="Enter Arabic name", required=true, dir="rtl" ) }}
+        value=name['ar'] if name else '', label=_("mem_name_arabic"),
+        placeholder=_("enter_mem_arabic_name"), required=true, dir="rtl" ) }}
     </div>
 
     <!-- Email -->
     {{ text_input( id="email", name="email", value=email if email else '',
-    label="email", placeholder="Enter email address", type="email",
+    label=_("email"), placeholder=_("enter_email_address"), type="email",
     required=true ) }}
 
     <!-- University Department -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {{ text_input( id="university_department_english",
         name="university_department[en]", value=university_department['en'] if
-        university_department else '', label="university_department_english",
-        placeholder="Enter English university department" ) }} {{ text_input(
+        university_department else '', label=_("university_department_english"),
+        placeholder=_("enter_english_university_department") ) }} {{ text_input(
         id="university_department_arabic", name="university_department[ar]",
         value=university_department['ar'] if university_department else '',
-        label="university_department_arabic", placeholder="Enter Arabic
-        university department", dir="rtl" ) }}
+        label=_("university_department_arabic"),
+        placeholder=_("enter_arabic_university_department"), dir="rtl" ) }}
     </div>
 
     <!-- Image Upload -->
@@ -38,5 +39,5 @@
         <span class="text-sm text-gray-600">{{ _("current_image") }}</span>
     </div>
     {% endif %} {{ file_upload( id="member_image", name="image",
-    label="member_image", accept="image/*" ) }}
+    label=_("member_image"), accept="image/*" ) }}
 </form>

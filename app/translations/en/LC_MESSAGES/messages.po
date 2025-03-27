@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-24 22:05+0400\n"
+"POT-Creation-Date: 2025-03-27 09:37+0400\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.10.3\n"
 
-#: api/v1/views/knowledge_hub.py:34
+#: api/v1/views/knowledge_hub.py:32
 msgid "Invalid tab"
 msgstr "Invalid tab"
 
-#: api/v1/views/knowledge_hub.py:53
+#: api/v1/views/knowledge_hub.py:52
 msgid "Research not found"
 msgstr "Research not found"
 
@@ -30,188 +30,188 @@ msgstr "Research not found"
 msgid "An error occurred while creating the course"
 msgstr "An error occurred while creating the course"
 
-#: api/v1/views/knowledge_hub.py:124
+#: api/v1/views/knowledge_hub.py:125
 msgid "Course created successfully"
 msgstr "Course created successfully"
 
-#: api/v1/views/knowledge_hub.py:139
+#: api/v1/views/knowledge_hub.py:140
 msgid "An error occurred while updating the course"
 msgstr "An error occurred while updating the course"
 
-#: api/v1/views/knowledge_hub.py:146
+#: api/v1/views/knowledge_hub.py:148
 msgid "Course updated successfully"
 msgstr "Course updated successfully"
 
-#: api/v1/views/knowledge_hub.py:158
+#: api/v1/views/knowledge_hub.py:160
 msgid "An error occurred while deleting the course"
 msgstr "An error occurred while deleting the course"
 
-#: api/v1/views/knowledge_hub.py:165
+#: api/v1/views/knowledge_hub.py:168
 msgid "Course deleted successfully"
 msgstr "Course deleted successfully"
 
-#: api/v1/views/knowledge_hub.py:191
+#: api/v1/views/knowledge_hub.py:195
 msgid "An error occurred while creating the podcast"
 msgstr "An error occurred while creating the podcast"
 
-#: api/v1/views/knowledge_hub.py:198
+#: api/v1/views/knowledge_hub.py:203
 msgid "Podcast created successfully"
 msgstr "Podcast created successfully"
 
-#: api/v1/views/knowledge_hub.py:213
+#: api/v1/views/knowledge_hub.py:218
 msgid "An error occurred while updating the podcast"
 msgstr "An error occurred while updating the podcast"
 
-#: api/v1/views/knowledge_hub.py:220
+#: api/v1/views/knowledge_hub.py:226
 msgid "Podcast updated successfully"
 msgstr "Podcast updated successfully"
 
-#: api/v1/views/knowledge_hub.py:232
+#: api/v1/views/knowledge_hub.py:238
 msgid "An error occurred while deleting the podcast"
 msgstr "An error occurred while deleting the podcast"
 
-#: api/v1/views/knowledge_hub.py:241
+#: api/v1/views/knowledge_hub.py:248
 msgid "Podcast deleted successfully"
 msgstr "Podcast deleted successfully"
 
-#: api/v1/views/knowledge_hub.py:268
+#: api/v1/views/knowledge_hub.py:276
 msgid "An error occurred while creating the research"
 msgstr "An error occurred while creating the research"
 
-#: api/v1/views/knowledge_hub.py:277
+#: api/v1/views/knowledge_hub.py:286
 msgid "Research created successfully"
 msgstr "Research created successfully"
 
-#: api/v1/views/knowledge_hub.py:292
+#: api/v1/views/knowledge_hub.py:301
 msgid "An error occurred while updating the research"
 msgstr "An error occurred while updating the research"
 
-#: api/v1/views/knowledge_hub.py:301
+#: api/v1/views/knowledge_hub.py:311
 msgid "Research updated successfully"
 msgstr "Research updated successfully"
 
-#: api/v1/views/knowledge_hub.py:313
+#: api/v1/views/knowledge_hub.py:323
 msgid "An error occurred while deleting the research"
 msgstr "An error occurred while deleting the research"
 
-#: api/v1/views/knowledge_hub.py:322
+#: api/v1/views/knowledge_hub.py:333
 msgid "Research deleted successfully"
 msgstr "Research deleted successfully"
 
-#: api/v1/views/knowledge_hub.py:349
+#: api/v1/views/knowledge_hub.py:361
 msgid "An error occurred while creating the member"
 msgstr "An error occurred while creating the member"
 
-#: api/v1/views/knowledge_hub.py:352
+#: api/v1/views/knowledge_hub.py:364
 msgid "Member created successfully"
 msgstr "Member created successfully"
 
-#: api/v1/views/knowledge_hub.py:367
+#: api/v1/views/knowledge_hub.py:379
 msgid "An error occurred while updating the member"
 msgstr "An error occurred while updating the member"
 
-#: api/v1/views/knowledge_hub.py:374
+#: api/v1/views/knowledge_hub.py:387
 msgid "Member updated successfully"
 msgstr "Member updated successfully"
 
-#: api/v1/views/knowledge_hub.py:386
+#: api/v1/views/knowledge_hub.py:399
 msgid "An error occurred while deleting the member"
 msgstr "An error occurred while deleting the member"
 
-#: api/v1/views/knowledge_hub.py:393
+#: api/v1/views/knowledge_hub.py:407
 msgid "Member deleted successfully"
 msgstr "Member deleted successfully"
 
-#: api/v1/views/main.py:89 api/v1/views/main.py:92
+#: api/v1/views/main.py:122
 msgid "Invalid credentials"
 msgstr "Invalid Credentials"
 
-#: api/v1/views/main.py:98
+#: api/v1/views/main.py:127
 msgid "Login successful"
 msgstr "Login successful"
 
-#: api/v1/views/main.py:203
+#: api/v1/views/main.py:206
 msgid "Failed to send message"
 msgstr "Failed to send your message"
 
-#: api/v1/views/main.py:207
+#: api/v1/views/main.py:210
 msgid "Your comment received successfully"
 msgstr "Your comment received successfully"
 
-#: api/v1/views/projects.py:18 api/v1/views/projects.py:84
-#: api/v1/views/projects.py:112
+#: api/v1/views/projects.py:20 api/v1/views/projects.py:87
+#: api/v1/views/projects.py:116
 msgid "Project not found"
 msgstr "Project not found"
 
-#: api/v1/views/projects.py:62
+#: api/v1/views/projects.py:65
 msgid "Project created successfully"
 msgstr "Project created successfully"
 
-#: api/v1/views/projects.py:100
+#: api/v1/views/projects.py:104
 msgid "Project updated successfully"
 msgstr "Project updated successfully"
 
-#: api/v1/views/projects.py:121
+#: api/v1/views/projects.py:125
 msgid "Project deleted successfully"
 msgstr "Project deleted successfully"
 
-#: api/v1/views/subscribers.py:23
+#: api/v1/views/subscribers.py:24
 msgid "Email already subscribed"
 msgstr "Email already subscribed"
 
-#: api/v1/views/subscribers.py:28
+#: api/v1/views/subscribers.py:29
 msgid "Failed to subscribe"
 msgstr "Failed to subscribe"
 
-#: api/v1/views/subscribers.py:30
+#: api/v1/views/subscribers.py:31
 msgid "Thank you for subscribing"
 msgstr "Thank you for subscribing"
 
-#: api/v1/views/subscribers.py:43
+#: api/v1/views/subscribers.py:44
 msgid "Failed to unsubscribe"
 msgstr "Failed to unsubscribe"
 
-#: api/v1/views/subscribers.py:46
+#: api/v1/views/subscribers.py:47
 msgid "Unsubscribed successfully"
 msgstr "Unsubscribed successfully"
 
-#: api/v1/views/subscribers.py:85
+#: api/v1/views/subscribers.py:87
 msgid "Failed to send broadcast email"
 msgstr "Failed to send broadcast email"
 
-#: api/v1/views/subscribers.py:98
+#: api/v1/views/subscribers.py:100
 msgid "Broadcast email sent successfully"
 msgstr "Broadcast email sent successfully"
 
-#: api/v1/views/subscribers.py:113
+#: api/v1/views/subscribers.py:115
 msgid "Subscribers exported successfully"
 msgstr "Subscribers exported successfully"
 
-#: api/v1/views/team.py:40
+#: api/v1/views/team.py:42
 msgid "create_team_member"
 msgstr "Create Team Member"
 
-#: api/v1/views/team.py:50
+#: api/v1/views/team.py:52
 msgid "An error occurred while creating the team member"
 msgstr "An error occurred while creating a team member"
 
-#: api/v1/views/team.py:60
+#: api/v1/views/team.py:63
 msgid "Team member created successfully"
 msgstr "Team member created successfully"
 
-#: api/v1/views/team.py:70 api/v1/views/team.py:101
+#: api/v1/views/team.py:73 api/v1/views/team.py:105
 msgid "Team member not found"
 msgstr "Team member not found"
 
-#: api/v1/views/team.py:75
+#: api/v1/views/team.py:78
 msgid "update_team_member"
 msgstr "Update Team Member"
 
-#: api/v1/views/team.py:89
+#: api/v1/views/team.py:93
 msgid "Team member updated successfully"
 msgstr "Team member updated successfully"
 
-#: api/v1/views/team.py:110
+#: api/v1/views/team.py:115
 msgid "Team member deleted successfully"
 msgstr "Team member deleted successfully"
 
@@ -384,7 +384,7 @@ msgstr "Have any inquiries or want to ask us something?"
 msgid "form name"
 msgstr "Name"
 
-#: app/templates/index.html:176 app/templates/partials/footer.html:18
+#: app/templates/index.html:176 app/templates/partials/footer.html:17
 msgid "form email"
 msgstr "Email"
 
@@ -496,11 +496,23 @@ msgstr ""
 "economists, researchers, and advocates, we work collectively to empower "
 "women and promote sustainable development across Sudan and beyond."
 
+#: app/templates/macros/carousel.html:7
+msgid "empty research"
+msgstr "There are no researches yet. Coming soon!"
+
+#: app/templates/macros/carousel.html:44
+msgid "Select the course"
+msgstr "Select the course"
+
+#: app/templates/macros/carousel.html:60
+msgid "Select Tags"
+msgstr "Select Tags"
+
 #: app/templates/macros/form.html:44
 msgid "course_desc"
 msgstr "Courses Description"
 
-#: app/templates/macros/form.html:51
+#: app/templates/macros/form.html:51 app/templates/macros/form_macros.html:110
 msgid "content_english_placeholder"
 msgstr "Content (English)"
 
@@ -509,36 +521,106 @@ msgid "choose"
 msgstr "Choose"
 
 #: app/templates/macros/form_macros.html:107
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:74
 msgid "Content"
 msgstr "Content"
 
-#: app/templates/macros/form_macros.html:117
+#: app/templates/macros/form_macros.html:110
+msgid "English Content"
+msgstr "English Content"
+
+#: app/templates/macros/form_macros.html:111
+msgid "Arabic Content"
+msgstr "Arabic Content"
+
+#: app/templates/macros/form_macros.html:111
+msgid "content_arabic_placeholder"
+msgstr "Content (Arabic)"
+
+#: app/templates/macros/form_macros.html:116
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:86
+#: app/templates/partials/dashboard/knowledge_hub/members-form.html:39
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:89
+#: app/templates/partials/dashboard/project-form.html:73
+#: app/templates/partials/dashboard/team_member-form.html:85
+msgid "current_image"
+msgstr "Current Image"
+
+#: app/templates/macros/form_macros.html:119
 msgid "Content Image"
 msgstr "Content Image"
 
-#: app/templates/macros/form_macros.html:141
+#: app/templates/macros/form_macros.html:131
+msgid "content_image"
+msgstr "Content Image"
+
+#: app/templates/macros/form_macros.html:144
 msgid "Add another content block"
 msgstr "Add another content block"
 
-#: app/templates/macros/form_macros.html:152
+#: app/templates/macros/form_macros.html:155
 msgid "Remove this content block"
 msgstr "Remove this content block"
 
-#: app/templates/macros/form_macros.html:164
+#: app/templates/macros/form_macros.html:167
 msgid "Testimonial"
 msgstr "Testimonials"
 
-#: app/templates/macros/form_macros.html:176
+#: app/templates/macros/form_macros.html:170
+msgid "English Testimonial"
+msgstr "English Testimonial"
+
+#: app/templates/macros/form_macros.html:170
+msgid "testimonial_english_placeholder"
+msgstr "Testimonials (English)"
+
+#: app/templates/macros/form_macros.html:171
+msgid "Arabic Testimonial"
+msgstr "Arabic Testimonial"
+
+#: app/templates/macros/form_macros.html:171
+msgid "testimonial_arabic_placeholder"
+msgstr "Testimonials (Arabic)"
+
+#: app/templates/macros/form_macros.html:172
+msgid "Testimonial Author"
+msgstr "Testimonial Author"
+
+#: app/templates/macros/form_macros.html:172
+msgid "testimonial_author_placeholder"
+msgstr "Testimonial Author"
+
+#: app/templates/macros/form_macros.html:173
+msgid "Testimonial Author Qualification"
+msgstr "Testimonial Author Qualification"
+
+#: app/templates/macros/form_macros.html:173
+msgid "testimonial_author_qualification_placeholder"
+msgstr "Testimonial Author Qualification"
+
+#: app/templates/macros/form_macros.html:178
+msgid "current_photo"
+msgstr "Current Photo"
+
+#: app/templates/macros/form_macros.html:181
 msgid "Testimonial Author Photo"
 msgstr "Testimonial Author Photo"
 
-#: app/templates/macros/form_macros.html:200
+#: app/templates/macros/form_macros.html:193
+msgid "testi_author_photo"
+msgstr "Testimonial Author Photo"
+
+#: app/templates/macros/form_macros.html:206
 msgid "Add another testimonial block"
 msgstr "Add another testimonial block"
 
-#: app/templates/macros/form_macros.html:211
+#: app/templates/macros/form_macros.html:217
 msgid "Remove this testimonial block"
 msgstr "Remove this testimonial block"
+
+#: app/templates/macros/modal.html:2
+msgid "add"
+msgstr "Add"
 
 #: app/templates/macros/modal.html:76
 msgid "cancel"
@@ -556,27 +638,28 @@ msgstr "Next"
 msgid "search_placeholder"
 msgstr "Search"
 
-#: app/templates/macros/tab_content.html:30
+#: app/templates/macros/tab_content.html:31
 msgid "Export to Excel"
 msgstr "Export to Excel"
 
-#: app/templates/macros/tab_content.html:81
+#: app/templates/macros/tab_content.html:85
 msgid "all_projects"
 msgstr "All Projects"
 
-#: app/templates/macros/tab_content.html:82
+#: app/templates/macros/tab_content.html:86
+#: app/templates/partials/dashboard/project-form.html:45
 msgid "ongoing"
 msgstr "Ongoing"
 
-#: app/templates/macros/tab_content.html:83
+#: app/templates/macros/tab_content.html:87
 msgid "completed_projects"
 msgstr "Completed Projects"
 
-#: app/templates/partials/footer.html:7
+#: app/templates/partials/footer.html:12
 msgid "footer caption"
 msgstr "Stay informed by <b>subscribing</b> to our newsletter!"
 
-#: app/templates/partials/footer.html:26
+#: app/templates/partials/footer.html:21
 msgid "subscribe"
 msgstr "Subscribe"
 
@@ -591,6 +674,16 @@ msgstr "knowledge hub"
 #: app/templates/partials/header.html:52
 msgid "switch language"
 msgstr "العربية"
+
+#: app/templates/partials/cards/course.html:67
+msgid "Watch Now"
+msgstr "Watch Now"
+
+#: app/templates/partials/cards/research.html:51
+#: app/templates/partials/news/cards.html:36
+#: app/templates/partials/projects/cards.html:35
+msgid "learn more"
+msgstr "Learn more"
 
 #: app/templates/partials/dashboard/knowledge-hub.html:9
 msgid "knowledge_hub"
@@ -620,22 +713,34 @@ msgstr "News Date"
 
 #: app/templates/partials/dashboard/news-form.html:39
 msgid "news_image"
-msgstr "Project Hero Image"
+msgstr "News Image"
 
 #: app/templates/partials/dashboard/news-form.html:40
 msgid "news image"
 msgstr "Content Image"
 
+#: app/templates/partials/dashboard/news-form.html:49
+msgid "news_description"
+msgstr "News Description"
+
+#: app/templates/partials/dashboard/news-form.html:58
+msgid "english_news_description"
+msgstr "Description (English)"
+
+#: app/templates/partials/dashboard/news-form.html:75
+msgid "arabic_news_description"
+msgstr "Description (Arabic)"
+
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:98
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:97
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:162
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:101
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:167
 #: app/templates/partials/dashboard/news-form.html:95
 msgid "update"
 msgstr "Update"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:98
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:97
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:162
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:101
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:167
 #: app/templates/partials/dashboard/news-form.html:95
 msgid "create"
 msgstr "Create"
@@ -698,6 +803,7 @@ msgstr "Author Name (Arabic)"
 msgid "author_name_ar_placeholder"
 msgstr "Author Name (Arabic)"
 
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:48
 #: app/templates/partials/dashboard/project-form.html:39
 msgid "author_email"
 msgstr "Author Email"
@@ -706,10 +812,21 @@ msgstr "Author Email"
 msgid "author_email_placeholder"
 msgstr "Author Email"
 
+#: app/templates/partials/dashboard/project-form.html:45
+msgid "completed"
+msgstr "Completed"
+
+#: app/templates/partials/dashboard/project-form.html:46
+msgid "status"
+msgstr "Status"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:55
 #: app/templates/partials/dashboard/project-form.html:49
 msgid "date_of_completion"
 msgstr "Date of Completion"
 
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:72
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:127
 #: app/templates/partials/dashboard/project-form.html:55
 msgid "tags_english"
 msgstr "Tags (English)"
@@ -718,31 +835,38 @@ msgstr "Tags (English)"
 msgid "tags_english_placeholder"
 msgstr "Tags (English)"
 
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:74
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:129
 #: app/templates/partials/dashboard/project-form.html:58
+msgid "tags_english_example"
+msgstr "Economy, Women, Development"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:76
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:131
+#: app/templates/partials/dashboard/project-form.html:59
 msgid "tags_arabic"
 msgstr "Tags (Arabic)"
 
-#: app/templates/partials/dashboard/project-form.html:60
+#: app/templates/partials/dashboard/project-form.html:61
 msgid "tags_arabic_placeholder"
 msgstr "Tags (Arabic)"
 
-#: app/templates/partials/dashboard/project-form.html:65
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:78
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:132
+#: app/templates/partials/dashboard/project-form.html:62
+msgid "tags_arabic_example"
+msgstr "اقتصاد، نساء، تنمية"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:58
+#: app/templates/partials/dashboard/project-form.html:76
 msgid "hero_image"
-msgstr "Project Hero Image"
+msgstr "Hero Image"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:86
-#: app/templates/partials/dashboard/knowledge_hub/members-form.html:38
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:85
-#: app/templates/partials/dashboard/project-form.html:74
-#: app/templates/partials/dashboard/team_member-form.html:85
-msgid "current_image"
-msgstr "Current Image"
-
-#: app/templates/partials/dashboard/project-form.html:111
+#: app/templates/partials/dashboard/project-form.html:110
 msgid "update_project"
 msgstr "Update Project"
 
-#: app/templates/partials/dashboard/project-form.html:112
+#: app/templates/partials/dashboard/project-form.html:111
 #: app/templates/partials/dashboard/projects.html:5
 msgid "add_project"
 msgstr "Add Project"
@@ -816,13 +940,166 @@ msgstr "Team Members"
 msgid "add_team_member"
 msgstr "Add Team Member"
 
+#: app/templates/partials/dashboard/team_member-form.html:16
+msgid "name_english"
+msgstr "English Name"
+
+#: app/templates/partials/dashboard/team_member-form.html:17
+msgid "enter_name_in_english"
+msgstr "Member Name (English)"
+
+#: app/templates/partials/dashboard/team_member-form.html:19
+msgid "name_arabic"
+msgstr "Arabic Name"
+
+#: app/templates/partials/dashboard/team_member-form.html:20
+msgid "enter_name_in_arabic"
+msgstr "Member Name (Arabic)"
+
+#: app/templates/partials/dashboard/team_member-form.html:26
+msgid "role_english"
+msgstr "Role (English)"
+
+#: app/templates/partials/dashboard/team_member-form.html:27
+msgid "enter_role_in_english"
+msgstr "Member Role (English)"
+
+#: app/templates/partials/dashboard/team_member-form.html:29
+msgid "role_arabic"
+msgstr "Role (Arabic)"
+
+#: app/templates/partials/dashboard/team_member-form.html:30
+msgid "enter_role_in_arabic"
+msgstr "Member Role (Arabic)"
+
+#: app/templates/partials/dashboard/team_member-form.html:35
+msgid "order"
+msgstr "Order"
+
+#: app/templates/partials/dashboard/team_member-form.html:35
+msgid "enter_member_order"
+msgstr "Select the order of the team member"
+
+#: app/templates/partials/dashboard/team_member-form.html:41
+msgid "bio_english"
+msgstr "English Bio"
+
+#: app/templates/partials/dashboard/team_member-form.html:41
+msgid "enter_bio_in_english"
+msgstr "Member Bio (English)"
+
+#: app/templates/partials/dashboard/team_member-form.html:44
+msgid "bio_arabic"
+msgstr "Arabic Bio"
+
+#: app/templates/partials/dashboard/team_member-form.html:44
+msgid "enter_bio_in_arabic"
+msgstr "Member Bio (Arabic)"
+
+#: app/templates/partials/dashboard/knowledge_hub/members-form.html:16
+#: app/templates/partials/dashboard/team_member-form.html:50
+msgid "email"
+msgstr "Email"
+
+#: app/templates/partials/dashboard/team_member-form.html:50
+msgid "enter_member_email"
+msgstr "Member Email"
+
 #: app/templates/partials/dashboard/team_member-form.html:55
 msgid "socials"
 msgstr "Social links"
 
+#: app/templates/partials/dashboard/team_member-form.html:88
+msgid "profile_image"
+msgstr "Profile Image"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:27
+msgid "course_title_english"
+msgstr "Course Title in English"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:28
+msgid "english_title_placeholder"
+msgstr "Title (English)"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:30
+msgid "course_title_arabic"
+msgstr "Arabic Name"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:31
+msgid "arabic_title_placeholder"
+msgstr "Course Title in Arabic"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:38
+msgid "course_name_english"
+msgstr "English Name"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:38
+msgid "english_course_name"
+msgstr "English Name"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:41
+msgid "course_name_arabic"
+msgstr "Arabic Name"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:41
+msgid "arabic_course_name"
+msgstr "Arabic Name"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:49
+msgid "description_english"
+msgstr "Description (English)"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:49
+msgid "english_description"
+msgstr "Description (English)"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:52
+msgid "description_arabic"
+msgstr "Description (Arabic)"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:52
+msgid "arabic_description"
+msgstr "Description (Arabic)"
+
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:57
 msgid "course_members"
 msgstr "Course Members"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:66
+msgid "course_url"
+msgstr "Course URL"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:70
+msgid "en_tags"
+msgstr "English Tags"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:71
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:73
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:128
+msgid "enter_en_tags_comma_separated"
+msgstr "English Tags (comma separated)"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:72
+msgid "example_en_tags_format"
+msgstr "Economy, Women, Development"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:74
+msgid "ar_tags"
+msgstr "Arabic Tags"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:75
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:77
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:131
+msgid "enter_ar_tags_comma_separated"
+msgstr "Arabic Tags (comma separated)"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:76
+msgid "example_ar_tags_format"
+msgstr "اقتصاد، نساء، تنمية"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:89
+msgid "course_image"
+msgstr "Course Image"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-list.html:50
 msgid "confirm_delete_course"
@@ -832,17 +1109,129 @@ msgstr "Are you sure you want to delete this course?"
 msgid "no_courses_found"
 msgstr "No courses found"
 
+#: app/templates/partials/dashboard/knowledge_hub/courses.html:6
+msgid "search_course"
+msgstr "Search Course"
+
+#: app/templates/partials/dashboard/knowledge_hub/courses.html:7
+msgid "add_course"
+msgstr "Add Course"
+
+#: app/templates/partials/dashboard/knowledge_hub/members-form.html:7
+msgid "mem_name_english"
+msgstr "Member Name (English)"
+
+#: app/templates/partials/dashboard/knowledge_hub/members-form.html:8
+msgid "enter_mem_english_name"
+msgstr "Name (English)"
+
+#: app/templates/partials/dashboard/knowledge_hub/members-form.html:10
+msgid "mem_name_arabic"
+msgstr "Member Name (Arabic)"
+
+#: app/templates/partials/dashboard/knowledge_hub/members-form.html:11
+msgid "enter_mem_arabic_name"
+msgstr "Name (Arabic)"
+
+#: app/templates/partials/dashboard/knowledge_hub/members-form.html:16
+msgid "enter_email_address"
+msgstr "Email Address"
+
+#: app/templates/partials/dashboard/knowledge_hub/members-form.html:23
+msgid "university_department_english"
+msgstr "University or Department (English)"
+
+#: app/templates/partials/dashboard/knowledge_hub/members-form.html:24
+msgid "enter_english_university_department"
+msgstr "University or Department (Arabic)"
+
+#: app/templates/partials/dashboard/knowledge_hub/members-form.html:27
+msgid "university_department_arabic"
+msgstr "University or Department (Arabic)"
+
+#: app/templates/partials/dashboard/knowledge_hub/members-form.html:28
+msgid "enter_arabic_university_department"
+msgstr "University or Department (Arabic)"
+
+#: app/templates/partials/dashboard/knowledge_hub/members-form.html:42
+msgid "member_image"
+msgstr "Member Image"
+
 #: app/templates/partials/dashboard/knowledge_hub/members-list.html:17
 msgid "no members"
 msgstr "No members"
 
 #: app/templates/partials/dashboard/knowledge_hub/members-list.html:29
-msgid "add_new"
-msgstr "Add News"
+msgid "add_new_member"
+msgstr "Add Member"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:27
+msgid "pod_title_english"
+msgstr "Podcast Title (English)"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:28
+msgid "pod_enter_english_title"
+msgstr "Title (English)"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:30
+msgid "pod_title_arabic"
+msgstr "Podcast Title (Arabic)"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:31
+msgid "pod_enter_arabic_title"
+msgstr "Title (Arabic)"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:38
+msgid "podcast_name_english"
+msgstr "Podcast Name (English)"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:39
+msgid "enter_english_podcast_name"
+msgstr "Name (English)"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:42
+msgid "podcast_name_arabic"
+msgstr "Podcast Name (Arabic)"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:43
+msgid "enter_arabic_podcast_name"
+msgstr "Name (Arabic)"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:50
+msgid "pod_description_english"
+msgstr "Description (English)"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:51
+msgid "enter_english_pod_description"
+msgstr "Description (English)"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:54
+msgid "pod_description_arabic"
+msgstr "Description (Arabic)"
 
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:55
+msgid "enter_arabic_pod_description"
+msgstr "Description (Arabic)"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:59
 msgid "podcast_members"
 msgstr "Podcast Members"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:64
+msgid "podcast_date"
+msgstr "Podcast Date"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:68
+msgid "podcast_url"
+msgstr "Podcast URL (Soundcloud)"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:68
+msgid "enter_podcast_url"
+msgstr "Podcast URL"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:93
+msgid "podcast_image"
+msgstr "Podcast Image"
 
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:50
 msgid "confirm_delete_podcast"
@@ -852,11 +1241,67 @@ msgstr "Are you sure you want to delete this podcast?"
 msgid "no_podcasts_found"
 msgstr "No podcasts found"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:64
+#: app/templates/partials/dashboard/knowledge_hub/podcasts.html:6
+msgid "search_podcast"
+msgstr "Search Podcast"
+
+#: app/templates/partials/dashboard/knowledge_hub/podcasts.html:7
+msgid "add_podcast"
+msgstr "Add Podcast"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:28
+msgid "re_title_english"
+msgstr "English Title"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:29
+msgid "re_enter_title_in_english"
+msgstr "Title (English)"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:31
+msgid "re_title_arabic"
+msgstr "Arabic Title"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:32
+msgid "re_enter_title_in_arabic"
+msgstr "Title (Arabic)"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:39
+msgid "author_name_english"
+msgstr "Author Name (English)"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:40
+msgid "enter_author_name_in_english"
+msgstr "Author Name (English)"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:43
+msgid "author_name_arabic"
+msgstr "Author Name (Arabic)"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:44
+msgid "enter_author_name_in_arabic"
+msgstr "Author Name (Arabic)"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:49
+msgid "enter_author_email"
+msgstr "Author Email"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:66
 msgid "current_hero_image"
 msgstr "Current Hero Image"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:143
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:83
+msgid "re_en_content"
+msgstr "English Content"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:100
+msgid "re_ar_content"
+msgstr "Arabic Content"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:135
+msgid "additional_images"
+msgstr "Additional Images"
+
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:148
 msgid "confirm_delete_image"
 msgstr "Are you sure you want to delete this image?"
 
@@ -868,35 +1313,13 @@ msgstr "Are you sure you want to delete this research?"
 msgid "no_researches_found"
 msgstr "No research found"
 
-#: app/templates/partials/knowledge-hub/courses-cards.html:56
-msgid "Watch Now"
-msgstr "Watch Now"
+#: app/templates/partials/dashboard/knowledge_hub/researches.html:6
+msgid "search_research"
+msgstr "Search Research"
 
-#: app/templates/partials/knowledge-hub/courses.html:19
-msgid "Select the course"
-msgstr "Select the course"
-
-#: app/templates/partials/knowledge-hub/courses.html:36
-msgid "Select Tags"
-msgstr "Select Tags"
-
-#: app/templates/partials/knowledge-hub/courses.html:45
-msgid "No courses found"
-msgstr "No courses found"
-
-#: app/templates/partials/knowledge-hub/podcasts.html:4
-msgid "No podcasts available"
-msgstr "No podcasts available"
-
-#: app/templates/partials/knowledge-hub/research.html:4
-msgid "empty research"
-msgstr "There are no researches yet. Coming soon!"
-
-#: app/templates/partials/knowledge-hub/researches-cards.html:38
-#: app/templates/partials/news/cards.html:36
-#: app/templates/partials/projects/cards.html:35
-msgid "learn more"
-msgstr "Learn more"
+#: app/templates/partials/dashboard/knowledge_hub/researches.html:7
+msgid "add_research"
+msgstr "Add Research"
 
 #: utils/auth_utils.py:42
 msgid "Please log in to access this page"
@@ -1142,4 +1565,16 @@ msgstr "Invalid email domain. Please check your email"
 
 #~ msgid "No content available for this research."
 #~ msgstr "No content available for this research."
+
+#~ msgid "No courses found"
+#~ msgstr "No courses found"
+
+#~ msgid "No podcasts available"
+#~ msgstr "No podcasts available"
+
+#~ msgid "hero_image"
+#~ msgstr "Project Hero Image"
+
+#~ msgid "tags"
+#~ msgstr "English Tags"
 

@@ -3,50 +3,46 @@
 {% if data %}
 <div class="space-y-4">
     {% for member in data %}
-    <div
-        class="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center p-4 bg-white rounded-lg shadow-sm gap-4"
-    >
+    <div class="flex flex-col sm:flex-row justify-between p-4 bg-white rounded-lg shadow-sm gap-4 sm:gap-6">
         <!-- Team Member Details -->
-        <div class="flex-1">
-            <!-- Name -->
-            <span class="flex items-center gap-2">
-                <span
-                    class="inline-block px-2 py-1 text-xs font-medium rounded-sm bg-gray-100 text-gray-700"
-                >
+        <div class="flex-1 min-w-0 space-y-2">
+            <!-- Name and Order -->
+            <div class="flex items-center gap-2 flex-wrap">
+                <span class="inline-block px-2 py-1 text-xs font-medium rounded-sm bg-gray-100 text-gray-700 whitespace-nowrap">
                     {{ member.order }}
                 </span>
-                <h3 class="text-lg font-semibold text-gray-900">
+                <h3 class="text-lg font-semibold text-gray-900 break-words">
                     {{ member.name[locale] | default(member.name['en']) }}
                 </h3>
-            </span>
+            </div>
+            
             <!-- Role -->
-            <p class="text-sm text-gray-600">
+            <p class="text-sm text-gray-600 break-words">
                 {{ member.role[locale] | default(member.role['en']) }}
             </p>
+            
             <!-- Bio -->
-            <p class="mt-2 text-sm text-gray-700 line-clamp-2">
+            <p class="text-sm text-gray-700 line-clamp-2 break-words">
                 {{ member.bio[locale] | default(member.bio['en']) }}
             </p>
+            
             <!-- Socials -->
-            <div class="mt-2 flex flex-wrap gap-2">
-                {% if member.socials %} {% for platform, link in
-                member.socials.items() %}
-                <a
-                    href="{{ link }}"
-                    target="_blank"
-                    class="inline-block px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-all duration-200"
-                >
+            {% if member.socials %}
+            <div class="flex flex-wrap gap-2">
+                {% for platform, link in member.socials.items() %}
+                <a href="{{ link }}" target="_blank"
+                    class="inline-block px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 transition-all duration-200 whitespace-nowrap">
                     {{ platform | capitalize }}
                 </a>
-                {% endfor %} {% endif %}
+                {% endfor %}
             </div>
+            {% endif %}
         </div>
+        
         <!-- Actions -->
-        <div
-            class="flex flex-col sm:flex-row sm:items-center gap-2 w-full sm:w-auto"
-        >
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2 w-full sm:w-auto mt-2 sm:mt-0">
             <button
-                class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none"
+                class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none whitespace-nowrap"
                 hx-get="/dashboard/update-team-member/{{ member.uuid }}"
                 hx-target="#tab-content"
                 hx-swap="innerHTML"
@@ -54,7 +50,7 @@
                 {{ _("edit") }}
             </button>
             <button
-                class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-red-100 text-red-700 hover:bg-red-200 focus:ring-2 focus:ring-red-500 focus:outline-none"
+                class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-red-100 text-red-700 hover:bg-red-200 focus:ring-2 focus:ring-red-500 focus:outline-none whitespace-nowrap"
                 hx-delete="/dashboard/delete-team-member/{{ member.uuid }}"
                 hx-confirm="{{ _('confirm_delete_team_member') }}"
                 hx-target="#tab-content"

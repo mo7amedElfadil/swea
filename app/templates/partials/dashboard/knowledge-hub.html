@@ -4,7 +4,7 @@
     class="bg-primary-50 rounded-xl shadow-sm transition-all duration-200"
 >
     <!-- Header Section -->
-    <div class="flex justify-between items-center mb-6">
+    <div class="flex justify-between items-center mb-6 px-4 sm:px-6">
         <h2 class="text-2xl font-bold text-gray-900">
             {{ _("knowledge_hub") }}
         </h2>
@@ -12,50 +12,61 @@
 
     <!-- Navigation Tabs for Knowledge Hub -->
     <nav
-        class="flex justify-between mb-6 border-b border-gray-200 sm:justify-normal sm:gap-4"
+        class="flex overflow-x-auto px-4 sm:px-6 mb-6 border-b border-gray-200 scrollbar-hide"
     >
-        <!-- Courses Tab -->
-        <button
-            class="py-2 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent sm:px-4 aria-selected:bg-primary-200"
-            hx-get="/dashboard/knowledge-hub?tab=courses"
-            hx-target="#kh-content"
-            hx-swap="innerHTML"
-            hx-headers='{"hx-tab": "true"}'
-            role="kh-tab"
-            aria-selected="true"
-        >
-            {{ _("courses") }}
-        </button>
+        <div class="flex space-x-1 min-w-max">
+            <!-- Courses Tab -->
+            <button
+                class="py-3 px-4 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent aria-selected:bg-primary-200 aria-selected:text-primary-800 relative group"
+                hx-get="/dashboard/knowledge-hub?tab=courses"
+                hx-target="#kh-content"
+                hx-swap="innerHTML"
+                hx-headers='{"hx-tab": "true"}'
+                role="kh-tab"
+                aria-selected="true"
+            >
+                {{ _("courses") }}
+                <span
+                    class="absolute bottom-0 left-0 w-full h-0.5 bg-primary-600 transform scale-x-0 group-aria-selected:scale-x-100 transition-transform duration-300"
+                ></span>
+            </button>
 
-        <!-- Researches Tab -->
-        <button
-            class="py-2 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent sm:px-4 aria-selected:bg-primary-200"
-            hx-get="/dashboard/knowledge-hub?tab=researches"
-            hx-target="#kh-content"
-            hx-swap="innerHTML"
-            hx-headers='{"hx-tab": "true"}'
-            role="kh-tab"
-            aria-selected="false"
-        >
-            {{ _("researches") }}
-        </button>
+            <!-- Researches Tab -->
+            <button
+                class="py-3 px-4 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent aria-selected:bg-primary-200 aria-selected:text-primary-800 relative group"
+                hx-get="/dashboard/knowledge-hub?tab=researches"
+                hx-target="#kh-content"
+                hx-swap="innerHTML"
+                hx-headers='{"hx-tab": "true"}'
+                role="kh-tab"
+                aria-selected="false"
+            >
+                {{ _("researches") }}
+                <span
+                    class="absolute bottom-0 left-0 w-full h-0.5 bg-primary-600 transform scale-x-0 group-aria-selected:scale-x-100 transition-transform duration-300"
+                ></span>
+            </button>
 
-        <!-- Podcasts Tab -->
-        <button
-            class="py-2 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent sm:px-4 aria-selected:bg-primary-200"
-            hx-get="/dashboard/knowledge-hub?tab=podcasts"
-            hx-target="#kh-content"
-            hx-swap="innerHTML"
-            hx-headers='{"hx-tab": "true"}'
-            role="kh-tab"
-            aria-selected="false"
-        >
-            {{ _("podcasts") }}
-        </button>
+            <!-- Podcasts Tab -->
+            <button
+                class="py-3 px-4 text-sm font-medium rounded-t-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-transparent aria-selected:bg-primary-200 aria-selected:text-primary-800 relative group"
+                hx-get="/dashboard/knowledge-hub?tab=podcasts"
+                hx-target="#kh-content"
+                hx-swap="innerHTML"
+                hx-headers='{"hx-tab": "true"}'
+                role="kh-tab"
+                aria-selected="false"
+            >
+                {{ _("podcasts") }}
+                <span
+                    class="absolute bottom-0 left-0 w-full h-0.5 bg-primary-600 transform scale-x-0 group-aria-selected:scale-x-100 transition-transform duration-300"
+                ></span>
+            </button>
+        </div>
     </nav>
 
     <!-- Content Area for Knowledge Hub -->
-    <div id="kh-content">
+    <div id="kh-content" class="px-4 sm:px-6 pb-6">
         {% include 'partials/dashboard/knowledge_hub/courses.html' %}
     </div>
 </div>
@@ -66,10 +77,17 @@
             const tabs = document.querySelectorAll('[role="kh-tab"]')
             tabs.forEach((t) => {
                 t.setAttribute('aria-selected', 'false')
-                t.classList.remove('bg-primary-200')
             })
             tab.setAttribute('aria-selected', 'true')
-            tab.classList.add('bg-primary-200')
+
+            // Smooth scroll to center the active tab on mobile
+            if (window.innerWidth < 640) {
+                tab.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'center',
+                })
+            }
         })
     })
 </script>

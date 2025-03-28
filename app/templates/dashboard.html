@@ -1,123 +1,60 @@
-{% extends 'base.html' %} {% block extra_style %}
+{% extends 'base.html' %} 
+{% block extra_style %}
 <!-- Include stylesheet for Quill text editor -->
-<link
-    href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css"
-    rel="stylesheet"
-/>
-{% endblock %} {% block title %}{{ _('dashboard') }}{% endblock %} {% block
-content %}
-<div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+{% endblock %} 
+
+{% block title %}{{ _('dashboard') }}{% endblock %} 
+
+{% block content %}
+<div class="container mx-auto py-6 px-4 sm:px-6 lg:px-8" dir="auto">
     <!-- Header Section -->
-    <div class="mb-8">
-        <h1 class="text-4xl font-bold font-primary text-gray-900 mb-2">
-            {{ _("swea_dashboard")}}
+    <div class="mb-6 text-center {% if locale == 'ar' %}md:text-right{% else %}md:text-left{% endif %}">
+        <h1 class="text-3xl md:text-4xl font-bold font-primary text-gray-900 mb-2">
+            {{ _("swea_dashboard") }}
         </h1>
-        <p class="text-primary-600">{{ _("welcome") }}</p>
+        <p class="text-primary-600 text-sm md:text-base">{{ _("welcome") }}</p>
     </div>
-    <!-- Dashboard Grid -->
+
+    <!-- Dashboard Layout -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
         <!-- Navigation Tabs -->
         <div class="md:col-span-1">
-            <nav class="flex flex-col space-y-2 lg:sticky lg:top-[225px]">
-                <button
-                    class="flex items-center px-4 py-3 text-sm font-primary font-medium rounded-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-primary-50 hover:text-primary-900 aria-selected:bg-primary-200 aria-selected:text-primary-900"
-                    hx-get="/dashboard?q=projects"
+            <nav class="flex md:flex-col overflow-x-auto md:overflow-visible gap-2 md:gap-0 space-y-0 md:space-y-2 p-2 bg-secondary-100 shadow-sm rounded-lg md:sticky md:top-[225px] scrollbar-hide">
+                {% set tabs = [
+                    ('projects', 'projects.svg', _("swea_projects")),
+                    ('team', 'team.svg', _("swea_team")),
+                    ('knowledge_hub', 'knowledge_hub.svg', _("swea_knowledge_hub")),
+                    ('subscribers', 'subscribers.svg', _("swea_subscribers")),
+                    ('news', 'news.svg', _("news"))
+                ] %}
+                
+                {% for tab, icon, label in tabs %}
+                <button 
+                    class="flex-shrink-0 flex gap-2 items-center justify-center md:justify-start whitespace-nowrap px-3 py-2 md:px-4 md:py-3 text-sm font-medium rounded-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-primary-50 hover:text-primary-900 aria-selected:bg-primary-200 aria-selected:text-primary-900 min-w-max"
+                    hx-get="/dashboard?q={{ tab }}"
                     hx-target="#tab-content"
                     hx-swap="innerHTML"
                     hx-headers='{"hx-tab": "true"}'
                     role="db-tab"
-                    aria-selected="true"
-                >
-                    <img
-                        class="w-5 h-5 m-2"
-                        src="{{url_for('static', filename='icons/projects.svg')}}"
-                        alt="Projects Icon"
-                    />
-                    {{ _("swea_projects") }}
+                    aria-selected="false">
+                    <img class="w-4 h-4 md:w-5 md:h-5" src="{{ url_for('static', filename='icons/' ~ icon) }}" alt="{{ label }} Icon" />
+                    <span class="truncate">{{ label }}</span>
                 </button>
-                <button
-                    class="flex items-center px-4 py-3 text-sm font-primary font-medium rounded-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-primary-50 hover:text-primary-900 aria-selected:bg-primary-200 aria-selected:text-primary-900"
-                    hx-get="/dashboard?q=team"
-                    hx-target="#tab-content"
-                    hx-swap="innerHTML"
-                    hx-headers='{"hx-tab": "true"}'
-                    role="db-tab"
-                    aria-selected="false"
-                >
-                    <img
-                        class="w-5 h-5 m-2"
-                        src="{{url_for('static', filename='icons/team.svg')}}"
-                        alt="Team Icon"
-                    />
-                    {{ _("swea_team") }}
-                </button>
-                <button
-                    class="flex items-center px-4 py-3 text-sm font-primary font-medium rounded-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-primary-50 hover:text-primary-900 aria-selected:bg-primary-200 aria-selected:text-primary-900"
-                    hx-get="/dashboard?q=knowledge_hub"
-                    hx-target="#tab-content"
-                    hx-swap="innerHTML"
-                    hx-headers='{"hx-tab": "true"}'
-                    role="db-tab"
-                    aria-selected="false"
-                >
-                    <img
-                        class="w-5 h-5 m-2"
-                        src="{{url_for('static', filename='icons/knowledge_hub.svg')}}"
-                        alt="Knowledge Hub Icon"
-                    />
-                    {{ _("swea_knowledge_hub") }}
-                </button>
-                <button
-                    class="flex items-center px-4 py-3 text-sm font-primary font-medium rounded-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-primary-50 hover:text-primary-900 aria-selected:bg-primary-200 aria-selected:text-primary-900"
-                    hx-get="/dashboard?q=subscribers"
-                    hx-target="#tab-content"
-                    hx-swap="innerHTML"
-                    hx-headers='{"hx-tab": "true"}'
-                    role="db-tab"
-                    aria-selected="false"
-                >
-                    <img
-                        class="w-5 h-5 m-2"
-                        src="{{url_for('static', filename='icons/subscribers.svg')}}"
-                        alt="Subscribers Icon"
-                    />
-                    {{ _("swea_subscribers") }}
-                </button>
-                <button
-                    class="flex items-center px-4 py-3 text-sm font-primary font-medium rounded-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-primary-50 hover:text-primary-900 aria-selected:bg-primary-200 aria-selected:text-primary-900"
-                    hx-get="/dashboard?q=news"
-                    hx-target="#tab-content"
-                    hx-swap="innerHTML"
-                    hx-headers='{"hx-tab": "true"}'
-                    role="db-tab"
-                    aria-selected="false"
-                >
-                    <img
-                        class="w-5 h-5 m-2"
-                        src="{{url_for('static', filename='icons/news.svg')}}"
-                        alt="News Icon"
-                    />
-                    {{ _("news") }}
-                </button>
+                {% endfor %}
             </nav>
         </div>
         <!-- Content Area -->
         <div class="md:col-span-3">
-            <div
-                class="p-6 bg-primary-50 rounded-xl shadow-sm transition-all duration-200"
-                id="tab-content"
-            >
+            <div class="p-6 bg-primary-50 rounded-xl shadow-sm transition-all duration-200" id="tab-content">
                 {% include 'partials/dashboard/projects.html' %}
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
 
-{% endblock %} {% block extra_scripts %}
+{% block extra_scripts %}
 <!-- Include the dashboard script -->
-<script
-    charset="utf-8"
-    src="{{ url_for('static', filename='js/dashboard.js') }}"
-    defer
-></script>
+<script charset="utf-8" src="{{ url_for('static', filename='js/dashboard.js') }}" defer></script>
 {% endblock %}

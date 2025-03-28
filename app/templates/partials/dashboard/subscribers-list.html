@@ -3,19 +3,17 @@
 {% if data %}
 <div class="space-y-4">
     <!-- Total subscribers count -->
-    <div class="text-gray-600 font-medium">
+    <div class="text-gray-600 font-medium px-2 sm:px-0">
         {{ _("total_subscribers") }}:
         <span class="text-primary-600 font-bold">{{ data | count }}</span>
     </div>
 
     {% for subscriber in data %}
-    <div
-        class="flex justify-between items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border-l-4 border-primary-400"
-    >
+    <div class="flex flex-col sm:flex-row justify-between gap-3 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border-l-4 border-primary-400">
         <!-- Subscriber Details -->
-        <div class="flex-grow">
+        <div class="flex-grow min-w-0">
             <!-- Email -->
-            <p class="text-sm font-medium text-gray-800">
+            <p class="text-sm font-medium text-gray-800 break-all">
                 {{ subscriber.email }}
             </p>
 
@@ -35,14 +33,8 @@
 </div>
 {% else %}
 <!-- Empty state -->
-<div
-    class="flex flex-col items-center justify-center p-6 bg-white rounded-lg shadow-sm text-center"
->
-    <img
-        class="w-24 h-24"
-        src="{{ url_for('static', filename='icons/envelope.svg') }}"
-        alt="Empty Icon"
-    />
-    <p class="text-gray-500">{{ _("no_subscribers_yet") }}</p>
+<div class="flex flex-col items-center justify-center p-6 bg-white rounded-lg shadow-sm text-center">
+    <img class="w-16 h-16 sm:w-24 sm:h-24" src="{{ url_for('static', filename='icons/envelope.svg') }}" alt="Empty Icon" />
+    <p class="text-gray-500 mt-2">{{ _("no_subscribers_yet") }}</p>
 </div>
 {% endif %}

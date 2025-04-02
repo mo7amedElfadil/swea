@@ -1,9 +1,9 @@
 import json
-import werkzeug
-import werkzeug.wrappers
 from functools import wraps
 from typing import Any, Callable, Dict, Literal, TypeVar, cast
 
+import werkzeug
+import werkzeug.wrappers
 from flask import Response, make_response, request
 
 # Type variables for the decorator pattern
@@ -34,13 +34,17 @@ def with_toast(f):
         response = f(*args, **kwargs)
         toast = dict(type="success", message="Success")
         if isinstance(response, (werkzeug.wrappers.Response, Response)):
-            toast = response.headers.get('hx-toast')
+            toast = response.headers.get("hx-toast")
             if toast:
                 toast = json.loads(toast)
-                response.headers["HX-Trigger"] = json.dumps({"showToast": toast})
-            elif hasattr(response, 'model') and response.model.get("toast"):
+                response.headers["HX-Trigger"] = json.dumps(
+                    {"showToast": toast}
+                )
+            elif hasattr(response, "model") and response.model.get("toast"):
                 toast = response.model.get("toast")
-                response.headers["HX-Trigger"] = json.dumps({"showToast": toast})
+                response.headers["HX-Trigger"] = json.dumps(
+                    {"showToast": toast}
+                )
             return response
         # Only add toast for HTMX requests
         if isinstance(response, dict) and request.headers.get("hx-request"):
@@ -57,9 +61,8 @@ def with_toast(f):
 
             # Add the showToast event
             triggers["showToast"] = dict(
-                type=toast.get("type"),
-                message=toast.get("message")
-                )
+                type=toast.get("type"), message=toast.get("message")
+            )
 
             # Update the header
             response.headers["HX-Trigger"] = json.dumps(triggers)
@@ -69,7 +72,9 @@ def with_toast(f):
     return decorated_function
 
 
-def add_toast(response: Response, toast_type: ToastType, message: str) -> Response:
+def add_toast(
+    response: Response, toast_type: ToastType, message: str
+) -> Response:
     """
     Add toast notification to an existing response object
 

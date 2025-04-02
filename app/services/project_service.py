@@ -22,7 +22,9 @@ class ProjectService(BaseService):
         """Initialize project service."""
         super().__init__(Project, ProjectSchema, page_size)
 
-    def create_project(self, form_data: Dict[str, Any], files: Dict[str, Any]) -> bool:
+    def create_project(
+        self, form_data: Dict[str, Any], files: Dict[str, Any]
+    ) -> bool:
         """
         Create a new project.
         Args:
@@ -144,7 +146,9 @@ class ProjectService(BaseService):
         Returns:
             List[Project]: A list of projects with the specified completion date.
         """
-        return self.model_class.get_all_by(date_of_completion=date_of_completion)
+        return self.model_class.get_all_by(
+            date_of_completion=date_of_completion
+        )
 
     def search_projects_by_title(self, title: str) -> Dict[str, Any]:
         """
@@ -186,7 +190,9 @@ class ProjectService(BaseService):
                 "email": self._parse_field(form_data, "author[email]"),
             },
             "status": form_data.get("status", "ongoing").strip(),
-            "date_of_completion": self._parse_field(form_data, "date_of_completion"),
+            "date_of_completion": self._parse_field(
+                form_data, "date_of_completion"
+            ),
             "tags": {
                 "en": self._parse_tags(form_data.get("tags[en]")),
                 "ar": self._parse_tags(form_data.get("tags[ar]")),
@@ -204,7 +210,10 @@ class ProjectService(BaseService):
             form_data,
             files,
             "testimonial",
-            additional_fields={"author": "author", "qualification": "qualification"},
+            additional_fields={
+                "author": "author",
+                "qualification": "qualification",
+            },
         )
         return processed_data
 
@@ -251,8 +260,12 @@ class ProjectService(BaseService):
         Returns:
             A list of dictionaries containing the parsed fields.
         """
-        indexed_keys = [key for key in form_data.keys() if key.startswith(field_prefix)]
-        index_values = set(key.split("[")[1].split("]")[0] for key in indexed_keys)
+        indexed_keys = [
+            key for key in form_data.keys() if key.startswith(field_prefix)
+        ]
+        index_values = set(
+            key.split("[")[1].split("]")[0] for key in indexed_keys
+        )
         result = []
 
         for index in sorted(index_values, key=int):
@@ -274,7 +287,9 @@ class ProjectService(BaseService):
             if additional_fields:
                 for field_key, field_name in additional_fields.items():
                     entry[field_key] = self._parse_field(
-                        form_data, f"{field_prefix}[{index}][{field_name}]", default=""
+                        form_data,
+                        f"{field_prefix}[{index}][{field_name}]",
+                        default="",
                     )
 
             result.append(entry)
@@ -282,7 +297,10 @@ class ProjectService(BaseService):
         return result
 
     def _parse_field(
-        self, form_data: Dict[str, Any], field_name: str, default: Optional[str] = None
+        self,
+        form_data: Dict[str, Any],
+        field_name: str,
+        default: Optional[str] = None,
     ) -> Optional[str]:
         """Parse a single field from form data."""
         value = form_data.get(field_name)

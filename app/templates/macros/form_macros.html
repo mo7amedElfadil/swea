@@ -89,7 +89,7 @@
             {% if required %}required{% endif %}
         >
             {% for option in options %}
-                <option 
+                <option
                     value="{{ option.value }}"
                     {% if option.value == selected_value %}selected{% endif %}
                 >

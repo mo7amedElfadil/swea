@@ -20,7 +20,9 @@ def filter_team_members():
     if search_str:
         team_members_res = team_service.search_team_members_by_name(search_str)
     else:
-        team_members_res = team_service.get_all(page=page, sort='teams."order"')
+        team_members_res = team_service.get_all(
+            page=page, sort='teams."order"'
+        )
 
     return make_response(
         render_template(
@@ -49,7 +51,9 @@ def add_team_member():
     except Exception as e:
         resp = make_response(str(e), 400)
         return add_toast(
-            resp, "error", _("An error occurred while creating the team member")
+            resp,
+            "error",
+            _("An error occurred while creating the team member"),
         )
 
     team_members = team_service.get_all(sort='teams."order"')
@@ -90,7 +94,9 @@ def update_team_member(member_id):
             )
         )
         invalidate_cache(["filter_team_members", "team"])
-        return add_toast(resp, "success", _("Team member updated successfully"))
+        return add_toast(
+            resp, "success", _("Team member updated successfully")
+        )
     except Exception as e:
         resp = make_response(str(e), 400)
         return add_toast(resp, "error", _(str(e)))

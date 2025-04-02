@@ -1,6 +1,12 @@
 """Module that defines `create_app` function to create the Flask app instance"""
 
-from flask import Flask, make_response, render_template, request, send_from_directory
+from flask import (
+    Flask,
+    make_response,
+    render_template,
+    request,
+    send_from_directory,
+)
 from flask import session
 from flask import session as flask_session
 from flask_babel import Babel
@@ -72,7 +78,9 @@ def create_app(config_class=Config):
     )
 
     app.url_map.strict_slashes = False
-    app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1, x_port=1, x_prefix=1)
+    app.wsgi_app = ProxyFix(
+        app.wsgi_app, x_proto=1, x_host=1, x_port=1, x_prefix=1
+    )
 
     # Initialize Flask-Babel (i18n)
     babel = Babel(app, locale_selector=get_locale)
@@ -125,7 +133,12 @@ def create_app(config_class=Config):
         if "user" in flask_session:
             is_authenticated = True
 
-        return render_template("not_found.html", is_authenticated=is_authenticated), 404
+        return (
+            render_template(
+                "not_found.html", is_authenticated=is_authenticated
+            ),
+            404,
+        )
 
     @app.template_filter("truncate_html")
     def truncate_html_filter(html_content, length=200):
@@ -133,11 +146,15 @@ def create_app(config_class=Config):
         truncated = sanitizer.sanitize(html_content[:length])
 
         # Ensure we add ellipsis only if content is actually truncated
-        return truncated + "..." if len(html_content) >= length else html_content
+        return (
+            truncated + "..." if len(html_content) >= length else html_content
+        )
 
     @app.errorhandler(429)
     def rate_limit_exceeded(e):
         """Handle rate limit errors"""
-        return add_toast(make_response("", 429), "error", _("Rate limit exceeded"))
+        return add_toast(
+            make_response("", 429), "error", _("Rate limit exceeded")
+        )
 
     return app

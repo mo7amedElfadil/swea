@@ -12,7 +12,7 @@ class EmailTemplate(Enum):
     """Email template types"""
 
     CONFIRMATION = "email_confirmation_email_form.html"
-    PASSWORD_RESET = "password_reset_email_form.html"
+    PASSWORD_RESET = "password_reset_email_form.html"  # nosec
     CONTACT_US = "contact_us_email-form.html"
 
 
@@ -56,7 +56,9 @@ class ManageContactUs:
                 },
             )
 
-            self.queue_service.enqueue_task("send_email", email_config.__dict__)
+            self.queue_service.enqueue_task(
+                "send_email", email_config.__dict__
+            )
 
         except ValueError as ve:
             raise ValueError(f"Invalid contact us message: {ve}") from ve
@@ -72,10 +74,15 @@ class ManageContactUs:
         missing_keys = required_keys - form_data.keys()
 
         if missing_keys:
-            raise ValueError(f"Missing required fields: {', '.join(missing_keys)}")
+            raise ValueError(
+                f"Missing required fields: {', '.join(missing_keys)}"
+            )
 
         # Validate name, email, and message fields
-        if not isinstance(form_data["name"], str) or not form_data["name"].strip():
+        if (
+            not isinstance(form_data["name"], str)
+            or not form_data["name"].strip()
+        ):
             raise ValueError("Invalid or empty 'name' field.")
         form_data["name"] = self.sanitize_content(form_data["name"])
         if len(form_data["name"]) < 2 or len(form_data["name"]) > 100:
@@ -87,7 +94,10 @@ class ManageContactUs:
         ):
             raise ValueError("Invalid email format in 'email' field.")
 
-        if not isinstance(form_data["msg"], str) or not form_data["msg"].strip():
+        if (
+            not isinstance(form_data["msg"], str)
+            or not form_data["msg"].strip()
+        ):
             raise ValueError("Invalid or empty 'msg' field.")
         form_data["msg"] = self.sanitize_content(form_data["msg"])
         if len(form_data["msg"]) < 10:

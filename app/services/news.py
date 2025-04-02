@@ -105,8 +105,12 @@ class NewsService(BaseService):
             t.to_dict()
             for t in self.model_class.query.filter(
                 or_(
-                    cast(self.model_class.title, db.String).ilike(f"%{query}%"),
-                    cast(self.model_class.description, db.String).ilike(f"%{query}%"),
+                    cast(self.model_class.title, db.String).ilike(
+                        f"%{query}%"
+                    ),
+                    cast(self.model_class.description, db.String).ilike(
+                        f"%{query}%"
+                    ),
                 )
             )
         ]

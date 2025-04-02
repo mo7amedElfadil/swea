@@ -16,7 +16,7 @@ block content %}
         {% else %}
         <div class="w-full aspect-[16/9] bg-secondary-200"></div>
         {% endif %}
-    
+
         <!-- Blurred Overlay with Research Details -->
         <div class="absolute inset-x-0 bottom-0 bg-black bg-opacity-50 backdrop-blur-lg p-4 sm:p-6">
             <div class="max-w-4xl mx-auto text-white">
@@ -49,7 +49,7 @@ block content %}
                     </div>
                 </div>
             </div>
-    
+
             <!-- Action buttons -->
             <div class="flex justify-center sm:justify-end gap-2 mt-2 sm:mt-0 print:hidden">
                 <button id="shareButton" class="flex items-center gap-2 hover:bg-primary-600 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-colors">
@@ -66,10 +66,10 @@ block content %}
 document.addEventListener('DOMContentLoaded', function() {
     const shareButton = document.getElementById('shareButton');
     const printButton = document.getElementById('printButton');
-    
+
     shareButton.addEventListener('click', function() {
         const url = window.location.href;
-        
+
         // Use Clipboard API to copy the URL
         navigator.clipboard.writeText(url).then(function() {
             window.toastManager.showToast({
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tempInput.select();
             document.execCommand('copy');
             document.body.removeChild(tempInput);
-            
+
             window.toastManager.showToast({
                 type: 'success',
                 message: '{{ _("Link copied to clipboard!") }}',
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
-    
+
     // Print button functionality
     printButton.addEventListener('click', function() {
         window.print();

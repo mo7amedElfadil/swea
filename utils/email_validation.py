@@ -15,7 +15,11 @@ def has_mx_records(domain: str) -> bool:
     try:
         answers = dns.resolver.resolve(domain, "MX")
         return bool(answers)
-    except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN, dns.resolver.Timeout):
+    except (
+        dns.resolver.NoAnswer,
+        dns.resolver.NXDOMAIN,
+        dns.resolver.Timeout,
+    ):
         return False
 
 

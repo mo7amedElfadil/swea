@@ -20,7 +20,9 @@ class CourseService(BaseService):
         """Initialize course service."""
         super().__init__(Course, CourseSchema, page_size)
 
-    def create_course(self, form_data: Dict[str, Any], files: Dict[str, Any]) -> Course:
+    def create_course(
+        self, form_data: Dict[str, Any], files: Dict[str, Any]
+    ) -> Course:
         """
         Create a new course.
 
@@ -84,7 +86,9 @@ class CourseService(BaseService):
         except ValidationError as error:
             raise ValidationError(error.messages) from error
 
-    def add_members_to_course(self, course_uuid: str, member_uuids: List[str]) -> bool:
+    def add_members_to_course(
+        self, course_uuid: str, member_uuids: List[str]
+    ) -> bool:
         """
         Add members to a course.
 
@@ -147,7 +151,9 @@ class CourseService(BaseService):
         """
         return search_by_multilang_field(self.model_class, "title", title)
 
-    def process_courses_data(self, result_data: Dict[str, Any]) -> Dict[str, Any]:
+    def process_courses_data(
+        self, result_data: Dict[str, Any]
+    ) -> Dict[str, Any]:
         """
         Process course data for display.
 

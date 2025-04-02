@@ -39,7 +39,9 @@ def login_required(redirect_to="app_views.login", message=None):
                 if request.headers.get("HX-Request") == "true":
                     response = make_response()
                     response.headers["HX-Redirect"] = url_for(redirect_to)
-                    error_message = message or _("Please log in to access this page")
+                    error_message = message or _(
+                        "Please log in to access this page"
+                    )
                     return add_toast(response, "error", error_message)
                 else:
                     return redirect(url_for(redirect_to))

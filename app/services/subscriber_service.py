@@ -27,7 +27,7 @@ class EmailTemplate(Enum):
     """Email template types"""
 
     CONFIRMATION = "email_confirmation_email_form.html"
-    PASSWORD_RESET = "password_reset_email_form.html"
+    PASSWORD_RESET = "password_reset_email_form.html"  # nosec
     CONTACT_US = "contact_us_email-form.html"
     BROADCAST = "broadcast_email-form.html"
 
@@ -81,7 +81,9 @@ class SubscriberService(BaseService):
                 subscriber.create(**processed_data)
             except IntegrityError as db_error:
                 if isinstance(db_error.orig, UniqueViolation):
-                    raise UniqueViolation("Email already subscribed") from db_error
+                    raise UniqueViolation(
+                        "Email already subscribed"
+                    ) from db_error
                 raise db_error
 
             return subscriber
@@ -132,7 +134,9 @@ class SubscriberService(BaseService):
         Includes input validation and error handling.
         """
         try:
-            email_data = self.validate_form_data(form_data, validate="broadcast")
+            email_data = self.validate_form_data(
+                form_data, validate="broadcast"
+            )
 
             # Get all subscribers
             subscribers = self.get_all()
@@ -158,7 +162,9 @@ class SubscriberService(BaseService):
                     },
                 )
 
-                self.queue_service.enqueue_task("send_email", email_config.__dict__)
+                self.queue_service.enqueue_task(
+                    "send_email", email_config.__dict__
+                )
 
         except ValueError as ve:
             raise ValueError(f"Invalid broadcast email: {ve}") from ve
@@ -177,7 +183,9 @@ class SubscriberService(BaseService):
             missing_keys = required_keys - form_data.keys()
 
             if missing_keys:
-                raise ValueError(f"Missing required fields: {', '.join(missing_keys)}")
+                raise ValueError(
+                    f"Missing required fields: {', '.join(missing_keys)}"
+                )
 
             return form_data
 
@@ -185,7 +193,9 @@ class SubscriberService(BaseService):
         missing_keys = required_keys - form_data.keys()
 
         if missing_keys:
-            raise ValueError(f"Missing required fields: {', '.join(missing_keys)}")
+            raise ValueError(
+                f"Missing required fields: {', '.join(missing_keys)}"
+            )
 
         return form_data
 
@@ -235,7 +245,9 @@ class SubscriberService(BaseService):
                 [
                     subscriber.get("email"),
                     (
-                        subscriber.get("created_at").strftime("%Y-%m-%d %H:%M:%S")
+                        subscriber.get("created_at").strftime(
+                            "%Y-%m-%d %H:%M:%S"
+                        )
                         if subscriber.get("created_at")
                         else ""
                     ),
@@ -247,7 +259,9 @@ class SubscriberService(BaseService):
             min_row=2, max_row=ws.max_row, min_col=1, max_col=len(headers)
         ):
             for cell in row:
-                cell.alignment = Alignment(horizontal="left", vertical="center")
+                cell.alignment = Alignment(
+                    horizontal="left", vertical="center"
+                )
                 cell.border = thin_border
 
         # Adjust column widths
@@ -258,8 +272,10 @@ class SubscriberService(BaseService):
                 try:
                     if len(str(cell.value)) > max_length:
                         max_length = len(str(cell.value))
-                except:
-                    pass
+                except Exception as e:
+                    print(e)
+                    max_length = 0
+
             adjusted_width = (max_length + 2) * 1.2  # Add some padding
             ws.column_dimensions[column].width = adjusted_width
 

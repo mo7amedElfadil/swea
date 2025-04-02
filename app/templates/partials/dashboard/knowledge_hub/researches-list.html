@@ -10,14 +10,14 @@
             <h3 class="text-lg font-semibold text-gray-900 break-words">
                 {{ research.title[locale] | default(research.title['en']) }}
             </h3>
-            
+
             <!-- Author -->
             <div class="flex flex-wrap items-center gap-2">
                 <p class="text-sm text-gray-600 break-words">
                     {{ _("by") }} {{ research.author['name'][locale] | default(research.author['name']['en']) }}
                 </p>
             </div>
-            
+
             <!-- Tags -->
             {% if research.tags %}
             <div class="flex flex-wrap gap-2">
@@ -29,7 +29,7 @@
             </div>
             {% endif %}
         </div>
-        
+
         <!-- Actions -->
         <div class="flex gap-2 sm:self-center sm:flex-nowrap mt-2 sm:mt-0">
             <button

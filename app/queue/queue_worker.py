@@ -26,7 +26,9 @@ def main():
     signal.signal(signal.SIGINT, signal_handler)
 
     # Register task processors
-    queue_service.register_task_processor("send_email", email_service.send_email)
+    queue_service.register_task_processor(
+        "send_email", email_service.send_email
+    )
 
     logging.info("Starting task queue worker...")
     queue_service.process_queue()

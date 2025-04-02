@@ -43,9 +43,13 @@ class Config:
     SECRET_KEY = getenv("SECRET_KEY", "you-will-never-guess")
     PREFERRED_URL_SCHEME = getenv("PREFERRED_URL_SCHEME", "https")
     API_KEY = getenv("API_KEY", "you-will-never-guess")
-    SECURITY_PASSWORD_SALT = getenv("SECURITY_PASSWORD_SALT", "you-will-never-guess")
+    SECURITY_PASSWORD_SALT = getenv(
+        "SECURITY_PASSWORD_SALT", "you-will-never-guess"
+    )
     DEBUG = int(getenv("FLASK_DEBUG", 0))
-    BASE_URL = getenv("DEV_BASE_URL") if DEBUG == 1 else getenv("PRODUCTION_BASE_URL")
+    BASE_URL = (
+        getenv("DEV_BASE_URL") if DEBUG == 1 else getenv("PRODUCTION_BASE_URL")
+    )
 
     # Flask session configuration
     SESSION_TYPE = "redis"
@@ -95,3 +99,7 @@ class Config:
 
     # Email validation configuration
     DISPOSABLE_EMAIL_FILE = "utils/disposable_email_blocklist.conf"
+
+    # Admin credentials
+    ADMIN_USERNAME = getenv("ADMIN_USERNAME", "admin")
+    ADMIN_PASSWORD = getenv("ADMIN_PASSWORD", "admin")

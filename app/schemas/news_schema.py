@@ -36,4 +36,6 @@ class NewsSchema(Schema):
     def validate_description(self, value: Dict[str, str]):
         """Validate that the description contains at least one language."""
         if not value:
-            raise ValidationError("Description must contain at least one language.")
+            raise ValidationError(
+                "Description must contain at least one language."
+            )

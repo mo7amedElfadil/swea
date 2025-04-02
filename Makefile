@@ -57,7 +57,7 @@ setup: ## Setup project and install core tools and dependencies
 	@$(MAKE) -s check_venv || exit 1
 	@$(MAKE) -s check_npm || exit 1
 	@$(MAKE) -s db_init || exit 1
-	@$(MAKE) -s db_migrate || exit 1 
+	@$(MAKE) -s db_migrate || exit 1
 	@$(MAKE) -s db_upgrade || exit 1
 
 
@@ -103,7 +103,7 @@ check_venv:
 			esac; \
 		fi; \
 	fi
-	
+
 
 check_npm:
 	@if [ ! -d "node_modules" ]; then \
@@ -156,7 +156,7 @@ stop_flask: ## Stop flask application
 stop_tailwind: ## Stop tailwindcss watch
 	@$(call kill_session,$(TAILWIND_SESSION))
 
-stop_static: ## Stop watching static files 
+stop_static: ## Stop watching static files
 	@$(call kill_session,$(STATIC_FILE_SESSION))
 
 stop_queue: ## Stop the queue worker

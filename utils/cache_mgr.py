@@ -54,7 +54,9 @@ def invalidate_cache(func_names: List[str]) -> None:
         return
 
     redis_conn = redis.Redis.from_url(Config.CACHE_REDIS_URL)
-    patterns = [f"{Config.CACHE_KEY_PREFIX}{func_name}*" for func_name in func_names]
+    patterns = [
+        f"{Config.CACHE_KEY_PREFIX}{func_name}*" for func_name in func_names
+    ]
 
     with redis_conn.pipeline() as pipe:  # Batch operations
         for pattern in patterns:

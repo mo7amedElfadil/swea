@@ -4,9 +4,9 @@
   <div class='container mx-auto grid gap-6'>
     <img
       width="150" height="auto"
-      class="w-[150px] {% if locale == 'en' %}invert brightness-0{% endif %}" 
-      src="{{url_for('static',filename='imgs/logo.png')}}" 
-      alt="logo" 
+      class="w-[150px] {% if locale == 'en' %}invert brightness-0{% endif %}"
+      src="{{url_for('static',filename='imgs/logo.png')}}"
+      alt="logo"
     />
     <div class='space-y-2'>
       <p class="{% if locale == 'en' %}text-white{% else %}text-black{% endif %}">{{_("footer caption")}}</p>

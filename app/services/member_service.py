@@ -20,7 +20,9 @@ class MemberService(BaseService):
         """Initialize member service."""
         super().__init__(Member, MemberSchema, page_size)
 
-    def create_member(self, form_data: Dict[str, Any], files: Dict[str, Any]) -> Member:
+    def create_member(
+        self, form_data: Dict[str, Any], files: Dict[str, Any]
+    ) -> Member:
         """
         Create a new member.
 

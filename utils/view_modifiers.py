@@ -1,4 +1,5 @@
-'''This module contains a decorator that converts a return value from a view'''
+"""This module contains a decorator that converts a return value from a view"""
+
 from functools import wraps
 
 import flask
@@ -7,9 +8,10 @@ import werkzeug.wrappers
 
 
 def response(*, mimetype: str = None, template_file: str = None):
-    '''Decorator that converts a return value from a view,
+    """Decorator that converts a return value from a view,
     into a Flask response object wrapped within a tempalte
-    '''
+    """
+
     def response_inner(f):
 
         @wraps(f)
@@ -29,10 +31,13 @@ def response(*, mimetype: str = None, template_file: str = None):
 
             if template_file and not isinstance(response_val, dict):
                 raise Exception(
-                    f"Invalid return type {type(response_val)}, we expected a dict as the return value.")
+                    f"Invalid return type {type(response_val)}, we expected a dict as the return value."
+                )
 
             if template_file:
-                response_val = flask.render_template(template_file, **response_val)
+                response_val = flask.render_template(
+                    template_file, **response_val
+                )
 
             resp = flask.make_response(response_val)
             resp.model = model

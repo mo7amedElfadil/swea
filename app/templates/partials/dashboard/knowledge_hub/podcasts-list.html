@@ -10,17 +10,17 @@
             <h3 class="text-lg font-semibold text-gray-900 break-words">
                 {{ podcast.title[locale] | default(podcast.title['en']) }}
             </h3>
-            
+
             <!-- Podcast Name -->
             <p class="text-sm text-gray-600 break-words">
                 {{ podcast.podcast_name[locale] | default(podcast.podcast_name['en']) }}
             </p>
-            
+
             <!-- Description -->
             <p class="text-sm text-gray-700 line-clamp-2 break-words">
                 {{ podcast.description[locale] | default(podcast.description['en']) }}
             </p>
-            
+
             <!-- Tags -->
             {% if podcast.tags %}
             <div class="flex flex-wrap gap-2">
@@ -32,7 +32,7 @@
             </div>
             {% endif %}
         </div>
-        
+
         <!-- Actions -->
         <div class="flex gap-2 sm:self-center sm:flex-nowrap mt-2 sm:mt-0">
             <button

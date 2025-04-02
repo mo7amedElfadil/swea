@@ -2,7 +2,12 @@ from flask import make_response, render_template, request
 from flask_babel import gettext as _
 
 from api.v1.views import bp
-from app.services import CourseService, MemberService, PodcastService, ResearchService
+from app.services import (
+    CourseService,
+    MemberService,
+    PodcastService,
+    ResearchService,
+)
 from utils.cache_mgr import cache_response, invalidate_cache
 from utils.toast_notify import add_toast
 from utils.view_modifiers import response
@@ -39,7 +44,9 @@ def get_knowledge_hub_data():
 
     data = service.get_all(page=page, deleted_at=None)
     # Render the appropriate template
-    return make_response(render_template(template_mapper[tab], **data, active_tab=tab))
+    return make_response(
+        render_template(template_mapper[tab], **data, active_tab=tab)
+    )
 
 
 @bp.route("/researches/<uuid>", methods=["GET"])
@@ -49,7 +56,9 @@ def research_page(uuid):
     """Research page"""
     research = ResearchService().get_by_uuid(uuid)
     if not research:
-        return add_toast(make_response("", 404), "error", _("Research not found"))
+        return add_toast(
+            make_response("", 404), "error", _("Research not found")
+        )
 
     return dict(research=research)
 
@@ -119,13 +128,17 @@ def create_course():
 
     courses = course_service.get_all()
     resp = make_response(
-        render_template("partials/dashboard/knowledge_hub/courses.html", **courses)
+        render_template(
+            "partials/dashboard/knowledge_hub/courses.html", **courses
+        )
     )
     invalidate_cache(["get_courses", "knowledge_hub"])
     return add_toast(resp, "success", _("Course created successfully"))
 
 
-@bp.route("/dashboard/knowledge-hub/courses/<course_id>", methods=["PATCH", "PUT"])
+@bp.route(
+    "/dashboard/knowledge-hub/courses/<course_id>", methods=["PATCH", "PUT"]
+)
 def update_course(course_id):
     """Update an existing course."""
     course_service = CourseService()
@@ -142,7 +155,9 @@ def update_course(course_id):
 
     courses = course_service.get_all()
     resp = make_response(
-        render_template("partials/dashboard/knowledge_hub/courses.html", **courses)
+        render_template(
+            "partials/dashboard/knowledge_hub/courses.html", **courses
+        )
     )
     invalidate_cache(["get_courses", "knowledge_hub"])
     return add_toast(resp, "success", _("Course updated successfully"))
@@ -162,7 +177,9 @@ def delete_course(course_id):
 
     courses = course_service.get_all()
     resp = make_response(
-        render_template("partials/dashboard/knowledge_hub/courses-list.html", **courses)
+        render_template(
+            "partials/dashboard/knowledge_hub/courses-list.html", **courses
+        )
     )
     invalidate_cache(["get_courses", "knowledge_hub"])
     return add_toast(resp, "success", _("Course deleted successfully"))
@@ -197,13 +214,17 @@ def create_podcast():
 
     podcasts = podcast_service.get_all()
     resp = make_response(
-        render_template("partials/dashboard/knowledge_hub/podcasts.html", **podcasts)
+        render_template(
+            "partials/dashboard/knowledge_hub/podcasts.html", **podcasts
+        )
     )
     invalidate_cache(["get_podcasts", "knowledge_hub"])
     return add_toast(resp, "success", _("Podcast created successfully"))
 
 
-@bp.route("/dashboard/knowledge-hub/podcasts/<podcast_id>", methods=["PUT", "PATCH"])
+@bp.route(
+    "/dashboard/knowledge-hub/podcasts/<podcast_id>", methods=["PUT", "PATCH"]
+)
 def update_podcast(podcast_id):
     """Update an existing podcast."""
     podcast_service = PodcastService()
@@ -220,7 +241,9 @@ def update_podcast(podcast_id):
 
     podcasts = podcast_service.get_all()
     resp = make_response(
-        render_template("partials/dashboard/knowledge_hub/podcasts.html", **podcasts)
+        render_template(
+            "partials/dashboard/knowledge_hub/podcasts.html", **podcasts
+        )
     )
     invalidate_cache(["get_podcasts", "knowledge_hub"])
     return add_toast(resp, "success", _("Podcast updated successfully"))
@@ -286,7 +309,10 @@ def create_research():
     return add_toast(resp, "success", _("Research created successfully"))
 
 
-@bp.route("/dashboard/knowledge-hub/researches/<research_id>", methods=["PATCH", "PUT"])
+@bp.route(
+    "/dashboard/knowledge-hub/researches/<research_id>",
+    methods=["PATCH", "PUT"],
+)
 def update_research(research_id):
     """Update an existing research."""
     research_service = ResearchService()
@@ -311,7 +337,9 @@ def update_research(research_id):
     return add_toast(resp, "success", _("Research updated successfully"))
 
 
-@bp.route("/dashboard/knowledge-hub/researches/<research_id>", methods=["DELETE"])
+@bp.route(
+    "/dashboard/knowledge-hub/researches/<research_id>", methods=["DELETE"]
+)
 def delete_research(research_id):
     """Delete a research."""
     research_service = ResearchService()
@@ -326,7 +354,8 @@ def delete_research(research_id):
     researches = research_service.get_all()
     resp = make_response(
         render_template(
-            "partials/dashboard/knowledge_hub/researches-list.html", **researches
+            "partials/dashboard/knowledge_hub/researches-list.html",
+            **researches,
         )
     )
     invalidate_cache(["get_researches", "research_page", "knowledge_hub"])
@@ -361,10 +390,14 @@ def create_member():
             resp, "error", _("An error occurred while creating the member")
         )
     invalidate_cache(["get_members"])
-    return add_toast(make_response(), "success", _("Member created successfully"))
+    return add_toast(
+        make_response(), "success", _("Member created successfully")
+    )
 
 
-@bp.route("/dashboard/knowledge-hub/members/<member_id>", methods=["PUT", "PATCH"])
+@bp.route(
+    "/dashboard/knowledge-hub/members/<member_id>", methods=["PUT", "PATCH"]
+)
 def update_member(member_id):
     """Update an existing member."""
     member_service = MemberService()
@@ -381,7 +414,9 @@ def update_member(member_id):
 
     members = member_service.get_all()
     resp = make_response(
-        render_template("partials/dashboard/knowledge_hub/members.html", **members)
+        render_template(
+            "partials/dashboard/knowledge_hub/members.html", **members
+        )
     )
     invalidate_cache(["get_members"])
     return add_toast(resp, "success", _("Member updated successfully"))
@@ -401,7 +436,9 @@ def delete_member(member_id):
 
     members = member_service.get_all()
     resp = make_response(
-        render_template("partials/dashboard/knowledge_hub/members.html", **members)
+        render_template(
+            "partials/dashboard/knowledge_hub/members.html", **members
+        )
     )
     invalidate_cache(["get_members"])
     return add_toast(resp, "success", _("Member deleted successfully"))

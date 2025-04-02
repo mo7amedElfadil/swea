@@ -48,16 +48,22 @@ class PodcastSchema(Schema):
     def validate_podcast_name(self, value: Dict[str, str]):
         """Validate that the podcast name contains at least one language."""
         if not value:
-            raise ValidationError("Podcast name must contain at least one language.")
+            raise ValidationError(
+                "Podcast name must contain at least one language."
+            )
 
     @validates("description")
     def validate_description(self, value: Dict[str, str]):
         """Validate that the description contains at least one language."""
         if not value:
-            raise ValidationError("Description must contain at least one language.")
+            raise ValidationError(
+                "Description must contain at least one language."
+            )
 
     @validates("tags")
     def validate_tags(self, value: Dict[str, List[str]]):
         """Validate that tags are provided for at least one language."""
         if not value:
-            raise ValidationError("Tags must be provided for at least one language.")
+            raise ValidationError(
+                "Tags must be provided for at least one language."
+            )

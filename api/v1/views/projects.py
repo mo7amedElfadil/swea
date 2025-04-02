@@ -17,7 +17,9 @@ def project_page(uuid):
     """Project page"""
     project = project_service.get_project_by_uuid(uuid)
     if not project:
-        return add_toast(make_response("", 404), "error", _("Project not found"))
+        return add_toast(
+            make_response("", 404), "error", _("Project not found")
+        )
 
     return dict(project=project)
 
@@ -59,10 +61,13 @@ def add_project():
             project_service.create_project(form_data, files)
             resp = make_response(
                 render_template(
-                    "partials/dashboard/projects.html", **project_service.get_all()
+                    "partials/dashboard/projects.html",
+                    **project_service.get_all(),
                 )
             )
-            return add_toast(resp, "success", _("Project created successfully"))
+            return add_toast(
+                resp, "success", _("Project created successfully")
+            )
         except Exception as e:
             print("Error:", e)
             resp = make_response(

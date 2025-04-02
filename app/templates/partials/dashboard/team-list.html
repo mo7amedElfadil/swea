@@ -15,17 +15,17 @@
                     {{ member.name[locale] | default(member.name['en']) }}
                 </h3>
             </div>
-            
+
             <!-- Role -->
             <p class="text-sm text-gray-600 break-words">
                 {{ member.role[locale] | default(member.role['en']) }}
             </p>
-            
+
             <!-- Bio -->
             <p class="text-sm text-gray-700 line-clamp-2 break-words">
                 {{ member.bio[locale] | default(member.bio['en']) }}
             </p>
-            
+
             <!-- Socials -->
             {% if member.socials %}
             <div class="flex flex-wrap gap-2">
@@ -38,7 +38,7 @@
             </div>
             {% endif %}
         </div>
-        
+
         <!-- Actions -->
         <div class="flex flex-col sm:flex-row sm:items-center gap-2 w-full sm:w-auto mt-2 sm:mt-0">
             <button

@@ -1,5 +1,4 @@
-"""Module to run the application flask application
-"""
+"""Module to run the application flask application"""
 
 from app import create_app
 

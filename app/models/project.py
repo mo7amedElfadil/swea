@@ -15,7 +15,9 @@ class Project(BaseModel):
     status = db.Column(
         db.Enum("ongoing", "completed", name="project_status"), nullable=False
     )
-    content = db.Column(db.ARRAY(db.JSON), nullable=True)  # ARRAY of JSON objects
+    content = db.Column(
+        db.ARRAY(db.JSON), nullable=True
+    )  # ARRAY of JSON objects
     tags = db.Column(db.JSON, nullable=True)
     hero_image = db.Column(db.String(255), nullable=True)
     testimonials = db.Column(db.ARRAY(db.JSON), nullable=True)

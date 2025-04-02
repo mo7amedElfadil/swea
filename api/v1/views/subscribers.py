@@ -26,9 +26,13 @@ def subscribe():
         except ValueError as ve:
             return add_toast(make_response("", 400), "error", str(ve))
         except Exception as e:
-            return add_toast(make_response("", 400), "error", _("Failed to subscribe"))
+            return add_toast(
+                make_response("", 400), "error", _("Failed to subscribe")
+            )
     invalidate_cache(["filter_subscribers"])
-    return add_toast(make_response("", 200), "success", _("Thank you for subscribing"))
+    return add_toast(
+        make_response("", 200), "success", _("Thank you for subscribing")
+    )
 
 
 @bp.route("/unsubscribe", methods=["GET"])
@@ -44,7 +48,9 @@ def unsubscribe():
                 make_response("", 400), "error", _("Failed to unsubscribe")
             )
     invalidate_cache(["filter_subscribers"])
-    return add_toast(make_response("", 200), "success", _("Unsubscribed successfully"))
+    return add_toast(
+        make_response("", 200), "success", _("Unsubscribed successfully")
+    )
 
 
 @bp.route("/dashboard/subscribers", methods=["GET"])
@@ -56,7 +62,9 @@ def filter_subscribers():
 
     # Fetch subscribers based on search string
     if search_str:
-        subscribers_res = subscriber_service.search_subscribers_by_email(search_str)
+        subscribers_res = subscriber_service.search_subscribers_by_email(
+            search_str
+        )
     else:
         subscribers_res = subscriber_service.get_all(page=page)
 
@@ -74,7 +82,9 @@ def send_broadcast_email():
     """Send a broadcast email to all subscribers."""
 
     if request.method == "GET":
-        return render_template("partials/dashboard/subscribers_broadcast-form.html")
+        return render_template(
+            "partials/dashboard/subscribers_broadcast-form.html"
+        )
 
     form_data = request.form.to_dict()
 
@@ -84,7 +94,9 @@ def send_broadcast_email():
         except Exception as e:
             print(e)
             return add_toast(
-                make_response("", 400), "error", _("Failed to send broadcast email")
+                make_response("", 400),
+                "error",
+                _("Failed to send broadcast email"),
             )
 
     subscribers = subscriber_service.get_all()
@@ -107,9 +119,13 @@ def export_subscribers():
     excel_file, file_name = subscriber_service.export_subscribers()
 
     response = make_response(excel_file.read())
-    response.headers["Content-Disposition"] = f"attachment;filename={file_name}"
+    response.headers["Content-Disposition"] = (
+        f"attachment;filename={file_name}"
+    )
     response.headers["Content-Type"] = (
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
 
-    return add_toast(response, "success", _("Subscribers exported successfully"))
+    return add_toast(
+        response, "success", _("Subscribers exported successfully")
+    )

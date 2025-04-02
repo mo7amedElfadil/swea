@@ -1,10 +1,10 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block extra_style %}
 <!-- Include stylesheet for Quill text editor -->
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
-{% endblock %} 
+{% endblock %}
 
-{% block title %}{{ _('dashboard') }}{% endblock %} 
+{% block title %}{{ _('dashboard') }}{% endblock %}
 
 {% block content %}
 <div class="container mx-auto py-6 px-4 sm:px-6 lg:px-8" dir="auto">
@@ -28,9 +28,9 @@
                     ('subscribers', 'subscribers.svg', _("swea_subscribers")),
                     ('news', 'news.svg', _("news"))
                 ] %}
-                
+
                 {% for tab, icon, label in tabs %}
-                <button 
+                <button
                     class="flex-shrink-0 flex gap-2 items-center justify-center md:justify-start whitespace-nowrap px-3 py-2 md:px-4 md:py-3 text-sm font-medium rounded-lg transition-all duration-200 hover:bg-primary-100 focus:ring-2 focus:ring-primary-500 focus:outline-none text-primary-700 bg-primary-50 hover:text-primary-900 aria-selected:bg-primary-200 aria-selected:text-primary-900 min-w-max"
                     hx-get="/dashboard?q={{ tab }}"
                     hx-target="#tab-content"

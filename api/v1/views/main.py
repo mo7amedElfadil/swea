@@ -38,8 +38,14 @@ TAB_CONTENT_MAP = {
     "dashboard": {
         "team": ("partials/dashboard/team.html", TeamService),
         "projects": ("partials/dashboard/projects.html", ProjectService),
-        "knowledge_hub": ("partials/dashboard/knowledge-hub.html", CourseService),
-        "subscribers": ("partials/dashboard/subscribers.html", SubscriberService),
+        "knowledge_hub": (
+            "partials/dashboard/knowledge-hub.html",
+            CourseService,
+        ),
+        "subscribers": (
+            "partials/dashboard/subscribers.html",
+            SubscriberService,
+        ),
         "news": ("partials/dashboard/news.html", NewsService),
     },
     "knowledge_hub": {
@@ -90,7 +96,9 @@ def projects():
     """Projects page"""
     page = request.args.get("page", type=int, default=1)
     projects = get_paginated_data(
-        ProjectService, page, sort="COALESCE(date_of_completion, created_at) DESC"
+        ProjectService,
+        page,
+        sort="COALESCE(date_of_completion, created_at) DESC",
     )
 
     if request.headers.get("hx-projects"):
@@ -116,9 +124,18 @@ def login():
     if request.method == "GET":
         return {}
 
-    username, password = request.form.get("username"), request.form.get("password")
+    username, password = request.form.get("username"), request.form.get(
+        "password"
+    )
 
-    if not username or not password or (username != "sawsan" or password != "sawsan"):
+    if (
+        not username
+        or not password
+        or (
+            username != Config.ADMIN_USERNAME
+            or password != Config.ADMIN_PASSWORD
+        )
+    ):
         return add_toast(make_response(), "error", _("Invalid credentials"))
 
     session["user"] = username
@@ -207,7 +224,9 @@ def contact_us():
             )
 
     return add_toast(
-        make_response("", 200), "success", _("Your comment received successfully")
+        make_response("", 200),
+        "success",
+        _("Your comment received successfully"),
     )
 
 

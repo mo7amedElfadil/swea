@@ -126,9 +126,13 @@ class ResearchService(BaseService):
                 "en": self._parse_tags(form_data.get("tags[en]")),
                 "ar": self._parse_tags(form_data.get("tags[ar]")),
             },
-            "date_of_completion": form_data.get("date_of_completion"),  # Optional field
+            "date_of_completion": form_data.get(
+                "date_of_completion"
+            ),  # Optional field
             "content": compose_i18n(form_data, "content"),  # Optional field
-            "testimonials": self._parse_testimonials(form_data),  # Optional field
+            "testimonials": self._parse_testimonials(
+                form_data
+            ),  # Optional field
         }
 
         # Handle hero_image upload
@@ -140,7 +144,9 @@ class ResearchService(BaseService):
         images = files.getlist("images") if "images" in files else []
         if images:
             processed_data["images"] = [
-                self.file_manager(image).save() for image in images if image.filename
+                self.file_manager(image).save()
+                for image in images
+                if image.filename
             ]
 
         return processed_data
@@ -155,8 +161,12 @@ class ResearchService(BaseService):
         self, form_data: Dict[str, Any], field_prefix: str
     ) -> List[Dict[str, str]]:
         """Parse indexed fields like content[0][en], content[0][ar]."""
-        indexed_keys = [key for key in form_data.keys() if key.startswith(field_prefix)]
-        index_values = set([key.split("[")[1].split("]")[0] for key in indexed_keys])
+        indexed_keys = [
+            key for key in form_data.keys() if key.startswith(field_prefix)
+        ]
+        index_values = set(
+            [key.split("[")[1].split("]")[0] for key in indexed_keys]
+        )
         result = []
         for index in sorted(index_values, key=int):
             entry = {
@@ -174,12 +184,16 @@ class ResearchService(BaseService):
             result.append(entry)
         return result
 
-    def _parse_testimonials(self, form_data: Dict[str, Any]) -> List[Dict[str, Any]]:
+    def _parse_testimonials(
+        self, form_data: Dict[str, Any]
+    ) -> List[Dict[str, Any]]:
         """Parse testimonials fields like testimonials[0][en], testimonials[0][author]."""
         indexed_keys = [
             key for key in form_data.keys() if key.startswith("testimonials")
         ]
-        index_values = set([key.split("[")[1].split("]")[0] for key in indexed_keys])
+        index_values = set(
+            [key.split("[")[1].split("]")[0] for key in indexed_keys]
+        )
         result = []
         for index in sorted(index_values, key=int):
             entry = {
@@ -199,7 +213,9 @@ class ResearchService(BaseService):
                     else ""
                 ),
                 "qualification": (
-                    form_data.get(f"testimonials[{index}][qualification]").strip()
+                    form_data.get(
+                        f"testimonials[{index}][qualification]"
+                    ).strip()
                     if form_data.get(f"testimonials[{index}][qualification]")
                     else ""
                 ),

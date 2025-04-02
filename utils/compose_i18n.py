@@ -1,7 +1,9 @@
 from typing import Any, Dict
 
 
-def compose_i18n(form_data: Dict[str, Any], field_prefix: str) -> Dict[str, str]:
+def compose_i18n(
+    form_data: Dict[str, Any], field_prefix: str
+) -> Dict[str, str]:
     """Compose a dictionary of i18n values from the form data.
     Args:
       form_data: The form data.
@@ -19,5 +21,5 @@ def compose_i18n(form_data: Dict[str, Any], field_prefix: str) -> Dict[str, str]
             form_data.get(f"{field_prefix}[ar]").strip()
             if form_data.get(f"{field_prefix}[ar]")
             else ""
-        )
-    ) 
+        ),
+    )

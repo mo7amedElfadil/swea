@@ -9,7 +9,8 @@ class SubscriberSchema(Schema):
     """
 
     email = fields.Str(
-        required=True, error_messages={"required": "Subscriber Email is required."}
+        required=True,
+        error_messages={"required": "Subscriber Email is required."},
     )
 
     @validates("email")

@@ -164,9 +164,9 @@ class ResearchService(BaseService):
         indexed_keys = [
             key for key in form_data.keys() if key.startswith(field_prefix)
         ]
-        index_values = set(
-            [key.split("[")[1].split("]")[0] for key in indexed_keys]
-        )
+        index_values = {
+            key.split("[")[1].split("]")[0] for key in indexed_keys
+        }
         result = []
         for index in sorted(index_values, key=int):
             entry = {
@@ -191,9 +191,9 @@ class ResearchService(BaseService):
         indexed_keys = [
             key for key in form_data.keys() if key.startswith("testimonials")
         ]
-        index_values = set(
-            [key.split("[")[1].split("]")[0] for key in indexed_keys]
-        )
+        index_values = {
+            key.split("[")[1].split("]")[0] for key in indexed_keys
+        }
         result = []
         for index in sorted(index_values, key=int):
             entry = {

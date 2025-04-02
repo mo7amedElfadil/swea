@@ -53,7 +53,7 @@ def load_disposable_domains() -> set:
             f"Disposable email blocklist not found at {Config.DISPOSABLE_EMAIL_FILE}"
         )
 
-    with open(Config.DISPOSABLE_EMAIL_FILE, "r", encoding="utf-8") as file:
+    with open(Config.DISPOSABLE_EMAIL_FILE, encoding="utf-8") as file:
         for line in file:
             domain = line.strip().lower()
             if domain:

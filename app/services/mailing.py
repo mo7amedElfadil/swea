@@ -71,7 +71,7 @@ class EmailService:
     ) -> str:
         """Render an email template with the given context."""
         template = f"app/templates/{template_name}"
-        with open(template, "r", encoding="utf-8") as file:
+        with open(template, encoding="utf-8") as file:
             template_str = file.read()
 
         jinja_template = Template(template_str)

@@ -263,9 +263,9 @@ class ProjectService(BaseService):
         indexed_keys = [
             key for key in form_data.keys() if key.startswith(field_prefix)
         ]
-        index_values = set(
+        index_values = {
             key.split("[")[1].split("]")[0] for key in indexed_keys
-        )
+        }
         result = []
 
         for index in sorted(index_values, key=int):

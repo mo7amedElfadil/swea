@@ -9,7 +9,7 @@ import werkzeug.wrappers
 
 def response(*, mimetype: str = None, template_file: str = None):
     """Decorator that converts a return value from a view,
-    into a Flask response object wrapped within a tempalte
+    into a Flask response object wrapped within a template
     """
 
     def response_inner(f):

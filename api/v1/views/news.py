@@ -62,7 +62,7 @@ def create_news():
         msg = str(e)
     except Exception as e:
         err = True
-        msg = "Unexepected error occurred"
+        msg = "Unexpected error occurred"
 
     if err:
         data = news_service.get_all()

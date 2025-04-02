@@ -1,34 +1,33 @@
 ---
 repos:
-    # Base code quality checks
+    # 1 Preprocessing & Code Hygiene Checks
     - repo: https://github.com/pre-commit/pre-commit-hooks
       rev: v5.0.0
       hooks:
           - id: check-yaml
+          - id: mixed-line-ending
           - id: end-of-file-fixer
           - id: trailing-whitespace
+          - id: check-merge-conflict
           - id: check-added-large-files
           - id: detect-private-key
-          - id: mixed-line-ending
-          - id: check-merge-conflict
           - id: debug-statements
           - id: requirements-txt-fixer
 
-    # Python formatting
-    - repo: https://github.com/psf/black
-      rev: 25.1.0
-      hooks:
-          - id: black
-            args: [--line-length=79]
-
-    # Secret scanning
+    # 2 Security & Secret Scanning
     - repo: https://github.com/gitleaks/gitleaks
       rev: v8.24.2
       hooks:
           - id: gitleaks
             args: [--verbose]
 
-    # Import sorting
+    # 3 Code Formatting (Must run before type-checking & linting)
+    - repo: https://github.com/psf/black
+      rev: 25.1.0
+      hooks:
+          - id: black
+            args: [--line-length=79]
+
     - repo: https://github.com/PyCQA/isort
       rev: 6.0.1
       hooks:
@@ -36,14 +35,25 @@ repos:
             name: isort (python)
             args: [--profile=black]
 
-    # Security vulnerability scanner
+    # 4 Static Analysis & Security Checks
     - repo: https://github.com/PyCQA/bandit
       rev: 1.8.3
       hooks:
           - id: bandit
 
-    # Automatically upgrade syntax for newer versions of the language
+    # 5 Python Code Modernization
     - repo: https://github.com/asottile/pyupgrade
       rev: v3.19.1
       hooks:
           - id: pyupgrade
+
+    # 6 Spell Checking (Post-Processing Step)
+    - repo: https://github.com/codespell-project/codespell
+      rev: v2.4.1
+      hooks:
+          - id: codespell
+            args:
+                [
+                    '--skip=utils/disposable_email_blocklist.conf,app/static/js/htmx.min.js',
+                    '--write-changes',
+                ]

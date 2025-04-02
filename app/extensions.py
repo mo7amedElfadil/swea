@@ -2,6 +2,7 @@
 like database connections, session, caching, etc.
 """
 
+import datetime
 import os
 
 from flask import session as flask_session
@@ -63,3 +64,35 @@ def load_disposable_domains() -> set:
 
 # Global set for quick lookup
 DISPOSABLE_DOMAINS = load_disposable_domains()
+
+
+def generate_sitemap_xml(public_routes):
+    """Generate sitemap.xml content dynamically."""
+    today = datetime.date.today().isoformat()
+
+    xml_content = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+"""
+    for route, freq, priority in public_routes:
+        xml_content += f"""    <url>
+        <loc>https://aidluminate.pro{route}</loc>
+        <lastmod>{today}</lastmod>
+        <changefreq>{freq}</changefreq>
+        <priority>{priority}</priority>
+    </url>
+"""
+
+    xml_content += "</urlset>"
+    return xml_content
+
+
+def generate_robots_txt():
+    """Generate a robots.txt file dynamically."""
+    return """User-agent: *
+Disallow: /dashboard/
+Disallow: /dashboard/*
+Disallow: /admin/
+Disallow: /private/
+Allow: /
+Sitemap: https://aidluminate.pro/sitemap.xml
+"""

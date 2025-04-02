@@ -111,9 +111,12 @@ def create_app(config_class=Config):
             return dict(locale=lang)
         return dict(locale=get_locale())
 
-    @app.route("/robots.txt")
-    def static_from_root():
-        return send_from_directory(app.static_folder, request.path[1:])
+    @app.after_request
+    def set_headers(response):
+        """Set headers for all responses"""
+        # X-FRAME-OPTIONS to prevent clickjacking
+        response.headers["X-Frame-Options"] = "DENY"
+        return response
 
     @app.errorhandler(404)
     def page_not_found(e):

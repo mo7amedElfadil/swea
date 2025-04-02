@@ -49,11 +49,12 @@ class Config:
 
     # Flask session configuration
     SESSION_TYPE = "redis"
+    REMEMBER_COOKIE_HTTPONLY = True
     SESSION_PERMANENT = False
     SESSION_USE_SIGNER = True
     SESSION_COOKIE_HTTPONLY = True
-    REMEMBER_COOKIE_HTTPONLY = True
-    SESSION_COOKIE_SAMESITE = "Strict"
+    SESSION_COOKIE_SAMESITE = "Lax"
+    SESSION_COOKIE_SECURE = True
     SESSION_REDIS = redis.from_url(getenv("SESSION_REDIS_URL"))
 
     # Email configuration

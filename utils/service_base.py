@@ -58,7 +58,7 @@ class BaseService:
         """
         self.model_class = model_class
         self.schema = schema_class()
-        self.page_size = page_size
+        self.page_size = page_size if page_size > 0 else 10
         self.file_manager = FileManager
 
     def get_by_uuid(self, uuid: str) -> Optional[Dict[str, Any]]:

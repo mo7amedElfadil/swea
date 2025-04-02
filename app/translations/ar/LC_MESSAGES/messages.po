@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-28 00:11+0400\n"
+"POT-Creation-Date: 2025-04-02 04:56+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -216,7 +216,7 @@ msgstr "تم تحديث عضو الفريق بنجاح"
 msgid "Team member deleted successfully"
 msgstr "تم حذف عضو الفريق بنجاح"
 
-#: app/__init__.py:138
+#: app/__init__.py:141
 msgid "Rate limit exceeded"
 msgstr "تجاوز الحد الأقصى"
 
@@ -240,31 +240,31 @@ msgstr "كلمة المرور"
 msgid "dashboard"
 msgstr "لوحة التحكم"
 
-#: app/templates/dashboard.html:13
+#: app/templates/dashboard.html:14
 msgid "swea_dashboard"
 msgstr "لوحة تحكم SWEA"
 
-#: app/templates/dashboard.html:15
+#: app/templates/dashboard.html:16
 msgid "welcome"
 msgstr "مرحبًا! سوسن"
 
-#: app/templates/dashboard.html:36
+#: app/templates/dashboard.html:25
 msgid "swea_projects"
 msgstr "المشاريع"
 
-#: app/templates/dashboard.html:52
+#: app/templates/dashboard.html:26
 msgid "swea_team"
 msgstr "الفريق"
 
-#: app/templates/dashboard.html:68
+#: app/templates/dashboard.html:27
 msgid "swea_knowledge_hub"
 msgstr "مركز المعرفة"
 
-#: app/templates/dashboard.html:84
+#: app/templates/dashboard.html:28
 msgid "swea_subscribers"
 msgstr "المشتركين"
 
-#: app/templates/dashboard.html:100 app/templates/index.html:129
+#: app/templates/dashboard.html:29 app/templates/index.html:129
 #: app/templates/partials/dashboard/news.html:4
 msgid "news"
 msgstr "الأخبار"
@@ -408,12 +408,12 @@ msgid "research"
 msgstr "بحوث"
 
 #: app/templates/knowledge-hub.html:67
-#: app/templates/partials/dashboard/knowledge-hub.html:27
+#: app/templates/partials/dashboard/knowledge-hub.html:28
 msgid "courses"
 msgstr "دورات"
 
 #: app/templates/knowledge-hub.html:85
-#: app/templates/partials/dashboard/knowledge-hub.html:53
+#: app/templates/partials/dashboard/knowledge-hub.html:60
 msgid "podcasts"
 msgstr "بودكاست"
 
@@ -687,7 +687,7 @@ msgstr "المزيد"
 msgid "knowledge_hub"
 msgstr "مركز المعرفة"
 
-#: app/templates/partials/dashboard/knowledge-hub.html:40
+#: app/templates/partials/dashboard/knowledge-hub.html:44
 msgid "researches"
 msgstr "بحوث"
 
@@ -743,25 +743,25 @@ msgstr "تحديث"
 msgid "create"
 msgstr "إنشاء"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:45
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:45
-#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:40
-#: app/templates/partials/dashboard/news-list.html:21
-#: app/templates/partials/dashboard/project-list.html:50
-#: app/templates/partials/dashboard/team-list.html:54
+#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:44
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:44
+#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:41
+#: app/templates/partials/dashboard/news-list.html:19
+#: app/templates/partials/dashboard/project-list.html:47
+#: app/templates/partials/dashboard/team-list.html:50
 msgid "edit"
 msgstr "تعديل"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:54
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:54
-#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:49
-#: app/templates/partials/dashboard/news-list.html:29
-#: app/templates/partials/dashboard/project-list.html:59
-#: app/templates/partials/dashboard/team-list.html:63
+#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:53
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:53
+#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:50
+#: app/templates/partials/dashboard/news-list.html:27
+#: app/templates/partials/dashboard/project-list.html:56
+#: app/templates/partials/dashboard/team-list.html:59
 msgid "delete"
 msgstr "حذف"
 
-#: app/templates/partials/dashboard/news-list.html:41
+#: app/templates/partials/dashboard/news-list.html:39
 msgid "empty_news"
 msgstr "ﻻ توجد أخبار حاليً"
 
@@ -870,15 +870,15 @@ msgid "add_project"
 msgstr "إضافة مشروع"
 
 #: app/templates/partials/dashboard/knowledge_hub/researches-list.html:17
-#: app/templates/partials/dashboard/project-list.html:18
+#: app/templates/partials/dashboard/project-list.html:17
 msgid "by"
 msgstr "بواسطة"
 
-#: app/templates/partials/dashboard/project-list.html:55
+#: app/templates/partials/dashboard/project-list.html:52
 msgid "confirm_delete_project"
 msgstr "هل أنت متأكد من حذف المشروع؟"
 
-#: app/templates/partials/dashboard/project-list.html:70
+#: app/templates/partials/dashboard/project-list.html:67
 msgid "no_projects_found"
 msgstr "لا توجد مشاريع حالياً"
 
@@ -886,11 +886,11 @@ msgstr "لا توجد مشاريع حالياً"
 msgid "total_subscribers"
 msgstr "إجمالي المشتركين"
 
-#: app/templates/partials/dashboard/subscribers-list.html:24
+#: app/templates/partials/dashboard/subscribers-list.html:22
 msgid "subscribed_on"
 msgstr "اشترك في"
 
-#: app/templates/partials/dashboard/subscribers-list.html:46
+#: app/templates/partials/dashboard/subscribers-list.html:38
 msgid "no_subscribers_yet"
 msgstr "لا يوجد مشتركين حتى الآن"
 
@@ -922,11 +922,11 @@ msgstr "محتوى البريد الإلكتروني"
 msgid "send"
 msgstr "إرسال"
 
-#: app/templates/partials/dashboard/team-list.html:59
+#: app/templates/partials/dashboard/team-list.html:55
 msgid "confirm_delete_team_member"
 msgstr "هل أنت متأكد من حذف عضو الفريق؟"
 
-#: app/templates/partials/dashboard/team-list.html:74
+#: app/templates/partials/dashboard/team-list.html:70
 msgid "no_team_members_found"
 msgstr "لا توجد أعضاء حالياً"
 
@@ -1099,11 +1099,11 @@ msgstr "اقتصاد، نساء، تمكين"
 msgid "course_image"
 msgstr "صورة الدورة"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:50
+#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:49
 msgid "confirm_delete_course"
 msgstr "هل أنت متأكد من حذف الدورة؟"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:65
+#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:64
 msgid "no_courses_found"
 msgstr "لا توجد دورات حالياً"
 
@@ -1231,11 +1231,11 @@ msgstr "رابط البودكاست"
 msgid "podcast_image"
 msgstr "صورة البودكاست"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:50
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:49
 msgid "confirm_delete_podcast"
 msgstr "هل أنت متأكد من حذف البودكاست؟"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:65
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:64
 msgid "no_podcasts_found"
 msgstr "لا توجد بودكاست حالياً"
 
@@ -1303,11 +1303,11 @@ msgstr "صور إضافية"
 msgid "confirm_delete_image"
 msgstr "هل أنت متأكد من حذف الصورة؟"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:45
+#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:46
 msgid "confirm_delete_research"
 msgstr "هل أنت متأكد من حذف البحث؟"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:60
+#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:61
 msgid "no_researches_found"
 msgstr "لا توجد بحوث حالياً"
 

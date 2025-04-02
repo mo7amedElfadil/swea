@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-28 00:11+0400\n"
+"POT-Creation-Date: 2025-04-02 04:56+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -214,7 +214,7 @@ msgstr ""
 msgid "Team member deleted successfully"
 msgstr ""
 
-#: app/__init__.py:138
+#: app/__init__.py:141
 msgid "Rate limit exceeded"
 msgstr ""
 
@@ -238,31 +238,31 @@ msgstr ""
 msgid "dashboard"
 msgstr ""
 
-#: app/templates/dashboard.html:13
+#: app/templates/dashboard.html:14
 msgid "swea_dashboard"
 msgstr ""
 
-#: app/templates/dashboard.html:15
+#: app/templates/dashboard.html:16
 msgid "welcome"
 msgstr ""
 
-#: app/templates/dashboard.html:36
+#: app/templates/dashboard.html:25
 msgid "swea_projects"
 msgstr ""
 
-#: app/templates/dashboard.html:52
+#: app/templates/dashboard.html:26
 msgid "swea_team"
 msgstr ""
 
-#: app/templates/dashboard.html:68
+#: app/templates/dashboard.html:27
 msgid "swea_knowledge_hub"
 msgstr ""
 
-#: app/templates/dashboard.html:84
+#: app/templates/dashboard.html:28
 msgid "swea_subscribers"
 msgstr ""
 
-#: app/templates/dashboard.html:100 app/templates/index.html:129
+#: app/templates/dashboard.html:29 app/templates/index.html:129
 #: app/templates/partials/dashboard/news.html:4
 msgid "news"
 msgstr ""
@@ -384,12 +384,12 @@ msgid "research"
 msgstr ""
 
 #: app/templates/knowledge-hub.html:67
-#: app/templates/partials/dashboard/knowledge-hub.html:27
+#: app/templates/partials/dashboard/knowledge-hub.html:28
 msgid "courses"
 msgstr ""
 
 #: app/templates/knowledge-hub.html:85
-#: app/templates/partials/dashboard/knowledge-hub.html:53
+#: app/templates/partials/dashboard/knowledge-hub.html:60
 msgid "podcasts"
 msgstr ""
 
@@ -656,7 +656,7 @@ msgstr ""
 msgid "knowledge_hub"
 msgstr ""
 
-#: app/templates/partials/dashboard/knowledge-hub.html:40
+#: app/templates/partials/dashboard/knowledge-hub.html:44
 msgid "researches"
 msgstr ""
 
@@ -712,25 +712,25 @@ msgstr ""
 msgid "create"
 msgstr ""
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:45
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:45
-#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:40
-#: app/templates/partials/dashboard/news-list.html:21
-#: app/templates/partials/dashboard/project-list.html:50
-#: app/templates/partials/dashboard/team-list.html:54
+#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:44
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:44
+#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:41
+#: app/templates/partials/dashboard/news-list.html:19
+#: app/templates/partials/dashboard/project-list.html:47
+#: app/templates/partials/dashboard/team-list.html:50
 msgid "edit"
 msgstr ""
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:54
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:54
-#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:49
-#: app/templates/partials/dashboard/news-list.html:29
-#: app/templates/partials/dashboard/project-list.html:59
-#: app/templates/partials/dashboard/team-list.html:63
+#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:53
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:53
+#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:50
+#: app/templates/partials/dashboard/news-list.html:27
+#: app/templates/partials/dashboard/project-list.html:56
+#: app/templates/partials/dashboard/team-list.html:59
 msgid "delete"
 msgstr ""
 
-#: app/templates/partials/dashboard/news-list.html:41
+#: app/templates/partials/dashboard/news-list.html:39
 msgid "empty_news"
 msgstr ""
 
@@ -839,15 +839,15 @@ msgid "add_project"
 msgstr ""
 
 #: app/templates/partials/dashboard/knowledge_hub/researches-list.html:17
-#: app/templates/partials/dashboard/project-list.html:18
+#: app/templates/partials/dashboard/project-list.html:17
 msgid "by"
 msgstr ""
 
-#: app/templates/partials/dashboard/project-list.html:55
+#: app/templates/partials/dashboard/project-list.html:52
 msgid "confirm_delete_project"
 msgstr ""
 
-#: app/templates/partials/dashboard/project-list.html:70
+#: app/templates/partials/dashboard/project-list.html:67
 msgid "no_projects_found"
 msgstr ""
 
@@ -855,11 +855,11 @@ msgstr ""
 msgid "total_subscribers"
 msgstr ""
 
-#: app/templates/partials/dashboard/subscribers-list.html:24
+#: app/templates/partials/dashboard/subscribers-list.html:22
 msgid "subscribed_on"
 msgstr ""
 
-#: app/templates/partials/dashboard/subscribers-list.html:46
+#: app/templates/partials/dashboard/subscribers-list.html:38
 msgid "no_subscribers_yet"
 msgstr ""
 
@@ -891,11 +891,11 @@ msgstr ""
 msgid "send"
 msgstr ""
 
-#: app/templates/partials/dashboard/team-list.html:59
+#: app/templates/partials/dashboard/team-list.html:55
 msgid "confirm_delete_team_member"
 msgstr ""
 
-#: app/templates/partials/dashboard/team-list.html:74
+#: app/templates/partials/dashboard/team-list.html:70
 msgid "no_team_members_found"
 msgstr ""
 
@@ -1068,11 +1068,11 @@ msgstr ""
 msgid "course_image"
 msgstr ""
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:50
+#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:49
 msgid "confirm_delete_course"
 msgstr ""
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:65
+#: app/templates/partials/dashboard/knowledge_hub/courses-list.html:64
 msgid "no_courses_found"
 msgstr ""
 
@@ -1200,11 +1200,11 @@ msgstr ""
 msgid "podcast_image"
 msgstr ""
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:50
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:49
 msgid "confirm_delete_podcast"
 msgstr ""
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:65
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-list.html:64
 msgid "no_podcasts_found"
 msgstr ""
 
@@ -1272,11 +1272,11 @@ msgstr ""
 msgid "confirm_delete_image"
 msgstr ""
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:45
+#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:46
 msgid "confirm_delete_research"
 msgstr ""
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:60
+#: app/templates/partials/dashboard/knowledge_hub/researches-list.html:61
 msgid "no_researches_found"
 msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-02 23:18+0400\n"
+"POT-Creation-Date: 2025-04-03 12:18+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -123,19 +123,19 @@ msgstr "حدث خطأ أثناء حذف عضو الفريق"
 msgid "Member deleted successfully"
 msgstr "تم حذف عضو الفريق بنجاح"
 
-#: api/v1/views/main.py:139
+#: api/v1/views/main.py:141
 msgid "Invalid credentials"
 msgstr "بيانات الاعتماد غير صالحة"
 
-#: api/v1/views/main.py:144
+#: api/v1/views/main.py:146
 msgid "Login successful"
 msgstr "تم تسجيل الدخول بنجاح"
 
-#: api/v1/views/main.py:223
+#: api/v1/views/main.py:225
 msgid "Failed to send message"
 msgstr "فشل في إرسال الرسالة"
 
-#: api/v1/views/main.py:229
+#: api/v1/views/main.py:231
 msgid "Your comment received successfully"
 msgstr "تم استلام  تعليقك  بنجاح"
 
@@ -216,7 +216,7 @@ msgstr "تم تحديث عضو الفريق بنجاح"
 msgid "Team member deleted successfully"
 msgstr "تم حذف عضو الفريق بنجاح"
 
-#: app/__init__.py:157
+#: app/__init__.py:169
 msgid "Rate limit exceeded"
 msgstr "تجاوز الحد الأقصى"
 
@@ -532,9 +532,9 @@ msgid "content_arabic_placeholder"
 msgstr "المحتوى بالعربية"
 
 #: app/templates/macros/form_macros.html:116
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:86
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:87
 #: app/templates/partials/dashboard/knowledge_hub/members-form.html:39
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:89
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:90
 #: app/templates/partials/dashboard/project-form.html:73
 #: app/templates/partials/dashboard/team_member-form.html:85
 msgid "current_image"
@@ -729,15 +729,15 @@ msgstr "وصف الخبر بالإنجليزية"
 msgid "arabic_news_description"
 msgstr "وصف الخبر بالعربية"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:98
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:101
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:100
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:104
 #: app/templates/partials/dashboard/knowledge_hub/researches-form.html:167
 #: app/templates/partials/dashboard/news-form.html:95
 msgid "update"
 msgstr "تحديث"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:98
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:101
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:100
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:104
 #: app/templates/partials/dashboard/knowledge_hub/researches-form.html:167
 #: app/templates/partials/dashboard/news-form.html:95
 msgid "create"
@@ -823,7 +823,7 @@ msgstr "الحالة"
 msgid "date_of_completion"
 msgstr "تاريخ الإنتهاء"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:72
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:73
 #: app/templates/partials/dashboard/knowledge_hub/researches-form.html:127
 #: app/templates/partials/dashboard/project-form.html:55
 msgid "tags_english"
@@ -833,13 +833,13 @@ msgstr "علامات بالإنجليزية"
 msgid "tags_english_placeholder"
 msgstr "علامات بالإنجليزية"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:74
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:75
 #: app/templates/partials/dashboard/knowledge_hub/researches-form.html:129
 #: app/templates/partials/dashboard/project-form.html:58
 msgid "tags_english_example"
 msgstr "Economy, Women, Empowerment"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:76
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:77
 #: app/templates/partials/dashboard/knowledge_hub/researches-form.html:131
 #: app/templates/partials/dashboard/project-form.html:59
 msgid "tags_arabic"
@@ -849,7 +849,7 @@ msgstr "علامات بالعربية"
 msgid "tags_arabic_placeholder"
 msgstr "علامات بالعربية"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:78
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:79
 #: app/templates/partials/dashboard/knowledge_hub/researches-form.html:132
 #: app/templates/partials/dashboard/project-form.html:62
 msgid "tags_arabic_example"
@@ -1011,91 +1011,91 @@ msgstr "الروابط الاجتماعية"
 msgid "profile_image"
 msgstr "صورة العضو"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:27
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:28
 msgid "course_title_english"
 msgstr "عنوان الدورة بالإنجليزية"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:28
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:29
 msgid "english_title_placeholder"
 msgstr "عنوان بالإنجليزية"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:30
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:31
 msgid "course_title_arabic"
 msgstr "عنوان الدورة بالعربية"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:31
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:32
 msgid "arabic_title_placeholder"
 msgstr "عنوان بالعربية"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:38
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:39
 msgid "course_name_english"
 msgstr "إسم الدورة بالإنجليزية"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:38
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:39
 msgid "english_course_name"
 msgstr "إسم الدورة بالإنجليزية"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:41
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:42
 msgid "course_name_arabic"
 msgstr "إسم الدورة بالعربية"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:41
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:42
 msgid "arabic_course_name"
 msgstr "إسم الدورة بالعربية"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:49
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:50
 msgid "description_english"
 msgstr "وصف الدورة بالإنجليزية"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:49
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:50
 msgid "english_description"
 msgstr "وصف الدورة بالإنجليزية"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:52
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:53
 msgid "description_arabic"
 msgstr "وصف الدورة بالعربية"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:52
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:53
 msgid "arabic_description"
 msgstr "وصف الدورة بالعربية"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:57
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:58
 msgid "course_members"
 msgstr "أعضاء الفريق"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:66
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:67
 msgid "course_url"
 msgstr "رابط الدورة"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:70
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:71
 msgid "en_tags"
 msgstr "العلامات بالإنجليزية"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:71
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:73
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:72
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:74
 #: app/templates/partials/dashboard/knowledge_hub/researches-form.html:128
 msgid "enter_en_tags_comma_separated"
 msgstr "أدخل العلامات بالإنجليزية مفصولة بفاصلة"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:72
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:73
 msgid "example_en_tags_format"
 msgstr "Economy, Women, Empowerment"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:74
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:75
 msgid "ar_tags"
 msgstr "العلامات بالعربية"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:75
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:77
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:76
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:78
 #: app/templates/partials/dashboard/knowledge_hub/researches-form.html:131
 msgid "enter_ar_tags_comma_separated"
 msgstr "أدخل العلامات بالعربية مفصولة بفاصلة"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:76
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:77
 msgid "example_ar_tags_format"
 msgstr "اقتصاد، نساء، تمكين"
 
-#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:89
+#: app/templates/partials/dashboard/knowledge_hub/courses-form.html:90
 msgid "course_image"
 msgstr "صورة الدورة"
 
@@ -1163,71 +1163,71 @@ msgstr "ﻻ توجد أعضاء حاليً"
 msgid "add_new_member"
 msgstr "إضافة عضو"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:27
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:28
 msgid "pod_title_english"
 msgstr "عنوان البودكاست بالإنجليزية"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:28
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:29
 msgid "pod_enter_english_title"
 msgstr "العنوان بالإنجليزية"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:30
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:31
 msgid "pod_title_arabic"
 msgstr "عنوان البودكاست بالعربية"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:31
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:32
 msgid "pod_enter_arabic_title"
 msgstr "العنوان بالعربية"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:38
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:39
 msgid "podcast_name_english"
 msgstr "إسم البودكاست بالإنجليزية"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:39
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:40
 msgid "enter_english_podcast_name"
 msgstr "الإسم بالإنجليزية"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:42
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:43
 msgid "podcast_name_arabic"
 msgstr "إسم البودكاست بالعربية"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:43
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:44
 msgid "enter_arabic_podcast_name"
 msgstr "الإسم بالعربية"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:50
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:51
 msgid "pod_description_english"
 msgstr "وصف البودكاست بالإنجليزية"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:51
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:52
 msgid "enter_english_pod_description"
 msgstr "وصف البودكاست بالإنجليزية"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:54
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:55
 msgid "pod_description_arabic"
 msgstr "وصف البودكاست بالعربية"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:55
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:56
 msgid "enter_arabic_pod_description"
 msgstr "وصف البودكاست بالعربية"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:59
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:60
 msgid "podcast_members"
 msgstr "أعضاء الفريق"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:64
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:65
 msgid "podcast_date"
 msgstr "تاريخ البودكاست"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:68
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:69
 msgid "podcast_url"
 msgstr "رابط البودكاست Soundcloud"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:68
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:69
 msgid "enter_podcast_url"
 msgstr "رابط البودكاست"
 
-#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:93
+#: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:94
 msgid "podcast_image"
 msgstr "صورة البودكاست"
 

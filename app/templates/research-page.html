@@ -7,7 +7,7 @@ block content %}
         {% if research.hero_image %}
         <div class="w-full aspect-[16/9] min-h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden">
             <img
-                src="{{ url_for('static', filename=research.hero_image) }}"
+                src="{{ research.hero_image|file_url }}"
                 alt="{{ research.title[locale] }}"
                 onerror="this.src='https://i.imgur.com/hfM1J8s.png'"
                 class="w-full h-full object-cover"

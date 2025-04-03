@@ -78,7 +78,7 @@ from 'macros/spinner.html' import spinner %}
     {% if team and team.image %}
     <div class="flex items-center gap-4">
         <img
-            src="{{ url_for('static', filename=team.image) }}"
+            src="{{ team.image|file_url }}"
             alt="{{ team.name['en'] }}"
             class="w-24 h-24 object-cover rounded-full"
         />

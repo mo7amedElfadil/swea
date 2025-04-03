@@ -96,3 +96,28 @@ Disallow: /private/
 Allow: /
 Sitemap: https://aidluminate.pro/sitemap.xml
 """
+
+
+def get_file_url(file_path):
+    """
+    Get the URL for a file path stored in the database.
+
+    This function can be registered with Jinja to easily generate URLs
+    for files in templates.
+
+    Args:
+        file_path: The file path as stored in the database
+
+    Returns:
+        The full URL to access the file
+    """
+    if not file_path:
+        return ""
+
+    if Config.STORAGE_TYPE == "s3":
+        if Config.S3_REGION and Config.S3_REGION != "us-east-1":
+            return f"https://{Config.S3_BUCKET}.s3.{Config.S3_REGION}.amazonaws.com/{file_path}"
+        return f"https://{Config.S3_BUCKET}.s3.amazonaws.com/{file_path}"
+
+    # Local file - use our route
+    return f"/uploads/{file_path}"

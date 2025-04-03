@@ -1,11 +1,12 @@
 """Base service class with common functionality for all services."""
 
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Type
 
-from marshmallow import ValidationError
+from marshmallow import Schema, ValidationError
+from werkzeug.datastructures import FileStorage
 
 from utils.db_utils import paginate_query
-from utils.file_manager import FileManager
+from utils.file_manager import create_file_manager
 
 
 class BaseService:
@@ -46,20 +47,27 @@ class BaseService:
         Subclasses should specify their specific model and schema classes.
     """
 
-    def __init__(self, model_class, schema_class, page_size: int = 10):
+    def __init__(
+        self,
+        model_class,
+        schema_class: Type[Schema],
+        page_size: int = 10,
+    ):
         """
         Initialize the base service.
 
         Args:
             model_class: The SQLAlchemy model class for this service
             schema_class: The Marshmallow schema class for validation
-            page_size: Default page size for pagination
-            file_manager: Utility for handling file-related operations
+            page_size: Default page size for pagination (must be > 0)
         """
         self.model_class = model_class
         self.schema = schema_class()
         self.page_size = page_size if page_size > 0 else 10
-        self.file_manager = FileManager
+
+        # Initialize file manager
+        directory = getattr(model_class, "__tablename__", "default")
+        self.file_manager = create_file_manager(directory=directory)
 
     def get_by_uuid(self, uuid: str) -> Optional[Dict[str, Any]]:
         """
@@ -141,3 +149,23 @@ class BaseService:
         if errors:
             raise ValidationError(errors)
         return data
+
+    def handle_file_upload(self, file: FileStorage) -> str:
+        """
+        Handle file upload using the configured file manager.
+
+        Args:
+            file: The file to upload (FileStorage object)
+
+        Returns:
+            The file path or URI that can be used to retrieve the file
+
+        Raises:
+            ValidationError: If file validation fails
+        """
+        if file and file.filename:
+            try:
+                return self.file_manager.save_file(file)
+            except ValidationError as e:
+                raise ValidationError(e.messages) from e
+        return ""

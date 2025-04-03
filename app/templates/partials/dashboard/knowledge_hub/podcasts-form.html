@@ -82,7 +82,7 @@ file_upload, tags_input %}
         {% if image %}
         <div class="flex items-center gap-4">
             <img
-                src="{{ url_for('static', filename=image) }}"
+                src="{{ image|file_url }}"
                 alt="{{ title['en'] }}"
                 class="w-24 h-24 object-cover rounded-md"
             />

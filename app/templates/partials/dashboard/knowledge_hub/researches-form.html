@@ -59,7 +59,7 @@ content_block, testimonial_block %}
     accept="image/*") }} {% if hero_image %}
     <div class="flex items-center gap-4">
         <img
-            src="{{ url_for('static', filename=hero_image if hero_image else '') }}"
+            src="{{ hero_image|file_url }}"
             alt="{{ title['en'] }}"
             class="w-24 h-24 object-cover rounded-md"
         />
@@ -138,7 +138,7 @@ content_block, testimonial_block %}
         {% for image in images %}
         <div class="relative">
             <img
-                src="{{ url_for('static', filename=image) }}"
+                src="{{ image|file_url }}"
                 alt="{{ title['en'] }}"
                 class="w-24 h-24 object-cover rounded-md"
             />

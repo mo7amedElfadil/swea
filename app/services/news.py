@@ -41,9 +41,11 @@ class NewsService(BaseService):
                 image=form_data.get("image"),
                 description=compose_i18n(form_data, "description"),
             )
-            file = self.file_manager(form_data.get("image"))
-            relative_path = file.save()
-            processed_data["image"] = relative_path
+
+            image = processed_data.get("image")
+            if image and image.filename:
+                processed_data["image"] = self.handle_file_upload(image)
+
             # Validate the data using the schema
             self.validate_with_schema(processed_data)
 
@@ -74,13 +76,13 @@ class NewsService(BaseService):
             processed_data = dict(
                 title=compose_i18n(form_data, "title"),
                 date=form_data.get("date"),
+                image=form_data.get("image"),
                 description=compose_i18n(form_data, "description"),
             )
-            if form_data.get("image"):
-                processed_data["image"] = form_data.get("image")
-                file = self.file_manager(form_data.get("image"))
-                relative_path = file.save()
-                processed_data["image"] = relative_path
+
+            image = processed_data.get("image")
+            if image and image.filename:
+                processed_data["image"] = self.handle_file_upload(image)
 
             # Validate the data using the schema
             self.validate_with_schema(processed_data)
@@ -96,6 +98,7 @@ class NewsService(BaseService):
         news_item = self.model_class.get_byuuid(uuid)
         if news_item:
             news_item.delete(permanent=permanent)
+            self.file_manager.delete_file(news_item.image)
             return True
         return False
 

@@ -1,6 +1,7 @@
 from typing import Any, Dict, Optional, Protocol, Type
 
 from flask import (
+    abort,
     make_response,
     redirect,
     render_template,
@@ -25,6 +26,7 @@ from app.services import (
 from config import Config
 from utils.auth_utils import login_required
 from utils.cache_mgr import cache_response
+from utils.file_manager import create_file_manager
 from utils.image_processing import ImageProcessing
 from utils.rate_limiter import RateLimits, rate_limit
 from utils.referrer_modifier import modify_referrer_lang
@@ -249,6 +251,7 @@ def get_toast(toast_type):
     return render_template(f"partials/toast/{toast_type}.html")
 
 
+# TODO : Keep it here, maybe we will use it in the future
 @bp.route("/upload/<category>/<uuid>", methods=["POST"])
 def upload_image(category, uuid):
     """Upload an image to the appropriate category"""
@@ -275,7 +278,38 @@ def upload_image(category, uuid):
     ), 400
 
 
-@bp.route("/uploads/<path:filename>")
-def get_image(filename):
-    """Retrieve uploaded images"""
-    return send_from_directory(Config.UPLOAD_FOLDER, filename)
+@bp.route("/uploads/<path:file_path>")
+def serve_file(file_path):
+    """
+    Serve an uploaded file.
+
+    This route handles both local and S3 stored files transparently:
+    - For local files: serves the file directly
+    - For S3 files: redirects to the S3 URL
+
+    Args:
+        file_path: Path to the file relative to the uploads directory
+    """
+    # Redirect to the S3 URL if the storage type is S3
+    if Config.STORAGE_TYPE == "s3":
+        # Create a temporary file manager to get the public URL
+        file_manager = create_file_manager(
+            storage_type="s3",
+            bucket_name=Config.S3_BUCKET,
+            region_name=Config.S3_REGION,
+        )
+        return redirect(file_manager.get_public_url(file_path))
+
+    # For local storage, serve the file from the filesystem
+    parts = file_path.split("/", 1)
+
+    if len(parts) != 2:
+        abort(404)
+
+    directory, filename = parts
+
+    try:
+        upload_path = f"{Config.UPLOAD_FOLDER}/{directory}"
+        return send_from_directory(upload_path, filename)
+    except Exception:
+        abort(404)

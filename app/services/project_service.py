@@ -203,7 +203,7 @@ class ProjectService(BaseService):
         # Handle hero_image upload
         image = files.get("hero_image")
         if image and image.filename:
-            processed_data["hero_image"] = self.file_manager(image).save()
+            processed_data["hero_image"] = self.handle_file_upload(image)
 
         # Process testimonials field
         processed_data["testimonials"] = self._parse_indexed_fields(
@@ -318,5 +318,5 @@ class ProjectService(BaseService):
         """
         file = files.get(field_name)
         if file and file.filename:
-            return self.file_manager(file).save()
+            return self.handle_file_upload(file)
         return existing_image

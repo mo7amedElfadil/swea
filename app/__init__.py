@@ -17,7 +17,14 @@ from html_sanitizer import Sanitizer
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 from api.v1.views import bp as app_view
-from app.extensions import db, get_locale, init_cache, init_session, migrate
+from app.extensions import (
+    db,
+    get_file_url,
+    get_locale,
+    init_cache,
+    init_session,
+    migrate,
+)
 from config import Config
 from utils.rate_limiter import init_limiter
 from utils.toast_notify import add_toast
@@ -149,6 +156,11 @@ def create_app(config_class=Config):
         return (
             truncated + "..." if len(html_content) >= length else html_content
         )
+
+    @app.template_filter("file_url")
+    def file_url_filter(file_path):
+        """Convert the stored file paths to buplic URLs"""
+        return get_file_url(file_path)
 
     @app.errorhandler(429)
     def rate_limit_exceeded(e):

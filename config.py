@@ -1,12 +1,14 @@
 """configuration file for your Flask application."""
 
-import os
-from os import getenv, path
+from os import getenv
+from pathlib import Path
+from typing import Final, List
 
 import redis
 from dotenv import load_dotenv
 
-basedir = path.abspath(path.dirname(__file__))
+# Base directory
+BASE_DIR: Final[Path] = Path(__file__).parent.resolve()
 
 load_dotenv()
 
@@ -18,28 +20,41 @@ class Config:
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
     BABEL_SUPPORTED_LOCALES = ["en", "ar"]
-    BABEL_TRANSLATION_DIRECTORIES = os.path.join(basedir, "app/translations")
+    BABEL_TRANSLATION_DIRECTORIES = str(BASE_DIR / "app/translations")
 
-    # General App configuration
-    UPLOAD_FOLDER = getenv(
-        "UPLOAD_FOLDER", os.path.join(basedir, "./app/static/uploads/")
-    )
-    UPLOAD_DIRS = [
+    # Settings for storage backends
+    STORAGE_TYPE = getenv("STORAGE_TYPE", "local")  # local or s3
+    S3_BUCKET = "swea-bucket-name"
+    S3_REGION = "us-east-1"
+    AWS_SECRET_ACCESS_KEY = getenv("AWS_SECRET_ACCESS_KEY")
+    AWS_ACCESS_KEY_ID = getenv("AWS_ACCESS_KEY_ID")
+
+    # Upload directories to create
+    UPLOAD_DIRS: Final[List[str]] = [
         "projects",
         "research",
         "courses",
         "podcasts",
         "news",
-        "team",
+        "teams",
         "users",
+        "members",
     ]
-    # Create the upload folder if it doesn't exist
-    if not path.exists(UPLOAD_FOLDER):
-        os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-    for folder in UPLOAD_DIRS:
-        os.makedirs(os.path.join(UPLOAD_FOLDER, folder), exist_ok=True)
-    ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "webp"}
 
+    # Determine upload folder path
+    _upload_dir_env = getenv("UPLOAD_FOLDER", "./uploads/")
+    UPLOAD_FOLDER: Final[Path] = (BASE_DIR / _upload_dir_env).resolve()
+
+    # Create upload directories
+    UPLOAD_FOLDER.mkdir(parents=True, exist_ok=True)
+    for directory in UPLOAD_DIRS:
+        (UPLOAD_FOLDER / directory).mkdir(exist_ok=True)
+
+    # Allowed file extensions
+    ALLOWED_IMAGES_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "webp"}
+    ALLOWED_FILES_EXTENSIONS = {"pdf", "docx", "pptx", "xlsx", "txt"}
+
+    # Application configuration
     SECRET_KEY = getenv("SECRET_KEY", "you-will-never-guess")
     PREFERRED_URL_SCHEME = getenv("PREFERRED_URL_SCHEME", "https")
     API_KEY = getenv("API_KEY", "you-will-never-guess")

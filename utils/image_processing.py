@@ -7,7 +7,7 @@ from config import Config
 
 # Allowed file extensions
 
-ALLOWED_EXTENSIONS = Config.ALLOWED_EXTENSIONS
+ALLOWED_EXTENSIONS = Config.ALLOWED_IMAGES_EXTENSIONS
 
 
 class ImageProcessing:

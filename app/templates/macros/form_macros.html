@@ -115,7 +115,7 @@
             <div class="flex items-center gap-4">
             <span class="text-sm text-gray-600">{{ _("current_image")}}</span>
             <img
-                src="{{ url_for('static', filename=content_image) }}"
+                src="{{ content_image|file_url }}"
                 alt="{{ _("Content Image") }}"
                 onerror="this.src='http://i.imgur.com/hfM1J8s.png'"
                 class="w-24 h-24 object-cover"
@@ -177,7 +177,7 @@
             <div class="flex items-center gap-4">
             <span class="text-sm text-gray-600">{{ _("current_photo")}}</span>
             <img
-                src="{{ url_for('static', filename=testimonial_image) }}"
+                src="{{ testimonial_image|file_url }}"
                 alt="{{ _("Testimonial Author Photo") }}"
                 onerror="this.src='http://i.imgur.com/hfM1J8s.png'"
                 class="w-24 h-24 object-cover"

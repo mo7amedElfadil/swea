@@ -32,7 +32,7 @@
     >
         <img
             class="w-full h-full object-cover"
-            src="{{ url_for('static', filename=item.hero_image if item.hero_image) }}"
+            src="{{ item.hero_image|file_url }}"
             onerror="this.src='https://i.imgur.com/hfM1J8s.png'"
             alt="research image"
         />

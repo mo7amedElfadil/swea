@@ -138,13 +138,13 @@ class ResearchService(BaseService):
         # Handle hero_image upload
         hero_image = files.get("hero_image")
         if hero_image and hero_image.filename:
-            processed_data["hero_image"] = self.file_manager(hero_image).save()
+            processed_data["hero_image"] = self.handle_file_upload(hero_image)
 
         # Handle images upload
         images = files.getlist("images") if "images" in files else []
         if images:
             processed_data["images"] = [
-                self.file_manager(image).save()
+                self.handle_file_upload(image)
                 for image in images
                 if image.filename
             ]

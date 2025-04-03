@@ -11,7 +11,7 @@ accept='', required=True)%}
         {% if value and type == 'file' %}
         <img
             class="size-14 rounded-full"
-            src="{{ url_for('static', filename=value) }}"
+            src="{{ value|file_url }}"
             alt="Uploaded image"
         />
         {% endif %}

@@ -136,6 +136,7 @@ class CourseService(BaseService):
             ).first()
             if course_member:
                 course_member.delete(permanent=True)
+                self.file_manager.delete_file(course_member.image)
 
         return True
 
@@ -230,7 +231,7 @@ class CourseService(BaseService):
         # Handle image upload
         image = files.get("image")
         if image and image.filename:
-            processed_data["image"] = self.file_manager(image).save()
+            processed_data["image"] = self.handle_file_upload(image)
 
         return processed_data
 

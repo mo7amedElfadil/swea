@@ -122,6 +122,6 @@ class MemberService(BaseService):
         # Handle image upload
         image = files.get("image")
         if image and image.filename:
-            processed_data["image"] = self.file_manager(image).save()
+            processed_data["image"] = self.handle_file_upload(image)
 
         return processed_data

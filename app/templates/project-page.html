@@ -8,7 +8,7 @@ endblock %}
         {% if project.hero_image %}
         <div class="w-full aspect-[16/9] min-h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden">
             <img
-                src="{{ url_for('static', filename=project.hero_image) }}"
+                src="{{ project.hero_image|file_url }}"
                 alt="{{ project.title[locale] }}"
                 onerror="this.src='http://i.imgur.com/hfM1J8s.png'"
                 class="w-full h-full object-cover"
@@ -87,7 +87,7 @@ endblock %}
                     <div class="flex-1 mt-6 md:mt-0">
                         <div class="rounded-lg overflow-hidden shadow-lg">
                             <img
-                                src="{{ url_for('static', filename=section.image) }}"
+                                src="{{ section.image|file_url }}"
                                 alt="{{ project.title[locale] }}"
                                 onerror="this.src='http://i.imgur.com/hfM1J8s.png'"
                                 class="w-full h-auto object-cover aspect-video"
@@ -116,7 +116,7 @@ endblock %}
                         {% if testimonial.image %}
                         <div class="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-primary-200">
                             <img
-                                src="{{ url_for('static', filename=testimonial.image) }}"
+                                src="{{ testimonial.image|file_url }}"
                                 alt="{{ testimonial.author }}"
                                 onerror="this.src='http://i.imgur.com/hfM1J8s.png'"
                                 class="w-full h-full object-cover"

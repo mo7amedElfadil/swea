@@ -84,6 +84,8 @@ def update_news(news_id):
 
         try:
             news_form = request.form.to_dict()
+            img = request.files.get("image")
+            news_form["image"] = img
             news_service.update(news_id, news_form)
             resp = make_response(
                 render_template(

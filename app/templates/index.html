@@ -4,7 +4,7 @@
 {% block title %}home{% endblock %}
 {% block content %}
 <div class='w-full h-full'>
-	<section id='hero' class='blur-b h-[calc(100vh-80px)] grid grid-rows-2 py-8 px-4
+	<section id='hero' class='h-[calc(100vh-80px)] grid grid-rows-2 py-8 px-4
     '>
 		<div class='flex flex-col gap-6 items-center justify-end'>
 			<h1 class='text-3xl text-primary-800 capitalize font-extrabold
@@ -68,7 +68,7 @@
 			</div>
 		</div>
 	</section>
-	<section id='our_story' class='blur-b blur-t flex items-center px-4 py-8 bg-cover bg-center
+	<section id='our_story' class='flex items-center px-4 py-8 bg-cover bg-center
     bg-no-repeat sm:bg-[50%_20%] sm:min-h-[100vh]'>
 		<div class='flex flex-col justify-center container mx-auto sm:items-center'>
 			<h2 class='flex mb-6 text-3xl text-white capitalize font-extrabold pb-6 sm:justify-self-center
@@ -100,7 +100,7 @@
 		</div>
 	</section>
   <section id='news' class='px-4 py-8 sm:py-28 relative before:h-[70%]
-    sm:before:w-[12%] before:absolute before:bg-primary-500 before:top-[55%]
+    sm:before:w-[12%] before:absolute before:bg-primary-800 before:top-[55%]
     before:-translate-y-1/2 before:left-0
     before:-z-[1] before:rounded-tr-3xl before:rounded-br-3xl'>
     <div class="container mx-auto relative overflow-hidden">
@@ -126,7 +126,7 @@
             </div>
         </div>
         <div id='carousel' class='w-full transition-all relative z-10 flex gap-6 p-4 sm:p-20 '>
-          
+
             {% include "partials/news/cards.html" %}
         </div>
     </div>

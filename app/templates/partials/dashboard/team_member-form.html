@@ -13,41 +13,41 @@ from 'macros/spinner.html' import spinner %}
     <!-- Name -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {{ text_input( id="name-en", name="name[en]", value=team.name['en'] if
-        team else '', label="name_english", placeholder="enter_name_in_english",
-        required=true, dir="ltr", lang="en" ) }} {{ text_input( id="name-ar",
-        name="name[ar]", value=team.name['ar'] if team else '',
-        label="name_arabic", placeholder="enter_name_in_arabic", dir="rtl",
-        lang="ar" ) }}
+        team else '', label=_("name_english"),
+        placeholder=_("enter_name_in_english"), required=true, dir="ltr",
+        lang="en" ) }} {{ text_input( id="name-ar", name="name[ar]",
+        value=team.name['ar'] if team else '', label=_("name_arabic"),
+        placeholder=_("enter_name_in_arabic"), dir="rtl", lang="ar" ) }}
     </div>
 
     <!-- Role -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {{ text_input( id="role-en", name="role[en]", value=team.role['en'] if
-        team else '', label="role_english", placeholder="enter_role_in_english",
-        required=true, dir="ltr", lang="en" ) }} {{ text_input( id="role-ar",
-        name="role[ar]", value=team.role['ar'] if team else '',
-        label="role_arabic", placeholder="enter_role_in_arabic", dir="rtl",
-        lang="ar" ) }}
+        team else '', label=_("role_english"),
+        placeholder=_("enter_role_in_english"), required=true, dir="ltr",
+        lang="en" ) }} {{ text_input( id="role-ar", name="role[ar]",
+        value=team.role['ar'] if team else '', label=_("role_arabic"),
+        placeholder=_("enter_role_in_arabic"), dir="rtl", lang="ar" ) }}
     </div>
 
     <!-- Order -->
     {{ text_input( id="order", name="order", value=team.order if team else '',
-    label="order", placeholder="enter_member_order", type="number",
+    label=_("order"), placeholder=_("enter_member_order"), type="number",
     required=true ) }}
 
     <!-- Bio -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {{ textarea( id="bio-en", name="bio[en]", value=team.bio['en'] if team
-        else '', label="bio_english", placeholder="enter_bio_in_english",
+        else '', label=_("bio_english"), placeholder=_("enter_bio_in_english"),
         required=true, dir="ltr", lang="en" ) }} {{ textarea( id="bio-ar",
         name="bio[ar]", value=team.bio['ar'] if team else '',
-        label="bio_arabic", placeholder="enter_bio_in_arabic", dir="rtl",
+        label=_("bio_arabic"), placeholder=_("enter_bio_in_arabic"), dir="rtl",
         lang="ar" ) }}
     </div>
 
     <!-- Email -->
     {{ text_input( id="email", name="email", value=team.email if team else '',
-    label="email", placeholder="enter_member_email", type="email" ) }}
+    label=_("email"), placeholder=_("enter_member_email"), type="email" ) }}
 
     <!-- Socials -->
     <div class="flex flex-col gap-4">
@@ -78,14 +78,14 @@ from 'macros/spinner.html' import spinner %}
     {% if team and team.image %}
     <div class="flex items-center gap-4">
         <img
-            src="{{ url_for('static', filename=team.image) }}"
+            src="{{ team.image|file_url }}"
             alt="{{ team.name['en'] }}"
             class="w-24 h-24 object-cover rounded-full"
         />
         <span class="text-sm text-gray-600">{{ _("current_image") }}</span>
     </div>
-    {% endif %} {{ file_upload( id="image", name="image", label="profile_image",
-    accept="image/*" ) }}
+    {% endif %} {{ file_upload( id="image", name="image",
+    label=_("profile_image"), accept="image/*" ) }}
 
     <!-- Submit Button -->
     <div>

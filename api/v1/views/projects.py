@@ -1,8 +1,9 @@
-from flask import make_response, render_template, request, session
+from flask import make_response, render_template, request
 from flask_babel import gettext as _
 
 from api.v1.views import bp
-from app.services.project_service import ProjectService
+from app.services import ProjectService
+from utils.cache_mgr import cache_response, invalidate_cache
 from utils.toast_notify import add_toast
 from utils.view_modifiers import response
 
@@ -11,16 +12,20 @@ project_service = ProjectService()
 
 @bp.route("/projects/<uuid>", methods=["GET"])
 @response(template_file="project-page.html")
+@cache_response()
 def project_page(uuid):
     """Project page"""
     project = project_service.get_project_by_uuid(uuid)
     if not project:
-        return add_toast(make_response("", 404), "error", _("Project not found"))
+        return add_toast(
+            make_response("", 404), "error", _("Project not found")
+        )
 
     return dict(project=project)
 
 
 @bp.route("/dashboard/projects", methods=["GET"])
+@cache_response()
 def filter_projects():
     """Filter projects by status and search string"""
     search_str = request.args.get("search", "")
@@ -56,10 +61,13 @@ def add_project():
             project_service.create_project(form_data, files)
             resp = make_response(
                 render_template(
-                    "partials/dashboard/projects.html", **project_service.get_all()
+                    "partials/dashboard/projects.html",
+                    **project_service.get_all(),
                 )
             )
-            return add_toast(resp, "success", _("Project created successfully"))
+            return add_toast(
+                resp, "success", _("Project created successfully")
+            )
         except Exception as e:
             print("Error:", e)
             resp = make_response(
@@ -69,7 +77,7 @@ def add_project():
                 )
             )
             return add_toast(resp, "error", "Unexpected error occurred")
-
+    invalidate_cache(["projects", "project_page", "filter_projects"])
     return dict()
 
 
@@ -97,6 +105,7 @@ def update_project(project_id):
                 **project_service.get_all(),
             )
         )
+        invalidate_cache(["projects", "project_page", "filter_projects"])
         return add_toast(resp, "success", _("Project updated successfully"))
     except Exception as e:
         resp = make_response(e, 400)
@@ -117,5 +126,5 @@ def delete_project(project_id):
             **project_service.get_all(),
         )
     )
-
+    invalidate_cache(["projects", "project_page", "filter_projects"])
     return add_toast(resp, "success", _("Project deleted successfully"))

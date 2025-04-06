@@ -46,16 +46,16 @@ if update else '' } %}
                 class="bg-white shadow-sm rounded-lg p-6 border border-gray-200"
             >
                 <h3 class="text-lg font-medium text-gray-900 mb-4">
-                    Description
+                    {{ _("news_description") }}
                 </h3>
                 <div class="space-y-4">
                     <!-- English description -->
                     <div>
                         <label
                             for="description-en"
-                            class="block text-sm font-medium text-gray-700"
+                            class="block text-sm font-medium text-gray-700 mb-4"
                         >
-                            English description
+                            {{ _("english_news_description") }}
                         </label>
                         <div id="quill-en" class="bg-white"></div>
                         <input
@@ -70,9 +70,9 @@ if update else '' } %}
                     <div>
                         <label
                             for="description-ar"
-                            class="block text-sm font-medium text-gray-700"
+                            class="block text-sm font-medium text-gray-700 mb-4"
                         >
-                            Arabic description
+                            {{ _("arabic_news_description") }}
                         </label>
                         <div id="quill-ar" class="bg-white"></div>
                         <input

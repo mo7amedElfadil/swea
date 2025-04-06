@@ -6,10 +6,9 @@ from typing import Any, Dict, Optional
 
 from marshmallow import ValidationError
 
-from app.models.member import Member
-from app.schemas.member_schema import MemberSchema
+from app.models import Member
+from app.schemas import MemberSchema
 from utils.db_utils import search_by_multilang_field
-from utils.file_manager import FileManager
 from utils.form_utils import parse_nested_field
 from utils.service_base import BaseService
 
@@ -21,7 +20,9 @@ class MemberService(BaseService):
         """Initialize member service."""
         super().__init__(Member, MemberSchema, page_size)
 
-    def create_member(self, form_data: Dict[str, Any], files: Dict[str, Any]) -> Member:
+    def create_member(
+        self, form_data: Dict[str, Any], files: Dict[str, Any]
+    ) -> Member:
         """
         Create a new member.
 
@@ -43,7 +44,7 @@ class MemberService(BaseService):
             self.validate_with_schema(processed_data)
 
             # Create the member
-            member = Member()
+            member = self.model_class()
             member.create(**processed_data)
             return member
 
@@ -75,7 +76,7 @@ class MemberService(BaseService):
             self.validate_with_schema(processed_data)
 
             # Retrieve the member by UUID
-            member = Member.get_byuuid(uuid)
+            member = self.model_class.get_byuuid(uuid)
             if member:
                 member.update(**processed_data)
                 return member
@@ -95,7 +96,7 @@ class MemberService(BaseService):
         Returns:
             Dictionary containing search results and pagination metadata.
         """
-        return search_by_multilang_field(Member, "name", name)
+        return search_by_multilang_field(self.model_class, "name", name)
 
     def validate_form_data(
         self, form_data: Dict[str, Any], files: Dict[str, Any]
@@ -121,6 +122,6 @@ class MemberService(BaseService):
         # Handle image upload
         image = files.get("image")
         if image and image.filename:
-            processed_data["image"] = FileManager(image).save()
+            processed_data["image"] = self.handle_file_upload(image)
 
         return processed_data

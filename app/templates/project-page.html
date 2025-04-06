@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block title %}Project {{ project.title[locale] }}{%
-endblock %} 
+endblock %}
 {% block content %}
 <div class="container mx-auto px-4 mt-16 md:mt-0">
     <!-- Hero Section -->
@@ -8,7 +8,7 @@ endblock %}
         {% if project.hero_image %}
         <div class="w-full aspect-[16/9] min-h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden">
             <img
-                src="{{ url_for('static', filename=project.hero_image) }}"
+                src="{{ project.hero_image|file_url }}"
                 alt="{{ project.title[locale] }}"
                 onerror="this.src='http://i.imgur.com/hfM1J8s.png'"
                 class="w-full h-full object-cover"
@@ -17,7 +17,7 @@ endblock %}
         {% else %}
         <div class="w-full aspect-[16/9] bg-secondary-200"></div>
         {% endif %}
-    
+
         <!-- Blurred Overlay with Project Details -->
         <div class="absolute inset-x-0 bottom-0 bg-black bg-opacity-50 backdrop-blur-lg p-4 sm:p-6">
             <div class="max-w-4xl mx-auto text-white">
@@ -58,7 +58,7 @@ endblock %}
                     </div>
                 </div>
             </div>
-    
+
             <!-- Action buttons -->
             <div class="flex justify-center sm:justify-end gap-2 mt-2 sm:mt-0 print:hidden">
                 <button id="shareButton" class="flex items-center gap-2 hover:bg-primary-600 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-colors">
@@ -77,17 +77,17 @@ endblock %}
             {% for section in project.content %}
                 {% set is_even = loop.index0 % 2 == 0 %}
                 {% set is_reversed = (is_even and locale == 'ar') or (not is_even and locale == 'en') %}
-                
+
                 <div class="flex flex-col md:flex-row items-center gap-8 mb-16 {% if is_reversed %}md:flex-row-reverse{% endif %}">
                     <div class="flex-1 prose max-w-none">
                         <p class="text-secondary-700 text-lg leading-relaxed">{{ section[locale] }}</p>
                     </div>
-                    
+
                     {% if section.image %}
                     <div class="flex-1 mt-6 md:mt-0">
                         <div class="rounded-lg overflow-hidden shadow-lg">
                             <img
-                                src="{{ url_for('static', filename=section.image) }}"
+                                src="{{ section.image|file_url }}"
                                 alt="{{ project.title[locale] }}"
                                 onerror="this.src='http://i.imgur.com/hfM1J8s.png'"
                                 class="w-full h-auto object-cover aspect-video"
@@ -106,7 +106,7 @@ endblock %}
         <h2 class="text-2xl font-bold text-primary-800 mb-8 text-center">
             {{ _('Testimonials') }}
         </h2>
-        
+
         <div class="space-y-8">
             {% for testimonial in project.testimonials %}
             <div class="bg-white p-6 rounded-lg shadow-md transition-transform hover:shadow-lg hover:-translate-y-1">
@@ -116,7 +116,7 @@ endblock %}
                         {% if testimonial.image %}
                         <div class="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-primary-200">
                             <img
-                                src="{{ url_for('static', filename=testimonial.image) }}"
+                                src="{{ testimonial.image|file_url }}"
                                 alt="{{ testimonial.author }}"
                                 onerror="this.src='http://i.imgur.com/hfM1J8s.png'"
                                 class="w-full h-full object-cover"
@@ -127,7 +127,7 @@ endblock %}
                             <span class="text-primary-500 text-2xl font-bold">{{ testimonial.author[:1] }}</span>
                         </div>
                         {% endif %}
-                        
+
                         <p class="text-secondary-800 font-semibold">
                             {{ testimonial.author }}
                         </p>
@@ -137,7 +137,7 @@ endblock %}
                         </p>
                         {% endif %}
                     </div>
-                    
+
                     <!-- Testimonial Text Column -->
                     <div class="md:w-3/4 flex items-center">
                         <div class="relative">
@@ -157,10 +157,10 @@ endblock %}
 document.addEventListener('DOMContentLoaded', function() {
     const shareButton = document.getElementById('shareButton');
     const printButton = document.getElementById('printButton');
-    
+
     shareButton.addEventListener('click', function() {
         const url = window.location.href;
-        
+
         // Use Clipboard API to copy the URL
         navigator.clipboard.writeText(url).then(function() {
             window.toastManager.showToast({
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tempInput.select();
             document.execCommand('copy');
             document.body.removeChild(tempInput);
-            
+
             window.toastManager.showToast({
                 type: 'success',
                 message: '{{ _("Link copied to clipboard!") }}',
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
-    
+
     // Print button functionality
     printButton.addEventListener('click', function() {
         window.print();

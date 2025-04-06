@@ -7,3 +7,4 @@ package-lock.json
 migrations/
 app/static/uploads
 design/
+**/uploads/

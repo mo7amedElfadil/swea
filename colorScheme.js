@@ -37,4 +37,3 @@ const fonts = {
   body: 'Fira Sans Regular' | 'Sans-serif Regular',
   button1: 'Fira Sans Semi-bold',
 }
-

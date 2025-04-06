@@ -2,6 +2,7 @@
 like database connections, session, caching, etc.
 """
 
+import datetime
 import os
 
 from flask import session as flask_session
@@ -52,7 +53,7 @@ def load_disposable_domains() -> set:
             f"Disposable email blocklist not found at {Config.DISPOSABLE_EMAIL_FILE}"
         )
 
-    with open(Config.DISPOSABLE_EMAIL_FILE, "r", encoding="utf-8") as file:
+    with open(Config.DISPOSABLE_EMAIL_FILE, encoding="utf-8") as file:
         for line in file:
             domain = line.strip().lower()
             if domain:
@@ -63,3 +64,60 @@ def load_disposable_domains() -> set:
 
 # Global set for quick lookup
 DISPOSABLE_DOMAINS = load_disposable_domains()
+
+
+def generate_sitemap_xml(public_routes):
+    """Generate sitemap.xml content dynamically."""
+    today = datetime.date.today().isoformat()
+
+    xml_content = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+"""
+    for route, freq, priority in public_routes:
+        xml_content += f"""    <url>
+        <loc>https://aidluminate.pro{route}</loc>
+        <lastmod>{today}</lastmod>
+        <changefreq>{freq}</changefreq>
+        <priority>{priority}</priority>
+    </url>
+"""
+
+    xml_content += "</urlset>"
+    return xml_content
+
+
+def generate_robots_txt():
+    """Generate a robots.txt file dynamically."""
+    return """User-agent: *
+Disallow: /dashboard/
+Disallow: /dashboard/*
+Disallow: /admin/
+Disallow: /private/
+Allow: /
+Sitemap: https://aidluminate.pro/sitemap.xml
+"""
+
+
+def get_file_url(file_path):
+    """
+    Get the URL for a file path stored in the database.
+
+    This function can be registered with Jinja to easily generate URLs
+    for files in templates.
+
+    Args:
+        file_path: The file path as stored in the database
+
+    Returns:
+        The full URL to access the file
+    """
+    if not file_path:
+        return ""
+
+    if Config.STORAGE_TYPE == "s3":
+        if Config.S3_REGION and Config.S3_REGION != "us-east-1":
+            return f"https://{Config.S3_BUCKET}.s3.{Config.S3_REGION}.amazonaws.com/{file_path}"
+        return f"https://{Config.S3_BUCKET}.s3.amazonaws.com/{file_path}"
+
+    # Local file - use our route
+    return f"/uploads/{file_path}"

@@ -1,3 +1,6 @@
+# Using bash as the shell for compatibility with tmux and other commands
+SHELL := /bin/bash
+
 # Makefile for the Application (Frontend & Backend)
 .PHONY: help setup check-dependencies clean check_venv run_flask watch_tw watch_static queue_worker up_db down_db stop_flask stop_tailwind stop_static stop_queue restart restart_tw stop_static stop_queue list status test version update-translation db_init db_migrate db_upgrade db_reset
 
@@ -10,11 +13,11 @@ NPM := $(shell which npm 2> /dev/null)
 PYTHON := $(shell which python3 2> /dev/null)
 FLASK := $(shell which flask 2> /dev/null)
 
-# Colors
-RED := \e[31m
-GREEN := \e[32m
-BOLD := \e[1m
-RESET := \e[0m
+# Colors - Updated for Bash compatibility
+RED := \\e[31m
+GREEN := \\e[32m
+BOLD := \\e[1m
+RESET := \\e[0m
 
 # Sessions
 SWEA_SESSION := swea
@@ -34,14 +37,14 @@ DOWN_DB := docker compose down
 # Define run session
 define run_session
 	@$(TMUX) new-session -d -s "$(1)" "$(2)"
-	@echo -e '$(1) app is $(GREEN)running \e[5m\e[1m...\e[0m$(RESET)'
+	@echo -e "$(1) app is $(GREEN)running \\e[5m\\e[1m...\\e[0m$(RESET)"
 endef
 
 # Define kill session
 define kill_session
 	@if $(TMUX) ls | grep -q "$(1)"; then \
 		$(TMUX) kill-session -t "$(1)"; \
-		echo '$(1) app has $(RED)stopped!$(RESET)'; \
+		echo -e "$(1) app has $(RED)stopped!$(RESET)"; \
 	else \
 		echo 'No tmux session named "$(1)" found.'; \
 	fi
@@ -54,7 +57,7 @@ setup: ## Setup project and install core tools and dependencies
 	@$(MAKE) -s check_venv || exit 1
 	@$(MAKE) -s check_npm || exit 1
 	@$(MAKE) -s db_init || exit 1
-	@$(MAKE) -s db_migrate || exit 1 
+	@$(MAKE) -s db_migrate || exit 1
 	@$(MAKE) -s db_upgrade || exit 1
 
 
@@ -81,8 +84,26 @@ check_venv:
 		echo "Virtual environment is ready."; \
 	else \
 		$(VEN_ACTIVATE); \
+		echo "Checking for missing or outdated dependencies..."; \
+		reqs=$$(pip freeze | cut -d= -f1 | tr '[:upper:]' '[:lower:]' | sort); \
+		required=$$(grep -v '^#' requirements.txt | grep -v '^$$' | cut -d= -f1 | tr '[:upper:]' '[:lower:]' | sort); \
+		missing=$$(comm -23 <(echo "$$required") <(echo "$$reqs")); \
+		if [ -n "$$missing" ]; then \
+			echo "Installing missing packages: $$missing"; \
+			pip install --quiet -r requirements.txt; \
+		fi; \
+		extra=$$(comm -13 <(echo "$$required") <(echo "$$reqs")); \
+		if [ -n "$$extra" ]; then \
+			echo "Found extra packages not in requirements.txt:"; \
+			echo "$$extra" | sed 's/^/  - /'; \
+			read -p "Would you like to uninstall them? [y/N] " yn; \
+			case $$yn in \
+				[Yy]* ) echo "Uninstalling extra packages..."; pip uninstall -y $$extra;; \
+				* ) echo "Keeping extra packages.";; \
+			esac; \
+		fi; \
 	fi
-	
+
 
 check_npm:
 	@if [ ! -d "node_modules" ]; then \
@@ -119,9 +140,9 @@ dev: ## Start a tmux session named 'dev' with two windows: Editor (vim) and Bash
 	@$(TMUX) new-session -d -s dev -n Editor
 	@$(TMUX) send-keys -t dev:Editor "$(VEN_ACTIVATE) && vim" C-m
 	@$(TMUX) new-window -t dev -n Bash
-	@echo -e '$(BOLD)$(GREEN)tmux session "dev" started$(RESET)'
-	@echo -e '  - Window 1: $(BOLD)Editor$(RESET) (running vim in virtualenv)'
-	@echo -e '  - Window 2: $(BOLD)Bash$(RESET)'
+	@echo -e "$(BOLD)$(GREEN)tmux session \"dev\" started$(RESET)"
+	@echo -e "  - Window 1: $(BOLD)Editor$(RESET) (running vim in virtualenv)"
+	@echo -e "  - Window 2: $(BOLD)Bash$(RESET)"
 	@$(TMUX) select-window -t dev:Editor
 	@$(TMUX) attach -t dev
 
@@ -135,20 +156,19 @@ stop_flask: ## Stop flask application
 stop_tailwind: ## Stop tailwindcss watch
 	@$(call kill_session,$(TAILWIND_SESSION))
 
-stop_static: ## Stop watching static files 
+stop_static: ## Stop watching static files
 	@$(call kill_session,$(STATIC_FILE_SESSION))
 
 stop_queue: ## Stop the queue worker
 	@$(call kill_session,$(WORKER_SESSION))
 
 stop_dev: ## Stop the dev session
-	@$(TMUX) kill-session -t dev
-	@echo -e 'tmux session "dev" $(RED)stopped!$(RESET)'
+	@$(call kill_session,dev)
 
 # Restart application
 restart: ## Restart flask server
 	@$(MAKE) -s stop_flask run_flask && \
-	echo "$(BOLD)Restarted$(RESET)"
+	echo -e "$(BOLD)Restarted$(RESET)"
 
 restart_tw: stop_tailwind  ## Restart tailwindcss watch
 	@$(MAKE) -s watch_tw
@@ -202,4 +222,7 @@ help: ## Display this help message
 	@echo "Usage: make [target]"
 	@echo ""
 	@echo "Targets:"
-	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  %-20s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+	@awk 'BEGIN {FS = ":.*?## "} \
+		/^[a-zA-Z_-]+:.*?## / { \
+			system("printf \"  \033[1m\033[32m%-20s\033[0m %s\\n\" \"" $$1 "\" \"" $$2 "\"") \
+		}' $(MAKEFILE_LIST)

@@ -1,6 +1,7 @@
-{% from "macros/modal.html" import modal %} {% from "macros/form.html" import
-select %} {% from "macros/form_macros.html" import text_input, textarea,
-file_upload, tags_input %}
+{% from "macros/spinner.html" import spinner %} {% from "macros/modal.html"
+import modal %} {% from "macros/form.html" import select %} {% from
+"macros/form_macros.html" import text_input, textarea, file_upload, tags_input
+%}
 <form
     id="podcast-form"
     {%
@@ -24,32 +25,36 @@ file_upload, tags_input %}
     <!-- Title -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {{ text_input( id="title_english", name="title[en]", value=title['en']
-        if title else '', label="title_english", placeholder="Enter English
-        title", required=true ) }} {{ text_input( id="title-ar",
-        name="title[ar]", value=title['ar'] if title else '',
-        label="title_arabic", placeholder="Enter Arabic title", required=true,
-        dir="rtl" ) }}
+        if title else '', label=_("pod_title_english"),
+        placeholder=_("pod_enter_english_title"), required=true ) }} {{
+        text_input( id="title-ar", name="title[ar]", value=title['ar'] if title
+        else '', label=_("pod_title_arabic"),
+        placeholder=_("pod_enter_arabic_title"), required=true, dir="rtl" ) }}
     </div>
 
     <!-- Podcast Name -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {{ text_input( id="podcast_name_english", name="podcast_name[en]",
         value=podcast_name['en'] if podcast_name else '',
-        label="podcast_name_english", placeholder="Enter English podcast name",
-        required=true ) }} {{ text_input( id="podcast_name_arabic",
-        name="podcast_name[ar]", value=podcast_name['ar'] if podcast_name else
-        '', label="podcast_name_arabic", placeholder="Enter Arabic podcast
-        name", required=true, dir="rtl" ) }}
+        label=_("podcast_name_english"),
+        placeholder=_("enter_english_podcast_name"), required=true ) }} {{
+        text_input( id="podcast_name_arabic", name="podcast_name[ar]",
+        value=podcast_name['ar'] if podcast_name else '',
+        label=_("podcast_name_arabic"),
+        placeholder=_("enter_arabic_podcast_name"), required=true, dir="rtl" )
+        }}
     </div>
 
     <!-- Description -->
     {{ textarea( id="description_english", name="description[en]",
-    value=description['en'] if description else '', label="description_english",
-    placeholder="Enter English description", rows=5, required=true ) }} {{
-    textarea( id="description_arabic", name="description[ar]",
-    value=description['ar'] if description else '', label="description_arabic",
-    placeholder="Enter Arabic description", rows=5, required=true, dir="rtl" )
-    }}
+    value=description['en'] if description else '',
+    label=_("pod_description_english"),
+    placeholder=_("enter_english_pod_description"), rows=5, required=true ) }}
+    {{ textarea( id="description_arabic", name="description[ar]",
+    value=description['ar'] if description else '',
+    label=_("pod_description_arabic"),
+    placeholder=_("enter_arabic_pod_description"), rows=5, required=true,
+    dir="rtl" ) }}
 
     <!-- podcast members -->
     {{select( label=_("podcast_members"), id="podcast-members", name="members",
@@ -57,36 +62,36 @@ file_upload, tags_input %}
 
     <!-- Date -->
     {{ text_input( id="podcast_date", name="date", value=date if date else '',
-    label="podcast_date", type="date", required=true ) }}
+    label=_("podcast_date"), type="date", required=true ) }}
 
     <!-- URL -->
     {{ text_input( id="podcast_url", name="url", value=url if url else '',
-    label="podcast_url", placeholder="Enter podcast URL" ) }}
+    label=_("podcast_url"), placeholder=_("enter_podcast_url") ) }}
 
     <!-- Tags -->
     {{ tags_input( id="tags-en", name="tags[en]", value=tags['en'] | join(',')
-    if tags and tags['en'] else '', label="tags",
-    placeholder="enter_en_tags_comma_separated",
-    example_format="example_tags_format", dir="ltr" ) }} {{ tags_input(
+    if tags and tags['en'] else '', label=_("tags_english"),
+    placeholder=_("enter_en_tags_comma_separated"),
+    example_format=_("tags_english_example"), dir="ltr" ) }} {{ tags_input(
     id="tags-ar", name="tags[ar]", value=tags['ar'] | join(',') if tags and
-    tags['ar'] else '', label="tags",
-    placeholder="enter_ar_tags_comma_separated",
-    example_format="example_tags_format", dir="rtl" ) }}
+    tags['ar'] else '', label=_("tags_arabic"),
+    placeholder=_("enter_ar_tags_comma_separated"),
+    example_format=_("tags_arabic_example"), dir="rtl" ) }}
 
     <!-- Image Upload -->
     <div>
         {% if image %}
         <div class="flex items-center gap-4">
             <img
-                src="{{ url_for('static', filename=image) }}"
+                src="{{ image|file_url }}"
                 alt="{{ title['en'] }}"
                 class="w-24 h-24 object-cover rounded-md"
             />
             <span class="text-sm text-gray-600">{{ _("current_image") }}</span>
         </div>
     </div>
-    {% endif %} {{ file_upload( id="image", name="image", label="podcast_image",
-    accept="image/*" ) }}
+    {% endif %} {{ file_upload( id="image", name="image",
+    label=_("podcast_image"), accept="image/*" ) }}
 
     <!-- Submit Button -->
     <div>
@@ -94,8 +99,11 @@ file_upload, tags_input %}
             type="submit"
             class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
         >
-            {% if update %} {{ _("update") }} {% else %} {{ _("create") }} {%
-            endif %}
+            {{spinner()}}
+            <span>
+                {% if update %} {{ _('update') }} {% else %} {{ _('create') }}
+                {% endif %}
+            </span>
         </button>
     </div>
     <!-- modal -->

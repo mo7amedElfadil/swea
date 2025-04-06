@@ -3,41 +3,40 @@
 {% if data %}
 <div class="space-y-4">
     {% for podcast in data %}
-    <div
-        class="flex justify-between items-center p-4 bg-white rounded-lg shadow-sm"
-    >
+    <div class="flex flex-col sm:flex-row justify-between gap-4 p-4 bg-white rounded-lg shadow-sm">
         <!-- Podcast Details -->
-        <div>
+        <div class="flex-1 min-w-0 space-y-2">
             <!-- Title -->
-            <h3 class="text-lg font-semibold text-gray-900">
+            <h3 class="text-lg font-semibold text-gray-900 break-words">
                 {{ podcast.title[locale] | default(podcast.title['en']) }}
             </h3>
+
             <!-- Podcast Name -->
-            <p class="text-sm text-gray-600">
-                {{ podcast.podcast_name[locale] |
-                default(podcast.podcast_name['en']) }}
+            <p class="text-sm text-gray-600 break-words">
+                {{ podcast.podcast_name[locale] | default(podcast.podcast_name['en']) }}
             </p>
+
             <!-- Description -->
-            <p class="mt-2 text-sm text-gray-700 line-clamp-2">
-                {{ podcast.description[locale] |
-                default(podcast.description['en']) }}
+            <p class="text-sm text-gray-700 line-clamp-2 break-words">
+                {{ podcast.description[locale] | default(podcast.description['en']) }}
             </p>
+
             <!-- Tags -->
-            <div class="mt-2 gap-2">
-                {% for tag in podcast.tags[locale] | default(podcast.tags['en'])
-                %}
-                <span
-                    class="inline-block px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-700"
-                >
+            {% if podcast.tags %}
+            <div class="flex flex-wrap gap-2">
+                {% for tag in podcast.tags[locale] | default(podcast.tags['en']) %}
+                <span class="inline-block px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-700">
                     {{ tag }}
                 </span>
                 {% endfor %}
             </div>
+            {% endif %}
         </div>
+
         <!-- Actions -->
-        <div class="flex gap-2">
+        <div class="flex gap-2 sm:self-center sm:flex-nowrap mt-2 sm:mt-0">
             <button
-                class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none"
+                class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-primary-100 text-primary-700 hover:bg-primary-200 focus:ring-2 focus:ring-primary-500 focus:outline-none whitespace-nowrap"
                 hx-get="/dashboard/knowledge-hub/form?q=podcasts&uuid={{ podcast.uuid }}&m=UPDATE"
                 hx-target="#kh-content"
                 hx-swap="innerHTML"
@@ -45,7 +44,7 @@
                 {{ _("edit") }}
             </button>
             <button
-                class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-red-100 text-red-700 hover:bg-red-200 focus:ring-2 focus:ring-red-500 focus:outline-none"
+                class="px-3 py-1 text-sm font-medium rounded-lg transition-all duration-200 bg-red-100 text-red-700 hover:bg-red-200 focus:ring-2 focus:ring-red-500 focus:outline-none whitespace-nowrap"
                 hx-delete="/dashboard/knowledge-hub/podcasts/{{ podcast.uuid }}"
                 hx-confirm="{{ _('confirm_delete_podcast') }}"
                 hx-target="#podcasts-list"

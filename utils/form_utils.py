@@ -3,7 +3,9 @@
 from typing import Any, Dict, List, Optional
 
 
-def parse_nested_field(form_data: Dict[str, Any], field_prefix: str) -> Dict[str, str]:
+def parse_nested_field(
+    form_data: Dict[str, Any], field_prefix: str
+) -> Dict[str, str]:
     """
     Parse nested fields like field[en], field[ar] from form data.
 
@@ -76,7 +78,9 @@ def parse_tags(tags_str: Optional[str]) -> Dict[str, List[str]]:
         parts = item.strip().split(":", 1)
         if len(parts) == 2:
             language, tag_list = parts
-            tags[language.strip()] = [tag.strip() for tag in tag_list.split(";")]
+            tags[language.strip()] = [
+                tag.strip() for tag in tag_list.split(";")
+            ]
         elif len(parts) == 1:
             language = parts[0].strip()
             tags[language] = []

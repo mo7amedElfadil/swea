@@ -1,12 +1,14 @@
 """configuration file for your Flask application."""
 
-import os
-from os import getenv, path
+from os import getenv
+from pathlib import Path
+from typing import Final, List
 
 import redis
 from dotenv import load_dotenv
 
-basedir = path.abspath(path.dirname(__file__))
+# Base directory
+BASE_DIR: Final[Path] = Path(__file__).parent.resolve()
 
 load_dotenv()
 
@@ -18,42 +20,60 @@ class Config:
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
     BABEL_SUPPORTED_LOCALES = ["en", "ar"]
-    BABEL_TRANSLATION_DIRECTORIES = os.path.join(basedir, "app/translations")
+    BABEL_TRANSLATION_DIRECTORIES = str(BASE_DIR / "app/translations")
 
-    # General App configuration
-    UPLOAD_FOLDER = getenv(
-        "UPLOAD_FOLDER", os.path.join(basedir, "./app/static/uploads/")
-    )
-    UPLOAD_DIRS = [
+    # Settings for storage backends
+    STORAGE_TYPE = getenv("STORAGE_TYPE", "local")  # local or s3
+    S3_BUCKET = "swea-bucket-name"
+    S3_REGION = "us-east-1"
+    AWS_SECRET_ACCESS_KEY = getenv("AWS_SECRET_ACCESS_KEY")
+    AWS_ACCESS_KEY_ID = getenv("AWS_ACCESS_KEY_ID")
+
+    # Upload directories to create
+    UPLOAD_DIRS: Final[List[str]] = [
         "projects",
         "research",
         "courses",
         "podcasts",
         "news",
-        "team",
+        "teams",
         "users",
+        "members",
     ]
-    # Create the upload folder if it doesn't exist
-    if not path.exists(UPLOAD_FOLDER):
-        os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-    for folder in UPLOAD_DIRS:
-        os.makedirs(os.path.join(UPLOAD_FOLDER, folder), exist_ok=True)
-    ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "webp"}
 
+    # Determine upload folder path
+    _upload_dir_env = getenv("UPLOAD_FOLDER", "./uploads/")
+    UPLOAD_FOLDER: Final[Path] = (BASE_DIR / _upload_dir_env).resolve()
+
+    # Create upload directories
+    UPLOAD_FOLDER.mkdir(parents=True, exist_ok=True)
+    for directory in UPLOAD_DIRS:
+        (UPLOAD_FOLDER / directory).mkdir(exist_ok=True)
+
+    # Allowed file extensions
+    ALLOWED_IMAGES_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "webp"}
+    ALLOWED_FILES_EXTENSIONS = {"pdf", "docx", "pptx", "xlsx", "txt"}
+
+    # Application configuration
     SECRET_KEY = getenv("SECRET_KEY", "you-will-never-guess")
     PREFERRED_URL_SCHEME = getenv("PREFERRED_URL_SCHEME", "https")
     API_KEY = getenv("API_KEY", "you-will-never-guess")
-    SECURITY_PASSWORD_SALT = getenv("SECURITY_PASSWORD_SALT", "you-will-never-guess")
+    SECURITY_PASSWORD_SALT = getenv(
+        "SECURITY_PASSWORD_SALT", "you-will-never-guess"
+    )
     DEBUG = int(getenv("FLASK_DEBUG", 0))
-    BASE_URL = getenv("DEV_BASE_URL") if DEBUG == 1 else getenv("PRODUCTION_BASE_URL")
+    BASE_URL = (
+        getenv("DEV_BASE_URL") if DEBUG == 1 else getenv("PRODUCTION_BASE_URL")
+    )
 
     # Flask session configuration
     SESSION_TYPE = "redis"
+    REMEMBER_COOKIE_HTTPONLY = True
     SESSION_PERMANENT = False
     SESSION_USE_SIGNER = True
     SESSION_COOKIE_HTTPONLY = True
-    REMEMBER_COOKIE_HTTPONLY = True
-    SESSION_COOKIE_SAMESITE = "Strict"
+    SESSION_COOKIE_SAMESITE = "Lax"
+    SESSION_COOKIE_SECURE = True
     SESSION_REDIS = redis.from_url(getenv("SESSION_REDIS_URL"))
 
     # Email configuration
@@ -78,9 +98,10 @@ class Config:
         CACHE_TYPE = "null"
     else:
         CACHE_TYPE = "redis"
-        CACHE_REDIS_URL = getenv("CACHE_REDIS_URL")
-        CACHE_KEY_PREFIX = "swea_"
-        CACHE_DEFAULT_TIMEOUT = 300  # 5 minutes
+
+    CACHE_REDIS_URL = getenv("CACHE_REDIS_URL")
+    CACHE_KEY_PREFIX = "swea_"
+    CACHE_DEFAULT_TIMEOUT = 86400  # 1 day
 
     # Rate limiter configuration
     RATE_LIMITS = {
@@ -93,3 +114,7 @@ class Config:
 
     # Email validation configuration
     DISPOSABLE_EMAIL_FILE = "utils/disposable_email_blocklist.conf"
+
+    # Admin credentials
+    ADMIN_USERNAME = getenv("ADMIN_USERNAME", "admin")
+    ADMIN_PASSWORD = getenv("ADMIN_PASSWORD", "admin")

@@ -18,7 +18,9 @@ class QueueService:
         max_retries: int = 3,
         max_workers: int = 5,
     ):
-        self.redis_client = redis_client or redis.StrictRedis.from_url(Config.REDIS_URL)
+        self.redis_client = redis_client or redis.StrictRedis.from_url(
+            Config.REDIS_URL
+        )
         self.queue_name = queue_name
         self.max_retries = max_retries
         self.task_processors: Dict[str, Callable[[Dict[str, Any]], bool]] = {}
@@ -43,7 +45,9 @@ class QueueService:
         try:
             self.redis_client.rpush(self.queue_name, json.dumps(task))
             logging.info(
-                "Enqueued task '%s' with retry count %d", task_type, retry_count
+                "Enqueued task '%s' with retry count %d",
+                task_type,
+                retry_count,
             )
         except redis.RedisError as e:
             logging.error("Failed to enqueue task '%s': %s", task_type, e)
@@ -85,7 +89,9 @@ class QueueService:
             else:
                 logging.info("Successfully processed task '%s'", task_type)
         else:
-            logging.error("No registered processor for task type '%s'", task_type)
+            logging.error(
+                "No registered processor for task type '%s'", task_type
+            )
 
     def process_queue(self) -> None:
         """
@@ -109,7 +115,9 @@ class QueueService:
             except json.JSONDecodeError:
                 logging.error("Failed to decode task from queue")
             except Exception as e:
-                logging.error("Unexpected error during queue processing: %s", e)
+                logging.error(
+                    "Unexpected error during queue processing: %s", e
+                )
 
     def shutdown(self) -> None:
         """Gracefully shuts down the queue worker."""

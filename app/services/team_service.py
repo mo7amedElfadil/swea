@@ -8,10 +8,9 @@ from typing import Any, Dict, Optional
 
 from marshmallow import ValidationError
 
-from app.models.team import Team
-from app.schemas.team_schema import TeamSchema
+from app.models import Team
+from app.schemas import TeamSchema
 from utils.db_utils import search_by_multilang_field
-from utils.file_manager import FileManager
 from utils.form_utils import parse_nested_field
 from utils.service_base import BaseService
 
@@ -34,7 +33,7 @@ class TeamService(BaseService):
             # Validate with schema
             self.validate_with_schema(processed_data)
 
-            team_member = Team()
+            team_member = self.model_class()
             team_member.create(**processed_data)
             return team_member
 
@@ -52,7 +51,7 @@ class TeamService(BaseService):
             # Validate with schema
             self.validate_with_schema(processed_data)
 
-            team_member = Team.get_byuuid(uuid)
+            team_member = self.model_class.get_byuuid(uuid)
             if team_member:
                 team_member.update(**processed_data)
                 return team_member
@@ -64,7 +63,7 @@ class TeamService(BaseService):
 
     def search_team_members_by_name(self, name: str) -> Dict[str, Any]:
         """Search for team members by name."""
-        return search_by_multilang_field(Team, "name", name)
+        return search_by_multilang_field(self.model_class, "name", name)
 
     def validate_form_data(
         self, form_data: Dict[str, Any], files: Dict[str, Any]
@@ -91,6 +90,6 @@ class TeamService(BaseService):
         # Handle image upload
         image = files.get("image")
         if image and image.filename:
-            processed_data["image"] = FileManager(image).save()
+            processed_data["image"] = self.handle_file_upload(image)
 
         return processed_data

@@ -19,7 +19,7 @@
     <div class="relative h-48 overflow-hidden">
         <img
             class="w-full h-full object-cover"
-            src="{{ url_for('static', filename=item.image if item.image) }}"
+            src="{{ item.image|file_url }}"
             onerror="this.src='http://i.imgur.com/hfM1J8s.png'"
             alt="{{ item.title[locale] }}"
         />

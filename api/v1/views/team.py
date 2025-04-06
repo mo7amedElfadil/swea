@@ -2,13 +2,15 @@ from flask import make_response, render_template, request
 from flask_babel import gettext as _
 
 from api.v1.views import bp
-from app.services.team_service import TeamService
+from app.services import TeamService
+from utils.cache_mgr import cache_response, invalidate_cache
 from utils.toast_notify import add_toast
 
 team_service = TeamService()
 
 
 @bp.route("/dashboard/team-members", methods=["GET"])
+@cache_response()
 def filter_team_members():
     """Filter team members by search string."""
     search_str = request.args.get("search", "")
@@ -18,7 +20,9 @@ def filter_team_members():
     if search_str:
         team_members_res = team_service.search_team_members_by_name(search_str)
     else:
-        team_members_res = team_service.get_all(page=page, sort="order")
+        team_members_res = team_service.get_all(
+            page=page, sort='teams."order"'
+        )
 
     return make_response(
         render_template(
@@ -47,16 +51,19 @@ def add_team_member():
     except Exception as e:
         resp = make_response(str(e), 400)
         return add_toast(
-            resp, "error", _("An error occurred while creating the team member")
+            resp,
+            "error",
+            _("An error occurred while creating the team member"),
         )
 
-    team_members = team_service.get_all(sort="order")
+    team_members = team_service.get_all(sort='teams."order"')
     resp = make_response(
         render_template(
             "partials/dashboard/team.html",
             **team_members,
         )
     )
+    invalidate_cache(["filter_team_members", "team"])
     return add_toast(resp, "success", _("Team member created successfully"))
 
 
@@ -79,14 +86,17 @@ def update_team_member(member_id):
         form_data = request.form.to_dict()
         files = request.files
         team_service.update_team_member(member_id, form_data, files)
-        members_res = team_service.get_all(sort="order")
+        members_res = team_service.get_all(sort='teams."order"')
         resp = make_response(
             render_template(
                 "partials/dashboard/team.html",
                 **members_res,
             )
         )
-        return add_toast(resp, "success", _("Team member updated successfully"))
+        invalidate_cache(["filter_team_members", "team"])
+        return add_toast(
+            resp, "success", _("Team member updated successfully")
+        )
     except Exception as e:
         resp = make_response(str(e), 400)
         return add_toast(resp, "error", _(str(e)))
@@ -100,11 +110,12 @@ def delete_team_member(member_id):
         resp = make_response("", 404)
         return add_toast(resp, "error", _("Team member not found"))
 
-    members_res = team_service.get_all(sort="order")
+    members_res = team_service.get_all(sort='teams."order"')
     resp = make_response(
         render_template(
             "partials/dashboard/team.html",
             **members_res,
         )
     )
+    invalidate_cache(["filter_team_members", "team"])
     return add_toast(resp, "success", _("Team member deleted successfully"))

@@ -4,14 +4,14 @@
 {% macro text_input(id, name, value, label, placeholder="", required=false, lang="en", type="text", dir="ltr") %}
     <div>
         <label for="{{ id }}" class="block text-sm font-medium text-gray-700">
-            {{ _(label) }}
+            {{ label }}
         </label>
         <input
             type="{{ type }}"
             id="{{ id }}"
             name="{{ name }}"
             value="{{ value }}"
-            {% if placeholder %}placeholder="{{ _(placeholder) }}"{% endif %}
+            {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
             class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
             {% if required %}required{% endif %}
             {% if dir %}dir="{{ dir }}"{% endif %}
@@ -24,13 +24,13 @@
 {% macro textarea(id, name, value, label, rows=3, placeholder="", required=false, lang='en', dir="ltr") %}
     <div>
         <label for="{{ id }}" class="block text-sm font-medium text-gray-700">
-            {{ _(label) }}
+            {{ label }}
         </label>
         <textarea
             id="{{ id }}"
             name="{{ name }}"
             rows="{{ rows }}"
-            {% if placeholder %}placeholder="{{ _(placeholder) }}"{% endif %}
+            {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
             class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
             {% if required %}required{% endif %}
             {% if dir %}dir="{{ dir }}"{% endif %}
@@ -43,18 +43,18 @@
 {% macro tags_input(id, name, value, label, placeholder="", example_format="", dir="ltr") %}
     <div>
         <label for="{{ id }}" class="block text-sm font-medium text-gray-700">
-            {{ _(label) }}
+            {{ label }}
         </label>
         <input
             type="text"
             id="{{ id }}"
             name="{{ name }}"
             value="{{ value }}"
-            placeholder="{{ _(placeholder) }}"
+            {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm {% if dir == 'rtl' %}text-right{% endif %}"
             dir="{{ dir }}"
         />
-        <p class="mt-2 text-sm text-gray-500">{{ _(example_format) }}</p>
+        <p class="mt-2 text-sm text-gray-500 italic {{ 'text-right' if dir == 'rtl' else 'text-left' }}">{{ example_format }}</p>
     </div>
 {% endmacro %}
 
@@ -62,7 +62,7 @@
 {% macro file_upload(id, name, label, accept="", required=false, multiple=false) %}
     <div>
         <label for="{{ id }}" class="block text-sm font-medium text-gray-700">
-            {{ _(label) }}
+            {{ label }}
         </label>
         <input
             type="file"
@@ -80,7 +80,7 @@
 {% macro select(id, name, options, selected_value, label, required=false) %}
     <div>
         <label for="{{ id }}" class="block text-sm font-medium text-gray-700">
-            {{ _(label) }}
+            {{ label }}
         </label>
         <select
             id="{{ id }}"
@@ -89,11 +89,11 @@
             {% if required %}required{% endif %}
         >
             {% for option in options %}
-                <option 
+                <option
                     value="{{ option.value }}"
                     {% if option.value == selected_value %}selected{% endif %}
                 >
-                    {{ _(option.label) }}
+                    {{ option.label }}
                 </option>
             {% endfor %}
         </select>
@@ -107,17 +107,20 @@
             {{ _("Content") }} {{ index }}
         </h3>
         <div class="space-y-4">
-            {{ textarea("content-en-" + index|string, "content[" + index|string + "][en]", content_en, "English Content") }}
-            {{ textarea("content-ar-" + index|string, "content[" + index|string + "][ar]", content_ar, "Arabic Content") }}
+            {{ textarea("content-en-" + index|string, "content[" + index|string + "][en]", content_en, _("English Content"), placeholder=_("content_english_placeholder")) }}
+            {{ textarea("content-ar-" + index|string, "content[" + index|string + "][ar]", content_ar, _("Arabic Content"), placeholder=_("content_arabic_placeholder"), dir="rtl") }}
             <!-- Image Upload Field -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             {% if content_image %}
+            <div class="flex items-center gap-4">
+            <span class="text-sm text-gray-600">{{ _("current_image")}}</span>
             <img
-                src="{{ url_for('static', filename=content_image) }}"
+                src="{{ content_image|file_url }}"
                 alt="{{ _("Content Image") }}"
                 onerror="this.src='http://i.imgur.com/hfM1J8s.png'"
                 class="w-24 h-24 object-cover"
                 />
+            </div>
             <!-- Hidden input to retain existing image path -->
             <input
                 type="hidden"
@@ -125,7 +128,7 @@
                 value="{{ content_image }}"
             />
             {% endif %}
-            {{ file_upload("content-image-" + index|string, "content[" + index|string + "][image]", "Content Image", accept="image/*", required=false) }}
+            {{ file_upload("content-image-" + index|string, "content[" + index|string + "][image]", _("content_image"), accept="image/*", required=false) }}
             </div>
         </div>
 
@@ -164,19 +167,22 @@
             {{ _("Testimonial") }} {{ index }}
         </h3>
         <div class="space-y-4">
-            {{ textarea("testimonial-en-" + index|string, "testimonial[" + index|string + "][en]", testimonial_en, "English Testimonial", placeholder="testimonial_english_placeholder") }}
-            {{ textarea("testimonial-ar-" + index|string, "testimonial[" + index|string + "][ar]", testimonial_ar, "Arabic Testimonial", placeholder="testimonial_arabic_placeholder") }}
-            {{ text_input("testimonial-author-" + index|string, "testimonial[" + index|string + "][author]", author, "Testimonial Author", placeholder="testimonial_author_placeholder") }}
-            {{ text_input("testimonial-author-qualification-" + index|string, "testimonial[" + index|string + "][qualification]", qualification, "Testimonial Author Qualification", placeholder="testimonial_author_qualification_placeholder") }}
+            {{ textarea("testimonial-en-" + index|string, "testimonial[" + index|string + "][en]", testimonial_en, _("English Testimonial"), placeholder=_("testimonial_english_placeholder")) }}
+            {{ textarea("testimonial-ar-" + index|string, "testimonial[" + index|string + "][ar]", testimonial_ar, _("Arabic Testimonial"), placeholder=_("testimonial_arabic_placeholder"), dir="rtl") }}
+            {{ text_input("testimonial-author-" + index|string, "testimonial[" + index|string + "][author]", author, _("Testimonial Author"), placeholder=_("testimonial_author_placeholder")) }}
+            {{ text_input("testimonial-author-qualification-" + index|string, "testimonial[" + index|string + "][qualification]", qualification, _("Testimonial Author Qualification"), placeholder=_("testimonial_author_qualification_placeholder")) }}
             <!-- Image Upload Field -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             {% if testimonial_image %}
+            <div class="flex items-center gap-4">
+            <span class="text-sm text-gray-600">{{ _("current_photo")}}</span>
             <img
-                src="{{ url_for('static', filename=testimonial_image) }}"
+                src="{{ testimonial_image|file_url }}"
                 alt="{{ _("Testimonial Author Photo") }}"
                 onerror="this.src='http://i.imgur.com/hfM1J8s.png'"
                 class="w-24 h-24 object-cover"
                 />
+            </div>
             <!-- Hidden input to retain existing image path -->
             <input
                 type="hidden"
@@ -184,7 +190,7 @@
                 value="{{ testimonial_image }}"
             />
             {% endif %}
-            {{ file_upload("testimonial-image-" + index|string, "testimonial[" + index|string + "][image]", "Testimonial Author Photo", accept="image/*", required=false) }}
+            {{ file_upload("testimonial-image-" + index|string, "testimonial[" + index|string + "][image]", _("testi_author_photo"), accept="image/*", required=false) }}
             </div>
         </div>
 

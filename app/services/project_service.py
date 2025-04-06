@@ -10,9 +10,8 @@ from typing import Any, Dict, List, Optional
 from marshmallow import ValidationError
 
 from app.models import Project
-from app.schemas.project_schema import ProjectSchema
+from app.schemas import ProjectSchema
 from utils.db_utils import search_by_multilang_field
-from utils.file_manager import FileManager
 from utils.service_base import BaseService
 
 
@@ -22,9 +21,10 @@ class ProjectService(BaseService):
     def __init__(self, page_size: int = 3):
         """Initialize project service."""
         super().__init__(Project, ProjectSchema, page_size)
-        self.file_manager = FileManager
 
-    def create_project(self, form_data: Dict[str, Any], files: Dict[str, Any]) -> bool:
+    def create_project(
+        self, form_data: Dict[str, Any], files: Dict[str, Any]
+    ) -> bool:
         """
         Create a new project.
         Args:
@@ -38,9 +38,7 @@ class ProjectService(BaseService):
             # Process and validate form data
             processed_data = self.validate_form_data(form_data, files)
             # Validate the data using the schema
-            errors = self.schema.validate(processed_data)
-            if errors:
-                raise ValidationError(errors)
+            self.validate_with_schema(processed_data)
 
             instance = self.model_class()
             instance.create(**processed_data)
@@ -68,9 +66,7 @@ class ProjectService(BaseService):
             form_data = self.validate_form_data(form_data, files)
 
             # Validate project data
-            errors = self.schema.validate(form_data)
-            if errors:
-                raise ValidationError(errors)
+            self.validate_with_schema(form_data)
 
             project = self.model_class.get_byuuid(uuid)
             if project:
@@ -150,7 +146,9 @@ class ProjectService(BaseService):
         Returns:
             List[Project]: A list of projects with the specified completion date.
         """
-        return self.model_class.get_all_by(date_of_completion=date_of_completion)
+        return self.model_class.get_all_by(
+            date_of_completion=date_of_completion
+        )
 
     def search_projects_by_title(self, title: str) -> Dict[str, Any]:
         """
@@ -192,7 +190,9 @@ class ProjectService(BaseService):
                 "email": self._parse_field(form_data, "author[email]"),
             },
             "status": form_data.get("status", "ongoing").strip(),
-            "date_of_completion": self._parse_field(form_data, "date_of_completion"),
+            "date_of_completion": self._parse_field(
+                form_data, "date_of_completion"
+            ),
             "tags": {
                 "en": self._parse_tags(form_data.get("tags[en]")),
                 "ar": self._parse_tags(form_data.get("tags[ar]")),
@@ -203,14 +203,17 @@ class ProjectService(BaseService):
         # Handle hero_image upload
         image = files.get("hero_image")
         if image and image.filename:
-            processed_data["hero_image"] = self.file_manager(image).save()
+            processed_data["hero_image"] = self.handle_file_upload(image)
 
         # Process testimonials field
         processed_data["testimonials"] = self._parse_indexed_fields(
             form_data,
             files,
             "testimonial",
-            additional_fields={"author": "author", "qualification": "qualification"},
+            additional_fields={
+                "author": "author",
+                "qualification": "qualification",
+            },
         )
         return processed_data
 
@@ -257,8 +260,12 @@ class ProjectService(BaseService):
         Returns:
             A list of dictionaries containing the parsed fields.
         """
-        indexed_keys = [key for key in form_data.keys() if key.startswith(field_prefix)]
-        index_values = set(key.split("[")[1].split("]")[0] for key in indexed_keys)
+        indexed_keys = [
+            key for key in form_data.keys() if key.startswith(field_prefix)
+        ]
+        index_values = {
+            key.split("[")[1].split("]")[0] for key in indexed_keys
+        }
         result = []
 
         for index in sorted(index_values, key=int):
@@ -280,7 +287,9 @@ class ProjectService(BaseService):
             if additional_fields:
                 for field_key, field_name in additional_fields.items():
                     entry[field_key] = self._parse_field(
-                        form_data, f"{field_prefix}[{index}][{field_name}]", default=""
+                        form_data,
+                        f"{field_prefix}[{index}][{field_name}]",
+                        default="",
                     )
 
             result.append(entry)
@@ -288,7 +297,10 @@ class ProjectService(BaseService):
         return result
 
     def _parse_field(
-        self, form_data: Dict[str, Any], field_name: str, default: Optional[str] = None
+        self,
+        form_data: Dict[str, Any],
+        field_name: str,
+        default: Optional[str] = None,
     ) -> Optional[str]:
         """Parse a single field from form data."""
         value = form_data.get(field_name)
@@ -306,5 +318,5 @@ class ProjectService(BaseService):
         """
         file = files.get(field_name)
         if file and file.filename:
-            return self.file_manager(file).save()
+            return self.handle_file_upload(file)
         return existing_image

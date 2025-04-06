@@ -7,7 +7,9 @@ class ContactSchema(Schema):
     """
 
     # Required fields
-    name = fields.Str(required=True, error_messages={"required": "Name is required."})
+    name = fields.Str(
+        required=True, error_messages={"required": "Name is required."}
+    )
     email = fields.Email(
         required=True,
         error_messages={

@@ -48,16 +48,22 @@ class CourseSchema(Schema):
     def validate_course_name(self, value: Dict[str, str]):
         """Validate that the course name contains at least one language."""
         if not value:
-            raise ValidationError("Course name must contain at least one language.")
+            raise ValidationError(
+                "Course name must contain at least one language."
+            )
 
     @validates("description")
     def validate_description(self, value: Dict[str, str]):
         """Validate that the description contains at least one language."""
         if not value:
-            raise ValidationError("Description must contain at least one language.")
+            raise ValidationError(
+                "Description must contain at least one language."
+            )
 
     @validates("tags")
     def validate_tags(self, value: Dict[str, List[str]]):
         """Validate that tags are provided for at least one language."""
         if not value:
-            raise ValidationError("Tags must be provided for at least one language.")
+            raise ValidationError(
+                "Tags must be provided for at least one language."
+            )

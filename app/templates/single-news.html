@@ -7,7 +7,7 @@
         {% if image %}
         <div class="w-full h-96 overflow-hidden">
             <img
-                src="{{ url_for('static', filename=image) }}"
+                src="{{ image|file_url }}"
                 alt="{{ title[locale] }}"
                 onerror="this.src='http://i.imgur.com/hfM1J8s.png'"
                 class="w-full h-full object-cover"

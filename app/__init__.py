@@ -1,6 +1,12 @@
 """Module that defines `create_app` function to create the Flask app instance"""
 
-from flask import Flask, make_response, render_template, request, send_from_directory
+from flask import (
+    Flask,
+    make_response,
+    render_template,
+    request,
+    send_from_directory,
+)
 from flask import session
 from flask import session as flask_session
 from flask_babel import Babel
@@ -11,7 +17,14 @@ from html_sanitizer import Sanitizer
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 from api.v1.views import bp as app_view
-from app.extensions import db, get_locale, init_cache, init_session, migrate
+from app.extensions import (
+    db,
+    get_file_url,
+    get_locale,
+    init_cache,
+    init_session,
+    migrate,
+)
 from config import Config
 from utils.rate_limiter import init_limiter
 from utils.toast_notify import add_toast
@@ -72,7 +85,9 @@ def create_app(config_class=Config):
     )
 
     app.url_map.strict_slashes = False
-    app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1, x_port=1, x_prefix=1)
+    app.wsgi_app = ProxyFix(
+        app.wsgi_app, x_proto=1, x_host=1, x_port=1, x_prefix=1
+    )
 
     # Initialize Flask-Babel (i18n)
     babel = Babel(app, locale_selector=get_locale)
@@ -111,9 +126,12 @@ def create_app(config_class=Config):
             return dict(locale=lang)
         return dict(locale=get_locale())
 
-    @app.route("/robots.txt")
-    def static_from_root():
-        return send_from_directory(app.static_folder, request.path[1:])
+    @app.after_request
+    def set_headers(response):
+        """Set headers for all responses"""
+        # X-FRAME-OPTIONS to prevent clickjacking
+        response.headers["X-Frame-Options"] = "DENY"
+        return response
 
     @app.errorhandler(404)
     def page_not_found(e):
@@ -122,7 +140,12 @@ def create_app(config_class=Config):
         if "user" in flask_session:
             is_authenticated = True
 
-        return render_template("not_found.html", is_authenticated=is_authenticated), 404
+        return (
+            render_template(
+                "not_found.html", is_authenticated=is_authenticated
+            ),
+            404,
+        )
 
     @app.template_filter("truncate_html")
     def truncate_html_filter(html_content, length=200):
@@ -130,11 +153,20 @@ def create_app(config_class=Config):
         truncated = sanitizer.sanitize(html_content[:length])
 
         # Ensure we add ellipsis only if content is actually truncated
-        return truncated + "..." if len(html_content) >= length else html_content
+        return (
+            truncated + "..." if len(html_content) >= length else html_content
+        )
+
+    @app.template_filter("file_url")
+    def file_url_filter(file_path):
+        """Convert the stored file paths to buplic URLs"""
+        return get_file_url(file_path)
 
     @app.errorhandler(429)
     def rate_limit_exceeded(e):
         """Handle rate limit errors"""
-        return add_toast(make_response("", 429), "error", _("Rate limit exceeded"))
+        return add_toast(
+            make_response("", 429), "error", _("Rate limit exceeded")
+        )
 
     return app

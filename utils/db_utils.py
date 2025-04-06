@@ -51,7 +51,9 @@ def paginate_query(
     ]
 
     total_items = pagination.total
-    total_pages = (total_items + page_size - 1) // page_size if total_items > 0 else 0
+    total_pages = (
+        (total_items + page_size - 1) // page_size if total_items > 0 else 0
+    )
     next_page = page + 1 if page < total_pages else None
 
     return dict(

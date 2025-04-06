@@ -13,7 +13,9 @@ class BaseModel(db.Model):
 
     __abstract__ = True  # abstract class (not a table)
 
-    uuid = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid4()))
+    uuid = db.Column(
+        db.String(36), primary_key=True, default=lambda: str(uuid4())
+    )
     created_at = db.Column(db.DateTime, default=datetime.now(timezone.utc))
     updated_at = db.Column(
         db.DateTime,
@@ -75,7 +77,8 @@ class BaseModel(db.Model):
     def to_dict(self):
         """Convert the model to a dictionary."""
         return {
-            column.name: getattr(self, column.name) for column in self.__table__.columns
+            column.name: getattr(self, column.name)
+            for column in self.__table__.columns
         }
 
     def __repr__(self):

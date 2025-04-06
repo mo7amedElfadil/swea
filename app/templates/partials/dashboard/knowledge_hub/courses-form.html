@@ -1,6 +1,7 @@
-{% from "macros/modal.html" import modal %} {% from "macros/form.html" import
-select %} {% from "macros/form_macros.html" import text_input, textarea,
-file_upload, tags_input %}
+{% from "macros/spinner.html" import spinner %} {% from "macros/modal.html"
+import modal %} {% from "macros/form.html" import select %} {% from
+"macros/form_macros.html" import text_input, textarea, file_upload, tags_input
+%}
 <form
     id="course-form"
     hx-target="#kh-content"
@@ -24,21 +25,21 @@ file_upload, tags_input %}
     <!-- Title -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {{ text_input( id="title_english", name="title[en]", value=title['en']
-        if title else '', label="title_english", placeholder="Enter English
-        title", required=true ) }} {{ text_input( id="title_arabic",
-        name="title[ar]", value=title['ar'] if title else '',
-        label="title_arabic", placeholder="Enter Arabic title", required=true,
-        dir="rtl" ) }}
+        if title else '', label=_("course_title_english"),
+        placeholder=_("english_title_placeholder"), required=true ) }} {{
+        text_input( id="title_arabic", name="title[ar]", value=title['ar'] if
+        title else '', label=_("course_title_arabic"),
+        placeholder=_("arabic_title_placeholder"), required=true, dir="rtl" ) }}
     </div>
 
     <!-- Course Name -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {{ text_input( id="course_name_english", name="course_name[en]",
         value=course_name['en'] if course_name else '',
-        label="course_name_english", placeholder="Enter English course name",
+        label=_("course_name_english"), placeholder=_("english_course_name"),
         required=true ) }} {{ text_input( id="course_name_arabic",
         name="course_name[ar]", value=course_name['ar'] if course_name else '',
-        label="course_name_arabic", placeholder="Enter Arabic course name",
+        label=_("course_name_arabic"), placeholder=_("arabic_course_name"),
         required=true, dir="rtl" ) }}
     </div>
 
@@ -46,10 +47,10 @@ file_upload, tags_input %}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {{ textarea( id="description_english", name="description[en]",
         value=description['en'] if description else '',
-        label="description_english", placeholder="Enter English description",
+        label=_("description_english"), placeholder=_("english_description"),
         rows=5, required=true ) }} {{ textarea( id="description_arabic",
         name="description[ar]", value=description['ar'] if description else '',
-        label="description_arabic", placeholder="Enter Arabic description",
+        label=_("description_arabic"), placeholder=_("arabic_description"),
         rows=5, required=true, dir="rtl" ) }}
     </div>
 
@@ -63,40 +64,42 @@ file_upload, tags_input %}
 
     <!-- URL -->
     {{ text_input( id="course_url", name="url", value=url if url else '',
-    label="course_url", placeholder="Enter course URL" ) }}
+    label=_("course_url"), placeholder=_("course_url") ) }}
 
     <!-- Tags -->
     {{ tags_input( id="tags-en", name="tags[en]", value=tags['en'] | join(',')
-    if tags and tags['en'] else '', label="tags",
-    placeholder="enter_en_tags_comma_separated",
-    example_format="example_tags_format", dir="ltr" ) }} {{ tags_input(
+    if tags and tags['en'] else '', label=_("en_tags"),
+    placeholder=_("enter_en_tags_comma_separated"),
+    example_format=_("example_en_tags_format"), dir="ltr" ) }} {{ tags_input(
     id="tags-ar", name="tags[ar]", value=tags['ar'] | join(',') if tags and
-    tags['ar'] else '', label="tags",
-    placeholder="enter_ar_tags_comma_separated",
-    example_format="example_tags_format", dir="rtl" ) }}
+    tags['ar'] else '', label=_("ar_tags"),
+    placeholder=_("enter_ar_tags_comma_separated"),
+    example_format=_("example_ar_tags_format"), dir="rtl" ) }}
 
     <!-- Image Upload -->
     {% if image %}
     <div class="flex items-center gap-4">
         <img
-            src="{{ url_for('static', filename=image) }}"
+            src="{{ image|file_url }}"
             alt="{{ title['en'] }}"
             class="w-24 h-24 object-cover rounded-md"
         />
         <span class="text-sm text-gray-600">{{ _("current_image") }}</span>
     </div>
     {% endif %} {{ file_upload( id="course_image", name="image",
-    label="course_image", accept="image/*" ) }}
+    label=_("course_image"), accept="image/*" ) }}
 
     <!-- Submit Button -->
     <div>
         <button
-            form="course-form"
             type="submit"
             class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
         >
-            {% if update %} {{_('update')}} {% else %} {{_('create')}} {%
-            endif%}
+            {{spinner()}}
+            <span>
+                {% if update %} {{ _('update') }} {% else %} {{ _('create') }}
+                {% endif %}
+            </span>
         </button>
     </div>
     <!-- modal -->

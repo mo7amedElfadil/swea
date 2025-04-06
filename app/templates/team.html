@@ -29,8 +29,7 @@ content %}
                     class="w-52 h-52 shrink-0 rounded-full overflow-hidden sm:w-80 sm:h-80"
                 >
                     <img
-                        src="{{ url_for('static',filename=member.image if
-                        member.image else '') }}"
+                        src="{{ member.image|file_url }}"
                         alt="{{ member.name[locale] | default(member.name['en']) }}"
                         onerror="this.src='http:///i.imgur.com/hfM1J8s.png'"
                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -54,7 +53,7 @@ content %}
                             href="{{ member.socials.Twitter }}"
                             target="_blank"
                             class="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white transition-colors duration-300"
-                        >  
+                        >
                            <svg
                              xmlns="http://www.w3.org/2000/svg"
                              class="h-5 w-5"

@@ -28,11 +28,14 @@ class TeamSchema(Schema):
         error_messages={"required": "Bio is required."},
     )
     order = fields.Int(
-        required=True, error_messages={"required": "Team member Order is required."}
+        required=True,
+        error_messages={"required": "Team member Order is required."},
     )
 
     # Optional fields
-    socials = fields.Dict(keys=fields.Str(), values=fields.Str(), allow_none=True)
+    socials = fields.Dict(
+        keys=fields.Str(), values=fields.Str(), allow_none=True
+    )
     image = fields.Str(allow_none=True)
     email = fields.Str(allow_none=True)
 
@@ -67,6 +70,8 @@ class TeamSchema(Schema):
             return {}
         for platform, link in value.items():
             if not platform or not isinstance(platform, str):
-                raise ValidationError("Social platform must be a non-empty string.")
+                raise ValidationError(
+                    "Social platform must be a non-empty string."
+                )
             if link and not isinstance(link, str):
                 raise ValidationError("Social link must be a string.")

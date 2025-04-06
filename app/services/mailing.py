@@ -41,8 +41,12 @@ class EmailService:
             recipient = context["recipient"]
 
             # Render email content
-            email_content = self.render_template(context["template"], context["data"])
-            email_content = email_content.encode("utf-8", "replace").decode("utf-8")
+            email_content = self.render_template(
+                context["template"], context["data"]
+            )
+            email_content = email_content.encode("utf-8", "replace").decode(
+                "utf-8"
+            )
             msg.attach(MIMEText(email_content, "html", "utf-8"))
 
             # Connect and send email
@@ -56,14 +60,18 @@ class EmailService:
             return True
 
         except Exception as e:
-            logger.error("Failed to send email to %s: %s", context["recipient"], str(e))
+            logger.error(
+                "Failed to send email to %s: %s", context["recipient"], str(e)
+            )
 
             return False
 
-    def render_template(self, template_name: str, context: Dict[str, Any]) -> str:
+    def render_template(
+        self, template_name: str, context: Dict[str, Any]
+    ) -> str:
         """Render an email template with the given context."""
         template = f"app/templates/{template_name}"
-        with open(template, "r", encoding="utf-8") as file:
+        with open(template, encoding="utf-8") as file:
             template_str = file.read()
 
         jinja_template = Template(template_str)

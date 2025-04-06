@@ -1,4 +1,7 @@
+from typing import Any, Dict, Optional, Protocol, Type
+
 from flask import (
+    abort,
     make_response,
     redirect,
     render_template,
@@ -10,16 +13,20 @@ from flask import (
 from flask_babel import gettext as _
 
 from api.v1.views import bp
-from app.services.contact_us import ManageContactUs
-from app.services.course_service import CourseService
-from app.services.news import NewsService
-from app.services.podcast_service import PodcastService
-from app.services.project_service import ProjectService
-from app.services.research_service import ResearchService
-from app.services.subscriber_service import SubscriberService
-from app.services.team_service import TeamService
+from app.services import (
+    CourseService,
+    ManageContactUs,
+    NewsService,
+    PodcastService,
+    ProjectService,
+    ResearchService,
+    SubscriberService,
+    TeamService,
+)
 from config import Config
 from utils.auth_utils import login_required
+from utils.cache_mgr import cache_response
+from utils.file_manager import create_file_manager
 from utils.image_processing import ImageProcessing
 from utils.rate_limiter import RateLimits, rate_limit
 from utils.referrer_modifier import modify_referrer_lang
@@ -28,70 +35,111 @@ from utils.view_modifiers import response
 
 img = ImageProcessing()
 
+# Mapping for dynamic tab-based views
+TAB_CONTENT_MAP = {
+    "dashboard": {
+        "team": ("partials/dashboard/team.html", TeamService),
+        "projects": ("partials/dashboard/projects.html", ProjectService),
+        "knowledge_hub": (
+            "partials/dashboard/knowledge-hub.html",
+            CourseService,
+        ),
+        "subscribers": (
+            "partials/dashboard/subscribers.html",
+            SubscriberService,
+        ),
+        "news": ("partials/dashboard/news.html", NewsService),
+    },
+    "knowledge_hub": {
+        "research": ("partials/knowledge-hub/research.html", ResearchService),
+        "courses": ("partials/knowledge-hub/courses.html", CourseService),
+        "podcasts": ("partials/knowledge-hub/podcasts.html", PodcastService),
+    },
+}
+
+
+class PaginatedService(Protocol):
+    def get_all(self, page: int = 1, **kwargs: Any) -> Dict[str, Any]:
+        """Method signature required for paginated services."""
+        ...
+
+
+def get_paginated_data(
+    service: Type[PaginatedService], page: int = 1, sort: Optional[str] = None
+) -> Dict[str, Any]:
+    """Helper function to fetch paginated and sorted data from a service."""
+    return (
+        service().get_all(page=page, sort=sort)
+        if sort
+        else service().get_all(page=page)
+    )
+
 
 @bp.route("/")
 @response(template_file="index.html")
+@cache_response()
 def index():
-    """home page"""
-    page = request.args.get("page", type=int, default=1)
-    news = NewsService().get_all(page=page)
-    return dict(**news)
+    """Home page"""
+    return get_paginated_data(NewsService)
 
 
 @bp.route("/news")
 @response(template_file="partials/news/cards.html")
+@cache_response()
 def news():
-    """news page"""
-    page = request.args.get("page", type=int, default=1)
-    news = NewsService().get_all(page=page)
-    return dict(**news)
+    """News page"""
+    return get_paginated_data(NewsService)
 
 
 @bp.route("/projects")
 @response(template_file="projects.html")
+@cache_response()
 def projects():
-    """projects page"""
+    """Projects page"""
     page = request.args.get("page", type=int, default=1)
-    projects = ProjectService().get_all(
-        page=page, sort="COALESCE(date_of_completion, created_at) DESC"
+    projects = get_paginated_data(
+        ProjectService,
+        page,
+        sort="COALESCE(date_of_completion, created_at) DESC",
     )
-    # locale must be included in the dict in order to be normalized
-    # DONT' use request.args.get('lang') as it will return None
+
     if request.headers.get("hx-projects"):
         return make_response(
             render_template("partials/projects/cards.html", **projects)
         )
 
-    return dict(**projects)
+    return projects
 
 
 @bp.route("/team")
 @response(template_file="team.html")
+@cache_response()
 def team():
-    """team page"""
-    team_members = TeamService().get_all(sort='teams."order"')
-    return dict(**team_members)
+    """Team page"""
+    return get_paginated_data(TeamService, sort='teams."order"')
 
 
 @bp.route("/login", methods=["GET", "POST"])
 @response(template_file="auth.html")
 def login():
     """Login page with HTMX"""
-
     if request.method == "GET":
-        return dict()
+        return {}
 
-    # Handle POST request (login attempt)
-    username = request.form.get("username")
-    password = request.form.get("password")
-    # Dummy validation (replace with real auth logic)
-    if not username or not password:
+    username, password = request.form.get("username"), request.form.get(
+        "password"
+    )
+
+    if (
+        not username
+        or not password
+        or (
+            username != Config.ADMIN_USERNAME
+            or password != Config.ADMIN_PASSWORD
+        )
+    ):
         return add_toast(make_response(), "error", _("Invalid credentials"))
 
-    if username != "sawsan" or password != "sawsan":
-        return add_toast(make_response(), "error", _("Invalid credentials"))
-
-    # Successful login - Use HX-Redirect header for redirection
     session["user"] = username
     response = make_response()
     response.headers["HX-Redirect"] = url_for("app_views.dashboard")
@@ -107,82 +155,58 @@ def dashboard():
     if tab_query is None:
         return dict(tab="projects")
 
-    tab_content = dict(
-        team=dict(temp="partials/dashboard/team.html", data=TeamService().get_all),
-        projects=dict(
-            temp="partials/dashboard/projects.html",
-            data=ProjectService().get_all,
-        ),
-        knowledge_hub=dict(
-            temp="partials/dashboard/knowledge-hub.html", data=CourseService().get_all
-        ),
-        subscribers=dict(
-            temp="partials/dashboard/subscribers.html", data=SubscriberService().get_all
-        ),
-        news=dict(temp="partials/dashboard/news.html", data=NewsService().get_all),
-    )
-    template = tab_content.get(tab_query, {}).get("temp")
-    data = tab_content.get(tab_query, {}).get("data", lambda: {})()
+    tab_info = TAB_CONTENT_MAP["dashboard"].get(tab_query)
 
-    return make_response(
-        render_template(
-            template,
-            **data,
-        )
-    )
+    if not tab_info:
+        return dict(tab="projects")
+
+    template, service = tab_info
+    data = get_paginated_data(service, sort="created_at DESC")
+
+    return make_response(render_template(template, **data))
 
 
 @bp.route("/knowledge-hub")
 @response(template_file="knowledge-hub.html")
+@cache_response()
 def knowledge_hub():
-    """knowledge-hub page"""
+    """Knowledge Hub page"""
     tab_query = request.args.get("q", "research")
     page = request.args.get("page", type=int, default=1)
 
-    tab_content = dict(
-        research=dict(
-            temp="partials/knowledge-hub/research.html", data=ResearchService().get_all
-        ),
-        courses=dict(
-            temp="partials/knowledge-hub/courses.html", data=CourseService().get_all
-        ),
-        podcasts=dict(
-            temp="partials/knowledge-hub/podcasts.html", data=PodcastService().get_all
-        ),
-    )
+    tab_info = TAB_CONTENT_MAP["knowledge_hub"].get(tab_query)
+    if not tab_info:
+        return dict(tab="research")
 
-    data = tab_content.get(tab_query, {}).get("data", lambda: {})(
-        sort="created_at DESC", page=page
-    )
-    template = tab_content.get(tab_query, {}).get("temp")
+    template, service = tab_info
+    data = get_paginated_data(service, page, sort="created_at DESC")
 
     if tab_query == "courses":
         data = CourseService().process_courses_data(data)
 
-    print("------DATA------>", data)
     if request.headers.get("hx-tab"):
         return make_response(render_template(template, **data))
+
     return dict(tab="research", **data)
 
 
 @bp.route("/knowledge-hub/filter-courses")
+@cache_response()
 def filter_courses():
     """Filter courses based on selected course name or tag."""
-    course_name = request.args.get("course_name")
-    tag = request.args.get("tag")
-    locale = request.args.get("locale", "en")
+    course_name, tag, locale = (
+        request.args.get("course_name"),
+        request.args.get("tag"),
+        request.args.get("locale", "en"),
+    )
 
-    courses_data = CourseService().get_all(sort="created_at DESC")
-
-    # Filter courses based on the selected course name or tag
-    filtered_courses = []
-    for course in courses_data.get("data", []):
-        matches_course = not course_name or course["course_name"][locale] == course_name
-        matches_tag = not tag or tag in course["tags"][locale]
-        if matches_course and matches_tag:
-            filtered_courses.append(course)
-
-    courses_data["data"] = filtered_courses
+    courses_data = get_paginated_data(CourseService, sort="created_at DESC")
+    courses_data["data"] = [
+        course
+        for course in courses_data.get("data", [])
+        if (not course_name or course["course_name"][locale] == course_name)
+        and (not tag or tag in course["tags"][locale])
+    ]
 
     return render_template("partials/cards/course.html", **courses_data)
 
@@ -190,31 +214,29 @@ def filter_courses():
 @bp.route("/contact-us", methods=["POST"])
 @rate_limit(limits=RateLimits.STRICT)
 def contact_us():
-    """contact-us page"""
-    contact_us_serv = ManageContactUs()
-
+    """Handle contact-us messages"""
     form_data = request.form.to_dict()
 
     if form_data:
         try:
-            contact_us_serv.contact_us_message(form_data)
-        except Exception as e:
-            print("------Contact us ERROR------>", e)
+            ManageContactUs().contact_us_message(form_data)
+        except Exception:
             return add_toast(
                 make_response("", 400), "error", _("Failed to send message")
             )
 
     return add_toast(
-        make_response("", 200), "success", _("Your comment received successfully")
+        make_response("", 200),
+        "success",
+        _("Your comment received successfully"),
     )
 
 
 @bp.route("/set_language")
 def set_language():
-    """set language"""
+    """Set user language preference"""
     lang = request.args.get("lang")
-
-    if lang and lang in Config.BABEL_SUPPORTED_LOCALES:
+    if lang in Config.BABEL_SUPPORTED_LOCALES:
         session["lang"] = lang
 
     return redirect(modify_referrer_lang(request.referrer, lang))
@@ -229,9 +251,10 @@ def get_toast(toast_type):
     return render_template(f"partials/toast/{toast_type}.html")
 
 
+# TODO : Keep it here, maybe we will use it in the future
 @bp.route("/upload/<category>/<uuid>", methods=["POST"])
 def upload_image(category, uuid):
-    """Upload an image and save it to the appropriate category folder"""
+    """Upload an image to the appropriate category"""
     if category not in [
         "projects",
         "research",
@@ -243,19 +266,50 @@ def upload_image(category, uuid):
     ]:
         return "Invalid category", 400
 
-    if "file" not in request.files:
+    file = request.files.get("file")
+    if not file:
         return {"error": "No file uploaded"}, 400
 
-    file = request.files["file"]
     saved_path = img.save_image(file, category, uuid)
+    return (
+        {"message": "Image uploaded successfully", "path": saved_path}
+        if saved_path
+        else {"error": "Invalid file type"}
+    ), 400
 
-    if saved_path:
-        return {"message": "Image uploaded successfully", "path": saved_path}
 
-    return {"error": "Invalid file type"}, 400
+@bp.route("/uploads/<path:file_path>")
+def serve_file(file_path):
+    """
+    Serve an uploaded file.
 
+    This route handles both local and S3 stored files transparently:
+    - For local files: serves the file directly
+    - For S3 files: redirects to the S3 URL
 
-@bp.route("/uploads/<path:filename>")
-def get_image(filename):
-    """Retrieve uploaded images"""
-    return send_from_directory(Config.UPLOAD_FOLDER, filename)
+    Args:
+        file_path: Path to the file relative to the uploads directory
+    """
+    # Redirect to the S3 URL if the storage type is S3
+    if Config.STORAGE_TYPE == "s3":
+        # Create a temporary file manager to get the public URL
+        file_manager = create_file_manager(
+            storage_type="s3",
+            bucket_name=Config.S3_BUCKET,
+            region_name=Config.S3_REGION,
+        )
+        return redirect(file_manager.get_public_url(file_path))
+
+    # For local storage, serve the file from the filesystem
+    parts = file_path.split("/", 1)
+
+    if len(parts) != 2:
+        abort(404)
+
+    directory, filename = parts
+
+    try:
+        upload_path = f"{Config.UPLOAD_FOLDER}/{directory}"
+        return send_from_directory(upload_path, filename)
+    except Exception:
+        abort(404)

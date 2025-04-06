@@ -23,46 +23,47 @@
     </div>
 	</section>
 	<section id='mission' class='px-4 py-8 sm:py-28'>
-		<div class='container mx-auto flex flex-col justify-center items-center gap-2'>
+		<div class='container mx-auto flex flex-col justify-center items-center gap-8'>
 			<h2 class='me-auto mb-6 text-3xl text-primary-800 capitalize font-extrabold sm:mx-auto sm:text-7xl'>
 				{{_('mission title')}}
 			</h2>
-			<div class='w-full flex flex-col gap-2 items-center sm:flex-row sm:justify-between'>
+			<div class='w-full flex flex-col gap-8 items-center sm:flex-row
+        sm:justify-center'>
 				{{macros.mission_card(
 				title=_("mission 1 title"),
 				desc=_("mission 1 desc"),
-				from='from-[#020024]',
-				to='to-[rgba(255,0,0,0.6)]',
-        via='via-[rgba(255,0,0,0.7)]',
+				from='bg-secondary-400',
+				to='',
+        via='',
 				cls='-translate-x-6 sm:translate-x-0'
 				)}}
 				{{macros.mission_card(
 				title=_("mission 2 title"),
 				desc=_("mission 2 desc"),
 				gradient_dir='bg-gradient-to-t',
-				from='from-[rgba(184,0,0,0.7)]',
-        via='via-[rgba(255,0,0,0.7)]',
-				to='to-[rgba(225,139,26,0.7)]',
+				from='bg-secondary-600',
+        via='',
+				to='',
 				cls='translate-x-6 -translate-y-6 sm:translate-y-0 sm:translate-x-0'
 				)}}
 			</div>
-			<div class='w-full flex flex-col gap-2 items-center sm:flex-row sm:justify-around'>
+			<div class='w-full flex flex-col gap-8 items-center sm:flex-row sm:justify-center'>
 				{{macros.mission_card(
 				title=_("mission 3 title"),
 				desc=_("mission 3 desc"),
 				gradient_dir='bg-gradient-to-t',
-				from='from-[#d1b283]',
-        via='via-[rgba(255,0,0,0.7)]',
-				to='to-[rgba(255,0,0,0.7)]',
+				from='bg-secondary-600',
+        via='',
+				to='',
 				cls='-translate-x-6 -translate-y-12 sm:translate-y-0 sm:translate-x-0 '
 				)}}
 				{{macros.mission_card(
 				title=_("mission 4 title"),
 				desc=_("mission 4 desc"),
 				gradient_dir='bg-gradient-to-t',
-				from='from-[#e18b1a]',
-        via='via-[rgba(255,0,0,0.7)]',
-				to='to-[rgba(255,0,0,0.7)]',
+				from='bg-secondary-400',
+        via='',
+				to='',
 				cls='translate-x-6 -translate-y-16 sm:translate-y-0 sm:translate-x-0'
 				)}}
 			</div>

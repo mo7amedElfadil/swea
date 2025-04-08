@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-03 12:18+0400\n"
+"POT-Creation-Date: 2025-04-09 01:21+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: api/v1/views/knowledge_hub.py:37
 msgid "Invalid tab"
@@ -262,7 +262,7 @@ msgstr ""
 msgid "swea_subscribers"
 msgstr ""
 
-#: app/templates/dashboard.html:29 app/templates/index.html:129
+#: app/templates/dashboard.html:29 app/templates/index.html:109
 #: app/templates/partials/dashboard/news.html:4
 msgid "news"
 msgstr ""
@@ -283,35 +283,35 @@ msgstr ""
 msgid "mission title"
 msgstr ""
 
-#: app/templates/index.html:32
+#: app/templates/index.html:37
 msgid "mission 1 title"
 msgstr ""
 
-#: app/templates/index.html:33
+#: app/templates/index.html:38
 msgid "mission 1 desc"
 msgstr ""
 
-#: app/templates/index.html:40
+#: app/templates/index.html:43
 msgid "mission 2 title"
 msgstr ""
 
-#: app/templates/index.html:41
+#: app/templates/index.html:44
 msgid "mission 2 desc"
 msgstr ""
 
-#: app/templates/index.html:51
+#: app/templates/index.html:56
 msgid "mission 3 title"
 msgstr ""
 
-#: app/templates/index.html:52
+#: app/templates/index.html:57
 msgid "mission 3 desc"
 msgstr ""
 
-#: app/templates/index.html:60
+#: app/templates/index.html:62
 msgid "mission 4 title"
 msgstr ""
 
-#: app/templates/index.html:61
+#: app/templates/index.html:63
 msgid "mission 4 desc"
 msgstr ""
 
@@ -343,27 +343,27 @@ msgstr ""
 msgid "vision 4"
 msgstr ""
 
-#: app/templates/index.html:157
+#: app/templates/index.html:136
 msgid "contact us"
 msgstr ""
 
-#: app/templates/index.html:158
+#: app/templates/index.html:137
 msgid "contact enquiry"
 msgstr ""
 
-#: app/templates/index.html:168
+#: app/templates/index.html:147
 msgid "form name"
 msgstr ""
 
-#: app/templates/index.html:176 app/templates/partials/footer.html:17
+#: app/templates/index.html:155 app/templates/partials/footer.html:17
 msgid "form email"
 msgstr ""
 
-#: app/templates/index.html:183
+#: app/templates/index.html:162
 msgid "form textarea"
 msgstr ""
 
-#: app/templates/index.html:192
+#: app/templates/index.html:171
 msgid "submit"
 msgstr ""
 
@@ -435,7 +435,7 @@ msgid "Link copied to clipboard!"
 msgstr ""
 
 #: app/templates/partials/dashboard/projects.html:4
-#: app/templates/partials/header.html:34 app/templates/projects.html:11
+#: app/templates/partials/header.html:41 app/templates/projects.html:11
 msgid "projects"
 msgstr ""
 
@@ -631,14 +631,18 @@ msgid "subscribe"
 msgstr ""
 
 #: app/templates/partials/header.html:27
+msgid "home"
+msgstr ""
+
+#: app/templates/partials/header.html:34
 msgid "team"
 msgstr ""
 
-#: app/templates/partials/header.html:42
+#: app/templates/partials/header.html:49
 msgid "knowledge hub"
 msgstr ""
 
-#: app/templates/partials/header.html:52
+#: app/templates/partials/header.html:59
 msgid "switch language"
 msgstr ""
 
@@ -1288,7 +1292,7 @@ msgstr ""
 msgid "add_research"
 msgstr ""
 
-#: utils/auth_utils.py:43
+#: utils/auth_utils.py:42
 msgid "Please log in to access this page"
 msgstr ""
 

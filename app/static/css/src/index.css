@@ -219,11 +219,9 @@ section#mission {
 section#our_story {
     background-image:
         linear-gradient(
-            to bottom right,
-            rgba(57, 24, 17, 0.95) 20%,
-            rgba(219, 142, 92, 0.55)
-        ),
-        url('../../imgs/our_team.jpg');
+        to bottom right, rgba(57, 24, 17, .40) 80%,
+        rgba(219, 142, 92, .50)),
+        url(../../imgs/our-story.jpg);
 }
 
 section#projects-hero {

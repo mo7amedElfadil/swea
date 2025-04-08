@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-03 12:18+0400\n"
+"POT-Creation-Date: 2025-04-09 01:21+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -17,7 +17,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: api/v1/views/knowledge_hub.py:37
 msgid "Invalid tab"
@@ -264,7 +264,7 @@ msgstr "مركز المعرفة"
 msgid "swea_subscribers"
 msgstr "المشتركين"
 
-#: app/templates/dashboard.html:29 app/templates/index.html:129
+#: app/templates/dashboard.html:29 app/templates/index.html:109
 #: app/templates/partials/dashboard/news.html:4
 msgid "news"
 msgstr "الأخبار"
@@ -287,43 +287,43 @@ msgstr "إنضم لنا"
 msgid "mission title"
 msgstr "مهمتنا"
 
-#: app/templates/index.html:32
+#: app/templates/index.html:37
 msgid "mission 1 title"
 msgstr "تمكين الاقتصاديين السودانيين"
 
-#: app/templates/index.html:33
+#: app/templates/index.html:38
 msgid "mission 1 desc"
 msgstr ""
 "عرض أعمال النساء السودانيات العاملات في مجال الاقتصاد مع ضمان تضخيم أصوات"
 " النساء في مجالات الاقتصاد والتخصصات ذات الصلة، في كل من الأوساط "
 "الأكاديمية والممارسة العملية."
 
-#: app/templates/index.html:40
+#: app/templates/index.html:43
 msgid "mission 2 title"
 msgstr "التطور الوظيفي"
 
-#: app/templates/index.html:41
+#: app/templates/index.html:44
 msgid "mission 2 desc"
 msgstr ""
 "تطوير المسار الوظيفي وبناء القدرات للنساء الشابات العاملات في مجال "
 "الاقتصاد في السودان؛ إلى جانب توفير علاقة مهنية ثنائية الاتجاه بين "
 "الخبراء في المجال والاقتصاديات النساء الطموحات."
 
-#: app/templates/index.html:51
+#: app/templates/index.html:56
 msgid "mission 3 title"
 msgstr "التضامن بين الاقتصاديين"
 
-#: app/templates/index.html:52
+#: app/templates/index.html:57
 msgid "mission 3 desc"
 msgstr ""
 "دعم فرص البحث والنشر للنساء السودانيات العاملات في مجال الاقتصاد؛ داخل "
 "شبكة شاملة وداعمة."
 
-#: app/templates/index.html:60
+#: app/templates/index.html:62
 msgid "mission 4 title"
 msgstr "التواصل مع الشركاء"
 
-#: app/templates/index.html:61
+#: app/templates/index.html:63
 msgid "mission 4 desc"
 msgstr "تبادل المعرفة والخبرات بين الأجيال داخل مجال الاقتصاد"
 
@@ -367,27 +367,27 @@ msgstr ""
 "<b>تعزيز التضامن</b> بين النساء السودانيات العاملات في مجال الاقتصاد عبر "
 "الأجيال."
 
-#: app/templates/index.html:157
+#: app/templates/index.html:136
 msgid "contact us"
 msgstr "تواصل معنا"
 
-#: app/templates/index.html:158
+#: app/templates/index.html:137
 msgid "contact enquiry"
 msgstr "لديك سؤال أو إستفسار؟"
 
-#: app/templates/index.html:168
+#: app/templates/index.html:147
 msgid "form name"
 msgstr "أدخل اسمك"
 
-#: app/templates/index.html:176 app/templates/partials/footer.html:17
+#: app/templates/index.html:155 app/templates/partials/footer.html:17
 msgid "form email"
 msgstr "أدخل بريدك الإلكتروني"
 
-#: app/templates/index.html:183
+#: app/templates/index.html:162
 msgid "form textarea"
 msgstr "تعليق أو رسالة"
 
-#: app/templates/index.html:192
+#: app/templates/index.html:171
 msgid "submit"
 msgstr "إرسال"
 
@@ -461,7 +461,7 @@ msgid "Link copied to clipboard!"
 msgstr "تم نسخ الرابط إلى الحافظة!"
 
 #: app/templates/partials/dashboard/projects.html:4
-#: app/templates/partials/header.html:34 app/templates/projects.html:11
+#: app/templates/partials/header.html:41 app/templates/projects.html:11
 msgid "projects"
 msgstr "المشاريع"
 
@@ -662,14 +662,18 @@ msgid "subscribe"
 msgstr "اشترك"
 
 #: app/templates/partials/header.html:27
+msgid "home"
+msgstr "الرئيسية"
+
+#: app/templates/partials/header.html:34
 msgid "team"
 msgstr "الفريق"
 
-#: app/templates/partials/header.html:42
+#: app/templates/partials/header.html:49
 msgid "knowledge hub"
 msgstr "مركز المعرفة"
 
-#: app/templates/partials/header.html:52
+#: app/templates/partials/header.html:59
 msgid "switch language"
 msgstr "english"
 
@@ -1319,7 +1323,7 @@ msgstr "ابحث عن بحث"
 msgid "add_research"
 msgstr "إضافة بحث"
 
-#: utils/auth_utils.py:43
+#: utils/auth_utils.py:42
 msgid "Please log in to access this page"
 msgstr "الرجاء تسجيل الدخول للوصول إلى هذه الصفحة"
 

@@ -22,20 +22,22 @@
 
     </div>
 	</section>
-	<section id='mission' class='px-4 py-8 sm:py-28'>
-		<div class='container mx-auto flex flex-col justify-center items-center gap-8'>
+	<section id='mission' class=' px-4 py-8 sm:py-28'>
+		<div class='container mx-auto relative flex flex-col justify-center items-center gap-8'>
 			<h2 class='me-auto mb-6 text-3xl text-primary-800 capitalize font-extrabold sm:mx-auto sm:text-7xl'>
 				{{_('mission title')}}
 			</h2>
+      <div class='top-[55%] sm:-translate-y-1/2 left-1/2 sm:-translate-x-1/2
+        border-8 border-primary-800 rounded-full overflow-hidden sm:absolute'>
+        <img class='w-[700px] aspect-[1/1]' src="{{url_for('static',filename='imgs/our-mission.jpg')}}" alt="missionimg"/>
+      </div>
 			<div class='w-full flex flex-col gap-8 items-center sm:flex-row
-        sm:justify-center'>
+        sm:justify-between'>
 				{{macros.mission_card(
 				title=_("mission 1 title"),
 				desc=_("mission 1 desc"),
-				from='bg-secondary-400',
-				to='',
-        via='',
-				cls='-translate-x-6 sm:translate-x-0'
+				cls='-translate-x-6 text-primary-800 sm:translate-x-0 border-8 border-primary-800
+        text-center',
 				)}}
 				{{macros.mission_card(
 				title=_("mission 2 title"),
@@ -44,27 +46,24 @@
 				from='bg-secondary-600',
         via='',
 				to='',
-				cls='translate-x-6 -translate-y-6 sm:translate-y-0 sm:translate-x-0'
+				cls='translate-x-6 -translate-y-6 bg-primary-800 text-white text-center
+        sm:translate-y-0 sm:translate-x-0'
 				)}}
 			</div>
-			<div class='w-full flex flex-col gap-8 items-center sm:flex-row sm:justify-center'>
+			<div class='w-full flex flex-col gap-8 items-center sm:flex-row
+        sm:justify-between'>
 				{{macros.mission_card(
 				title=_("mission 3 title"),
 				desc=_("mission 3 desc"),
 				gradient_dir='bg-gradient-to-t',
-				from='bg-secondary-600',
-        via='',
-				to='',
-				cls='-translate-x-6 -translate-y-12 sm:translate-y-0 sm:translate-x-0 '
+				cls='-translate-x-6 -translate-y-12 bg-primary-800 text-white sm:translate-y-0 sm:translate-x-0 '
 				)}}
 				{{macros.mission_card(
 				title=_("mission 4 title"),
 				desc=_("mission 4 desc"),
 				gradient_dir='bg-gradient-to-t',
-				from='bg-secondary-400',
-        via='',
-				to='',
-				cls='translate-x-6 -translate-y-16 sm:translate-y-0 sm:translate-x-0'
+				cls='translate-x-6 -translate-y-16 border-8 border-primary-800
+        text-primary-800 sm:translate-y-0 sm:translate-x-0'
 				)}}
 			</div>
 		</div>
@@ -75,7 +74,7 @@
 			<h2 class='flex mb-6 text-3xl text-white capitalize font-extrabold pb-6 sm:justify-self-center
       lg:justify-self-start
         sm:text-7xl'>{{_("our story")}}</h2>
-			<p class='text-white leading-loose sm:max-w-[80%] text-justify
+			<p class='text-white leading-loose font-semibold sm:w-[50%] text-justify
       sm:justify-self-center sm:text-3xl lg:justify-self-start xl:max-w-[60%]'>
       {{_("our story desc")}}
       </p>
@@ -132,10 +131,8 @@
         </div>
     </div>
   </section>
-	<section id='contact' class='container justify-center mx-auto px-4 py-8 sm:py-28 lg:grid lg:grid-cols-2'>
-		<div class='relative flex flex-col gap-4 bg-white px-3 py-4
-		sm:px-8 sm:py-12'
-			 >
+	<section id='contact' class='container justify-center mx-auto px-4 py-8 sm:py-28 lg:grid lg:grid-cols-3'>
+		<div class='relative col-span-2 flex flex-col gap-4 bg-white px-3 py-4 sm:px-8 sm:py-12'>
 			 <h2 class='text-3xl capitalize font-extrabold sm:text-5xl'>{{_('contact us')}}</h2>
 			 <p>{{_('contact enquiry')}}</p>
 			 <form class='flex flex-col gap-3'
@@ -176,10 +173,9 @@
            </button>
 			 </form>
 		</div>
-		<div
-				class='bg-[url(../../imgs/envelop.svg)] bg-no-repeat bg-contain
-				{% if locale == "ar" %}rotate-180 -ms-1{%else%}-ms-1{%endif%}'
-				>
+		<div class='hidden sm:block {% if locale == "ar" %}rotate-180 -ms-1{%else%}-ms-1{%endif%}'>
+        <img class='h-full w-full' src="{{url_for('static',filename='imgs/envelop.png')}}"
+                  alt="envelop"/>
 		</div>
 	</section>
 </div>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-03 12:18+0400\n"
+"POT-Creation-Date: 2025-04-09 01:21+0300\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.16.0\n"
 
 #: api/v1/views/knowledge_hub.py:37
 msgid "Invalid tab"
@@ -263,7 +263,7 @@ msgstr "Knowledge Hub"
 msgid "swea_subscribers"
 msgstr "Subscribers"
 
-#: app/templates/dashboard.html:29 app/templates/index.html:129
+#: app/templates/dashboard.html:29 app/templates/index.html:109
 #: app/templates/partials/dashboard/news.html:4
 msgid "news"
 msgstr "News"
@@ -287,46 +287,46 @@ msgstr "Join Us"
 msgid "mission title"
 msgstr "Our Mission"
 
-#: app/templates/index.html:32
+#: app/templates/index.html:37
 msgid "mission 1 title"
 msgstr "Empower Sudanese Economists"
 
-#: app/templates/index.html:33
+#: app/templates/index.html:38
 msgid "mission 1 desc"
 msgstr ""
 "Showcase Sudanese women economists work alongside ensuring women’s voices"
 " are amplified in the fields of economics and economic-related "
 "disciplines, in both academia and practice."
 
-#: app/templates/index.html:40
+#: app/templates/index.html:43
 msgid "mission 2 title"
 msgstr "Career Advancement"
 
-#: app/templates/index.html:41
+#: app/templates/index.html:44
 msgid "mission 2 desc"
 msgstr ""
 "Career development and capacity building of young women economists in "
 "Sudan; alongside providing a professional bi-directional relationship "
 "between experts in the field, and prospective women economists."
 
-#: app/templates/index.html:51
+#: app/templates/index.html:56
 msgid "mission 3 title"
 msgstr "Solidarity Amongst Economists"
 
-#: app/templates/index.html:52
+#: app/templates/index.html:57
 msgid "mission 3 desc"
 msgstr ""
 "Support research and publication opportunities of Sudanese women "
 "economists; within an inclusive and supportive network."
 
-#: app/templates/index.html:60
+#: app/templates/index.html:62
 msgid "mission 4 title"
 msgstr "Connect With Partners"
 
-#: app/templates/index.html:61
+#: app/templates/index.html:63
 msgid "mission 4 desc"
 msgstr ""
-"Inter-generatinal exchange of knowledge and experiences within the "
+"Inter-generational exchange of knowledge and experiences within the "
 "economics discipline"
 
 #: app/templates/index.html:76
@@ -338,13 +338,13 @@ msgid "our story desc"
 msgstr ""
 "Sudanese women economists association (SWEA) was founded in June 2020, on"
 " the ground of redeeming the prevalent gap of women economists "
-"participation in the policy and academic spheres in sudan. fuelled by the"
+"participation in the policy and academic spheres in Sudan. fuelled by the"
 " enthusiasm of its founders and members; SWEA aims at building "
 "capacities, encouraging and amplifying the contributions of women "
 "economists, and young women pursuing degrees in economics. SWEA strives "
-"to achieve this by providing a platform to convene sudanese women "
+"to achieve this by providing a platform to convene Sudanese women "
 "economists, offering networking opportunities and enriching the economic "
-"research space by contributions from its membres."
+"research space by contributions from its members."
 
 #: app/templates/index.html:84
 msgid "our vision"
@@ -363,7 +363,7 @@ msgstr "<b>Build capacity</b> of young women in economics."
 #: app/templates/index.html:95
 msgid "vision 3"
 msgstr ""
-"<b>Amplify</b> the voices of sudanese women in economic research and "
+"<b>Amplify</b> the voices of Sudanese women in economic research and "
 "practice."
 
 #: app/templates/index.html:99
@@ -372,27 +372,27 @@ msgstr ""
 "<b>Promote solidarity</b> between Sudanese women economists across "
 "generations."
 
-#: app/templates/index.html:157
+#: app/templates/index.html:136
 msgid "contact us"
 msgstr "Contact Us"
 
-#: app/templates/index.html:158
+#: app/templates/index.html:137
 msgid "contact enquiry"
 msgstr "Have any inquiries or want to ask us something?"
 
-#: app/templates/index.html:168
+#: app/templates/index.html:147
 msgid "form name"
 msgstr "Name"
 
-#: app/templates/index.html:176 app/templates/partials/footer.html:17
+#: app/templates/index.html:155 app/templates/partials/footer.html:17
 msgid "form email"
 msgstr "Email"
 
-#: app/templates/index.html:183
+#: app/templates/index.html:162
 msgid "form textarea"
 msgstr "Comment or Message"
 
-#: app/templates/index.html:192
+#: app/templates/index.html:171
 msgid "submit"
 msgstr "Submit"
 
@@ -466,7 +466,7 @@ msgid "Link copied to clipboard!"
 msgstr "Link copied to clipboard!"
 
 #: app/templates/partials/dashboard/projects.html:4
-#: app/templates/partials/header.html:34 app/templates/projects.html:11
+#: app/templates/partials/header.html:41 app/templates/projects.html:11
 msgid "projects"
 msgstr "Projects"
 
@@ -668,14 +668,18 @@ msgid "subscribe"
 msgstr "Subscribe"
 
 #: app/templates/partials/header.html:27
+msgid "home"
+msgstr "home"
+
+#: app/templates/partials/header.html:34
 msgid "team"
 msgstr "team"
 
-#: app/templates/partials/header.html:42
+#: app/templates/partials/header.html:49
 msgid "knowledge hub"
 msgstr "knowledge hub"
 
-#: app/templates/partials/header.html:52
+#: app/templates/partials/header.html:59
 msgid "switch language"
 msgstr "العربية"
 
@@ -1325,7 +1329,7 @@ msgstr "Search Research"
 msgid "add_research"
 msgstr "Add Research"
 
-#: utils/auth_utils.py:43
+#: utils/auth_utils.py:42
 msgid "Please log in to access this page"
 msgstr "Please log in to access this page"
 

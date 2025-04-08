@@ -2,7 +2,7 @@
 {% import "macros/icons.html" as icons %}
 <footer class='min-h-60 px-4 py-8 {% if locale == ' ar' %}font-primary{%else%}font-secondary{%endif%}'>
   <div class='container mx-auto grid gap-6'>
-    <a href="/" target="_blank">
+    <a href="/">
       <img width="150" height="auto" class="w-[150px] {% if locale == 'en' %}invert brightness-0{% endif %}"
         src="{{url_for('static',filename='imgs/logo.png')}}" alt="logo" />
     </a>

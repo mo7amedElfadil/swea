@@ -42,7 +42,7 @@ def cache_response(timeout: int = Config.CACHE_DEFAULT_TIMEOUT) -> Callable:
         def wrapper(*args, **kwargs):
             cache_key = generate_cache_key(func.__name__)
             cached_data = cache.get(cache_key)
-            print(f"Cache key: {cache_key}")  # Debugging line
+
             if cached_data:
                 return cached_data
 

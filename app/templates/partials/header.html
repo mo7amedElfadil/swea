@@ -28,7 +28,7 @@
                     </li>
                     <li class='text-center'>
                         <a
-                            class='relative block p-4 capitalize {% if request.path == "team" %}active{% endif %}'
+                            class='relative block p-4 capitalize {% if "/team" in request.path %}active{% endif %}'
                             href="/team"
                             target="_self"
                         >{{_('team')}}</a>

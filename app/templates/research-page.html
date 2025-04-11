@@ -61,6 +61,71 @@ block content %}
             </div>
         </div>
     </div>
+    <!-- Research Content -->
+    <div class="mb-12">
+        {% if research.content %}
+            <div class="flex flex-col md:flex-row items-center gap-8 mb-16">
+                <div class="flex-1 prose max-w-none">
+                    <p class="text-secondary-700 text-lg leading-relaxed">{{
+                    research.content[locale]|safe }}</p>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Testimonials Section -->
+    {% if research.testimonials and research.testimonials[0][locale] %}
+    <div class="bg-secondary-50 rounded-lg p-8 my-12">
+        <h2 class="text-2xl font-bold text-primary-800 mb-8 text-center">
+            {{ _('Testimonials') }}
+        </h2>
+
+        <div class="space-y-8">
+            {% for testimonial in research.testimonials %}
+            <div class="bg-white p-6 rounded-lg shadow-md transition-transform hover:shadow-lg hover:-translate-y-1">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <!-- Author Info Column -->
+                    <div class="md:w-1/4 flex flex-col items-center text-center">
+                        {% if testimonial.image %}
+                        <div class="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-primary-200">
+                            <img
+                                src="{{ testimonial.image|file_url }}"
+                                alt="{{ testimonial.author }}"
+                                onerror="this.src='http://i.imgur.com/hfM1J8s.png'"
+                                class="w-full h-full object-cover"
+                            />
+                        </div>
+                        {% else %}
+                        <div class="w-24 h-24 rounded-full mb-4 bg-primary-100 flex items-center justify-center">
+                            <span class="text-primary-500 text-2xl font-bold">{{ testimonial.author[:1] }}</span>
+                        </div>
+                        {% endif %}
+
+                        <p class="text-secondary-800 font-semibold">
+                            {{ testimonial.author }}
+                        </p>
+                        {% if testimonial.qualification %}
+                        <p class="text-secondary-500 text-sm">
+                            {{ testimonial.qualification }}
+                        </p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Testimonial Text Column -->
+                    <div class="md:w-3/4 flex items-center">
+                        <div class="relative">
+                            <p class="text-secondary-700 italic leading-relaxed text-lg">
+                                "{{ testimonial[locale] }}"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
 </div>
 <script>
 document.addEventListener('DOMContentLoaded', function() {

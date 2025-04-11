@@ -32,7 +32,7 @@
                     28)", cls="size-3" )}} {% else %} {{icons.arrow_left(
                     clr="rgb(185 28 28)", cls="size-3" )}} {% endif %}
                 </span>
-                <a class="text-red-700 capitalize" href="/news/{{n.uuid}}">
+                <a class="text-red-700 capitalize" href="{{n.url_redirect}}">
                     {{_('learn more')}}
                 </a>
             </button>

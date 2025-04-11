@@ -28,14 +28,14 @@
                     </li>
                     <li class='text-center'>
                         <a
-                            class='relative block p-4 capitalize {% if request.path == "/team" %}active{% endif %}'
+                            class='relative block p-4 capitalize {% if request.path == "team" %}active{% endif %}'
                             href="/team"
                             target="_self"
                         >{{_('team')}}</a>
                     </li>
                     <li class='text-center'>
                         <a
-                            class='relative block p-4 capitalize {% if request.path == "/projects" %}active{% endif %}'
+                            class='relative block p-4 capitalize {% if "/projects" in request.path %}active{% endif %}'
                             href="/projects"
                         >
                             {{_('projects')}}
@@ -43,7 +43,7 @@
                     </li>
                     <li class='text-center'>
                         <a
-                            class='relative block p-4 capitalize {% if request.path == "/knowledge-hub" %}active{% endif %}'
+                            class='relative block p-4 capitalize {% if "/knowledge-hub" in request.path %}active{% endif %}'
                             href="/knowledge-hub"
                             target="_self"
                         >{{_('knowledge hub')}}</a>

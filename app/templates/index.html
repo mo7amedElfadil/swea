@@ -31,7 +31,7 @@
 			</h2>
       <div class='top-[55%] sm:-translate-y-1/2 left-1/2 sm:-translate-x-1/2
         border-2 border-primary-800 rounded-full overflow-hidden sm:absolute'>
-        <img class='size-[500px]' src="{{url_for('static',filename='imgs/our-mission.jpg')}}" alt="missionimg"/>
+        <img class='w-[300px] h-[300px] sm:size-[500px]' src="{{url_for('static',filename='imgs/our-mission.jpg')}}" alt="missionimg"/>
       </div>
 			<div class='w-full flex flex-col gap-8 items-center sm:flex-row
         sm:justify-between'>
@@ -76,9 +76,12 @@
 			<h2 class='flex mb-6 text-3xl text-white capitalize font-extrabold pb-6 sm:justify-self-center
       lg:justify-self-start
         sm:text-7xl'>{{_("our story")}}</h2>
-			<p class='text-white leading-loose font-semibold xl:w-[50%] text-justify
-      sm:justify-self-center sm:text-3xl lg:justify-self-start xl:max-w-[60%]'>
-      {{_("our story desc")}}
+      <p class='text-white leading-relaxed font-semibold xl:w-[50%]
+         sm:justify-self-center sm:text-2xl lg:justify-self-start xl:max-w-[60%]
+         max-w-prose mx-auto my-6 p-6 bg-black bg-opacity-50 rounded-lg
+         shadow-lg backdrop-blur-sm tracking-normal {% if locale == "ar"
+         %}text-right{% else %}text-left{% endif %}'>
+         {{_("our story desc")}}
       </p>
 		</div>
 	</section>

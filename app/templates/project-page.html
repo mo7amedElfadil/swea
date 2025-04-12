@@ -18,8 +18,14 @@ endblock %}
         <div class="w-full aspect-[16/9] bg-secondary-200"></div>
         {% endif %}
 
-        <!-- Blurred Overlay with Project Details -->
-        <div class="absolute inset-x-0 bottom-0 bg-black bg-opacity-50 backdrop-blur-lg p-4 sm:p-6">
+        <!-- Blurred Overlay -->
+        <div
+            class="
+                lg:absolute lg:inset-x-0 lg:bottom-0
+                bg-black bg-opacity-50 backdrop-blur-lg
+                p-4 sm:p-6
+            "
+        >
             <div class="max-w-4xl mx-auto text-white">
                 <h1 class="text-2xl sm:text-4xl font-bold mb-2 sm:mb-4 text-center sm:text-left">
                     {{ project.title[locale] }}
@@ -27,30 +33,22 @@ endblock %}
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
                     <div>
                         <p class="text-sm sm:text-lg">
-                            <span class="font-semibold">
-                                {{ _('Author') }}:
-                            </span>
+                            <span class="font-semibold">{{ _('Author') }}:</span>
                             {{ project.author.name[locale] }}
                         </p>
                         <p class="text-sm sm:text-lg">
-                            <span class="font-semibold">
-                                {{ _('Status') }}:
-                            </span>
+                            <span class="font-semibold">{{ _('Status') }}:</span>
                             <span class="capitalize">{{ project.status }}</span>
                         </p>
                     </div>
                     <div>
                         <p class="text-sm sm:text-lg">
-                            <span class="font-semibold">
-                                {{ _('Completion Date') }}:
-                            </span>
+                            <span class="font-semibold">{{ _('Completion Date') }}:</span>
                             {{ project.date_of_completion.strftime('%Y-%m-%d') if project.date_of_completion else _('Ongoing') }}
                         </p>
                         <div class="flex flex-wrap gap-2 mt-2">
                             {% for tag in project.tags[locale].split(',') %}
-                            <span
-                                class="bg-primary-500 text-white px-3 py-1 rounded-full text-xs sm:text-sm"
-                            >
+                            <span class="bg-primary-500 text-white px-3 py-1 rounded-full text-xs sm:text-sm">
                                 {{ tag }}
                             </span>
                             {% endfor %}
@@ -59,8 +57,8 @@ endblock %}
                 </div>
             </div>
 
-            <!-- Action buttons -->
-            <div class="flex justify-center sm:justify-end gap-2 mt-2 sm:mt-0 print:hidden">
+            <!-- Action Buttons -->
+            <div class="flex justify-center sm:justify-end gap-2 mt-4 sm:mt-6 print:hidden">
                 <button id="shareButton" class="flex items-center gap-2 hover:bg-primary-600 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-colors">
                     <img src="{{ url_for('static', filename='icons/share.svg') }}" alt="Share" class="h-5 sm:h-6 w-5 sm:w-6" />
                 </button>

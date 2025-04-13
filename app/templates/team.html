@@ -149,13 +149,13 @@ content %}
     }
 
     // Implement smooth scroll for anchor links
-    document
-        .querySelector('a[href="#team-members"]')
-        .addEventListener('click', function (e) {
+    var anchor = document.querySelector('a[href="#team-members"]')
+
+    if (anchor) {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault()
-            document.querySelector('#team-members').scrollIntoView({
-                behavior: 'smooth',
-            })
+            document.querySelector('#team-members').scrollIntoView({ behavior: 'smooth' })
         })
+    }
 </script>
 {% endblock %}

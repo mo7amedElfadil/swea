@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-09 01:21+0300\n"
+"POT-Creation-Date: 2025-04-13 14:09+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -17,7 +17,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.16.0\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: api/v1/views/__init__.py:61 utils/auth_utils.py:43
+msgid "Please log in to access this page"
+msgstr "الرجاء تسجيل الدخول للوصول إلى هذه الصفحة"
 
 #: api/v1/views/knowledge_hub.py:37
 msgid "Invalid tab"
@@ -264,7 +268,7 @@ msgstr "مركز المعرفة"
 msgid "swea_subscribers"
 msgstr "المشتركين"
 
-#: app/templates/dashboard.html:29 app/templates/index.html:109
+#: app/templates/dashboard.html:29 app/templates/index.html:114
 #: app/templates/partials/dashboard/news.html:4
 msgid "news"
 msgstr "الأخبار"
@@ -279,59 +283,59 @@ msgstr ""
 "هدفنا هو إنشاء مساحة للنساء السودانيات العاملات في مجال الاقتصاد للنمو "
 "المهني، من خلال بناء العلاقات، وتعزيز المهارات، وتعبئة الفرص."
 
-#: app/templates/index.html:17
+#: app/templates/index.html:19
 msgid "join us"
 msgstr "إنضم لنا"
 
-#: app/templates/index.html:28
+#: app/templates/index.html:30
 msgid "mission title"
 msgstr "مهمتنا"
 
-#: app/templates/index.html:37
+#: app/templates/index.html:39
 msgid "mission 1 title"
 msgstr "تمكين الاقتصاديين السودانيين"
 
-#: app/templates/index.html:38
+#: app/templates/index.html:40
 msgid "mission 1 desc"
 msgstr ""
 "عرض أعمال النساء السودانيات العاملات في مجال الاقتصاد مع ضمان تضخيم أصوات"
 " النساء في مجالات الاقتصاد والتخصصات ذات الصلة، في كل من الأوساط "
 "الأكاديمية والممارسة العملية."
 
-#: app/templates/index.html:43
+#: app/templates/index.html:45
 msgid "mission 2 title"
 msgstr "التطور الوظيفي"
 
-#: app/templates/index.html:44
+#: app/templates/index.html:46
 msgid "mission 2 desc"
 msgstr ""
 "تطوير المسار الوظيفي وبناء القدرات للنساء الشابات العاملات في مجال "
 "الاقتصاد في السودان؛ إلى جانب توفير علاقة مهنية ثنائية الاتجاه بين "
 "الخبراء في المجال والاقتصاديات النساء الطموحات."
 
-#: app/templates/index.html:56
+#: app/templates/index.html:58
 msgid "mission 3 title"
 msgstr "التضامن بين الاقتصاديين"
 
-#: app/templates/index.html:57
+#: app/templates/index.html:59
 msgid "mission 3 desc"
 msgstr ""
 "دعم فرص البحث والنشر للنساء السودانيات العاملات في مجال الاقتصاد؛ داخل "
 "شبكة شاملة وداعمة."
 
-#: app/templates/index.html:62
+#: app/templates/index.html:64
 msgid "mission 4 title"
 msgstr "التواصل مع الشركاء"
 
-#: app/templates/index.html:63
+#: app/templates/index.html:65
 msgid "mission 4 desc"
 msgstr "تبادل المعرفة والخبرات بين الأجيال داخل مجال الاقتصاد"
 
-#: app/templates/index.html:76
+#: app/templates/index.html:78
 msgid "our story"
 msgstr "قصتنا"
 
-#: app/templates/index.html:79
+#: app/templates/index.html:84
 msgid "our story desc"
 msgstr ""
 "تم تأسيس جمعية النساء السودانيات العاملات في مجال الاقتصاد (SWEA) في "
@@ -343,51 +347,51 @@ msgstr ""
 "النساء السودانيات العاملات في مجال الاقتصاد، وتقديم فرص للتواصل، وإثراء "
 "مجال البحوث الاقتصادية بمساهمات أعضائها."
 
-#: app/templates/index.html:84
+#: app/templates/index.html:89
 msgid "our vision"
 msgstr "رؤيتنا"
 
-#: app/templates/index.html:87
+#: app/templates/index.html:92
 msgid "vision 1"
 msgstr ""
 "<b>تعزيز</b> مشاركة النساء السودانيات العاملات في مجال الاقتصاد في "
 "المجالات الأكاديمية والسياسات العامة في السودان"
 
-#: app/templates/index.html:91
+#: app/templates/index.html:96
 msgid "vision 2"
 msgstr "<b>بناء قدرات</b> النساء الشابات في مجال الاقتصاد"
 
-#: app/templates/index.html:95
+#: app/templates/index.html:100
 msgid "vision 3"
 msgstr "<b>تعزيز</b> أصوات النساء السودانيات في البحث والممارسة الاقتصادية."
 
-#: app/templates/index.html:99
+#: app/templates/index.html:104
 msgid "vision 4"
 msgstr ""
 "<b>تعزيز التضامن</b> بين النساء السودانيات العاملات في مجال الاقتصاد عبر "
 "الأجيال."
 
-#: app/templates/index.html:136
+#: app/templates/index.html:141
 msgid "contact us"
 msgstr "تواصل معنا"
 
-#: app/templates/index.html:137
+#: app/templates/index.html:142
 msgid "contact enquiry"
 msgstr "لديك سؤال أو إستفسار؟"
 
-#: app/templates/index.html:147
+#: app/templates/index.html:152
 msgid "form name"
 msgstr "أدخل اسمك"
 
-#: app/templates/index.html:155 app/templates/partials/footer.html:17
+#: app/templates/index.html:160 app/templates/partials/footer.html:15
 msgid "form email"
 msgstr "أدخل بريدك الإلكتروني"
 
-#: app/templates/index.html:162
+#: app/templates/index.html:167
 msgid "form textarea"
 msgstr "تعليق أو رسالة"
 
-#: app/templates/index.html:171
+#: app/templates/index.html:176
 msgid "submit"
 msgstr "إرسال"
 
@@ -399,20 +403,20 @@ msgstr "المعرفة"
 msgid "kh hero title 2"
 msgstr "مركز"
 
-#: app/templates/knowledge-hub.html:27
+#: app/templates/knowledge-hub.html:29
 msgid "Scroll to content"
 msgstr "التمرير إلى المحتوى"
 
-#: app/templates/knowledge-hub.html:50
+#: app/templates/knowledge-hub.html:52
 msgid "research"
 msgstr "بحوث"
 
-#: app/templates/knowledge-hub.html:67
+#: app/templates/knowledge-hub.html:69
 #: app/templates/partials/dashboard/knowledge-hub.html:28
 msgid "courses"
 msgstr "دورات"
 
-#: app/templates/knowledge-hub.html:85
+#: app/templates/knowledge-hub.html:87
 #: app/templates/partials/dashboard/knowledge-hub.html:60
 msgid "podcasts"
 msgstr "بودكاست"
@@ -435,28 +439,28 @@ msgstr "العودة إلى الصفحة الرئيسية"
 msgid "Go Back"
 msgstr "العودة للخلف"
 
-#: app/templates/project-page.html:31 app/templates/research-page.html:30
+#: app/templates/project-page.html:36 app/templates/research-page.html:35
 msgid "Author"
 msgstr "الكاتب"
 
-#: app/templates/project-page.html:37
+#: app/templates/project-page.html:40
 msgid "Status"
 msgstr "الحالة"
 
-#: app/templates/project-page.html:45 app/templates/research-page.html:36
+#: app/templates/project-page.html:46 app/templates/research-page.html:39
 msgid "Completion Date"
 msgstr "تاريخ الإنتهاء"
 
-#: app/templates/project-page.html:47 app/templates/research-page.html:38
+#: app/templates/project-page.html:47 app/templates/research-page.html:40
 msgid "Ongoing"
 msgstr "جاري"
 
-#: app/templates/project-page.html:107
+#: app/templates/project-page.html:105 app/templates/research-page.html:82
 msgid "Testimonials"
 msgstr "التوصيات"
 
-#: app/templates/project-page.html:168 app/templates/project-page.html:182
-#: app/templates/research-page.html:77 app/templates/research-page.html:91
+#: app/templates/project-page.html:166 app/templates/project-page.html:180
+#: app/templates/research-page.html:144 app/templates/research-page.html:158
 msgid "Link copied to clipboard!"
 msgstr "تم نسخ الرابط إلى الحافظة!"
 
@@ -653,11 +657,11 @@ msgstr "جاري"
 msgid "completed_projects"
 msgstr "المشاريع المكتملة"
 
-#: app/templates/partials/footer.html:12
+#: app/templates/partials/footer.html:10
 msgid "footer caption"
 msgstr "ابقَ على اطلاع من خلال <b>الاشتراك</b> في نشرتنا الإخبارية!"
 
-#: app/templates/partials/footer.html:21
+#: app/templates/partials/footer.html:19
 msgid "subscribe"
 msgstr "اشترك"
 
@@ -1323,10 +1327,6 @@ msgstr "ابحث عن بحث"
 msgid "add_research"
 msgstr "إضافة بحث"
 
-#: utils/auth_utils.py:42
-msgid "Please log in to access this page"
-msgstr "الرجاء تسجيل الدخول للوصول إلى هذه الصفحة"
-
 #: utils/email_validation.py:44
 msgid "Disposable email addresses are not allowed"
 msgstr "لا يُسمح بالبريد الإلكتروني المؤقت. يرجى استخدام بريد صالح"
@@ -1573,3 +1573,4 @@ msgstr "نطاق البريد الإلكتروني غير صالح. يرجى ا�
 
 #~ msgid "tags"
 #~ msgstr "العلامات بالإنجليزية"
+

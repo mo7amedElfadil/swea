@@ -42,7 +42,7 @@
         aria-controls="panel-{{ id }}"
         aria-selected="{{ 'true' if loop.first else 'false' }}"
         tabindex="{{ '0' if loop.first else '-1' }}"
-        hx-get='/knowledge-hub?q={{ id }}'
+        hx-get='/knowledge-hub?q={{ id }}&lang={{ locale }}'
         hx-trigger='click'
         hx-target="#tab-panels"
         hx-headers='{"hx-tab": "true"}'

@@ -1,7 +1,8 @@
 {% from "macros/spinner.html" import spinner %} {% import "macros/form.html" as
 form %} {% set _form = { 'title': { 'en': title['en'] if update else '', 'ar':
 title['ar'] if update else '', }, 'date': date if update else '', 'image': image
-if update else '' } %}
+if update else '', 'url_redirect': url_redirect if update and url_redirect else
+'', } %}
 <div>
     <form
         id="create-news"
@@ -34,6 +35,12 @@ if update else '' } %}
         <!-- date -->
         {{form.input(label=_("news_date"), id="news-img", name="date",
         type="date",placeholder=_("news date"), value=_form.date )}}
+
+        <!-- URL -->
+        {{ form.input( label=_("news_url"), id="news-url", name="url_redirect",
+        type="url", placeholder=_("news url"), value=_form.url_redirect,
+        required=False, pattern="https?://.+", title="Please enter a valid URL
+        starting with http:// or https://" ) }}
 
         <!-- image (Multi-language Support) -->
         {{form.input(label=_("news_image"), id="news-img", name="image",

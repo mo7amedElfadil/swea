@@ -19,7 +19,7 @@ from utils.service_base import BaseService
 class NewsService(BaseService):
     """News service class."""
 
-    def __init__(self, page_size: int = 3):
+    def __init__(self, page_size: int = 10):
         """Initialize news service."""
         super().__init__(News, NewsSchema, page_size)
 
@@ -38,11 +38,11 @@ class NewsService(BaseService):
             processed_data = dict(
                 title=compose_i18n(form_data, "title"),
                 date=form_data.get("date"),
-                image=form_data.get("image"),
                 description=compose_i18n(form_data, "description"),
+                url_redirect=form_data.get("url_redirect"),
             )
 
-            image = processed_data.get("image")
+            image = form_data.get("image")
             if image and image.filename:
                 processed_data["image"] = self.handle_file_upload(image)
 
@@ -76,11 +76,11 @@ class NewsService(BaseService):
             processed_data = dict(
                 title=compose_i18n(form_data, "title"),
                 date=form_data.get("date"),
-                image=form_data.get("image"),
                 description=compose_i18n(form_data, "description"),
+                url_redirect=form_data.get("url_redirect"),
             )
 
-            image = processed_data.get("image")
+            image = form_data.get("image")
             if image and image.filename:
                 processed_data["image"] = self.handle_file_upload(image)
 
@@ -92,15 +92,6 @@ class NewsService(BaseService):
 
         except ValidationError as error:
             raise ValidationError(error.messages) from error
-
-    def delete(self, uuid: str, permanent: bool = False) -> bool:
-        """Delete a news."""
-        news_item = self.model_class.get_byuuid(uuid)
-        if news_item:
-            news_item.delete(permanent=permanent)
-            self.file_manager.delete_file(news_item.image)
-            return True
-        return False
 
     def search_news(self, query: str) -> List[Dict[str, Any]]:
         """Search news by title or description."""

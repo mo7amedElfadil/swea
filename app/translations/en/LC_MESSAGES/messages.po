@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-14 12:17+0400\n"
+"POT-Creation-Date: 2025-04-14 13:14+0400\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -511,15 +511,15 @@ msgstr "Select the course"
 msgid "Select Tags"
 msgstr "Select Tags"
 
-#: app/templates/macros/form.html:44
+#: app/templates/macros/form.html:46
 msgid "course_desc"
 msgstr "Courses Description"
 
-#: app/templates/macros/form.html:51 app/templates/macros/form_macros.html:110
+#: app/templates/macros/form.html:53 app/templates/macros/form_macros.html:110
 msgid "content_english_placeholder"
 msgstr "Content (English)"
 
-#: app/templates/macros/form.html:70
+#: app/templates/macros/form.html:72
 msgid "choose"
 msgstr "Choose"
 
@@ -687,7 +687,7 @@ msgid "Watch Now"
 msgstr "Watch Now"
 
 #: app/templates/partials/cards/research.html:51
-#: app/templates/partials/news/cards.html:36
+#: app/templates/partials/news/cards.html:37
 #: app/templates/partials/projects/cards.html:35
 msgid "learn more"
 msgstr "Learn more"
@@ -704,55 +704,63 @@ msgstr "Researches"
 msgid "podcasts"
 msgstr "Podcasts"
 
-#: app/templates/partials/dashboard/news-form.html:28
 #: app/templates/partials/dashboard/news-form.html:29
+#: app/templates/partials/dashboard/news-form.html:30
 msgid "news_title_english"
 msgstr "News English Title"
 
-#: app/templates/partials/dashboard/news-form.html:30
 #: app/templates/partials/dashboard/news-form.html:31
+#: app/templates/partials/dashboard/news-form.html:32
 msgid "news_title_arabic"
 msgstr "News Arabic Title"
 
-#: app/templates/partials/dashboard/news-form.html:35
+#: app/templates/partials/dashboard/news-form.html:36
 msgid "news_date"
 msgstr "News Date"
 
-#: app/templates/partials/dashboard/news-form.html:36
+#: app/templates/partials/dashboard/news-form.html:37
 msgid "news date"
 msgstr "News Date"
 
-#: app/templates/partials/dashboard/news-form.html:39
+#: app/templates/partials/dashboard/news-form.html:40
+msgid "news_url"
+msgstr "News URL"
+
+#: app/templates/partials/dashboard/news-form.html:41
+msgid "news url"
+msgstr "News URL"
+
+#: app/templates/partials/dashboard/news-form.html:46
 msgid "news_image"
 msgstr "News Image"
 
-#: app/templates/partials/dashboard/news-form.html:40
+#: app/templates/partials/dashboard/news-form.html:47
 msgid "news image"
 msgstr "Content Image"
 
-#: app/templates/partials/dashboard/news-form.html:49
+#: app/templates/partials/dashboard/news-form.html:56
 msgid "news_description"
 msgstr "News Description"
 
-#: app/templates/partials/dashboard/news-form.html:58
+#: app/templates/partials/dashboard/news-form.html:65
 msgid "english_news_description"
 msgstr "Description (English)"
 
-#: app/templates/partials/dashboard/news-form.html:75
+#: app/templates/partials/dashboard/news-form.html:82
 msgid "arabic_news_description"
 msgstr "Description (Arabic)"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:100
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:104
 #: app/templates/partials/dashboard/knowledge_hub/researches-form.html:167
-#: app/templates/partials/dashboard/news-form.html:95
+#: app/templates/partials/dashboard/news-form.html:102
 msgid "update"
 msgstr "Update"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:100
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:104
 #: app/templates/partials/dashboard/knowledge_hub/researches-form.html:167
-#: app/templates/partials/dashboard/news-form.html:95
+#: app/templates/partials/dashboard/news-form.html:102
 msgid "create"
 msgstr "Create"
 

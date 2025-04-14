@@ -26,6 +26,7 @@
         <h3 class="font-extrabold">{{n.title[locale]}}</h3>
         <div>{{n.description[locale] | truncate_html(300) | safe}}</div>
         <div class="mt-auto">
+            {% if n.url_redirect %}
             <button class="flex gap-2 items-center text-sm">
                 <span class="p-1.5 border border-red-700 rounded-full">
                     {% if locale == 'en' %} {{icons.arrow_right( clr="rgb(185 28
@@ -36,6 +37,7 @@
                     {{_('learn more')}}
                 </a>
             </button>
+            {% endif %}
         </div>
     </div>
 </div>

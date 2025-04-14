@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-14 13:14+0400\n"
+"POT-Creation-Date: 2025-04-14 13:33+0400\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -421,6 +421,10 @@ msgstr "Hub"
 msgid "Scroll to content"
 msgstr "Scroll to content"
 
+#: app/templates/not_found.html:2
+msgid "404_not_found"
+msgstr "404 Not Found"
+
 #: app/templates/not_found.html:14
 msgid "Page Not Found"
 msgstr "Page Not Found"
@@ -439,7 +443,13 @@ msgstr "Return Home"
 msgid "Go Back"
 msgstr "Go Back"
 
-#: app/templates/project-page.html:36 app/templates/research-page.html:35
+#: app/templates/partials/dashboard/projects.html:4
+#: app/templates/partials/header.html:41 app/templates/project-page.html:2
+#: app/templates/projects.html:2 app/templates/projects.html:12
+msgid "projects"
+msgstr "Projects"
+
+#: app/templates/project-page.html:36 app/templates/research-page.html:36
 msgid "Author"
 msgstr "Author"
 
@@ -447,36 +457,31 @@ msgstr "Author"
 msgid "Status"
 msgstr "Project Status"
 
-#: app/templates/project-page.html:46 app/templates/research-page.html:39
+#: app/templates/project-page.html:46 app/templates/research-page.html:40
 msgid "Completion Date"
 msgstr "Completion Date"
 
-#: app/templates/project-page.html:47 app/templates/research-page.html:40
+#: app/templates/project-page.html:47 app/templates/research-page.html:41
 msgid "Ongoing"
 msgstr "Ongoing"
 
-#: app/templates/project-page.html:105 app/templates/research-page.html:82
+#: app/templates/project-page.html:105 app/templates/research-page.html:83
 msgid "Testimonials"
 msgstr "Testimonials"
 
 #: app/templates/project-page.html:166 app/templates/project-page.html:180
-#: app/templates/research-page.html:144 app/templates/research-page.html:158
+#: app/templates/research-page.html:145 app/templates/research-page.html:159
 msgid "Link copied to clipboard!"
 msgstr "Link copied to clipboard!"
 
-#: app/templates/partials/dashboard/projects.html:4
-#: app/templates/partials/header.html:41 app/templates/projects.html:11
-msgid "projects"
-msgstr "Projects"
-
-#: app/templates/projects.html:13
+#: app/templates/projects.html:14
 msgid "project hero desc"
 msgstr ""
 "Explore our impactful projects aimed to empower Sudanese women "
 "economists, fotser collaboration, and drive sustainable economic "
 "development"
 
-#: app/templates/research-page.html:1
+#: app/templates/research-page.html:2
 msgid "Research"
 msgstr "Research"
 

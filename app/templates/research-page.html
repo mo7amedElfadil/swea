@@ -1,5 +1,6 @@
-{% extends "base.html" %} {% block title %}{{ _('Research') }}{% endblock %} {%
-block content %}
+{% extends "base.html" %}
+{% block title %}{{ _('Research', default='Research') }} | {{ research.title[locale] }}{% endblock %}
+{% block content %}
 <div class="container mx-auto px-4 mt-16 md:mt-0">
     <!-- Hero Section -->
     <div class="relative mb-8">

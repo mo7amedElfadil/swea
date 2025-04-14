@@ -69,6 +69,15 @@
     <div id="kh-content" class="px-4 sm:px-6 pb-6">
         {% include 'partials/dashboard/knowledge_hub/courses.html' %}
     </div>
+
+    <!-- Spinner Template (hidden initially) -->
+    <template id="kh-loading-template">
+        <div class="flex justify-center items-center py-10">
+            <div
+                class="animate-spin rounded-full h-8 w-8 border-4 border-primary-600 border-t-transparent"
+            ></div>
+        </div>
+    </template>
 </div>
 
 <script charset="utf-8">
@@ -89,5 +98,17 @@
                 })
             }
         })
+    })
+
+    document.addEventListener('htmx:beforeRequest', function (event) {
+        const target = document.querySelector('#kh-content')
+        const loaderTemplate = document.querySelector('#kh-loading-template')
+        if (
+            target &&
+            loaderTemplate &&
+            event.detail.elt.closest('[role="kh-tab"]')
+        ) {
+            target.innerHTML = loaderTemplate.innerHTML
+        }
     })
 </script>

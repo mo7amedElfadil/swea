@@ -174,7 +174,7 @@ def dashboard():
 @cache_response()
 def knowledge_hub():
     """Knowledge Hub page"""
-    tab_query = request.args.get("q", "research")
+    tab_query = request.args.get("q", "researches")
     page = request.args.get("page", type=int, default=1)
 
     tab_info = TAB_CONTENT_MAP["knowledge_hub"].get(tab_query)

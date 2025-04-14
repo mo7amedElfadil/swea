@@ -154,17 +154,17 @@ def login():
 @response(template_file="dashboard.html")
 def dashboard():
     """Dashboard page"""
-    tab_query = request.args.get("q")
-    if tab_query is None:
-        return dict(tab="projects")
+    tab_query = request.args.get("q", "projects")
 
-    tab_info = TAB_CONTENT_MAP["dashboard"].get(tab_query)
-
-    if not tab_info:
-        return dict(tab="projects")
+    tab_info = TAB_CONTENT_MAP["dashboard"].get(
+        tab_query, TAB_CONTENT_MAP["dashboard"]["projects"]
+    )
 
     template, service = tab_info
     data = get_paginated_data(service, sort="created_at DESC")
+
+    if not request.args.get("q"):
+        return dict(tab="projects", **data)
 
     return make_response(render_template(template, **data))
 

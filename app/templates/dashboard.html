@@ -37,7 +37,7 @@
                     hx-swap="innerHTML"
                     hx-headers='{"hx-tab": "true"}'
                     role="db-tab"
-                    aria-selected="false">
+                    aria-selected="{{ 'true' if tab == 'projects' else 'false' }}">
                     <img class="w-4 h-4 md:w-5 md:h-5" src="{{ url_for('static', filename='icons/' ~ icon) }}" alt="{{ label }} Icon" />
                     <span class="truncate">{{ label }}</span>
                 </button>

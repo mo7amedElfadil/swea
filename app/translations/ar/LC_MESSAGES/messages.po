@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-14 13:54+0400\n"
+"POT-Creation-Date: 2025-04-14 18:38+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -127,19 +127,19 @@ msgstr "حدث خطأ أثناء حذف عضو الفريق"
 msgid "Member deleted successfully"
 msgstr "تم حذف عضو الفريق بنجاح"
 
-#: api/v1/views/main.py:136
+#: api/v1/views/main.py:144
 msgid "Invalid credentials"
 msgstr "بيانات الاعتماد غير صالحة"
 
-#: api/v1/views/main.py:141
+#: api/v1/views/main.py:149
 msgid "Login successful"
 msgstr "تم تسجيل الدخول بنجاح"
 
-#: api/v1/views/main.py:220
+#: api/v1/views/main.py:228
 msgid "Failed to send message"
 msgstr "فشل في إرسال الرسالة"
 
-#: api/v1/views/main.py:226
+#: api/v1/views/main.py:234
 msgid "Your comment received successfully"
 msgstr "تم استلام  تعليقك  بنجاح"
 
@@ -220,11 +220,11 @@ msgstr "تم تحديث عضو الفريق بنجاح"
 msgid "Team member deleted successfully"
 msgstr "تم حذف عضو الفريق بنجاح"
 
-#: app/__init__.py:169
+#: app/__init__.py:165
 msgid "Rate limit exceeded"
 msgstr "تجاوز الحد الأقصى"
 
-#: app/templates/auth.html:3 app/templates/auth.html:58
+#: app/templates/auth.html:3 app/templates/auth.html:70
 msgid "login"
 msgstr "تسجيل الدخول"
 

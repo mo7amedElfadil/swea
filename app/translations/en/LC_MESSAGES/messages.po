@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-14 13:54+0400\n"
+"POT-Creation-Date: 2025-04-14 18:38+0400\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -126,19 +126,19 @@ msgstr "An error occurred while deleting the member"
 msgid "Member deleted successfully"
 msgstr "Member deleted successfully"
 
-#: api/v1/views/main.py:136
+#: api/v1/views/main.py:144
 msgid "Invalid credentials"
 msgstr "Invalid Credentials"
 
-#: api/v1/views/main.py:141
+#: api/v1/views/main.py:149
 msgid "Login successful"
 msgstr "Login successful"
 
-#: api/v1/views/main.py:220
+#: api/v1/views/main.py:228
 msgid "Failed to send message"
 msgstr "Failed to send your message"
 
-#: api/v1/views/main.py:226
+#: api/v1/views/main.py:234
 msgid "Your comment received successfully"
 msgstr "Your comment received successfully"
 
@@ -219,11 +219,11 @@ msgstr "Team member updated successfully"
 msgid "Team member deleted successfully"
 msgstr "Team member deleted successfully"
 
-#: app/__init__.py:169
+#: app/__init__.py:165
 msgid "Rate limit exceeded"
 msgstr "Rate limit exceeded"
 
-#: app/templates/auth.html:3 app/templates/auth.html:58
+#: app/templates/auth.html:3 app/templates/auth.html:70
 msgid "login"
 msgstr "Login"
 

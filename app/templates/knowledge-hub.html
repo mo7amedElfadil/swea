@@ -1,150 +1,97 @@
 {% import "macros/icons.html" as icons %}
 {% extends "base.html" %}
-{% block title %}knowledge-hub{% endblock %}
+
+{% block title %}{{ _("knowledge_hub", default="Knowledge Hub") }}{% endblock %}
+
 {% block content %}
 <div>
-	<!-- Hero -->
-	<section
-			class='h-[60vh] mx-8 pb-32 md:h-screen relative flex flex-col
-      justify-center items-center'
-			>
-			<h1 class='w-max  mx-auto flex flex-col gap-1 justify-center mb-4 text-4xl text-center font-bold capitalize md:text-6xl md:mt-0 lg:pt-40 xl:pt-0
-			{% if locale == 'ar' %} flex-col-reverse {%endif%}
-			'>
-				<span class=' text-primary-800'>
-					{{_("kh hero title 1")}}
-				</span>
-		    <span class='{% if locale == 'en' %} ms-auto {%else%} me-auto {%endif%}'>{{_("kh hero title 2")}}</span>
-			</h1>
-      <div id="kh-hero" class='h-[700px] w-full'>
-      </div>
+  <!-- Hero Section -->
+  <section class="h-[60vh] mx-8 pb-32 md:h-screen relative flex flex-col justify-center items-center">
+    <h1 class="w-max mx-auto flex flex-col gap-1 justify-center mb-4 text-4xl text-center font-bold capitalize md:text-6xl md:mt-0 lg:pt-40 xl:pt-0 {% if locale == 'ar' %}flex-col-reverse{% endif %}">
+      <span class="text-primary-800">{{_("kh hero title 1")}}</span>
+      <span class="{% if locale == 'en' %}ms-auto{% else %}me-auto{% endif %}">{{_("kh hero title 2")}}</span>
+    </h1>
+    <div id="kh-hero" class="h-[700px] w-full"></div>
 
-    <!-- Floating Arrow -->
+    <!-- Scroll Arrow -->
     <div id="scroll-arrow" class="absolute bottom-24 left cursor-pointer animate-bounce hidden md:block">
-        <div class="p-2 rounded-full bg-primary-700 shadow-lg hover:bg-primary-800 transition-colors duration-300">
+      <div class="p-2 rounded-full bg-primary-700 shadow-lg hover:bg-primary-800 transition-colors duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
-        </div>
-        <span class="sr-only">{{_("Scroll to content")}}</span>
+      </div>
+      <span class="sr-only">{{_("Scroll to content")}}</span>
     </div>
-	</section>
-	<!-- Tabs -->
-	<section id="tabs-section" class='flex flex-col gap-4 container mx-auto px-8 pb-32'>
-		<!-- Tab list -->
-		<div class="grid grid-cols-3 mx-auto w-[min(100%,900px)] text-xs sm:text-xl" role="tablist" aria-label="Content Tabs">
-			<button
-					class="flex items-center justify-center gap-1 px-4 py-2 capitalize bg-white
-						   {% if locale == 'en' %} rounded-l-3xl {%else%} rounded-r-2xl {%endif%}"
-					id="tab-research"
-					role="tab"
-					aria-controls="panel-research"
-					aria-selected="true"
-					tabindex="0"
-					hx-get='/knowledge-hub?q=research'
-					hx-trigger='click'
-					hx-target="#tab-panels"
-					hx-headers='{"hx-tab": "true"}'
-					>
-					<span class="inline-block">
-						{{icons.research(cls='size-5 sm:size-7',clr='#000', stroke_width=25)}}
-					</span>
-				<span>{{_("research")}}</span>
-			</button>
-			<button
-					class="flex items-center justify-center gap-1 bg-white px-4 py-2 capitalize sm:py-4"
-					id="tab-courses"
-					role="tab"
-					aria-controls="panel-courses"
-					aria-selected="false"
-					tabindex="-1"
-					hx-get='/knowledge-hub?q=courses'
-					hx-trigger='click'
-					hx-target="#tab-panels"
-					hx-headers='{"hx-tab": "true"}'
-					>
-					<span class="inline-block">
-						{{icons.video(cls='size-5 fill-black sm:size-7', stroke_width=25)}}
-					</span>
-				<span>{{_("courses")}}</span>
-			</button>
-			<button
-					class="flex items-center justify-center gap-1 px-4 py-2 capitalize bg-white
-						   {% if locale == 'ar' %} rounded-l-3xl {%else%} rounded-r-2xl {%endif%}"
-					id="tab-podcasts"
-					role="tab"
-					aria-controls="panel-podcasts"
-					aria-selected="false"
-					tabindex="-1"
-					hx-get='/knowledge-hub?q=podcasts'
-					hx-trigger='click'
-					hx-target="#tab-panels"
-					hx-headers='{"hx-tab": "true"}'
-					>
-					<span class="inline-block">
-						{{icons.music(cls='size-5 fill-black sm:size-7', stroke_width=5)}}
-					</span>
-				<span>{{_("podcasts")}}</span>
-			</button>
-		</div>
+  </section>
 
-		<!-- Tab panels -->
-		<div
-				id="tab-panels"
-				class='flex justify-center w-[min(100%,1320px)] mx-auto sm:text-xl'
-				role="tabpanels"
-				aria-labelledby="tab-panels"
-				>
-				{# INCLUDE DEFAULT PARTIAL FOR ACTIVE TAB #}
-				{% include "partials/knowledge-hub/research.html" %}
-		</div>
-	</section>
+  <!-- Tabs Section -->
+  <section id="tabs-section" class="flex flex-col gap-4 container mx-auto px-8 pb-32">
+    <!-- Tab List -->
+    <div class="grid grid-cols-3 mx-auto w-[min(100%,900px)] md:h-[60px] text-xs sm:text-xl" role="tablist" aria-label="Content Tabs">
+      {% set tabs = [
+        ('research', icons.research(cls='size-5 sm:size-7', clr='#000', stroke_width=25), 'rounded-l-3xl' if locale == 'en' else 'rounded-r-2xl'),
+        ('courses', icons.video(cls='size-5 fill-black sm:size-7', stroke_width=25), ''),
+        ('podcasts', icons.music(cls='size-5 fill-black sm:size-7', stroke_width=5), 'rounded-r-3xl' if locale == 'en' else 'rounded-l-2xl')
+      ] %}
+
+      {% for id, icon, rounded in tabs %}
+      <button
+        class="flex items-center justify-center gap-1 px-4 py-2 capitalize bg-white {{ rounded }}"
+        id="tab-{{ id }}"
+        role="tab"
+        aria-controls="panel-{{ id }}"
+        aria-selected="{{ 'true' if loop.first else 'false' }}"
+        tabindex="{{ '0' if loop.first else '-1' }}"
+        hx-get='/knowledge-hub?q={{ id }}'
+        hx-trigger='click'
+        hx-target="#tab-panels"
+        hx-headers='{"hx-tab": "true"}'
+      >
+        <span class="inline-block">{{ icon }}</span>
+        <span>{{_(id)}}</span>
+      </button>
+      {% endfor %}
+    </div>
+
+    <!-- Tab Panels -->
+    <div id="tab-panels" class="flex justify-center w-[min(100%,1320px)] mx-auto sm:text-xl" role="tabpanels">
+      {% include "partials/knowledge-hub/research.html" %}
+    </div>
+  </section>
 </div>
 {% endblock %}
 
 {% block extra_scripts %}
-<script charset="utf-8">
-	// Tab management
-	for (const tab of document.querySelectorAll('[role="tab"]')){
-		tab.addEventListener('click', (evt) => {
-		for (const sibling of document.querySelectorAll('[role="tab"]')){
-			sibling.setAttribute('aria-selected', 'false');
-			sibling.classList.remove('active-tab');
-		}
-			evt.currentTarget.classList.add('active-tab');
-			evt.currentTarget.setAttribute('aria-selected', 'true');
-		});
-	}
-	// initial active tab
-	document.getElementById('tab-research').classList.add('active-tab');
-
-	// Scroll arrow functionality
-  document.getElementById('scroll-arrow').addEventListener('click', function() {
-      const tabsSection = document.getElementById('tabs-section');
-
-      tabsSection.scrollIntoView({
-          behavior: 'smooth'
-      });
-
-      setTimeout(() => {
-          window.scrollBy({
-              top: -50,
-              behavior: 'smooth'
-          });
-      }, 300);
+<script>
+// Tab management
+document.querySelectorAll('[role="tab"]').forEach(tab => {
+  tab.addEventListener('click', (e) => {
+    document.querySelectorAll('[role="tab"]').forEach(t => {
+      t.setAttribute('aria-selected', 'false');
+      t.classList.remove('active-tab');
+    });
+    e.currentTarget.classList.add('active-tab');
+    e.currentTarget.setAttribute('aria-selected', 'true');
   });
+});
 
-	// Hide the arrow when scrolled past the hero section
-	window.addEventListener('scroll', function() {
-		const arrow = document.getElementById('scroll-arrow');
-		const heroSection = document.getElementById('kh-hero');
-		const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+// Set initial active tab
+document.getElementById('tab-research').classList.add('active-tab');
 
-		if (window.scrollY > heroBottom - 500) {
-			arrow.classList.add('opacity-0', 'pointer-events-none');
-		} else {
-			arrow.classList.remove('opacity-0', 'pointer-events-none');
-		}
-	});
+// Scroll arrow functionality
+document.getElementById('scroll-arrow').addEventListener('click', () => {
+  const tabsSection = document.getElementById('tabs-section');
+  tabsSection.scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => window.scrollBy({ top: -50, behavior: 'smooth' }), 300);
+});
+
+// Hide arrow when scrolled past hero
+window.addEventListener('scroll', () => {
+  const arrow = document.getElementById('scroll-arrow');
+  const hero = document.getElementById('kh-hero');
+  const shouldHide = window.scrollY > hero.offsetTop + hero.offsetHeight - 500;
+  arrow.classList.toggle('opacity-0', shouldHide);
+  arrow.classList.toggle('pointer-events-none', shouldHide);
+});
 </script>
 {% endblock %}

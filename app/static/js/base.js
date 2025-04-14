@@ -46,6 +46,16 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         document.dir = 'ltr'
     }
+
+    const csrfToken = document
+        .querySelector('meta[name="csrf-token"]')
+        ?.getAttribute('content')
+
+    if (typeof htmx !== 'undefined' && csrfToken) {
+        document.body.addEventListener('htmx:configRequest', function (event) {
+            event.detail.headers['X-CSRFToken'] = csrfToken
+        })
+    }
 })
 
 // header shadow on scroll

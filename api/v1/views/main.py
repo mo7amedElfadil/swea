@@ -179,7 +179,7 @@ def knowledge_hub():
 
     tab_info = TAB_CONTENT_MAP["knowledge_hub"].get(tab_query)
     if not tab_info:
-        return dict(tab="research")
+        return dict(tab="researches")
 
     template, service = tab_info
     data = get_paginated_data(service, page, sort="created_at DESC")

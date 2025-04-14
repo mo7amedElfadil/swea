@@ -190,7 +190,7 @@ def knowledge_hub():
     if request.headers.get("hx-tab"):
         return make_response(render_template(template, **data))
 
-    return dict(tab="research", **data)
+    return dict(tab="researches", **data)
 
 
 @bp.route("/knowledge-hub/filter-courses")

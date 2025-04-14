@@ -119,7 +119,7 @@ class ResearchService(BaseService):
                 "email": (
                     form_data.get("author[email]").strip()
                     if form_data.get("author[email]")
-                    else None
+                    else ""
                 ),
             },
             "tags": {

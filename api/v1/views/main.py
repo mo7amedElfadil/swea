@@ -51,7 +51,10 @@ TAB_CONTENT_MAP = {
         "news": ("partials/dashboard/news.html", NewsService),
     },
     "knowledge_hub": {
-        "research": ("partials/knowledge-hub/research.html", ResearchService),
+        "researches": (
+            "partials/knowledge-hub/research.html",
+            ResearchService,
+        ),
         "courses": ("partials/knowledge-hub/courses.html", CourseService),
         "podcasts": ("partials/knowledge-hub/podcasts.html", PodcastService),
     },
@@ -182,7 +185,7 @@ def knowledge_hub():
     data = get_paginated_data(service, page, sort="created_at DESC")
 
     if tab_query == "courses":
-        data = CourseService().process_courses_data(data)
+        data = service().process_courses_data(data)
 
     if request.headers.get("hx-tab"):
         return make_response(render_template(template, **data))

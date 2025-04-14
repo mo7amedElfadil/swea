@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-14 13:33+0400\n"
+"POT-Creation-Date: 2025-04-14 13:54+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -125,19 +125,19 @@ msgstr ""
 msgid "Member deleted successfully"
 msgstr ""
 
-#: api/v1/views/main.py:141
+#: api/v1/views/main.py:136
 msgid "Invalid credentials"
 msgstr ""
 
-#: api/v1/views/main.py:146
+#: api/v1/views/main.py:141
 msgid "Login successful"
 msgstr ""
 
-#: api/v1/views/main.py:225
+#: api/v1/views/main.py:220
 msgid "Failed to send message"
 msgstr ""
 
-#: api/v1/views/main.py:231
+#: api/v1/views/main.py:226
 msgid "Your comment received successfully"
 msgstr ""
 

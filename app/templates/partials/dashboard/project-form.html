@@ -37,8 +37,9 @@
     name="author[name][ar]", value=project.author.name.ar if project else "",
     placeholder=_("author_name_ar_placeholder"), required=true, dir="rtl") }} {{
     form.text_input(label=_("author_email"), id="author-email",
-    name="author[email]", value=project.author.email if project.author.email
-    else "", type="email", placeholder=_("author_email_placeholder")) }}
+    name="author[email]", value=project.author.email if project and
+    project.author.email else "", type="email",
+    placeholder=_("author_email_placeholder")) }}
 
     <!-- Status -->
     {{ form.select("status", "status", [ {"value": "ongoing", "label":

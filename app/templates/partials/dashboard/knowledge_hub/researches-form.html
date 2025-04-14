@@ -45,7 +45,7 @@ content_block, testimonial_block %}
         }}
         <!-- Author email -->
         {{ text_input( id="author_email", name="author[email]",
-        value=author['email'] if author['email'] else '',
+        value=author['email'] if author and author['email'] else '',
         label=_("author_email"), placeholder=_("enter_author_email"),
         type="email" ) }}
     </div>

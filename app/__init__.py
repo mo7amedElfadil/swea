@@ -134,11 +134,6 @@ def register_context_processors(app):
         return {"locale": get_locale()}
 
     @app.context_processor
-    def inject_csrf_token():
-        """Inject CSRF token into templates."""
-        return {"csrf_token": generate_csrf}
-
-    @app.context_processor
     def inject_current_year():
         """Inject current year into templates."""
         return {"current_year": datetime.now().year}

@@ -1,95 +1,91 @@
 {% macro tab_content(data=data, title_i18n='', title='', btn_text='', hx_get='',
-page=1, total_pages=1, search_placeholder=_('search_placeholder'),
-locale=locale, total_items=1) %} {%- set partial = {
-'projects':'partials/dashboard/project-list.html',
-'team-members':'partials/dashboard/team-list.html',
-'knowledge_hub':'partials/dashboard/knowledgehub-list.html',
-'subscribers':'partials/dashboard/subscribers-list.html',
-'news':'partials/dashboard/news-list.html' } -%}
+  page=1, total_pages=1, search_placeholder=_('search_placeholder'),
+  locale=locale, total_items=1, search='') -%}
+
+{%- set partials = {
+  'projects': 'partials/dashboard/project-list.html',
+  'team-members': 'partials/dashboard/team-list.html',
+  'knowledge_hub': 'partials/dashboard/knowledgehub-list.html',
+  'subscribers': 'partials/dashboard/subscribers-list.html',
+  'news': 'partials/dashboard/news-list.html'
+} -%}
+
+{%- set is_subscribers = (title == 'subscribers') -%}
+{%- set is_projects = (title == 'projects') -%}
+{%- set is_disabled = is_subscribers and total_items == 0 -%}
+
 <div class="bg-primary-50 rounded-xl shadow-sm transition-all duration-200">
-    <!-- Header Section -->
-    <div
-        class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-4"
-    >
-        <!-- Title -->
-        <h2 class="text-2xl font-bold text-gray-900">{{ title_i18n }}</h2>
+  <!-- Header -->
+  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-4">
+    <h2 class="text-2xl font-bold text-gray-900">{{ title_i18n }}</h2>
 
-        <!-- Buttons Container -->
-        <div class="flex flex-wrap justify-start gap-4 sm:flex-nowrap sm:gap-4">
-            {% if title == 'subscribers' %}
-            <a
-                href="/dashboard/export-subscribers"
-                class="flex items-center px-4 py-2 gap-2 text-sm font-medium rounded-lg transition-all duration-200 {% if total_items > 0 %}bg-green-600 text-white hover:bg-green-700{% else %}bg-gray-300 text-gray-500 cursor-not-allowed{% endif %} focus:ring-2 focus:ring-green-500 focus:outline-none w-auto min-w-[140px] sm:w-auto"
-                {% if total_items == 0 %}aria-disabled="true" onclick="return false;"{% endif %}
-                download="subscribers.xlsx"
-            >
-                <img
-                    class="w-5 h-5"
-                    src="{{url_for('static', filename='icons/excel-file.svg')}}"
-                    alt="Download Icon"
-                />
-                <span>{{ _("Export to Excel") }}</span>
-            </a>
-            {% endif %}
-            <button
-                class="flex items-center px-4 py-2 gap-2 text-sm font-medium rounded-lg transition-all duration-200 {% if title == 'subscribers' and total_items == 0 %}bg-gray-300 text-gray-500 cursor-not-allowed{% else %}bg-primary-600 text-white hover:bg-primary-700{% endif %} focus:ring-2 focus:ring-primary-500 focus:outline-none w-auto min-w-[140px] sm:w-auto"
-                hx-get="{{ hx_get }}"
-                hx-target="#tab-content"
-                hx-swap="innerHTML"
-                {% if title == 'subscribers' and total_items == 0 %}disabled aria-disabled="true"{% endif %}
-            >
-                <img
-                    class="w-5 h-5"
-                    src={% if title == 'subscribers' %}"{{url_for('static',
-                    filename='icons/mail.svg')}}"{% else %}"{{url_for('static',
-                    filename='icons/add.svg')}}" {% endif %}
-                    alt="Add Icon"
-                />
-                <span>{{ btn_text }}</span>
-            </button>
-        </div>
-    </div>
+    <div class="flex flex-wrap justify-start gap-4 sm:flex-nowrap sm:gap-4">
+      {%- if is_subscribers %}
+      <a
+        href="/dashboard/export-subscribers"
+        class="flex items-center px-4 py-2 gap-2 text-sm font-medium rounded-lg transition-all duration-200 {{ 'bg-green-600 text-white hover:bg-green-700' if total_items > 0 else 'bg-gray-300 text-gray-500 cursor-not-allowed' }} focus:ring-2 focus:ring-green-500 focus:outline-none min-w-[140px]"
+        {{ 'aria-disabled="true" onclick="return false;"' if is_disabled }}
+        download="subscribers.xlsx"
+      >
+        <img class="w-5 h-5" src="{{ url_for('static', filename='icons/excel-file.svg') }}" alt="Download Icon" />
+        <span>{{ _("Export to Excel") }}</span>
+      </a>
+      {%- endif %}
 
-    <!-- Filter Section Wrapped in a Form -->
-    <form
-        hx-get="/dashboard/{{title}}"
-        hx-target="#tab-content-list"
+      <button
+        class="flex items-center px-4 py-2 gap-2 text-sm font-medium rounded-lg transition-all duration-200 {{ 'bg-gray-300 text-gray-500 cursor-not-allowed' if is_disabled else 'bg-primary-600 text-white hover:bg-primary-700' }} focus:ring-2 focus:ring-primary-500 focus:outline-none min-w-[140px]"
+        hx-get="{{ hx_get }}"
+        hx-target="#tab-content"
         hx-swap="innerHTML"
-        hx-indicator="#loading-indicator"
-        class="mb-6 flex flex-col space-y-4 sm:flex-row sm:gap-4 sm:space-y-0"
-    >
-        <!-- Search Input -->
-        <input
-            type="text"
-            id="search-input"
-            name="search"
-            value="{{ search | default('') }}"
-            placeholder="{{ search_placeholder }}"
-            class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            hx-trigger="keyup changed delay:500ms"
-            hx-get="/dashboard/{{title}}"
-            hx-target="#tab-content-list"
-            hx-swap="innerHTML"
+        {{ 'disabled aria-disabled="true"' if is_disabled }}
+      >
+        <img
+          class="w-5 h-5"
+          src="{{ url_for('static', filename='icons/mail.svg' if is_subscribers else 'icons/add.svg') }}"
+          alt="Action Icon"
         />
-        {%if title == 'projects' %}
-        <!-- Filter Select -->
-        <select
-            id="filter-select"
-            name="filter"
-            class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            hx-trigger="change"
-            hx-get="/dashboard/{{title}}"
-            hx-target="#tab-content-list"
-            hx-swap="innerHTML"
-        >
-            <option value="all">{{ _("all_projects") }}</option>
-            <option value="ongoing">{{ _("ongoing") }}</option>
-            <option value="completed">{{ _("completed_projects") }}</option>
-        </select>
-        {% endif %}
-    </form>
+        <span>{{ btn_text }}</span>
+      </button>
+    </div>
+  </div>
 
-    <!-- Project list -->
-    <div id="tab-content-list">{% include partial[title] %}</div>
+  <!-- Filters -->
+  <form
+    hx-get="/dashboard/{{ title }}"
+    hx-target="#tab-content-list"
+    hx-swap="innerHTML"
+    hx-indicator="#loading-indicator"
+    class="mb-6 flex flex-col space-y-4 sm:flex-row sm:gap-4 sm:space-y-0"
+  >
+    <input
+      type="text"
+      name="search"
+      value="{{ search | default('') }}"
+      placeholder="{{ search_placeholder }}"
+      class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+      hx-trigger="keyup changed delay:500ms"
+      hx-get="/dashboard/{{ title }}"
+      hx-target="#tab-content-list"
+      hx-swap="innerHTML"
+    />
+
+    {%- if is_projects %}
+    <select
+      name="filter"
+      class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+      hx-trigger="change"
+      hx-get="/dashboard/{{ title }}"
+      hx-target="#tab-content-list"
+      hx-swap="innerHTML"
+    >
+      <option value="all">{{ _("all_projects") }}</option>
+      <option value="ongoing">{{ _("ongoing") }}</option>
+      <option value="completed">{{ _("completed_projects") }}</option>
+    </select>
+    {%- endif %}
+  </form>
+
+  <!-- Content List -->
+  <div id="tab-content-list">{% include partials[title] %}</div>
 </div>
-{% endmacro %}
+{%- endmacro %}

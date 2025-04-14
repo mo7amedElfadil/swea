@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-14 10:20+0400\n"
+"POT-Creation-Date: 2025-04-14 12:17+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -266,12 +266,16 @@ msgstr ""
 msgid "swea_subscribers"
 msgstr ""
 
-#: app/templates/dashboard.html:29 app/templates/index.html:114
+#: app/templates/dashboard.html:29 app/templates/index.html:87
 #: app/templates/partials/dashboard/news.html:4
 msgid "news"
 msgstr ""
 
-#: app/templates/index.html:12
+#: app/templates/index.html:4 app/templates/partials/header.html:27
+msgid "home"
+msgstr ""
+
+#: app/templates/index.html:11
 msgid "hero title"
 msgstr ""
 
@@ -279,7 +283,7 @@ msgstr ""
 msgid "hero description"
 msgstr ""
 
-#: app/templates/index.html:19
+#: app/templates/index.html:17
 msgid "join us"
 msgstr ""
 
@@ -287,114 +291,105 @@ msgstr ""
 msgid "mission title"
 msgstr ""
 
-#: app/templates/index.html:39
+#: app/templates/index.html:38
 msgid "mission 1 title"
 msgstr ""
 
-#: app/templates/index.html:40
+#: app/templates/index.html:38
 msgid "mission 1 desc"
 msgstr ""
 
-#: app/templates/index.html:45
+#: app/templates/index.html:39
 msgid "mission 2 title"
 msgstr ""
 
-#: app/templates/index.html:46
+#: app/templates/index.html:39
 msgid "mission 2 desc"
 msgstr ""
 
-#: app/templates/index.html:58
+#: app/templates/index.html:40
 msgid "mission 3 title"
 msgstr ""
 
-#: app/templates/index.html:59
+#: app/templates/index.html:40
 msgid "mission 3 desc"
 msgstr ""
 
-#: app/templates/index.html:64
+#: app/templates/index.html:41
 msgid "mission 4 title"
 msgstr ""
 
-#: app/templates/index.html:65
+#: app/templates/index.html:41
 msgid "mission 4 desc"
 msgstr ""
 
-#: app/templates/index.html:78
+#: app/templates/index.html:57
 msgid "our story"
 msgstr ""
 
-#: app/templates/index.html:84
+#: app/templates/index.html:59
 msgid "our story desc"
 msgstr ""
 
-#: app/templates/index.html:89
+#: app/templates/index.html:67
 msgid "our vision"
 msgstr ""
 
-#: app/templates/index.html:92
+#: app/templates/index.html:70
 msgid "vision 1"
 msgstr ""
 
-#: app/templates/index.html:96
+#: app/templates/index.html:71
 msgid "vision 2"
 msgstr ""
 
-#: app/templates/index.html:100
+#: app/templates/index.html:72
 msgid "vision 3"
 msgstr ""
 
-#: app/templates/index.html:104
+#: app/templates/index.html:73
 msgid "vision 4"
 msgstr ""
 
-#: app/templates/index.html:141
+#: app/templates/index.html:106
 msgid "contact us"
 msgstr ""
 
-#: app/templates/index.html:142
+#: app/templates/index.html:107
 msgid "contact enquiry"
 msgstr ""
 
-#: app/templates/index.html:152
+#: app/templates/index.html:114
 msgid "form name"
 msgstr ""
 
-#: app/templates/index.html:160 app/templates/partials/footer.html:15
+#: app/templates/index.html:115 app/templates/partials/footer.html:15
 msgid "form email"
 msgstr ""
 
-#: app/templates/index.html:167
+#: app/templates/index.html:116
 msgid "form textarea"
 msgstr ""
 
-#: app/templates/index.html:176
+#: app/templates/index.html:119
 msgid "submit"
 msgstr ""
 
-#: app/templates/knowledge-hub.html:15
+#: app/templates/knowledge-hub.html:4
+#: app/templates/partials/dashboard/knowledge-hub.html:9
+msgid "knowledge_hub"
+msgstr ""
+
+#: app/templates/knowledge-hub.html:11
 msgid "kh hero title 1"
 msgstr ""
 
-#: app/templates/knowledge-hub.html:17
+#: app/templates/knowledge-hub.html:12
 msgid "kh hero title 2"
 msgstr ""
 
-#: app/templates/knowledge-hub.html:29
+#: app/templates/knowledge-hub.html:23
 msgid "Scroll to content"
-msgstr ""
-
-#: app/templates/knowledge-hub.html:52
-msgid "research"
-msgstr ""
-
-#: app/templates/knowledge-hub.html:69
-#: app/templates/partials/dashboard/knowledge-hub.html:28
-msgid "courses"
-msgstr ""
-
-#: app/templates/knowledge-hub.html:87
-#: app/templates/partials/dashboard/knowledge-hub.html:60
-msgid "podcasts"
 msgstr ""
 
 #: app/templates/not_found.html:14
@@ -638,10 +633,6 @@ msgstr ""
 msgid "subscribe"
 msgstr ""
 
-#: app/templates/partials/header.html:27
-msgid "home"
-msgstr ""
-
 #: app/templates/partials/header.html:34
 msgid "team"
 msgstr ""
@@ -664,12 +655,16 @@ msgstr ""
 msgid "learn more"
 msgstr ""
 
-#: app/templates/partials/dashboard/knowledge-hub.html:9
-msgid "knowledge_hub"
+#: app/templates/partials/dashboard/knowledge-hub.html:28
+msgid "courses"
 msgstr ""
 
 #: app/templates/partials/dashboard/knowledge-hub.html:44
 msgid "researches"
+msgstr ""
+
+#: app/templates/partials/dashboard/knowledge-hub.html:60
+msgid "podcasts"
 msgstr ""
 
 #: app/templates/partials/dashboard/news-form.html:28

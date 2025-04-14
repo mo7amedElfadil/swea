@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-14 10:20+0400\n"
+"POT-Creation-Date: 2025-04-14 12:17+0400\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -267,12 +267,16 @@ msgstr "Knowledge Hub"
 msgid "swea_subscribers"
 msgstr "Subscribers"
 
-#: app/templates/dashboard.html:29 app/templates/index.html:114
+#: app/templates/dashboard.html:29 app/templates/index.html:87
 #: app/templates/partials/dashboard/news.html:4
 msgid "news"
 msgstr "News"
 
-#: app/templates/index.html:12
+#: app/templates/index.html:4 app/templates/partials/header.html:27
+msgid "home"
+msgstr "Home"
+
+#: app/templates/index.html:11
 msgid "hero title"
 msgstr "Empowering Sudanese Women Economists"
 
@@ -283,7 +287,7 @@ msgstr ""
 "professionally, through networking, skills enhancing and opportunities "
 "mobilizing."
 
-#: app/templates/index.html:19
+#: app/templates/index.html:17
 msgid "join us"
 msgstr "Join Us"
 
@@ -291,53 +295,53 @@ msgstr "Join Us"
 msgid "mission title"
 msgstr "Our Mission"
 
-#: app/templates/index.html:39
+#: app/templates/index.html:38
 msgid "mission 1 title"
 msgstr "Empower Sudanese Economists"
 
-#: app/templates/index.html:40
+#: app/templates/index.html:38
 msgid "mission 1 desc"
 msgstr ""
 "Showcase Sudanese women economists work alongside ensuring women’s voices"
 " are amplified in the fields of economics and economic-related "
 "disciplines, in both academia and practice."
 
-#: app/templates/index.html:45
+#: app/templates/index.html:39
 msgid "mission 2 title"
 msgstr "Career Advancement"
 
-#: app/templates/index.html:46
+#: app/templates/index.html:39
 msgid "mission 2 desc"
 msgstr ""
 "Career development and capacity building of young women economists in "
 "Sudan; alongside providing a professional bi-directional relationship "
 "between experts in the field, and prospective women economists."
 
-#: app/templates/index.html:58
+#: app/templates/index.html:40
 msgid "mission 3 title"
 msgstr "Solidarity Amongst Economists"
 
-#: app/templates/index.html:59
+#: app/templates/index.html:40
 msgid "mission 3 desc"
 msgstr ""
 "Support research and publication opportunities of Sudanese women "
 "economists; within an inclusive and supportive network."
 
-#: app/templates/index.html:64
+#: app/templates/index.html:41
 msgid "mission 4 title"
 msgstr "Connect With Partners"
 
-#: app/templates/index.html:65
+#: app/templates/index.html:41
 msgid "mission 4 desc"
 msgstr ""
 "Inter-generational exchange of knowledge and experiences within the "
 "economics discipline"
 
-#: app/templates/index.html:78
+#: app/templates/index.html:57
 msgid "our story"
 msgstr "Our Story"
 
-#: app/templates/index.html:84
+#: app/templates/index.html:59
 msgid "our story desc"
 msgstr ""
 "Sudanese women economists association (SWEA) was founded in June 2020, on"
@@ -350,81 +354,72 @@ msgstr ""
 "economists, offering networking opportunities and enriching the economic "
 "research space by contributions from its members."
 
-#: app/templates/index.html:89
+#: app/templates/index.html:67
 msgid "our vision"
 msgstr "Our Vision"
 
-#: app/templates/index.html:92
+#: app/templates/index.html:70
 msgid "vision 1"
 msgstr ""
 "<b>Advance</b> Sudanese Women Economists' participation in Academic And "
 "public policy spheres in Sudan."
 
-#: app/templates/index.html:96
+#: app/templates/index.html:71
 msgid "vision 2"
 msgstr "<b>Build capacity</b> of young women in economics."
 
-#: app/templates/index.html:100
+#: app/templates/index.html:72
 msgid "vision 3"
 msgstr ""
 "<b>Amplify</b> the voices of Sudanese women in economic research and "
 "practice."
 
-#: app/templates/index.html:104
+#: app/templates/index.html:73
 msgid "vision 4"
 msgstr ""
 "<b>Promote solidarity</b> between Sudanese women economists across "
 "generations."
 
-#: app/templates/index.html:141
+#: app/templates/index.html:106
 msgid "contact us"
 msgstr "Contact Us"
 
-#: app/templates/index.html:142
+#: app/templates/index.html:107
 msgid "contact enquiry"
 msgstr "Have any inquiries or want to ask us something?"
 
-#: app/templates/index.html:152
+#: app/templates/index.html:114
 msgid "form name"
 msgstr "Name"
 
-#: app/templates/index.html:160 app/templates/partials/footer.html:15
+#: app/templates/index.html:115 app/templates/partials/footer.html:15
 msgid "form email"
 msgstr "Email"
 
-#: app/templates/index.html:167
+#: app/templates/index.html:116
 msgid "form textarea"
 msgstr "Comment or Message"
 
-#: app/templates/index.html:176
+#: app/templates/index.html:119
 msgid "submit"
 msgstr "Submit"
 
-#: app/templates/knowledge-hub.html:15
+#: app/templates/knowledge-hub.html:4
+#: app/templates/partials/dashboard/knowledge-hub.html:9
+msgid "knowledge_hub"
+msgstr "Knowledge Hub"
+
+#: app/templates/knowledge-hub.html:11
 msgid "kh hero title 1"
 msgstr "Knowledge"
 
-#: app/templates/knowledge-hub.html:17
+#: app/templates/knowledge-hub.html:12
 msgid "kh hero title 2"
 msgstr "Hub"
 
-#: app/templates/knowledge-hub.html:29
+#: app/templates/knowledge-hub.html:23
 msgid "Scroll to content"
 msgstr "Scroll to content"
-
-#: app/templates/knowledge-hub.html:52
-msgid "research"
-msgstr "Research"
-
-#: app/templates/knowledge-hub.html:69
-#: app/templates/partials/dashboard/knowledge-hub.html:28
-msgid "courses"
-msgstr "Courses"
-
-#: app/templates/knowledge-hub.html:87
-#: app/templates/partials/dashboard/knowledge-hub.html:60
-msgid "podcasts"
-msgstr "Podcasts"
 
 #: app/templates/not_found.html:14
 msgid "Page Not Found"
@@ -675,10 +670,6 @@ msgstr "Stay informed by <b>subscribing</b> to our newsletter!"
 msgid "subscribe"
 msgstr "Subscribe"
 
-#: app/templates/partials/header.html:27
-msgid "home"
-msgstr "home"
-
 #: app/templates/partials/header.html:34
 msgid "team"
 msgstr "team"
@@ -701,13 +692,17 @@ msgstr "Watch Now"
 msgid "learn more"
 msgstr "Learn more"
 
-#: app/templates/partials/dashboard/knowledge-hub.html:9
-msgid "knowledge_hub"
-msgstr "Knowledge Hub"
+#: app/templates/partials/dashboard/knowledge-hub.html:28
+msgid "courses"
+msgstr "Courses"
 
 #: app/templates/partials/dashboard/knowledge-hub.html:44
 msgid "researches"
 msgstr "Researches"
+
+#: app/templates/partials/dashboard/knowledge-hub.html:60
+msgid "podcasts"
+msgstr "Podcasts"
 
 #: app/templates/partials/dashboard/news-form.html:28
 #: app/templates/partials/dashboard/news-form.html:29
@@ -1589,4 +1584,7 @@ msgstr "Invalid email domain. Please check your email"
 
 #~ msgid "tags"
 #~ msgstr "English Tags"
+
+#~ msgid "research"
+#~ msgstr "Research"
 

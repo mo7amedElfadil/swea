@@ -7,7 +7,7 @@ from flask_babel import Babel
 from flask_babel import gettext as _
 from flask_cors import CORS
 from flask_minify import Minify
-from flask_wtf.csrf import CSRFProtect, generate_csrf
+from flask_wtf.csrf import CSRFProtect
 from html_sanitizer import Sanitizer
 from werkzeug.middleware.proxy_fix import ProxyFix
 

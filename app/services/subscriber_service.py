@@ -133,6 +133,7 @@ class SubscriberService(BaseService):
             True if subscriber was deleted, False if not found.
         """
         try:
+            validate_email(subscriber_email)
             subscriber = self.search_subscribers_by_email(subscriber_email)
 
             if subscriber["total_items"] > 0:
@@ -143,7 +144,7 @@ class SubscriberService(BaseService):
             return False
 
         except Exception as e:
-            raise Exception(f"Failed to delete subscriber: {e}") from e
+            raise Exception(e) from e
 
     def send_broadcast_email(self, form_data: Dict[str, Any]) -> None:
         """

@@ -36,7 +36,7 @@ def validate_email(email: str) -> None:
     email_regex = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
 
     if not re.match(email_regex, email):
-        raise ValueError("Invalid email format")
+        raise ValueError(_("Invalid email format"))
 
     domain = email.split("@")[-1].lower()
 

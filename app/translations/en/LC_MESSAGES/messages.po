@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 05:17+0400\n"
+"POT-Creation-Date: 2025-04-15 08:55+0400\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -167,23 +167,27 @@ msgstr "Failed to subscribe"
 msgid "Thank you for subscribing"
 msgstr "Thank you for subscribing"
 
-#: api/v1/views/subscribers.py:48
-msgid "Failed to unsubscribe"
-msgstr "Failed to unsubscribe"
+#: api/v1/views/subscribers.py:45
+msgid "No email address provided for unsubscribe request."
+msgstr "No email address provided for unsubscribe request."
 
-#: api/v1/views/subscribers.py:52
-msgid "Unsubscribed successfully"
-msgstr "Unsubscribed successfully"
+#: api/v1/views/subscribers.py:56
+msgid "Failed to unsubscribe. Please try again later."
+msgstr "Failed to unsubscribe. Please try again later."
 
-#: api/v1/views/subscribers.py:99
+#: api/v1/views/subscribers.py:64
+msgid "You have been successfully unsubscribed."
+msgstr "You have been successfully unsubscribed."
+
+#: api/v1/views/subscribers.py:133
 msgid "Failed to send broadcast email"
 msgstr "Failed to send broadcast email"
 
-#: api/v1/views/subscribers.py:112
+#: api/v1/views/subscribers.py:146
 msgid "Broadcast email sent successfully"
 msgstr "Broadcast email sent successfully"
 
-#: api/v1/views/subscribers.py:130
+#: api/v1/views/subscribers.py:164
 msgid "Subscribers exported successfully"
 msgstr "Subscribers exported successfully"
 
@@ -519,6 +523,38 @@ msgstr ""
 "At SWEA, our team is the heart of our mission. Composed of passionate "
 "economists, researchers, and advocates, we work collectively to empower "
 "women and promote sustainable development across Sudan and beyond."
+
+#: app/templates/unsubscribe_confirmation.html:1
+msgid "confirm_unsub"
+msgstr "Unsubscribe Confirmation"
+
+#: app/templates/unsubscribe_confirmation.html:48
+msgid "Unsubscribe Successful"
+msgstr "Unsubscribed Successfully"
+
+#: app/templates/unsubscribe_confirmation.html:49
+msgid "Unsubscribe Failed"
+msgstr "Failed to Unsubscribe"
+
+#: app/templates/unsubscribe_confirmation.html:58
+msgid "Email:"
+msgstr "Email:"
+
+#: app/templates/unsubscribe_confirmation.html:70
+msgid "Return to Homepage"
+msgstr "Return to Homepage"
+
+#: app/templates/unsubscribe_confirmation.html:88
+msgid "Resubscribe"
+msgstr "Resubscribe"
+
+#: app/templates/unsubscribe_confirmation.html:96
+msgid "Changed your mind?"
+msgstr "Changed your mind?"
+
+#: app/templates/unsubscribe_confirmation.html:97
+msgid "You can resubscribe anytime through our website."
+msgstr "You can resubscribe anytime through our website."
 
 #: app/templates/macros/carousel.html:7
 msgid "empty research"
@@ -1360,6 +1396,10 @@ msgstr "Search Research"
 #: app/templates/partials/dashboard/knowledge_hub/researches.html:7
 msgid "add_research"
 msgstr "Add Research"
+
+#: utils/email_validation.py:39
+msgid "Invalid email format"
+msgstr "Invalid email format"
 
 #: utils/email_validation.py:44
 msgid "Disposable email addresses are not allowed"

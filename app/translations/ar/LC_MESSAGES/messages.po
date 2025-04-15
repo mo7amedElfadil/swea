@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 05:17+0400\n"
+"POT-Creation-Date: 2025-04-15 08:55+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -168,23 +168,27 @@ msgstr "فشل في الاشتراك"
 msgid "Thank you for subscribing"
 msgstr "شكرًا لك على الاشتراك"
 
-#: api/v1/views/subscribers.py:48
-msgid "Failed to unsubscribe"
-msgstr "فشل في إلغاء الاشتراك"
+#: api/v1/views/subscribers.py:45
+msgid "No email address provided for unsubscribe request."
+msgstr "لا توجد عنوان بريد إلكتروني مقدم لطلب إلغاء الاشتراك."
 
-#: api/v1/views/subscribers.py:52
-msgid "Unsubscribed successfully"
-msgstr "تم إلغاء الاشتراك بنجاح"
+#: api/v1/views/subscribers.py:56
+msgid "Failed to unsubscribe. Please try again later."
+msgstr "فشل في إلغاء الاشتراك. يرجى المحاولة مرة أخرى لاحقًا."
 
-#: api/v1/views/subscribers.py:99
+#: api/v1/views/subscribers.py:64
+msgid "You have been successfully unsubscribed."
+msgstr "لقد تم إلغاء اشتراكك بنجاح."
+
+#: api/v1/views/subscribers.py:133
 msgid "Failed to send broadcast email"
 msgstr "فشل في إرسال البريد الإلكتروني الجماعي"
 
-#: api/v1/views/subscribers.py:112
+#: api/v1/views/subscribers.py:146
 msgid "Broadcast email sent successfully"
 msgstr "تم إرسال البريد الإلكتروني الجماعي بنجاح"
 
-#: api/v1/views/subscribers.py:130
+#: api/v1/views/subscribers.py:164
 msgid "Subscribers exported successfully"
 msgstr "تم تصدير المشتركين بنجاح"
 
@@ -513,6 +517,38 @@ msgstr ""
 "في سويا، يمثل فريقنا جوهر رسالتنا. يتكون الفريق من اقتصاديات و باحثات و "
 "مدافعات شغوفات يعملن معًا لتمكين المرأة وتعزيز التنمية المستدامة في "
 "السودان وخارجها."
+
+#: app/templates/unsubscribe_confirmation.html:1
+msgid "confirm_unsub"
+msgstr "تأكيد إلغاء الاشتراك"
+
+#: app/templates/unsubscribe_confirmation.html:48
+msgid "Unsubscribe Successful"
+msgstr "تم إلغاء الاشتراك بنجاح"
+
+#: app/templates/unsubscribe_confirmation.html:49
+msgid "Unsubscribe Failed"
+msgstr "فشل إلغاء الاشتراك"
+
+#: app/templates/unsubscribe_confirmation.html:58
+msgid "Email:"
+msgstr "البريد الإلكتروني:"
+
+#: app/templates/unsubscribe_confirmation.html:70
+msgid "Return to Homepage"
+msgstr "العودة إلى الصفحة الرئيسية"
+
+#: app/templates/unsubscribe_confirmation.html:88
+msgid "Resubscribe"
+msgstr "إعادة الاشتراك"
+
+#: app/templates/unsubscribe_confirmation.html:96
+msgid "Changed your mind?"
+msgstr "غيرت رأيك؟"
+
+#: app/templates/unsubscribe_confirmation.html:97
+msgid "You can resubscribe anytime through our website."
+msgstr "بإمكانك إعادة الاشتراك في أي وقت من خلال موقعنا."
 
 #: app/templates/macros/carousel.html:7
 msgid "empty research"
@@ -1354,6 +1390,10 @@ msgstr "ابحث عن بحث"
 #: app/templates/partials/dashboard/knowledge_hub/researches.html:7
 msgid "add_research"
 msgstr "إضافة بحث"
+
+#: utils/email_validation.py:39
+msgid "Invalid email format"
+msgstr "تنسيق البريد الإلكتروني غير صالح "
 
 #: utils/email_validation.py:44
 msgid "Disposable email addresses are not allowed"

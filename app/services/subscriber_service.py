@@ -29,6 +29,7 @@ class EmailTemplate(Enum):
     CONFIRMATION = "email_confirmation_email_form.html"
     PASSWORD_RESET = "password_reset_email_form.html"  # nosec
     CONTACT_US = "contact_us_email-form.html"
+    WELCOME = "welcome_email-form.html"
     BROADCAST = "broadcast_email-form.html"
 
 
@@ -85,6 +86,22 @@ class SubscriberService(BaseService):
                         "Email already subscribed"
                     ) from db_error
                 raise db_error
+
+            # Send a welcome email
+            email_config = EmailConfig(
+                service="SWEA",
+                recipient=processed_data["email"],
+                subject="Welcome to SWEA!",
+                template=EmailTemplate.WELCOME.value,
+                data={
+                    "recipient": processed_data["email"].split("@")[0],
+                    "unsubscribe_link": f"{Config.BASE_URL}/unsubscribe?email={processed_data['email']}",
+                },
+            )
+
+            self.queue_service.enqueue_task(
+                "send_email", email_config.__dict__
+            )
 
             return subscriber
 

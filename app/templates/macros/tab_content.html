@@ -54,7 +54,7 @@
     hx-get="/dashboard/{{ title }}"
     hx-target="#tab-content-list"
     hx-swap="innerHTML"
-    hx-indicator="#loading-indicator"
+    role="tab-content"
     class="mb-6 flex flex-col space-y-4 sm:flex-row sm:gap-4 sm:space-y-0"
   >
     <input
@@ -67,6 +67,7 @@
       hx-get="/dashboard/{{ title }}"
       hx-target="#tab-content-list"
       hx-swap="innerHTML"
+      role="tab-content"
     />
 
     {%- if is_projects %}
@@ -77,6 +78,7 @@
       hx-get="/dashboard/{{ title }}"
       hx-target="#tab-content-list"
       hx-swap="innerHTML"
+      role="tab-content"
     >
       <option value="all">{{ _("all_projects") }}</option>
       <option value="ongoing">{{ _("ongoing") }}</option>
@@ -87,5 +89,26 @@
 
   <!-- Content List -->
   <div id="tab-content-list">{% include partials[title] %}</div>
+  <!-- Spinner Template (hidden initially) -->
+  <template id="tab-loading-template">
+      <div class="flex justify-center items-center py-10">
+          <div
+              class="animate-spin rounded-full h-8 w-8 border-4 border-primary-600 border-t-transparent"
+          ></div>
+      </div>
+  </template>
 </div>
+<script>
+    document.addEventListener('htmx:beforeRequest', function (event) {
+        const target = document.querySelector('#tab-content-list')
+        const loaderTemplate = document.querySelector('#tab-loading-template')
+        if (
+            target &&
+            loaderTemplate &&
+            event.detail.elt.closest('[role="tab-content"]')
+        ) {
+            target.innerHTML = loaderTemplate.innerHTML
+        }
+    })
+</script>
 {%- endmacro %}

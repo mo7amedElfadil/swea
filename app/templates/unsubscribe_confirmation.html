@@ -71,11 +71,7 @@ default="Confirm Unsubscribe") }}{% endblock %} {% block content %}
             </a>
 
             {% if success %}
-            <form
-                action="{{ url_for('app_views.subscribe') }}"
-                method="POST"
-                class="w-full"
-            >
+            <form class="w-full">
                 <input type="hidden" name="email" value="{{ email }}" />
                 <button
                     type="submit"

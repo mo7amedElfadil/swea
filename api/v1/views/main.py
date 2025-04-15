@@ -161,7 +161,10 @@ def dashboard():
     )
 
     template, service = tab_info
-    data = get_paginated_data(service, sort="created_at DESC")
+    data = get_paginated_data(
+        service,
+        sort='teams."order"' if service == TeamService else None,
+    )
 
     if not request.args.get("q"):
         return dict(tab="projects", **data)
@@ -182,7 +185,7 @@ def knowledge_hub():
         return dict(tab="researches")
 
     template, service = tab_info
-    data = get_paginated_data(service, page, sort="created_at DESC")
+    data = get_paginated_data(service, page)
 
     if tab_query == "courses":
         data = service().process_courses_data(data)
@@ -203,7 +206,7 @@ def filter_courses():
         request.args.get("locale", "en"),
     )
 
-    courses_data = get_paginated_data(CourseService, sort="created_at DESC")
+    courses_data = get_paginated_data(CourseService)
     courses_data["data"] = [
         course
         for course in courses_data.get("data", [])

@@ -1,4 +1,6 @@
-{% extends "base.html" %} {% block title %}{{ _("confirm_unsub",
+{% extends "base.html" %}
+{% from "macros/spinner.html" import spinner %}
+{% block title %}{{ _("confirm_unsub",
 default="Confirm Unsubscribe") }}{% endblock %} {% block content %}
 <div
     class="flex flex-col items-center justify-center bg-secondary-100 px-4 py-12 sm:px-6 lg:px-8"
@@ -80,8 +82,10 @@ default="Confirm Unsubscribe") }}{% endblock %} {% block content %}
                     hx-trigger="click"
                     hx-include="[name='email']"
                     hx-target="#toast-container"
+                    hx-indicator="#spinner"
                 >
-                    {{ _("Resubscribe") }}
+                    {{ spinner() }}
+                    <span>{{ _("Resubscribe") }}</span>
                 </button>
             </form>
             {% endif %}

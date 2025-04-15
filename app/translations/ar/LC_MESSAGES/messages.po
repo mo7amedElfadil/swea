@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 08:55+0400\n"
+"POT-Creation-Date: 2025-04-15 11:44+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -156,15 +156,15 @@ msgstr "تم تحديث المشروع بنجاح"
 msgid "Project deleted successfully"
 msgstr "تم حذف المشروع بنجاح"
 
-#: api/v1/views/subscribers.py:24
+#: api/v1/views/subscribers.py:28
 msgid "Email already subscribed"
 msgstr "البريد الإلكتروني مشترك بالفعل"
 
-#: api/v1/views/subscribers.py:30
+#: api/v1/views/subscribers.py:33
 msgid "Failed to subscribe"
 msgstr "فشل في الاشتراك"
 
-#: api/v1/views/subscribers.py:34
+#: api/v1/views/subscribers.py:35
 msgid "Thank you for subscribing"
 msgstr "شكرًا لك على الاشتراك"
 
@@ -172,23 +172,23 @@ msgstr "شكرًا لك على الاشتراك"
 msgid "No email address provided for unsubscribe request."
 msgstr "لا توجد عنوان بريد إلكتروني مقدم لطلب إلغاء الاشتراك."
 
-#: api/v1/views/subscribers.py:56
+#: api/v1/views/subscribers.py:54
 msgid "Failed to unsubscribe. Please try again later."
 msgstr "فشل في إلغاء الاشتراك. يرجى المحاولة مرة أخرى لاحقًا."
 
-#: api/v1/views/subscribers.py:64
+#: api/v1/views/subscribers.py:62
 msgid "You have been successfully unsubscribed."
 msgstr "لقد تم إلغاء اشتراكك بنجاح."
 
-#: api/v1/views/subscribers.py:133
+#: api/v1/views/subscribers.py:127
 msgid "Failed to send broadcast email"
 msgstr "فشل في إرسال البريد الإلكتروني الجماعي"
 
-#: api/v1/views/subscribers.py:146
+#: api/v1/views/subscribers.py:140
 msgid "Broadcast email sent successfully"
 msgstr "تم إرسال البريد الإلكتروني الجماعي بنجاح"
 
-#: api/v1/views/subscribers.py:164
+#: api/v1/views/subscribers.py:155
 msgid "Subscribers exported successfully"
 msgstr "تم تصدير المشتركين بنجاح"
 
@@ -407,7 +407,7 @@ msgstr "لديك سؤال أو إستفسار؟"
 msgid "form name"
 msgstr "أدخل اسمك"
 
-#: app/templates/index.html:115 app/templates/partials/footer.html:15
+#: app/templates/index.html:115 app/templates/partials/footer.html:21
 msgid "form email"
 msgstr "أدخل بريدك الإلكتروني"
 
@@ -518,23 +518,23 @@ msgstr ""
 "مدافعات شغوفات يعملن معًا لتمكين المرأة وتعزيز التنمية المستدامة في "
 "السودان وخارجها."
 
-#: app/templates/unsubscribe_confirmation.html:1
+#: app/templates/unsubscribe_confirmation.html:3
 msgid "confirm_unsub"
 msgstr "تأكيد إلغاء الاشتراك"
 
-#: app/templates/unsubscribe_confirmation.html:48
+#: app/templates/unsubscribe_confirmation.html:50
 msgid "Unsubscribe Successful"
 msgstr "تم إلغاء الاشتراك بنجاح"
 
-#: app/templates/unsubscribe_confirmation.html:49
+#: app/templates/unsubscribe_confirmation.html:51
 msgid "Unsubscribe Failed"
 msgstr "فشل إلغاء الاشتراك"
 
-#: app/templates/unsubscribe_confirmation.html:58
+#: app/templates/unsubscribe_confirmation.html:60
 msgid "Email:"
 msgstr "البريد الإلكتروني:"
 
-#: app/templates/unsubscribe_confirmation.html:70
+#: app/templates/unsubscribe_confirmation.html:72
 msgid "Return to Homepage"
 msgstr "العودة إلى الصفحة الرئيسية"
 
@@ -700,16 +700,16 @@ msgstr "أبحث"
 msgid "Export to Excel"
 msgstr "تصدير إلى Excel"
 
-#: app/templates/macros/tab_content.html:81
+#: app/templates/macros/tab_content.html:83
 msgid "all_projects"
 msgstr "كل المشاريع"
 
-#: app/templates/macros/tab_content.html:82
+#: app/templates/macros/tab_content.html:84
 #: app/templates/partials/dashboard/project-form.html:46
 msgid "ongoing"
 msgstr "جاري"
 
-#: app/templates/macros/tab_content.html:83
+#: app/templates/macros/tab_content.html:85
 msgid "completed_projects"
 msgstr "المشاريع المكتملة"
 
@@ -717,7 +717,7 @@ msgstr "المشاريع المكتملة"
 msgid "footer caption"
 msgstr "ابقَ على اطلاع من خلال <b>الاشتراك</b> في نشرتنا الإخبارية!"
 
-#: app/templates/partials/footer.html:19
+#: app/templates/partials/footer.html:27
 msgid "subscribe"
 msgstr "اشترك"
 

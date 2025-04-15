@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 08:55+0400\n"
+"POT-Creation-Date: 2025-04-15 11:44+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -154,15 +154,15 @@ msgstr ""
 msgid "Project deleted successfully"
 msgstr ""
 
-#: api/v1/views/subscribers.py:24
+#: api/v1/views/subscribers.py:28
 msgid "Email already subscribed"
 msgstr ""
 
-#: api/v1/views/subscribers.py:30
+#: api/v1/views/subscribers.py:33
 msgid "Failed to subscribe"
 msgstr ""
 
-#: api/v1/views/subscribers.py:34
+#: api/v1/views/subscribers.py:35
 msgid "Thank you for subscribing"
 msgstr ""
 
@@ -170,23 +170,23 @@ msgstr ""
 msgid "No email address provided for unsubscribe request."
 msgstr ""
 
-#: api/v1/views/subscribers.py:56
+#: api/v1/views/subscribers.py:54
 msgid "Failed to unsubscribe. Please try again later."
 msgstr ""
 
-#: api/v1/views/subscribers.py:64
+#: api/v1/views/subscribers.py:62
 msgid "You have been successfully unsubscribed."
 msgstr ""
 
-#: api/v1/views/subscribers.py:133
+#: api/v1/views/subscribers.py:127
 msgid "Failed to send broadcast email"
 msgstr ""
 
-#: api/v1/views/subscribers.py:146
+#: api/v1/views/subscribers.py:140
 msgid "Broadcast email sent successfully"
 msgstr ""
 
-#: api/v1/views/subscribers.py:164
+#: api/v1/views/subscribers.py:155
 msgid "Subscribers exported successfully"
 msgstr ""
 
@@ -383,7 +383,7 @@ msgstr ""
 msgid "form name"
 msgstr ""
 
-#: app/templates/index.html:115 app/templates/partials/footer.html:15
+#: app/templates/index.html:115 app/templates/partials/footer.html:21
 msgid "form email"
 msgstr ""
 
@@ -487,23 +487,23 @@ msgstr ""
 msgid "team_description"
 msgstr ""
 
-#: app/templates/unsubscribe_confirmation.html:1
+#: app/templates/unsubscribe_confirmation.html:3
 msgid "confirm_unsub"
 msgstr ""
 
-#: app/templates/unsubscribe_confirmation.html:48
+#: app/templates/unsubscribe_confirmation.html:50
 msgid "Unsubscribe Successful"
 msgstr ""
 
-#: app/templates/unsubscribe_confirmation.html:49
+#: app/templates/unsubscribe_confirmation.html:51
 msgid "Unsubscribe Failed"
 msgstr ""
 
-#: app/templates/unsubscribe_confirmation.html:58
+#: app/templates/unsubscribe_confirmation.html:60
 msgid "Email:"
 msgstr ""
 
-#: app/templates/unsubscribe_confirmation.html:70
+#: app/templates/unsubscribe_confirmation.html:72
 msgid "Return to Homepage"
 msgstr ""
 
@@ -669,16 +669,16 @@ msgstr ""
 msgid "Export to Excel"
 msgstr ""
 
-#: app/templates/macros/tab_content.html:81
+#: app/templates/macros/tab_content.html:83
 msgid "all_projects"
 msgstr ""
 
-#: app/templates/macros/tab_content.html:82
+#: app/templates/macros/tab_content.html:84
 #: app/templates/partials/dashboard/project-form.html:46
 msgid "ongoing"
 msgstr ""
 
-#: app/templates/macros/tab_content.html:83
+#: app/templates/macros/tab_content.html:85
 msgid "completed_projects"
 msgstr ""
 
@@ -686,7 +686,7 @@ msgstr ""
 msgid "footer caption"
 msgstr ""
 
-#: app/templates/partials/footer.html:19
+#: app/templates/partials/footer.html:27
 msgid "subscribe"
 msgstr ""
 

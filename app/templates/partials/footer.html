@@ -8,17 +8,25 @@
     </a>
     <div class='space-y-2'>
       <p class="{% if locale == 'en' %}text-white{% else %}text-black{% endif %}">{{_("footer caption")}}</p>
-      <form class='flex gap-2 sm:max-w-[50%]' hx-post='/subscribe' hx-trigger='submit'
-        hx-on::after-request="this.reset()" hx-swap='none' hx-indicator="#fspinner">
+      <form class="flex gap-2 sm:max-w-[50%]"
+            hx-post="/subscribe"
+            hx-on::after-request="if (event.detail.successful) this.reset()"
+            hx-target="this"
+            hx-swap="none"
+            hx-indicator="#fspinner">
+
         <input required id="email-input"
-          class='flex-1 w-3/4 px-6 py-2 bg-slate-300 bg-opacity-90 rounded-full sm:w-auto'
-          placeholder='{{_("form email")}}' type="email" name="email" value="" />
-        <button type='submit' class='py-3 px-4 bg-white rounded-full flex items-center justify-center'>
-          {{spinner(id="fspinner")}}
-          <span>
-            {{_("subscribe")}}
-          </span>
+               name="email"
+               type="email"
+               placeholder="{{ _('form email') }}"
+               class="flex-1 w-3/4 px-6 py-2 bg-slate-300 bg-opacity-90 rounded-full sm:w-auto" />
+
+        <button type="submit"
+                class="py-3 px-4 bg-white rounded-full flex items-center justify-center">
+          {{ spinner(id="fspinner") }}
+          <span>{{ _('subscribe') }}</span>
         </button>
+
       </form>
     </div>
     <div class='flex items-center gap-2'>

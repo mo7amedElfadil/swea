@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-15 11:44+0400\n"
+"POT-Creation-Date: 2025-04-15 14:21+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -133,7 +133,7 @@ msgstr ""
 msgid "Login successful"
 msgstr ""
 
-#: api/v1/views/main.py:232
+#: api/v1/views/main.py:235
 msgid "Your comment received successfully"
 msgstr ""
 
@@ -154,15 +154,15 @@ msgstr ""
 msgid "Project deleted successfully"
 msgstr ""
 
-#: api/v1/views/subscribers.py:28
+#: api/v1/views/subscribers.py:24
 msgid "Email already subscribed"
 msgstr ""
 
-#: api/v1/views/subscribers.py:33
+#: api/v1/views/subscribers.py:30
 msgid "Failed to subscribe"
 msgstr ""
 
-#: api/v1/views/subscribers.py:35
+#: api/v1/views/subscribers.py:34
 msgid "Thank you for subscribing"
 msgstr ""
 
@@ -170,23 +170,23 @@ msgstr ""
 msgid "No email address provided for unsubscribe request."
 msgstr ""
 
-#: api/v1/views/subscribers.py:54
+#: api/v1/views/subscribers.py:56
 msgid "Failed to unsubscribe. Please try again later."
 msgstr ""
 
-#: api/v1/views/subscribers.py:62
+#: api/v1/views/subscribers.py:64
 msgid "You have been successfully unsubscribed."
 msgstr ""
 
-#: api/v1/views/subscribers.py:127
+#: api/v1/views/subscribers.py:133
 msgid "Failed to send broadcast email"
 msgstr ""
 
-#: api/v1/views/subscribers.py:140
+#: api/v1/views/subscribers.py:146
 msgid "Broadcast email sent successfully"
 msgstr ""
 
-#: api/v1/views/subscribers.py:155
+#: api/v1/views/subscribers.py:164
 msgid "Subscribers exported successfully"
 msgstr ""
 

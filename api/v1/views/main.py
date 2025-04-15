@@ -223,10 +223,8 @@ def contact_us():
     if form_data:
         try:
             ManageContactUs().contact_us_message(form_data)
-        except Exception:
-            return add_toast(
-                make_response("", 400), "error", _("Failed to send message")
-            )
+        except Exception as e:
+            return add_toast(make_response("", 400), "error", str(e))
 
     return add_toast(
         make_response("", 200),

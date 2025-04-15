@@ -60,8 +60,21 @@
 <script>
     // Initialize Quill editors
     function initQuillEditors() {
+        // Custom toolbar
+        var toolbarOptions = [
+            [{ header: [1, 2, 3, 4, false] }],
+            ['bold', 'italic', 'underline'],
+            [{ list: 'ordered' }, { list: 'bullet' }],
+            [{ indent: '+1' }, { indent: '-1' }],
+            [{ align: [] }],
+            ['link'],
+        ]
+
         // Initialize Quill editor
         const quill = new Quill('#quill-email', {
+            modules: {
+                toolbar: toolbarOptions,
+            },
             theme: 'snow',
         })
 

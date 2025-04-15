@@ -117,13 +117,29 @@ if update else '', 'url_redirect': url_redirect if update and url_redirect else
 
       // Initialize Quill editors
       function initQuillEditors() {
+          // Custom toolbar
+          var toolbarOptions = [
+              [{ header: [1, 2, 3, 4, false] }],
+              ['bold', 'italic', 'underline'],
+              [{ list: 'ordered' }, { list: 'bullet' }],
+              [{ indent: '+1' }, { indent: '-1' }],
+              [{ align: [] }],
+              ['link'],
+          ]
+
           // Initialize English Quill editor
           const quillEn = new Quill('#quill-en', {
+              modules:{
+                toolbar: toolbarOptions,
+              },
               theme: 'snow',
           })
 
           // Initialize Arabic Quill editor
           const quillAr = new Quill('#quill-ar', {
+              modules:{
+                toolbar: toolbarOptions,
+              },
               theme: 'snow',
           })
 

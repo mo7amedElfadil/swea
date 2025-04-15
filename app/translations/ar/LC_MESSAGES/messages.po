@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-14 18:38+0400\n"
+"POT-Creation-Date: 2025-04-15 05:17+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -17,9 +17,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.3\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: api/v1/views/__init__.py:61 utils/auth_utils.py:42
+#: api/v1/views/__init__.py:61 utils/auth_utils.py:43
 msgid "Please log in to access this page"
 msgstr "الرجاء تسجيل الدخول للوصول إلى هذه الصفحة"
 
@@ -135,11 +135,7 @@ msgstr "بيانات الاعتماد غير صالحة"
 msgid "Login successful"
 msgstr "تم تسجيل الدخول بنجاح"
 
-#: api/v1/views/main.py:228
-msgid "Failed to send message"
-msgstr "فشل في إرسال الرسالة"
-
-#: api/v1/views/main.py:234
+#: api/v1/views/main.py:232
 msgid "Your comment received successfully"
 msgstr "تم استلام  تعليقك  بنجاح"
 
@@ -220,9 +216,29 @@ msgstr "تم تحديث عضو الفريق بنجاح"
 msgid "Team member deleted successfully"
 msgstr "تم حذف عضو الفريق بنجاح"
 
-#: app/__init__.py:165
+#: app/__init__.py:160
 msgid "Rate limit exceeded"
 msgstr "تجاوز الحد الأقصى"
+
+#: app/services/contact_us.py:100
+msgid "Invalid or empty 'name' field."
+msgstr "حقل الإسم غير صالح أو فارغ."
+
+#: app/services/contact_us.py:103
+msgid "Name must be between 2 and 100 characters"
+msgstr "الإسم يجب أن يكون بين 2 و 100 حرف"
+
+#: app/services/contact_us.py:109
+msgid "Invalid email format in 'email' field."
+msgstr "تنسيق البريد الإلكتروني غير صالح "
+
+#: app/services/contact_us.py:115
+msgid "Invalid or empty 'content' field."
+msgstr "حقل المحتوى غير صالح أو فارغ."
+
+#: app/services/contact_us.py:119
+msgid "Message content must be at least 10 characters long"
+msgstr "محتوى الرسالة يجب أن يكون على الأقل 10 أحرف"
 
 #: app/templates/auth.html:3 app/templates/auth.html:70
 msgid "login"
@@ -523,7 +539,7 @@ msgid "choose"
 msgstr "اختر"
 
 #: app/templates/macros/form_macros.html:107
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:74
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:75
 msgid "Content"
 msgstr "المحتوى"
 
@@ -543,7 +559,7 @@ msgstr "المحتوى بالعربية"
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:87
 #: app/templates/partials/dashboard/knowledge_hub/members-form.html:39
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:90
-#: app/templates/partials/dashboard/project-form.html:73
+#: app/templates/partials/dashboard/project-form.html:74
 #: app/templates/partials/dashboard/team_member-form.html:85
 msgid "current_image"
 msgstr "الصورة الحالية"
@@ -653,7 +669,7 @@ msgid "all_projects"
 msgstr "كل المشاريع"
 
 #: app/templates/macros/tab_content.html:82
-#: app/templates/partials/dashboard/project-form.html:45
+#: app/templates/partials/dashboard/project-form.html:46
 msgid "ongoing"
 msgstr "جاري"
 
@@ -751,14 +767,14 @@ msgstr "وصف الخبر بالعربية"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:100
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:104
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:167
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:168
 #: app/templates/partials/dashboard/news-form.html:102
 msgid "update"
 msgstr "تحديث"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:100
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:104
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:167
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:168
 #: app/templates/partials/dashboard/news-form.html:102
 msgid "create"
 msgstr "إنشاء"
@@ -821,70 +837,70 @@ msgstr "إسم الكاتب بالعربية"
 msgid "author_name_ar_placeholder"
 msgstr "إسم الكاتب بالعربية"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:48
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:49
 #: app/templates/partials/dashboard/project-form.html:39
 msgid "author_email"
 msgstr "عنوان البريد الإلكتروني للكاتب"
 
-#: app/templates/partials/dashboard/project-form.html:41
+#: app/templates/partials/dashboard/project-form.html:42
 msgid "author_email_placeholder"
 msgstr "عنوان البريد الإلكتروني للكاتب"
 
-#: app/templates/partials/dashboard/project-form.html:45
+#: app/templates/partials/dashboard/project-form.html:46
 msgid "completed"
 msgstr "مكتمل"
 
-#: app/templates/partials/dashboard/project-form.html:46
+#: app/templates/partials/dashboard/project-form.html:47
 msgid "status"
 msgstr "الحالة"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:55
-#: app/templates/partials/dashboard/project-form.html:49
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:56
+#: app/templates/partials/dashboard/project-form.html:50
 msgid "date_of_completion"
 msgstr "تاريخ الإنتهاء"
 
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:73
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:127
-#: app/templates/partials/dashboard/project-form.html:55
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:128
+#: app/templates/partials/dashboard/project-form.html:56
 msgid "tags_english"
 msgstr "علامات بالإنجليزية"
 
-#: app/templates/partials/dashboard/project-form.html:57
+#: app/templates/partials/dashboard/project-form.html:58
 msgid "tags_english_placeholder"
 msgstr "علامات بالإنجليزية"
 
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:75
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:129
-#: app/templates/partials/dashboard/project-form.html:58
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:130
+#: app/templates/partials/dashboard/project-form.html:59
 msgid "tags_english_example"
 msgstr "Economy, Women, Empowerment"
 
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:77
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:131
-#: app/templates/partials/dashboard/project-form.html:59
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:132
+#: app/templates/partials/dashboard/project-form.html:60
 msgid "tags_arabic"
 msgstr "علامات بالعربية"
 
-#: app/templates/partials/dashboard/project-form.html:61
+#: app/templates/partials/dashboard/project-form.html:62
 msgid "tags_arabic_placeholder"
 msgstr "علامات بالعربية"
 
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:79
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:132
-#: app/templates/partials/dashboard/project-form.html:62
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:133
+#: app/templates/partials/dashboard/project-form.html:63
 msgid "tags_arabic_example"
 msgstr "اقتصاد، نساء، تمكين"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:58
-#: app/templates/partials/dashboard/project-form.html:76
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:59
+#: app/templates/partials/dashboard/project-form.html:77
 msgid "hero_image"
 msgstr "صورة البطاقة"
 
-#: app/templates/partials/dashboard/project-form.html:110
+#: app/templates/partials/dashboard/project-form.html:111
 msgid "update_project"
 msgstr "تحديث المشروع"
 
-#: app/templates/partials/dashboard/project-form.html:111
+#: app/templates/partials/dashboard/project-form.html:112
 #: app/templates/partials/dashboard/projects.html:5
 msgid "add_project"
 msgstr "إضافة مشروع"
@@ -1093,7 +1109,7 @@ msgstr "العلامات بالإنجليزية"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:72
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:74
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:128
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:129
 msgid "enter_en_tags_comma_separated"
 msgstr "أدخل العلامات بالإنجليزية مفصولة بفاصلة"
 
@@ -1107,7 +1123,7 @@ msgstr "العلامات بالعربية"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:76
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:78
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:131
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:132
 msgid "enter_ar_tags_comma_separated"
 msgstr "أدخل العلامات بالعربية مفصولة بفاصلة"
 
@@ -1303,23 +1319,23 @@ msgstr "إسم الكاتب بالعربية"
 msgid "enter_author_email"
 msgstr "عنوان البريد الإلكتروني للكاتب"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:66
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:67
 msgid "current_hero_image"
 msgstr "الصورة الحالية"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:83
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:84
 msgid "re_en_content"
 msgstr "المحتوى بالإنجليزية"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:100
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:101
 msgid "re_ar_content"
 msgstr "المحتوى بالعربية"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:135
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:136
 msgid "additional_images"
 msgstr "صور إضافية"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:148
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:149
 msgid "confirm_delete_image"
 msgstr "هل أنت متأكد من حذف الصورة؟"
 
@@ -1588,4 +1604,7 @@ msgstr "نطاق البريد الإلكتروني غير صالح. يرجى ا�
 
 #~ msgid "research"
 #~ msgstr "بحوث"
+
+#~ msgid "Failed to send message"
+#~ msgstr "فشل في إرسال الرسالة"
 

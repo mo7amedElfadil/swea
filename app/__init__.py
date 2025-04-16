@@ -140,6 +140,7 @@ def register_context_processors(app):
 
     @app.context_processor
     def inject_cache_id():
+        """Inject cache ID into templates."""
         return {"cache_id": Config.CACHE_VERSION}
 
 

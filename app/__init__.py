@@ -172,7 +172,9 @@ def register_after_request(app):
     @app.after_request
     def set_security_headers(response):
         """Set security headers for all responses."""
-        response.headers["X-Frame-Options"] = "DENY"  # Prevent clickjacking
+        response.headers["X-Frame-Options"] = (
+            "SAMEORIGIN"  # Prevent clickjacking
+        )
         return response
 
 

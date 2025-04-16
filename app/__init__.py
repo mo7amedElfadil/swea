@@ -138,6 +138,10 @@ def register_context_processors(app):
         """Inject current year into templates."""
         return {"current_year": datetime.now().year}
 
+    @app.context_processor
+    def inject_cache_id():
+        return {"cache_id": Config.CACHE_VERSION}
+
 
 def register_error_handlers(app):
     """Register error handlers."""

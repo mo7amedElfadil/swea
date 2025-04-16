@@ -30,7 +30,7 @@
     </button>
 </li>
 <script type="module" charset="utf-8">
-    import { MODAL } from "{{url_for('static', filename='js/modal.js')}}"
+    import { MODAL } from "{{url_for('static', filename='js/modal.js', v=cache_id)}}"
     var menuBtn = document.querySelector('[role="menubutton"]')
     var menuList = document.querySelector('[role="menu"]')
     var selectedItems = []

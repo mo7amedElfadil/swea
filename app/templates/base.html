@@ -65,17 +65,17 @@
 
         <link
             rel="stylesheet"
-            href="{{ url_for('static', filename='css/dist/output.css') }}"
+            href="{{ url_for('static', filename='css/dist/output.css', v=cache_id) }}"
         />
         {% block extra_style %} {% endblock %}
         <!-- Canonical URL for avoiding duplicate content issues -->
         <link rel="canonical" href="https://aidluminate.pro" />
 
         <!-- JS Libraries (HTMX)  -->
-        <script src="{{ url_for('static', filename='js/htmx.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/htmx.min.js', v=cache_id) }}"></script>
 
         <!-- Toast Manager -->
-        <script src="{{ url_for('static', filename='js/toast-manager.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/toast-manager.js', v=cache_id) }}"></script>
     </head>
     <body
         class="flex flex-col bg-secondary-100 {% if locale == 'ar' %}font-primary{%else%}font-secondary{%endif%}"
@@ -108,7 +108,7 @@
             // Update the URL without reloading the page
             window.history.replaceState(null, null, `${url.pathname}?${searchParams.toString()}`);
         </script>
-        <script src="{{url_for('static',filename='js/base.js')}}"></script>
+        <script src="{{url_for('static',filename='js/base.js', v=cache_id)}}"></script>
         {% block extra_scripts %} {% endblock %}
     </body>
 </html>

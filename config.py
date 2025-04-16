@@ -6,6 +6,7 @@ from typing import Final, List
 
 import redis
 from dotenv import load_dotenv
+from git import InvalidGitRepositoryError, Repo
 
 # Base directory
 BASE_DIR: Final[Path] = Path(__file__).parent.resolve()
@@ -103,6 +104,17 @@ class Config:
     CACHE_REDIS_URL = getenv("CACHE_REDIS_URL")
     CACHE_KEY_PREFIX = "swea_"
     CACHE_DEFAULT_TIMEOUT = 86400  # 1 day
+
+    @staticmethod
+    def get_git_commit_hash():
+        """Get the short hash of the latest git commit."""
+        try:
+            repo = Repo(Path(__file__).resolve().parent)
+            return repo.head.commit.hexsha[:7]
+        except (InvalidGitRepositoryError, Exception):
+            return "dev"
+
+    CACHE_VERSION = get_git_commit_hash.__func__()
 
     # Rate limiter configuration
     RATE_LIMITS = {

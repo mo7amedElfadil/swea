@@ -61,5 +61,5 @@
 
 {% block extra_scripts %}
 <!-- Include the dashboard script -->
-<script charset="utf-8" src="{{ url_for('static', filename='js/dashboard.js') }}" defer></script>
+<script charset="utf-8" src="{{ url_for('static', filename='js/dashboard.js', v=cache_id) }}" defer></script>
 {% endblock %}

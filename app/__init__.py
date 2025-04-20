@@ -2,7 +2,14 @@
 
 from datetime import datetime
 
-from flask import Flask, make_response, render_template, request, session
+from flask import (
+    Flask,
+    Response,
+    make_response,
+    render_template,
+    request,
+    session,
+)
 from flask_babel import Babel
 from flask_babel import gettext as _
 from flask_cors import CORS
@@ -159,11 +166,10 @@ def register_error_handlers(app):
         )
 
     @app.errorhandler(429)
-    def rate_limit_exceeded(_):
+    def rate_limit_exceeded(e) -> Response:
         """Handle rate limit errors."""
-        return add_toast(
-            make_response("", 429), "error", _("Rate limit exceeded")
-        )
+        response = make_response("", 429)
+        return add_toast(response, "error", _("Rate limit exceeded"))
 
 
 def register_after_request(app):

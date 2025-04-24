@@ -1,12 +1,13 @@
-{% extends "base.html" %}
-{% block title %}{{ _("projects", default="Projects") }} | {{ project.title[locale] }}{% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title %}{{ _("projects", default="Projects")
+}} | {{ project.title[locale] }}{% endblock %} {% block content %}
 <div class="container mx-auto px-4 mt-16 md:mt-0">
     <!-- Hero Section -->
     <div class="relative mb-8">
         <!-- Hero Image -->
         {% if project.hero_image %}
-        <div class="w-full aspect-[16/9] min-h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden">
+        <div
+            class="w-full aspect-[16/9] min-h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden"
+        >
             <img
                 src="{{ project.hero_image|file_url }}"
                 alt="{{ project.title[locale] }}"
@@ -20,35 +21,42 @@
 
         <!-- Blurred Overlay -->
         <div
-            class="
-                lg:absolute lg:inset-x-0 lg:bottom-0
-                bg-black bg-opacity-50 backdrop-blur-lg
-                p-4 sm:p-6
-            "
+            class="lg:absolute lg:inset-x-0 lg:bottom-0 bg-black bg-opacity-50 backdrop-blur-lg p-4 sm:p-6"
         >
             <div class="max-w-4xl mx-auto text-white">
-                <h1 class="text-2xl sm:text-4xl font-bold mb-2 sm:mb-4 text-center sm:text-left">
+                <h1
+                    class="text-2xl sm:text-4xl font-bold mb-2 sm:mb-4 text-center sm:text-left"
+                >
                     {{ project.title[locale] }}
                 </h1>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
                     <div>
                         <p class="text-sm sm:text-lg">
-                            <span class="font-semibold">{{ _('Author') }}:</span>
+                            <span class="font-semibold">
+                                {{ _('Author') }}:
+                            </span>
                             {{ project.author.name[locale] }}
                         </p>
                         <p class="text-sm sm:text-lg">
-                            <span class="font-semibold">{{ _('Status') }}:</span>
+                            <span class="font-semibold">
+                                {{ _('Status') }}:
+                            </span>
                             <span class="capitalize">{{ project.status }}</span>
                         </p>
                     </div>
                     <div>
                         <p class="text-sm sm:text-lg">
-                            <span class="font-semibold">{{ _('Completion Date') }}:</span>
-                            {{ project.date_of_completion.strftime('%Y-%m-%d') if project.date_of_completion else _('Ongoing') }}
+                            <span class="font-semibold">
+                                {{ _('Completion Date') }}:
+                            </span>
+                            {{ project.date_of_completion.strftime('%Y-%m-%d')
+                            if project.date_of_completion else _('Ongoing') }}
                         </p>
                         <div class="flex flex-wrap gap-2 mt-2">
                             {% for tag in project.tags[locale].split(',') %}
-                            <span class="bg-primary-500 text-white px-3 py-1 rounded-full text-xs sm:text-sm">
+                            <span
+                                class="bg-primary-500 text-white px-3 py-1 rounded-full text-xs sm:text-sm"
+                            >
                                 {{ tag }}
                             </span>
                             {% endfor %}
@@ -58,12 +66,28 @@
             </div>
 
             <!-- Action Buttons -->
-            <div class="flex justify-center sm:justify-end gap-2 mt-4 sm:mt-6 print:hidden">
-                <button id="shareButton" class="flex items-center gap-2 hover:bg-primary-600 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-colors">
-                    <img src="{{ url_for('static', filename='icons/share.svg') }}" alt="Share" class="h-5 sm:h-6 w-5 sm:w-6" />
+            <div
+                class="flex justify-center sm:justify-end gap-2 mt-4 sm:mt-6 print:hidden"
+            >
+                <button
+                    id="shareButton"
+                    class="flex items-center gap-2 hover:bg-primary-600 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-colors"
+                >
+                    <img
+                        src="{{ url_for('static', filename='icons/share.svg') }}"
+                        alt="Share"
+                        class="h-5 sm:h-6 w-5 sm:w-6"
+                    />
                 </button>
-                <button id="printButton" class="flex items-center gap-2 hover:bg-secondary-600 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-colors">
-                    <img src="{{ url_for('static', filename='icons/printer.svg') }}" alt="Print" class="h-5 sm:h-6 w-5 sm:w-6" />
+                <button
+                    id="printButton"
+                    class="flex items-center gap-2 hover:bg-secondary-600 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-colors"
+                >
+                    <img
+                        src="{{ url_for('static', filename='icons/printer.svg') }}"
+                        alt="Print"
+                        class="h-5 sm:h-6 w-5 sm:w-6"
+                    />
                 </button>
             </div>
         </div>
@@ -72,29 +96,13 @@
     <!-- Project Content -->
     <div class="mb-12">
         {% if project.content %}
-            {% for section in project.content %}
-                {% set is_even = loop.index0 % 2 == 0 %}
-                {% set is_reversed = (is_even and locale == 'ar') or (not is_even and locale == 'en') %}
-
-                <div class="flex flex-col md:flex-row items-center gap-8 mb-16 {% if is_reversed %}md:flex-row-reverse{% endif %}">
-                    <div class="flex-1 prose max-w-none">
-                        <p class="text-secondary-700 text-lg leading-relaxed">{{ section[locale] }}</p>
-                    </div>
-
-                    {% if section.image %}
-                    <div class="flex-1 mt-6 md:mt-0">
-                        <div class="rounded-lg overflow-hidden shadow-lg">
-                            <img
-                                src="{{ section.image|file_url }}"
-                                alt="{{ project.title[locale] }}"
-                                onerror="this.src='https://i.imgur.com/hfM1J8s.png'"
-                                class="w-full h-auto object-cover aspect-video"
-                            />
-                        </div>
-                    </div>
-                    {% endif %}
-                </div>
-            {% endfor %}
+        <div class="flex flex-col md:flex-row items-center gap-8 mb-16">
+            <div class="flex-1 prose max-w-none">
+                <p class="text-secondary-700 text-lg leading-relaxed">
+                    {{ project.content[0][locale] }}
+                </p>
+            </div>
+        </div>
         {% endif %}
     </div>
 
@@ -107,12 +115,18 @@
 
         <div class="space-y-8">
             {% for testimonial in project.testimonials %}
-            <div class="bg-white p-6 rounded-lg shadow-md transition-transform hover:shadow-lg hover:-translate-y-1">
+            <div
+                class="bg-white p-6 rounded-lg shadow-md transition-transform hover:shadow-lg hover:-translate-y-1"
+            >
                 <div class="flex flex-col md:flex-row gap-6">
                     <!-- Author Info Column -->
-                    <div class="md:w-1/4 flex flex-col items-center text-center">
+                    <div
+                        class="md:w-1/4 flex flex-col items-center text-center"
+                    >
                         {% if testimonial.image %}
-                        <div class="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-primary-200">
+                        <div
+                            class="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-primary-200"
+                        >
                             <img
                                 src="{{ testimonial.image|file_url }}"
                                 alt="{{ testimonial.author }}"
@@ -121,8 +135,12 @@
                             />
                         </div>
                         {% else %}
-                        <div class="w-24 h-24 rounded-full mb-4 bg-primary-100 flex items-center justify-center">
-                            <span class="text-primary-500 text-2xl font-bold">{{ testimonial.author[:1] }}</span>
+                        <div
+                            class="w-24 h-24 rounded-full mb-4 bg-primary-100 flex items-center justify-center"
+                        >
+                            <span class="text-primary-500 text-2xl font-bold">
+                                {{ testimonial.author[:1] }}
+                            </span>
                         </div>
                         {% endif %}
 
@@ -139,7 +157,9 @@
                     <!-- Testimonial Text Column -->
                     <div class="md:w-3/4 flex items-center">
                         <div class="relative">
-                            <p class="text-secondary-700 italic leading-relaxed text-lg">
+                            <p
+                                class="text-secondary-700 italic leading-relaxed text-lg"
+                            >
                                 "{{ testimonial[locale] }}"
                             </p>
                         </div>
@@ -152,41 +172,44 @@
     {% endif %}
 </div>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var shareButton = document.getElementById('shareButton');
-    var printButton = document.getElementById('printButton');
+    document.addEventListener('DOMContentLoaded', function () {
+        var shareButton = document.getElementById('shareButton')
+        var printButton = document.getElementById('printButton')
 
-    shareButton.addEventListener('click', function() {
-        const url = window.location.href;
+        shareButton.addEventListener('click', function () {
+            const url = window.location.href
 
-        // Use Clipboard API to copy the URL
-        navigator.clipboard.writeText(url).then(function() {
-            window.toastManager.showToast({
-                type: 'success',
-                message: '{{ _("Link copied to clipboard!") }}',
-                duration: 3000
-            });
-        }).catch(function() {
-            // Fallback for older browsers
-            const tempInput = document.createElement('input');
-            document.body.appendChild(tempInput);
-            tempInput.value = url;
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
+            // Use Clipboard API to copy the URL
+            navigator.clipboard
+                .writeText(url)
+                .then(function () {
+                    window.toastManager.showToast({
+                        type: 'success',
+                        message: '{{ _("Link copied to clipboard!") }}',
+                        duration: 3000,
+                    })
+                })
+                .catch(function () {
+                    // Fallback for older browsers
+                    const tempInput = document.createElement('input')
+                    document.body.appendChild(tempInput)
+                    tempInput.value = url
+                    tempInput.select()
+                    document.execCommand('copy')
+                    document.body.removeChild(tempInput)
 
-            window.toastManager.showToast({
-                type: 'success',
-                message: '{{ _("Link copied to clipboard!") }}',
-                duration: 3000
-            });
-        });
-    });
+                    window.toastManager.showToast({
+                        type: 'success',
+                        message: '{{ _("Link copied to clipboard!") }}',
+                        duration: 3000,
+                    })
+                })
+        })
 
-    // Print button functionality
-    printButton.addEventListener('click', function() {
-        window.print();
-    });
-});
+        // Print button functionality
+        printButton.addEventListener('click', function () {
+            window.print()
+        })
+    })
 </script>
 {% endblock %}

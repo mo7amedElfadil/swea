@@ -1,5 +1,5 @@
 {% macro input(id='', name='', type='text', placeholder='', label='', value='',
-accept='', required=True)%}
+accept='', required=True, pattern='', title='') %}
 <div>
     <label
         for="{{id}}"
@@ -30,6 +30,8 @@ accept='', required=True)%}
             placeholder="{{ placeholder }}"
             value="{{ value }}"
             accept="{{ accept }}"
+            {% if pattern %}pattern="{{pattern}}"{% endif %}
+            {% if title %}title="{{title}}"{% endif %}
             class="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-primary-500 focus:border-primary-500"
         />
     </div>

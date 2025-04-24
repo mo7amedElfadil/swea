@@ -57,9 +57,6 @@ class ResearchSchema(Schema):
                 "Author must contain a 'name' with at least one language."
             )
 
-        if "email" not in value or not isinstance(value["email"], str):
-            raise ValidationError("Author must contain a valid 'email'.")
-
     @validates("tags")
     def validate_tags(self, value: Dict[str, List[str]]):
         """Validate that tags are provided for at least one language."""

@@ -1,22 +1,24 @@
-"""Module that defines `create_app` function to create the Flask app instance"""
+"""Flask application factory with configuration and extensions initialization."""
+
+from datetime import datetime
 
 from flask import (
     Flask,
+    Response,
     make_response,
     render_template,
     request,
-    send_from_directory,
+    session,
 )
-from flask import session
-from flask import session as flask_session
 from flask_babel import Babel
 from flask_babel import gettext as _
 from flask_cors import CORS
 from flask_minify import Minify
+from flask_wtf.csrf import CSRFProtect
 from html_sanitizer import Sanitizer
 from werkzeug.middleware.proxy_fix import ProxyFix
 
-from api.v1.views import bp as app_view
+from api.v1.views import bp as api_blueprint
 from app.extensions import (
     db,
     get_file_url,
@@ -29,43 +31,36 @@ from config import Config
 from utils.rate_limiter import init_limiter
 from utils.toast_notify import add_toast
 
-# Sanitizer configuration (you can customize it as per your needs)
-sanitizer = Sanitizer(
-    {
-        "tags": {
-            "img",
-            "b",
-            "i",
-            "u",
-            "em",
-            "strong",
-            "a",
-            "p",
-            "ul",
-            "li",
-            "br",
-            "div",
-            "span",
-        },
-        "attributes": {"a": ("href", "title"), "img": ("src", "alt")},
-        "empty": {"a", "br"},  # Tags that can be self-closing
-    }
-)
+
+def create_sanitizer():
+    """Create and configure HTML sanitizer."""
+    return Sanitizer(
+        {
+            "tags": {
+                "img",
+                "b",
+                "i",
+                "u",
+                "em",
+                "strong",
+                "a",
+                "p",
+                "ul",
+                "li",
+                "br",
+                "div",
+                "span",
+            },
+            "attributes": {"a": ("href", "title"), "img": ("src", "alt")},
+            "empty": {"a", "br"},  # Tags that can be self-closing
+        }
+    )
 
 
-def create_app(config_class=Config):
-    """Creating a Flask Application Factory,
-    and initializing the app extensions.
-    Args:
-        config_class (Config, optional): The configuration class to use(env variables)
-    """
-    app = Flask(__name__, static_folder="static")
-    app.config.from_object(config_class)
-
-    # Initialize Flask-SQLAlchemy
+def register_extensions(app):
+    """Register Flask extensions with the application."""
+    # Database
     db.init_app(app)
-
-    # Initialize Flask-Migrate
     migrate.init_app(app, db)
 
     # Import models to create tables
@@ -84,24 +79,28 @@ def create_app(config_class=Config):
         User,
     )
 
-    app.url_map.strict_slashes = False
-    app.wsgi_app = ProxyFix(
-        app.wsgi_app, x_proto=1, x_host=1, x_port=1, x_prefix=1
-    )
+    # i18n
+    Babel(app, locale_selector=get_locale)
 
-    # Initialize Flask-Babel (i18n)
-    babel = Babel(app, locale_selector=get_locale)
-
-    # Initialize Flask-Session
+    # Session and caching
     init_session(app)
-
-    # Initialize Flask-Caching
     init_cache(app)
 
-    # Register blueprints here
-    app.register_blueprint(app_view)
+    # Security
+    CSRFProtect(app)
+    init_limiter(app)
 
-    # Enable CORS for only the base URL
+    # Performance
+    Minify(app=app, html=True, js=True, cssless=True)
+
+
+def register_blueprints(app):
+    """Register Flask blueprints."""
+    app.register_blueprint(api_blueprint)
+
+
+def configure_cors(app):
+    """Configure CORS for the application."""
     CORS(
         app,
         origins=Config.BASE_URL,
@@ -111,35 +110,54 @@ def create_app(config_class=Config):
         max_age=3600,
     )
 
-    # initializing minify for html, js and cssless
-    Minify(app=app, html=True, js=True, cssless=True)
 
-    # Initialize the rate limiter
-    init_limiter(app)
+def register_template_filters(app, sanitizer):
+    """Register custom template filters."""
+
+    @app.template_filter("truncate_html")
+    def truncate_html_filter(html_content, length=200):
+        """Truncate HTML content while maintaining valid structure."""
+        truncated = sanitizer.sanitize(html_content[:length])
+        return (
+            truncated + "..." if len(html_content) >= length else html_content
+        )
+
+    @app.template_filter("file_url")
+    def file_url_filter(file_path):
+        """Convert stored file paths to public URLs."""
+        return get_file_url(file_path)
+
+
+def register_context_processors(app):
+    """Register template context processors."""
 
     @app.context_processor
     def inject_locale():
-        """Inject the locale into each rendered template"""
-        lang = request.args.get("lang", None)
+        """Inject the locale into each rendered template."""
+        lang = request.args.get("lang")
         if lang and lang in Config.BABEL_SUPPORTED_LOCALES:
             session["lang"] = lang
-            return dict(locale=lang)
-        return dict(locale=get_locale())
+            return {"locale": lang}
+        return {"locale": get_locale()}
 
-    @app.after_request
-    def set_headers(response):
-        """Set headers for all responses"""
-        # X-FRAME-OPTIONS to prevent clickjacking
-        response.headers["X-Frame-Options"] = "DENY"
-        return response
+    @app.context_processor
+    def inject_current_year():
+        """Inject current year into templates."""
+        return {"current_year": datetime.now().year}
+
+    @app.context_processor
+    def inject_cache_id():
+        """Inject cache ID into templates."""
+        return {"cache_id": Config.CACHE_VERSION}
+
+
+def register_error_handlers(app):
+    """Register error handlers."""
 
     @app.errorhandler(404)
-    def page_not_found(e):
-        """Handle 404 errors"""
-        is_authenticated = False
-        if "user" in flask_session:
-            is_authenticated = True
-
+    def page_not_found(_):
+        """Handle 404 errors."""
+        is_authenticated = "user" in session
         return (
             render_template(
                 "not_found.html", is_authenticated=is_authenticated
@@ -147,26 +165,67 @@ def create_app(config_class=Config):
             404,
         )
 
-    @app.template_filter("truncate_html")
-    def truncate_html_filter(html_content, length=200):
-        # Clean the HTML content while maintaining valid structure
-        truncated = sanitizer.sanitize(html_content[:length])
-
-        # Ensure we add ellipsis only if content is actually truncated
-        return (
-            truncated + "..." if len(html_content) >= length else html_content
-        )
-
-    @app.template_filter("file_url")
-    def file_url_filter(file_path):
-        """Convert the stored file paths to buplic URLs"""
-        return get_file_url(file_path)
-
     @app.errorhandler(429)
-    def rate_limit_exceeded(e):
-        """Handle rate limit errors"""
-        return add_toast(
-            make_response("", 429), "error", _("Rate limit exceeded")
+    def rate_limit_exceeded(e) -> Response:
+        """Handle rate limit errors."""
+        response = make_response("", 429)
+        return add_toast(response, "error", _("Rate limit exceeded"))
+
+
+def register_after_request(app):
+    """Register after request handlers."""
+
+    @app.after_request
+    def set_security_headers(response):
+        """Set security headers for all responses."""
+        response.headers["X-Frame-Options"] = (
+            "SAMEORIGIN"  # Prevent clickjacking
         )
+        return response
+
+
+def create_app(config_class=Config):
+    """Create and configure the Flask application.
+
+    Args:
+        config_class: The configuration class to use (defaults to Config)
+
+    Returns:
+        Flask: The configured Flask application
+    """
+    app = Flask(__name__, static_folder="static")
+    app.config.from_object(config_class)
+
+    # Proxy configuration
+    app.wsgi_app = ProxyFix(
+        app.wsgi_app, x_proto=1, x_host=1, x_port=1, x_prefix=1
+    )
+
+    # Initialize extensions
+    register_extensions(app)
+
+    # Register blueprints
+    register_blueprints(app)
+
+    # Configure CORS
+    configure_cors(app)
+
+    # Create sanitizer
+    sanitizer = create_sanitizer()
+
+    # Register template filters
+    register_template_filters(app, sanitizer)
+
+    # Register context processors
+    register_context_processors(app)
+
+    # Register error handlers
+    register_error_handlers(app)
+
+    # Register after request handlers
+    register_after_request(app)
+
+    # Configure URL map
+    app.url_map.strict_slashes = False
 
     return app

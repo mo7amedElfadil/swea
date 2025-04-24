@@ -49,7 +49,7 @@ def get_knowledge_hub_data():
     )
 
 
-@bp.route("/researches/<uuid>", methods=["GET"])
+@bp.route("/knowledge-hub/researches/<uuid>", methods=["GET"])
 @response(template_file="research-page.html")
 @cache_response()
 def research_page(uuid):

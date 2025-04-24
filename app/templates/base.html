@@ -5,14 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{% block title %} {% endblock %} | SWEA</title>
 
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <!-- Basic SEO -->
         <meta
             name="description"
-            content="SWEA empowers Women Economists in Africa to achieve their full potential and contribute to the economic development of the continent."
+            content="Sudanese Women Economists Association (SWEA) advances Sudanese women economists' participation in academic and public policy spheres through networking, capacity building, and research opportunities."
         />
         <meta
             name="keywords"
-            content="economic development, women economists, Africa, SWEA, empowerment, women, economists, union, financial, finance"
+            content="Sudanese women economists, economics Sudan, women empowerment Sudan, economic research Sudan, SWEA, جمعية الإقتصاديات السودانيات, women in economics, policy making Sudan"
         />
 
         <!-- Favicons -->
@@ -26,11 +29,11 @@
         <meta property="og:type" content="website" />
         <meta
             property="og:title"
-            content="SWEA: Empowering Women Economists in Africa"
+            content="Sudanese Women Economists Association (SWEA) | جمعية الإقتصاديات السودانيات"
         />
         <meta
             property="og:description"
-            content="SWEA empowers Women Economists in Africa to achieve their full potential and contribute to the economic development of the continent."
+            content="Advancing Sudanese women economists' participation in academic and public policy spheres through networking, skills development, and research opportunities."
         />
         <meta
             property="og:image"
@@ -40,7 +43,7 @@
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:url" content="https://aidluminate.pro" />
-        <meta property="og:site_name" content="SWEA" />
+        <meta property="og:site_name" content="Sudanese Women Economists Association (SWEA)" />
 
         <!-- Twitter Meta Tags -->
         <meta name="twitter:card" content="summary_large_image" />
@@ -48,11 +51,11 @@
         <meta property="twitter:url" content="https://aidluminate.pro" />
         <meta
             name="twitter:title"
-            content="SWEA: Empowering Women Economists in Africa"
+            content="Sudanese Women Economists Association (SWEA) | جمعية الإقتصاديات السودانيات"
         />
         <meta
             name="twitter:description"
-            content="SWEA empowers Women Economists in Africa to achieve their full potential and contribute to the economic development of the continent."
+            content="Building capacities and amplifying contributions of Sudanese women economists in policy and academia."
         />
         <meta
             name="twitter:image"
@@ -62,17 +65,17 @@
 
         <link
             rel="stylesheet"
-            href="{{ url_for('static', filename='css/dist/output.css') }}"
+            href="{{ url_for('static', filename='css/dist/output.css', v=cache_id) }}"
         />
         {% block extra_style %} {% endblock %}
         <!-- Canonical URL for avoiding duplicate content issues -->
         <link rel="canonical" href="https://aidluminate.pro" />
 
         <!-- JS Libraries (HTMX)  -->
-        <script src="{{ url_for('static', filename='js/htmx.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/htmx.min.js', v=cache_id) }}"></script>
 
         <!-- Toast Manager -->
-        <script src="{{ url_for('static', filename='js/toast-manager.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/toast-manager.js', v=cache_id) }}"></script>
     </head>
     <body
         class="flex flex-col bg-secondary-100 {% if locale == 'ar' %}font-primary{%else%}font-secondary{%endif%}"
@@ -105,7 +108,7 @@
             // Update the URL without reloading the page
             window.history.replaceState(null, null, `${url.pathname}?${searchParams.toString()}`);
         </script>
-        <script src="{{url_for('static',filename='js/base.js')}}"></script>
+        <script src="{{url_for('static',filename='js/base.js', v=cache_id)}}"></script>
         {% block extra_scripts %} {% endblock %}
     </body>
 </html>

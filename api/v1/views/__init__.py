@@ -1,8 +1,18 @@
 """Module instantiates Blueprint for all the views"""
 
-from flask import Blueprint, Response
+from flask import (
+    Blueprint,
+    Response,
+    make_response,
+    redirect,
+    request,
+    session,
+    url_for,
+)
+from flask_babel import gettext as _
 
 from app.extensions import generate_robots_txt, generate_sitemap_xml
+from utils.toast_notify import add_toast
 
 bp = Blueprint("app_views", __name__, template_folder="templates")
 
@@ -38,3 +48,17 @@ def robots_txt():
     """Serve the robots.txt file."""
     robots_content = generate_robots_txt()
     return Response(robots_content, mimetype="text/plain")
+
+
+@bp.before_request
+def restrict_dashboard():
+    """Restrict access to dashboard routes if not logged in."""
+    if request.path.startswith("/dashboard") and "user" not in session:
+        if request.headers.get("HX-Request") == "true":
+            response = make_response()
+            response.headers["HX-Redirect"] = url_for("app_views.login")
+            return add_toast(
+                response, "error", _("Please log in to access this page")
+            )
+        else:
+            return redirect(url_for("app_views.login"))

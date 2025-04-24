@@ -6,6 +6,7 @@ from typing import Final, List
 
 import redis
 from dotenv import load_dotenv
+from git import InvalidGitRepositoryError, Repo
 
 # Base directory
 BASE_DIR: Final[Path] = Path(__file__).parent.resolve()
@@ -55,7 +56,6 @@ class Config:
     ALLOWED_FILES_EXTENSIONS = {"pdf", "docx", "pptx", "xlsx", "txt"}
 
     # Application configuration
-    SECRET_KEY = getenv("SECRET_KEY", "you-will-never-guess")
     PREFERRED_URL_SCHEME = getenv("PREFERRED_URL_SCHEME", "https")
     API_KEY = getenv("API_KEY", "you-will-never-guess")
     SECURITY_PASSWORD_SALT = getenv(
@@ -67,14 +67,16 @@ class Config:
     )
 
     # Flask session configuration
+    SECRET_KEY = getenv("SECRET_KEY", "you-will-never-guess")
     SESSION_TYPE = "redis"
+    SESSION_REDIS = redis.from_url(getenv("SESSION_REDIS_URL"))
+    SESSION_COOKIE_NAME = "swea_admin"
     REMEMBER_COOKIE_HTTPONLY = True
     SESSION_PERMANENT = False
     SESSION_USE_SIGNER = True
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SAMESITE = "Lax"
     SESSION_COOKIE_SECURE = True
-    SESSION_REDIS = redis.from_url(getenv("SESSION_REDIS_URL"))
 
     # Email configuration
     SMTP_HOST = getenv("SMTP_HOST")
@@ -102,6 +104,17 @@ class Config:
     CACHE_REDIS_URL = getenv("CACHE_REDIS_URL")
     CACHE_KEY_PREFIX = "swea_"
     CACHE_DEFAULT_TIMEOUT = 86400  # 1 day
+
+    @staticmethod
+    def get_git_commit_hash():
+        """Get the short hash of the latest git commit."""
+        try:
+            repo = Repo(Path(__file__).resolve().parent)
+            return repo.head.commit.hexsha[:7]
+        except (InvalidGitRepositoryError, Exception):
+            return "dev"
+
+    CACHE_VERSION = get_git_commit_hash.__func__()
 
     # Rate limiter configuration
     RATE_LIMITS = {

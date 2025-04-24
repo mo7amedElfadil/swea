@@ -11,11 +11,25 @@ from config import Config
 
 
 def generate_cache_key(func_name: str) -> str:
-    """Generate a cache key using the function name and relevant request arguments."""
-    key_parts = [func_name]
+    """Generate a cache key using:
+    - Function name
+    - HTTP method (GET, POST, etc.)
+    - Path parameters (e.g., UUID in `/projects/<uuid>`)
+    - Query parameters (e.g., `?sort=asc`)
+    """
+    key_parts = [
+        func_name,
+        request.method.lower(),  # Include HTTP method
+    ]
 
-    for k, v in sorted(request.args.items()):  # Sorted for consistency
-        key_parts.append(f"{k}-{v}")
+    # Include path parameters
+    if request.view_args:
+        for k, v in sorted(request.view_args.items()):
+            key_parts.append(f"path_{k}-{v}")
+
+    # Include query parameters
+    for k, v in sorted(request.args.items()):
+        key_parts.append(f"query_{k}-{v}")
 
     return "_".join(key_parts)
 

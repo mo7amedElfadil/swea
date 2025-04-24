@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-09 01:21+0300\n"
+"POT-Creation-Date: 2025-04-15 14:21+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
@@ -17,7 +17,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.16.0\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: api/v1/views/__init__.py:61 utils/auth_utils.py:43
+msgid "Please log in to access this page"
+msgstr "الرجاء تسجيل الدخول للوصول إلى هذه الصفحة"
 
 #: api/v1/views/knowledge_hub.py:37
 msgid "Invalid tab"
@@ -123,19 +127,15 @@ msgstr "حدث خطأ أثناء حذف عضو الفريق"
 msgid "Member deleted successfully"
 msgstr "تم حذف عضو الفريق بنجاح"
 
-#: api/v1/views/main.py:141
+#: api/v1/views/main.py:144
 msgid "Invalid credentials"
 msgstr "بيانات الاعتماد غير صالحة"
 
-#: api/v1/views/main.py:146
+#: api/v1/views/main.py:149
 msgid "Login successful"
 msgstr "تم تسجيل الدخول بنجاح"
 
-#: api/v1/views/main.py:225
-msgid "Failed to send message"
-msgstr "فشل في إرسال الرسالة"
-
-#: api/v1/views/main.py:231
+#: api/v1/views/main.py:235
 msgid "Your comment received successfully"
 msgstr "تم استلام  تعليقك  بنجاح"
 
@@ -168,23 +168,27 @@ msgstr "فشل في الاشتراك"
 msgid "Thank you for subscribing"
 msgstr "شكرًا لك على الاشتراك"
 
-#: api/v1/views/subscribers.py:48
-msgid "Failed to unsubscribe"
-msgstr "فشل في إلغاء الاشتراك"
+#: api/v1/views/subscribers.py:45
+msgid "No email address provided for unsubscribe request."
+msgstr "لا توجد عنوان بريد إلكتروني مقدم لطلب إلغاء الاشتراك."
 
-#: api/v1/views/subscribers.py:52
-msgid "Unsubscribed successfully"
-msgstr "تم إلغاء الاشتراك بنجاح"
+#: api/v1/views/subscribers.py:56
+msgid "Failed to unsubscribe. Please try again later."
+msgstr "فشل في إلغاء الاشتراك. يرجى المحاولة مرة أخرى لاحقًا."
 
-#: api/v1/views/subscribers.py:99
+#: api/v1/views/subscribers.py:64
+msgid "You have been successfully unsubscribed."
+msgstr "لقد تم إلغاء اشتراكك بنجاح."
+
+#: api/v1/views/subscribers.py:133
 msgid "Failed to send broadcast email"
 msgstr "فشل في إرسال البريد الإلكتروني الجماعي"
 
-#: api/v1/views/subscribers.py:112
+#: api/v1/views/subscribers.py:146
 msgid "Broadcast email sent successfully"
 msgstr "تم إرسال البريد الإلكتروني الجماعي بنجاح"
 
-#: api/v1/views/subscribers.py:130
+#: api/v1/views/subscribers.py:164
 msgid "Subscribers exported successfully"
 msgstr "تم تصدير المشتركين بنجاح"
 
@@ -216,11 +220,31 @@ msgstr "تم تحديث عضو الفريق بنجاح"
 msgid "Team member deleted successfully"
 msgstr "تم حذف عضو الفريق بنجاح"
 
-#: app/__init__.py:169
+#: app/__init__.py:160
 msgid "Rate limit exceeded"
 msgstr "تجاوز الحد الأقصى"
 
-#: app/templates/auth.html:3 app/templates/auth.html:58
+#: app/services/contact_us.py:100
+msgid "Invalid or empty 'name' field."
+msgstr "حقل الإسم غير صالح أو فارغ."
+
+#: app/services/contact_us.py:103
+msgid "Name must be between 2 and 100 characters"
+msgstr "الإسم يجب أن يكون بين 2 و 100 حرف"
+
+#: app/services/contact_us.py:109
+msgid "Invalid email format in 'email' field."
+msgstr "تنسيق البريد الإلكتروني غير صالح "
+
+#: app/services/contact_us.py:115
+msgid "Invalid or empty 'content' field."
+msgstr "حقل المحتوى غير صالح أو فارغ."
+
+#: app/services/contact_us.py:119
+msgid "Message content must be at least 10 characters long"
+msgstr "محتوى الرسالة يجب أن يكون على الأقل 10 أحرف"
+
+#: app/templates/auth.html:3 app/templates/auth.html:70
 msgid "login"
 msgstr "تسجيل الدخول"
 
@@ -264,12 +288,16 @@ msgstr "مركز المعرفة"
 msgid "swea_subscribers"
 msgstr "المشتركين"
 
-#: app/templates/dashboard.html:29 app/templates/index.html:109
+#: app/templates/dashboard.html:29 app/templates/index.html:87
 #: app/templates/partials/dashboard/news.html:4
 msgid "news"
 msgstr "الأخبار"
 
-#: app/templates/index.html:12
+#: app/templates/index.html:4 app/templates/partials/header.html:27
+msgid "home"
+msgstr "الرئيسية"
+
+#: app/templates/index.html:11
 msgid "hero title"
 msgstr "تمكين النساء السودانيات العاملات في مجال الاقتصاد"
 
@@ -283,11 +311,11 @@ msgstr ""
 msgid "join us"
 msgstr "إنضم لنا"
 
-#: app/templates/index.html:28
+#: app/templates/index.html:30
 msgid "mission title"
 msgstr "مهمتنا"
 
-#: app/templates/index.html:37
+#: app/templates/index.html:38
 msgid "mission 1 title"
 msgstr "تمكين الاقتصاديين السودانيين"
 
@@ -298,40 +326,40 @@ msgstr ""
 " النساء في مجالات الاقتصاد والتخصصات ذات الصلة، في كل من الأوساط "
 "الأكاديمية والممارسة العملية."
 
-#: app/templates/index.html:43
+#: app/templates/index.html:39
 msgid "mission 2 title"
 msgstr "التطور الوظيفي"
 
-#: app/templates/index.html:44
+#: app/templates/index.html:39
 msgid "mission 2 desc"
 msgstr ""
 "تطوير المسار الوظيفي وبناء القدرات للنساء الشابات العاملات في مجال "
 "الاقتصاد في السودان؛ إلى جانب توفير علاقة مهنية ثنائية الاتجاه بين "
 "الخبراء في المجال والاقتصاديات النساء الطموحات."
 
-#: app/templates/index.html:56
+#: app/templates/index.html:40
 msgid "mission 3 title"
 msgstr "التضامن بين الاقتصاديين"
 
-#: app/templates/index.html:57
+#: app/templates/index.html:40
 msgid "mission 3 desc"
 msgstr ""
 "دعم فرص البحث والنشر للنساء السودانيات العاملات في مجال الاقتصاد؛ داخل "
 "شبكة شاملة وداعمة."
 
-#: app/templates/index.html:62
+#: app/templates/index.html:41
 msgid "mission 4 title"
 msgstr "التواصل مع الشركاء"
 
-#: app/templates/index.html:63
+#: app/templates/index.html:41
 msgid "mission 4 desc"
 msgstr "تبادل المعرفة والخبرات بين الأجيال داخل مجال الاقتصاد"
 
-#: app/templates/index.html:76
+#: app/templates/index.html:57
 msgid "our story"
 msgstr "قصتنا"
 
-#: app/templates/index.html:79
+#: app/templates/index.html:59
 msgid "our story desc"
 msgstr ""
 "تم تأسيس جمعية النساء السودانيات العاملات في مجال الاقتصاد (SWEA) في "
@@ -343,79 +371,74 @@ msgstr ""
 "النساء السودانيات العاملات في مجال الاقتصاد، وتقديم فرص للتواصل، وإثراء "
 "مجال البحوث الاقتصادية بمساهمات أعضائها."
 
-#: app/templates/index.html:84
+#: app/templates/index.html:67
 msgid "our vision"
 msgstr "رؤيتنا"
 
-#: app/templates/index.html:87
+#: app/templates/index.html:70
 msgid "vision 1"
 msgstr ""
 "<b>تعزيز</b> مشاركة النساء السودانيات العاملات في مجال الاقتصاد في "
 "المجالات الأكاديمية والسياسات العامة في السودان"
 
-#: app/templates/index.html:91
+#: app/templates/index.html:71
 msgid "vision 2"
 msgstr "<b>بناء قدرات</b> النساء الشابات في مجال الاقتصاد"
 
-#: app/templates/index.html:95
+#: app/templates/index.html:72
 msgid "vision 3"
 msgstr "<b>تعزيز</b> أصوات النساء السودانيات في البحث والممارسة الاقتصادية."
 
-#: app/templates/index.html:99
+#: app/templates/index.html:73
 msgid "vision 4"
 msgstr ""
 "<b>تعزيز التضامن</b> بين النساء السودانيات العاملات في مجال الاقتصاد عبر "
 "الأجيال."
 
-#: app/templates/index.html:136
+#: app/templates/index.html:106
 msgid "contact us"
 msgstr "تواصل معنا"
 
-#: app/templates/index.html:137
+#: app/templates/index.html:107
 msgid "contact enquiry"
 msgstr "لديك سؤال أو إستفسار؟"
 
-#: app/templates/index.html:147
+#: app/templates/index.html:114
 msgid "form name"
 msgstr "أدخل اسمك"
 
-#: app/templates/index.html:155 app/templates/partials/footer.html:17
+#: app/templates/index.html:115 app/templates/partials/footer.html:21
 msgid "form email"
 msgstr "أدخل بريدك الإلكتروني"
 
-#: app/templates/index.html:162
+#: app/templates/index.html:116
 msgid "form textarea"
 msgstr "تعليق أو رسالة"
 
-#: app/templates/index.html:171
+#: app/templates/index.html:119
 msgid "submit"
 msgstr "إرسال"
 
-#: app/templates/knowledge-hub.html:15
+#: app/templates/knowledge-hub.html:4
+#: app/templates/partials/dashboard/knowledge-hub.html:9
+msgid "knowledge_hub"
+msgstr "مركز المعرفة"
+
+#: app/templates/knowledge-hub.html:11
 msgid "kh hero title 1"
 msgstr "المعرفة"
 
-#: app/templates/knowledge-hub.html:17
+#: app/templates/knowledge-hub.html:12
 msgid "kh hero title 2"
 msgstr "مركز"
 
-#: app/templates/knowledge-hub.html:27
+#: app/templates/knowledge-hub.html:23
 msgid "Scroll to content"
 msgstr "التمرير إلى المحتوى"
 
-#: app/templates/knowledge-hub.html:50
-msgid "research"
-msgstr "بحوث"
-
-#: app/templates/knowledge-hub.html:67
-#: app/templates/partials/dashboard/knowledge-hub.html:28
-msgid "courses"
-msgstr "دورات"
-
-#: app/templates/knowledge-hub.html:85
-#: app/templates/partials/dashboard/knowledge-hub.html:60
-msgid "podcasts"
-msgstr "بودكاست"
+#: app/templates/not_found.html:2
+msgid "404_not_found"
+msgstr "404 - غير موجود"
 
 #: app/templates/not_found.html:14
 msgid "Page Not Found"
@@ -435,43 +458,44 @@ msgstr "العودة إلى الصفحة الرئيسية"
 msgid "Go Back"
 msgstr "العودة للخلف"
 
-#: app/templates/project-page.html:31 app/templates/research-page.html:30
-msgid "Author"
-msgstr "الكاتب"
-
-#: app/templates/project-page.html:37
-msgid "Status"
-msgstr "الحالة"
-
-#: app/templates/project-page.html:45 app/templates/research-page.html:36
-msgid "Completion Date"
-msgstr "تاريخ الإنتهاء"
-
-#: app/templates/project-page.html:47 app/templates/research-page.html:38
-msgid "Ongoing"
-msgstr "جاري"
-
-#: app/templates/project-page.html:107
-msgid "Testimonials"
-msgstr "التوصيات"
-
-#: app/templates/project-page.html:168 app/templates/project-page.html:182
-#: app/templates/research-page.html:77 app/templates/research-page.html:91
-msgid "Link copied to clipboard!"
-msgstr "تم نسخ الرابط إلى الحافظة!"
-
 #: app/templates/partials/dashboard/projects.html:4
-#: app/templates/partials/header.html:41 app/templates/projects.html:11
+#: app/templates/partials/header.html:41 app/templates/project-page.html:2
+#: app/templates/projects.html:2 app/templates/projects.html:12
 msgid "projects"
 msgstr "المشاريع"
 
-#: app/templates/projects.html:13
+#: app/templates/project-page.html:36 app/templates/research-page.html:36
+msgid "Author"
+msgstr "الكاتب"
+
+#: app/templates/project-page.html:40
+msgid "Status"
+msgstr "الحالة"
+
+#: app/templates/project-page.html:46 app/templates/research-page.html:40
+msgid "Completion Date"
+msgstr "تاريخ الإنتهاء"
+
+#: app/templates/project-page.html:47 app/templates/research-page.html:41
+msgid "Ongoing"
+msgstr "جاري"
+
+#: app/templates/project-page.html:105 app/templates/research-page.html:83
+msgid "Testimonials"
+msgstr "التوصيات"
+
+#: app/templates/project-page.html:166 app/templates/project-page.html:180
+#: app/templates/research-page.html:145 app/templates/research-page.html:159
+msgid "Link copied to clipboard!"
+msgstr "تم نسخ الرابط إلى الحافظة!"
+
+#: app/templates/projects.html:14
 msgid "project hero desc"
 msgstr ""
 "استكشِف مشاريعنا المؤثرة التي تهدف إلى تمكين النساء السودانيات العاملات "
 "في مجال الاقتصاد، وتعزيز التعاون، ودفع عجلة التنمية الاقتصادية المستدامة."
 
-#: app/templates/research-page.html:1
+#: app/templates/research-page.html:2
 msgid "Research"
 msgstr "البحوث"
 
@@ -479,7 +503,11 @@ msgstr "البحوث"
 msgid "date"
 msgstr "التاريخ"
 
-#: app/templates/team.html:9
+#: app/templates/team.html:3
+msgid "meet_the_team"
+msgstr "تعرف على فريقنا"
+
+#: app/templates/team.html:11
 msgid "our_exceptional_team"
 msgstr "فريقنا الاستثنائي من القائدات والمبتكرات"
 
@@ -489,6 +517,38 @@ msgstr ""
 "في سويا، يمثل فريقنا جوهر رسالتنا. يتكون الفريق من اقتصاديات و باحثات و "
 "مدافعات شغوفات يعملن معًا لتمكين المرأة وتعزيز التنمية المستدامة في "
 "السودان وخارجها."
+
+#: app/templates/unsubscribe_confirmation.html:3
+msgid "confirm_unsub"
+msgstr "تأكيد إلغاء الاشتراك"
+
+#: app/templates/unsubscribe_confirmation.html:50
+msgid "Unsubscribe Successful"
+msgstr "تم إلغاء الاشتراك بنجاح"
+
+#: app/templates/unsubscribe_confirmation.html:51
+msgid "Unsubscribe Failed"
+msgstr "فشل إلغاء الاشتراك"
+
+#: app/templates/unsubscribe_confirmation.html:60
+msgid "Email:"
+msgstr "البريد الإلكتروني:"
+
+#: app/templates/unsubscribe_confirmation.html:72
+msgid "Return to Homepage"
+msgstr "العودة إلى الصفحة الرئيسية"
+
+#: app/templates/unsubscribe_confirmation.html:88
+msgid "Resubscribe"
+msgstr "إعادة الاشتراك"
+
+#: app/templates/unsubscribe_confirmation.html:96
+msgid "Changed your mind?"
+msgstr "غيرت رأيك؟"
+
+#: app/templates/unsubscribe_confirmation.html:97
+msgid "You can resubscribe anytime through our website."
+msgstr "بإمكانك إعادة الاشتراك في أي وقت من خلال موقعنا."
 
 #: app/templates/macros/carousel.html:7
 msgid "empty research"
@@ -502,20 +562,20 @@ msgstr "اختر الدورة"
 msgid "Select Tags"
 msgstr "اختر العلامات"
 
-#: app/templates/macros/form.html:44
+#: app/templates/macros/form.html:46
 msgid "course_desc"
 msgstr "وصف الدورة"
 
-#: app/templates/macros/form.html:51 app/templates/macros/form_macros.html:110
+#: app/templates/macros/form.html:53 app/templates/macros/form_macros.html:110
 msgid "content_english_placeholder"
 msgstr "المحتوى بالإنجليزية"
 
-#: app/templates/macros/form.html:70
+#: app/templates/macros/form.html:72
 msgid "choose"
 msgstr "اختر"
 
 #: app/templates/macros/form_macros.html:107
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:74
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:75
 msgid "Content"
 msgstr "المحتوى"
 
@@ -535,7 +595,7 @@ msgstr "المحتوى بالعربية"
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:87
 #: app/templates/partials/dashboard/knowledge_hub/members-form.html:39
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:90
-#: app/templates/partials/dashboard/project-form.html:73
+#: app/templates/partials/dashboard/project-form.html:74
 #: app/templates/partials/dashboard/team_member-form.html:85
 msgid "current_image"
 msgstr "الصورة الحالية"
@@ -640,30 +700,26 @@ msgstr "أبحث"
 msgid "Export to Excel"
 msgstr "تصدير إلى Excel"
 
-#: app/templates/macros/tab_content.html:85
+#: app/templates/macros/tab_content.html:83
 msgid "all_projects"
 msgstr "كل المشاريع"
 
-#: app/templates/macros/tab_content.html:86
-#: app/templates/partials/dashboard/project-form.html:45
+#: app/templates/macros/tab_content.html:84
+#: app/templates/partials/dashboard/project-form.html:46
 msgid "ongoing"
 msgstr "جاري"
 
-#: app/templates/macros/tab_content.html:87
+#: app/templates/macros/tab_content.html:85
 msgid "completed_projects"
 msgstr "المشاريع المكتملة"
 
-#: app/templates/partials/footer.html:12
+#: app/templates/partials/footer.html:10
 msgid "footer caption"
 msgstr "ابقَ على اطلاع من خلال <b>الاشتراك</b> في نشرتنا الإخبارية!"
 
-#: app/templates/partials/footer.html:21
+#: app/templates/partials/footer.html:27
 msgid "subscribe"
 msgstr "اشترك"
-
-#: app/templates/partials/header.html:27
-msgid "home"
-msgstr "الرئيسية"
 
 #: app/templates/partials/header.html:34
 msgid "team"
@@ -682,68 +738,80 @@ msgid "Watch Now"
 msgstr "شاهد الآن"
 
 #: app/templates/partials/cards/research.html:51
-#: app/templates/partials/news/cards.html:36
+#: app/templates/partials/news/cards.html:37
 #: app/templates/partials/projects/cards.html:35
 msgid "learn more"
 msgstr "المزيد"
 
-#: app/templates/partials/dashboard/knowledge-hub.html:9
-msgid "knowledge_hub"
-msgstr "مركز المعرفة"
+#: app/templates/partials/dashboard/knowledge-hub.html:28
+msgid "courses"
+msgstr "دورات"
 
 #: app/templates/partials/dashboard/knowledge-hub.html:44
 msgid "researches"
 msgstr "بحوث"
 
-#: app/templates/partials/dashboard/news-form.html:28
+#: app/templates/partials/dashboard/knowledge-hub.html:60
+msgid "podcasts"
+msgstr "بودكاست"
+
 #: app/templates/partials/dashboard/news-form.html:29
+#: app/templates/partials/dashboard/news-form.html:30
 msgid "news_title_english"
 msgstr "عنوان الخبر بالإنجليزية"
 
-#: app/templates/partials/dashboard/news-form.html:30
 #: app/templates/partials/dashboard/news-form.html:31
+#: app/templates/partials/dashboard/news-form.html:32
 msgid "news_title_arabic"
 msgstr "عنوان الخبر بالعربية"
 
-#: app/templates/partials/dashboard/news-form.html:35
+#: app/templates/partials/dashboard/news-form.html:36
 msgid "news_date"
 msgstr "تاريخ الخبر"
 
-#: app/templates/partials/dashboard/news-form.html:36
+#: app/templates/partials/dashboard/news-form.html:37
 msgid "news date"
 msgstr "تاريخ الخبر"
 
-#: app/templates/partials/dashboard/news-form.html:39
+#: app/templates/partials/dashboard/news-form.html:40
+msgid "news_url"
+msgstr "رابط الخبر"
+
+#: app/templates/partials/dashboard/news-form.html:41
+msgid "news url"
+msgstr "رابط الخبر"
+
+#: app/templates/partials/dashboard/news-form.html:46
 msgid "news_image"
 msgstr "صورة الخبر"
 
-#: app/templates/partials/dashboard/news-form.html:40
+#: app/templates/partials/dashboard/news-form.html:47
 msgid "news image"
 msgstr "صورة الخبر"
 
-#: app/templates/partials/dashboard/news-form.html:49
+#: app/templates/partials/dashboard/news-form.html:56
 msgid "news_description"
 msgstr "وصف الخبر"
 
-#: app/templates/partials/dashboard/news-form.html:58
+#: app/templates/partials/dashboard/news-form.html:65
 msgid "english_news_description"
 msgstr "وصف الخبر بالإنجليزية"
 
-#: app/templates/partials/dashboard/news-form.html:75
+#: app/templates/partials/dashboard/news-form.html:82
 msgid "arabic_news_description"
 msgstr "وصف الخبر بالعربية"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:100
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:104
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:167
-#: app/templates/partials/dashboard/news-form.html:95
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:168
+#: app/templates/partials/dashboard/news-form.html:102
 msgid "update"
 msgstr "تحديث"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:100
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:104
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:167
-#: app/templates/partials/dashboard/news-form.html:95
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:168
+#: app/templates/partials/dashboard/news-form.html:102
 msgid "create"
 msgstr "إنشاء"
 
@@ -805,70 +873,70 @@ msgstr "إسم الكاتب بالعربية"
 msgid "author_name_ar_placeholder"
 msgstr "إسم الكاتب بالعربية"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:48
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:49
 #: app/templates/partials/dashboard/project-form.html:39
 msgid "author_email"
 msgstr "عنوان البريد الإلكتروني للكاتب"
 
-#: app/templates/partials/dashboard/project-form.html:41
+#: app/templates/partials/dashboard/project-form.html:42
 msgid "author_email_placeholder"
 msgstr "عنوان البريد الإلكتروني للكاتب"
 
-#: app/templates/partials/dashboard/project-form.html:45
+#: app/templates/partials/dashboard/project-form.html:46
 msgid "completed"
 msgstr "مكتمل"
 
-#: app/templates/partials/dashboard/project-form.html:46
+#: app/templates/partials/dashboard/project-form.html:47
 msgid "status"
 msgstr "الحالة"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:55
-#: app/templates/partials/dashboard/project-form.html:49
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:56
+#: app/templates/partials/dashboard/project-form.html:50
 msgid "date_of_completion"
 msgstr "تاريخ الإنتهاء"
 
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:73
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:127
-#: app/templates/partials/dashboard/project-form.html:55
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:128
+#: app/templates/partials/dashboard/project-form.html:56
 msgid "tags_english"
 msgstr "علامات بالإنجليزية"
 
-#: app/templates/partials/dashboard/project-form.html:57
+#: app/templates/partials/dashboard/project-form.html:58
 msgid "tags_english_placeholder"
 msgstr "علامات بالإنجليزية"
 
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:75
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:129
-#: app/templates/partials/dashboard/project-form.html:58
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:130
+#: app/templates/partials/dashboard/project-form.html:59
 msgid "tags_english_example"
 msgstr "Economy, Women, Empowerment"
 
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:77
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:131
-#: app/templates/partials/dashboard/project-form.html:59
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:132
+#: app/templates/partials/dashboard/project-form.html:60
 msgid "tags_arabic"
 msgstr "علامات بالعربية"
 
-#: app/templates/partials/dashboard/project-form.html:61
+#: app/templates/partials/dashboard/project-form.html:62
 msgid "tags_arabic_placeholder"
 msgstr "علامات بالعربية"
 
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:79
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:132
-#: app/templates/partials/dashboard/project-form.html:62
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:133
+#: app/templates/partials/dashboard/project-form.html:63
 msgid "tags_arabic_example"
 msgstr "اقتصاد، نساء، تمكين"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:58
-#: app/templates/partials/dashboard/project-form.html:76
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:59
+#: app/templates/partials/dashboard/project-form.html:77
 msgid "hero_image"
 msgstr "صورة البطاقة"
 
-#: app/templates/partials/dashboard/project-form.html:110
+#: app/templates/partials/dashboard/project-form.html:111
 msgid "update_project"
 msgstr "تحديث المشروع"
 
-#: app/templates/partials/dashboard/project-form.html:111
+#: app/templates/partials/dashboard/project-form.html:112
 #: app/templates/partials/dashboard/projects.html:5
 msgid "add_project"
 msgstr "إضافة مشروع"
@@ -1077,7 +1145,7 @@ msgstr "العلامات بالإنجليزية"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:72
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:74
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:128
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:129
 msgid "enter_en_tags_comma_separated"
 msgstr "أدخل العلامات بالإنجليزية مفصولة بفاصلة"
 
@@ -1091,7 +1159,7 @@ msgstr "العلامات بالعربية"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:76
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:78
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:131
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:132
 msgid "enter_ar_tags_comma_separated"
 msgstr "أدخل العلامات بالعربية مفصولة بفاصلة"
 
@@ -1287,23 +1355,23 @@ msgstr "إسم الكاتب بالعربية"
 msgid "enter_author_email"
 msgstr "عنوان البريد الإلكتروني للكاتب"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:66
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:67
 msgid "current_hero_image"
 msgstr "الصورة الحالية"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:83
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:84
 msgid "re_en_content"
 msgstr "المحتوى بالإنجليزية"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:100
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:101
 msgid "re_ar_content"
 msgstr "المحتوى بالعربية"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:135
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:136
 msgid "additional_images"
 msgstr "صور إضافية"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:148
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:149
 msgid "confirm_delete_image"
 msgstr "هل أنت متأكد من حذف الصورة؟"
 
@@ -1323,9 +1391,9 @@ msgstr "ابحث عن بحث"
 msgid "add_research"
 msgstr "إضافة بحث"
 
-#: utils/auth_utils.py:42
-msgid "Please log in to access this page"
-msgstr "الرجاء تسجيل الدخول للوصول إلى هذه الصفحة"
+#: utils/email_validation.py:39
+msgid "Invalid email format"
+msgstr "تنسيق البريد الإلكتروني غير صالح "
 
 #: utils/email_validation.py:44
 msgid "Disposable email addresses are not allowed"
@@ -1573,3 +1641,10 @@ msgstr "نطاق البريد الإلكتروني غير صالح. يرجى ا�
 
 #~ msgid "tags"
 #~ msgstr "العلامات بالإنجليزية"
+
+#~ msgid "research"
+#~ msgstr "بحوث"
+
+#~ msgid "Failed to send message"
+#~ msgstr "فشل في إرسال الرسالة"
+

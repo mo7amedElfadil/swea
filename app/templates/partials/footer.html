@@ -8,35 +8,43 @@
     </a>
     <div class='space-y-2'>
       <p class="{% if locale == 'en' %}text-white{% else %}text-black{% endif %}">{{_("footer caption")}}</p>
-      <form class='flex gap-2 sm:max-w-[50%]' hx-post='/subscribe' hx-trigger='submit'
-        hx-on::after-request="this.reset()" hx-swap='none' hx-indicator="#fspinner">
+      <form class="flex gap-2 sm:max-w-[50%]"
+            hx-post="/subscribe"
+            hx-on::after-request="if (event.detail.successful) this.reset()"
+            hx-target="this"
+            hx-swap="none"
+            hx-indicator="#fspinner">
+
         <input required id="email-input"
-          class='flex-1 w-3/4 px-6 py-2 bg-slate-300 bg-opacity-90 rounded-full sm:w-auto'
-          placeholder='{{_("form email")}}' type="email" name="email" value="" />
-        <button type='submit' class='py-3 px-4 bg-white rounded-full flex items-center justify-center'>
-          {{spinner(id="fspinner")}}
-          <span>
-            {{_("subscribe")}}
-          </span>
+               name="email"
+               type="email"
+               placeholder="{{ _('form email') }}"
+               class="flex-1 w-3/4 px-6 py-2 bg-slate-300 bg-opacity-90 rounded-full sm:w-auto" />
+
+        <button type="submit"
+                class="py-3 px-4 bg-white rounded-full flex items-center justify-center">
+          {{ spinner(id="fspinner") }}
+          <span>{{ _('subscribe') }}</span>
         </button>
+
       </form>
     </div>
     <div class='flex items-center gap-2'>
       {% set icon_color = "#fff" if locale == 'en' else "#000" %}
-      <a href="#" target="_blank" aria-label="Facebook">
+      <a href="https://www.facebook.com/sweasudan20/" target="_blank" aria-label="Facebook">
         {{ icons.facebook(clr=icon_color) }}
       </a>
-      <a href="#" target="_blank" aria-label="LinkedIn">
+      <a href="https://www.linkedin.com/company/sudanese-women-economists-association-swea" target="_blank" aria-label="LinkedIn">
         {{ icons.linkedin(clr=icon_color) }}
       </a>
-      <a href="#" target="_blank" aria-label="Twitter">
+      <a href="https://x.com/SWEA_Sudan" target="_blank" aria-label="Twitter">
         {{ icons.x(clr=icon_color) }}
       </a>
-      <a href="#" target="_blank" aria-label="Email">
+      <a href="mailto:team@sweasd.org" target="_blank" aria-label="Email">
         {{ icons.mail(clr=icon_color) }}
       </a>
     </div>
     <hr>
-    <span class='mx-auto'>&copy; 2025 SWEA Inc</span>
+    <span class='mx-auto'>&copy; {{ current_year }} SWEA Inc</span>
   </div>
 </footer>

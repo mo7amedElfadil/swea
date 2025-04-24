@@ -25,7 +25,7 @@ locale) %}
         hx-get="{{ search_endpoint }}"
         hx-target="#{{ item_type }}-list"
         hx-swap="innerHTML"
-        hx-indicator="#loading-indicator"
+        role="tab-content"
         class="mb-6 flex flex-col space-y-4 sm:flex-row sm:gap-4 sm:space-y-0"
     >
         <!-- Search Input -->
@@ -40,6 +40,7 @@ locale) %}
             hx-get="{{ search_endpoint }}"
             hx-target="#{{ item_type }}-list"
             hx-swap="innerHTML"
+            role="tab-content"
         />
     </form>
 
@@ -50,5 +51,26 @@ locale) %}
             '-list.html' %}
         </div>
     </div>
+    <!-- Spinner Template (hidden initially) -->
+    <template id="tab-loading-template">
+        <div class="flex justify-center items-center py-10">
+            <div
+                class="animate-spin rounded-full h-8 w-8 border-4 border-primary-600 border-t-transparent"
+            ></div>
+        </div>
+    </template>
 </div>
+<script>
+    document.addEventListener('htmx:beforeRequest', function (event) {
+        const target = event.detail.target
+        const loaderTemplate = document.querySelector('#tab-loading-template')
+        if (
+            target &&
+            loaderTemplate &&
+            event.detail.elt.closest('[role="tab-content"]')
+        ) {
+            target.innerHTML = loaderTemplate.innerHTML
+        }
+    })
+</script>
 {% endmacro %}

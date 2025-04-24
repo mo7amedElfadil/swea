@@ -51,7 +51,10 @@ TAB_CONTENT_MAP = {
         "news": ("partials/dashboard/news.html", NewsService),
     },
     "knowledge_hub": {
-        "research": ("partials/knowledge-hub/research.html", ResearchService),
+        "researches": (
+            "partials/knowledge-hub/research.html",
+            ResearchService,
+        ),
         "courses": ("partials/knowledge-hub/courses.html", CourseService),
         "podcasts": ("partials/knowledge-hub/podcasts.html", PodcastService),
     },
@@ -151,17 +154,20 @@ def login():
 @response(template_file="dashboard.html")
 def dashboard():
     """Dashboard page"""
-    tab_query = request.args.get("q")
-    if tab_query is None:
-        return dict(tab="projects")
+    tab_query = request.args.get("q", "projects")
 
-    tab_info = TAB_CONTENT_MAP["dashboard"].get(tab_query)
-
-    if not tab_info:
-        return dict(tab="projects")
+    tab_info = TAB_CONTENT_MAP["dashboard"].get(
+        tab_query, TAB_CONTENT_MAP["dashboard"]["projects"]
+    )
 
     template, service = tab_info
-    data = get_paginated_data(service, sort="created_at DESC")
+    data = get_paginated_data(
+        service,
+        sort='teams."order"' if service == TeamService else None,
+    )
+
+    if not request.args.get("q"):
+        return dict(tab="projects", **data)
 
     return make_response(render_template(template, **data))
 
@@ -171,23 +177,23 @@ def dashboard():
 @cache_response()
 def knowledge_hub():
     """Knowledge Hub page"""
-    tab_query = request.args.get("q", "research")
+    tab_query = request.args.get("q", "researches")
     page = request.args.get("page", type=int, default=1)
 
     tab_info = TAB_CONTENT_MAP["knowledge_hub"].get(tab_query)
     if not tab_info:
-        return dict(tab="research")
+        return dict(tab="researches")
 
     template, service = tab_info
-    data = get_paginated_data(service, page, sort="created_at DESC")
+    data = get_paginated_data(service, page)
 
     if tab_query == "courses":
-        data = CourseService().process_courses_data(data)
+        data = service().process_courses_data(data)
 
     if request.headers.get("hx-tab"):
         return make_response(render_template(template, **data))
 
-    return dict(tab="research", **data)
+    return dict(tab="researches", **data)
 
 
 @bp.route("/knowledge-hub/filter-courses")
@@ -200,7 +206,7 @@ def filter_courses():
         request.args.get("locale", "en"),
     )
 
-    courses_data = get_paginated_data(CourseService, sort="created_at DESC")
+    courses_data = get_paginated_data(CourseService)
     courses_data["data"] = [
         course
         for course in courses_data.get("data", [])
@@ -220,10 +226,8 @@ def contact_us():
     if form_data:
         try:
             ManageContactUs().contact_us_message(form_data)
-        except Exception:
-            return add_toast(
-                make_response("", 400), "error", _("Failed to send message")
-            )
+        except Exception as e:
+            return add_toast(make_response("", 400), "error", str(e))
 
     return add_toast(
         make_response("", 200),

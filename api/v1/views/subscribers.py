@@ -38,18 +38,52 @@ def subscribe():
 @bp.route("/unsubscribe", methods=["GET"])
 def unsubscribe():
     """Unsubscribe from the newsletter."""
-    subscriber_email = request.args.get("email")
+    if not (subscriber_email := request.args.get("email")):
+        return _render_unsubscribe_response(
+            email=None,
+            success=False,
+            message=_("No email address provided for unsubscribe request."),
+            status=400,
+        )
 
-    if subscriber_email:
-        try:
-            subscriber_service.delete_subscriber(subscriber_email)
-        except Exception as e:
-            return add_toast(
-                make_response("", 400), "error", _("Failed to unsubscribe")
+    try:
+        if not (
+            deleted := subscriber_service.delete_subscriber(subscriber_email)
+        ):
+            return _render_unsubscribe_response(
+                email=subscriber_email,
+                success=False,
+                message=_("Failed to unsubscribe. Please try again later."),
+                status=404,
             )
-    invalidate_cache(["filter_subscribers"])
-    return add_toast(
-        make_response("", 200), "success", _("Unsubscribed successfully")
+
+        invalidate_cache(["filter_subscribers"])
+        return _render_unsubscribe_response(
+            email=subscriber_email,
+            success=True,
+            message=_("You have been successfully unsubscribed."),
+            status=200,
+        )
+
+    except Exception as e:
+        return _render_unsubscribe_response(
+            email=subscriber_email,
+            success=False,
+            message=_(str(e)),
+            status=400,
+        )
+
+
+def _render_unsubscribe_response(email, success, message, status):
+    """Helper function to render unsubscribe template response."""
+    return make_response(
+        render_template(
+            "unsubscribe_confirmation.html",
+            email=email,
+            success=success,
+            message=message,
+        ),
+        status,
     )
 
 

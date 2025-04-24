@@ -33,6 +33,7 @@ QUEUE_WORKER := python -m app.queue
 VEN_ACTIVATE := . .venv/bin/activate
 UP_DB := docker compose up -d
 DOWN_DB := docker compose down
+BUILD_SCRIPT := ./build.sh
 
 # Define run session
 define run_session
@@ -145,6 +146,10 @@ dev: ## Start a tmux session named 'dev' with two windows: Editor (vim) and Bash
 	@echo -e "  - Window 2: $(BOLD)Bash$(RESET)"
 	@$(TMUX) select-window -t dev:Editor
 	@$(TMUX) attach -t dev
+
+build: ## Build the project using the build script
+	@echo "Building the project..."
+	@$(BUILD_SCRIPT)
 
 # Stop everything
 stop: stop_flask stop_tailwind stop_static stop_queue stop_dev ## Stop the application

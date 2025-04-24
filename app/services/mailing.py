@@ -33,11 +33,12 @@ class EmailService:
             # Prepare email message
             msg = MIMEMultipart()
             msg["Subject"] = context["subject"]
-            msg["From"] = f"{self.sender_name} <{self.smtp_user}>"
+            msg["From"] = f"{self.sender_name} <noreply@sweasd.org>"
             msg["To"] = context["recipient"]
             msg["List-Unsubscribe"] = (
-                "<mailto:sweasd.unsubscribe@gmail.com>, <https://sweasd.org/unsubscribe>"
+                f"<https://sweasd.org/unsubscribe?email={context['recipient']}>, <mailto:unsubscribe@sweasd.org>"
             )
+
             recipient = context["recipient"]
 
             # Render email content

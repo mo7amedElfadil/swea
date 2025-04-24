@@ -29,7 +29,7 @@ def paginate_query(
         - total_pages: Total number of pages
         - total_items: Total number of items matching the query
     """
-    sort = filters.pop("sort", None)
+    sort = filters.pop("sort", "updated_at DESC")
 
     # Default to exclude deleted items
     filters.setdefault("deleted_at", None)

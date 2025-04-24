@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% from "macros/spinner.html" import spinner %}
+{% block title %}{{ _("confirm_unsub",
+default="Confirm Unsubscribe") }}{% endblock %} {% block content %}
+<div
+    class="flex flex-col items-center justify-center bg-secondary-100 px-4 py-12 sm:px-6 lg:px-8"
+>
+    <div class="w-full max-w-md space-y-8 bg-white p-10 rounded-2xl shadow-lg">
+        <!-- Status Icon -->
+        <div class="text-center">
+            {% if success %}
+            <div
+                class="mx-auto h-12 w-12 flex items-center justify-center rounded-full bg-green-100"
+            >
+                <svg
+                    class="h-6 w-6 text-green-600"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                    />
+                </svg>
+            </div>
+            {% else %}
+            <div
+                class="mx-auto h-12 w-12 flex items-center justify-center rounded-full bg-red-100"
+            >
+                <svg
+                    class="h-6 w-6 text-red-600"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"
+                    />
+                </svg>
+            </div>
+            {% endif %}
+
+            <h2 class="mt-6 text-2xl font-bold text-gray-900">
+                {% if success %} {{ _("Unsubscribe Successful") }} {% else %} {{
+                _("Unsubscribe Failed") }} {% endif %}
+            </h2>
+        </div>
+
+        <!-- Message Content -->
+        <div class="text-center">
+            <p class="text-gray-600 mb-4">{{ message }}</p>
+            {% if email %}
+            <p class="text-gray-700">
+                <span class="font-medium">{{ _("Email:") }}&nbsp;</span>
+                <span class="text-primary-700">{{ email }}</span>
+            </p>
+            {% endif %}
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="space-y-4">
+            <a
+                href="{{ url_for('app_views.index') }}"
+                class="w-full flex justify-center py-3 px-4 rounded-xl text-white font-medium bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors"
+            >
+                {{ _("Return to Homepage") }}
+            </a>
+
+            {% if success %}
+            <form class="w-full">
+                <input type="hidden" name="email" value="{{ email }}" />
+                <button
+                    type="submit"
+                    class="w-full flex justify-center py-3 px-4 rounded-xl font-medium bg-secondary-100 hover:bg-secondary-200 text-secondary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500 transition-colors"
+                    hx-post="{{ url_for('app_views.subscribe') }}"
+                    hx-trigger="click"
+                    hx-include="[name='email']"
+                    hx-target="#toast-container"
+                    hx-indicator="#spinner"
+                >
+                    {{ spinner() }}
+                    <span>{{ _("Resubscribe") }}</span>
+                </button>
+            </form>
+            {% endif %}
+        </div>
+
+        <!-- Footer Note -->
+        <div class="text-center text-xs text-gray-500 mt-6">
+            <p>{{ _("Changed your mind?") }}</p>
+            <p>{{ _("You can resubscribe anytime through our website.") }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

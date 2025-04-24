@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-09 01:21+0300\n"
+"POT-Creation-Date: 2025-04-15 14:21+0400\n"
 "PO-Revision-Date: 2025-02-03 06:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -16,7 +16,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.16.0\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: api/v1/views/__init__.py:61 utils/auth_utils.py:43
+msgid "Please log in to access this page"
+msgstr "Please log in to access this page"
 
 #: api/v1/views/knowledge_hub.py:37
 msgid "Invalid tab"
@@ -122,19 +126,15 @@ msgstr "An error occurred while deleting the member"
 msgid "Member deleted successfully"
 msgstr "Member deleted successfully"
 
-#: api/v1/views/main.py:141
+#: api/v1/views/main.py:144
 msgid "Invalid credentials"
 msgstr "Invalid Credentials"
 
-#: api/v1/views/main.py:146
+#: api/v1/views/main.py:149
 msgid "Login successful"
 msgstr "Login successful"
 
-#: api/v1/views/main.py:225
-msgid "Failed to send message"
-msgstr "Failed to send your message"
-
-#: api/v1/views/main.py:231
+#: api/v1/views/main.py:235
 msgid "Your comment received successfully"
 msgstr "Your comment received successfully"
 
@@ -167,23 +167,27 @@ msgstr "Failed to subscribe"
 msgid "Thank you for subscribing"
 msgstr "Thank you for subscribing"
 
-#: api/v1/views/subscribers.py:48
-msgid "Failed to unsubscribe"
-msgstr "Failed to unsubscribe"
+#: api/v1/views/subscribers.py:45
+msgid "No email address provided for unsubscribe request."
+msgstr "No email address provided for unsubscribe request."
 
-#: api/v1/views/subscribers.py:52
-msgid "Unsubscribed successfully"
-msgstr "Unsubscribed successfully"
+#: api/v1/views/subscribers.py:56
+msgid "Failed to unsubscribe. Please try again later."
+msgstr "Failed to unsubscribe. Please try again later."
 
-#: api/v1/views/subscribers.py:99
+#: api/v1/views/subscribers.py:64
+msgid "You have been successfully unsubscribed."
+msgstr "You have been successfully unsubscribed."
+
+#: api/v1/views/subscribers.py:133
 msgid "Failed to send broadcast email"
 msgstr "Failed to send broadcast email"
 
-#: api/v1/views/subscribers.py:112
+#: api/v1/views/subscribers.py:146
 msgid "Broadcast email sent successfully"
 msgstr "Broadcast email sent successfully"
 
-#: api/v1/views/subscribers.py:130
+#: api/v1/views/subscribers.py:164
 msgid "Subscribers exported successfully"
 msgstr "Subscribers exported successfully"
 
@@ -215,11 +219,31 @@ msgstr "Team member updated successfully"
 msgid "Team member deleted successfully"
 msgstr "Team member deleted successfully"
 
-#: app/__init__.py:169
+#: app/__init__.py:160
 msgid "Rate limit exceeded"
 msgstr "Rate limit exceeded"
 
-#: app/templates/auth.html:3 app/templates/auth.html:58
+#: app/services/contact_us.py:100
+msgid "Invalid or empty 'name' field."
+msgstr "Invalid or empty 'name' field."
+
+#: app/services/contact_us.py:103
+msgid "Name must be between 2 and 100 characters"
+msgstr "Name must be between 2 and 100 characters"
+
+#: app/services/contact_us.py:109
+msgid "Invalid email format in 'email' field."
+msgstr "Invalid email format in 'email' field."
+
+#: app/services/contact_us.py:115
+msgid "Invalid or empty 'content' field."
+msgstr "Invalid or empty 'content' field."
+
+#: app/services/contact_us.py:119
+msgid "Message content must be at least 10 characters long"
+msgstr "Message content must be at least 10 characters long"
+
+#: app/templates/auth.html:3 app/templates/auth.html:70
 msgid "login"
 msgstr "Login"
 
@@ -263,12 +287,16 @@ msgstr "Knowledge Hub"
 msgid "swea_subscribers"
 msgstr "Subscribers"
 
-#: app/templates/dashboard.html:29 app/templates/index.html:109
+#: app/templates/dashboard.html:29 app/templates/index.html:87
 #: app/templates/partials/dashboard/news.html:4
 msgid "news"
 msgstr "News"
 
-#: app/templates/index.html:12
+#: app/templates/index.html:4 app/templates/partials/header.html:27
+msgid "home"
+msgstr "Home"
+
+#: app/templates/index.html:11
 msgid "hero title"
 msgstr "Empowering Sudanese Women Economists"
 
@@ -283,11 +311,11 @@ msgstr ""
 msgid "join us"
 msgstr "Join Us"
 
-#: app/templates/index.html:28
+#: app/templates/index.html:30
 msgid "mission title"
 msgstr "Our Mission"
 
-#: app/templates/index.html:37
+#: app/templates/index.html:38
 msgid "mission 1 title"
 msgstr "Empower Sudanese Economists"
 
@@ -298,42 +326,42 @@ msgstr ""
 " are amplified in the fields of economics and economic-related "
 "disciplines, in both academia and practice."
 
-#: app/templates/index.html:43
+#: app/templates/index.html:39
 msgid "mission 2 title"
 msgstr "Career Advancement"
 
-#: app/templates/index.html:44
+#: app/templates/index.html:39
 msgid "mission 2 desc"
 msgstr ""
 "Career development and capacity building of young women economists in "
 "Sudan; alongside providing a professional bi-directional relationship "
 "between experts in the field, and prospective women economists."
 
-#: app/templates/index.html:56
+#: app/templates/index.html:40
 msgid "mission 3 title"
 msgstr "Solidarity Amongst Economists"
 
-#: app/templates/index.html:57
+#: app/templates/index.html:40
 msgid "mission 3 desc"
 msgstr ""
 "Support research and publication opportunities of Sudanese women "
 "economists; within an inclusive and supportive network."
 
-#: app/templates/index.html:62
+#: app/templates/index.html:41
 msgid "mission 4 title"
 msgstr "Connect With Partners"
 
-#: app/templates/index.html:63
+#: app/templates/index.html:41
 msgid "mission 4 desc"
 msgstr ""
 "Inter-generational exchange of knowledge and experiences within the "
 "economics discipline"
 
-#: app/templates/index.html:76
+#: app/templates/index.html:57
 msgid "our story"
 msgstr "Our Story"
 
-#: app/templates/index.html:79
+#: app/templates/index.html:59
 msgid "our story desc"
 msgstr ""
 "Sudanese women economists association (SWEA) was founded in June 2020, on"
@@ -346,81 +374,76 @@ msgstr ""
 "economists, offering networking opportunities and enriching the economic "
 "research space by contributions from its members."
 
-#: app/templates/index.html:84
+#: app/templates/index.html:67
 msgid "our vision"
 msgstr "Our Vision"
 
-#: app/templates/index.html:87
+#: app/templates/index.html:70
 msgid "vision 1"
 msgstr ""
 "<b>Advance</b> Sudanese Women Economists' participation in Academic And "
 "public policy spheres in Sudan."
 
-#: app/templates/index.html:91
+#: app/templates/index.html:71
 msgid "vision 2"
 msgstr "<b>Build capacity</b> of young women in economics."
 
-#: app/templates/index.html:95
+#: app/templates/index.html:72
 msgid "vision 3"
 msgstr ""
 "<b>Amplify</b> the voices of Sudanese women in economic research and "
 "practice."
 
-#: app/templates/index.html:99
+#: app/templates/index.html:73
 msgid "vision 4"
 msgstr ""
 "<b>Promote solidarity</b> between Sudanese women economists across "
 "generations."
 
-#: app/templates/index.html:136
+#: app/templates/index.html:106
 msgid "contact us"
 msgstr "Contact Us"
 
-#: app/templates/index.html:137
+#: app/templates/index.html:107
 msgid "contact enquiry"
 msgstr "Have any inquiries or want to ask us something?"
 
-#: app/templates/index.html:147
+#: app/templates/index.html:114
 msgid "form name"
 msgstr "Name"
 
-#: app/templates/index.html:155 app/templates/partials/footer.html:17
+#: app/templates/index.html:115 app/templates/partials/footer.html:21
 msgid "form email"
 msgstr "Email"
 
-#: app/templates/index.html:162
+#: app/templates/index.html:116
 msgid "form textarea"
 msgstr "Comment or Message"
 
-#: app/templates/index.html:171
+#: app/templates/index.html:119
 msgid "submit"
 msgstr "Submit"
 
-#: app/templates/knowledge-hub.html:15
+#: app/templates/knowledge-hub.html:4
+#: app/templates/partials/dashboard/knowledge-hub.html:9
+msgid "knowledge_hub"
+msgstr "Knowledge Hub"
+
+#: app/templates/knowledge-hub.html:11
 msgid "kh hero title 1"
 msgstr "Knowledge"
 
-#: app/templates/knowledge-hub.html:17
+#: app/templates/knowledge-hub.html:12
 msgid "kh hero title 2"
 msgstr "Hub"
 
-#: app/templates/knowledge-hub.html:27
+#: app/templates/knowledge-hub.html:23
 msgid "Scroll to content"
 msgstr "Scroll to content"
 
-#: app/templates/knowledge-hub.html:50
-msgid "research"
-msgstr "Research"
-
-#: app/templates/knowledge-hub.html:67
-#: app/templates/partials/dashboard/knowledge-hub.html:28
-msgid "courses"
-msgstr "Courses"
-
-#: app/templates/knowledge-hub.html:85
-#: app/templates/partials/dashboard/knowledge-hub.html:60
-msgid "podcasts"
-msgstr "Podcasts"
+#: app/templates/not_found.html:2
+msgid "404_not_found"
+msgstr "404 Not Found"
 
 #: app/templates/not_found.html:14
 msgid "Page Not Found"
@@ -440,44 +463,45 @@ msgstr "Return Home"
 msgid "Go Back"
 msgstr "Go Back"
 
-#: app/templates/project-page.html:31 app/templates/research-page.html:30
-msgid "Author"
-msgstr "Author"
-
-#: app/templates/project-page.html:37
-msgid "Status"
-msgstr "Project Status"
-
-#: app/templates/project-page.html:45 app/templates/research-page.html:36
-msgid "Completion Date"
-msgstr "Completion Date"
-
-#: app/templates/project-page.html:47 app/templates/research-page.html:38
-msgid "Ongoing"
-msgstr "Ongoing"
-
-#: app/templates/project-page.html:107
-msgid "Testimonials"
-msgstr "Testimonials"
-
-#: app/templates/project-page.html:168 app/templates/project-page.html:182
-#: app/templates/research-page.html:77 app/templates/research-page.html:91
-msgid "Link copied to clipboard!"
-msgstr "Link copied to clipboard!"
-
 #: app/templates/partials/dashboard/projects.html:4
-#: app/templates/partials/header.html:41 app/templates/projects.html:11
+#: app/templates/partials/header.html:41 app/templates/project-page.html:2
+#: app/templates/projects.html:2 app/templates/projects.html:12
 msgid "projects"
 msgstr "Projects"
 
-#: app/templates/projects.html:13
+#: app/templates/project-page.html:36 app/templates/research-page.html:36
+msgid "Author"
+msgstr "Author"
+
+#: app/templates/project-page.html:40
+msgid "Status"
+msgstr "Project Status"
+
+#: app/templates/project-page.html:46 app/templates/research-page.html:40
+msgid "Completion Date"
+msgstr "Completion Date"
+
+#: app/templates/project-page.html:47 app/templates/research-page.html:41
+msgid "Ongoing"
+msgstr "Ongoing"
+
+#: app/templates/project-page.html:105 app/templates/research-page.html:83
+msgid "Testimonials"
+msgstr "Testimonials"
+
+#: app/templates/project-page.html:166 app/templates/project-page.html:180
+#: app/templates/research-page.html:145 app/templates/research-page.html:159
+msgid "Link copied to clipboard!"
+msgstr "Link copied to clipboard!"
+
+#: app/templates/projects.html:14
 msgid "project hero desc"
 msgstr ""
 "Explore our impactful projects aimed to empower Sudanese women "
 "economists, fotser collaboration, and drive sustainable economic "
 "development"
 
-#: app/templates/research-page.html:1
+#: app/templates/research-page.html:2
 msgid "Research"
 msgstr "Research"
 
@@ -485,7 +509,11 @@ msgstr "Research"
 msgid "date"
 msgstr "Date"
 
-#: app/templates/team.html:9
+#: app/templates/team.html:3
+msgid "meet_the_team"
+msgstr "Meet the Team"
+
+#: app/templates/team.html:11
 msgid "our_exceptional_team"
 msgstr "Our Exceptional Team of Leaders and Innovators"
 
@@ -495,6 +523,38 @@ msgstr ""
 "At SWEA, our team is the heart of our mission. Composed of passionate "
 "economists, researchers, and advocates, we work collectively to empower "
 "women and promote sustainable development across Sudan and beyond."
+
+#: app/templates/unsubscribe_confirmation.html:3
+msgid "confirm_unsub"
+msgstr "Unsubscribe Confirmation"
+
+#: app/templates/unsubscribe_confirmation.html:50
+msgid "Unsubscribe Successful"
+msgstr "Unsubscribed Successfully"
+
+#: app/templates/unsubscribe_confirmation.html:51
+msgid "Unsubscribe Failed"
+msgstr "Failed to Unsubscribe"
+
+#: app/templates/unsubscribe_confirmation.html:60
+msgid "Email:"
+msgstr "Email:"
+
+#: app/templates/unsubscribe_confirmation.html:72
+msgid "Return to Homepage"
+msgstr "Return to Homepage"
+
+#: app/templates/unsubscribe_confirmation.html:88
+msgid "Resubscribe"
+msgstr "Resubscribe"
+
+#: app/templates/unsubscribe_confirmation.html:96
+msgid "Changed your mind?"
+msgstr "Changed your mind?"
+
+#: app/templates/unsubscribe_confirmation.html:97
+msgid "You can resubscribe anytime through our website."
+msgstr "You can resubscribe anytime through our website."
 
 #: app/templates/macros/carousel.html:7
 msgid "empty research"
@@ -508,20 +568,20 @@ msgstr "Select the course"
 msgid "Select Tags"
 msgstr "Select Tags"
 
-#: app/templates/macros/form.html:44
+#: app/templates/macros/form.html:46
 msgid "course_desc"
 msgstr "Courses Description"
 
-#: app/templates/macros/form.html:51 app/templates/macros/form_macros.html:110
+#: app/templates/macros/form.html:53 app/templates/macros/form_macros.html:110
 msgid "content_english_placeholder"
 msgstr "Content (English)"
 
-#: app/templates/macros/form.html:70
+#: app/templates/macros/form.html:72
 msgid "choose"
 msgstr "Choose"
 
 #: app/templates/macros/form_macros.html:107
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:74
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:75
 msgid "Content"
 msgstr "Content"
 
@@ -541,7 +601,7 @@ msgstr "Content (Arabic)"
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:87
 #: app/templates/partials/dashboard/knowledge_hub/members-form.html:39
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:90
-#: app/templates/partials/dashboard/project-form.html:73
+#: app/templates/partials/dashboard/project-form.html:74
 #: app/templates/partials/dashboard/team_member-form.html:85
 msgid "current_image"
 msgstr "Current Image"
@@ -646,30 +706,26 @@ msgstr "Search"
 msgid "Export to Excel"
 msgstr "Export to Excel"
 
-#: app/templates/macros/tab_content.html:85
+#: app/templates/macros/tab_content.html:83
 msgid "all_projects"
 msgstr "All Projects"
 
-#: app/templates/macros/tab_content.html:86
-#: app/templates/partials/dashboard/project-form.html:45
+#: app/templates/macros/tab_content.html:84
+#: app/templates/partials/dashboard/project-form.html:46
 msgid "ongoing"
 msgstr "Ongoing"
 
-#: app/templates/macros/tab_content.html:87
+#: app/templates/macros/tab_content.html:85
 msgid "completed_projects"
 msgstr "Completed Projects"
 
-#: app/templates/partials/footer.html:12
+#: app/templates/partials/footer.html:10
 msgid "footer caption"
 msgstr "Stay informed by <b>subscribing</b> to our newsletter!"
 
-#: app/templates/partials/footer.html:21
+#: app/templates/partials/footer.html:27
 msgid "subscribe"
 msgstr "Subscribe"
-
-#: app/templates/partials/header.html:27
-msgid "home"
-msgstr "home"
 
 #: app/templates/partials/header.html:34
 msgid "team"
@@ -688,68 +744,80 @@ msgid "Watch Now"
 msgstr "Watch Now"
 
 #: app/templates/partials/cards/research.html:51
-#: app/templates/partials/news/cards.html:36
+#: app/templates/partials/news/cards.html:37
 #: app/templates/partials/projects/cards.html:35
 msgid "learn more"
 msgstr "Learn more"
 
-#: app/templates/partials/dashboard/knowledge-hub.html:9
-msgid "knowledge_hub"
-msgstr "Knowledge Hub"
+#: app/templates/partials/dashboard/knowledge-hub.html:28
+msgid "courses"
+msgstr "Courses"
 
 #: app/templates/partials/dashboard/knowledge-hub.html:44
 msgid "researches"
 msgstr "Researches"
 
-#: app/templates/partials/dashboard/news-form.html:28
+#: app/templates/partials/dashboard/knowledge-hub.html:60
+msgid "podcasts"
+msgstr "Podcasts"
+
 #: app/templates/partials/dashboard/news-form.html:29
+#: app/templates/partials/dashboard/news-form.html:30
 msgid "news_title_english"
 msgstr "News English Title"
 
-#: app/templates/partials/dashboard/news-form.html:30
 #: app/templates/partials/dashboard/news-form.html:31
+#: app/templates/partials/dashboard/news-form.html:32
 msgid "news_title_arabic"
 msgstr "News Arabic Title"
 
-#: app/templates/partials/dashboard/news-form.html:35
+#: app/templates/partials/dashboard/news-form.html:36
 msgid "news_date"
 msgstr "News Date"
 
-#: app/templates/partials/dashboard/news-form.html:36
+#: app/templates/partials/dashboard/news-form.html:37
 msgid "news date"
 msgstr "News Date"
 
-#: app/templates/partials/dashboard/news-form.html:39
+#: app/templates/partials/dashboard/news-form.html:40
+msgid "news_url"
+msgstr "News URL"
+
+#: app/templates/partials/dashboard/news-form.html:41
+msgid "news url"
+msgstr "News URL"
+
+#: app/templates/partials/dashboard/news-form.html:46
 msgid "news_image"
 msgstr "News Image"
 
-#: app/templates/partials/dashboard/news-form.html:40
+#: app/templates/partials/dashboard/news-form.html:47
 msgid "news image"
 msgstr "Content Image"
 
-#: app/templates/partials/dashboard/news-form.html:49
+#: app/templates/partials/dashboard/news-form.html:56
 msgid "news_description"
 msgstr "News Description"
 
-#: app/templates/partials/dashboard/news-form.html:58
+#: app/templates/partials/dashboard/news-form.html:65
 msgid "english_news_description"
 msgstr "Description (English)"
 
-#: app/templates/partials/dashboard/news-form.html:75
+#: app/templates/partials/dashboard/news-form.html:82
 msgid "arabic_news_description"
 msgstr "Description (Arabic)"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:100
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:104
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:167
-#: app/templates/partials/dashboard/news-form.html:95
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:168
+#: app/templates/partials/dashboard/news-form.html:102
 msgid "update"
 msgstr "Update"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:100
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:104
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:167
-#: app/templates/partials/dashboard/news-form.html:95
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:168
+#: app/templates/partials/dashboard/news-form.html:102
 msgid "create"
 msgstr "Create"
 
@@ -811,70 +879,70 @@ msgstr "Author Name (Arabic)"
 msgid "author_name_ar_placeholder"
 msgstr "Author Name (Arabic)"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:48
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:49
 #: app/templates/partials/dashboard/project-form.html:39
 msgid "author_email"
 msgstr "Author Email"
 
-#: app/templates/partials/dashboard/project-form.html:41
+#: app/templates/partials/dashboard/project-form.html:42
 msgid "author_email_placeholder"
 msgstr "Author Email"
 
-#: app/templates/partials/dashboard/project-form.html:45
+#: app/templates/partials/dashboard/project-form.html:46
 msgid "completed"
 msgstr "Completed"
 
-#: app/templates/partials/dashboard/project-form.html:46
+#: app/templates/partials/dashboard/project-form.html:47
 msgid "status"
 msgstr "Status"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:55
-#: app/templates/partials/dashboard/project-form.html:49
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:56
+#: app/templates/partials/dashboard/project-form.html:50
 msgid "date_of_completion"
 msgstr "Date of Completion"
 
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:73
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:127
-#: app/templates/partials/dashboard/project-form.html:55
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:128
+#: app/templates/partials/dashboard/project-form.html:56
 msgid "tags_english"
 msgstr "Tags (English)"
 
-#: app/templates/partials/dashboard/project-form.html:57
+#: app/templates/partials/dashboard/project-form.html:58
 msgid "tags_english_placeholder"
 msgstr "Tags (English)"
 
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:75
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:129
-#: app/templates/partials/dashboard/project-form.html:58
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:130
+#: app/templates/partials/dashboard/project-form.html:59
 msgid "tags_english_example"
 msgstr "Economy, Women, Development"
 
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:77
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:131
-#: app/templates/partials/dashboard/project-form.html:59
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:132
+#: app/templates/partials/dashboard/project-form.html:60
 msgid "tags_arabic"
 msgstr "Tags (Arabic)"
 
-#: app/templates/partials/dashboard/project-form.html:61
+#: app/templates/partials/dashboard/project-form.html:62
 msgid "tags_arabic_placeholder"
 msgstr "Tags (Arabic)"
 
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:79
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:132
-#: app/templates/partials/dashboard/project-form.html:62
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:133
+#: app/templates/partials/dashboard/project-form.html:63
 msgid "tags_arabic_example"
 msgstr "اقتصاد، نساء، تنمية"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:58
-#: app/templates/partials/dashboard/project-form.html:76
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:59
+#: app/templates/partials/dashboard/project-form.html:77
 msgid "hero_image"
 msgstr "Hero Image"
 
-#: app/templates/partials/dashboard/project-form.html:110
+#: app/templates/partials/dashboard/project-form.html:111
 msgid "update_project"
 msgstr "Update Project"
 
-#: app/templates/partials/dashboard/project-form.html:111
+#: app/templates/partials/dashboard/project-form.html:112
 #: app/templates/partials/dashboard/projects.html:5
 msgid "add_project"
 msgstr "Add Project"
@@ -1083,7 +1151,7 @@ msgstr "English Tags"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:72
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:74
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:128
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:129
 msgid "enter_en_tags_comma_separated"
 msgstr "English Tags (comma separated)"
 
@@ -1097,7 +1165,7 @@ msgstr "Arabic Tags"
 
 #: app/templates/partials/dashboard/knowledge_hub/courses-form.html:76
 #: app/templates/partials/dashboard/knowledge_hub/podcasts-form.html:78
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:131
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:132
 msgid "enter_ar_tags_comma_separated"
 msgstr "Arabic Tags (comma separated)"
 
@@ -1293,23 +1361,23 @@ msgstr "Author Name (Arabic)"
 msgid "enter_author_email"
 msgstr "Author Email"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:66
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:67
 msgid "current_hero_image"
 msgstr "Current Hero Image"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:83
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:84
 msgid "re_en_content"
 msgstr "English Content"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:100
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:101
 msgid "re_ar_content"
 msgstr "Arabic Content"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:135
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:136
 msgid "additional_images"
 msgstr "Additional Images"
 
-#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:148
+#: app/templates/partials/dashboard/knowledge_hub/researches-form.html:149
 msgid "confirm_delete_image"
 msgstr "Are you sure you want to delete this image?"
 
@@ -1329,9 +1397,9 @@ msgstr "Search Research"
 msgid "add_research"
 msgstr "Add Research"
 
-#: utils/auth_utils.py:42
-msgid "Please log in to access this page"
-msgstr "Please log in to access this page"
+#: utils/email_validation.py:39
+msgid "Invalid email format"
+msgstr "Invalid email format"
 
 #: utils/email_validation.py:44
 msgid "Disposable email addresses are not allowed"
@@ -1585,3 +1653,10 @@ msgstr "Invalid email domain. Please check your email"
 
 #~ msgid "tags"
 #~ msgstr "English Tags"
+
+#~ msgid "research"
+#~ msgstr "Research"
+
+#~ msgid "Failed to send message"
+#~ msgstr "Failed to send your message"
+

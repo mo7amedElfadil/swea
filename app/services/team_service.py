@@ -28,6 +28,7 @@ class TeamService(BaseService):
         """Create a new team member."""
         try:
             # Process and validate form data
+            print(form_data)
             processed_data = self.validate_form_data(form_data, files)
 
             # Validate with schema
@@ -70,7 +71,7 @@ class TeamService(BaseService):
                 self.update_team_member_order(
                     order=processed_data["order"],
                     mode=0,
-                    limit=existing_team_member.order,
+                    limit=self.model_class.get_byuuid(uuid).order,
                 )
 
             team_member = self.model_class.get_byuuid(uuid)
@@ -128,13 +129,33 @@ class TeamService(BaseService):
         """
         team_member = self.model_class.get_by(order=order)
         if team_member:
-            if mode == 1 and limit:
-                if team_member.order > limit:
+            if order < 1 or order > self.get_max_order():
+                return None
+            if limit:
+                if order > limit:
+                    team_member.order -= 1
+                    team_member.update()
+                    return self.update_team_member_order(order - 1, mode, limit)
+                elif order < limit:
                     team_member.order += 1
+                    team_member.update()
+                    return self.update_team_member_order(order + 1, mode, limit)
+            elif mode == 1:
+                self.update_team_member_order(order + 1, mode)
+                team_member.order += 1
+                team_member.update()
             elif mode == -1:
+                self.update_team_member_order(order + 1, mode)
                 team_member.order -= 1
-            team_member.update()
-            self.update_team_member_order(order + 1, mode)
+                team_member.update()
             return team_member
 
         return None
+
+    def get_max_order(self) -> int:
+        """Get the maximum order of team members."""
+        all_members = self.model_class.get_all()
+        max_order = max(
+            (member.order for member in all_members), default=None
+        )
+        return max_order if max_order else 0

@@ -49,6 +49,7 @@ def add_team_member():
         files = request.files
         team_service.create_team_member(form_data, files)
     except Exception as e:
+        print(e)
         resp = make_response(str(e), 400)
         return add_toast(
             resp,

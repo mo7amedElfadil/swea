@@ -26,12 +26,10 @@
   <!-- Mission Section -->
   <section id="mission" class="px-4 py-8 sm:py-28">
     <div class="container mx-auto flex flex-col items-center gap-8 relative">
+      <div class="top-[55%] sm:-translate-y-1/2 left-1/2 sm:-translate-x-1/2 overflow-hidden sm:absolute">
       <h2 class="me-auto mb-6 text-3xl text-primary-800 capitalize font-extrabold sm:mx-auto sm:text-7xl">
         {{ _('mission title') }}
       </h2>
-
-      <div class="top-[55%] sm:-translate-y-1/2 left-1/2 sm:-translate-x-1/2 border-2 border-primary-800 rounded-full overflow-hidden sm:absolute">
-        <img src="{{ url_for('static', filename='imgs/our-mission.jpg') }}" alt="missionimg" class="w-[300px] h-[300px] sm:size-[500px]" />
       </div>
 
       {% set mission_cards = [

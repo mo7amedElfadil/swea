@@ -22,13 +22,13 @@ class UserSchema(Schema):
     )
 
     @validates("username")
-    def validate_username(self, value: str):
+    def validate_username(self, value: str, **kwargs):
         """Validate that the username is not empty."""
         if not value.strip():
             raise ValidationError("Username cannot be empty.")
 
     @validates("password")
-    def validate_password(self, value: str):
+    def validate_password(self, value: str, **kwargs):
         """Validate that the password meets minimum length requirements."""
         if len(value) < 8:
             raise ValidationError(

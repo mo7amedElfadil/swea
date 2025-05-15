@@ -52,13 +52,13 @@ class ProjectSchema(Schema):
     testimonials = fields.List(fields.Dict(), allow_none=True)
 
     @validates("title")
-    def validate_title(self, value):
+    def validate_title(self, value, **kwargs):
         """Ensure the title contains at least one language."""
         if not value or not any(value.values()):
             raise ValidationError("Title must contain at least one language.")
 
     @validates("author")
-    def validate_author(self, value):
+    def validate_author(self, value, **kwargs):
         """Ensure the author contains a name (with at least one language)."""
         if (
             "name" not in value

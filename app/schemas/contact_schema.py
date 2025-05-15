@@ -22,13 +22,13 @@ class ContactSchema(Schema):
     )
 
     @validates("name")
-    def validate_name(self, value: str):
+    def validate_name(self, value: str, **kwargs):
         """Validate that the name is not empty."""
         if not value.strip():
             raise ValidationError("Name cannot be empty.")
 
     @validates("content")
-    def validate_content(self, value: str):
+    def validate_content(self, value: str, **kwargs):
         """Validate that the content is not empty."""
         if not value.strip():
             raise ValidationError("Content cannot be empty.")

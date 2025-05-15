@@ -133,28 +133,40 @@
 	var next = document.getElementById('next');
 	var prev = document.getElementById('prev');
 	var carousel = document.getElementById('carousel');
+	var carouselW = carousel.clientWidth;
 	var slides = carousel.children;
-	var totalSlides = slides.length;
+	var totalSlides = slides.length-1;
 	var GAP = 24;
 	var slideWidth = slides[0].clientWidth + GAP;
 	var locale = document.documentElement.lang;
+	var pageSize = Math.floor(carouselW / slideWidth)
+
 
 	var currentSlide = 0;
-	next.addEventListener('click', () => {
-		currentSlide = (currentSlide + 1) % totalSlides;
-		carousel.style.transform =
-			`translateX(${locale === 'en' ? -currentSlide * slideWidth : currentSlide * slideWidth}px)`;
-	});
-	prev.addEventListener('click', () => {
-    // TODO: if slider item is last the next button should be disabled
-		currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-		carousel.style.transform =
-			`translateX(${locale === 'en' ? -currentSlide * slideWidth : currentSlide * slideWidth}px)`;
-	});
+	if (totalSlides !== 0){
+		next.disabled = (currentSlide === totalSlides-1) || pageSize+currentSlide >= totalSlides;
+		next.addEventListener('click', () => {
+			if (next.disabled){return;}
+			currentSlide = (currentSlide + 1) % totalSlides;
+			next.disabled = (currentSlide === totalSlides-1) || pageSize+currentSlide >= totalSlides;
+			prev.disabled = currentSlide === 0;
+			carousel.style.transform =
+				`translateX(${locale === 'en' ? -currentSlide * slideWidth : currentSlide * slideWidth}px)`;
+		});
+		prev.disabled = currentSlide === 0;
+		prev.addEventListener('click', () => {
+			currentSlide = (currentSlide - 1) % totalSlides;
+			if (prev.disabled){return;}
+			next.disabled = currentSlide === totalSlides-1;
+			prev.disabled = currentSlide === 0;
+			carousel.style.transform =
+				`translateX(${locale === 'en' ? -currentSlide * slideWidth : currentSlide * slideWidth}px)`;
+		});
+	}
 
   document.addEventListener('htmx:afterRequest', (evt) => {
     if (evt.detail.elt.id === 'news-slider'){
-      totalSlides = carousel.children.length;
+      totalSlides = carousel.children.length-1;
     }
 
   });

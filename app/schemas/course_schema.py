@@ -39,13 +39,13 @@ class CourseSchema(Schema):
     image = fields.Str(allow_none=True)
 
     @validates("title")
-    def validate_title(self, value: Dict[str, str]):
+    def validate_title(self, value: Dict[str, str], **kwargs):
         """Validate that the title contains at least one language."""
         if not value:
             raise ValidationError("Title must contain at least one language.")
 
     @validates("course_name")
-    def validate_course_name(self, value: Dict[str, str]):
+    def validate_course_name(self, value: Dict[str, str], **kwargs):
         """Validate that the course name contains at least one language."""
         if not value:
             raise ValidationError(
@@ -53,7 +53,7 @@ class CourseSchema(Schema):
             )
 
     @validates("description")
-    def validate_description(self, value: Dict[str, str]):
+    def validate_description(self, value: Dict[str, str], **kwargs):
         """Validate that the description contains at least one language."""
         if not value:
             raise ValidationError(
@@ -61,7 +61,7 @@ class CourseSchema(Schema):
             )
 
     @validates("tags")
-    def validate_tags(self, value: Dict[str, List[str]]):
+    def validate_tags(self, value: Dict[str, List[str]], **kwargs):
         """Validate that tags are provided for at least one language."""
         if not value:
             raise ValidationError(

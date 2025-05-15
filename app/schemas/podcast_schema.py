@@ -39,13 +39,13 @@ class PodcastSchema(Schema):
     image = fields.Str(allow_none=True)
 
     @validates("title")
-    def validate_title(self, value: Dict[str, str]):
+    def validate_title(self, value: Dict[str, str], **kwargs):
         """Validate that the title contains at least one language."""
         if not value:
             raise ValidationError("Title must contain at least one language.")
 
     @validates("podcast_name")
-    def validate_podcast_name(self, value: Dict[str, str]):
+    def validate_podcast_name(self, value: Dict[str, str], **kwargs):
         """Validate that the podcast name contains at least one language."""
         if not value:
             raise ValidationError(
@@ -53,7 +53,7 @@ class PodcastSchema(Schema):
             )
 
     @validates("description")
-    def validate_description(self, value: Dict[str, str]):
+    def validate_description(self, value: Dict[str, str], **kwargs):
         """Validate that the description contains at least one language."""
         if not value:
             raise ValidationError(
@@ -61,7 +61,7 @@ class PodcastSchema(Schema):
             )
 
     @validates("tags")
-    def validate_tags(self, value: Dict[str, List[str]]):
+    def validate_tags(self, value: Dict[str, List[str]], **kwargs):
         """Validate that tags are provided for at least one language."""
         if not value:
             raise ValidationError(

@@ -31,7 +31,7 @@ class MemberSchema(Schema):
     )
 
     @validates("name")
-    def validate_name(self, value: Dict[str, str]):
+    def validate_name(self, value: Dict[str, str], **kwargs):
         """Validate that the name contains at least one language."""
         if not value:
             raise ValidationError("Name must contain at least one language.")

@@ -40,13 +40,13 @@ class ResearchSchema(Schema):
     testimonials = fields.List(fields.Dict(), allow_none=True)
 
     @validates("title")
-    def validate_title(self, value: Dict[str, str]):
+    def validate_title(self, value: Dict[str, str], **kwargs):
         """Validate that the title contains at least one language."""
         if not value:
             raise ValidationError("Title must contain at least one language.")
 
     @validates("author")
-    def validate_author(self, value: Dict[str, str]):
+    def validate_author(self, value: Dict[str, str], **kwargs):
         """Validate that the author contains a name and email."""
         if (
             "name" not in value
@@ -58,7 +58,7 @@ class ResearchSchema(Schema):
             )
 
     @validates("tags")
-    def validate_tags(self, value: Dict[str, List[str]]):
+    def validate_tags(self, value: Dict[str, List[str]], **kwargs):
         """Validate that tags are provided for at least one language."""
         if not value:
             raise ValidationError(
@@ -66,7 +66,7 @@ class ResearchSchema(Schema):
             )
 
     @validates("content")
-    def validate_content(self, value: Dict[str, str]):
+    def validate_content(self, value: Dict[str, str], **kwargs):
         """Validate that the content contains at least one language."""
         if not value:
             raise ValidationError(

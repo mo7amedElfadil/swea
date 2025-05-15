@@ -27,13 +27,13 @@ class NewsSchema(Schema):
     url_redirect = fields.Str(allow_none=True)
 
     @validates("title")
-    def validate_title(self, value: Dict[str, str]):
+    def validate_title(self, value: Dict[str, str], **kwargs):
         """Validate that the title contains at least one language."""
         if not value:
             raise ValidationError("Title must contain at least one language.")
 
     @validates("description")
-    def validate_description(self, value: Dict[str, str]):
+    def validate_description(self, value: Dict[str, str], **kwargs):
         """Validate that the description contains at least one language."""
         if not value:
             raise ValidationError(

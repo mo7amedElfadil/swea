@@ -105,10 +105,14 @@ def update_team_member(member_id):
 @bp.route("/dashboard/delete-team-member/<member_id>", methods=["DELETE"])
 def delete_team_member(member_id):
     """Delete a team member."""
+    order = team_service.get_by_uuid(member_id).get("order")
     success = team_service.delete(member_id)
     if not success:
         resp = make_response("", 404)
         return add_toast(resp, "error", _("Team member not found"))
+
+    # Update the order of other team members
+    team_service.update_team_member_order(order=order + 1, mode=-1)
 
     members_res = team_service.get_all(sort='teams."order"')
     resp = make_response(

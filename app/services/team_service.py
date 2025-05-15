@@ -33,6 +33,16 @@ class TeamService(BaseService):
             # Validate with schema
             self.validate_with_schema(processed_data)
 
+            # validate the uniqueness of team member order
+            existing_team_member = self.model_class.get_by(
+                order=processed_data["order"]
+            )
+
+            if existing_team_member:
+                self.update_team_member_order(
+                    order=processed_data["order"], mode=1
+                )
+
             team_member = self.model_class()
             team_member.create(**processed_data)
             return team_member
@@ -50,6 +60,18 @@ class TeamService(BaseService):
 
             # Validate with schema
             self.validate_with_schema(processed_data)
+
+            # validate the uniqueness of team member order
+            existing_team_member = self.model_class.get_by(
+                order=processed_data["order"]
+            )
+
+            if existing_team_member and existing_team_member.uuid != uuid:
+                self.update_team_member_order(
+                    order=processed_data["order"],
+                    mode=0,
+                    limit=existing_team_member.order,
+                )
 
             team_member = self.model_class.get_byuuid(uuid)
             if team_member:
@@ -93,3 +115,26 @@ class TeamService(BaseService):
             processed_data["image"] = self.handle_file_upload(image)
 
         return processed_data
+
+    def update_team_member_order(
+        self, order: int, mode: int, limit: Optional[int] = 0
+    ) -> Optional[Team]:
+        """
+        Cascade update the order of a team member on create/update team member.
+
+        :param order: The order of the team member.
+        :param mode: The mode of the order (1 for increase, -1 for decrease).
+        :return: The updated team member or None if not found.
+        """
+        team_member = self.model_class.get_by(order=order)
+        if team_member:
+            if mode == 1 and limit:
+                if team_member.order > limit:
+                    team_member.order += 1
+            elif mode == -1:
+                team_member.order -= 1
+            team_member.update()
+            self.update_team_member_order(order + 1, mode)
+            return team_member
+
+        return None

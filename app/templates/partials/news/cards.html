@@ -1,6 +1,6 @@
 {% import "macros/icons.html" as icons %} {% for n in data %}
 <div
-    class="shrink-0 w-[200px] h-[330px] grid grid-rows-[30%_auto] shadow-[0_8px_10px_5px_rgba(0,_0,_0,_0.3)] sm:w-[400px] sm:h-[500px] sm:grid-rows-[40%_auto]"
+    class="shrink-0 w-[250px] h-[330px] grid grid-rows-[30%_auto] shadow-[0_8px_10px_5px_rgba(0,_0,_0,_0.3)] sm:w-[400px] sm:h-[500px] sm:grid-rows-[40%_auto]"
     {%
     if
     loop.last
@@ -24,7 +24,7 @@
     <div class="p-2 flex flex-col gap-2 bg-white sm:p-5">
         <span class="text-xs text-slate-500">{{n.date}}</span>
         <h3 class="font-extrabold">{{n.title[locale]}}</h3>
-        <div>{{n.description[locale] | truncate_html(200) | safe}}</div>
+        <div id="news-content">{{n.description[locale]}}</div>
         <div class="mt-auto">
             {% if n.url_redirect %}
             <button class="flex gap-2 items-center text-sm">
@@ -42,3 +42,38 @@
     </div>
 </div>
 {% endfor %}
+<script>
+    function truncateText() {
+        const elements = document.querySelectorAll('#news-content')
+        elements.forEach((elm) => {
+            // Store the original text if not already stored
+            if (!elm.dataset.originalText) {
+                elm.dataset.originalText = elm.textContent
+            }
+
+            // Calculate the number of characters based on screen width
+            const screenWidth = window.innerWidth
+            let charLimit
+
+            if (screenWidth < 600) {
+                charLimit = 100 // Small screens
+            } else if (screenWidth < 1000) {
+                charLimit = 150 // Medium screens
+            } else {
+                charLimit = 200 // Large screens
+            }
+
+            // Truncate text based on calculated character limit
+            if (elm.dataset.originalText.length > 100) {
+                elm.textContent =
+                    elm.dataset.originalText.substr(0, charLimit) + '...'
+            }
+        })
+    }
+
+    // Initial truncation
+    truncateText()
+
+    // Re-truncate on window resize
+    window.addEventListener('resize', truncateText)
+</script>

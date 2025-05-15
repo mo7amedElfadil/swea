@@ -2,7 +2,8 @@
 form %} {% set _form = { 'title': { 'en': title['en'] if update else '', 'ar':
 title['ar'] if update else '', }, 'date': date if update else '', 'image': image
 if update else '', 'url_redirect': url_redirect if update and url_redirect else
-'', } %}
+'', } %} {%from "macros/form_macros.html" import textarea%}
+
 <div>
     <form
         id="create-news"
@@ -58,36 +59,16 @@ if update else '', 'url_redirect': url_redirect if update and url_redirect else
                 <div class="space-y-4">
                     <!-- English description -->
                     <div>
-                        <label
-                            for="description-en"
-                            class="block text-sm font-medium text-gray-700 mb-4"
-                        >
-                            {{ _("english_news_description") }}
-                        </label>
-                        <div id="quill-en" class="bg-white"></div>
-                        <input
-                            type="hidden"
-                            id="description-en"
-                            name="description[en]"
-                            value="{{ description['en'] if description else '' }}"
-                        />
+                        {{textarea(id="description-en",
+                        name="description[en]",label=_("english_news_description"),
+                        value=description['en'] if description else "" )}}
                     </div>
 
                     <!-- Arabic description -->
                     <div>
-                        <label
-                            for="description-ar"
-                            class="block text-sm font-medium text-gray-700 mb-4"
-                        >
-                            {{ _("arabic_news_description") }}
-                        </label>
-                        <div id="quill-ar" class="bg-white"></div>
-                        <input
-                            type="hidden"
-                            id="description-ar"
-                            name="description[ar]"
-                            value="{{ description['ar'] if description else '' }}"
-                        />
+                        {{textarea(id="description-ar", name="description[ar]",
+                        label=_("arabic_news_description"),
+                        value=description['ar'] if description else "")}}
                     </div>
                 </div>
             </div>
